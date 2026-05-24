@@ -2,33 +2,27 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>Value-Chain-Physics | 价值链物理学 & 全息抗熵</title>
+  <title>Value-Chain-Physics | 价值链物理学</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="开放复杂巨系统的物理学宪法 - 孟凡淳 (Grit Meng)">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
-  <style>
-    .markdown-section h1 { font-weight: 700; color: #1a1a1a; }
-    .markdown-section blockquote { border-left: 4px solid #42b983; background-color: #f8f8f8; padding: 10px 15px; }
-  </style>
 </head>
 <body>
-  <div id="app">系统正在执行高维相变，加载中...</div>
+  <div id="app">系统加载中...</div>
   <script>
     window.$docsify = {
-  name: '价值链物理学',
-  repo: 'GritMeng/Value-Chain-Physics',
-  loadSidebar: false,   // 【核心改动】先关闭死板的外部自定义侧边栏
-  maxLevel: 4,          // 【核心改动】强行让引擎去读取你书里的一级标题、二级标题
-  subMaxLevel: 4        // 【核心改动】把你在 Notion 里分好的章节目录，直接在左侧弹出来
-}
-      search: {
-        maxAge: 86400000,
-        paths: 'auto',
-        placeholder: '输入关键词搜索全体系物理公理...',
-        noData: '未在当前相空间找到相关逻辑残差',
-        depth: 6
-      }
+      name: '价值链物理学',
+      repo: 'GritMeng/Value-Chain-Physics',
+      loadSidebar: false,   // 重点：先关闭生硬的外部侧边栏文件
+      maxLevel: 3,          // 重点：让引擎直接去扫描你书里的 # ## ### 标题
+      subMaxLevel: 3        // 重点：把扫描到的章节，自动在左侧生成一棵精美的树状目录
+    }
+  </script>
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"/>
+</body>
+</html>
     }
   </script>
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
