@@ -13,15 +13,13 @@
     window.$docsify = {
       name: '价值链物理学',
       repo: 'GritMeng/Value-Chain-Physics',
-      // 【刚性熔断】直接关闭依赖外部文件的侧边栏，让引擎自发做功
-      loadSidebar: false,   
-      // 【核心自愈】即使没有 # 号，也强行去扫描你正文里的前 4 级文本结构
-      maxLevel: 4,          
-      subMaxLevel: 4,       
+      loadSidebar: false,   // 熔断外部侧边栏文件，改用自愈扫描
+      maxLevel: 3,          // 自动抓取正文里的加粗段落作为左侧大屏树状铁轨
+      subMaxLevel: 3,       
       search: {
         maxAge: 86400000,
         paths: 'auto',
-        placeholder: '输入关键词穿透物理体系...',
+        placeholder: '输入关键词穿透价值链公理...',
         noData: '未找到相关逻辑残差',
         depth: 4
       }
