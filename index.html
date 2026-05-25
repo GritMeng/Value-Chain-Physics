@@ -8,20 +8,20 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
 </head>
 <body>
-  <div id="app">系统正在执行高维相变，加载中...</div>
+  <div id="app">系统正在执行结构相变，全息加载中...</div>
   <script>
     window.$docsify = {
       name: '价值链物理学',
       repo: 'GritMeng/Value-Chain-Physics',
-      loadSidebar: true,     // 强行开启左侧刚性铁轨导航
-      alias: {
-        '/.*/_sidebar.md': '/_sidebar.md' // 刚性路由别名，防止深层路径下找不到侧边栏
-      },
-      subMaxLevel: 3,        // 自动提取页面内的三级目录
+      // 【刚性熔断】直接关闭依赖外部文件的侧边栏，让引擎自发做功
+      loadSidebar: false,   
+      // 【核心自愈】即使没有 # 号，也强行去扫描你正文里的前 4 级文本结构
+      maxLevel: 4,          
+      subMaxLevel: 4,       
       search: {
         maxAge: 86400000,
         paths: 'auto',
-        placeholder: '输入关键词搜索全体系物理公理...',
+        placeholder: '输入关键词穿透物理体系...',
         noData: '未找到相关逻辑残差',
         depth: 4
       }
