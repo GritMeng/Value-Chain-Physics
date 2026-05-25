@@ -1,34 +1,4 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <title>Value-Chain-Physics | 价值链物理学</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
-  
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true
-      },
-      options: {
-        // 允许 MathJax 强行扫描包含缩进的容器，全面降维接管列表坏块
-        processHtmlClass: 'tex2jax_process',
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-      },
-      startup: {
-        // 时序平锁：明确告知内核，我们要通过动态调用（Typeset）执行做功
-        typeset: false
-      }
-    };
-  </script>
-  <script defer src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-</head>
-
-<body class="notranslate">
+<body class="notranslate" translate="no">
 
   <div id="app">系统正在执行高维相变，加载中...</div>
 
@@ -46,22 +16,23 @@
         noData: '未找到相关逻辑残差',
         depth: 4
       },
-      // 【解药三】：构建动力学全息自愈闭环插件
       plugins: [
         function(hook) {
+          // 【时序反演】：在 Docsify 渲染完毕的最终环节，强行阻断一切外部插件的二次做功
           hook.doneEach(function() {
-            // 每当 Docsify 抓取完数据、切换页面、或局部动态刷新时
             var runMathJax = function() {
               if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
-                // 利用 Promise 异步链，强制驱动 MathJax 对全页面的公式执行强制坍缩与无损显影
                 MathJax.typesetPromise().then(function() {
-                  // 物理拓扑闭环成功
+                  // 强制为所有生成出来的数学公式节点再次套上防翻译装甲，实施双重锁死
+                  document.querySelectorAll('.MathJax').forEach(function(el) {
+                    el.classList.add('notranslate');
+                    el.setAttribute('translate', 'no');
+                  });
                 }).catch(function(err) {
-                  console.log('MathJax 状态异常残差: ', err);
+                  console.log('时序异常: ', err);
                 });
               } else {
-                // 如果 MathJax 还没加载完，挂起定时探针，延时 100ms 再次捕获，直至完全通电
-                setTimeout(runMathJax, 100);
+                setTimeout(runMathJax, 50);
               }
             };
             runMathJax();
@@ -72,4 +43,5 @@
   </script>
 
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  <script src="//
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+</body>
