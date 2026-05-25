@@ -1058,7 +1058,7 @@ dim (*C*) ≤ dim (*O*)
 
 为阻断系统在哥德尔边界处的崩溃，必须在架构内核中置入跨代进化的非线性演化方程：
 
-$\Pi(t + 1) = \Phi\left\lbrack \Pi(t),\sum_{}^{}\mathrm{\Delta}_{critical} \right\rbrack$f
+$$V_{\Omega}(t + 1) = M \bullet \Pi \left[ \sum \left( m_i \bullet \pi_i [S_i + \Delta(t)] \right) \right]$$
 
 - *Π*(*t*)**（稳态旧算符）：** 当前逼近公理计算极限、濒临拓扑失效的闭环系统状态。
 - *Σ*Δ*critical***（临界宏观偏差矩阵）：** 在旧逻辑闭环内持续积分累积、超越算符吞吐极限的底层真实物理变异总和。当其触及相变临界阈值，即客观宣告原系统法则的物理破产。
