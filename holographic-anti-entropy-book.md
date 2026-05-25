@@ -133,7 +133,7 @@
 
 为缓解内部熵增的累积，系统工程引入具备“降维投影与重整化”能力的统御算符，构建宏微观贯通的抗熵增方程：
 
--$$V_{\Omega} = \ M \bullet \Pi\left\lbrack \sum_{}^{}\left( mi \bullet \pi i\left\lbrack S_{i} \right\rbrack \right) \right\rbrack$$
+$V_{\Omega} = \ M \bullet \Pi\left\lbrack \sum_{}^{}\left( mi \bullet \pi i\left\lbrack S_{i} \right\rbrack \right) \right\rbrack$
 
 在此算符方程中，宏观的统御遵循代数运算次序，通过投影完成对微观节点的“重整化 (Renormalization)”：
 
@@ -142,7 +142,7 @@
 3. **mi,πi与动态模拟：**通过动态模拟，全局意志M对微观客体的自发极值 (*mi*)进行逻辑重写，生成重整化后的微观定律(*mi*, *πi*)。
 4. $$\left\lbrack \sum_{}^{}\left( \mathbf{...} \right) \right\rbrack$$（矢量叠加与分布式做功）：**底层子系统在正交轨道内进行并行运算与物理做功，产生底层的位移矢量和。
 5. **M与意志坍缩：**底层的矢量和，在顶层全局意志（*M*）的引力役使下，强制坍缩并积分出唯一的宏观秩序*VΩ*。
-6. **协同专业化与局部的自由度释放**：在$$V_{\Omega} = \ M \bullet \Pi\left\lbrack \sum_{}^{}\left( {mi}^{*} \bullet {\pi i}^{*}\left\lbrack S_{i} \right\rbrack \right) \right\rbrack$$方程中，包含着组织结构的辩证关系。传统管理中，底层节点需要消耗算力进行跨部门协调。而大统一方程的作用在于，将全局协同这件非线性耦合运算上收并封装在统御算符*Π*中。当全局的防撞与规划由算符处理后，微观子系统*Si*依据重整化后的*mi*和*πi*，便获得了专业范围内的执行自由度。它们能够减少跨域协调的阻力，在自身的正交轨道内聚焦于专业极值。
+6. **协同专业化与局部的自由度释放**：在$V_{\Omega} = \ M \bullet \Pi\left\lbrack \sum_{}^{}\left( {mi}^{*} \bullet {\pi i}^{*}\left\lbrack S_{i} \right\rbrack \right) \right\rbrack$方程中，包含着组织结构的辩证关系。传统管理中，底层节点需要消耗算力进行跨部门协调。而大统一方程的作用在于，将全局协同这件非线性耦合运算上收并封装在统御算符*Π*中。当全局的防撞与规划由算符处理后，微观子系统*Si*依据重整化后的*mi*和*πi*，便获得了专业范围内的执行自由度。它们能够减少跨域协调的阻力，在自身的正交轨道内聚焦于专业极值。
 
 **1.5 演化闭环：目的论引擎的动力学相变**
 
@@ -150,7 +150,7 @@
 
 系统目的论引擎的最终运转机制，收敛于以下动力学演化方程：
 
-$$V_{\Omega}(t + 1) = M \bullet \Pi\left\lbrack \sum_{}^{}\left( {mi}^{*} \bullet {\pi i}^{*}\left\lbrack S_{i} + \mathrm{\Delta}(t) \right\rbrack \right) \right\rbrack$$
+$V_{\Omega}(t + 1) = M \bullet \Pi\left\lbrack \sum_{}^{}\left( {mi}^{*} \bullet {\pi i}^{*}\left\lbrack S_{i} + \mathrm{\Delta}(t) \right\rbrack \right) \right\rbrack$
 
 在此方程驱动下，“观测、模拟、治理”这三重物理柱石，在时间序列上严密展开。
 
