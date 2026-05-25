@@ -15,19 +15,28 @@
         processEscapes: true
       },
       options: {
+        // 允许 MathJax 强行扫描包含缩进的容器，全面降维接管列表坏块
+        processHtmlClass: 'tex2jax_process',
         skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      },
+      startup: {
+        // 时序平锁：明确告知内核，我们要通过动态调用（Typeset）执行做功
+        typeset: false
       }
     };
   </script>
-  <script id="MathJax-script" async src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script defer src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
-<body>
+
+<body class="notranslate">
+
   <div id="app">系统正在执行高维相变，加载中...</div>
+
   <script>
     window.$docsify = {
       name: '价值链物理学',
       repo: 'GritMeng/Value-Chain-Physics',
-      loadSidebar: false,   // 保持自愈扫描，不依赖外部文件
+      loadSidebar: false,   
       maxLevel: 3,          
       subMaxLevel: 3,       
       search: {
@@ -37,19 +46,30 @@
         noData: '未找到相关逻辑残差',
         depth: 4
       },
-      // 每次页面切换或局部内容更新时，强制驱动中央机台对齐公式
+      // 【解药三】：构建动力学全息自愈闭环插件
       plugins: [
         function(hook) {
           hook.doneEach(function() {
-            if (typeof MathJax !== 'undefined' && MathJax.typeset) {
-              MathJax.typeset();
-            }
+            // 每当 Docsify 抓取完数据、切换页面、或局部动态刷新时
+            var runMathJax = function() {
+              if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
+                // 利用 Promise 异步链，强制驱动 MathJax 对全页面的公式执行强制坍缩与无损显影
+                MathJax.typesetPromise().then(function() {
+                  // 物理拓扑闭环成功
+                }).catch(function(err) {
+                  console.log('MathJax 状态异常残差: ', err);
+                });
+              } else {
+                // 如果 MathJax 还没加载完，挂起定时探针，延时 100ms 再次捕获，直至完全通电
+                setTimeout(runMathJax, 100);
+              }
+            };
+            runMathJax();
           });
         }
       ]
     }
   </script>
+
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-</body>
-</html>
+  <script src="//
