@@ -1,3 +1,1 @@
-- [🌌 数字宪法首页](README.md)
-- [📖 《价值链物理学》正文](value-chain-physics-book.md)
-- [📖 《全息抗熵》正文](holographic-anti-entropy-book.md)
+已弃用
