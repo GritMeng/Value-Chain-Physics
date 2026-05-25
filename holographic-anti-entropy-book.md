@@ -126,7 +126,7 @@
 
 为缓解内部熵增的累积，系统工程引入具备“降维投影与重整化”能力的统御算符，构建宏微观贯通的抗熵增方程：
 
-$$V_{\Omega} = \ M \bullet \Pi\left\lbrack \sum_{}^{}\left( mi \bullet \pi i\left\lbrack S_{i} \right\rbrack \right) \right\rbrack$$
+$$V_{\Omega} = M \cdot \Pi \left[ \sum (m_i \cdot \pi_i [S_i]) \right]$$
 
 在此算符方程中，宏观的统御遵循代数运算次序，通过投影完成对微观节点的“重整化 (Renormalization)”：
 
@@ -143,7 +143,7 @@ $$V_{\Omega} = \ M \bullet \Pi\left\lbrack \sum_{}^{}\left( mi \bullet \pi i\lef
 
 系统目的论引擎的最终运转机制，收敛于以下动力学演化方程：
 
-$$V_{\Omega}(t + 1) = M \bullet \Pi\left\lbrack \sum_{}^{}\left( {mi}^{*} \bullet {\pi i}^{*}\left\lbrack S_{i} + \mathrm{\Delta}(t) \right\rbrack \right) \right\rbrack$$
+$$V_{\Omega}(t + 1) = M \cdot \Pi \left[ \sum \left( m_i^* \cdot \pi_i^* [ S_i + \Delta(t) ] \right) \right]$$
 
 在此方程驱动下，“观测、模拟、治理”这三重物理柱石，在时间序列上严密展开。
 
@@ -403,7 +403,7 @@ $$V_{\Omega}(t + 1) = M \bullet \Pi\left\lbrack \sum_{}^{}\left( {mi}^{*} \bulle
 
 **核心方程：**
 
-$$V(t + 1) = M \cdot \Pi\left\lbrack \sum_{}^{}\left( m_{i} \cdot \pi_{i}\left\lbrack S_{i} \otimes \Delta(t) \right\rbrack \right) \right\rbrack$$
+$$V(t + 1) = M \cdot \Pi \left[ \sum \left( m_i \cdot \pi_i [ S_i \otimes \Delta(t) ] \right) \right]$$
 
 **机制映射：**
 
@@ -1050,7 +1050,7 @@ dim (*C*) ≤ dim (*O*)
 
 为阻断系统在哥德尔边界处的崩溃，必须在架构内核中置入跨代进化的非线性演化方程：
 
-$$\Pi(t + 1) = \Phi\left\lbrack \Pi(t),\sum_{}^{}\mathrm{\Delta}_{critical} \right\rbrack$$f
+$$\Pi(t + 1) = \Phi \left[ \Pi(t), \sum \Delta_{critical} \right]$$
 
 - *Π*(*t*)**（稳态旧算符）：** 当前逼近公理计算极限、濒临拓扑失效的闭环系统状态。
 - *Σ*Δ*critical***（临界宏观偏差矩阵）：** 在旧逻辑闭环内持续积分累积、超越算符吞吐极限的底层真实物理变异总和。当其触及相变临界阈值，即客观宣告原系统法则的物理破产。
