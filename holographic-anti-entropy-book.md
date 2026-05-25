@@ -133,7 +133,7 @@
 
 为缓解内部熵增的累积，系统工程引入具备“降维投影与重整化”能力的统御算符，构建宏微观贯通的抗熵增方程：
 
-$$V_{\Omega} = M \bullet \Pi\left\lbrack \sum_{}^{}\left( m_i^* \bullet \pi_i^*\left\lbrack S_{i} \right\rbrack \right) \right\rbrack$$
+$$V_{\Omega} = \ M \bullet \Pi\left\lbrack \sum_{}^{}\left( mi \bullet \pi i\left\lbrack S_{i} \right\rbrack \right) \right\rbrack$$
 
 在此算符方程中，宏观的统御遵循代数运算次序，通过投影完成对微观节点的“重整化 (Renormalization)”：
 
