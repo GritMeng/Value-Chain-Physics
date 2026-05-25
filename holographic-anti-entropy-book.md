@@ -50,20 +50,20 @@
 
 - **S(Entropy)**：系统熵（宏观标量）。衡量巨系统内部无序度与结构性摩擦废热的总体水平。
 - **Si/Sn** **(Subsystems** **/** **States)**：子系统或局部视界（微观矢量/张量）。代表构成巨系统的各个局部节点或其观测视界。
-- *deS*/*diS* **(Entropy** **Flow** **/** **Entropy** **Production)**：外部熵流与内部熵增。*deS* < 0 代表向系统注入的负熵，这是维持系统存活与进化的必要条件。
+- ***deS*/*diS*** **(Entropy** **Flow** **/** **Entropy** **Production)**：外部熵流与内部熵增。*deS* < 0 代表向系统注入的负熵，这是维持系统存活与进化的必要条件。
 - **O**(**N!**) **(Factorial Complexity)**：阶乘级复杂度。描述系统状态与节点交互随规模呈爆炸式增长的数学极限。
 - *Π***(Governance Operator)**：统御算符。接管系统复杂度、执行降维映射并对抗计算不可约性的核心数学实体。
 - **⟨** **D,** **A⟩** **(Digital Double Helix)**：数字双螺旋。由数据模型(*D*)与业务算法 (*A*)深度耦合构成的系统本体。
 - **M** **(Global Will)**：宏观序参量。在算力坍缩中生成的、决定系统演化方向与极值约束的全局意志。
 - **θ** **(Mismatch Angle)**：错配夹角。意图矢量与客观逻辑轨道向量之间的偏离度（拓扑空间夹角），决定了系统有效做功的转化率。
-- dim (*C*)/dim (*O*) **(Dimension of Control / Observation)**：控制域维度与观测域维度。依据维纳-卡尔曼公理，系统的控制效力严格受限于底层的观测精度。
-- *Vm* **(Intent Vector)**：意图矢量。代表系统在相空间中被牵引的方向与标度。在自然系统中代表吸引子位移；在人为系统中代表战略意志对资源的统御性做功方向。
-- *Vπ* **(Logical Trajectory Vector)**：逻辑轨道矢量。由底层的“双螺旋”数据模型与演化算法推演出的系统全局最优演化路径。
+- **dim (*C*)/dim (*O*) (Dimension of Control / Observation)**：控制域维度与观测域维度。依据维纳-卡尔曼公理，系统的控制效力严格受限于底层的观测精度。
+- ***Vm*** **(Intent Vector)**：意图矢量。代表系统在相空间中被牵引的方向与标度。在自然系统中代表吸引子位移；在人为系统中代表战略意志对资源的统御性做功方向。
+- ***Vπ*** **(Logical Trajectory Vector)**：逻辑轨道矢量。由底层的“双螺旋”数据模型与演化算法推演出的系统全局最优演化路径。
 - **K** **(Nodes)**：参与架构协同的微观物理或智力节点数量。
 - Δ**(t)** **(Total Perception Residual)**：全息感知残差。系统演化的绝对动力源（Potential Difference）。由宏观势能场、微观状态位移偏差及外部环境扰动叠加而成。
 - **Isomorphic Capability (能力同构)**：执行统御算符的结构化能力，是系统底层逻辑在组织生命力上的全生命周期物理投影。
-- $$\sum_{}^{}{\mathbf{S}_{\mathbf{i}}\mathbf{\ }}$**(Sum of Subsystems)**：子系统集合。代表构成巨系统的动态、可变的局部节点总和。
-- *mi*/*πi***(Renormalized Agent & Local Freedom)**：重整化后的微观算子与局部自由。系统通过*Π*将全局协同压力向上收敛，从而赋予微观节点在特定规则边界内 100% 聚焦于自身轨道进行“自由奋进”的权利。
+- $\sum_{}^{}{\mathbf{S}_{\mathbf{i}}\mathbf{\ }}$**(Sum of Subsystems)**：子系统集合。代表构成巨系统的动态、可变的局部节点总和。
+- ***mi*/*πi*(Renormalized Agent & Local Freedom)**：重整化后的微观算子与局部自由。系统通过*Π*将全局协同压力向上收敛，从而赋予微观节点在特定规则边界内 100% 聚焦于自身轨道进行“自由奋进”的权利。
 
 **第一卷 总论：系统工程的八大物理宪法**
 
@@ -103,7 +103,7 @@
     - **推演与映射**：系统维持存活与进化的数学条件为 *deS* < 0 且|*deS*| > *diS*。如同材料学中的退火机制，当复杂系统陷入高熵的无序状态时，单靠内部的自发演化难以重构秩序。通常需要从外部对系统注入高能级的能量或结构化信息（即外部负熵*deS*），以抵消内部产生的摩擦与耗散 (*diS*)。若负熵流的注入速度长期低于内部耗散速度，系统将趋向于热力学平衡态（热寂）。
 - **公理二：香农-薛定谔智能公理（信息与负熵等效律）**
     - **前置理论基础**：布里渊 (Leon Brillouin) 的信息负熵等效原理。
-    - **核心方程**：$$H(X) = - \sum P(x) \log P(x)$$
+    - **核心方程**：$H(X) = - \sum_{}^{}{P(x)}\log P(x)$
     - **参数释义**：*H*(*X*)代表系统的信息熵（不确定度），*P*(*x*)代表某一种无序状态发生的概率。
     - **推演与映射**：获取结构化信息，等同于降低系统的不确定性（注入负熵）。智能的机制在于通过引入结构化信息，以消耗能量为代价持续做功。系统工程是这一机制的具象化，其核心职能体现为系统的“负熵引擎”。
 
@@ -133,7 +133,7 @@
 
 为缓解内部熵增的累积，系统工程引入具备“降维投影与重整化”能力的统御算符，构建宏微观贯通的抗熵增方程：
 
-$$V_{\Omega} = \ M \bullet \Pi\left\lbrack \sum_{}^{}\left( mi \bullet \pi i\left\lbrack S_{i} \right\rbrack \right) \right\rbrack$$
+$V_{\Omega} = \ M \bullet \Pi\left\lbrack \sum_{}^{}\left( mi \bullet \pi i\left\lbrack S_{i} \right\rbrack \right) \right\rbrack$
 
 在此算符方程中，宏观的统御遵循代数运算次序，通过投影完成对微观节点的“重整化 (Renormalization)”：
 
@@ -150,7 +150,7 @@ $$V_{\Omega} = \ M \bullet \Pi\left\lbrack \sum_{}^{}\left( mi \bullet \pi i\lef
 
 系统目的论引擎的最终运转机制，收敛于以下动力学演化方程：
 
-$$V_{\Omega}(t + 1) = M \bullet \Pi\left\lbrack \sum_{}^{}\left( {mi}^{*} \bullet {\pi i}^{*}\left\lbrack S_{i} + \mathrm{\Delta}(t) \right\rbrack \right) \right\rbrack$$
+$V_{\Omega}(t + 1) = M \bullet \Pi\left\lbrack \sum_{}^{}\left( {mi}^{*} \bullet {\pi i}^{*}\left\lbrack S_{i} + \mathrm{\Delta}(t) \right\rbrack \right) \right\rbrack$
 
 在此方程驱动下，“观测、模拟、治理”这三重物理柱石，在时间序列上严密展开。
 
