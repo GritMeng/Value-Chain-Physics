@@ -151,7 +151,7 @@ $$V_{\Omega} = M \bullet \Pi\left\lbrack \sum_{}^{}\left( m_i^* \bullet \pi_i^*\
 
 系统目的论引擎的最终运转机制，收敛于以下动力学演化方程：
 
-$$V_{\Omega}(t + 1) = M \bullet \Pi\left\lbrack \sum_{}^{}\left( {mi}^{*} \bullet {\pi i}^{*}\left\lbrack S_{i} + \mathrm{\Delta}(t) \right\rbrack \right) \right\rbrack$$
+$$V_{\Omega}(t + 1) = M \bullet \Pi \left[ \sum \left( m_i \bullet \pi_i [S_i + \Delta(t)] \right) \right]$$
 
 在此方程驱动下，“观测、模拟、治理”这三重物理柱石，在时间序列上严密展开。
 
