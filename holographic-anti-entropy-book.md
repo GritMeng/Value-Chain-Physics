@@ -62,7 +62,7 @@
 - **K** **(Nodes)**：参与架构协同的微观物理或智力节点数量。
 - Δ**(t)** **(Total Perception Residual)**：全息感知残差。系统演化的绝对动力源（Potential Difference）。由宏观势能场、微观状态位移偏差及外部环境扰动叠加而成。
 - **Isomorphic Capability (能力同构)**：执行统御算符的结构化能力，是系统底层逻辑在组织生命力上的全生命周期物理投影。
-- $\sum_{}^{}{\mathbf{S}_{\mathbf{i}}\mathbf{\ }}$**(Sum of Subsystems)**：子系统集合。代表构成巨系统的动态、可变的局部节点总和。
+- $$\sum \mathbf{S}_{\mathbf{i}}$$**(Sum of Subsystems)**：子系统集合。代表构成巨系统的动态、可变的局部节点总和。
 - *mi*/*πi***(Renormalized Agent & Local Freedom)**：重整化后的微观算子与局部自由。系统通过*Π*将全局协同压力向上收敛，从而赋予微观节点在特定规则边界内 100% 聚焦于自身轨道进行“自由奋进”的权利。
 
 **第一卷 总论：系统工程的八大物理宪法**
