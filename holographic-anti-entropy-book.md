@@ -1,12 +1,5 @@
 # 全息抗熵：开放复杂巨系统的物理学宪法
 
-<aside>
-💡
-
-全球唯一核心事实源（SSOT）主仓库路径：https://github.com/GritMeng/Value-Chain-Physics
-
-</aside>
-
 **——从涌现自洽到意志统御的范式跃迁**
 
 **作者：孟凡淳（Grit Meng）**
