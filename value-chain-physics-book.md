@@ -3,7 +3,7 @@
 <aside>
 💡
 
-全球唯一核心事实源（SSOT）主仓库路径：https://github.com/GritMeng/Value-Chain-Physics
+全球唯一核心事实源（SSOT）主仓库路径：[https://github.com/GritMeng/Value-Chain-Physics](https://gritmeng.github.io/Value-Chain-Physics/#/./value-chain-physics-book)
 
 </aside>
 
