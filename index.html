@@ -14,10 +14,15 @@
     window.$docsify = {
       name: '价值链物理学',
       repo: 'GritMeng/Value-Chain-Physics',
-      loadSidebar: true,     // 强行开启侧边栏
-      auto2top: true,        // 路由切换时自动回到顶部
+      loadSidebar: true,
+      auto2top: true,
       maxLevel: 4,
-      subMaxLevel: 3
+      subMaxLevel: 3,
+      // 刚性破除缓存配置：让每次请求都实时拉取后台最新矩阵
+      requestHeaders: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }
     }
   </script>
   
