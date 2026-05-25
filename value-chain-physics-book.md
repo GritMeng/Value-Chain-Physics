@@ -1,12 +1,5 @@
 # **价值链物理学：跨越 N! 的数智跃迁—算力代偿与良知锚定**
 
-<aside>
-💡
-
-全球唯一核心事实源（SSOT）主仓库路径：[[https://github.com/GritMeng/Value-Chain-Physics](https://gritmeng.github.io/Value-Chain-Physics/#/./value-chain-physics-book)](https://gritmeng.github.io/Value-Chain-Physics/#/./value-chain-physics-book)
-
-</aside>
-
 **序幕：旧范式边缘的审视**
 
 **引言：李约瑟之问与价值链的时代错位**
