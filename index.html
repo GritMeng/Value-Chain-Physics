@@ -6,28 +6,50 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-  <div id="app">系统正在执行结构相变，全息加载中...</div>
+  <div id="app">系统正在执行高维相变，加载中...</div>
   <script>
     window.$docsify = {
       name: '价值链物理学',
       repo: 'GritMeng/Value-Chain-Physics',
-      loadSidebar: false,   // 熔断外部侧边栏文件，改用自愈扫描
-      maxLevel: 3,          // 自动抓取正文里的加粗段落作为左侧大屏树状铁轨
+      loadSidebar: false,   // 保持自愈扫描，不依赖外部文件
+      maxLevel: 3,          
       subMaxLevel: 3,       
       search: {
         maxAge: 86400000,
         paths: 'auto',
-        placeholder: '输入关键词穿透价值链公理...',
+        placeholder: '输入关键词穿透物理体系...',
         noData: '未找到相关逻辑残差',
         depth: 4
-      }
+      },
+      // 每次页面切换或局部内容更新时，强制驱动中央机台对齐公式
+      plugins: [
+        function(hook) {
+          hook.doneEach(function() {
+            if (typeof MathJax !== 'undefined' && MathJax.typeset) {
+              MathJax.typeset();
+            }
+          });
+        }
+      ]
     }
   </script>
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"/>
 </body>
 </html>
