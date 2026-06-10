@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPC 全息视频讲堂与数字决策大脑中枢 | 价值链物理学</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@300;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #06090e;
+            --card-bg: rgba(13, 17, 23, 0.75);
+            --border-color: rgba(48, 54, 61, 0.7);
+            --text-color: #c9d1d9;
+            --primary-color: #58a6ff;
+            --accent-color: #d29922;
+            --glow-color: rgba(88, 166, 255, 0.3);
+            --purple-glow: rgba(163, 113, 247, 0.3);
+            --success-color: #3fb950;
+            --danger-color: #ff7b72;
+        }
+@keyframes accentPulse {
+    0% { filter: hue-rotate(0deg); }
+    50% { filter: hue-rotate(180deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* Optional class for elements using accent color */
+.accent-animated {
+    animation: accentPulse 6s infinite linear;
+}
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Outfit', 'Inter', -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* 极客暗黑时空背景 */
+        .space-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(163, 113, 247, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(88, 166, 255, 0.08) 0%, transparent 40%),
+                linear-gradient(rgba(255, 255, 255, 0.005) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.005) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        #app {
+            position: relative;
+            z-index: 2;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 30px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* 顶部导航标题 */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        header .title-group {
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+        header .title-group:hover {
+            opacity: 0.85;
+        }
+
+        header .title-group h1 {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #ffffff, var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header .title-group p {
+            font-size: 13px;
+            color: #8b949e;
+            margin-top: 4px;
+        }
+
+        header .brand {
+            font-size: 18px;
+            font-weight: 700;
+            color: #a371f7;
+            text-shadow: 0 0 10px var(--purple-glow);
+            border: 1px solid rgba(163, 113, 247, 0.4);
+            padding: 6px 16px;
+            border-radius: 20px;
+            background: rgba(163, 113, 247, 0.05);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        header .brand:hover {
+            background: rgba(163, 113, 247, 0.25);
+            box-shadow: 0 0 12px rgba(163, 113, 247, 0.3);
+        }
+
+        /* 主体双塔布局 */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 30px;
+            align-items: start;
+            flex: 1;
+        }
+
+        @media (max-width: 1200px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 左侧播放塔 */
+        .player-tower {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .video-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 10px;
+            background-color: #000;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+            outline: none;
+        }
+
+        .video-card iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 10px;
+            background-color: #000;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        /* 播放列表选择器 */
+        .playlist-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .playlist-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.4);
+            padding-bottom: 8px;
+        }
+
+        .playlist-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px;
+            border-radius: 8px;
+            background: rgba(22, 27, 34, 0.4);
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .playlist-item:hover {
+            background: rgba(22, 27, 34, 0.8);
+            border-color: rgba(88, 166, 255, 0.3);
+        }
+
+        .playlist-item.active {
+            background: rgba(31, 111, 235, 0.1);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(88, 166, 255, 0.15);
+        }
+
+        .playlist-item .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(88, 166, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary-color);
+            flex-shrink: 0;
+        }
+
+        .playlist-item.active .icon {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .playlist-item .meta h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .playlist-item .meta p {
+            font-size: 12px;
+            color: #8b949e;
+            margin-top: 2px;
+        }
+
+        /* 右侧讲义塔 */
+        .syllabus-tower {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: 720px;
+            overflow: hidden;
+        }
+
+        .tabs-header {
+            display: flex;
+            gap: 12px;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.6);
+            padding-bottom: 12px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: #8b949e;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 6px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            color: white;
+            background: rgba(88, 166, 255, 0.15);
+            border: 1px solid var(--primary-color);
+        }
+
+        .tab-content {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 6px;
+        }
+
+        /* 章节大纲样式 */
+        .chapter-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .chapter-card {
+            background: rgba(22, 27, 34, 0.5);
+            border: 1px solid rgba(48, 54, 61, 0.5);
+            border-radius: 8px;
+            padding: 14px;
+            transition: all 0.3s ease;
+        }
+.chapter-card:hover {
+    border-color: rgba(255, 200, 80, 0.6);
+    background: rgba(255, 200, 80, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 200, 80, 0.2);
+}
+
+        .chapter-card:hover {
+            border-color: rgba(88, 166, 255, 0.4);
+            background: rgba(22, 27, 34, 0.8);
+        }
+
+        .chapter-num {
+            font-size: 11px;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--accent-color), #f5c842);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: accentPulse 5s infinite linear;
+        }
+
+        .chapter-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: white;
+            margin-top: 4px;
+        }
+
+        .chapter-desc {
+            font-size: 12px;
+            color: #8b949e;
+            line-height: 1.5;
+            margin-top: 6px;
+        }
+
+        .chapter-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .chapter-link {
+            font-size: 11px;
+            color: var(--primary-color);
+            background: rgba(88, 166, 255, 0.08);
+            border: 1px solid rgba(88, 166, 255, 0.2);
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .chapter-link:hover {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 0 10px rgba(88, 166, 255, 0.3);
+        }
+
+        /* 神经元星云 Canvas */
+        .constellation-wrapper {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        #canvas-brain {
+            width: 100%;
+            height: 480px;
+            background: radial-gradient(circle, #090c10 0%, #06080c 100%);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* 底部信息栏 */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0.6;
+            font-size: 12px;
+        }
+
+        /* 暗黑科技风滚动条定制 */
+        .tab-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        .tab-content::-webkit-scrollbar-track {
+            background: rgba(22, 27, 34, 0.2);
+            border-radius: 3px;
+        }
+        .tab-content::-webkit-scrollbar-thumb {
+            background: rgba(88, 166, 255, 0.3);
+            border-radius: 3px;
+        }
+        .tab-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(88, 166, 255, 0.5);
+        }
+
+        /* ==========================================
+           Markdown 全息弹窗与排版美化 CSS
+           ========================================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(4, 6, 9, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: rgba(13, 17, 23, 0.9);
+            border: 1px solid rgba(88, 166, 255, 0.2);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 900px;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(88, 166, 255, 0.1);
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(22, 27, 34, 0.5);
+            border-radius: 16px 16px 0 0;
+        }
+
+        .modal-header h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .modal-action-btn {
+            border: none;
+            border-radius: 6px;
+            padding: 6px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .modal-action-btn.primary {
+            background: rgba(88, 166, 255, 0.15);
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .modal-action-btn.primary:hover {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 0 10px rgba(88, 166, 255, 0.4);
+        }
+
+        .modal-action-btn.close {
+            background: rgba(240, 246, 252, 0.1);
+            color: #c9d1d9;
+            border: 1px solid var(--border-color);
+        }
+
+        .modal-action-btn.close:hover {
+            background: var(--danger-color);
+            color: white;
+            border-color: var(--danger-color);
+            box-shadow: 0 0 10px rgba(255, 123, 114, 0.4);
+        }
+
+        .modal-body-wrapper {
+            flex: 1;
+            overflow-y: auto;
+            padding: 30px;
+        }
+
+        /* 滚动条美化 */
+        .modal-body-wrapper::-webkit-scrollbar {
+            width: 6px;
+        }
+        .modal-body-wrapper::-webkit-scrollbar-track {
+            background: rgba(22, 27, 34, 0.2);
+        }
+        .modal-body-wrapper::-webkit-scrollbar-thumb {
+            background: rgba(88, 166, 255, 0.3);
+            border-radius: 3px;
+        }
+        .modal-body-wrapper::-webkit-scrollbar-thumb:hover {
+            background: rgba(88, 166, 255, 0.5);
+        }
+
+        /* Markdown 内容排版 */
+        .markdown-body {
+            color: #c9d1d9;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .markdown-body h1, .markdown-body h2, .markdown-body h3 {
+            color: white;
+            font-weight: 700;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.5);
+            padding-bottom: 6px;
+        }
+
+        .markdown-body h1 { font-size: 24px; }
+        .markdown-body h2 { font-size: 20px; }
+        .markdown-body h3 { font-size: 17px; }
+
+        .markdown-body p {
+            margin-bottom: 16px;
+        }
+
+        .markdown-body ul, .markdown-body ol {
+            padding-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        .markdown-body li {
+            margin-bottom: 6px;
+        }
+
+        .markdown-body code {
+            font-family: monospace;
+            background: rgba(110, 118, 129, 0.2);
+            padding: 3px 6px;
+            border-radius: 6px;
+            font-size: 85%;
+            color: #ff7b72;
+        }
+
+        .markdown-body pre {
+            background: rgba(22, 27, 34, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            overflow-x: auto;
+            margin-bottom: 16px;
+        }
+
+        .markdown-body pre code {
+            background: none;
+            padding: 0;
+            color: #c9d1d9;
+            font-size: 13px;
+        }
+
+        .markdown-body blockquote {
+            padding: 0 16px;
+            color: #8b949e;
+            border-left: 4px solid rgba(88, 166, 255, 0.5);
+            background: rgba(88, 166, 255, 0.05);
+            margin: 0 0 16px 0;
+            border-radius: 0 6px 6px 0;
+            padding: 12px 16px;
+        }
+
+        .markdown-body hr {
+            height: 1px;
+            background-color: rgba(48, 54, 61, 0.5);
+            border: none;
+            margin: 24px 0;
+        }
+    </style>
+    <!-- 引入 marked.js 解析 markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- MathJax (LaTeX 引擎) 配置与加载 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+
+    <div class="space-bg"></div>
+
+    <div id="app">
+        <!-- 头部 -->
+        <header>
+            <div class="title-group" onclick="window.location.href='./'">
+                <h1>🔮 IPC 智能决策大脑讲堂</h1>
+                <p>基于系统科学与价值链管理物理学的颠覆式控制论大讲堂</p>
+            </div>
+            <button class="brand" onclick="window.location.href='./'" style="font-family: inherit;">
+                🏠 返回主菜单
+            </button>
+        </header>
+
+        <!-- 主布局 -->
+        <div class="main-layout">
+            
+            <!-- 左侧播放塔 -->
+            <div class="player-tower">
+                <div class="video-card">
+                    <!-- HTML5 本地视频播放器 -->
+                    <video id="main-player" controls poster="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1472&auto=format&fit=crop" src="./计划与控制的八大定律.mp4">
+                        您的浏览器不支持 HTML5 视频播放。
+                    </video>
+                    <!-- Bilibili 嵌入播放器 -->
+                    <iframe id="bilibili-player" src="about:blank" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="display: none;"></iframe>
+                </div>
+
+                <!-- 讲座列表 -->
+                <div class="playlist-card">
+                    <div class="playlist-title">🎬 核心讲座列表</div>
+                    
+                    <!-- 讲座一 -->
+                    <div class="playlist-item active" id="item-1" onclick="switchVideo(1, '../计划与控制的八大定律.mp4')">
+                        <div class="icon">01</div>
+                        <div class="meta">
+                            <h3>专题一：计划与控制的八大定律</h3>
+                            <p>对应论著《梯子》— 剖析阻碍全域协同的 8 道物理叹息之墙</p>
+                        </div>
+                    </div>
+
+                    <!-- 讲座二 -->
+                    <div class="playlist-item" id="item-2" onclick="switchVideo(2, '../计划与控制的方案应该什么样.mp4')">
+                        <div class="icon">02</div>
+                        <div class="meta">
+                            <h3>专题二：计划与控制的方案应该什么样</h3>
+                            <p>对应论著《能力重构》— 解密数智化双螺旋内核与三位一体总师制</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧讲义塔 -->
+            <div class="syllabus-tower">
+                <div class="tabs-header">
+                    <button class="tab-btn active" id="tab-btn-notes" onclick="switchTab('notes')">📖 课程大纲讲义</button>
+                    <button class="tab-btn" id="tab-btn-brain" onclick="switchTab('brain')">🕸️ 36原子神经元脑图</button>
+                </div>
+
+                <!-- 讲义面板 -->
+                <div class="tab-content" id="tab-notes">
+                    <!-- 专题一讲义 (默认展示) -->
+                    <div class="chapter-list" id="notes-list-1">
+<div class="chapter-card">
+  <span class="chapter-num">原则</span>
+  <h4 class="chapter-name">必做 ✅ 与 禁做 ❌</h4>
+  <div class="chapter-desc">
+    <strong>必做 ✅</strong>
+    <ul>
+      <li>明确公设与关键概念（概念表）</li>
+      <li>绘制层级式关联图（思维导图 / Canvas）</li>
+      <li>用真实案例支撑每条关系</li>
+      <li>保持语言一致且富含比喻</li>
+      <li>为每个概念提供“不可逆/可调”标签</li>
+      <li>使用 Obsidian ↔ Web 双向链接</li>
+      <li>采用暗色调 + 高对比黄光 accent（已实现）</li>
+      <li>持续收集读者/使用者反馈并迭代</li>
+    </ul>
+    <strong>禁做 ❌</strong>
+    <ul>
+      <li>省略公设或模糊概念</li>
+      <li>硬搬定量公式</li>
+      <li>仅文字堆砌、无视觉辅助</li>
+      <li>混用不统一的术语/符号</li>
+      <li>在 UI 中使用低对比度配色</li>
+      <li>不记录概念演进</li>
+      <li>过度引用定量指标</li>
+      <li>把定性概念包装成单一最佳实践</li>
+    </ul>
+  </div>
+</div>
+                        <div class="chapter-card">
+                            <span class="chapter-num">Axiom 01</span>
+                            <h4 class="chapter-name">目的论：系统第二定律与热寂宿命</h4>
+                            <p class="chapter-desc">任何企业在缺乏外部结构性负熵输入时，其内部子系统必然偏向自身局部最优目标，引起系统性矢量干涉对消，转化为不可逆的内耗摩擦废热（$dS = diS + deS$）。</p>
+                            <div class="chapter-links">
+                                <a href="01_系统科学与时空定律/01_系统第二定律与热寂宿命.md" class="chapter-link">👉 打开 01 神经元脑图</a>
+                            </div>
+                        </div>
+
+                        <div class="chapter-card">
+                            <span class="chapter-num">Axiom 02</span>
+                            <h4 class="chapter-name">本质论：碳基算力极限与阿什比控制律</h4>
+                            <p class="chapter-desc">控制器的必要复杂度必须大于被控客体的有效状态数。当业务交织的排列组合呈 $N!$ 级指数爆炸时，人脑无法计算全局最优，算力真空必然导致系统退守非合作纳什均衡。</p>
+                            <div class="chapter-links">
+                                <a href="01_系统科学与时空定律/03_阿什比必要多样性定理.md" class="chapter-link">👉 打开 03 神经元脑图</a>
+                            </div>
+                        </div>
+
+                        <div class="chapter-card">
+                            <span class="chapter-num">Axiom 03</span>
+                            <h4 class="chapter-name">控制论：香农-薛定谔信息负熵等效</h4>
+                            <p class="chapter-desc">信息是系统负熵的唯一客观度量（$S = -k \sum p_i \ln p_i$）。系统要降低混乱度，必须大幅提升有效信息带宽，打通微观毛细血管与宏观大屏的自洽管道。</p>
+                            <div class="chapter-links">
+                                <a href="01_系统科学与时空定律/02_香农薛定谔信息负熵等效.md" class="chapter-link">👉 打开 02 神经元脑图</a>
+                            </div>
+                        </div>
+
+                        <div class="chapter-card">
+                            <span class="chapter-num">Axiom 04</span>
+                            <h4 class="chapter-name">方案论：本体双螺旋与同构调节器</h4>
+                            <p class="chapter-desc">调节器必包含受控对象的同构内部模型。真实的业务方案在数字宇宙中只有“数据模型与业务算法”的双螺旋结构，脱离底层模型的管理规章皆是冗余死锁。</p>
+                            <div class="chapter-links">
+                                <a href="01_系统科学与时空定律/04_科南特阿什比同构调节器.md" class="chapter-link">👉 打开 04 神经元脑图</a>
+                            </div>
+                        </div>
+
+                        <div class="chapter-card">
+                            <span class="chapter-num">Axiom 05</span>
+                            <h4 class="chapter-name">物理论：时空物流量守恒控制方程</h4>
+                            <p class="chapter-desc">质量守恒状态方程：$I(t) = I(t-1) + S(t) + R(t) - D(t)$。以高频极速消纳策略减少局部囤积，在物理极限上实现无阻力流体式抗熵流转。</p>
+                            <div class="chapter-links">
+                                <a href="01_系统科学与时空定律/05_时空物流量守恒控制方程.md" class="chapter-link">👉 打开 05 神经元脑图</a>
+                            </div>
+                        </div>
+
+                        <div class="chapter-card">
+                            <span class="chapter-num">Axiom 06</span>
+                            <h4 class="chapter-name">时移论：提前期时移阻尼与阻抗积分</h4>
+                            <p class="chapter-desc">物理时移阻尼：$t_{\text{explode}} = t_{\text{due}} - LT_{\text{parent}}$。长层级 BOM 产生累计数量阻抗（RPQ）与时间阻抗（RLT）级联积分，IPC 采用常数级向量投影算法进行降维求解。</p>
+                            <div class="chapter-links">
+                                <a href="01_系统科学与时空定律/06_提前期时移阻尼定律.md" class="chapter-link">👉 打开 06 神经元脑图</a>
+                            </div>
+                        </div>
+
+                        <div class="chapter-card">
+                            <span class="chapter-num">Axiom 07</span>
+                            <h4 class="chapter-name">动力论：双核共振与标量做功方程</h4>
+                            <p class="chapter-desc">变革有效做功公式：$W = F \cdot S \cdot \cos\theta$。夹角 $\theta$（人情妥协）过大将导致有效功归零，能量全部转化为剪切组织摩擦内耗。</p>
+                            <div class="chapter-links">
+                                <a href="01_系统科学与时空定律/08_变革动力学做功方程.md" class="chapter-link">👉 打开 08 神经元脑图</a>
+                            </div>
+                        </div>
+
+                        <div class="chapter-card">
+                            <span class="chapter-num">Axiom 08</span>
+                            <h4 class="chapter-name">进化论：哥德尔极限下的抗热寂自适应</h4>
+                            <p class="chapter-desc">任何公理系统都存在自身规则无法处理的哥德尔边界。必须依靠碳基大脑进行元认知扩维，升级数字宪法规则并自动熔断，赋予系统自创生的反脆弱性。</p>
+                            <div class="chapter-links">
+                                <a href="05_工程天堑与AI审判/34_哥德尔不完备与元认知扩维.md" class="chapter-link">👉 打开 34 神经元脑图</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 专题二讲义 (播放二时激活) -->
+                    <div class="chapter-list" id="notes-list-2" style="display: none;">
+                        <div class="chapter-card">
+                            <span class="chapter-num">Phase 01</span>
+                            <h4 class="chapter-name">S&OE 可执行微观基线 (Wiener-Kalman 观测底座)</h4>
+                            <p class="chapter-desc">不懂微观即盲于宏观。无微观刚性闭环，顶层规划皆是集体致幻。基于 Site（物理/逻辑站点隔离）与 Part（缓存行对齐、O(1) 倒排）建立确定性底座，引入 Kalman 动态滤波。</p>
+                            <div class="chapter-links">
+                                <a href="05_工程天堑与AI审判/32_逆向施工与微观观测天堑.md" class="chapter-link">👉 打开 32 神经元脑图</a>
+                            </div>
+                        </div>
+
+                        <div class="chapter-card">
+                            <span class="chapter-num">Phase 02</span>
+                            <h4 class="chapter-name">⟨D, A⟩ 数据本体双螺旋 (五维正交时空容器)</h4>
+                            <p class="chapter-desc">通用模型与战略核心算法的紧密共生。ODM 实现物理世界的精确投影，CDM 固化控制大脑规则，DDM 驱动流式消纳推演。五维空间（Site, Part, Demand, Supply, Time）实现完美的化学融合。</p>
+                            <div class="chapter-links">
+                                <a href="03_三层数据模型与物理镜像/17_数据本体双螺旋结构.md" class="chapter-link">👉 打开 17 神经元脑图</a>
+                            </div>
+                        </div>
+
+                        <div class="chapter-card">
+                            <span class="chapter-num">Phase 03</span>
+                            <h4 class="chapter-name">三大高阶专利消纳算法 (高维排列组合解耦)</h4>
+                            <p class="chapter-desc">应对组替代与多重约束的 $O(N!)$ 级膨胀。运用 Method A 偏差极小化分流、Method B 归一化配额均衡、Method C 考虑包装离散阻力的配额重算，及分级降级偏序格自动高配低用，彻底解决死锁。</p>
+                            <div class="chapter-links">
+                                <a href="04_专利数学与消纳算法/27_替换料动态平衡分配算法.md" class="chapter-link">👉 打开 27 神经元脑图</a>
+                            </div>
+                        </div>
+
+                        <div class="chapter-card">
+                            <span class="chapter-num">Phase 04</span>
+                            <h4 class="chapter-name">三位一体 (TIO) 单脑奇点与逆康威设计</h4>
+                            <p class="chapter-desc">数字化转型的本质是能力重构而非组织重组。业务解构、IT建模、系统架构三位一体，严禁流水线式会议拼接，必须由总设计师单脑奇点坍缩，执行“逆康威定律”，用数据模型与代码立法。</p>
+                            <div class="chapter-links">
+                                <a href="02_认知革命与变革杠杆/10_三位一体总设计师与逆康威定律.md" class="chapter-link">👉 打开 10 神经元脑图</a>
+                            </div>
+                        </div>
+
+                        <div class="chapter-card">
+                            <span class="chapter-num">Phase 05</span>
+                            <h4 class="chapter-name">Gartner Maturity 3/4/5 跨越与 DAE 动态行动引擎</h4>
+                            <p class="chapter-desc">剖析复杂制造环境下的生态盲区与离散阻尼踩踏，提供故障自诊断去噪审计提示词。从传统 ERP 的静态“记录系统（SOR）”跃迁为具备自创生、自适应异常熔断特征的 DAE 决策大脑。</p>
+                            <div class="chapter-links">
+                                <a href="05_工程天堑与AI审判/35_Gemini双盲去噪审计提示词.md" class="chapter-link">👉 打开 35 神经元脑图</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 脑图星云面板 -->
+                <div class="tab-content" id="tab-brain" style="display: none;">
+                    <div class="constellation-wrapper">
+                        <canvas id="canvas-brain"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 底部 -->
+        <footer>
+            <span>IPC 全息星网决策大脑系统 V3.0 | 仅供架构师及一号位决策参考</span>
+            <span>Made in Reality. Defined by Grit.</span>
+        </footer>
+    </div>
+
+    <script>
+        // Bilibili 视频 BV 号配置（公网运行时自动切换为 Bilibili 播放器）
+        const bilibiliBvids = {
+            1: "BV1UTEc6wEkE", // 专题一：计划与控制的八大定律
+            2: "BV1bTEc6AE8Z"  // 专题二：计划与控制的方案应该什么样
+        };
+
+        // 播放切换控制
+        const player = document.getElementById("main-player");
+        const iframePlayer = document.getElementById("bilibili-player");
+
+        function switchVideo(videoNum, videoPath) {
+            // 切换播放列表样式
+            document.querySelectorAll(".playlist-item").forEach(item => {
+                item.classList.remove("active");
+            });
+            document.getElementById(`item-${videoNum}`).classList.add("active");
+
+            // 切换对应的课程讲义
+            if (videoNum === 1) {
+                document.getElementById("notes-list-1").style.display = "flex";
+                document.getElementById("notes-list-2").style.display = "none";
+                if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
+                    MathJax.typesetPromise([document.getElementById("notes-list-1")]).catch(err => console.log(err));
+                }
+            } else {
+                document.getElementById("notes-list-1").style.display = "none";
+                document.getElementById("notes-list-2").style.display = "flex";
+                if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
+                    MathJax.typesetPromise([document.getElementById("notes-list-2")]).catch(err => console.log(err));
+                }
+            }
+
+            // 从 videoPath 中提取文件名（兼容带路径的传入）
+            const fileName = videoPath.split('/').pop();
+            
+            // 依次尝试的路径列表：
+            // 1. 同级目录下的 "./filename" （当把视频放进库目录中以避开浏览器跨域及服务限制）
+            // 2. 传入的原始路径 (e.g. "../filename")
+            const pathsToTry = [`./${fileName}`, videoPath];
+            let currentPathIndex = 0;
+
+            const isLocalhost = window.location.hostname === 'localhost' || 
+                                 window.location.hostname === '127.0.0.1' || 
+                                 window.location.protocol === 'file:';
+
+            if (isLocalhost) {
+                tryLoadLocalVideo();
+            } else {
+                switchToBilibili();
+            }
+
+            function tryLoadLocalVideo() {
+                if (currentPathIndex >= pathsToTry.length) {
+                    switchToBilibili();
+                    return;
+                }
+
+                const currentPath = pathsToTry[currentPathIndex];
+                console.log("Trying to load local video:", currentPath);
+                
+                player.style.display = "block";
+                iframePlayer.style.display = "none";
+                
+                player.src = currentPath;
+                player.load();
+
+                // 捕获加载错误（例如文件不存在或受浏览器安全限制拦截）
+                player.onerror = function() {
+                    console.warn(`Failed to load local video: ${currentPath}. Trying next path.`);
+                    currentPathIndex++;
+                    tryLoadLocalVideo();
+                };
+
+                player.play().catch(e => {
+                    // 忽略因为用户未交互导致的自动播放失败报错，这是正常的
+                    console.log("Play interrupted or gesture required:", e);
+                });
+            }
+
+            function switchToBilibili() {
+                console.log("Falling back to Bilibili iframe");
+                player.style.display = "none";
+                iframePlayer.style.display = "block";
+                
+                const bvid = bilibiliBvids[videoNum];
+                player.pause(); // 停止本地播放
+                player.onerror = null; // 清除错误监听
+                iframePlayer.setAttribute("src", `https://player.bilibili.com/player.html?bvid=${bvid}&page=1&high_quality=1&danmaku=1&autoplay=0`);
+            }
+        }
+
+        // 页面初始化自适应加载
+        function initVideoPlayback() {
+            switchVideo(1, '../计划与控制的八大定律.mp4');
+            if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
+                MathJax.typesetPromise().catch(err => console.log("MathJax init typeset error:", err));
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            window.addEventListener('DOMContentLoaded', initVideoPlayback);
+        } else {
+            initVideoPlayback();
+        }
+
+        // 标签页切换控制
+        function switchTab(tabName) {
+            document.querySelectorAll(".tab-btn").forEach(btn => {
+                btn.classList.remove("active");
+            });
+            document.getElementById(`tab-btn-${tabName}`).classList.add("active");
+
+            if (tabName === 'notes') {
+                document.getElementById("tab-notes").style.display = "block";
+                document.getElementById("tab-brain").style.display = "none";
+                isBrainRunning = false;
+                if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
+                    MathJax.typesetPromise([document.getElementById("tab-notes")]).catch(err => console.log(err));
+                }
+            } else {
+                document.getElementById("tab-notes").style.display = "none";
+                document.getElementById("tab-brain").style.display = "block";
+                isBrainRunning = true;
+                initBrainConstellation();
+                animateBrain();
+            }
+        }
+
+        // ==========================================
+        // 36原子脑图 Canvas 动画代码
+        // ==========================================
+        const canvasBrain = document.getElementById("canvas-brain");
+        const ctxBrain = canvasBrain.getContext("2d");
+        let isBrainRunning = false;
+        let nodes = [];
+        let edges = [];
+
+        const nodeLabels = [
+            "熵增与热寂", "香农负熵等效", "必要多样性", "同构调节器",
+            "时空守恒方程", "提前期时移定律", "时空阻抗算子", "标量积做功方程",
+            "八大物理公理", "三位一体总师", "生产二元辩证", "一号位大爱",
+            "方案即模型算法", "西方模型失明", "逻辑独裁立法", "尊严与回归",
+            "数据本体双螺旋", "ODM物理镜像", "CDM决策规则", "DDM模拟推演",
+            "Site 站点隔离", "Part 缓存对齐", "BOM 有向超图(DAG)", "Demand 时空流量",
+            "Supply 流式扣减", "分级降级偏序格", "偏差极小化比例", "均摊分流",
+            "Lot-Size重算", "组替代级联齐套", "LSC超图展开", "Swap置换销账",
+            "交付时移阻尼", "特权插单Z轴", "维纳观测探针", "双脑奇点防线"
+        ];
+
+        function resizeBrainCanvas() {
+            const tower = document.querySelector(".syllabus-tower");
+            if (tower) {
+                canvasBrain.width = tower.clientWidth - 48; // 减去左右各 24px padding
+            } else {
+                canvasBrain.width = canvasBrain.parentElement.clientWidth || 400;
+            }
+            canvasBrain.height = 480;
+        }
+
+        function initBrainConstellation() {
+            resizeBrainCanvas();
+            nodes = [];
+            edges = [];
+            const cx = canvasBrain.width / 2;
+            const cy = canvasBrain.height / 2;
+
+            for (let i = 0; i < 36; i++) {
+                let angle = (i / 36) * Math.PI * 2;
+                let radius = Math.random() * 120 + 40;
+                nodes.push({
+                    x: cx + Math.cos(angle) * radius,
+                    y: cy + Math.sin(angle) * radius,
+                    label: nodeLabels[i],
+                    angle: angle,
+                    radius: radius,
+                    angularSpeed: (Math.random() * 0.001 + 0.0005) * (Math.random() > 0.5 ? 1 : -1),
+                    pulseSize: Math.random() * 2 + 2
+                });
+            }
+
+            for (let i = 0; i < nodes.length; i++) {
+                let connections = Math.floor(Math.random() * 2) + 2;
+                for (let c = 0; c < connections; c++) {
+                    let target = (i + Math.floor(Math.random() * 8) + 1) % nodes.length;
+                    edges.push({ from: i, to: target });
+                }
+            }
+        }
+
+        function animateBrain() {
+            if (!isBrainRunning) return;
+            ctxBrain.clearRect(0, 0, canvasBrain.width, canvasBrain.height);
+
+            const cx = canvasBrain.width / 2;
+            const cy = canvasBrain.height / 2;
+
+            nodes.forEach(n => {
+                n.angle += n.angularSpeed;
+                n.x = cx + Math.cos(n.angle) * n.radius;
+                n.y = cy + Math.sin(n.angle) * n.radius;
+            });
+
+            ctxBrain.strokeStyle = 'rgba(163, 113, 247, 0.15)';
+            ctxBrain.lineWidth = 0.5;
+            edges.forEach(e => {
+                ctxBrain.beginPath();
+                ctxBrain.moveTo(nodes[e.from].x, nodes[e.from].y);
+                ctxBrain.lineTo(nodes[e.to].x, nodes[e.to].y);
+                ctxBrain.stroke();
+            });
+
+            nodes.forEach(n => {
+                ctxBrain.fillStyle = 'rgba(163, 113, 247, 0.7)';
+                ctxBrain.beginPath();
+                ctxBrain.arc(n.x, n.y, n.pulseSize, 0, Math.PI * 2);
+                ctxBrain.fill();
+
+                ctxBrain.fillStyle = '#8b949e';
+                ctxBrain.font = '9px Inter';
+                ctxBrain.textAlign = 'left';
+                ctxBrain.fillText(n.label, n.x + 8, n.y + 3);
+            });
+
+            requestAnimationFrame(animateBrain);
+        }
+
+        // ==========================================
+        // Obsidian 穿透与自适应全息阅读逻辑
+        // ==========================================
+        let activeRelPath = ""; // 当前查看文档的相对路径
+
+        function getCurrentFolderPath() {
+            let path = window.location.pathname;
+            if (path.startsWith('/') && path.charAt(2) === ':') {
+                path = path.substring(1);
+            }
+            let lastSlash = path.lastIndexOf('/');
+            let folder = path.substring(0, lastSlash + 1);
+            return decodeURIComponent(folder);
+        }
+
+        function openInObsidian(relPath) {
+            if (window.location.protocol === 'file:') {
+                let folder = getCurrentFolderPath();
+                let fullPath = folder + relPath;
+                fullPath = fullPath.replace(/\//g, '\\');
+                let obsidianUri = "obsidian://open?path=" + encodeURIComponent(fullPath);
+                window.location.href = obsidianUri;
+            } else {
+                // 在线部署端 (如 GitHub Pages)，使用动态存储的 Vault 名字唤醒本地库，默认是“价值链物理学”
+                let vaultName = localStorage.getItem('obsidian-vault-name') || '价值链物理学';
+                let obsidianUri = "obsidian://open?vault=" + encodeURIComponent(vaultName) + "&file=" + encodeURIComponent(relPath);
+                window.location.href = obsidianUri;
+
+                // 提供一个快捷配置提示，如果在 1.5 秒后未跳转，可能是库名不对
+                setTimeout(() => {
+                    if (confirm(`已尝试唤起 Obsidian 库【${vaultName}】。\n如果无反应或提示库未找到，可能是您的本地库文件夹名称不同。\n\n是否需要修改为您本地的 Obsidian 库名称？`)) {
+                        let newVault = prompt("请输入您本地的 Obsidian 库名称：", vaultName);
+                        if (newVault && newVault.trim()) {
+                            localStorage.setItem('obsidian-vault-name', newVault.trim());
+                            let newUri = "obsidian://open?vault=" + encodeURIComponent(newVault.trim()) + "&file=" + encodeURIComponent(relPath);
+                            window.location.href = newUri;
+                        }
+                    }
+                }, 1500);
+            }
+        }
+
+        // 自适应读取并显示 Markdown（本地拉起 Obsidian，在线弹出沉浸式 Modal）
+        function loadAndShowMarkdown(relPath) {
+            activeRelPath = relPath;
+            if (window.location.protocol === 'file:') {
+                openInObsidian(relPath);
+            } else {
+                const modal = document.getElementById('markdown-modal');
+                const content = document.getElementById('modal-content');
+                const title = document.getElementById('modal-title');
+
+                title.textContent = "⏳ 正在抓取数据模型...";
+                content.innerHTML = `<div style="text-align: center; padding: 40px; color: #8b949e;">正在从数字宇宙中加载 ${relPath.split('/').pop()} ...</div>`;
+                
+                modal.style.display = "flex";
+                setTimeout(() => modal.classList.add('active'), 10);
+
+                // 在线 fetch 获取 md 原文
+                fetch(relPath)
+                    .then(response => {
+                        if (!response.ok) throw new Error("文件拉取异常，请检查服务器路径");
+                        return response.text();
+                    })
+                    .then(text => {
+                        // 去除 Obsidian 内部双链 [[...]] 方便渲染
+                        let cleanedText = text.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, function(match, p1, p2) {
+                            return p2 ? p2 : p1;
+                        });
+                        title.textContent = "📄 " + relPath.split('/').pop().replace('.md', '');
+                        
+                        // 安全渲染 markdown
+                        if (typeof marked !== 'undefined' && marked.parse) {
+                            try {
+                                content.innerHTML = marked.parse(cleanedText);
+                            } catch (e) {
+                                console.error("Markdown 解析错误:", e);
+                                content.innerHTML = cleanedText.replace(/\n/g, '<br>');
+                            }
+                        } else {
+                            console.warn("marked.js 未加载，回退至纯文本渲染");
+                            content.innerHTML = cleanedText.replace(/\n/g, '<br>');
+                        }
+
+                        // 对新加载的 Markdown 内容进行 LaTeX 公式排版
+                        if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
+                            MathJax.typesetClear([content]);
+                            MathJax.typesetPromise([content]).catch(err => console.log("MathJax typesetting markdown error:", err));
+                        }
+                    })
+                    .catch(err => {
+                        title.textContent = "❌ 加载失败";
+                        content.innerHTML = `<div style="text-align: center; padding: 40px; color: var(--danger-color); font-weight: 600;">
+                            无法加载该神经元文档。<br>
+                            原因: ${err.message}<br><br>
+                            如果是本地运行，双击本地 html 文件即可直接穿透到 Obsidian。
+                        </div>`;
+                    });
+            }
+        }
+
+        function closeMarkdownModal() {
+            const modal = document.getElementById('markdown-modal');
+            modal.classList.remove('active');
+            setTimeout(() => modal.style.display = "none", 300);
+        }
+
+        document.getElementById('modal-close-btn').addEventListener('click', closeMarkdownModal);
+        document.getElementById('markdown-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeMarkdownModal();
+        });
+        document.getElementById('modal-obsidian-btn').addEventListener('click', function() {
+            if (activeRelPath) {
+                openInObsidian(activeRelPath);
+            }
+        });
+
+        // 拦截大纲链接点击事件，实现自适应分流
+        document.addEventListener('click', function(e) {
+            // Click on a chapter link – keep existing behavior
+            if (e.target.classList.contains('chapter-link')) {
+                e.preventDefault();
+                let relPath = e.target.getAttribute('href');
+                loadAndShowMarkdown(relPath);
+                return; // stop further handling
+            }
+            // Click anywhere on a chapter card – open its first linked markdown
+            const card = e.target.closest('.chapter-card');
+            if (card) {
+                const firstLink = card.querySelector('.chapter-link');
+                if (firstLink) {
+                    e.preventDefault();
+                    loadAndShowMarkdown(firstLink.getAttribute('href'));
+                }
+            }
+        });
+
+        // 36 原子星云节点到 Obsidian 文件路径的映射
+        const nodePaths = {
+            "熵增与热寂": "01_系统科学与时空定律/01_系统第二定律与热寂宿命.md",
+            "香农负熵等效": "01_系统科学与时空定律/02_香农薛定谔信息负熵等效.md",
+            "必要多样性": "01_系统科学与时空定律/03_阿什比必要多样性定理.md",
+            "同构调节器": "01_系统科学与时空定律/04_科南特阿什比同构调节器.md",
+            "时空守恒方程": "01_系统科学与时空定律/05_时空物流量守恒控制方程.md",
+            "提前期时移定律": "01_系统科学与时空定律/06_提前期时移阻尼定律.md",
+            "时空阻抗算子": "01_系统科学与时空定律/07_全息时空阻抗积分算子.md",
+            "标量积做功方程": "01_系统科学与时空定律/08_变革动力学做功方程.md",
+            "八大物理公理": "01_系统科学与时空定律/09_八大价值链物理公理.md",
+            "三位一体总师": "02_认知革命与变革杠杆/10_三位一体总设计师与逆康威定律.md",
+            "生产二元辩证": "02_认知革命与变革杠杆/11_生产力与生产关系二元辩证法.md",
+            "一号位大爱": "02_认知革命与变革杠杆/12_一号位意志与变革做功杠杆.md",
+            "方案即模型算法": "02_认知革命与变革杠杆/13_商业野心与工程理性的创造性张力.md",
+            "西方模型失明": "02_认知革命与变革杠杆/14_西方稳态模型与中国波动物理鸿沟.md",
+            "逻辑独裁立法": "02_认知革命与变革杠杆/15_逻辑独裁与万人执行进化机制.md",
+            "尊严与回归": "02_认知革命与变革杠杆/16_碳基路由的解脱与尊严回归.md",
+            "数据本体双螺旋": "03_三层数据模型与物理镜像/17_数据本体双螺旋结构.md",
+            "ODM物理镜像": "03_三层数据模型与物理镜像/18_ODM_物理世界的精确镜像.md",
+            "CDM决策规则": "03_三层数据模型与物理镜像/19_CDM_决策规则与算法大脑.md",
+            "DDM模拟推演": "03_三层数据模型与物理镜像/20_DDM_全息分析与模拟推演.md",
+            "Site 站点隔离": "03_三层数据模型与物理镜像/21_Site_站点实体与逻辑隔离.md",
+            "Part 缓存对齐": "03_三层数据模型与物理镜像/22_Part_物料实体的物理属性.md",
+            "BOM 有向超图(DAG)": "03_三层数据模型与物理镜像/23_BOM_产品结构的拓扑有向图.md",
+            "Demand 时空流量": "03_三层数据模型与物理镜像/24_Demand_需求实体的时空流量.md",
+            "Supply 流式扣减": "03_三层数据模型与物理镜像/25_Supply_在途在手供给流.md",
+            "分级降级偏序格": "04_专利数学与消纳算法/26_维度规划与分级降级偏序格.md",
+            "偏差极小化比例": "04_专利数学与消纳算法/27_1_偏差极小化比例分流.md",
+            "均摊分流": "04_专利数学与消纳算法/27_2_归一化可用配额均衡.md",
+            "Lot-Size重算": "04_专利数学与消纳算法/27_3_Lot_Size离散阻力与归一化重算.md",
+            "组替代级联齐套": "04_专利数学与消纳算法/28_组替代与级联齐套最优化.md",
+            "LSC超图展开": "04_专利数学与消纳算法/28_1_LSC树多维展开与LLC编译.md",
+            "Swap置换销账": "04_专利数学与消纳算法/28_3_Swap不完全替代消纳.md",
+            "交付时移阻尼": "05_工程天堑与AI审判/29_交付黑洞与时移阻尼天堑.md",
+            "特权插单Z轴": "05_工程天堑与AI审判/30_特权插单与存量踩踏天堑.md",
+            "维纳观测探针": "05_工程天堑与AI审判/32_逆向施工与微观观测天堑.md",
+            "双脑奇点防线": "05_工程天堑与AI审判/33_双脑奇点与变革做功天堑.md"
+        };
+
+        // 辅助函数：判断是否点击或悬浮在节点（包括文字标签）上
+        function checkNodeHit(x, y, n) {
+            const dx = x - n.x;
+            const dy = y - n.y;
+            // 判定半径调大到 20px
+            if (dx * dx + dy * dy < 20 * 20) {
+                return true;
+            }
+            // 文本区域判定：font 大小为 9px，根据测量宽度增加点击判定区域
+            ctxBrain.font = '9px Inter';
+            const textWidth = ctxBrain.measureText(n.label).width;
+            if (x >= n.x + 5 && x <= n.x + 8 + textWidth + 8 &&
+                y >= n.y - 12 && y <= n.y + 8) {
+                return true;
+            }
+            return false;
+        }
+
+        // Canvas 鼠标悬浮与点击交互监听
+        canvasBrain.addEventListener('mousemove', function(event) {
+            const x = event.offsetX * (canvasBrain.width / canvasBrain.clientWidth);
+            const y = event.offsetY * (canvasBrain.height / canvasBrain.clientHeight);
+
+            let hover = false;
+            for (let n of nodes) {
+                if (checkNodeHit(x, y, n)) {
+                    hover = true;
+                    break;
+                }
+            }
+            canvasBrain.style.cursor = hover ? 'pointer' : 'default';
+        });
+
+        canvasBrain.addEventListener('click', function(event) {
+            event.preventDefault();
+            const x = event.offsetX * (canvasBrain.width / canvasBrain.clientWidth);
+            const y = event.offsetY * (canvasBrain.height / canvasBrain.clientHeight);
+
+            for (let n of nodes) {
+                if (checkNodeHit(x, y, n)) {
+                    const path = nodePaths[n.label];
+                    if (path) {
+                        loadAndShowMarkdown(path);
+                    }
+                    break;
+                }
+            }
+        });
+
+        // 窗口大小调整自适应
+        window.addEventListener('resize', () => {
+            if (isBrainRunning) {
+                initBrainConstellation();
+            }
+        });
+    </script>
+
+    <!-- Markdown 沉浸式阅读器弹窗 -->
+    <div id="markdown-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modal-title">📄 神经元文档</h3>
+                <div class="modal-actions">
+                    <button id="modal-obsidian-btn" class="modal-action-btn primary">🔮 在 Obsidian 中编辑</button>
+                    <button id="modal-close-btn" class="modal-action-btn close">✕ 关闭</button>
+                </div>
+            </div>
+            <div class="modal-body-wrapper">
+                <div id="modal-content" class="markdown-body"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

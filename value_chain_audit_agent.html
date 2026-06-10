@@ -1,0 +1,2987 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="基于价值链物理学与系统科学的智能审计体，解决过去二十年企业价值链协同与协奏的根本痛点。">
+    <title>🔮 价值链与系统科学诊断智能体 (Value Chain Physics & Governance Audit Agent)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@300;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #06090e;
+            --card-bg: rgba(13, 17, 23, 0.7);
+            --border-color: rgba(48, 54, 61, 0.6);
+            --text-color: #c9d1d9;
+            --primary-color: #58a6ff;
+            --accent-color: #d29922;
+            --glow-color: rgba(88, 166, 255, 0.2);
+            --danger-color: #ff7b72;
+            --success-color: #3fb950;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Outfit', 'Inter', -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* 宇宙背景网格 */
+        .space-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(20, 30, 48, 0.3) 0%, rgba(6, 9, 14, 1) 100%),
+                linear-gradient(rgba(255, 255, 255, 0.005) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.005) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            z-index: -1;
+        }
+
+        /* 布局容器 */
+        .app-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        header .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        header .brand:hover {
+            opacity: 0.85;
+        }
+
+        header .logo {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, var(--primary-color), #a371f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(88, 166, 255, 0.2);
+        }
+
+        header .tagline {
+            font-size: 12px;
+            color: #8b949e;
+            border-left: 1px solid var(--border-color);
+            padding-left: 12px;
+        }
+
+        header .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(210, 153, 34, 0.1);
+            border: 1px solid var(--accent-color);
+            font-size: 11px;
+            color: var(--accent-color);
+            letter-spacing: 1px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        header .badge:hover {
+            background: rgba(210, 153, 34, 0.25);
+            box-shadow: 0 0 12px rgba(210, 153, 34, 0.3);
+        }
+
+        /* 主体内容 */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* 开屏引导界面 */
+        #welcome-panel {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 60px 40px;
+            max-width: 850px;
+            margin: 0 auto;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 0.8s ease;
+        }
+
+        #welcome-panel h1 {
+            font-size: 30px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+            text-align: center;
+            background: linear-gradient(135deg, #fff 30%, #8b949e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #welcome-panel p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #c9d1d9;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .feature-card {
+            background: rgba(22, 27, 34, 0.5);
+            border: 1px solid rgba(48, 54, 61, 0.4);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 15px;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #8b949e;
+            margin: 0 !important;
+        }
+
+        /* 诊断工作台 */
+        #audit-panel {
+            display: none;
+            grid-template-columns: 45% 55%;
+            gap: 30px;
+            animation: fadeIn 0.5s ease;
+            min-height: 580px;
+        }
+
+        /* 左侧交互栏 */
+        .control-column {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            height: 100%;
+        }
+
+        .agent-bubble {
+            margin-bottom: 24px;
+        }
+
+        .agent-name {
+            font-size: 12px;
+            color: var(--accent-color);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .agent-text {
+            font-size: 14.5px;
+            line-height: 1.7;
+            color: #ffffff;
+            background: rgba(22, 27, 34, 0.8);
+            border: 1px solid rgba(48, 54, 61, 0.6);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .agent-text code {
+            color: var(--danger-color);
+            background: rgba(110, 118, 129, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        .input-area {
+            background: rgba(22, 27, 34, 0.4);
+            border: 1px solid rgba(48, 54, 61, 0.4);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .question-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.3);
+            padding-bottom: 8px;
+        }
+
+        /* 选项样式 */
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-btn {
+            background: rgba(22, 27, 34, 0.8);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 14px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 13.5px;
+            line-height: 1.5;
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        .option-btn:hover {
+            border-color: var(--primary-color);
+            background: rgba(88, 166, 255, 0.05);
+        }
+
+        .option-btn.active {
+            border-color: var(--primary-color);
+            background: rgba(88, 166, 255, 0.15);
+            box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
+            color: white;
+            font-weight: 600;
+        }
+
+        /* 数值输入样式 */
+        .slider-group {
+            margin-bottom: 20px;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #8b949e;
+            margin-bottom: 8px;
+        }
+
+        .slider-value {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .custom-range {
+            width: 100%;
+            -webkit-appearance: none;
+            background: #1f2937;
+            height: 6px;
+            border-radius: 3px;
+            outline: none;
+        }
+
+        .custom-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+            box-shadow: 0 0 10px var(--primary-color);
+            transition: transform 0.1s;
+        }
+
+        .custom-range::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        /* 导航按钮 */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            background: rgba(22, 27, 34, 0.8);
+            color: var(--text-color);
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            outline: none;
+        }
+
+        .btn:hover {
+            background: rgba(48, 54, 61, 0.8);
+            color: white;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #06090e;
+        }
+
+        .btn-primary:hover {
+            background: #79c0ff;
+            box-shadow: 0 0 15px var(--glow-color);
+            color: #06090e;
+        }
+
+        .btn-accent {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #06090e;
+        }
+
+        .btn-accent:hover {
+            background: #ffc038;
+            box-shadow: 0 0 15px rgba(210, 153, 34, 0.4);
+            color: #06090e;
+        }
+
+        .btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* 右侧显影舱 */
+        .visual-column {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .visual-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.4);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            z-index: 2;
+        }
+
+        .visual-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .visual-badge {
+            font-size: 11px;
+            background: rgba(88, 166, 255, 0.1);
+            color: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(88, 166, 255, 0.3);
+        }
+
+        .visual-viewport {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: rgba(10, 12, 16, 0.6);
+            border: 1px solid rgba(48, 54, 61, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 1;
+            min-height: 380px;
+        }
+
+        .canvas-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+
+        .canvas-container.active {
+            display: block;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .hud-overlay {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            right: 15px;
+            background: rgba(13, 17, 23, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 18px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #8b949e;
+            pointer-events: none;
+            backdrop-filter: blur(5px);
+        }
+
+        .hud-overlay span {
+            color: white;
+            font-weight: 600;
+        }
+
+        /* 报告大盘 */
+        #report-panel {
+            display: none;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 0.8s ease;
+        }
+
+        .report-header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+        }
+
+        .report-header h2 {
+            font-size: 28px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .report-summary-box {
+            display: grid;
+            grid-template-columns: 35% 65%;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .score-circle-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-right: 1px solid rgba(48, 54, 61, 0.6);
+            padding-right: 30px;
+        }
+
+        .score-circle {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            border: 8px solid var(--accent-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 0 30px rgba(210, 153, 34, 0.2);
+            background: rgba(10, 12, 16, 0.6);
+        }
+
+        .score-num {
+            font-size: 54px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .score-lbl {
+            font-size: 11px;
+            color: #8b949e;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+
+        .score-grade {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--accent-color);
+            text-align: center;
+        }
+
+        .summary-stats {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.3);
+            padding: 10px 0;
+        }
+
+        .stat-lbl {
+            font-size: 13.5px;
+            color: #8b949e;
+        }
+
+        .stat-val {
+            font-size: 15px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .report-section {
+            margin-bottom: 45px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: white;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 12px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .diagnosis-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .law-diagnosis-card {
+            background: rgba(22, 27, 34, 0.5);
+            border: 1px solid rgba(48, 54, 61, 0.6);
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .law-diag-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.2);
+            padding-bottom: 8px;
+        }
+
+        .law-diag-name {
+            font-weight: 800;
+            color: white;
+            font-size: 15px;
+        }
+
+        .law-diag-status {
+            font-size: 12.5px;
+            font-weight: bold;
+        }
+
+        .law-diag-text {
+            font-size: 13.5px;
+            line-height: 1.7;
+            color: #c9d1d9;
+        }
+
+        .prescription-box {
+            background: rgba(88, 166, 255, 0.05);
+            border: 1px dashed var(--primary-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .prescription-box h4 {
+            color: var(--primary-color);
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .prescription-box ul {
+            list-style-type: none;
+        }
+
+        .prescription-box li {
+            margin-bottom: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .prescription-box li::before {
+            content: "✓";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .report-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 30px;
+        }
+
+        /* 进度条指示器 */
+        .progress-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .step-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #1f2937;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .step-dot.active {
+            background: var(--primary-color);
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .step-dot.completed {
+            background: var(--success-color);
+            box-shadow: 0 0 10px var(--success-color);
+        }
+
+        /* 通用动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* 页面脚部 */
+        footer {
+            text-align: center;
+            color: #484f58;
+            font-size: 12px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(48, 54, 61, 0.3);
+            margin-top: 30px;
+        }
+
+        /* 打印样式适配 */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .space-grid, header, .progress-indicator, .nav-buttons, .report-actions, footer {
+                display: none !important;
+            }
+            #report-panel {
+                background: white !important;
+                border: none !important;
+                color: black !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+            }
+            .section-title {
+                color: black !important;
+                border-left-color: black !important;
+            }
+            .law-diagnosis-card {
+                background: white !important;
+                border: 1px solid #ccc !important;
+                color: black !important;
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            .law-diag-name, .law-diag-status, .stat-val, .score-num, .score-grade, .prescription-box h4 {
+                color: black !important;
+            }
+            .law-diag-text, .stat-lbl {
+                color: #333 !important;
+            }
+            .prescription-box {
+                background: white !important;
+                border: 1px solid black !important;
+                color: black !important;
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+        }
+
+        /* 欢迎页面分栏布局与沙箱样式 */
+        .welcome-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 40px;
+            margin-top: 30px;
+            text-align: left;
+        }
+        
+        @media (max-width: 1024px) {
+            .welcome-layout {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+        
+        .welcome-intro {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .welcome-sandbox {
+            background: rgba(22, 27, 34, 0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .welcome-sandbox h3 {
+            font-size: 16px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 8px;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 10px;
+        }
+        
+        .welcome-sandbox textarea {
+            width: 100%;
+            height: 100px;
+            background: #0d1117;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: white;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 13px;
+            resize: none;
+            outline: none;
+            transition: all 0.2s ease;
+            margin-top: 10px;
+        }
+        
+        .welcome-sandbox textarea:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 12px rgba(210, 153, 34, 0.25);
+        }
+        
+        .sandbox-templates {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .sandbox-tpl-btn {
+            background: rgba(240, 246, 252, 0.05);
+            border: 1px solid var(--border-color);
+            color: #8b949e;
+            font-size: 11px;
+            border-radius: 4px;
+            padding: 4px 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+        
+        .sandbox-tpl-btn:hover {
+            background: rgba(210, 153, 34, 0.15);
+            color: white;
+            border-color: var(--accent-color);
+        }
+        
+        .sandbox-result-box {
+            background: rgba(13, 17, 23, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 12.5px;
+            line-height: 1.5;
+            max-height: 220px;
+            overflow-y: auto;
+            text-align: left;
+        }
+        
+        .sandbox-result-box h4 {
+            color: var(--accent-color);
+            font-size: 13px;
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+        
+        .sandbox-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 12px;
+        }
+        
+        .sandbox-table th, .sandbox-table td {
+            border: 1px solid rgba(48, 54, 61, 0.5) !important;
+            padding: 6px 8px !important;
+            font-size: 11px;
+            color: var(--text-color) !important;
+        }
+        
+        .sandbox-table th {
+            background: rgba(22, 27, 34, 0.8) !important;
+            color: white !important;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="space-grid"></div>
+
+    <div class="app-container">
+        <!-- 头部栏 -->
+        <header>
+            <div class="brand" onclick="window.location.href='./'">
+                <span class="logo">VALUE CHAIN PHYSICS</span>
+                <span class="tagline">系统科学与价值链协同审计 v1.5</span>
+            </div>
+            <button class="badge" onclick="window.location.href='./'" style="font-family: inherit;">
+                🏠 返回主菜单
+            </button>
+        </header>
+
+        <main>
+            <!-- 欢迎引导屏 -->
+            <div id="welcome-panel">
+                <h1>价值链复杂度：行业唯一的审计评估与诊断标准</h1>
+                
+                <div class="welcome-layout">
+                    <!-- 左侧：介绍与启动 -->
+                    <div class="welcome-intro">
+                        <p style="font-size: 14.5px; line-height: 1.8; color: #c9d1d9; margin-bottom: 24px;">
+                            在复杂离散制造供应链体系中，系统性无序（熵增）是绝大多数企业数字化转型失败的根源。本系统结合《价值链物理学》与《全息抗熵》的物理公理，作为行业唯一的评判能力与技术审计标准，帮助企业识别、度量并消纳业务与技术系统之间的失调、摩擦和信息损耗。
+                        </p>
+                        
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <h3>物理同构与多级翻译审计</h3>
+                                <p>分析“业务出方案、IT做开发”的脱节根源，确立“代码即规则”的同构原则。</p>
+                            </div>
+                            <div class="feature-card">
+                                <h3>实体立法与协同机制诊断</h3>
+                                <p>审计实体总体设计部的建制，重塑自由输入到约束坍缩的协奏运行机制。</p>
+                            </div>
+                            <div class="feature-card" style="grid-column: span 2;">
+                                <h3>做功偏角与决策损耗计算</h3>
+                                <p>互动模拟业务领导调配资源与总设计师设计方案的合作偏角做功损耗。</p>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: left; margin-top: 10px;">
+                            <button class="btn btn-accent btn-large" id="start-audit-btn" style="padding: 16px 36px; font-size: 16px; width: 100%;">
+                                启动价值链协同物理审计
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 右侧：双盲去噪 AI 审计沙箱 -->
+                    <div class="welcome-sandbox">
+                        <h3>🔮 双盲去噪 AI 审计沙箱 (Sandbox)</h3>
+                        <p style="font-size: 12px; color: #8b949e; margin: 8px 0 12px 0; line-height: 1.5;">
+                            在这里粘贴您公司的 SCM 数字化方案、公关宣传口号或管理痛点。内置的物理同构翻译引擎会瞬间对其“去噪”，还原为底层的物理约束状态，并自动判定所违背的物理公理。
+                        </p>
+                        
+                        <textarea id="sandbox-input" placeholder="例如：我们引进了大厂 ERP 标品套件并实施了精益滚动 S&OP 看板，每周滚动开会协调计划，但目前交期频繁延迟，各部门开会救火，打算上马一套数据中台系统拉通数据..."></textarea>
+                        
+                        <div class="sandbox-templates">
+                            <button class="sandbox-tpl-btn" onclick="loadSandboxTemplate(1)">模板 1 (大厂ERP+滚动计划)</button>
+                            <button class="sandbox-tpl-btn" onclick="loadSandboxTemplate(2)">模板 2 (外包APS+层层翻译)</button>
+                            <button class="sandbox-tpl-btn" onclick="loadSandboxTemplate(3)">模板 3 (无系统+人工拉表)</button>
+                        </div>
+
+                        <button class="btn btn-primary" onclick="runSandboxAudit()" style="margin-top: 15px; padding: 10px 0; font-size: 13px; width: 100%;">
+                            ⚡ 运行双盲去噪物理诊断
+                        </button>
+
+                        <div class="sandbox-result-box hidden" id="sandbox-result">
+                            <!-- 诊断结果在此动态渲染 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 诊断工作台 -->
+            <div id="audit-panel">
+                <!-- 左侧：问题及操作 -->
+                <div class="control-column">
+                    <div>
+                        <div class="progress-indicator" id="dots-container"></div>
+                        <div class="agent-bubble">
+                            <div class="agent-name" id="agent-name-lbl">Grit Audit Agent</div>
+                            <div class="agent-text" id="agent-text-box">准备初始化诊断...</div>
+                        </div>
+                        <div class="input-area" id="input-area-box">
+                            <!-- 动态问答渲染区 -->
+                        </div>
+                    </div>
+                    
+                    <div class="nav-buttons">
+                        <button class="btn" id="prev-btn" disabled>上一步</button>
+                        <button class="btn btn-primary" id="next-btn">下一步</button>
+                    </div>
+                </div>
+
+                <!-- 右侧：显影舱/数学模型可视化 -->
+                <div class="visual-column">
+                    <div class="visual-header">
+                        <span class="visual-title" id="visual-title-lbl">物理实相显影舱</span>
+                        <span class="visual-badge" id="visual-badge-lbl">准备中</span>
+                    </div>
+
+                    <div class="visual-viewport">
+                        <!-- 8个动画容器，一个步骤对应一个 -->
+                        <div class="canvas-container" id="visual-boltzmann">
+                            <canvas id="boltzmann-canvas"></canvas>
+                        </div>
+                        <div class="canvas-container" id="visual-ashby">
+                            <canvas id="ashby-canvas"></canvas>
+                        </div>
+                        <div class="canvas-container" id="visual-shannon">
+                            <canvas id="shannon-canvas"></canvas>
+                        </div>
+                        <div class="canvas-container" id="visual-trinity">
+                            <canvas id="trinity-canvas"></canvas>
+                        </div>
+                        <div class="canvas-container" id="visual-collapser">
+                            <canvas id="collapser-canvas"></canvas>
+                        </div>
+                        <div class="canvas-container" id="visual-growth">
+                            <canvas id="growth-canvas"></canvas>
+                        </div>
+                        <div class="canvas-container" id="visual-vector">
+                            <canvas id="vector-canvas"></canvas>
+                        </div>
+                        <div class="canvas-container" id="visual-observer">
+                            <canvas id="observer-canvas"></canvas>
+                        </div>
+
+                        <div class="hud-overlay" id="hud-overlay-box">
+                            当前公理：<span id="hud-law">未加载</span><br>
+                            物理参量：<span id="hud-metrics">无采样</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 审计报告面板 -->
+            <div id="report-panel">
+                <div class="report-header">
+                    <h2>🔮 价值链协同与系统科学诊断报告</h2>
+                    <p style="color: #8b949e; font-size: 14px;">诊断中枢: Grit-Agent 总体设计道场 | 诊断时间: 2026-06-05</p>
+                </div>
+
+                <div class="report-summary-box">
+                    <div class="score-circle-container">
+                        <div class="score-circle">
+                            <span class="score-num" id="report-score">0</span>
+                            <span class="score-lbl">系统物理统御分</span>
+                        </div>
+                        <div class="score-grade" id="report-grade">C级 (高度无序)</div>
+                    </div>
+                    <div class="summary-stats">
+                        <div class="stat-row">
+                            <span class="stat-lbl">价值链物理运行得分 (Physics Execution)</span>
+                            <span class="stat-val" id="stat-physics-score">0 分</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-lbl">组织确权与立法机制得分 (Governance & Legislation)</span>
+                            <span class="stat-val" id="stat-maker-score">0 分</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-lbl">必要多样性控制带宽赤字比</span>
+                            <span class="stat-val" id="stat-variety-ratio">0.00%</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-lbl">多级翻译语义沟通信息损耗率</span>
+                            <span class="stat-val" id="stat-shannon-loss">0.0%</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-lbl">行政与技术决策有效做功效率 (cosθ)</span>
+                            <span class="stat-val" id="stat-work-cos">0.0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="report-section">
+                    <h3 class="section-title">一、 组织立法机制与系统科学重构处方 (Strategic Prescriptions)</h3>
+                    <div class="prescription-box" id="prescription-content">
+                        <!-- 动态处方 -->
+                    </div>
+                </div>
+
+                <div class="report-section">
+                    <h3 class="section-title">二、 价值链物理学诊断显影矩阵</h3>
+                    <div class="diagnosis-grid" id="diagnosis-grid-box">
+                        <!-- 动态评语 -->
+                    </div>
+                </div>
+
+                <div class="report-actions">
+                    <button class="btn" id="restart-btn">重新测试</button>
+                    <button class="btn btn-secondary" onclick="exportReportJSON()">💾 导出 JSON 报告</button>
+                    <button class="btn btn-secondary" onclick="exportReportMarkdown()">📝 导出 Markdown 报告</button>
+                    <button class="btn btn-secondary" onclick="generateShareLink()">🔗 分享此诊断结果</button>
+                    <button class="btn btn-accent" id="print-btn">打印 / 保存 PDF 报告</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            Grit-Agent 总体设计道场 © 2026-2030 | 用价值链物理学对抗局部熵增与规模不经济
+        </footer>
+    </div>
+
+    <script>
+        // 定义 8 大物理律/业务剖析问答
+        const lawsData = [
+            {
+                id: 1,
+                lawName: "规模不经济与全局失调",
+                lawRef: "玻尔兹曼熵增定律 (Boltzmann Entropy)",
+                agentText: "<strong>价值链症状剖析</strong>：在过去二十年中，许多企业虽然在研发、营销、供应链各部门实现了局部KPI的达标，但整体却面临“规模不经济”。<br><br>例如：研发、营销、采购、制造各自看起来都很优秀（采购低价、制造高稼动、销售大订单），但全局的<strong>交期承诺兑现率</strong>与<strong>资本周转率</strong>却不断恶化。这种局部优化导致的全局混乱，正是系统缺乏统御（系统无序熵增）的典型表现。",
+                type: "select",
+                options: [
+                    { value: "0", text: "局部良好，全局恶化：各部门 KPI 达标，但全局周转迟缓、交期频频落空（缺乏系统统御，局部博弈大）", score: 0 },
+                    { value: "12.5", text: "全局统御，正交流动：建立了全域的物理约束求解机制，各部门指标在全局最优目标下自动对齐", score: 12.5 }
+                ],
+                visualId: "visual-boltzmann"
+            },
+            {
+                id: 2,
+                lawName: "人肩负荷与高变异断点",
+                lawRef: "阿什比必要多样性定律 (Requisite Variety)",
+                agentText: "<strong>价值链症状剖析</strong>：面对多品类、高频波动的需求，你们的计划与排产是否高度依赖人工的‘人拉肩扛’（离线Excel、微信群对账）？<br><br>一旦发生缺料、延迟或插单等物理断点，计划体系是否迅速退回会议催料的“纳什博弈”状态，陷入部门自保与无休止的内耗扯皮中？",
+                type: "select",
+                options: [
+                    { value: "0", text: "人工拉表，纳什自保：依赖Excel和会议救火，面对高频变异迅速陷入部门墙扯皮", score: 0 },
+                    { value: "12.5", text: "算法消纳，自适应重排：依靠求解器实时吸纳变异，秒级重排并自愈，消灭人肉催料与内耗", score: 12.5 }
+                ],
+                visualId: "visual-ashby"
+            },
+            {
+                id: 3,
+                lawName: "二级翻译与同构断裂",
+                lawRef: "Conant-Ashby 内部调节同构律",
+                agentText: "<strong>价值链症状剖析</strong>：在你们的数字化系统建设中，是否仍在使用经典的‘业务/咨询出方案，IT照本宣科落地开发’的多级翻译模式？<br><br>这种将技术与业务割裂的二级翻译，直接违反了<strong>“业务即数据模型，业务即算法”</strong>的同构设计律，导致业务系统与车间物理实相彻底分裂，沦为后视镜记账表单。",
+                type: "select",
+                options: [
+                    { value: "0", text: "翻译官模式：业务/咨询写PPT，IT翻译并找厂商开发，系统与实际车间物理断裂（两层皮）", score: 0 },
+                    { value: "12.5", text: "模型即业务：业务专家、算法专家同频建模，将车间本体直接映射为代码算法，逻辑立法同构", score: 12.5 }
+                ],
+                visualId: "visual-shannon"
+            },
+            {
+                id: 4,
+                lawName: "总体设计实体建制与三位一体总师",
+                lawRef: "逆康威定律与系统本体论",
+                agentText: "<strong>价值链症状剖析</strong>：对抗系统的熵增，必须有清晰的‘立法主体’。<br><br>你们企业是否设立了正式的<strong>实体总体设计部门</strong>（如总体设计部、计划与控制总体部），并且任命了拥有逻辑否决权的<strong>总设计师</strong>？该总设计师是否具备<strong>‘精通业务 - 运筹建模 - 跨系统协同’</strong>的三位一体能力？",
+                type: "select",
+                options: [
+                    { value: "0", text: "无建制无总师：无实体总体部，逻辑规则零散割裂，无一号位总设计师，行政割裂", score: 0 },
+                    { value: "6", text: "虚挂架构师/委员会：有技术架构师或虚拟委员会，但无实质物理立法权，不精通算法或业务", score: 6 },
+                    { value: "12.5", text: "实体部 + 三位一体总师：实体部确立，总设计师融汇业务、算法与跨系统协同建模并握有一票否决权", score: 12.5 }
+                ],
+                visualId: "visual-trinity"
+            },
+            {
+                id: 5,
+                lawName: "逻辑收敛与协同机制",
+                lawRef: "工程控制论之闭环立法机制",
+                agentText: "<strong>价值链症状剖析</strong>：你们的技术与流程协同机制是否建立了闭环迭代的严密秩序？<br><br>科学的机制应当遵循：<strong>自由输入（业务与IT收集场景） ➔ 逻辑坍缩（设计师团队去芜存菁，收敛为求解约束） ➔ 协同协奏（业务与IT基于求解器合奏） ➔ 执行和反馈（实时流转）</strong>。否则，系统将沦为打满矛盾补丁的垃圾堆。",
+                type: "select",
+                options: [
+                    { value: "0", text: "各取所需，散装补丁：各部门直接提需求，IT打补丁，系统逻辑互相冲突、越理越乱", score: 0 },
+                    { value: "12.5", text: "科学收敛，协同协奏：业务与IT自由输入 ➔ 总体设计师团队逻辑坍缩与约束立法 ➔ 跨部门合奏与实时反馈闭环", score: 12.5 }
+                ],
+                visualId: "visual-collapser"
+            },
+            {
+                id: 6,
+                lawName: "能力培养与自下而上演进",
+                lawRef: "哥德尔演化与知识资产生成",
+                agentText: "<strong>价值链症状剖析</strong>：企业在数智化能力的培养与系统建设路径上是如何走过来的？<br><br>你们是全盘外购外部标准软件，指望大厂方案自上而下灌输和强推；还是在内部成立了<strong>‘设计道场’</strong>，自下而上培养懂物理算法与系统逻辑的学徒，自己生长和重塑核心资产？",
+                type: "select",
+                options: [
+                    { value: "0", text: "自上而下外购灌输：买大厂套件，强行削足适履，缺乏自我造血与演化自愈能力", score: 0 },
+                    { value: "12.5", text: "自下而上道场生长：通过内部‘设计道场’学徒制自主演进核心规则，系统随业务变异而自主进化", score: 12.5 }
+                ],
+                visualId: "visual-growth"
+            },
+            {
+                id: 7,
+                lawName: "战略偏角与合作做功效率",
+                lawRef: "向量做功定律 (Vector Done Work)",
+                agentText: "<strong>价值链症状剖析</strong>：重大数智化变革的启动与落地，是否由**业务领导负责启动和调配资源（掌控WHY和WHAT），总设计师主导设计方案（解决HOW）**？<br><br>两者的合作夹角 θ 是否极小，确保资源与逻辑合二为一，有效做功逼近 100%，而不会因高层决策与物理规律打架造成巨大的内耗废热？",
+                type: "vector_slider",
+                sliders: [
+                    { id: "theta", label: "业务领导（资源）与总设计师（逻辑）合作夹角 (θ)", min: 0, max: 90, val: 30, step: 1 }
+                ],
+                visualId: "visual-vector"
+            },
+            {
+                id: 8,
+                lawName: "主动运营体系与闭环控制",
+                lawRef: "维纳-卡尔曼观测边界与系统自省",
+                agentText: "<strong>价值链与系统运营剖析</strong>：很多企业建立的控制大盘仅用来监控业务KPI。但科学的主动运营体系，<strong>不仅监控业务运行，更必须实时监控系统本身运行的健康度与纪律性</strong>（例如：业务人员脱离求解器线下私拉Excel的‘外挂率’、系统约束参数与真实物理极限的‘模型同构偏离率’、求解器人工强插过载等）。<br><br>当业务扰动发生或系统逻辑崩裂时，是否有主动预警、What-If 智能模拟和一键写回（Write-Back）底层自愈的体系化闭环？",
+                type: "select",
+                options: [
+                    { value: "0", text: "被动看数，系统失察：只监控业务事后KPI，系统本身的运行缺陷（如模型失效、线下拉Excel外挂、规则冲突）处于黑盒失察状态，控制开环", score: 0 },
+                    { value: "12.5", text: "主营自愈，系统业务双重监控：建立主动运营体系。实时纠偏业务，刚性监控系统纪律性（外挂率、参数偏离度）；提供 What-If 模拟并一键写回底层自愈", score: 12.5 }
+                ],
+                visualId: "visual-observer"
+            }
+        ];
+
+        // 状态管理
+        let currentStep = 0;
+        let answers = {};
+        
+        // DOM 节点缓存
+        const welcomePanel = document.getElementById("welcome-panel");
+        const auditPanel = document.getElementById("audit-panel");
+        const reportPanel = document.getElementById("report-panel");
+        const dotsContainer = document.getElementById("dots-container");
+        const agentTextBox = document.getElementById("agent-text-box");
+        const inputAreaBox = document.getElementById("input-area-box");
+        const prevBtn = document.getElementById("prev-btn");
+        const nextBtn = document.getElementById("next-btn");
+        const startAuditBtn = document.getElementById("start-audit-btn");
+        const visualTitleLbl = document.getElementById("visual-title-lbl");
+        const visualBadgeLbl = document.getElementById("visual-badge-lbl");
+        const hudLaw = document.getElementById("hud-law");
+        const hudMetrics = document.getElementById("hud-metrics");
+        const reportScore = document.getElementById("report-score");
+        const reportGrade = document.getElementById("report-grade");
+        const restartBtn = document.getElementById("restart-btn");
+        const printBtn = document.getElementById("print-btn");
+
+        // 动画状态
+        let activeVisualId = "visual-default";
+        let animationFrameId = null;
+        let animationObjects = {};
+
+        // 启动测试
+        startAuditBtn.addEventListener("click", () => {
+            welcomePanel.style.display = "none";
+            auditPanel.style.display = "grid";
+            currentStep = 0;
+            answers = {};
+            initDots();
+            renderStep();
+        });
+
+        // 重启测试
+        restartBtn.addEventListener("click", () => {
+            reportPanel.style.display = "none";
+            welcomePanel.style.display = "block";
+            cancelAnimationFrame(animationFrameId);
+        });
+
+        // 打印报告
+        printBtn.addEventListener("click", () => {
+            window.print();
+        });
+
+        // 初始化进度指示器
+        function initDots() {
+            dotsContainer.innerHTML = "";
+            lawsData.forEach((_, i) => {
+                const dot = document.createElement("div");
+                dot.className = "step-dot";
+                if (i === 0) dot.classList.add("active");
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        // 更新指示器
+        function updateDots() {
+            const dots = dotsContainer.querySelectorAll(".step-dot");
+            dots.forEach((dot, i) => {
+                dot.className = "step-dot";
+                if (i === currentStep) {
+                    dot.classList.add("active");
+                } else if (i < currentStep) {
+                    dot.classList.add("completed");
+                }
+            });
+        }
+
+        // 渲染步骤
+        function renderStep() {
+            const stepData = lawsData[currentStep];
+            updateDots();
+
+            // 更新说明文本
+            agentTextBox.innerHTML = stepData.agentText;
+            hudLaw.textContent = `${stepData.lawName} - ${stepData.lawRef}`;
+
+            // 清空并渲染控制输入区
+            inputAreaBox.innerHTML = "";
+            const questionTitle = document.createElement("div");
+            questionTitle.className = "question-title";
+            questionTitle.textContent = `第 ${stepData.id} 步 : ${stepData.lawName}`;
+            inputAreaBox.appendChild(questionTitle);
+
+            if (stepData.type === "select") {
+                const group = document.createElement("div");
+                group.className = "option-group";
+                stepData.options.forEach(opt => {
+                    const btn = document.createElement("button");
+                    btn.className = "option-btn";
+                    btn.textContent = opt.text;
+                    if (answers[currentStep] && answers[currentStep].value === opt.value) {
+                        btn.classList.add("active");
+                    }
+                    btn.addEventListener("click", () => {
+                        const btns = group.querySelectorAll(".option-btn");
+                        btns.forEach(b => b.classList.remove("active"));
+                        btn.classList.add("active");
+                        answers[currentStep] = { value: opt.value, score: opt.score };
+                        updateVisualizer();
+                    });
+                    group.appendChild(btn);
+                });
+                inputAreaBox.appendChild(group);
+            } 
+            else if (stepData.type === "vector_slider") {
+                stepData.sliders.forEach(slider => {
+                    const savedVal = answers[currentStep] && answers[currentStep][slider.id] ? answers[currentStep][slider.id] : slider.val;
+                    
+                    const group = document.createElement("div");
+                    group.className = "slider-group";
+                    group.innerHTML = `
+                        <div class="slider-label">
+                            <span>${slider.label}</span>
+                            <span class="slider-value" id="${slider.id}-val-disp">${savedVal}°</span>
+                        </div>
+                        <input type="range" class="custom-range" id="${slider.id}-slider" 
+                               min="${slider.min}" max="${slider.max}" step="${slider.step}" value="${savedVal}">
+                    `;
+                    inputAreaBox.appendChild(group);
+
+                    const inputEl = group.querySelector("input");
+                    inputEl.addEventListener("input", (e) => {
+                        const val = parseFloat(e.target.value);
+                        document.getElementById(`${slider.id}-val-disp`).textContent = val + "°";
+                        answers[currentStep] = { theta: val, score: Math.cos(val * Math.PI / 180) * 12.5 };
+                        updateVisualizer();
+                    });
+
+                    answers[currentStep] = { theta: parseFloat(savedVal), score: Math.cos(parseFloat(savedVal) * Math.PI / 180) * 12.5 };
+                });
+            }
+
+            prevBtn.disabled = currentStep === 0;
+            if (currentStep === lawsData.length - 1) {
+                nextBtn.textContent = "生成诊断报告";
+                nextBtn.classList.remove("btn-primary");
+                nextBtn.classList.add("btn-accent");
+            } else {
+                nextBtn.textContent = "下一步";
+                nextBtn.classList.remove("btn-accent");
+                nextBtn.classList.add("btn-primary");
+            }
+
+            switchVisualizer(stepData.visualId);
+            updateVisualizer();
+        }
+
+        prevBtn.addEventListener("click", () => {
+            if (currentStep > 0) {
+                currentStep--;
+                renderStep();
+            }
+        });
+
+        nextBtn.addEventListener("click", () => {
+            // 赋默认值
+            if (!answers[currentStep]) {
+                if (lawsData[currentStep].type === "select") {
+                    answers[currentStep] = { value: lawsData[currentStep].options[0].value, score: lawsData[currentStep].options[0].score };
+                } else if (lawsData[currentStep].type === "vector_slider") {
+                    answers[currentStep] = { theta: 30, score: Math.cos(30 * Math.PI / 180) * 12.5 };
+                }
+            }
+
+            if (currentStep < lawsData.length - 1) {
+                currentStep++;
+                renderStep();
+            } else {
+                calculateAndShowReport();
+            }
+        });
+
+        function switchVisualizer(id) {
+            cancelAnimationFrame(animationFrameId);
+            document.querySelectorAll(".canvas-container").forEach(el => {
+                el.classList.remove("active");
+            });
+
+            const targetEl = document.getElementById(id);
+            if (targetEl) {
+                targetEl.classList.add("active");
+                activeVisualId = id;
+            }
+        }
+
+        function updateVisualizer() {
+            const stepData = lawsData[currentStep];
+            const stepVal = answers[currentStep];
+
+            visualTitleLbl.textContent = stepData.lawName;
+            visualBadgeLbl.textContent = `采样律: L-${stepData.id}`;
+
+            if (activeVisualId === "visual-boltzmann") {
+                const isChaos = !stepVal || stepVal.value === "0";
+                startBoltzmannSim(isChaos);
+            } else if (activeVisualId === "visual-ashby") {
+                const isChaos = !stepVal || stepVal.value === "0";
+                startAshbySim(isChaos);
+            } else if (activeVisualId === "visual-shannon") {
+                const isChaos = !stepVal || stepVal.value === "0";
+                startShannonSim(isChaos);
+            } else if (activeVisualId === "visual-trinity") {
+                const score = stepVal ? stepVal.score : 0;
+                startTrinitySim(score);
+            } else if (activeVisualId === "visual-collapser") {
+                const isChaos = !stepVal || stepVal.value === "0";
+                startCollapserSim(isChaos);
+            } else if (activeVisualId === "visual-growth") {
+                const isChaos = !stepVal || stepVal.value === "0";
+                startGrowthSim(isChaos);
+            } else if (activeVisualId === "visual-vector") {
+                const theta = stepVal ? stepVal.theta : 30;
+                startVectorSim(theta);
+            } else if (activeVisualId === "visual-observer") {
+                const isChaos = !stepVal || stepVal.value === "0";
+                startObserverSim(isChaos);
+            }
+        }
+
+        // ====================================================
+        // 1. Boltzmann Entropy Particle Simulation
+        // ====================================================
+        function startBoltzmannSim(isChaos) {
+            const canvas = document.getElementById("boltzmann-canvas");
+            const ctx = canvas.getContext("2d");
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+
+            const particles = [];
+            const count = isChaos ? 100 : 35;
+            const speed = isChaos ? 3.5 : 1.2;
+
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * speed,
+                    vy: (Math.random() - 0.5) * speed,
+                    r: Math.random() * 3 + 2.5,
+                    color: isChaos ? (Math.random() > 0.5 ? '#ff7b72' : '#d29922') : '#3fb950',
+                    history: []
+                });
+            }
+
+            let time = 0;
+
+            function animate() {
+                time += 0.02;
+                ctx.fillStyle = "rgba(6, 9, 14, 0.25)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // 绘制背景网格
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.02)";
+                ctx.lineWidth = 1;
+                const gridSpacing = 40;
+                for (let x = 0; x < canvas.width; x += gridSpacing) {
+                    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+                }
+                for (let y = 0; y < canvas.height; y += gridSpacing) {
+                    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+                }
+
+                if (isChaos) {
+                    // 绘制无序的局域连线 (博弈摩擦)
+                    ctx.lineWidth = 1.2;
+                    for (let i = 0; i < particles.length; i++) {
+                        for (let j = i + 1; j < particles.length; j++) {
+                            const dist = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
+                            if (dist < 65) {
+                                ctx.beginPath();
+                                ctx.moveTo(particles[i].x, particles[i].y);
+                                ctx.lineTo(particles[j].x, particles[j].y);
+                                ctx.strokeStyle = `rgba(255, 123, 114, ${(1 - dist/65) * 0.15})`;
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                } else {
+                    // 绘制正交的物理流线
+                    ctx.strokeStyle = "rgba(63, 185, 80, 0.05)";
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    for (let y = gridSpacing; y < canvas.height; y += gridSpacing) {
+                        ctx.moveTo(0, y);
+                        for (let x = 0; x < canvas.width; x += 10) {
+                            const waveY = y + Math.sin(x * 0.015 + time) * 10;
+                            ctx.lineTo(x, waveY);
+                        }
+                    }
+                    ctx.stroke();
+                }
+
+                particles.forEach(p => {
+                    p.history.push({ x: p.x, y: p.y });
+                    if (p.history.length > 8) p.history.shift();
+
+                    if (p.history.length > 1) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.history[0].x, p.history[0].y);
+                        for (let h = 1; h < p.history.length; h++) {
+                            ctx.lineTo(p.history[h].x, p.history[h].y);
+                        }
+                        ctx.strokeStyle = isChaos ? `rgba(255, 123, 114, 0.12)` : `rgba(63, 185, 80, 0.15)`;
+                        ctx.lineWidth = p.r * 0.5;
+                        ctx.stroke();
+                    }
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.shadowBlur = isChaos ? 10 : 6;
+                    ctx.shadowColor = p.color;
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+
+                    if (!isChaos) {
+                        p.x += Math.abs(p.vx) * 0.8 + 0.5;
+                        p.y = (p.y + Math.sin(p.x * 0.01 + time) * 0.5);
+                        if (p.y < 0) p.y = canvas.height;
+                        if (p.y > canvas.height) p.y = 0;
+                    } else {
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                    }
+
+                    if (p.x < 0) p.x = canvas.width;
+                    if (p.x > canvas.width) {
+                        p.x = 0;
+                        if (!isChaos) p.y = Math.random() * canvas.height;
+                    }
+                });
+
+                hudMetrics.innerHTML = isChaos 
+                    ? `<span style="color:#ff7b72">高熵无序态 (Boltzmann Chaos)</span><br>局部优化相互博弈。熵值 S 持续发散，资金效率与交期耗散严重。`
+                    : `<span style="color:#3fb950">全局正交低熵态</span><br>约束求解下全局协同，流速顺轨流动，热量损失趋近于零。`;
+
+                animationFrameId = requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // ====================================================
+        // 2. Ashby Requisite Variety Concentric Circles
+        // ====================================================
+        function startAshbySim(isChaos) {
+            const canvas = document.getElementById("ashby-canvas");
+            const ctx = canvas.getContext("2d");
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+            let angle = 0;
+
+            const varParticles = [];
+            const varCount = 45;
+            for (let i = 0; i < varCount; i++) {
+                const pAngle = Math.random() * Math.PI * 2;
+                const dist = 140 + Math.random() * 80;
+                varParticles.push({
+                    angle: pAngle,
+                    r: dist,
+                    speed: (Math.random() * 0.02 + 0.01) * (Math.random() > 0.5 ? 1 : -1),
+                    size: Math.random() * 3 + 2,
+                    state: 'normal'
+                });
+            }
+
+            let sparks = [];
+
+            function animate() {
+                angle += 0.01;
+                ctx.fillStyle = "rgba(6, 9, 14, 0.25)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.015)";
+                ctx.lineWidth = 1;
+                for (let i = 0; i < 8; i++) {
+                    const lineAngle = (i * Math.PI) / 4;
+                    ctx.beginPath();
+                    ctx.moveTo(cx, cy);
+                    ctx.lineTo(cx + 220 * Math.cos(lineAngle), cy + 220 * Math.sin(lineAngle));
+                    ctx.stroke();
+                }
+                for (let r = 50; r <= 200; r += 50) {
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+
+                ctx.beginPath();
+                ctx.arc(cx, cy, 150, 0, Math.PI * 2);
+                ctx.strokeStyle = "rgba(255, 123, 114, 0.35)";
+                ctx.lineWidth = 1.5;
+                ctx.setLineDash([5, 8]);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                varParticles.forEach(p => {
+                    p.angle += p.speed;
+                    const radialWobble = Math.sin(p.angle * 5 + angle * 3) * 15;
+                    const radius = p.r + radialWobble;
+
+                    const px = cx + radius * Math.cos(p.angle);
+                    const py = cy + radius * Math.sin(p.angle);
+
+                    ctx.beginPath();
+                    ctx.arc(px, py, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = isChaos ? "#ff7b72" : "#a371f7";
+                    ctx.fill();
+
+                    if (!isChaos) {
+                        const targetR = 120;
+                        if (p.r > targetR) {
+                            p.r -= 1.5;
+                        } else {
+                            p.r = targetR;
+                            p.speed = 0.02;
+                        }
+                    } else {
+                        if (Math.random() < 0.015 && p.r > 20) {
+                            p.r -= 4;
+                        }
+                        if (p.r <= 25) {
+                            for(let k=0; k<5; k++) {
+                                sparks.push({
+                                    x: cx + (Math.random() - 0.5) * 10,
+                                    y: cy + (Math.random() - 0.5) * 10,
+                                    vx: (Math.random() - 0.5) * 5,
+                                    vy: (Math.random() - 0.5) * 5,
+                                    alpha: 1.0,
+                                    color: "#ff7b72"
+                                });
+                            }
+                            p.r = 150 + Math.random() * 50;
+                        }
+                    }
+                });
+
+                sparks.forEach((s) => {
+                    s.x += s.vx;
+                    s.y += s.vy;
+                    s.alpha -= 0.04;
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, 2, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 123, 114, ${s.alpha})`;
+                    ctx.fill();
+                });
+                sparks = sparks.filter(s => s.alpha > 0);
+
+                const controlRadius = isChaos ? 22 : 120;
+                ctx.beginPath();
+                ctx.arc(cx, cy, controlRadius, 0, Math.PI * 2);
+                ctx.strokeStyle = isChaos ? "rgba(255, 123, 114, 0.85)" : "rgba(63, 185, 80, 0.9)";
+                ctx.lineWidth = 4;
+                ctx.stroke();
+
+                const forceGrad = ctx.createRadialGradient(cx, cy, controlRadius - 15, cx, cy, controlRadius + 15);
+                forceGrad.addColorStop(0, isChaos ? "rgba(255, 123, 114, 0.0)" : "rgba(63, 185, 80, 0.0)");
+                forceGrad.addColorStop(0.5, isChaos ? "rgba(255, 123, 114, 0.25)" : "rgba(63, 185, 80, 0.25)");
+                forceGrad.addColorStop(1, "rgba(6, 9, 14, 0)");
+                ctx.fillStyle = forceGrad;
+                ctx.beginPath();
+                ctx.arc(cx, cy, controlRadius + 20, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.beginPath();
+                ctx.arc(cx, cy, 12, 0, Math.PI * 2);
+                ctx.fillStyle = isChaos ? "#ff7b72" : "#3fb950";
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = ctx.fillStyle;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+
+                ctx.fillStyle = "white";
+                ctx.font = "bold 13px 'Outfit'";
+                ctx.textAlign = "center";
+                ctx.fillText(`外部业务变异空间 V_s (SKU级阶乘变异)`, cx, cy - 165);
+                
+                if (isChaos) {
+                    ctx.fillStyle = "var(--danger-color)";
+                    ctx.font = "bold 14px 'Outfit'";
+                    ctx.fillText(`控制赤字: 99.8%`, cx, cy - 40);
+                    ctx.font = "11px 'Outfit'";
+                    ctx.fillStyle = "#8b949e";
+                    ctx.fillText(`计划带宽 V_c 极度匮乏`, cx, cy + 45);
+                } else {
+                    ctx.fillStyle = "var(--success-color)";
+                    ctx.font = "bold 14px 'Outfit'";
+                    ctx.fillText(`必要多样性平衡: 100%`, cx, cy - 14);
+                    ctx.font = "11px 'Outfit'";
+                    ctx.fillStyle = "#8b949e";
+                    ctx.fillText(`物理控制力完全消纳变异`, cx, cy + 18);
+                }
+
+                hudMetrics.innerHTML = isChaos 
+                    ? `控制带宽比 V_c/V_s < 0.2% | <span style="color:#ff7b72">必要多样性破产</span><br>物理断点发生时，系统瞬间瘫痪，退回人肉纳什博弈扯皮。`
+                    : `控制带宽比 V_c/V_s > 99% | <span style="color:#3fb950">控制力覆盖成功</span><br>求解器吞噬高频变异空间，系统自愈。`;
+
+                animationFrameId = requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // ====================================================
+        // 3. Shannon Communication & Translation Loss
+        // ====================================================
+        function startShannonSim(isChaos) {
+            const canvas = document.getElementById("shannon-canvas");
+            const ctx = canvas.getContext("2d");
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+
+            let packetProgress = 0;
+            let shannonSparks = [];
+
+            function animate() {
+                ctx.fillStyle = "rgba(6, 9, 14, 0.25)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                const cy = canvas.height / 2;
+                const w = canvas.width;
+
+                ctx.fillStyle = "rgba(255, 255, 255, 0.015)";
+                ctx.font = "9px Courier";
+                for (let col = 20; col < w; col += 60) {
+                    for (let row = 30; row < canvas.height; row += 30) {
+                        const bit = Math.random() > 0.5 ? "1" : "0";
+                        ctx.fillText(bit, col, row);
+                    }
+                }
+
+                if (isChaos) {
+                    const nodes = [
+                        { x: w * 0.15, label: "业务专家" },
+                        { x: w * 0.32, label: "咨询SPEC" },
+                        { x: w * 0.5, label: "IT翻译" },
+                        { x: w * 0.68, label: "外包厂商" },
+                        { x: w * 0.85, label: "落地代码" }
+                    ];
+
+                    ctx.strokeStyle = "rgba(255, 123, 114, 0.15)";
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(nodes[0].x, cy);
+                    for (let i = 1; i < nodes.length; i++) {
+                        ctx.lineTo(nodes[i].x, cy);
+                    }
+                    ctx.stroke();
+
+                    nodes.forEach((n) => {
+                        ctx.beginPath();
+                        ctx.arc(n.x, cy, 9, 0, Math.PI * 2);
+                        ctx.fillStyle = "#161b22";
+                        ctx.fill();
+                        ctx.strokeStyle = "#ff7b72";
+                        ctx.lineWidth = 2;
+                        ctx.stroke();
+
+                        ctx.beginPath();
+                        ctx.arc(n.x, cy, 14, 0, Math.PI * 2);
+                        ctx.strokeStyle = "rgba(255, 123, 114, 0.15)";
+                        ctx.stroke();
+
+                        ctx.fillStyle = "#8b949e";
+                        ctx.font = "bold 11px Outfit";
+                        ctx.textAlign = "center";
+                        ctx.fillText(n.label, n.x, cy + 28);
+                    });
+
+                    packetProgress += 0.012;
+                    if (packetProgress > 1.0) packetProgress = 0;
+
+                    const segment = Math.floor(packetProgress * 4);
+                    const segProgress = (packetProgress * 4) % 1;
+                    const fromNode = nodes[segment];
+                    const toNode = nodes[segment + 1];
+
+                    if (fromNode && toNode) {
+                        const px = fromNode.x + (toNode.x - fromNode.x) * segProgress;
+                        const integrity = Math.max(10, Math.round((1 - packetProgress * 0.85) * 100));
+                        const size = 9 - segment * 1.6;
+                        const color = segment >= 3 ? "#ff7b72" : "#d29922";
+
+                        if (Math.random() < 0.25) {
+                            for (let k = 0; k < 3; k++) {
+                                shannonSparks.push({
+                                    x: px,
+                                    y: cy + (Math.random() - 0.5) * 10,
+                                    vx: (Math.random() - 0.5) * 2,
+                                    vy: (Math.random() - 0.5) * 4,
+                                    alpha: 1.0
+                                });
+                            }
+                        }
+
+                        ctx.beginPath();
+                        ctx.arc(px, cy, Math.max(2.5, size), 0, Math.PI * 2);
+                        ctx.fillStyle = color;
+                        ctx.shadowBlur = 12;
+                        ctx.shadowColor = color;
+                        ctx.fill();
+                        ctx.shadowBlur = 0;
+
+                        ctx.fillStyle = "#fff";
+                        ctx.font = "9px monospace";
+                        ctx.fillText(`语义完整度: ${integrity}%`, px, cy - 18);
+                    }
+
+                    hudMetrics.innerHTML = `翻译层级 N: <span>4 级</span> | <span style="color:#ff7b72">语义降级与同构破产</span><br>每次翻译发生 30% 语义丢失，落地代码无法表达物理实相（两层皮）。`;
+
+                } else {
+                    const nodes = [
+                        { x: w * 0.25, label: "业务/算法同构建模" },
+                        { x: w * 0.75, label: "统一执行逻辑 (代码)" }
+                    ];
+
+                    ctx.strokeStyle = "rgba(63, 185, 80, 0.4)";
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.moveTo(nodes[0].x, cy);
+                    ctx.lineTo(nodes[1].x, cy);
+                    ctx.stroke();
+
+                    nodes.forEach(n => {
+                        ctx.beginPath();
+                        ctx.arc(n.x, cy, 11, 0, Math.PI * 2);
+                        ctx.fillStyle = "#161b22";
+                        ctx.fill();
+                        ctx.strokeStyle = "#3fb950";
+                        ctx.lineWidth = 2.5;
+                        ctx.stroke();
+
+                        ctx.beginPath();
+                        ctx.arc(n.x, cy, 16, 0, Math.PI * 2);
+                        ctx.strokeStyle = "rgba(63, 185, 80, 0.2)";
+                        ctx.stroke();
+
+                        ctx.fillStyle = "#fff";
+                        ctx.font = "bold 12px Outfit";
+                        ctx.textAlign = "center";
+                        ctx.fillText(n.label, n.x, cy + 28);
+                    });
+
+                    packetProgress += 0.02;
+                    if (packetProgress > 1.0) packetProgress = 0;
+
+                    const px = nodes[0].x + (nodes[1].x - nodes[0].x) * packetProgress;
+                    
+                    ctx.beginPath();
+                    ctx.arc(px, cy, 8, 0, Math.PI * 2);
+                    ctx.fillStyle = "#3fb950";
+                    ctx.shadowBlur = 15;
+                    ctx.shadowColor = "#3fb950";
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+
+                    ctx.fillStyle = "#fff";
+                    ctx.font = "bold 9px monospace";
+                    ctx.fillText("无损映射 100%", px, cy - 18);
+
+                    hudMetrics.innerHTML = `翻译层级 N: <span>0 级 (直接立法)</span> | <span style="color:#3fb950">高保真物理映射</span><br>信息损耗为 0%，代码算法精准即为车间约束本身。`;
+                }
+
+                shannonSparks.forEach(s => {
+                    s.x += s.vx;
+                    s.y += s.vy;
+                    s.alpha -= 0.03;
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, 2, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(210, 153, 34, ${s.alpha})`;
+                    ctx.fill();
+                });
+                shannonSparks = shannonSparks.filter(s => s.alpha > 0);
+
+                animationFrameId = requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // ====================================================
+        // 4. Trinity Skills Core Fusion
+        // ====================================================
+        function startTrinitySim(score) {
+            const canvas = document.getElementById("trinity-canvas");
+            const ctx = canvas.getContext("2d");
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+
+            let angle = 0;
+            let waves = [];
+
+            function animate() {
+                angle += 0.02;
+                ctx.fillStyle = "rgba(6, 9, 14, 0.25)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                const cx = canvas.width / 2;
+                const cy = canvas.height / 2;
+
+                const maxSpread = score < 6 ? 90 : (score < 12 ? 40 : 0);
+                const isFused = score >= 12;
+
+                if (isFused) {
+                    const grad = ctx.createRadialGradient(cx, cy, 5, cx, cy, 90);
+                    grad.addColorStop(0, "rgba(255, 255, 255, 0.95)");
+                    grad.addColorStop(0.2, "rgba(163, 113, 247, 0.85)");
+                    grad.addColorStop(0.5, "rgba(88, 166, 255, 0.3)");
+                    grad.addColorStop(1, "rgba(6, 9, 14, 0)");
+                    ctx.fillStyle = grad;
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, 95, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.fillStyle = "#fff";
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = "#58a6ff";
+                    for (let i = 0; i < 15; i++) {
+                        const ptAngle = angle * 2 + (i * Math.PI / 7.5);
+                        const ptRadius = 40 + Math.sin(angle * 3 + i) * 12;
+                        const px = cx + ptRadius * Math.cos(ptAngle);
+                        const py = cy + ptRadius * Math.sin(ptAngle);
+                        ctx.beginPath();
+                        ctx.arc(px, py, 2.5, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                    ctx.shadowBlur = 0;
+
+                    if (Math.random() < 0.02) {
+                        waves.push({ r: 5, maxR: 120, alpha: 1.0 });
+                    }
+
+                    waves.forEach(w => {
+                        w.r += 2.5;
+                        w.alpha -= 0.02;
+                        ctx.strokeStyle = `rgba(163, 113, 247, ${w.alpha})`;
+                        ctx.lineWidth = 2.5;
+                        ctx.beginPath();
+                        ctx.arc(cx, cy, w.r, 0, Math.PI * 2);
+                        ctx.stroke();
+                    });
+                    waves = waves.filter(w => w.alpha > 0);
+
+                    ctx.fillStyle = "#fff";
+                    ctx.font = "bold 13px Outfit";
+                    ctx.textAlign = "center";
+                    ctx.fillText("三位一体融合奇点", cx, cy + 5);
+
+                } else {
+                    const c1x = cx + maxSpread * Math.cos(angle);
+                    const c1y = cy + maxSpread * Math.sin(angle);
+
+                    const c2x = cx + maxSpread * Math.cos(angle + (2 * Math.PI / 3));
+                    const c2y = cy + maxSpread * Math.sin(angle + (2 * Math.PI / 3));
+
+                    const c3x = cx + maxSpread * Math.cos(angle + (4 * Math.PI / 3));
+                    const c3y = cy + maxSpread * Math.sin(angle + (4 * Math.PI / 3));
+
+                    ctx.strokeStyle = "rgba(255, 123, 114, 0.2)";
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(c1x, c1y);
+                    for (let t = 0.1; t < 0.9; t += 0.1) {
+                        const midX = c1x + (c2x - c1x) * t + (Math.random() - 0.5) * 10;
+                        const midY = c1y + (c2y - c1y) * t + (Math.random() - 0.5) * 10;
+                        ctx.lineTo(midX, midY);
+                    }
+                    ctx.lineTo(c2x, c2y);
+                    ctx.stroke();
+
+                    ctx.beginPath();
+                    ctx.moveTo(c2x, c2y);
+                    for (let t = 0.1; t < 0.9; t += 0.1) {
+                        const midX = c2x + (c3x - c2x) * t + (Math.random() - 0.5) * 10;
+                        const midY = c2y + (c3y - c2y) * t + (Math.random() - 0.5) * 10;
+                        ctx.lineTo(midX, midY);
+                    }
+                    ctx.lineTo(c3x, c3y);
+                    ctx.stroke();
+
+                    ctx.beginPath();
+                    ctx.moveTo(c3x, c3y);
+                    for (let t = 0.1; t < 0.9; t += 0.1) {
+                        const midX = c3x + (c1x - c3x) * t + (Math.random() - 0.5) * 10;
+                        const midY = c3y + (c1y - c3y) * t + (Math.random() - 0.5) * 10;
+                        ctx.lineTo(midX, midY);
+                    }
+                    ctx.lineTo(c1x, c1y);
+                    ctx.stroke();
+
+                    drawOrb(ctx, c1x, c1y, 32, "rgba(88, 166, 255, 0.25)", "#58a6ff", "业务专家");
+                    drawOrb(ctx, c2x, c2y, 32, "rgba(163, 113, 247, 0.25)", "#a371f7", "运筹建模");
+                    drawOrb(ctx, c3x, c3y, 32, "rgba(210, 153, 34, 0.25)", "#d29922", "跨系统协同");
+                }
+
+                hudMetrics.innerHTML = isFused 
+                    ? `总师能力：<span style="color:#3fb950">三位一体融合（业务+运筹+架构）</span><br>算法一号位拥有绝对立法权，打通系统本体论壁垒。`
+                    : `总师能力：<span style="color:#ff7b72">割裂分立（缺乏统御大脑）</span><br>业务和技术各执一词，无法深度建模，沦为表单堆砌。`;
+
+                animationFrameId = requestAnimationFrame(animate);
+            }
+
+            function drawOrb(context, x, y, r, fill, stroke, label) {
+                context.beginPath();
+                context.arc(x, y, r, 0, Math.PI * 2);
+                context.fillStyle = fill;
+                context.fill();
+                context.strokeStyle = stroke;
+                context.lineWidth = 2;
+                context.stroke();
+
+                context.fillStyle = "#fff";
+                context.font = "bold 11px Outfit";
+                context.textAlign = "center";
+                context.fillText(label, x, y + 4);
+            }
+
+            animate();
+        }
+
+        // ====================================================
+        // 5. Logic Collapser Funnel Simulation
+        // ====================================================
+        function startCollapserSim(isChaos) {
+            const canvas = document.getElementById("collapser-canvas");
+            const ctx = canvas.getContext("2d");
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+
+            const inputs = [];
+            let frame = 0;
+            const cx = canvas.width / 2;
+            const h = canvas.height;
+
+            function animate() {
+                frame++;
+                ctx.fillStyle = "rgba(6, 9, 14, 0.25)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.strokeStyle = isChaos ? "rgba(255, 123, 114, 0.35)" : "rgba(88, 166, 255, 0.4)";
+                ctx.lineWidth = 2.5;
+                ctx.beginPath();
+                ctx.moveTo(cx - 110, 35);
+                ctx.lineTo(cx - 25, h * 0.45);
+                ctx.lineTo(cx - 25, h * 0.58);
+                ctx.lineTo(cx - 110, h - 35);
+                
+                ctx.moveTo(cx + 110, 35);
+                ctx.lineTo(cx + 25, h * 0.45);
+                ctx.lineTo(cx + 25, h * 0.58);
+                ctx.lineTo(cx + 110, h - 35);
+                ctx.stroke();
+
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.05)";
+                ctx.lineWidth = 1;
+                for (let y = 50; y < h - 40; y += 40) {
+                    const widthAtY = y < h * 0.45 
+                        ? 110 - (110 - 25) * (y - 35) / (h * 0.45 - 35)
+                        : (y > h * 0.58 
+                            ? 25 + (110 - 25) * (y - h * 0.58) / (h - 35 - h * 0.58)
+                            : 25);
+                    ctx.beginPath();
+                    ctx.moveTo(cx - widthAtY, y);
+                    ctx.lineTo(cx + widthAtY, y);
+                    ctx.stroke();
+                }
+
+                if (frame % 7 === 0) {
+                    inputs.push({
+                        x: cx + (Math.random() - 0.5) * 180,
+                        y: 20,
+                        vy: 1.8 + Math.random() * 1.5,
+                        color: isChaos 
+                            ? (Math.random() > 0.6 ? "#ff7b72" : (Math.random() > 0.3 ? "#d29922" : "#58a6ff")) 
+                            : "#58a6ff",
+                        history: []
+                    });
+                }
+
+                inputs.forEach((p) => {
+                    p.y += p.vy;
+
+                    if (isChaos) {
+                        const widthAtY = p.y < h * 0.45 
+                            ? 110 - (110 - 25) * (p.y - 35) / (h * 0.45 - 35)
+                            : (p.y > h * 0.58 
+                                ? 25 + (110 - 25) * (p.y - h * 0.58) / (h - 35 - h * 0.58)
+                                : 25);
+
+                        if (Math.abs(p.x - cx) >= widthAtY - 6) {
+                            p.x = cx + (widthAtY - 6) * Math.sign(p.x - cx);
+                            p.vy *= 0.9;
+                        }
+
+                        if (p.y > h * 0.42 && p.y < h * 0.8) {
+                            p.x += (Math.random() - 0.5) * 6;
+                        }
+
+                        if (p.y > h - 35) {
+                            p.y = h - 35;
+                            p.vy = 0;
+                            p.color = "#ff7b72";
+                        }
+                    } else {
+                        if (p.y < h * 0.48) {
+                            p.x += (cx - p.x) * 0.12;
+                        } else {
+                            p.x = cx + 65 * Math.sin(p.y * 0.045 + frame * 0.09);
+                            p.color = "#3fb950";
+                        }
+                    }
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, 3.5, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.shadowBlur = 6;
+                    ctx.shadowColor = p.color;
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                });
+
+                if (inputs.length > 120) inputs.shift();
+
+                if (isChaos) {
+                    ctx.fillStyle = "rgba(255, 123, 114, 0.9)";
+                    ctx.font = "bold 13px Outfit";
+                    ctx.textAlign = "center";
+                    ctx.fillText("散装需求沉积：系统逻辑冲突与坍塌", cx, h - 12);
+                    
+                    hudMetrics.innerHTML = `<span style="color:#ff7b72">散装多源输入 ➔ 行政无序撕扯</span><br>没有逻辑坍缩过滤器，越打补丁系统越臃肿混乱。`;
+                } else {
+                    ctx.fillStyle = "rgba(63, 185, 80, 0.9)";
+                    ctx.font = "bold 13px Outfit";
+                    ctx.textAlign = "center";
+                    ctx.fillText("协同协奏轨 (协同拉动)", cx, h - 12);
+                    
+                    hudMetrics.innerHTML = `<span style="color:#3fb950">自由输入 ➔ 逻辑坍缩 ➔ 协同协奏 ➔ 反馈闭环</span><br>总体设计团队统一降维收敛为算法约束，确保合奏稳定。`;
+                }
+
+                animationFrameId = requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // ====================================================
+        // 6. Bottom-up Dojo Self-Growth Simulation
+        // ====================================================
+        function startGrowthSim(isChaos) {
+            const canvas = document.getElementById("growth-canvas");
+            const ctx = canvas.getContext("2d");
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+
+            let growthProgress = 0;
+            let slabY = -120;
+            const cx = canvas.width / 2;
+            const h = canvas.height;
+            let sparks = [];
+
+            function animate() {
+                ctx.fillStyle = "rgba(6, 9, 14, 0.25)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.01)";
+                ctx.lineWidth = 1;
+                for (let r = 50; r < h; r += 50) {
+                    ctx.beginPath();
+                    ctx.arc(cx, h - 20, r, Math.PI, 2 * Math.PI);
+                    ctx.stroke();
+                }
+
+                if (isChaos) {
+                    slabY += (h * 0.45 - slabY) * 0.08;
+
+                    const wiggle = (Math.random() - 0.5) * 2;
+                    ctx.strokeStyle = "var(--danger-color)";
+                    ctx.lineWidth = 4;
+                    ctx.beginPath();
+                    ctx.moveTo(cx + wiggle, h - 20);
+                    ctx.quadraticCurveTo(cx - 35, h * 0.72, cx - 12 + wiggle, h * 0.56);
+                    ctx.stroke();
+
+                    ctx.fillStyle = "var(--danger-color)";
+                    ctx.beginPath();
+                    ctx.arc(cx - 12 + wiggle, h * 0.56, 7, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    if (Math.abs(h * 0.45 - slabY) < 5 && Math.random() < 0.3) {
+                        for (let k = 0; k < 6; k++) {
+                            sparks.push({
+                                x: cx + (Math.random() - 0.5) * 80,
+                                y: h * 0.56,
+                                vx: (Math.random() - 0.5) * 6,
+                                vy: -Math.random() * 4,
+                                alpha: 1.0
+                            });
+                        }
+                    }
+
+                    ctx.fillStyle = "rgba(33, 39, 48, 0.85)";
+                    ctx.strokeStyle = "#ff7b72";
+                    ctx.lineWidth = 3;
+                    ctx.shadowBlur = 15;
+                    ctx.shadowColor = "#ff7b72";
+                    ctx.fillRect(cx - 125, slabY, 250, 48);
+                    ctx.strokeRect(cx - 125, slabY, 250, 48);
+                    ctx.shadowBlur = 0;
+
+                    ctx.fillStyle = "#fff";
+                    ctx.font = "bold 12px Outfit";
+                    ctx.textAlign = "center";
+                    ctx.fillText("外购大厂标准套件 (削足适履)", cx, slabY + 28);
+
+                    hudMetrics.innerHTML = `<span style="color:#ff7b72">封闭代数系统自上而下灌输</span><br>标准成套软件排异反应严重，遭遇未知业务变异时僵死，无自愈能力。`;
+
+                } else {
+                    growthProgress += (1.0 - growthProgress) * 0.04;
+
+                    function drawBranch(x, y, len, angle, depth) {
+                        if (depth === 0) return;
+
+                        const x2 = x + len * Math.cos(angle) * growthProgress;
+                        const y2 = y - len * Math.sin(angle) * growthProgress;
+
+                        ctx.beginPath();
+                        ctx.moveTo(x, y);
+                        ctx.lineTo(x2, y2);
+                        ctx.strokeStyle = `rgba(63, 185, 80, ${0.25 + depth * 0.16})`;
+                        ctx.lineWidth = depth * 1.6;
+                        ctx.stroke();
+
+                        if (depth <= 2) {
+                            ctx.fillStyle = "#3fb950";
+                            ctx.beginPath();
+                            ctx.arc(x2, y2, 4, 0, Math.PI * 2);
+                            ctx.shadowBlur = 10;
+                            ctx.shadowColor = "#3fb950";
+                            ctx.fill();
+                            ctx.shadowBlur = 0;
+
+                            if (Math.random() < 0.005) {
+                                sparks.push({
+                                    x: x2,
+                                    y: y2,
+                                    vx: (Math.random() - 0.5) * 1.5,
+                                    vy: -Math.random() * 2 - 1,
+                                    alpha: 1.0
+                                });
+                            }
+                        }
+
+                        drawBranch(x2, y2, len * 0.76, angle - 0.38, depth - 1);
+                        drawBranch(x2, y2, len * 0.76, angle + 0.38, depth - 1);
+                    }
+
+                    drawBranch(cx, h - 25, 78, Math.PI / 2, 5);
+
+                    ctx.fillStyle = "rgba(63, 185, 80, 0.95)";
+                    ctx.font = "bold 13px Outfit";
+                    ctx.textAlign = "center";
+                    ctx.fillText("总体设计部道场：自主造血与自演进体系", cx, h - 8);
+
+                    hudMetrics.innerHTML = `<span style="color:#3fb950">自下而上学徒道场生长</span><br>内部沉淀逻辑与物理算法资产，系统拥有极高弹性的双环自进化能力。`;
+                }
+
+                sparks.forEach(s => {
+                    s.x += s.vx;
+                    s.y += s.vy;
+                    s.alpha -= 0.03;
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, 2.5, 0, Math.PI * 2);
+                    ctx.fillStyle = isChaos ? `rgba(255, 123, 114, ${s.alpha})` : `rgba(63, 185, 80, ${s.alpha})`;
+                    ctx.fill();
+                });
+                sparks = sparks.filter(s => s.alpha > 0);
+
+                animationFrameId = requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // ====================================================
+        // 7. Draggable Vector Done Work Sandbox
+        // ====================================================
+        function startVectorSim(thetaVal) {
+            const canvas = document.getElementById("vector-canvas");
+            const ctx = canvas.getContext("2d");
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+
+            const cx = canvas.width / 2.8;
+            const cy = canvas.height * 2.3 / 3.2;
+            const r = 185;
+            const rad = (thetaVal * Math.PI) / 180;
+
+            const heatParticles = [];
+            const heatCount = Math.min(60, Math.floor(thetaVal * 0.8));
+
+            function animate() {
+                ctx.fillStyle = "rgba(6, 9, 14, 0.25)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.02)";
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.arc(cx, cy, r, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.arc(cx, cy, r * 0.5, 0, Math.PI * 2);
+                ctx.stroke();
+
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.04)";
+                for (let d = 0; d < 360; d += 15) {
+                    const dRad = d * Math.PI / 180;
+                    ctx.beginPath();
+                    ctx.moveTo(cx + (r - 8) * Math.cos(dRad), cy - (r - 8) * Math.sin(dRad));
+                    ctx.lineTo(cx + r * Math.cos(dRad), cy - r * Math.sin(dRad));
+                    ctx.stroke();
+                }
+
+                ctx.setLineDash([4, 4]);
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.06)";
+                ctx.beginPath();
+                ctx.moveTo(cx - 30, cy); ctx.lineTo(cx + r + 30, cy);
+                ctx.moveTo(cx, cy + 30); ctx.lineTo(cx, cy - r - 30);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                const cosTheta = Math.cos(rad);
+                const effVal = (cosTheta * 100).toFixed(1);
+                const heatVal = ((1 - cosTheta) * 100).toFixed(1);
+
+                ctx.fillStyle = "rgba(255, 123, 114, 0.08)";
+                const vmx = cx + r * Math.cos(rad);
+                const vmy = cy - r * Math.sin(rad); 
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(vmx, vmy);
+                ctx.lineTo(cx + r * cosTheta, cy);
+                ctx.closePath();
+                ctx.fill();
+
+                if (heatParticles.length < heatCount) {
+                    const rndAngle = Math.random() * rad;
+                    const rndDist = Math.random() * r;
+                    heatParticles.push({
+                        angle: rndAngle,
+                        dist: rndDist,
+                        speed: Math.random() * 2 + 1,
+                        size: Math.random() * 2 + 1,
+                        alpha: Math.random() * 0.8 + 0.2
+                    });
+                }
+
+                heatParticles.forEach((p) => {
+                    p.dist += p.speed;
+                    if (p.dist > r) {
+                        p.dist = 0;
+                    }
+                    const px = cx + p.dist * Math.cos(p.angle);
+                    const py = cy - p.dist * Math.sin(p.angle);
+
+                    ctx.beginPath();
+                    ctx.arc(px, py, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 123, 114, ${p.alpha})`;
+                    ctx.fill();
+                });
+
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(cx + r, cy);
+                ctx.strokeStyle = "#58a6ff";
+                ctx.lineWidth = 4;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = "#58a6ff";
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+                drawArrow(ctx, cx + r, cy, 0, "#58a6ff");
+
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(vmx, vmy);
+                ctx.strokeStyle = "#d29922";
+                ctx.lineWidth = 4;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = "#d29922";
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+                drawArrow(ctx, vmx, vmy, rad, "#d29922");
+
+                ctx.beginPath();
+                ctx.arc(cx, cy, 45, -rad, 0, false);
+                ctx.strokeStyle = "rgba(210, 153, 34, 0.75)";
+                ctx.lineWidth = 2.5;
+                ctx.stroke();
+
+                ctx.fillStyle = "#fff";
+                ctx.font = "bold 11px Outfit";
+                ctx.textAlign = "left";
+                ctx.fillText(`S (实际实施路径方向)`, vmx + 10, vmy - 8);
+                ctx.fillText(`F (双核力场总推力方向)`, cx + r - 30, cy + 20);
+                ctx.fillText(`合作夹角 θ = ${thetaVal}°`, cx + 22, cy - 25);
+
+                hudMetrics.innerHTML = `战略做功效率 cosθ: <span>${effVal}%</span> | 废热内耗 Q: <span style="color:#ff7b72">${heatVal}%</span><br>夹角越小，行政资源与物理算法同频做功越大，系统阻力废热越小。`;
+
+                animationFrameId = requestAnimationFrame(animate);
+            }
+
+            function drawArrow(context, x, y, angle, color) {
+                context.save();
+                context.translate(x, y);
+                context.rotate(-angle);
+                context.beginPath();
+                context.moveTo(0, 0);
+                context.lineTo(-12, -6);
+                context.lineTo(-12, 6);
+                context.closePath();
+                context.fillStyle = color;
+                context.fill();
+                context.restore();
+            }
+
+            animate();
+        }
+
+        // ====================================================
+        // 8. Kalman Observability & Self-Healing Feedback
+        // ====================================================
+        function startObserverSim(isChaos) {
+            const canvas = document.getElementById("observer-canvas");
+            const ctx = canvas.getContext("2d");
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+
+            let scrollX = 0;
+            const points = [];
+            let laserY = 0;
+            let laserSpeed = 1.5;
+
+            function animate() {
+                ctx.fillStyle = "rgba(6, 9, 14, 0.25)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                const cy = canvas.height / 2;
+                const w = canvas.width;
+
+                scrollX = (scrollX - 1.5) % 40;
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.015)";
+                ctx.lineWidth = 1;
+                for (let x = scrollX; x < w; x += 40) {
+                    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+                }
+                for (let y = 0; y < canvas.height; y += 40) {
+                    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+                }
+
+                const limitSpan = 60;
+                ctx.strokeStyle = isChaos ? "rgba(255, 123, 114, 0.25)" : "rgba(63, 185, 80, 0.15)";
+                ctx.lineWidth = 1.5;
+                ctx.setLineDash([5, 5]);
+                ctx.beginPath();
+                ctx.moveTo(0, cy - limitSpan); ctx.lineTo(w, cy - limitSpan);
+                ctx.moveTo(0, cy + limitSpan); ctx.lineTo(w, cy + limitSpan);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                ctx.fillStyle = isChaos ? "rgba(255, 123, 114, 0.3)" : "rgba(63, 185, 80, 0.3)";
+                ctx.font = "8px monospace";
+                ctx.fillText("OBSERVABILITY THRESHOLD UPPER", 15, cy - limitSpan - 6);
+                ctx.fillText("OBSERVABILITY THRESHOLD LOWER", 15, cy + limitSpan + 12);
+
+                points.push(null);
+                const maxPts = 160;
+                if (points.length > maxPts) points.shift();
+
+                let targetY = cy;
+                const progressStep = points.length;
+
+                if (isChaos) {
+                    targetY = cy + Math.sin(progressStep * 0.09) * (progressStep * 0.65) + (Math.random() - 0.5) * 12;
+                } else {
+                    let baseAmp = Math.sin(progressStep * 0.08) * 15;
+                    if (progressStep >= maxPts * 0.38 && progressStep <= maxPts * 0.56) {
+                        baseAmp += Math.sin(progressStep * 0.5) * 45;
+                    } else if (progressStep > maxPts * 0.56) {
+                        const correctionFactor = Math.exp(-(progressStep - maxPts * 0.56) * 0.1);
+                        baseAmp += Math.sin(progressStep * 0.5) * 45 * correctionFactor;
+                    }
+                    targetY = cy + baseAmp;
+                }
+
+                points[points.length - 1] = { y: targetY };
+
+                ctx.beginPath();
+                const stepW = w / maxPts;
+                for (let i = 0; i < points.length; i++) {
+                    if (points[i]) {
+                        const px = i * stepW;
+                        if (i === 0) ctx.moveTo(px, points[i].y);
+                        else ctx.lineTo(px, points[i].y);
+                    }
+                }
+                ctx.strokeStyle = isChaos ? "var(--danger-color)" : "var(--success-color)";
+                ctx.lineWidth = 3;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = ctx.strokeStyle;
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+
+                laserY += laserSpeed;
+                if (laserY > canvas.height || laserY < 0) laserSpeed *= -1;
+                ctx.strokeStyle = "rgba(88, 166, 255, 0.15)";
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(0, laserY); ctx.lineTo(w, laserY);
+                ctx.stroke();
+
+                if (isChaos) {
+                    const lastPt = points[points.length - 1];
+                    if (lastPt && Math.abs(lastPt.y - cy) > limitSpan) {
+                        ctx.fillStyle = "rgba(255, 123, 114, 0.15)";
+                        ctx.fillRect(0, 0, w, canvas.height);
+
+                        ctx.fillStyle = "var(--danger-color)";
+                        ctx.font = "bold 13px Outfit";
+                        ctx.textAlign = "center";
+                        ctx.fillText("❌ 观测极限溢出: 物理信号失真开环", w / 2, cy - 85);
+                    }
+                } else {
+                    const anomalyStartX = maxPts * 0.38 * stepW;
+                    const anomalyEndX = maxPts * 0.56 * stepW;
+
+                    ctx.fillStyle = "rgba(88, 166, 255, 0.05)";
+                    ctx.fillRect(anomalyStartX, 0, anomalyEndX - anomalyStartX, canvas.height);
+
+                    ctx.strokeStyle = "rgba(88, 166, 255, 0.25)";
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(anomalyStartX, 0); ctx.lineTo(anomalyStartX, canvas.height);
+                    ctx.moveTo(anomalyEndX, 0); ctx.lineTo(anomalyEndX, canvas.height);
+                    ctx.stroke();
+
+                    if (points.length > maxPts * 0.45) {
+                        ctx.fillStyle = "var(--accent-color)";
+                        ctx.font = "bold 11px Outfit";
+                        ctx.textAlign = "center";
+                        ctx.fillText("⚡ 捕获外部异动断点", (anomalyStartX + anomalyEndX) / 2, 28);
+                        ctx.fillStyle = "var(--primary-color)";
+                        ctx.fillText("➔ 闭环求解器自愈写回 (Write-Back) 中", (anomalyStartX + anomalyEndX) / 2 + 10, 42);
+                    }
+                }
+
+                hudMetrics.innerHTML = isChaos 
+                    ? `<span style="color:#ff7b72">只读后视镜 ➔ 反馈控制开环</span><br>仅能回溯昨日报表，控制纬度小于扰动纬度，系统发散失控。`
+                    : `<span style="color:#3fb950">主动自愈 ➔ 一键写回 (Write-Back) 闭环</span><br>内存中瞬间生成全局消纳建议，卡尔曼闭环拦截，重归稳态。`;
+
+                animationFrameId = requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // ====================================================
+        // 核心得分及报告逻辑
+        // ====================================================
+        function calculateAndShowReport() {
+            auditPanel.style.display = "none";
+            reportPanel.style.display = "block";
+
+            // 1. 计算价值链物理运行得分 (Physics Score - 100 标度)
+            // L1(熵增), L2(Ashby), L3(同构), L8(主动自愈) 每题满分 12.5，共 50 分满分
+            let rawPhysics = 0;
+            if (answers[0] && answers[0].value === "12.5") rawPhysics += 12.5;
+            if (answers[1] && answers[1].value === "12.5") rawPhysics += 12.5;
+            if (answers[2] && answers[2].value === "12.5") rawPhysics += 12.5;
+            if (answers[7] && answers[7].value === "12.5") rawPhysics += 12.5;
+            const physicsScore = (rawPhysics / 50) * 100;
+
+            // 2. 计算组织确权与立法机制得分 (Governance Score - 100 标度)
+            // L4(总师), L5(机制), L6(道场), L7(夹角) 每题满分 12.5，共 50 分满分
+            let rawGov = 0;
+            rawGov += answers[3] ? parseFloat(answers[3].score) : 0;
+            rawGov += answers[4] ? parseFloat(answers[4].value === "12.5" ? 12.5 : 0) : 0;
+            rawGov += answers[5] ? parseFloat(answers[5].value === "12.5" ? 12.5 : 0) : 0;
+            rawGov += answers[6] ? parseFloat(answers[6].score) : 0;
+            const govScore = (rawGov / 50) * 100;
+
+            // 综合统御总分
+            const totalScore = (physicsScore + govScore) / 2;
+
+            // 渲染汇总
+            reportScore.textContent = totalScore.toFixed(1);
+            document.getElementById("stat-physics-score").textContent = physicsScore.toFixed(1) + " 分";
+            document.getElementById("stat-maker-score").textContent = govScore.toFixed(1) + " 分";
+
+            let grade = "C级 (局部割裂博弈 · 资本效率加速耗散边缘)";
+            let gradeColor = "var(--danger-color)";
+            if (totalScore >= 75) {
+                grade = "A级 (全局同构统御 · 低熵自适应自愈系统)";
+                gradeColor = "var(--success-color)";
+            } else if (totalScore >= 45) {
+                grade = "B级 (中度摩擦协同 · 人力与系统翻译折损态)";
+                gradeColor = "var(--accent-color)";
+            }
+            reportGrade.textContent = grade;
+            reportGrade.style.color = gradeColor;
+
+            // 渲染明细指标
+            const varietyRatioText = answers[1] && answers[1].value === "12.5" ? "0.01% (算力完全消纳)" : "99.8% (必要多样性破产)";
+            const shannonText = answers[2] && answers[2].value === "12.5" ? "0.0% (直接同构映射)" : "65.7% (四级二级翻译严重损耗)";
+            const thetaVal = answers[6] ? answers[6].theta : 30;
+            const cosTheta = Math.cos(thetaVal * Math.PI / 180);
+
+            document.getElementById("stat-variety-ratio").textContent = varietyRatioText;
+            document.getElementById("stat-shannon-loss").textContent = shannonText;
+            document.getElementById("stat-work-cos").textContent = (cosTheta * 100).toFixed(1) + "%";
+
+            // 3. 动态渲染针对性组织重构处方 (根据各项诊断得分定制输出)
+            let rxHTML = "";
+            rxHTML += `<h4>🛠️ 总体设计部立法确权与系统重构方案</h4>`;
+            rxHTML += `<ul>`;
+
+            // 处方 1：总体设计建制
+            if (!answers[3] || answers[3].score < 12) {
+                rxHTML += `<li><strong>【实体建制处方】</strong>：缺乏立法一号位。<strong>必须立即成立专职实体的‘总体设计部’或‘计划控制总体部’</strong>，打破虚挂的IT部协调委员会机制；任命具有‘业务精通-运筹建模-系统跨系统协同’三位一体能力的<strong>总设计师</strong>，赋予一票逻辑否决权。</li>`;
+            } else {
+                rxHTML += `<li><strong style="color:var(--success-color)">【总体设计实体建制已确立】</strong>：继续维持总体部对系统物理本体与约束底册的逻辑主权，防止退化。</li>`;
+            }
+
+            // 处方 2：协同机制收敛
+            if (!answers[4] || answers[4].value === "0") {
+                rxHTML += `<li><strong>【机制收敛处方】</strong>：终结各部门提零碎需求IT打补丁的被动响应模式。<strong>推行‘自由输入➔逻辑坍缩➔协同协奏➔执行反馈’的收敛闭环机制</strong>。任何业务逻辑变更需经过总设计师进行数学约束提取（坍缩），严禁直接编写散装代码。</li>`;
+            } else {
+                rxHTML += `<li><strong style="color:var(--success-color)">【逻辑收敛机制已运转】</strong>：依托漏斗机制，所有业务模式均坍缩为求解算子，系统物理熵维持稳定。</li>`;
+            }
+
+            // 处方 3：自主道场成长
+            if (!answers[5] || answers[5].value === "0") {
+                rxHTML += `<li><strong>【自主演进处方】</strong>：削足适履式外购标品将导致系统丧失弹力。<strong>必须建立内部的‘设计道场’学徒培养机制</strong>，自下而上养人。让业务骨干学会对车间物理极限进行数学建模，把核心资产与硅基流体智力沉淀在企业内部。</li>`;
+            } else {
+                rxHTML += `<li><strong style="color:var(--success-color)">【自主演进路径已建立】</strong>：设计道场自主迭代核心算法规则，具备高强度的抗天鹅突变韧性。</li>`;
+            }
+
+            // 处方 4：一把手行政偏角
+            if (thetaVal > 30) {
+                rxHTML += `<li><strong>【行政偏角校正处方】</strong>：行政命令与物理规律夹角过大（当前夹角达 ${thetaVal}°），造成了 ${((1 - cosTheta) * 100).toFixed(1)}% 的内耗废热。<strong>确立战略红线：业务一把手负责启动与资源分配（解决WHY/WHAT），总设计师主导设计方案（设计HOW）</strong>，业务指令必须在求解约束线内运行，消灭局部行政踩踏。</li>`;
+            } else {
+                rxHTML += `<li><strong style="color:var(--success-color)">【战略合力高度协同】</strong>：行政方向与物理约束夹角极小（当前夹角仅 ${thetaVal}°），做功效率高达 ${(cosTheta * 100).toFixed(1)}%，有效推进全局流动。</li>`;
+            }
+
+            // 处方 5：主动运营自愈
+            if (!answers[7] || answers[7].value === "0") {
+                rxHTML += `<li><strong>【主动自愈处方】</strong>：静态大屏与开环控制无力维持系统生命力。<strong>必须建立覆盖业务运营与系统自身健康的‘主动运营体系’</strong>，将业务异常断点和系统运行指标（如 Excel 外挂率、参数偏离度）同时纳入卡尔曼自愈环路；并在异动发生时自动推荐最优消纳方案并支持一键写回（Write-Back），消灭开环黑盒状态。</li>`;
+            } else {
+                rxHTML += `<li><strong style="color:var(--success-color)">【主动运营闭环已运转】</strong>：业务运行与系统逻辑健康度双重闭环监控，卡尔曼自愈能力健全。</li>`;
+            }
+
+            rxHTML += `</ul>`;
+            document.getElementById("prescription-content").innerHTML = rxHTML;
+
+            // 4. 动态生成 8 大定律详尽诊断显影矩阵 (业务语言先导，物理定律支撑)
+            let matrixHTML = "";
+
+            const commentsData = [
+                {
+                    name: "1. 规模不经济与全局失调",
+                    lawRef: "玻尔兹曼熵增定律 (Boltzmann Entropy)",
+                    status: answers[0] && answers[0].value === "12.5" ? "全局统御流动 (高资产周转)" : "局部优化摩擦 (规模不经济混沌)",
+                    statusColor: answers[0] && answers[0].value === "12.5" ? "var(--success-color)" : "var(--danger-color)",
+                    businessDesc: answers[0] && answers[0].value === "12.5" 
+                        ? "公司整体的研发、营销、供应协同通畅，交期承诺兑现率与资产周转率良性挂钩，未陷入局部部门的恶性博弈，有效避免了规模膨胀时的效率衰退。"
+                        : "发生了典型的规模不经济。各部门虽然拼尽全力追求本部门 KPI 完美（采购大批量以压低单价、制造盲目拼稼动率、营销大包揽签单），但由于缺乏统御，造成了海量物料沉积与严重的交期延误。ROIC 指标因高昂的呆滞库存资金积压与交期落空而出现全面耗散。",
+                    physicsDesc: "根据物理学熵增定律，孤立复杂系统的自由碰撞必然导致混乱度增加。各部门为了自保释放的管理能量因运动向量冲突相互抵消，转化为巨大的内耗废热 $Q = \\sum (V_{i, KPI} \\cdot \\text{conflict})$。唯有引入全局规划的求解器算法作为统一边界约束，才能使系统微观态逻辑收敛，实现低熵有序流动。"
+                },
+                {
+                    name: "2. 人肩负荷与高变异断点",
+                    lawRef: "阿什比必要多样性定律 (Requisite Variety)",
+                    status: answers[1] && answers[1].value === "12.5" ? "算力消纳自愈 (V_c 覆盖成功)" : "人工救火内耗 (必要多样性破产)",
+                    statusColor: answers[1] && answers[1].value === "12.5" ? "var(--success-color)" : "var(--danger-color)",
+                    businessDesc: answers[1] && answers[1].value === "12.5"
+                        ? "依靠高带宽算法消纳了 SKU-Site 的排列组合变异，扰动发生时，系统毫秒级自愈并推荐全局齐套最优解，全员在同一求解轨道上执行指令。"
+                        : "车间变异节点极高，计划跟单纯靠人肉 Excel 路由器和催料会苦撑。一旦供应链突发物料缺口或需求变更，计划体系即宣告瘫痪，各部门迅速进入微信群撕扯与事后推诿的纳什博弈中，基层承受高强度超负荷的人工救火压力。",
+                    physicsDesc: "根据 Requisite Variety 定理：唯有多样性才能消纳多样性。价值链 SKU 排列组合变异空间 $V_s$ 呈阶乘级 ($N!$) 爆炸，而离线人工拉表的控制带宽 $V_c$ 仅为微小的常数。当 $V_c \\ll V_s$ 时系统失控是物理的必然结果，最终导致系统崩溃并沉淀在以本位自保为核心的纳什博弈低能态。"
+                },
+                {
+                    name: "3. 二级翻译与同构断裂",
+                    lawRef: "Conant-Ashby 内部模型同构定律",
+                    status: answers[2] && answers[2].value === "12.5" ? "模型即业务 (同构映射)" : "二级翻译官两层皮 (同构断裂)",
+                    statusColor: answers[2] && answers[2].value === "12.5" ? "var(--success-color)" : "var(--danger-color)",
+                    businessDesc: answers[2] && answers[2].value === "12.5"
+                        ? "业务方案、运筹算法与跨系统拓扑一体同构映射，系统的运行指令即代表真实的物理车间约束逻辑，实现‘逻辑即代码，代码即规则’。"
+                        : "咨询公司出PPT方案，业务部门提表面需求，IT部门当传话筒交给外部软件商开发。这种长链多级翻译导致了严重的‘两层皮’同构断裂。落地后的系统与真实车间的物理约束极限根本对不上，无法指导决策，系统流于事后记账表单。",
+                    physicsDesc: "根据 Ashby 内部调节器同构律：任何有效的控制调节器必须是它所调节系统物理本体的同构映射。长链路翻译（Business ➔ Spec ➔ IT ➔ Vendor）导致语义信息在跨信道传输中发生严重的阶梯式衰减，所产生的数据模型缺乏物理本质语义，系统计算方案最终沦为电子垃圾。"
+                },
+                {
+                    name: "4. 总体设计实体建制与三位一体总师",
+                    lawRef: "逆康威定律与系统本体论 (Maker Law)",
+                    status: answers[3] && answers[3].score >= 12 ? "实体建制确立 (三位一体总师)" : "无建制无总师 (行政撕扯割裂)",
+                    statusColor: answers[3] && answers[3].score >= 12 ? "var(--success-color)" : "var(--danger-color)",
+                    businessDesc: answers[3] && answers[3].score >= 12
+                        ? "设立了实体且专职的总体设计部，并拥有懂业务、懂运筹算法、懂跨系统协同的三位一体总设计师握有一票否决权，系统的演进逻辑始终围绕一号位主轴前行。"
+                        : `总师机制评分为 ${answers[3] ? answers[3].score : 0} 分。属于严重缺乏立法权的真空状态。各业务部门依据行政强势自行插单，强迫IT无序修改逻辑，系统毫无设计主轴，漏洞百出，无法抵御熵增。`,
+                    physicsDesc: "康威定律证明系统架构同构于团队沟通结构。若无凌驾于业务部门的总体设计实体部门及一号位总设计师，系统的逻辑将直接成为业务行政山头主义的混乱影子投影。必须利用逆康威定律确立高一级的总体部门，由三位一体设计师（Maker）在底册中“强制立法”，捍卫物理逻辑主权。"
+                },
+                {
+                    name: "5. 逻辑收敛与协同机制",
+                    lawRef: "工程控制论之立法坍缩环",
+                    status: answers[4] && answers[4].value === "12.5" ? "科学收敛协奏 (闭环稳定)" : "散装补丁堆砌 (逻辑坍塌混沌)",
+                    statusColor: answers[4] && answers[4].value === "12.5" ? "var(--success-color)" : "var(--danger-color)",
+                    businessDesc: answers[4] && answers[4].value === "12.5"
+                        ? "遵循‘业务/IT自由输入 ➔ 总体设计团队逻辑收敛 ➔ 协同协奏 ➔ 执行反馈’的规范流程，各维度业务冲突能在算法底层得到彻底过滤与解耦。"
+                        : "系统被当做打满矛盾补丁的垃圾堆。各部门各取所需直接提需求，IT团队被动打临时代码补丁，销售承诺与供应链约束在系统底层打架，规则互相推诿折损，计划难以落地执行。",
+                    physicsDesc: "任何自演进系统必须引入逻辑降维高通滤波器。无过滤的自由挂载将引入海量相悖约束，导致物理求解空间彻底瘫痪坍缩。通过总体设计部将发散业务场景逻辑坍缩为求解算子上的非线性偏序约束（逻辑坍缩），方能在高层实现多部门协同共鸣协奏。"
+                },
+                {
+                    name: "6. 能力培养与自下而上演进",
+                    lawRef: "哥德尔演化与内部流体智力资产",
+                    status: answers[5] && answers[5].value === "12.5" ? "自下而上道场生长 (内生演进)" : "自上而下套件灌输 (削足适履僵死)",
+                    statusColor: answers[5] && answers[5].value === "12.5" ? "var(--success-color)" : "var(--danger-color)",
+                    businessDesc: answers[5] && answers[5].value === "12.5"
+                        ? "在内部建立了‘设计道场’，自下而上培养懂物理算法、懂业务极限的内部学徒。业务变动或模式创新时，能自主维护和生长出核心计划算法，摆脱大厂定制绑架。"
+                        : "严重依赖外购套装大厂商业软件。指望通过巨资采购软件自上而下强行灌输，业务骨干被迫‘削足适履’。一旦面对市场变异或断供天鹅事件，外部厂商无法响应，系统瞬间僵死，完全丧失自愈能力。",
+                    physicsDesc: "哥德尔不完备律指出，一个固化的代数系统无法在内部描述自身的系统变异。外部价值链变化是发散的，外购的标准化软件是一座刚性无法形变的铁塔。只有依靠内部总体设计道场培养的学徒自下而上编写和迭代底册，让硅基智力生根发芽，系统才具备有机体的自适应力。"
+                },
+                {
+                    name: "7. 战略偏角与合作做功效率",
+                    lawRef: "标量做功公式 (W = F · S · cosθ)",
+                    status: cosTheta >= 0.85 ? "高效协同做功 (夹角趋近于零)" : "行政指令踩踏 (大偏角内耗废热)",
+                    statusColor: cosTheta >= 0.85 ? "var(--success-color)" : "var(--danger-color)",
+                    businessDesc: `一把手决策与物理最优算法规划夹角为 ${thetaVal}°。行政方向与客观技术逻辑高度一致，有效做功效率为 ${(cosTheta * 100).toFixed(1)}%。一把手专注于调配资源保障 WHY/WHAT，总设计师主导设计方案（设计HOW），双方保持高度信任、夹角极小地协同做功，没有内耗。`,
+                    physicsDesc: `战略变革的有效做功 $W = F \\cdot S \\cdot \\cos\\theta$。双核力场总推力 $F$ 与实际实施路径 $S$ 之间由于员工利益/KPI存在夹角 $\\theta$。当夹角达 ${thetaVal}°$ 时，多达 ${((1 - cosTheta) * 100).toFixed(1)}% 的能量没有转化为资本流动性，而是全部以相互撕扯的内耗废热 $Q = F \\cdot S \\cdot \\sin\\theta$ 形式耗散，引起组织机制严重震荡和基层踩踏。`
+                },
+                {
+                    name: "8. 主动运营体系与闭环控制",
+                    lawRef: "维纳-卡尔曼观测边界与系统自省",
+                    status: answers[7] && answers[7].value === "12.5" ? "双重主动运营 (业务与系统闭环自愈)" : "静态看数系统失察 (监控开环与外挂蔓延)",
+                    statusColor: answers[7] && answers[7].value === "12.5" ? "var(--success-color)" : "var(--danger-color)",
+                    businessDesc: answers[7] && answers[7].value === "12.5"
+                        ? "建立了高水平的‘主动运营体系’。不仅在业务层面实现扰动秒级重排与一键写回，更将数字化系统本身的健康度与纪律性（如模型数据偏离率、线下 Excel 外挂率）纳入日常刚性审计，防止数字化资产发生隐性瓦解与系统排异崩溃。"
+                        : "缺乏真正的主动运营体系。看板仅静态展示昨日业务数据，而系统运行本身（如业务骨干脱离求解器私下拉 Excel 搞外挂排产、系统工艺参数偏离物理车间极限等）处于失察黑盒中。系统资产被隐性规避与废弃，处于严重的开环失控状态。",
+                    physicsDesc: "维纳-卡尔曼观测边界要求控制系统必须具备‘状态自省’（System self-observability）能力。如果监控大盘仅关注外部业务KPI而对系统本身的衰减（Excel外挂率、参数偏离度）视而不见，控制度（Controllability）会因操作者脱离轨道的规避行为而迅速折损崩溃。必须将业务实相与软件逻辑行为本身同时纳入反馈控制环，才能压制高频的物理熵增。"
+                }
+            ];
+
+            commentsData.forEach(lc => {
+                matrixHTML += `
+                    <div class="law-diagnosis-card">
+                        <div class="law-diag-header">
+                            <span class="law-diag-name">${lc.name}</span>
+                            <span class="law-diag-status" style="color: ${lc.statusColor}">${lc.status}</span>
+                        </div>
+                        <div class="law-diag-text">
+                            <span style="color: #fff; font-weight: 800;">【业务显影】</span>${lc.businessDesc}
+                            <br><br>
+                            <span style="color: var(--primary-color); font-weight: 800;">【物理支撑】</span><span style="font-style: italic; color: #8b949e;">支撑定律：${lc.lawRef}。</span>${lc.physicsDesc}
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById("diagnosis-grid-box").innerHTML = matrixHTML;
+        }
+
+        // 双盲去噪字典
+        const deNoiseDict = [
+            { pattern: /SAP|ERP|Oracle|商业软件|标品套件/gi, replacement: "静态代数稳态模型 (Steady-state monthly batch constraints)" },
+            { pattern: /精益生产|精益S&OP|每周计划|滚动计划|T\+3|零库存/gi, replacement: "高变异无缓冲拉动 (High-frequency variety with zero buffer)" },
+            { pattern: /数字化看板|数字化大屏|BI看板|大屏监控|决策大屏/gi, replacement: "开环宏观状态观测器 (Open-loop top-level projection without Pegging)" },
+            { pattern: /跨部门流程协调|敏捷团队|委员会决策|跨部门会议/gi, replacement: "碳基算力极限下的非合作博弈 (Multi-agent non-cooperative Nash game)" },
+            { pattern: /大容量数据库|数据中台|中台建设|主数据集成/gi, replacement: "无损二维关系实体投影 (Relational flat matrix projection)" },
+            { pattern: /自动排程|APS|智能排产/gi, replacement: "缺乏物理确权的一维启发式排序 (1D heuristic sorting without spatiotemporal pegging)" },
+            { pattern: /外包开发|需求文档|BA和IT开发协作|层层翻译/gi, replacement: "多级沟通语义信道衰减二级翻译 (N-level semantic channel decay)" }
+        ];
+
+        // 预设模板数据
+        const sandboxTemplates = {
+            1: "我们引进了大厂 ERP 标品套件并实施了精益滚动 S&OP 看板，每周滚动开会协调计划，但目前交期频繁延迟，各部门开会救火，打算上马一套数据中台系统拉通数据。",
+            2: "业务领导为了实现智能排产，外包定制了一套 APS 排程系统，让开发部门按照我们厚厚的流程手册编写规则，经历了漫长的多级翻译与一年开发周期后，落地系统与实际计划脱节，最终因逻辑冲突被弃用，退回到 Excel 记账。",
+            3: "面对高频变异的插单与原材料断供，我们目前没有任何核心排产软件，全部依赖计划员人手一张 Excel 表进行人工拉表路由器式协调，每天开会催料，各部门利益冲突严重，陷入纳什博弈。"
+        };
+
+        function loadSandboxTemplate(id) {
+            const textarea = document.getElementById("sandbox-input");
+            if (textarea && sandboxTemplates[id]) {
+                textarea.value = sandboxTemplates[id];
+            }
+        }
+
+        function runSandboxAudit() {
+            const input = document.getElementById("sandbox-input").value.trim();
+            if (!input) {
+                alert("请输入 SCM 项目描述或痛点话术！");
+                return;
+            }
+
+            // 1. 去噪翻译
+            let deNoised = input;
+            const matches = [];
+            deNoiseDict.forEach(item => {
+                if (item.pattern.test(input)) {
+                    const found = input.match(item.pattern);
+                    found.forEach(f => {
+                        if (!matches.some(m => m.original === f)) {
+                            matches.push({ original: f, physics: item.replacement });
+                        }
+                    });
+                    deNoised = deNoised.replace(item.pattern, `[${item.replacement}]`);
+                }
+            });
+
+            // 2. 物理诊断映射
+            answers[0] = { value: /局部|滚动/gi.test(input) || /ERP|SAP/gi.test(input) ? "0" : "12.5", score: /局部|滚动/gi.test(input) || /ERP|SAP/gi.test(input) ? 0 : 12.5 };
+            answers[1] = { value: /Excel|人工|人手/gi.test(input) || /S&OP/gi.test(input) ? "0" : "12.5", score: /Excel|人工|人手/gi.test(input) || /S&OP/gi.test(input) ? 0 : 12.5 };
+            answers[2] = { value: /中台|翻译|外包/gi.test(input) ? "0" : "12.5", score: /中台|翻译|外包/gi.test(input) ? 0 : 12.5 };
+            
+            let trinityScore = 12.5;
+            if (/外包|大厂/gi.test(input)) trinityScore = 0;
+            else if (/委员会/gi.test(input)) trinityScore = 6;
+            answers[3] = { score: trinityScore };
+            
+            answers[4] = { value: /流程手册|补丁/gi.test(input) ? "0" : "12.5", score: /流程手册|补丁/gi.test(input) ? 0 : 12.5 };
+            answers[5] = { value: /外购|导入/gi.test(input) ? "0" : "12.5", score: /外购|导入/gi.test(input) ? 0 : 12.5 };
+            
+            let thetaVal = 30;
+            if (/冲突|争论/gi.test(input)) thetaVal = 75;
+            else if (/人脑|拉表|Excel/gi.test(input)) thetaVal = 60;
+            answers[6] = { theta: thetaVal, score: Math.cos(thetaVal * Math.PI / 180) * 12.5 };
+            
+            answers[7] = { value: /静态|记账|看板/gi.test(input) ? "0" : "12.5", score: /静态|记账|看板/gi.test(input) ? 0 : 12.5 };
+
+            // 3. 渲染对照表
+            let html = `<h4>🔍 双盲去噪翻译对照表</h4>`;
+            if (matches.length > 0) {
+                html += `<table class="sandbox-table">
+                    <thead>
+                        <tr>
+                            <th>商业公关/痛点词汇</th>
+                            <th>价值链物理学还原</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+                matches.forEach(m => {
+                    html += `<tr>
+                        <td style="color:var(--danger-color); font-weight:bold;">${m.original}</td>
+                        <td style="color:var(--success-color); font-weight:bold;">${m.physics}</td>
+                    </tr>`;
+                });
+                html += `</tbody></table>`;
+            } else {
+                html += `<p style="color:#8b949e; margin-bottom: 12px;">未匹配到典型PR词汇，已按纯物理实相输入进行物理审计分析。</p>`;
+            }
+
+            // 4. 计算总分与预测
+            let totalS = 0;
+            for(let i=0; i<8; i++) {
+                totalS += answers[i] ? answers[i].score : 0;
+            }
+            let predText = "";
+            if (totalS < 40) {
+                predText = "⚠️ **故障预测**：该系统在未来 6-12 个月内面临**隐性废弃**。业务员私拉 Excel 外挂，系统沦为后视镜，库存呆滞资金攀升 20%+。";
+            } else if (totalS < 75) {
+                predText = "⚠️ **故障预测**：遇到异常断点时将发生**级联震荡与踩踏**，求解器频繁死锁，仍依赖人工频繁开会救火。";
+            } else {
+                predText = "✅ **物理预后**：方案逻辑自洽同构，能够维持系统低熵稳定有序运转。";
+            }
+
+            html += `<h4>🔮 故障诊断与寿命预测</h4>`;
+            html += `<p style="margin-bottom:12px; color:#c9d1d9; font-size:12px;">${predText}</p>`;
+            html += `<button class="btn btn-accent" onclick="jumpToReportDirectly()" style="width:100%; padding:8px 0; font-size:13px;">⚡ 一键生成全息诊断大盘 & 重构处方</button>`;
+
+            const resultBox = document.getElementById("sandbox-result");
+            if (resultBox) {
+                resultBox.innerHTML = html;
+                resultBox.classList.remove("hidden");
+            }
+        }
+
+        function jumpToReportDirectly() {
+            welcomePanel.style.display = "none";
+            calculateAndShowReport();
+        }
+
+        // 导出 JSON 报告
+        function exportReportJSON() {
+            const data = {
+                answers: answers,
+                totalScore: parseFloat(document.getElementById("report-score").textContent),
+                grade: document.getElementById("report-grade").textContent,
+                exportTime: new Date().toISOString()
+            };
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = `Value_Chain_Audit_Report_${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+        }
+
+        // 导出 Markdown 报告
+        function exportReportMarkdown() {
+            const score = document.getElementById("report-score").textContent;
+            const grade = document.getElementById("report-grade").textContent;
+            const physicsScore = document.getElementById("stat-physics-score").textContent;
+            const govScore = document.getElementById("stat-maker-score").textContent;
+            
+            let md = `# 🔮 价值链协同与系统科学诊断报告\n\n`;
+            md += `* **诊断时间**: ${new Date().toLocaleDateString()}\n`;
+            md += `* **系统物理统御分**: **${score}** / 100\n`;
+            md += `* **诊断等级**: **${grade}**\n\n`;
+            md += `## 📊 核心指标分值\n\n`;
+            md += `| 诊断度量维度 | 分值/比率 |\n`;
+            md += `|---|---|\n`;
+            md += `| 价值链物理运行得分 | ${physicsScore} |\n`;
+            md += `| 组织确权与立法机制得分 | ${govScore} |\n`;
+            md += `| 必要多样性控制带宽赤字比 | ${document.getElementById("stat-variety-ratio").textContent} |\n`;
+            md += `| 多级翻译语义沟通信息损耗率 | ${document.getElementById("stat-shannon-loss").textContent} |\n`;
+            md += `| 行政与技术决策有效做功效率 | ${document.getElementById("stat-work-cos").textContent} |\n\n`;
+            md += `## 🛠️ 系统科学重构处方\n\n`;
+            
+            const prescItems = document.querySelectorAll("#prescription-content li");
+            prescItems.forEach(item => {
+                md += `* ${item.innerText}\n`;
+            });
+            
+            const blob = new Blob([md], { type: "text/markdown" });
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = `Value_Chain_Audit_Report_${new Date().toISOString().split('T')[0]}.md`;
+            a.click();
+        }
+
+        // 分享链接生成
+        function generateShareLink() {
+            const serialized = JSON.stringify(answers);
+            const encoded = btoa(encodeURIComponent(serialized));
+            const shareUrl = `${window.location.origin}${window.location.pathname}?answers=${encoded}`;
+            
+            navigator.clipboard.writeText(shareUrl).then(() => {
+                alert("📋 诊断结果分享链接已复制到剪贴板！发送给他人，即可在浏览器中瞬间复现您的物理实相与诊断结果。");
+            }).catch(err => {
+                console.error("复制失败:", err);
+                alert(`分享链接生成成功，请手动复制：\n${shareUrl}`);
+            });
+        }
+
+        // 监听 URL 自动载入答案
+        window.addEventListener("DOMContentLoaded", () => {
+            const params = new URLSearchParams(window.location.search);
+            const encodedAnswers = params.get("answers");
+            if (encodedAnswers) {
+                try {
+                    const decoded = decodeURIComponent(atob(encodedAnswers));
+                    answers = JSON.parse(decoded);
+                    // 跳过欢迎页并直接显示报告
+                    welcomePanel.style.display = "none";
+                    calculateAndShowReport();
+                } catch(e) {
+                    console.error("Failed to parse answers from URL query string:", e);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

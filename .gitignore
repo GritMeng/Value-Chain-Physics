@@ -1,0 +1,26 @@
+# 排除所有书籍草稿与 Obsidian 全套知识库目录
+01_系统科学与时空定律/
+02_认知革命与变革杠杆/
+03_三层数据模型与物理镜像/
+04_专利数学与消纳算法/
+05_工程天堑与AI审判/
+*.docx
+holographic-anti-entropy-book.md
+value-chain-physics-book.md
+Overview.md
+_sidebar.md
+
+# 排除脚本文件
+check_js.py
+publish_tool.py
+generate_narration.py
+
+# 排除临时文件与编译缓存
+scratch/
+__pycache__/
+*.pyc
+*.obj
+*.exe
+.obsidian/
+.DS_Store
+Thumbs.db

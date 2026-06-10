@@ -1,0 +1,2682 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="notranslate" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <meta name="description" content="基于《计划与控制的方案应该什么样》的核心技术审计智能体，为甲方、乙方及供应链技术从业者指明数智化重构方向。">
+    <title>🧠 IPC 计划与控制架构技术审计智能体 (IPC Planning & Control Architecture Audit Agent)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@300;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #06090e;
+            --card-bg: rgba(13, 17, 23, 0.75);
+            --border-color: rgba(48, 54, 61, 0.6);
+            --text-color: #c9d1d9;
+            --primary-color: #58a6ff;
+            --accent-color: #d29922;
+            --glow-color: rgba(88, 166, 255, 0.2);
+            --danger-color: #ff7b72;
+            --success-color: #3fb950;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Outfit', 'Inter', -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* 宇宙暗黑网格背景 */
+        .space-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(13, 17, 23, 0.5) 0%, rgba(6, 9, 14, 1) 100%),
+                linear-gradient(rgba(255, 255, 255, 0.003) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.003) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            z-index: -1;
+        }
+
+        /* 布局 */
+        .app-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        header .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        header .brand:hover {
+            opacity: 0.85;
+        }
+
+        header .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #58a6ff, #a371f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(88, 166, 255, 0.2);
+        }
+
+        header .tagline {
+            font-size: 12px;
+            color: #8b949e;
+            border-left: 1px solid var(--border-color);
+            padding-left: 12px;
+        }
+
+        header .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(163, 113, 247, 0.1);
+            border: 1px solid #a371f7;
+            color: #a371f7;
+            font-size: 12px;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(163, 113, 247, 0.2);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        header .badge:hover {
+            background: rgba(163, 113, 247, 0.25);
+            box-shadow: 0 0 12px rgba(163, 113, 247, 0.3);
+        }
+
+        /* 评估双塔 */
+        .audit-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex: 1;
+        }
+
+        @media (max-width: 1024px) {
+            .audit-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 左侧向导塔 */
+        .wizard-tower {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* 极简玻璃卡片 */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* 卡片光晕 */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(88,166,255,0.03) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .welcome-card h2 {
+            font-size: 28px;
+            font-weight: 800;
+            color: white;
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+
+        .welcome-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #8b949e;
+            margin-bottom: 24px;
+        }
+
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .role-box {
+            background: rgba(22, 27, 34, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .role-box h4 {
+            font-size: 14px;
+            color: white;
+            margin-bottom: 6px;
+        }
+
+        .role-box p {
+            font-size: 11px;
+            color: #8b949e;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* 步骤进度条 */
+        .step-progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .step-progress::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(48, 54, 61, 0.4);
+            z-index: 1;
+        }
+
+        .progress-line-active {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), #a371f7);
+            z-index: 2;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+
+        .progress-dot {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #0d1117;
+            border: 2px solid var(--border-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 700;
+            z-index: 3;
+            color: #8b949e;
+            transition: all 0.4s ease;
+        }
+
+        .progress-dot.active {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            box-shadow: 0 0 12px rgba(88, 166, 255, 0.3);
+        }
+
+        .progress-dot.completed {
+            border-color: #3fb950;
+            background: #3fb950;
+            color: white;
+        }
+
+        /* 问题卡片 */
+        .question-card {
+            display: none;
+        }
+
+        .question-card.active {
+            display: block;
+            animation: cardFadeIn 0.5s ease;
+        }
+
+        @keyframes cardFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-meta {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+        }
+
+        .question-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .question-math {
+            font-size: 13px;
+            color: #8b949e;
+            background: rgba(22, 27, 34, 0.6);
+            padding: 8px 14px;
+            border-radius: 6px;
+            border-left: 3px solid var(--primary-color);
+            margin-bottom: 24px;
+            font-family: monospace;
+        }
+
+        /* 选项列表 */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+
+        .option-item {
+            background: rgba(22, 27, 34, 0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 16px 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .option-item:hover {
+            border-color: rgba(88, 166, 255, 0.4);
+            background: rgba(22, 27, 34, 0.8);
+        }
+
+        .option-item.selected {
+            border-color: var(--primary-color);
+            background: rgba(88, 166, 255, 0.05);
+            box-shadow: 0 0 15px rgba(88, 166, 255, 0.1);
+        }
+
+        .option-radio {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            margin-top: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .option-item.selected .option-radio {
+            border-color: var(--primary-color);
+        }
+
+        .option-item.selected .option-radio::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary-color);
+        }
+
+        .option-content {
+            flex: 1;
+        }
+
+        .option-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .option-label.l1 { color: var(--danger-color); }
+        .option-label.l2 { color: var(--accent-color); }
+        .option-label.l3 { color: var(--success-color); }
+
+        .option-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .option-desc {
+            font-size: 13px;
+            color: #8b949e;
+            line-height: 1.4;
+        }
+
+        /* 向导按钮 */
+        .wizard-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 8px;
+            padding: 10px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 15px rgba(88,166,255,0.4);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: rgba(240, 246, 252, 0.05);
+            color: #c9d1d9;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(240, 246, 252, 0.1);
+        }
+
+        .btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        /* 右侧显影舱 */
+        .canvas-tower {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .viewer-card {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 480px;
+            height: 100%;
+        }
+
+        .viewer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.5);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+        }
+
+        .viewer-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .viewer-badge {
+            font-size: 11px;
+            background: rgba(88, 166, 255, 0.1);
+            color: var(--primary-color);
+            padding: 3px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(88, 166, 255, 0.2);
+        }
+
+        .canvas-container {
+            flex: 1;
+            position: relative;
+            background: radial-gradient(circle, #090c10 0%, #06080c 100%);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .canvas-overlay-text {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            font-size: 12px;
+            color: rgba(139, 148, 158, 0.6);
+            font-family: monospace;
+            pointer-events: none;
+        }
+
+        /* 评估报告页面 */
+        .report-section {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .report-section.active {
+            display: block;
+            animation: cardFadeIn 0.6s ease;
+        }
+
+        .report-header-card {
+            text-align: center;
+            padding: 40px;
+            margin-bottom: 30px;
+            background: linear-gradient(185deg, rgba(13, 17, 23, 0.85) 0%, rgba(6, 9, 14, 0.95) 100%);
+        }
+
+        .grade-badge-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            border: 3px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 30px rgba(88, 166, 255, 0.2);
+            position: relative;
+        }
+
+        .grade-badge-circle.a { border-color: #3fb950; box-shadow: 0 0 35px rgba(63, 185, 80, 0.25); }
+        .grade-badge-circle.b { border-color: #d29922; box-shadow: 0 0 35px rgba(210, 153, 34, 0.25); }
+        .grade-badge-circle.c { border-color: #ff7b72; box-shadow: 0 0 35px rgba(255, 123, 114, 0.25); }
+
+        .grade-letter {
+            font-size: 48px;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            line-height: 1;
+        }
+
+        .score-text-area {
+            font-size: 14px;
+            color: #8b949e;
+            margin-top: 4px;
+            text-transform: uppercase;
+        }
+
+        .report-title-text {
+            font-size: 26px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .report-subtitle-text {
+            font-size: 13px;
+            color: #8b949e;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* 处方网格 */
+        .prescriptions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .prescriptions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .prescription-card {
+            background: rgba(22, 27, 34, 0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+        }
+
+        .prescription-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+        }
+
+        .prescription-card.client::after { background: #58a6ff; }
+        .prescription-card.vendor::after { background: #a371f7; }
+        .prescription-card.practitioner::after { background: #d29922; }
+
+        .presc-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .presc-icon {
+            font-size: 20px;
+        }
+
+        .presc-role-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .presc-item-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .presc-item {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #c9d1d9;
+            border-left: 2px solid rgba(88, 166, 255, 0.3);
+            padding-left: 10px;
+        }
+
+        /* 诊断详情矩阵 */
+        .matrix-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 16px;
+            border-left: 3px solid var(--primary-color);
+            padding-left: 10px;
+        }
+
+        .matrix-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .matrix-card {
+            display: grid;
+            grid-template-columns: 1fr 2fr 2fr;
+            gap: 20px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            background: rgba(13, 17, 23, 0.4);
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .matrix-card {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+
+        .matrix-dim-info h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .matrix-dim-info span {
+            font-size: 11px;
+            color: #8b949e;
+            display: block;
+            margin-top: 4px;
+            font-family: monospace;
+        }
+
+        .matrix-status h5 {
+            font-size: 12px;
+            font-weight: 700;
+            color: #8b949e;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .matrix-status p {
+            font-size: 13px;
+            color: #ff7b72;
+            line-height: 1.4;
+        }
+
+        .matrix-status.ok p {
+            color: #3fb950;
+        }
+
+        .matrix-status.warning p {
+            color: #d29922;
+        }
+
+        .matrix-path h5 {
+            font-size: 12px;
+            font-weight: 700;
+            color: #8b949e;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .matrix-path p {
+            font-size: 13px;
+            color: #c9d1d9;
+            line-height: 1.4;
+        }
+
+        /* 打印及报告底栏 */
+        .report-actions {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        /* 打印样式 */
+        @media print {
+            body, html {
+                background: white !important;
+                color: black !important;
+            }
+            .space-grid, header, .wizard-buttons, .report-actions, .step-progress {
+                display: none !important;
+            }
+            .app-container {
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+            .report-section {
+                display: block !important;
+            }
+            .glass-card {
+                background: transparent !important;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+                color: black !important;
+            }
+            .prescription-card, .matrix-card {
+                background: transparent !important;
+                border: 1px solid #ccc !important;
+                color: black !important;
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            .presc-role-title, .presc-item, .matrix-dim-info h4, .matrix-path p, .report-title-text {
+                color: black !important;
+            }
+            .matrix-status p {
+                color: #d00 !important;
+            }
+            .matrix-status.ok p {
+                color: #080 !important;
+            }
+            .matrix-status.warning p {
+                color: #850 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="space-grid"></div>
+
+    <div class="app-container">
+        <!-- 头部 -->
+        <header>
+            <div class="brand" onclick="window.location.href='./'">
+                <span class="logo">🧠 IPC 计划与控制架构审计</span>
+                <span class="tagline">基于复杂系统科学与价值链物理学</span>
+            </div>
+            <button class="badge" onclick="window.location.href='./'" style="font-family: inherit;">
+                🏠 返回主菜单
+            </button>
+        </header>
+
+        <!-- 诊断塔区域 -->
+        <div class="audit-layout" id="wizard-layout">
+            
+            <!-- 左侧向导塔 -->
+            <div class="wizard-tower">
+                <!-- 欢迎引导卡 -->
+                <div class="glass-card welcome-card" id="welcome-card" style="max-width: 100%; width: 100%;">
+                    <div class="welcome-layout">
+                        <!-- 左侧：介绍与启动 -->
+                        <div class="welcome-intro">
+                            <h2>计划与控制架构唯一审计标准<br>—— 制造业数字化方案的物理可行性判定</h2>
+                            <p style="font-size: 13.5px; line-height: 1.6; color: #8b949e; margin-bottom: 20px;">
+                                在离散制造供应链的深水区，由于复杂系统内部存在硬性的<strong>“计算不可约性”（Computational Irreducibility）</strong>，任何试图用静态宏观指标切分或概率性 LLM 匹配去绕过微观逐笔模拟的方案，都将产生灾难性的决策致幻。
+                                本系统紧扣《价值链物理学》与《全息抗熵》的物理公理，作为<strong>行业唯一必须需要的评判能力与技术审计标准</strong>，判定您所采购、研发或规划的计划与控制（IPC/APS/ERP）架构是否在物理与数学规律上可行。
+                            </p>
+                            
+                            <div class="roles-grid" style="margin-bottom: 20px;">
+                                <div class="role-box">
+                                    <h4>🏢 甲方决策者</h4>
+                                    <p>找准重构的方向与防线，杜绝买标品系统致幻</p>
+                                </div>
+                                <div class="role-box">
+                                    <h4>🤝 乙方实施方</h4>
+                                    <p>抛弃纯流程交付，掌握用数据模型与算法立法的能力</p>
+                                </div>
+                                <div class="role-box">
+                                    <h4>🛠️ 技术从业者</h4>
+                                    <p>研判自身技能树，从业务传话筒跃迁为单脑系统总设计师</p>
+                                </div>
+                            </div>
+
+                            <div class="wizard-buttons">
+                                <div></div>
+                                <button class="btn btn-primary" onclick="startAudit()" style="width: 100%; justify-content: center; padding: 12px 0;">
+                                    ▶ 开启架构硬核诊断 
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 右侧：双盲去噪 AI 审计沙箱 -->
+                        <div class="welcome-sandbox">
+                            <h3>🔮 双盲去噪 AI 审计沙箱 (Sandbox)</h3>
+                            <p style="font-size: 11px; color: #8b949e; margin: 6px 0 10px 0; line-height: 1.4;">
+                                粘贴方案、宣传口号或痛点。内置的物理同构翻译引擎会瞬间对其“去噪”，还原为物理约束，并判定违背的物理公理与故障预测。
+                            </p>
+                            
+                            <textarea id="sandbox-input" placeholder="例如：我们引进了大厂 ERP 标品套件并实施了精益滚动 S&OP 看板，每周滚动开会协调计划，但目前交期频繁延迟，各部门开会救火，打算上马一套数据中台系统拉通数据..."></textarea>
+                            
+                            <div class="sandbox-templates">
+                                <button class="sandbox-tpl-btn" onclick="loadSandboxTemplate(1)">模板 1 (大厂ERP)</button>
+                                <button class="sandbox-tpl-btn" onclick="loadSandboxTemplate(2)">模板 2 (外包APS)</button>
+                                <button class="sandbox-tpl-btn" onclick="loadSandboxTemplate(3)">模板 3 (无系统人肉)</button>
+                            </div>
+
+                            <button class="btn btn-accent" onclick="runSandboxAudit()" style="margin-top: 12px; padding: 10px 0; font-size: 13px; width: 100%; color: #06090e; font-weight: bold; border: none;">
+                                ⚡ 运行双盲去噪物理诊断
+                            </button>
+
+                            <div class="sandbox-result-box hidden" id="sandbox-result">
+                                <!-- 诊断结果在此动态渲染 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 评估问题向导 -->
+                <div class="glass-card" id="question-container" style="display: none;">
+                    <!-- 步骤进度条 -->
+                    <div class="step-progress">
+                        <div class="progress-line-active" id="progress-line"></div>
+                        <div class="progress-dot active" id="dot-1">1</div>
+                        <div class="progress-dot" id="dot-2">2</div>
+                        <div class="progress-dot" id="dot-3">3</div>
+                        <div class="progress-dot" id="dot-4">4</div>
+                        <div class="progress-dot" id="dot-5">5</div>
+                    </div>
+
+                    <!-- 问题 1 -->
+                    <div class="question-card" id="qcard-1">
+                        <div class="question-meta">Dimension 01 / S&OE 观测底座与滑动滤波</div>
+                        <h3 class="question-text">您的计划系统是否具备可执行的微观基线，并能实现高频自愈闭环？</h3>
+                        <div class="question-math">原理：计算不可约决定了无法用宏观概率代替微观因果。S&OE 必须高频滑动滤波修正，从而涌现出宏观计划的自稳定性。</div>
+                        
+                        <div class="options-list">
+                            <div class="option-item" onclick="selectOption(1, 1)">
+                                <div class="option-radio"></div>
+                                <div class="option-content">
+                                    <div class="option-label l1">Level 1 - 静态开环致幻</div>
+                                    <div class="option-title">静态提前期配数，Excel 手工派单</div>
+                                    <div class="option-desc">依赖 ERP 静态 MRP 跑批（耗时数小时或隔夜），计划与物理车间完全脱节。基层被迫使用线下 Excel 自行编排调度，产生严重的“计划致幻”。</div>
+                                </div>
+                            </div>
+                            <div class="option-item" onclick="selectOption(1, 2)">
+                                <div class="option-radio"></div>
+                                <div class="option-content">
+                                    <div class="option-label l2">Level 2 - 局部报警防御</div>
+                                    <div class="option-title">系统有延迟反馈，人工开会救火</div>
+                                    <div class="option-desc">系统能获取部分生产执行和库存变动，但由于缺少算法层面的微观隔离与降噪，一旦有波动依然退回跨部门开会拉通和微信群救火。</div>
+                                </div>
+                            </div>
+                            <div class="option-item" onclick="selectOption(1, 3)">
+                                <div class="option-radio"></div>
+                                <div class="option-content">
+                                    <div class="option-label l3">Level 3 - 高频滤波自愈</div>
+                                    <div class="option-title">Wiener-Kalman 滑动观测与毫秒级高频重算</div>
+                                    <div class="option-desc">基于物理 Site 和 Part 建立刚性底座，实时捕捉执行偏差，引入卡尔曼滤波，结合每日多次的微观重算自愈，实现真正的“宏微同构”。</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 问题 2 -->
+                    <div class="question-card" id="qcard-2">
+                        <div class="question-meta">Dimension 02 / ⟨D, A⟩ 数据本体双螺旋</div>
+                        <h3 class="question-text">在数据表达与算法求解的关系上，您的系统是如何进行物理建模的？</h3>
+                        <div class="question-math">关系：Π = ⟨D, A⟩。抽象管理规章脱离底层数据模型，即会造成系统的逻辑死锁。</div>
+                        
+                        <div class="options-list">
+                            <div class="option-item" onclick="selectOption(2, 1)">
+                                <div class="option-radio"></div>
+                                <div class="option-content">
+                                    <div class="option-label l1">Level 1 - 关系断裂无序</div>
+                                    <div class="option-title">系统间烟囱林立，靠中间库多表关联</div>
+                                    <div class="option-desc">主数据、物理库存、需求与供应信息散落在 ERP、MES 等异构系统中，靠临时多表 SQL 强行拉通，运行效率低下且极易产生状态死锁。</div>
+                                </div>
+                            </div>
+                            <div class="option-item" onclick="selectOption(2, 2)">
+                                <div class="option-radio"></div>
+                                <div class="option-content">
+                                    <div class="option-label l2">Level 2 - 二维表物理拼接</div>
+                                    <div class="option-title">中台或集中数据库，但无核心算法共振</div>
+                                    <div class="option-desc">数据确实集中了，但依然以传统的二维行列表达。算法引擎在求解时需要做大量的对象解析和跳转，数据与算法仍是“两张皮”。</div>
+                                </div>
+                            </div>
+                            <div class="option-item" onclick="selectOption(2, 3)">
+                                <div class="option-radio"></div>
+                                <div class="option-content">
+                                    <div class="option-label l3">Level 3 - 5维时空全息融合</div>
+                                    <div class="option-title">五维正交时空容器与零拷贝高速消纳</div>
+                                    <div class="option-desc">ODM 物理层、CDM 规则层与 DDM 模拟层深度融合。在内存中将“站点、物料、时间、需求、供应”融合为统一的正交张量，实现极速求解。</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 问题 3 -->
+                    <div class="question-card" id="qcard-3">
+                        <div class="question-meta">Dimension 03 / 高阶替代算法与离散阻力消纳</div>
+                        <h3 class="question-text">当遇到复杂的物料多替代、供应商配额与批量取整阻力时，系统如何求解？</h3>
+                        <div class="question-math">算法：消纳排列组合的指数级膨胀，并在物理上实现无争端JIT发货。</div>
+                        
+                        <div class="options-list">
+                            <div class="option-item" onclick="selectOption(3, 1)">
+                                <div class="option-radio"></div>
+                                <div class="option-content">
+                                    <div class="option-label l1">Level 1 - 人治内耗</div>
+                                    <div class="option-title">人脑查表决策，合同及交期冲突不断</div>
+                                    <div class="option-desc">替代料全凭手工判断，供应商配额无法控制，发货数量尾数因无法取整而频繁引发收货和对账纠纷。</div>
+                                </div>
+                            </div>
+                            <div class="option-item" onclick="selectOption(3, 2)">
+                                <div class="option-radio"></div>
+                                <div class="option-content">
+                                    <div class="option-label l2">Level 2 - 规则单维匹配</div>
+                                    <div class="option-title">基础 APS 规则，但对非线性及多级级联死锁无力</div>
+                                    <div class="option-desc">拥有简单的优先级排序，但无法在复杂的组替代、跨工厂 Site 供给重整中实时寻优，遇到多层级约束即自动避让或报错。</div>
+                                </div>
+                            </div>
+                            <div class="option-item" onclick="selectOption(3, 3)">
+                                <div class="option-radio"></div>
+                                <div class="option-content">
+                                    <div class="option-label l3">Level 3 - 三大高阶专利级消纳</div>
+                                    <div class="option-title">Z轴偏序格溢出 + W轴配额平衡环 + 取整重算</div>
+                                    <div class="option-desc">运用属性偏序格实现降级消纳，配额环在秒级内实现合同占比收敛，自动在消纳中融入包装批量（Lot Size）整数规划，消灭无序内耗。</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 问题 4 -->
+                    <div class="question-card" id="qcard-4">
+                        <div class="question-meta">Dimension 04 / 三位一体总设计师与逆康威设计</div>
+                        <h3 class="question-text">系统的方案编制与交付，是由怎样的组织架构决定的？</h3>
+                        <div class="question-math">组织：数字化转型的本质是能力重构而非组装，数据模型须由单脑奇点坍缩。</div>
+                        
+                        <div class="options-list">
+                            <div class="option-item" onclick="selectOption(4, 1)">
+                                <div class="option-radio"></div>
+                                <div class="option-content">
+                                    <div class="option-label l1">Level 1 - 传话筒式拼接</div>
+                                    <div class="option-title">外包承建，BA-IT开发层层翻译</div>
+                                    <div class="option-desc">业务画流程写 Excel 需求说明书，IT 找软件厂商承建，外包开发写代码。多层中继代理导致严重的“信息信道衰减”，语义失真率极高。</div>
+                                </div>
+                            </div>
+                            <div class="option-item" onclick="selectOption(4, 2)">
+                                <div class="option-radio"></div>
+                                <div class="option-content">
+                                    <div class="option-label l2">Level 2 - 跨功能会议缝合</div>
+                                    <div class="option-title">内部各部门代表联合攻坚，互相妥协</div>
+                                    <div class="option-desc">虽然由企业自己牵头，但是由业务领导与技术骨干通过会议“组装”出来的系统。方案充满人情妥协，系统逻辑出现严重的臃肿死锁。</div>
+                                </div>
+                            </div>
+                            <div class="option-item" onclick="selectOption(4, 3)">
+                                <div class="option-radio"></div>
+                                <div class="option-content">
+                                    <div class="option-label l3">Level 3 - TIO单脑奇点重构</div>
+                                    <div class="option-title">总设计师“三位一体”单脑坍缩设计，执行代码立法</div>
+                                    <div class="option-desc">坚决执行逆康威定律。由一位精通“高科技业务解构 (I)”、“数据/算法运筹建模 (O)”与“高性能底层软件架构 (T)”总师实施单脑设计与独裁立法。</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 问题 5 -->
+                    <div class="question-card" id="qcard-5">
+                        <div class="question-meta">Dimension 05 / 决策引擎级别与 DAE 动态自愈</div>
+                        <h3 class="question-text">您的计划与排程中枢，是一个怎样的行动控制系统？</h3>
+                        <div class="question-math">系统：对抗计算不可约的唯一解是微观的动态反馈控制，从而在非平衡相空间中涌现出 DAE 自愈大脑。</div>
+                        
+                        <div class="options-list">
+                            <div class="option-item" onclick="selectOption(5, 1)">
+                                <div class="option-radio"></div>
+                                <div class="option-content">
+                                    <div class="option-label l1">Level 1 - SOR 静态记账系统</div>
+                                    <div class="option-title">纯粹的后视镜记录，完全依赖人工线下执行</div>
+                                    <div class="option-desc">系统只负责把基层已经发生的生产、出库信息敲入电脑。计划员只看昨日的静态指标看板，没有任何事前规划和异常应答能力。</div>
+                                </div>
+                            </div>
+                            <div class="option-item" onclick="selectOption(5, 2)">
+                                <div class="option-radio"></div>
+                                <div class="option-content">
+                                    <div class="option-label l2">Level 2 - 警报拦截与单向计算</div>
+                                    <div class="option-title">报警层看板，可推演但无法回写</div>
+                                    <div class="option-desc">系统能在发生延迟、欠交时亮起红灯发出报警，并能作基础的计划排程展示。但决策结果无法实现与执行层物理实时的反向写回（Write-Back）。</div>
+                                </div>
+                            </div>
+                            <div class="option-item" onclick="selectOption(5, 3)">
+                                <div class="option-radio"></div>
+                                <div class="option-content">
+                                    <div class="option-label l3">Level 3 - DAE 动态自适应决策大脑</div>
+                                    <div class="option-title">全域数字孪生编排，自适应熔断自愈</div>
+                                    <div class="option-desc">接管全流程 micro-level 决策。异常爆发时，DAE 引擎瞬时推演多重 trade-off 方案，一键回写执行系统自愈，完全排除人工干预与信息损耗。</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 向导底栏 -->
+                    <div class="wizard-buttons" style="margin-top: 30px; border-top: 1px solid rgba(48, 54, 61, 0.4); padding-top: 20px;">
+                        <button class="btn btn-secondary" id="btn-prev" onclick="prevStep()" disabled>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                            上一步
+                        </button>
+                        <button class="btn btn-primary" id="btn-next" onclick="nextStep()" disabled>
+                            下一步
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧显影舱塔 -->
+            <div class="canvas-tower">
+                <div class="glass-card viewer-card">
+                    <div class="viewer-header">
+                        <div class="viewer-title" id="viewer-title-text">
+                            <span class="presc-icon">🧬</span> 物理实相显影舱 
+                        </div>
+                        <span class="viewer-badge" id="viewer-badge-text">初始化</span>
+                    </div>
+
+                    <div class="canvas-container">
+                        <canvas id="audit-canvas"></canvas>
+                        <div class="canvas-overlay-text" id="canvas-overlay">SYSTEM STATE: IDLE</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 诊断报告区域 -->
+        <div class="report-section" id="report-section">
+            <div class="glass-card report-header-card">
+                <div class="grade-badge-circle" id="grade-circle">
+                    <span class="grade-letter" id="grade-letter">S</span>
+                    <span class="score-text-area" id="score-text">15/15</span>
+                </div>
+                <h2 class="report-title-text" id="report-grade-title">系统科学架构成熟度：A级统御</h2>
+                <p class="report-subtitle-text" id="report-grade-desc">
+                    恭喜！您的企业计划系统已经成功跨越了 $O(N!)$ 复杂性陷阱，初步构建了高度自治、毫秒级消纳的硅基中央计划大脑。
+                </p>
+            </div>
+
+            <!-- 处方网格 -->
+            <div class="prescriptions-grid">
+                <!-- 甲方处方 -->
+                <div class="prescription-card client">
+                    <div class="presc-header">
+                        <span class="presc-icon">🏢</span>
+                        <h4 class="presc-role-title">甲方（制造企业决策者）技术处方</h4>
+                    </div>
+                    <div class="presc-item-list" id="client-presc-list">
+                        <!-- 动态填充 -->
+                    </div>
+                </div>
+
+                <!-- 乙方处方 -->
+                <div class="prescription-card vendor">
+                    <div class="presc-header">
+                        <span class="presc-icon">🤝</span>
+                        <h4 class="presc-role-title">乙方（解决方案/实施方）技术处方</h4>
+                    </div>
+                    <div class="presc-item-list" id="vendor-presc-list">
+                        <!-- 动态填充 -->
+                    </div>
+                </div>
+
+                <!-- 从业人员处方 -->
+                <div class="prescription-card practitioner">
+                    <div class="presc-header">
+                        <span class="presc-icon">🛠️</span>
+                        <h4 class="presc-role-title">从业人员（架构师/计划专家）进化路径</h4>
+                    </div>
+                    <div class="presc-item-list" id="pract-presc-list">
+                        <!-- 动态填充 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 诊断详情矩阵 -->
+            <h3 class="matrix-title">5层全息架构漏洞与对账审计矩阵</h3>
+            <div class="matrix-list" id="matrix-container">
+                <!-- 动态填充 -->
+            </div>
+
+            <!-- 打印及PDF下载 -->
+            <div class="report-actions">
+                <button class="btn btn-secondary" onclick="exportReportJSON()">
+                    💾 导出 JSON 报告
+                </button>
+                <button class="btn btn-secondary" onclick="exportReportMarkdown()">
+                    📝 导出 Markdown 报告
+                </button>
+                <button class="btn btn-secondary" onclick="generateShareLink()">
+                    🔗 分享诊断链接
+                </button>
+                <button class="btn btn-secondary" onclick="window.print()">
+                    🖨️ 打印技术诊断报告 (A4 格式)
+                </button>
+                <button class="btn btn-primary" onclick="restartAudit()">
+                    🔄 重新进行架构审计
+                </button>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <footer style="margin-top: 40px; border-top: 1px solid var(--border-color); padding-top: 20px; font-size: 12px; color: #8b949e; display: flex; justify-content: space-between;">
+            <span>IPC 计划与控制系统技术审计单页 V1.0 | 仅供系统总设计师及技术决策参考</span>
+            <span>Made in Reality. Defined by Grit.</span>
+        </footer>
+    </div>
+
+    <script>
+        // 5维问题状态
+        let currentStep = 0; // 0代表欢迎页，1-5代表各问题页
+        let answers = {
+            1: null,
+            2: null,
+            3: null,
+            4: null,
+            5: null
+        };
+
+        // Canvas 相关
+        const canvas = document.getElementById("audit-canvas");
+        const ctx = canvas.getContext("2d");
+        let animationFrameId = null;
+        let canvasTime = 0;
+
+        // 改变 Canvas 尺寸以适应父容器
+        function resizeCanvas() {
+            const container = canvas.parentElement;
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientHeight || 480;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // 启动诊断
+        function startAudit() {
+            document.getElementById("welcome-card").style.display = "none";
+            document.getElementById("question-container").style.display = "block";
+            currentStep = 1;
+            updateStepView();
+        }
+
+        // 上一步
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStepView();
+            }
+        }
+
+        // 下一步
+        function nextStep() {
+            if (currentStep < 5) {
+                currentStep++;
+                updateStepView();
+            } else {
+                generateReport();
+            }
+        }
+
+        // 选中选项
+        function selectOption(questionNum, val) {
+            answers[questionNum] = val;
+            
+            // 高亮选中效果
+            const qCard = document.getElementById(`qcard-${questionNum}`);
+            const items = qCard.querySelectorAll(".option-item");
+            items.forEach((item, index) => {
+                if (index === val - 1) {
+                    item.classList.add("selected");
+                } else {
+                    item.classList.remove("selected");
+                }
+            });
+
+            // 激活下一步按钮
+            document.getElementById("btn-next").disabled = false;
+        }
+
+        // 更新向导视图
+        function updateStepView() {
+            // 隐藏所有卡片
+            document.querySelectorAll(".question-card").forEach(card => {
+                card.classList.remove("active");
+            });
+
+            // 展示当前卡片
+            const currentCard = document.getElementById(`qcard-${currentStep}`);
+            currentCard.classList.add("active");
+
+            // 更新进度条
+            document.querySelectorAll(".progress-dot").forEach((dot, index) => {
+                const dotNum = index + 1;
+                dot.className = "progress-dot";
+                if (dotNum === currentStep) {
+                    dot.classList.add("active");
+                } else if (dotNum < currentStep) {
+                    dot.classList.add("completed");
+                }
+            });
+            
+            const progressPercent = ((currentStep - 1) / 4) * 100;
+            document.getElementById("progress-line").style.width = `${progressPercent}%`;
+
+            // 控制上一步、下一步按钮状态
+            document.getElementById("btn-prev").disabled = (currentStep === 1);
+            
+            // 如果此步还没选择答案，禁用下一步
+            if (answers[currentStep] === null) {
+                document.getElementById("btn-next").disabled = true;
+            } else {
+                document.getElementById("btn-next").disabled = false;
+            }
+
+            if (currentStep === 5) {
+                document.getElementById("btn-next").innerHTML = `
+                    完成评估并出具报告 
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                `;
+            } else {
+                document.getElementById("btn-next").innerHTML = `
+                    下一步 
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                `;
+            }
+
+            // 切换 Canvas 动画
+            startViewerAnimation(currentStep);
+        }
+
+        // ==========================================
+        // Canvas 物理仿真引擎
+        // ==========================================
+        function startViewerAnimation(step) {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+            }
+            canvasTime = 0;
+
+            const titleText = document.getElementById("viewer-title-text");
+            const badgeText = document.getElementById("viewer-badge-text");
+            const overlayText = document.getElementById("canvas-overlay");
+
+            // 依据当前选择，动态展示当前的原理描述与动画
+            let selectedLvl = answers[step] || "INIT";
+
+            if (step === 1) {
+                titleText.innerHTML = "🧬 Wiener-Kalman 观测与滤波自愈仿真舱";
+                badgeText.innerText = `S&OE 观测 · Level ${selectedLvl}`;
+                runKalmanSimulation();
+            } else if (step === 2) {
+                titleText.innerHTML = "🧬 ⟨D, A⟩ 五维正交时空容器仿真舱";
+                badgeText.innerText = `数据本体 · Level ${selectedLvl}`;
+                runSpacetimeSimulation();
+            } else if (step === 3) {
+                titleText.innerHTML = "🧬 Z轴偏序降级与W轴配额平衡仿真舱";
+                badgeText.innerText = `替代料消纳 · Level ${selectedLvl}`;
+                runLatticeSimulation();
+            } else if (step === 4) {
+                titleText.innerHTML = "🧬 TIO 三位一体单脑奇点聚变舱";
+                badgeText.innerText = `总师架构 · Level ${selectedLvl}`;
+                runSingularitySimulation();
+            } else if (step === 5) {
+                titleText.innerHTML = "🧬 DAE 动态闭环写回控制系统";
+                badgeText.innerText = `引擎等级 · Level ${selectedLvl}`;
+                runDaeSimulation();
+            } else {
+                // 初始化/默认动画
+                runIdleSimulation();
+            }
+        }
+
+        // 默认空闲动画
+        function runIdleSimulation() {
+            function draw() {
+                resizeCanvas();
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                canvasTime += 0.02;
+
+                // 绘制背景发光网格
+                ctx.strokeStyle = "rgba(88, 166, 255, 0.05)";
+                ctx.lineWidth = 1;
+                for (let i = 0; i < canvas.width; i += 30) {
+                    ctx.beginPath();
+                    ctx.moveTo(i, 0);
+                    ctx.lineTo(i, canvas.height);
+                    ctx.stroke();
+                }
+                for (let j = 0; j < canvas.height; j += 30) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, j);
+                    ctx.lineTo(canvas.width, j);
+                    ctx.stroke();
+                }
+
+                // 绘制发光的星云核心
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+                const radius = 100 + Math.sin(canvasTime) * 10;
+
+                const grad = ctx.createRadialGradient(centerX, centerY, 5, centerX, centerY, radius);
+                grad.addColorStop(0, "rgba(88, 166, 255, 0.2)");
+                grad.addColorStop(0.5, "rgba(163, 113, 247, 0.05)");
+                grad.addColorStop(1, "transparent");
+                ctx.fillStyle = grad;
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                // 提示文本
+                ctx.fillStyle = "rgba(88, 166, 255, 0.6)";
+                ctx.font = "14px 'Outfit', monospace";
+                ctx.textAlign = "center";
+                ctx.fillText("WAITING FOR BRAIN AUDIT INITIATION...", centerX, centerY);
+
+                document.getElementById("canvas-overlay").innerText = "SYSTEM STATE: STANDBY_IDLE";
+                animationFrameId = requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        // 1. 卡尔曼观测自愈仿真
+        let kalmanPoints = [];
+        function runKalmanSimulation() {
+            const level = answers[1] || 1;
+            kalmanPoints = [];
+            
+            function draw() {
+                resizeCanvas();
+                ctx.fillStyle = "rgba(6, 9, 14, 0.35)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                canvasTime += 0.03;
+
+                const midY = canvas.height / 2;
+
+                // 1. 绘制滑动滤波时间窗口的可视化遮罩
+                const winX = canvas.width * 0.25;
+                const winWidth = canvas.width * 0.35;
+                
+                // 遮罩渐变
+                const winGrad = ctx.createLinearGradient(winX, 0, winX + winWidth, 0);
+                winGrad.addColorStop(0, "rgba(88, 166, 255, 0.0)");
+                winGrad.addColorStop(0.1, "rgba(88, 166, 255, 0.08)");
+                winGrad.addColorStop(0.9, "rgba(88, 166, 255, 0.08)");
+                winGrad.addColorStop(1, "rgba(88, 166, 255, 0.0)");
+                ctx.fillStyle = winGrad;
+                ctx.fillRect(winX, 0, winWidth, canvas.height);
+                
+                // 窗口边界线
+                ctx.strokeStyle = "rgba(88, 166, 255, 0.15)";
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(winX, 0); ctx.lineTo(winX, canvas.height);
+                ctx.moveTo(winX + winWidth, 0); ctx.lineTo(winX + winWidth, canvas.height);
+                ctx.stroke();
+
+                // 窗口文字
+                ctx.fillStyle = "rgba(88, 166, 255, 0.5)";
+                ctx.font = "9px monospace";
+                ctx.textAlign = "center";
+                ctx.fillText("KALMAN SLIDING FILTER WINDOW", winX + winWidth/2, 25);
+
+                // 2. 绘制黄金计划物理基线 (Sine Curve)
+                ctx.strokeStyle = "rgba(56, 139, 253, 0.35)";
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                for (let x = 0; x < canvas.width; x += 2) {
+                    const y = midY + Math.sin(x * 0.01 + canvasTime) * 60;
+                    if (x === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+
+                // 3. 每帧生成噪声点 (执行层的波动数据)
+                if (Math.random() < 0.4 && kalmanPoints.length < 200) {
+                    const x = canvas.width;
+                    const noiseAmp = level === 1 ? 130 : (level === 2 ? 65 : 15);
+                    const base = midY + Math.sin(x * 0.01 + canvasTime) * 60;
+                    const y = base + (Math.random() - 0.5) * noiseAmp;
+                    kalmanPoints.push({ 
+                        x, 
+                        y, 
+                        size: Math.random() * 3 + 2.5, 
+                        alpha: 1.0, 
+                        history: [] // 用于粒子拖尾
+                    });
+                }
+
+                // 4. 绘制并更新噪音粒子
+                kalmanPoints.forEach((pt) => {
+                    pt.x -= 2.5; // 向左滑动
+                    pt.alpha -= 0.0025;
+
+                    // 记录历史轨迹做拖尾
+                    pt.history.push({ x: pt.x, y: pt.y });
+                    if (pt.history.length > 8) pt.history.shift();
+
+                    const targetY = midY + Math.sin(pt.x * 0.01 + canvasTime) * 60;
+
+                    // 判断是否在卡尔曼滑动滤波窗口中
+                    const inWindow = pt.x >= winX && pt.x <= (winX + winWidth);
+
+                    if (level === 3) {
+                        if (inWindow) {
+                            pt.y += (targetY - pt.y) * 0.22; // 极速滤波
+                        } else if (pt.x < winX) {
+                            pt.y += (targetY - pt.y) * 0.3; // 完全锁定
+                        } else {
+                            pt.y += (targetY - pt.y) * 0.02; // 进入窗口前的普通运动
+                        }
+                        ctx.fillStyle = `rgba(63, 185, 80, ${pt.alpha})`;
+                    } else if (level === 2) {
+                        if (inWindow) {
+                            pt.y += (targetY - pt.y) * 0.04; 
+                        } else if (pt.x < winX) {
+                            pt.y += (targetY - pt.y) * 0.05;
+                        }
+                        ctx.fillStyle = `rgba(210, 153, 34, ${pt.alpha})`;
+                    } else {
+                        // Level 1: 完全无修正的布朗运动
+                        pt.y += (Math.random() - 0.5) * 5;
+                        ctx.fillStyle = `rgba(255, 123, 114, ${pt.alpha})`;
+                    }
+
+                    // 绘制拖尾
+                    if (pt.history.length > 1) {
+                        ctx.beginPath();
+                        ctx.moveTo(pt.history[0].x, pt.history[0].y);
+                        for (let h = 1; h < pt.history.length; h++) {
+                            ctx.lineTo(pt.history[h].x, pt.history[h].y);
+                        }
+                        ctx.strokeStyle = level === 3 ? `rgba(63, 185, 80, ${pt.alpha * 0.25})` : (level === 2 ? `rgba(210, 153, 34, ${pt.alpha * 0.25})` : `rgba(255, 123, 114, ${pt.alpha * 0.25})`);
+                        ctx.lineWidth = pt.size * 0.5;
+                        ctx.stroke();
+                    }
+
+                    // 绘制点
+                    ctx.beginPath();
+                    ctx.arc(pt.x, pt.y, pt.size, 0, Math.PI * 2);
+                    ctx.shadowBlur = level === 3 ? 6 : 2;
+                    ctx.shadowColor = ctx.fillStyle;
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                });
+
+                // 移除流出屏幕的粒子
+                kalmanPoints = kalmanPoints.filter(pt => pt.x > 0 && pt.alpha > 0);
+
+                // 绘制卡尔曼滤波上下限界限
+                const limitAmp = level === 3 ? 15 : (level === 2 ? 65 : 130);
+                ctx.strokeStyle = level === 3 ? "rgba(63, 185, 80, 0.15)" : "rgba(255, 255, 255, 0.08)";
+                ctx.setLineDash([5, 5]);
+                ctx.beginPath();
+                for (let x = 0; x < canvas.width; x += 15) {
+                    const base = midY + Math.sin(x * 0.01 + canvasTime) * 60;
+                    ctx.lineTo(x, base - limitAmp);
+                }
+                ctx.stroke();
+                
+                ctx.beginPath();
+                for (let x = 0; x < canvas.width; x += 15) {
+                    const base = midY + Math.sin(x * 0.01 + canvasTime) * 60;
+                    ctx.lineTo(x, base + limitAmp);
+                }
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                document.getElementById("canvas-overlay").innerText = `KALMAN OBSERVER: ${level === 3 ? 'CLOSED_LOOP_ACTIVE (ERROR CONVERGED)' : (level === 2 ? 'OPEN_LOOP_ALERT (MANUAL_CORRECT)' : 'OPEN_LOOP_HALLUCINATION (DIVERGENT)')}`;
+                animationFrameId = requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        // 2. 5D 正交时空粒子流仿真
+        let spaceParticles = [];
+        let collisionRings = []; // 存储碰撞爆发的光圈
+        function runSpacetimeSimulation() {
+            const level = answers[2] || 1;
+            spaceParticles = [];
+            collisionRings = [];
+
+            function draw() {
+                resizeCanvas();
+                ctx.fillStyle = "rgba(6, 9, 14, 0.35)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                canvasTime += 0.02;
+
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+
+                // 1. 绘制正交的 5D 时空轴网格 (Isometric look)
+                ctx.strokeStyle = "rgba(48, 54, 61, 0.35)";
+                ctx.lineWidth = 1;
+                const lines = 10;
+                for (let i = -lines; i <= lines; i++) {
+                    ctx.beginPath();
+                    ctx.moveTo(centerX + i * 40 - lines * 20, centerY + lines * 10);
+                    ctx.lineTo(centerX + i * 40 + lines * 20, centerY - lines * 10);
+                    ctx.stroke();
+
+                    ctx.beginPath();
+                    ctx.moveTo(centerX - lines * 20, centerY + i * 20 + lines * 10);
+                    ctx.lineTo(centerX + lines * 20, centerY + i * 20 - lines * 10);
+                    ctx.stroke();
+                }
+
+                // 2. 绘制 LSC / LLC 拓扑网络结构 (仅在 Level 2, 3 中显影)
+                if (level >= 2) {
+                    const nodeColor = level === 3 ? "rgba(88, 166, 255, 0.6)" : "rgba(210, 153, 34, 0.5)";
+                    const lineColor = level === 3 ? "rgba(88, 166, 255, 0.2)" : "rgba(210, 153, 34, 0.15)";
+                    ctx.strokeStyle = lineColor;
+                    ctx.lineWidth = 2;
+
+                    // 绘制一个三层的 BOM 树 (LSC Tree)
+                    const treeNodes = [
+                        { x: centerX, y: centerY - 100, label: "LSC Root" },
+                        { x: centerX - 80, y: centerY - 30, label: "LSC L1-A" },
+                        { x: centerX + 80, y: centerY - 30, label: "LSC L1-B" },
+                        { x: centerX - 120, y: centerY + 40, label: "LLC C1" },
+                        { x: centerX - 40, y: centerY + 40, label: "LLC C2" },
+                        { x: centerX + 40, y: centerY + 40, label: "LLC C3" },
+                        { x: centerX + 120, y: centerY + 40, label: "LLC C4" }
+                    ];
+
+                    // 连线
+                    ctx.beginPath();
+                    ctx.moveTo(treeNodes[0].x, treeNodes[0].y); ctx.lineTo(treeNodes[1].x, treeNodes[1].y);
+                    ctx.moveTo(treeNodes[0].x, treeNodes[0].y); ctx.lineTo(treeNodes[2].x, treeNodes[2].y);
+                    ctx.moveTo(treeNodes[1].x, treeNodes[1].y); ctx.lineTo(treeNodes[3].x, treeNodes[3].y);
+                    ctx.moveTo(treeNodes[1].x, treeNodes[1].y); ctx.lineTo(treeNodes[4].x, treeNodes[4].y);
+                    ctx.moveTo(treeNodes[2].x, treeNodes[2].y); ctx.lineTo(treeNodes[5].x, treeNodes[5].y);
+                    ctx.moveTo(treeNodes[2].x, treeNodes[2].y); ctx.lineTo(treeNodes[6].x, treeNodes[6].y);
+                    ctx.stroke();
+
+                    // 画节点
+                    treeNodes.forEach((n, idx) => {
+                        ctx.beginPath();
+                        ctx.arc(n.x, n.y, idx === 0 ? 8 : 5, 0, Math.PI * 2);
+                        ctx.fillStyle = "#0d1117";
+                        ctx.fill();
+                        ctx.strokeStyle = nodeColor;
+                        ctx.stroke();
+
+                        // 霓虹微光
+                        ctx.beginPath();
+                        ctx.arc(n.x, n.y, idx === 0 ? 12 : 8, 0, Math.PI * 2);
+                        ctx.strokeStyle = level === 3 ? "rgba(88, 166, 255, 0.15)" : "rgba(210, 153, 34, 0.1)";
+                        ctx.stroke();
+                    });
+                }
+
+                // 3. 生成粒子流
+                if (Math.random() < 0.35 && spaceParticles.length < 100) {
+                    const dir = Math.random() < 0.5 ? 'time' : 'space';
+                    spaceParticles.push({
+                        progress: 0,
+                        speed: Math.random() * 0.008 + 0.006,
+                        dir: dir,
+                        offset: Math.floor(Math.random() * 6) - 3,
+                        type: Math.random() < 0.5 ? 'demand' : 'supply',
+                        history: []
+                    });
+                }
+
+                // 4. 刷新粒子状态
+                spaceParticles.forEach(p => {
+                    p.progress += p.speed;
+
+                    let currX, currY;
+                    const indexOffset = p.offset * 40;
+
+                    if (level === 3) {
+                        if (p.dir === 'time') {
+                            currX = centerX + indexOffset + (p.progress - 0.5) * 400;
+                            currY = centerY - (p.progress - 0.5) * 200;
+                        } else {
+                            currX = centerX + (p.progress - 0.5) * 400;
+                            currY = centerY + indexOffset + (p.progress - 0.5) * 200;
+                        }
+                        ctx.fillStyle = p.type === 'demand' ? '#58a6ff' : '#a371f7';
+                    } else if (level === 2) {
+                        const drift = Math.sin(p.progress * Math.PI) * 12;
+                        if (p.dir === 'time') {
+                            currX = centerX + indexOffset + (p.progress - 0.5) * 400;
+                            currY = centerY - (p.progress - 0.5) * 200 + drift;
+                        } else {
+                            currX = centerX + (p.progress - 0.5) * 400 + drift;
+                            currY = centerY + indexOffset + (p.progress - 0.5) * 200;
+                        }
+                        ctx.fillStyle = "#d29922";
+                    } else {
+                        // Level 1: 烟囱无序，无网格约束
+                        if (!p.xPos) {
+                            p.xPos = Math.random() * canvas.width;
+                            p.yPos = Math.random() * canvas.height;
+                            p.dx = (Math.random() - 0.5) * 4;
+                            p.dy = (Math.random() - 0.5) * 4;
+                        }
+                        p.xPos += p.dx;
+                        p.yPos += p.dy;
+                        if (p.xPos < 0 || p.xPos > canvas.width) p.dx *= -1;
+                        if (p.yPos < 0 || p.yPos > canvas.height) p.dy *= -1;
+                        currX = p.xPos;
+                        currY = p.yPos;
+                        ctx.fillStyle = "#ff7b72";
+                    }
+
+                    p.history.push({ x: currX, y: currY });
+                    if (p.history.length > 6) p.history.shift();
+
+                    // 绘制粒子拖尾
+                    if (p.history.length > 1) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.history[0].x, p.history[0].y);
+                        for (let h = 1; h < p.history.length; h++) {
+                            ctx.lineTo(p.history[h].x, p.history[h].y);
+                        }
+                        ctx.strokeStyle = level === 3 ? (p.type === 'demand' ? "rgba(88, 166, 255, 0.15)" : "rgba(163, 113, 247, 0.15)") : (level === 2 ? "rgba(210, 153, 34, 0.15)" : "rgba(255, 123, 114, 0.15)");
+                        ctx.lineWidth = 2;
+                        ctx.stroke();
+                    }
+
+                    // 绘制粒子本体
+                    ctx.beginPath();
+                    ctx.arc(currX, currY, 3.5, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // 对撞检测
+                    if (level === 3 && Math.abs(p.progress - 0.5) < 0.015) {
+                        collisionRings.push({
+                            x: currX,
+                            y: currY,
+                            r: 4,
+                            maxR: 35,
+                            alpha: 1.0,
+                            color: p.type === 'demand' ? "#58a6ff" : "#a371f7"
+                        });
+                    }
+                });
+
+                // 5. 渲染并更新碰撞光圈
+                collisionRings.forEach(ring => {
+                    ring.r += 1.5;
+                    ring.alpha -= 0.04;
+                    ctx.strokeStyle = ring.color;
+                    ctx.globalAlpha = Math.max(0, ring.alpha);
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.arc(ring.x, ring.y, ring.r, 0, Math.PI * 2);
+                    ctx.stroke();
+                    
+                    ctx.fillStyle = ring.color;
+                    ctx.font = "8px monospace";
+                    ctx.fillText("COLLIDE", ring.x, ring.y - ring.r - 2);
+                });
+                ctx.globalAlpha = 1.0;
+                collisionRings = collisionRings.filter(r => r.alpha > 0);
+
+                spaceParticles = spaceParticles.filter(p => p.progress < 1.0);
+
+                document.getElementById("canvas-overlay").innerText = `CONTAINER GEOMETRY: ${level === 3 ? '5D_ORTHOGONAL_TENSOR (ZERO COPY)' : (level === 2 ? 'RELATIONAL_TABLE_JOINS (LATENCY_CELL)' : 'FRAGMENTED_SILOS (METADATA_LOST)')}`;
+                animationFrameId = requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        // 3. Z轴偏序降级与W轴配额平衡仿真
+        let latticeNodes = [
+            { id: 1, name: "512MB (Supreme Spec)", x: 0, y: -120 },
+            { id: 2, name: "256MB (Standard)", x: -100, y: 0 },
+            { id: 3, name: "256MB (Industrial)", x: 100, y: 0 },
+            { id: 4, name: "128MB (Entry Spec)", x: 0, y: 120 }
+        ];
+        let flowingParticles = [];
+        function runLatticeSimulation() {
+            const level = answers[3] || 1;
+            flowingParticles = [];
+
+            function draw() {
+                resizeCanvas();
+                ctx.fillStyle = "rgba(6, 9, 14, 0.35)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                canvasTime += 0.03;
+
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+
+                // 1. 绘制偏序格 Hasse Graph 关系线条
+                ctx.lineWidth = 2.5;
+                latticeNodes.forEach(node => {
+                    const nodeX = centerX + node.x;
+                    const nodeY = centerY + node.y;
+
+                    if (node.id === 1) {
+                        const target1 = latticeNodes.find(n => n.id === 2);
+                        const target2 = latticeNodes.find(n => n.id === 3);
+                        ctx.strokeStyle = level === 3 ? "rgba(63, 185, 80, 0.35)" : (level === 2 ? "rgba(210, 153, 34, 0.35)" : "rgba(255, 123, 114, 0.25)");
+                        ctx.beginPath(); ctx.moveTo(nodeX, nodeY); ctx.lineTo(centerX + target1.x, centerY + target1.y); ctx.stroke();
+                        ctx.beginPath(); ctx.moveTo(nodeX, nodeY); ctx.lineTo(centerX + target2.x, centerY + target2.y); ctx.stroke();
+                    } else if (node.id === 2 || node.id === 3) {
+                        const target = latticeNodes.find(n => n.id === 4);
+                        ctx.strokeStyle = level === 3 ? "rgba(63, 185, 80, 0.35)" : (level === 2 ? "rgba(210, 153, 34, 0.35)" : "rgba(255, 123, 114, 0.25)");
+                        ctx.beginPath(); ctx.moveTo(nodeX, nodeY); ctx.lineTo(centerX + target.x, centerY + target.y); ctx.stroke();
+                    }
+                });
+
+                // 2. 绘制节点圈与发光
+                latticeNodes.forEach(node => {
+                    const nodeX = centerX + node.x;
+                    const nodeY = centerY + node.y;
+
+                    ctx.beginPath();
+                    ctx.arc(nodeX, nodeY, 18, 0, Math.PI * 2);
+                    ctx.fillStyle = "#090c10";
+                    ctx.fill();
+
+                    ctx.strokeStyle = level === 3 ? "#3fb950" : (level === 2 ? "#d29922" : "#ff7b72");
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+
+                    ctx.beginPath();
+                    ctx.arc(nodeX, nodeY, 23, 0, Math.PI * 2);
+                    ctx.strokeStyle = level === 3 ? "rgba(63, 185, 80, 0.15)" : (level === 2 ? "rgba(210, 153, 34, 0.1)" : "rgba(255, 123, 114, 0.1)");
+                    ctx.stroke();
+
+                    ctx.fillStyle = "#ffffff";
+                    ctx.font = "bold 9px monospace";
+                    ctx.textAlign = "center";
+                    ctx.fillText(node.name.split(" ")[0], nodeX, nodeY + 3);
+                });
+
+                // 3. 生成粒子流
+                if (Math.random() < 0.2 && flowingParticles.length < 60) {
+                    flowingParticles.push({
+                        step: 0,
+                        nodeId: 1,
+                        x: latticeNodes[0].x,
+                        y: latticeNodes[0].y,
+                        targetId: Math.random() < 0.5 ? 2 : 3,
+                        alpha: 1.0,
+                        history: []
+                    });
+                }
+
+                // 4. 刷新粒子状态
+                flowingParticles.forEach(pt => {
+                    const startNode = latticeNodes.find(n => n.id === pt.nodeId);
+                    const targetNode = latticeNodes.find(n => n.id === pt.targetId);
+
+                    pt.history.push({ x: centerX + pt.x, y: centerY + pt.y });
+                    if (pt.history.length > 5) pt.history.shift();
+
+                    if (level === 3) {
+                        pt.step += 0.025;
+                        pt.x = startNode.x + (targetNode.x - startNode.x) * pt.step;
+                        pt.y = startNode.y + (targetNode.y - startNode.y) * pt.step;
+
+                        if (pt.step >= 1.0) {
+                            if (pt.targetId !== 4) {
+                                pt.nodeId = pt.targetId;
+                                pt.targetId = 4;
+                                pt.step = 0;
+                            } else {
+                                pt.alpha -= 0.08;
+                            }
+                        }
+                        ctx.fillStyle = `rgba(63, 185, 80, ${pt.alpha})`;
+                    } else if (level === 2) {
+                        pt.step += 0.015;
+                        const wiggle = Math.sin(pt.step * 8) * 6;
+                        pt.x = startNode.x + (targetNode.x - startNode.x) * pt.step + wiggle;
+                        pt.y = startNode.y + (targetNode.y - startNode.y) * pt.step;
+                        
+                        if (pt.step >= 1.0) {
+                            if (pt.targetId !== 4) {
+                                pt.nodeId = pt.targetId;
+                                pt.targetId = 4;
+                                pt.step = 0;
+                            } else {
+                                pt.alpha -= 0.04;
+                            }
+                        }
+                        ctx.fillStyle = `rgba(210, 153, 34, ${pt.alpha})`;
+                    } else {
+                        // Level 1: BOM 纠结，阻塞在顶部
+                        pt.step += 0.003;
+                        if (pt.step > 0.25) {
+                            pt.step = 0.25;
+                            pt.x = startNode.x + (targetNode.x - startNode.x) * pt.step + (Math.random() - 0.5) * 4;
+                            pt.y = startNode.y + (targetNode.y - startNode.y) * pt.step + (Math.random() - 0.5) * 4;
+                            ctx.fillStyle = "rgba(255, 123, 114, 1.0)";
+                            
+                            ctx.fillStyle = "rgba(255, 123, 114, 0.4)";
+                            ctx.font = "bold 9px monospace";
+                            ctx.fillText("BOM BLOCKED", centerX, centerY - 65);
+                        } else {
+                            pt.x = startNode.x + (targetNode.x - startNode.x) * pt.step;
+                            pt.y = startNode.y + (targetNode.y - startNode.y) * pt.step;
+                            ctx.fillStyle = "rgba(255, 123, 114, 0.6)";
+                        }
+                    }
+
+                    // 绘制拖尾
+                    if (pt.history.length > 1) {
+                        ctx.beginPath();
+                        ctx.moveTo(pt.history[0].x, pt.history[0].y);
+                        for (let h = 1; h < pt.history.length; h++) {
+                            ctx.lineTo(pt.history[h].x, pt.history[h].y);
+                        }
+                        ctx.strokeStyle = level === 3 ? "rgba(63, 185, 80, 0.15)" : (level === 2 ? "rgba(210, 153, 34, 0.12)" : "rgba(255, 123, 114, 0.15)");
+                        ctx.lineWidth = 2;
+                        ctx.stroke();
+                    }
+
+                    ctx.beginPath();
+                    ctx.arc(centerX + pt.x, centerY + pt.y, 4, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+
+                if (level === 3) {
+                    ctx.fillStyle = "rgba(63, 185, 80, 0.6)";
+                    ctx.font = "9px monospace";
+                    ctx.textAlign = "right";
+                    ctx.fillText("Yield Rate: 99.8%", canvas.width - 20, 25);
+                    ctx.fillText("Quota Balance: OK", canvas.width - 20, 40);
+                }
+
+                flowingParticles = flowingParticles.filter(pt => pt.alpha > 0);
+
+                document.getElementById("canvas-overlay").innerText = `LATTICE SOLVER: ${level === 3 ? 'Z_AXIS_PARTIAL_ORDER (AUTOMATIC_DOWNBINNING)' : (level === 2 ? 'APS_HEURISTIC_RULE (PARTIAL_BLOCK)' : 'MANUAL_MATCHING_DEADLOCK (BOM_BLOCKED)')}`;
+                animationFrameId = requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        // 4. TIO 三位一体单脑奇点聚变舱
+        let singularityWaves = []; // 存储向外扩散的引力波
+        function runSingularitySimulation() {
+            const level = answers[4] || 1;
+            singularityWaves = [];
+
+            function draw() {
+                resizeCanvas();
+                ctx.fillStyle = "rgba(6, 9, 14, 0.35)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                canvasTime += 0.04;
+
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+
+                if (level === 3) {
+                    // Level 3: 单脑奇点，强力聚变发生
+                    ctx.strokeStyle = "rgba(163, 113, 247, 0.25)";
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    ctx.arc(centerX, centerY, 80 + Math.sin(canvasTime * 2) * 5, 0, Math.PI * 2);
+                    ctx.stroke();
+
+                    const fuseRadius = 80 - (canvasTime * 20) % 80;
+                    if (fuseRadius < 5) {
+                        singularityWaves.push({
+                            r: 10,
+                            maxR: 120,
+                            alpha: 1.0,
+                            lineWidth: 3
+                        });
+                    }
+
+                    // 绘制三轨道上环绕运行的粒子
+                    for (let i = 0; i < 3; i++) {
+                        const angle = (i * Math.PI * 2) / 3 + canvasTime * 1.5;
+                        const color = i === 0 ? "#58a6ff" : (i === 1 ? "#a371f7" : "#d29922");
+                        
+                        const orbitalX = centerX + Math.cos(angle) * fuseRadius;
+                        const orbitalY = centerY + Math.sin(angle) * (fuseRadius * 0.6);
+
+                        ctx.beginPath();
+                        ctx.arc(orbitalX, orbitalY, 8, 0, Math.PI * 2);
+                        ctx.fillStyle = color;
+                        ctx.shadowBlur = 15;
+                        ctx.shadowColor = color;
+                        ctx.fill();
+                        ctx.shadowBlur = 0;
+
+                        ctx.strokeStyle = `rgba(163, 113, 247, ${fuseRadius / 160})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(centerX, centerY);
+                        ctx.lineTo(orbitalX, orbitalY);
+                        ctx.stroke();
+                    }
+
+                    // 核心发光奇点
+                    const grad = ctx.createRadialGradient(centerX, centerY, 2, centerX, centerY, 45);
+                    grad.addColorStop(0, "#ffffff");
+                    grad.addColorStop(0.3, "rgba(163, 113, 247, 0.8)");
+                    grad.addColorStop(0.7, "rgba(88, 166, 255, 0.35)");
+                    grad.addColorStop(1, "transparent");
+                    ctx.fillStyle = grad;
+                    ctx.beginPath();
+                    ctx.arc(centerX, centerY, 45, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // 绘制爆发的光圈
+                    singularityWaves.forEach(w => {
+                        w.r += 3;
+                        w.alpha -= 0.025;
+                        ctx.strokeStyle = `rgba(163, 113, 247, ${w.alpha})`;
+                        ctx.lineWidth = w.lineWidth;
+                        ctx.beginPath();
+                        ctx.arc(centerX, centerY, w.r, 0, Math.PI * 2);
+                        ctx.stroke();
+                    });
+                    singularityWaves = singularityWaves.filter(w => w.alpha > 0);
+
+                } else if (level === 2) {
+                    ctx.strokeStyle = "rgba(48, 54, 61, 0.5)";
+                    ctx.lineWidth = 1.5;
+                    
+                    for (let i = 0; i < 3; i++) {
+                        const orbRadius = 70 + i * 35;
+                        ctx.beginPath();
+                        ctx.arc(centerX, centerY, orbRadius, 0, Math.PI * 2);
+                        ctx.stroke();
+
+                        const angle = canvasTime * 0.4 + i * 1.5;
+                        const color = i === 0 ? "#58a6ff" : (i === 1 ? "#a371f7" : "#d29922");
+                        ctx.beginPath();
+                        ctx.arc(centerX + Math.cos(angle) * orbRadius, centerY + Math.sin(angle) * orbRadius, 7, 0, Math.PI * 2);
+                        ctx.fillStyle = color;
+                        ctx.fill();
+                    }
+
+                    ctx.fillStyle = "rgba(210, 153, 34, 0.08)";
+                    ctx.beginPath();
+                    ctx.arc(centerX, centerY, 20, 0, Math.PI * 2);
+                    ctx.fill();
+                } else {
+                    // Level 1: 烟囱无交汇，三个点无序飘散
+                    for (let i = 0; i < 3; i++) {
+                        const driftX = Math.sin(canvasTime * 0.8 + i * 2) * 110;
+                        const driftY = Math.cos(canvasTime * 0.6 + i * 3) * 110;
+                        const color = i === 0 ? "#ff7b72" : (i === 1 ? "rgba(255, 123, 114, 0.6)" : "rgba(255, 123, 114, 0.3)");
+                        
+                        ctx.fillStyle = color;
+                        ctx.beginPath();
+                        ctx.arc(centerX + driftX, centerY + driftY, 11, 0, Math.PI * 2);
+                        ctx.fill();
+
+                        ctx.strokeStyle = "rgba(255, 123, 114, 0.15)";
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(centerX, centerY);
+                        ctx.lineTo(centerX + driftX, centerY + driftY);
+                        ctx.stroke();
+                    }
+
+                    ctx.fillStyle = "rgba(255, 123, 114, 0.03)";
+                    ctx.beginPath();
+                    ctx.arc(centerX, centerY, 15, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                document.getElementById("canvas-overlay").innerText = `BRAIN FUSION: ${level === 3 ? 'TIO_SINGLE_BRAIN (REVERSE_CONWAY_ACTIVE)' : (level === 2 ? 'FUNCTIONAL_COMMITTEES (ORGANIZATIONAL_FRICTION)' : 'OUTSOURCED_DISCONNECT (SEMANTIC_DILUTION)')}`;
+                animationFrameId = requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        // 5. DAE 动态闭环写回控制系统
+        let loopPackets = [];
+        let daeAnomalyTime = 0;
+        let daeAnomalyActive = false;
+        let pulseIntensity = 0; // 自愈闪烁强度
+        function runDaeSimulation() {
+            const level = answers[5] || 1;
+            loopPackets = [];
+            daeAnomalyTime = 0;
+            daeAnomalyActive = false;
+            pulseIntensity = 0;
+
+            const nodes = [
+                { name: "计划中枢", x: -120, y: -60 },
+                { name: "车间执行", x: 120, y: -60 },
+                { name: "偏差捕获", x: 120, y: 60 },
+                { name: "自动消纳", x: -120, y: 60 }
+            ];
+
+            function draw() {
+                resizeCanvas();
+                ctx.fillStyle = "rgba(6, 9, 14, 0.35)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                canvasTime += 0.03;
+
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+
+                // 1. 定期触发车间异常波动 (每隔 4.5 秒)
+                daeAnomalyTime += 0.03;
+                if (daeAnomalyTime > 4.5) {
+                    daeAnomalyTime = 0;
+                    daeAnomalyActive = true;
+                }
+
+                // 2. 绘制闭环连线
+                ctx.strokeStyle = level === 3 ? "rgba(63, 185, 80, 0.3)" : (level === 2 ? "rgba(210, 153, 34, 0.3)" : "rgba(255, 123, 114, 0.2)");
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(centerX + nodes[0].x, centerY + nodes[0].y);
+                ctx.lineTo(centerX + nodes[1].x, centerY + nodes[1].y);
+                ctx.lineTo(centerX + nodes[2].x, centerY + nodes[2].y);
+                ctx.lineTo(centerX + nodes[3].x, centerY + nodes[3].y);
+                ctx.closePath();
+                ctx.stroke();
+
+                // 3. 绘制节点圈
+                nodes.forEach((n, idx) => {
+                    const nodeX = centerX + n.x;
+                    const nodeY = centerY + n.y;
+
+                    ctx.beginPath();
+                    ctx.arc(nodeX, nodeY, 15, 0, Math.PI * 2);
+                    ctx.fillStyle = "#090c10";
+                    ctx.fill();
+
+                    // 判断该节点是否正处于异常状态
+                    let borderStroke = level === 3 ? "#3fb950" : (level === 2 ? "#d29922" : "#ff7b72");
+                    if (daeAnomalyActive) {
+                        if (idx === 1 && daeAnomalyTime < 1.0) {
+                            borderStroke = "#ff7b72"; // 车间执行亮红圈
+                        } else if (idx === 2 && daeAnomalyTime >= 1.0 && daeAnomalyTime < 2.0) {
+                            borderStroke = "#d29922"; // 偏差捕获发现异常
+                        } else if (idx === 3 && daeAnomalyTime >= 2.0 && daeAnomalyTime < 3.0 && level >= 2) {
+                            borderStroke = "#58a6ff"; // 自动求解自愈
+                        }
+                    }
+
+                    ctx.strokeStyle = borderStroke;
+                    ctx.lineWidth = 2.5;
+                    ctx.stroke();
+
+                    ctx.fillStyle = "#ffffff";
+                    ctx.font = "bold 9px monospace";
+                    ctx.textAlign = "center";
+                    ctx.fillText(n.name, nodeX, nodeY + 23);
+                });
+
+                // 车间节点波动特效
+                if (daeAnomalyActive && daeAnomalyTime < 1.0) {
+                    ctx.strokeStyle = "rgba(255, 123, 114, 0.4)";
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.arc(centerX + nodes[1].x, centerY + nodes[1].y, 15 + daeAnomalyTime * 45, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+
+                // 4. 生成与运行闭环报文粒子
+                if (Math.random() < 0.15 && loopPackets.length < 15) {
+                    loopPackets.push({ progress: 0, speed: 0.008 });
+                }
+
+                loopPackets.forEach(p => {
+                    p.progress += p.speed;
+
+                    const stage = p.progress * 4;
+                    const segment = Math.floor(stage) % 4;
+                    const ratio = stage - Math.floor(stage);
+
+                    const nStart = nodes[segment];
+                    const nEnd = nodes[(segment + 1) % 4];
+
+                    const x = nStart.x + (nEnd.x - nStart.x) * ratio;
+                    const y = nStart.y + (nEnd.y - nStart.y) * ratio;
+
+                    if (level === 3) {
+                        ctx.fillStyle = "#3fb950";
+                        ctx.beginPath();
+                        ctx.arc(centerX + x, centerY + y, 5, 0, Math.PI * 2);
+                        ctx.fill();
+
+                        ctx.shadowBlur = 10;
+                        ctx.shadowColor = "#3fb950";
+                        ctx.fill();
+                        ctx.shadowBlur = 0;
+
+                        if (daeAnomalyActive && daeAnomalyTime >= 2.0 && segment === 3) {
+                            pulseIntensity = 1.0;
+                        }
+                    } else if (level === 2) {
+                        if (segment === 3) {
+                            ctx.fillStyle = "#d29922";
+                            ctx.font = "11px bold monospace";
+                            ctx.textAlign = "center";
+                            ctx.fillText("WAITING CONFIRM?", centerX + x, centerY + y - 10);
+                            
+                            ctx.fillStyle = "#ff7b72";
+                            ctx.beginPath();
+                            ctx.arc(centerX + x, centerY + y, 6, 0, Math.PI * 2);
+                            ctx.fill();
+                        } else {
+                            ctx.fillStyle = "#d29922";
+                            ctx.beginPath();
+                            ctx.arc(centerX + x, centerY + y, 5, 0, Math.PI * 2);
+                            ctx.fill();
+                        }
+                    } else {
+                        if (segment >= 1) {
+                            ctx.fillStyle = "#ff7b72";
+                            ctx.font = "10px monospace";
+                            ctx.fillText("ERROR: SILO BREAK", centerX + x + 8, centerY + y);
+                            
+                            ctx.beginPath();
+                            ctx.arc(centerX + x, centerY + y, 6, 0, Math.PI * 2);
+                            ctx.fill();
+                            return;
+                        } else {
+                            ctx.fillStyle = "#ff7b72";
+                            ctx.beginPath();
+                            ctx.arc(centerX + x, centerY + y, 5, 0, Math.PI * 2);
+                            ctx.fill();
+                        }
+                    }
+                });
+
+                if (pulseIntensity > 0) {
+                    pulseIntensity -= 0.05;
+                    ctx.fillStyle = `rgba(63, 185, 80, ${pulseIntensity * 0.15})`;
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    
+                    ctx.fillStyle = "rgba(63, 185, 80, 0.8)";
+                    ctx.font = "bold 10px monospace";
+                    ctx.textAlign = "center";
+                    ctx.fillText("⚡ DAE WRITE-BACK AUTOCURED", centerX, centerY - 100);
+                }
+
+                if (daeAnomalyActive && daeAnomalyTime >= 3.5) {
+                    daeAnomalyActive = false; // 自愈重置
+                }
+
+                loopPackets = loopPackets.filter(p => p.progress < 1.0);
+
+                document.getElementById("canvas-overlay").innerText = `ENGINE STATE: ${level === 3 ? 'DAE_AUTO_WRITE_BACK (CLOSED_LOOP)' : (level === 2 ? 'READ_ONLY_OBSERVATION (OPEN_LOOP_ALERT)' : 'SOR_STATIC_BATCH_LOG (MANUAL_DRIVEN)')}`;
+                animationFrameId = requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        // ==========================================
+        // 评估报告计算与渲染
+        // ==========================================
+        const scorePrescriptions = {
+            client: {
+                A: [
+                    "坚定支持「三位一体总设计师」的代码立法地位，赋予算法对资源分配的刚性控制权。",
+                    "继续深化 DAE 动态引擎在全生态中的写回深度，减少外部非确定性扰动的穿透率。",
+                    "向生态伙伴推广统一的五维时空数据本体接口，拉通整条价值链的结算与供应。"
+                ],
+                B: [
+                    "企业一把手必须从‘行政干预’退守为‘规则制定’，缩减做功夹角，给予算法绝对计算硬执行空间。",
+                    "立刻启动底层数据本体 ODM 重构，将断裂的 ERP、MES 等数据库向统一的正交时空物理镜像合并。",
+                    "成立「总体设计部」实体建制，统筹管理业务规则的 CDM 固化，防止规则堆砌导致死锁。"
+                ],
+                C: [
+                    "⚠️ 警惕“买大厂标品系统灌输”的致幻陷阱，削足适履的流程只会让系统性内耗废热呈指数级升高。",
+                    "必须将计划模式从传统的“隔夜 MRP 跑批”重构为“高频 S&OE滑动观测基线”，先把微观执行闭环做实。",
+                    "重塑对数字化转型的认知：数字化是能力重构而非功能组装，手工拉 Excel 排程意味着 IT 投资全部浪费。"
+                ]
+            },
+            vendor: {
+                A: [
+                    "从单一的软件实施方，升级为企业的「数字化宪法共同起草人」，推动代码立法的落地。",
+                    "继续打磨复杂环境下替代料偏序格等专利算法的求解极速，占领行业技术制高点。",
+                    "总结该企业的 TIO 重构模板，作为行业典范向其他精密制造领域进行知识溢出。"
+                ],
+                B: [
+                    "拒绝为甲方做单纯的“需求翻译官”，必须以逆康威定律为纲，主动引导甲方重塑利益和组织架构。",
+                    "停止在系统外围搭建花哨的看板大屏，聚焦于将业务规则在 CDM 层固化并与 ODM 层严密缝合。",
+                    "向甲方交付时，必须实现 100.85 毫秒级消纳指标的对账校验，用绝对性能证明系统的物理抓地力。"
+                ],
+                C: [
+                    "⚠️ 停止兜售“流程最佳实践”等公关修辞，流程的线性管道无法接管 $O(N!)$ 指数级状态的拓扑膨胀。",
+                    "必须摒弃“BA 写说明书-IT 开发-外包写代码”的传统传话筒交付范式，避免开发出庞大的垃圾系统。",
+                    "重写技术架构：从传统的面向对象（OOD）及慢速表关联，彻底迁徙至面向数据（DOD）的高速内存布局。"
+                ]
+            },
+            practitioner: {
+                A: [
+                    "在团队中发挥「总设计师奇点」的作用，保持技术眼界与业务解构在自己脑中的无损融通。",
+                    "研究并引入 Kalman 动态滤波、卡尔曼状态估计等更先进 of 运筹模型，保持算法领先。",
+                    "探索在更广域的 Multi-Agent 生态中，如何通过统一的 DAE 中枢实现分布式自创生。"
+                ],
+                B: [
+                    "极力避免让自己成为“中间翻译”，主动研习 C++ 裸金属层编程与 DuckDB 流式 Appender 落盘开发。",
+                    "研读物理学、系统科学与运筹学，学会用 Boltzmann 熵增、Shannon 信息量来观测并解构系统瓶颈。",
+                    "熟练掌握 DBeaver 等对账工具，随时通过黄金 SQL 穿透审计 4D 超图的每一次流转，不看暗箱结果。"
+                ],
+                C: [
+                    "⚠️ 敲响职业警钟：只懂画 Visio 流程图或只懂写增删改查 SQL 的传统 BA，在 $O(N!)$ 时代正在被无情淘汰。",
+                    "必须跨界学习：强制融合“高科技精密业务方案 + 数据/算法运筹建模 + C++ DOD 物理架构”三维知识体系。",
+                    "从今天起，卸载一切阻碍大脑深入底层的外设组件，把认知焦点拉回到大自然最本质的客观物理铁律中。"
+                ]
+            }
+        };
+
+        const dimensionFeedbacks = [
+            {
+                name: "S&OE 观测底座与高频自愈 (Kalman)",
+                formula: "Axiom 01 / dS = diS + deS",
+                levelText: {
+                    1: { status: "危险 - 静态致幻", class: "danger", desc: "由于缺乏微观可执行基线，宏观计划退化为“马后炮式记录”。基层高频手工排程产生巨大摩擦废热。", path: "向系统注入负熵流。基于 Site 和 Part 物理站点隔离重新构建 S&OE 执行层，建立 Wiener-Kalman 滑动观测与高频重排基线。" },
+                    2: { status: "警告 - 延迟开环", class: "warning", desc: "虽然能感知波动，但由于计划和执行层信息不对称，一旦出现大波动依然需要人工开会拉通，系统自愈能力断裂。", path: "将预警逻辑与消纳算法在内存中打通，从“被动报警亮红灯”升级为“算法自动计算置换建议并一键回写”。" },
+                    3: { status: "健康 - 滤波自愈", class: "ok", desc: "基于 Site/Part 物理隔离底座，实时捕捉执行残差，卡尔曼滤波稳定收敛，实现高频自愈闭环。", path: "继续监控异常熔断率，防止特权插单偏角过大导致的滤波边界崩溃。" }
+                }
+            },
+            {
+                name: "⟨D, A⟩ 数据本体双螺旋 (5D Grid)",
+                formula: "Axiom 04 / Isomorphic Regulator",
+                levelText: {
+                    1: { status: "危险 - 逻辑割裂", class: "danger", desc: "数据库烟囱林立，靠大量的 SQL 强联，在处理高维变量时瞬间死锁，计算极度缓慢。", path: "抛弃传统数据库表设计思想，使用 ODM（物理镜像）与 CDM（决策规则）缝合，在内存中重新映射 5 维正交时空数据本体。" },
+                    2: { status: "警告 - 行列冗余", class: "warning", desc: "数据做到了集中，但存储结构与算法逻辑仍是“两张皮”，计算寻优需要经过频繁的对象寻址跳转，存在性能瓶颈。", path: "设计零拷贝、密铺物理块的数据结构，使数据组织契合 CPU 硬件本源，实现真正的物理超导化流转。" },
+                    3: { status: "健康 - 全息融合", class: "ok", desc: "数据本体与算法在大脑中化学融通。在内存中构建 5 维正交时空张量，实现百毫秒极速消纳。", path: "进一步优化流式二进制落盘速度，确保 DuckDB 审计对账的零等待响应。" }
+                }
+            },
+            {
+                name: "高阶分类消纳与离散取整算法 (Lattice)",
+                formula: "Axiom 06 / Spacetime Impedance",
+                levelText: {
+                    1: { status: "危险 - 人治内耗", class: "danger", desc: "物料配额与多替代靠人肉拉扯，发货数量因无法对齐 Lot Size 导致收货对账冲突不断，营运资本被严重冻结。", path: "将替代料决策收敛回系统。上线 Z轴偏序格溢出算法解决分级降级问题，上线配额平衡环强制收敛采购占比。" },
+                    2: { status: "警告 - 规则死锁", class: "warning", desc: "拥有基础的 APS 优先级排序，但无法求解多级嵌套 BOM 产生的累积数量与交期阻抗，多约束并发时系统报错罢工。", path: "引入常数级向量投影算法，将高维供需一键投影到微观站点，实时求解不完全替代消纳（SWAP）与多层级组替代。" },
+                    3: { status: "健康 - 三大专利级消纳", class: "ok", desc: "偏序格降级高配低用 + 配额平衡环 + 取整重算结合，在秒级内消纳组合爆炸，对齐 Lot Size 物理批量。", path: "将算法性能进一步与底层 C++ 预编译剪枝结合，保持常数级 $O(k)$ 的求解身姿。" }
+                }
+            },
+            {
+                name: "三位一体总师制与逆康威设计 (TIO)",
+                formula: "Axiom 07 / Vector Work Equation",
+                levelText: {
+                    1: { status: "危险 - 传话耗散", class: "danger", desc: "系统设计层层传话翻译，语义严重衰减，变革行政力与系统技术逻辑错配，做功利用率趋近于零。", path: "终止 IT 外包和多中继代建。贯彻逆康威定律，必须培养或引入能跨界缝合业务、运筹与软件底层的“三位一体”总设计师。" },
+                    2: { status: "警告 - 妥协组装", class: "warning", desc: "方案由跨部门代表通过会议妥协拼装，系统充满了各种临时特设流程和逻辑补丁，面临哥德尔极限崩溃。", path: "设立具备“行政立法权”的总体设计部，由总设计师实行代码法治，以数据模型为中心，强制重整部门协作阵型。" },
+                    3: { status: "健康 - 单脑奇点", class: "ok", desc: "方案由总设计师在同一个大脑里完成化学融通和代码立法，夹角 $\\theta \\to 0^\\circ$，组织能量 100% 同向做功。", path: "建立“设计道场”学徒制，自下而上培养属于企业自己的技术双螺旋传承人。" }
+                }
+            },
+            {
+                name: "决策中枢引擎与自愈写回 (DAE)",
+                formula: "Axiom 08 / Anti-Heat Death",
+                levelText: {
+                    1: { status: "危险 - 看板记录", class: "danger", desc: "系统只负责把基层已经发生的生产、出库信息敲入电脑。计划员只看昨日的静态指标看板，没有任何事前规划和异常应答能力。", path: "彻底重写排产大脑。从静态的 SOR（记录系统）向具备自适应异常熔断特征的 DAE 决策大脑方向重构。" },
+                    2: { status: "警告 - 报警悬空", class: "warning", desc: "系统能够提供异常报警，但由于缺乏反向写回（Write-Back）闭环，计划决策依然悬空，无法指挥执行系统自愈。", path: "开发流式落盘与写回通道，打通从“计划大脑”直接注入“微观执行层”的一键写回功能，破除人脑二次录入开环。" },
+                    3: { status: "健康 - 自适应决策大脑", class: "ok", desc: "接管全流程决策。异常爆发时，DAE 瞬时自动推演 trade-off 方案，一键写回，具备反脆弱的抗熵生命力。", path: "引入 LLM 语义转译器作为退出节点，将晦涩的 DAE 求解日志转译为人类决策层能秒懂的商业白话。" }
+                }
+            }
+        ];
+
+        // 报告生成主逻辑
+        function generateReport() {
+            // 隐藏向导，展示报告
+            document.getElementById("wizard-layout").style.display = "none";
+            
+            const reportSec = document.getElementById("report-section");
+            reportSec.classList.add("active");
+
+            // 1. 计算总分 (5-15) 并得出评级
+            let totalScore = 0;
+            for (let k = 1; k <= 5; k++) {
+                totalScore += answers[k];
+            }
+
+            let grade, title, desc, gradeClass;
+            if (totalScore >= 14) {
+                grade = "S";
+                gradeClass = "a";
+                title = "系统科学与控制架构：S级全息统御";
+                desc = "恭喜！您的企业已经成功越过了复杂性阶乘黑洞，在技术和模型层面初步构建了高度自治、毫秒级消纳的硅基中央计划大脑。您完全秉持了逆康威定律的代码法治精神。";
+            } else if (totalScore >= 11) {
+                grade = "A";
+                gradeClass = "a";
+                title = "系统科学与控制架构：A级局部共振";
+                desc = "不错！您的企业已经在局部消纳算法或观测底座上实现了突破，但系统仍然存在部分逻辑断层，高频异常下需要人工会议代偿。亟需进行全局双螺旋模型的闭环升级。";
+            } else if (totalScore >= 8) {
+                grade = "B";
+                gradeClass = "b";
+                title = "系统科学与控制架构：B级警报防御";
+                desc = "预警！您的系统目前充其量是一个具有看板功能的“后视镜系统”。数据与算法依然严重脱节，决策机制仍是人治主导，高危的纳什死锁随时会冻结您的营运现金流。";
+            } else {
+                grade = "C";
+                gradeClass = "c";
+                title = "系统科学与控制架构：C级低维耗散";
+                desc = "红线警报！您的数字化建设目前已陷入严重的“复杂性陷阱”。多部门割裂、传话筒交付和大量 Excel 离线表意味着系统底层本体已然断裂。企业正处于抗熵能力完全破产的边缘！";
+            }
+
+            // 更新头部卡片 DOM
+            document.getElementById("grade-letter").innerText = grade;
+            document.getElementById("grade-circle").className = `grade-badge-circle ${gradeClass}`;
+            document.getElementById("score-text").innerText = `${totalScore} / 15`;
+            document.getElementById("report-grade-title").innerText = title;
+            document.getElementById("report-grade-desc").innerText = desc;
+
+            // 2. 动态生成 3 大角色的技术处方
+            const clientList = document.getElementById("client-presc-list");
+            const vendorList = document.getElementById("vendor-presc-list");
+            const practList = document.getElementById("pract-presc-list");
+
+            clientList.innerHTML = "";
+            vendorList.innerHTML = "";
+            practList.innerHTML = "";
+
+            // 根据得分高低分发 A/B/C 三个层级的处方
+            const targetPrescKey = totalScore >= 14 ? "A" : (totalScore >= 9 ? "B" : "C");
+            
+            scorePrescriptions.client[targetPrescKey].forEach(item => {
+                clientList.innerHTML += `<div class="presc-item">${item}</div>`;
+            });
+            scorePrescriptions.vendor[targetPrescKey].forEach(item => {
+                vendorList.innerHTML += `<div class="presc-item">${item}</div>`;
+            });
+            scorePrescriptions.practitioner[targetPrescKey].forEach(item => {
+                practList.innerHTML += `<div class="presc-item">${item}</div>`;
+            });
+
+            // 3. 动态填充 5 层对账矩阵详情
+            const matrixContainer = document.getElementById("matrix-container");
+            matrixContainer.innerHTML = "";
+
+            dimensionFeedbacks.forEach((dim, index) => {
+                const userLvl = answers[index + 1];
+                const feedback = dim.levelText[userLvl];
+
+                const cardHtml = `
+                    <div class="matrix-card">
+                        <div class="matrix-dim-info">
+                            <h4>${dim.name}</h4>
+                            <span>${dim.formula}</span>
+                        </div>
+                        <div class="matrix-status ${feedback.class}">
+                            <h5>当前诊断状态</h5>
+                            <p>${feedback.status} — ${feedback.desc}</p>
+                        </div>
+                        <div class="matrix-path">
+                            <h5>技术重构进化路径</h5>
+                            <p>${feedback.path}</p>
+                        </div>
+                    </div>
+                `;
+                matrixContainer.innerHTML += cardHtml;
+            });
+        }
+
+        // 重新诊断
+        // 双盲去噪字典
+        const deNoiseDict = [
+            { pattern: /SAP|ERP|Oracle|商业软件|标品套件/gi, replacement: "静态代数稳态模型 (Steady-state monthly batch constraints)" },
+            { pattern: /精益生产|精益S&OP|每周计划|滚动计划|T\+3|零库存/gi, replacement: "高变异无缓冲拉动 (High-frequency variety with zero buffer)" },
+            { pattern: /数字化看板|数字化大屏|BI看板|大屏监控|决策大屏/gi, replacement: "开环宏观状态观测器 (Open-loop top-level projection without Pegging)" },
+            { pattern: /跨部门流程协调|敏捷团队|委员会决策|跨部门会议/gi, replacement: "碳基算力极限下的非合作博弈 (Multi-agent non-cooperative Nash game)" },
+            { pattern: /大容量数据库|数据中台|中台建设|主数据集成/gi, replacement: "无损二维关系实体投影 (Relational flat matrix projection)" },
+            { pattern: /自动排程|APS|智能排产/gi, replacement: "缺乏物理确权的一维启发式排序 (1D heuristic sorting without spatiotemporal pegging)" },
+            { pattern: /外包开发|需求文档|BA和IT开发协作|层层翻译/gi, replacement: "多级沟通语义信道衰减二级翻译 (N-level semantic channel decay)" }
+        ];
+
+        // 预设模板数据
+        const sandboxTemplates = {
+            1: "我们引进了大厂 ERP 标品套件并实施了精益滚动 S&OP 看板，每周滚动开会协调计划，但目前交期频繁延迟，各部门开会救火，打算上马一套数据中台系统拉通数据。",
+            2: "业务领导为了实现智能排产，外包定制了一套 APS 排程系统，让开发部门按照我们厚厚的流程手册编写规则，经历了漫长的多级翻译与一年开发周期后，落地系统与实际计划脱节，最终因逻辑冲突被弃用，退回到 Excel 记账。",
+            3: "面对高频变异的插单与原材料断供，我们目前没有任何核心排产软件，全部依赖计划员人手一张 Excel 表进行人工拉表路由器式协调，每天开会催料，各部门利益冲突严重，陷入纳什博弈。"
+        };
+
+        function loadSandboxTemplate(id) {
+            const textarea = document.getElementById("sandbox-input");
+            if (textarea && sandboxTemplates[id]) {
+                textarea.value = sandboxTemplates[id];
+            }
+        }
+
+        function runSandboxAudit() {
+            const input = document.getElementById("sandbox-input").value.trim();
+            if (!input) {
+                alert("请输入数字化方案或痛点描述！");
+                return;
+            }
+
+            // 1. 去噪翻译
+            let deNoised = input;
+            const matches = [];
+            deNoiseDict.forEach(item => {
+                if (item.pattern.test(input)) {
+                    const found = input.match(item.pattern);
+                    found.forEach(f => {
+                        if (!matches.some(m => m.original === f)) {
+                            matches.push({ original: f, physics: item.replacement });
+                        }
+                    });
+                    deNoised = deNoised.replace(item.pattern, `[${item.replacement}]`);
+                }
+            });
+
+            // 2. 映射到 5 个维度的答案 (1 = L1, 2 = L2, 3 = L3)
+            let a1 = 2;
+            if (/Excel|人工|人手/gi.test(input) || /S&OP/gi.test(input)) a1 = 1;
+            else if (/自愈|高频|滤波|卡尔曼/gi.test(input)) a1 = 3;
+            answers[1] = a1;
+
+            let a2 = 2;
+            if (/烟囱|中间库|多表|SQL/gi.test(input)) a2 = 1;
+            else if (/正交|张量|时空|超图/gi.test(input)) a2 = 3;
+            answers[2] = a2;
+
+            let a3 = 2;
+            if (/查表|人脑|合同冲突|配额纠纷/gi.test(input)) a3 = 1;
+            else if (/偏序|配额平衡|取整|Lot Size|SWAP/gi.test(input)) a3 = 3;
+            answers[3] = a3;
+
+            let a4 = 2;
+            if (/外包|开发协作|层层翻译/gi.test(input)) a4 = 1;
+            else if (/总设计师|单脑|总体设计/gi.test(input)) a4 = 3;
+            answers[4] = a4;
+
+            let a5 = 2;
+            if (/记录|后视镜|看数|静态/gi.test(input)) a5 = 1;
+            else if (/自适应|DAE|写回|Write-Back|孪生/gi.test(input)) a5 = 3;
+            answers[5] = a5;
+
+            // 3. 渲染对照表
+            let html = `<h4>🔍 双盲去噪翻译对照表</h4>`;
+            if (matches.length > 0) {
+                html += `<table class="sandbox-table">
+                    <thead>
+                        <tr>
+                            <th>商业公关/痛点词汇</th>
+                            <th>价值链物理学还原</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+                matches.forEach(m => {
+                    html += `<tr>
+                        <td style="color:var(--danger-color); font-weight:bold;">${m.original}</td>
+                        <td style="color:var(--success-color); font-weight:bold;">${m.physics}</td>
+                    </tr>`;
+                });
+                html += `</tbody></table>`;
+            } else {
+                html += `<p style="color:#8b949e; margin-bottom: 12px;">未匹配到典型PR词汇，已按纯物理实相输入进行物理审计分析。</p>`;
+            }
+
+            // 4. 计算总分与预测
+            let totalS = a1 + a2 + a3 + a4 + a5;
+            let predText = "";
+            if (totalS <= 7) {
+                predText = "⚠️ **故障预测**：架构在 6-12 个月内面临**系统性瘫痪或隐性弃用**。计算不可约性将引爆局部相冲突，业务被逼退回 Excel 孤岛。";
+            } else if (totalS <= 12) {
+                predText = "⚠️ **故障预测**：系统能运行但摩擦废热极大，**高频断点下产生级联死锁**，依赖人工开会救火，决策时延达数天级别。";
+            } else {
+                predText = "✅ **物理预后**：方案在数学上闭环同构，具备抵抗局部熵增和变异吞噬的自适应能力。";
+            }
+
+            html += `<h4>🔮 故障诊断与寿命预测</h4>`;
+            html += `<p style="margin-bottom:12px; color:#c9d1d9; font-size:12px;">${predText}</p>`;
+            html += `<button class="btn btn-primary" onclick="jumpToReportDirectly()" style="width:100%; padding:8px 0; font-size:13px; justify-content:center;">⚡ 生成全息评估大盘与重构处方</button>`;
+
+            const resultBox = document.getElementById("sandbox-result");
+            if (resultBox) {
+                resultBox.innerHTML = html;
+                resultBox.classList.remove("hidden");
+            }
+        }
+
+        function jumpToReportDirectly() {
+            document.getElementById("welcome-card").style.display = "none";
+            generateReport();
+        }
+
+        // 重新诊断
+        function restartAudit() {
+            // 初始化答案
+            answers = { 1: null, 2: null, 3: null, 4: null, 5: null };
+            currentStep = 0;
+            
+            // 清除选项样式
+            document.querySelectorAll(".option-item").forEach(item => {
+                item.classList.remove("selected");
+            });
+
+            // 清除并隐藏沙盒结果
+            const resultBox = document.getElementById("sandbox-result");
+            if (resultBox) {
+                resultBox.innerHTML = "";
+                resultBox.classList.add("hidden");
+            }
+            const sandboxInput = document.getElementById("sandbox-input");
+            if (sandboxInput) {
+                sandboxInput.value = "";
+            }
+
+            // 视图切换
+            document.getElementById("report-section").classList.remove("active");
+            document.getElementById("question-container").style.display = "none";
+            document.getElementById("welcome-card").style.display = "block";
+            document.getElementById("wizard-layout").style.display = "grid";
+
+            // 启动默认空闲动画
+            startViewerAnimation(0);
+        }
+
+        // 导出 JSON 报告
+        function exportReportJSON() {
+            const scoreText = document.getElementById("score-text").textContent;
+            const scoreVal = parseInt(scoreText.split('/')[0].trim());
+            const data = {
+                answers: answers,
+                totalScore: scoreVal,
+                grade: document.getElementById("grade-letter").textContent.trim(),
+                gradeTitle: document.getElementById("report-grade-title").textContent.trim(),
+                exportTime: new Date().toISOString()
+            };
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = `IPC_Scheme_Audit_Report_${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+        }
+
+        // 导出 Markdown 报告
+        function exportReportMarkdown() {
+            const score = document.getElementById("score-text").textContent.trim();
+            const grade = document.getElementById("grade-letter").textContent.trim();
+            const gradeTitle = document.getElementById("report-grade-title").textContent.trim();
+            
+            let md = `# 🔮 IPC 计划与控制架构审计诊断报告\n\n`;
+            md += `* **诊断时间**: ${new Date().toLocaleDateString()}\n`;
+            md += `* **架构总分**: **${score}**\n`;
+            md += `* **诊断评级**: **${grade}级 (${gradeTitle})**\n\n`;
+            
+            md += `## 🛠️ 重构与进化处方\n\n`;
+            
+            md += `### 🏢 甲方（制造企业决策者）技术处方\n`;
+            const clientItems = document.querySelectorAll("#client-presc-list .presc-item");
+            clientItems.forEach(item => {
+                md += `* ${item.innerText}\n`;
+            });
+            md += `\n`;
+            
+            md += `### 🤝 乙方（解决方案/实施方）技术处方\n`;
+            const vendorItems = document.querySelectorAll("#vendor-presc-list .presc-item");
+            vendorItems.forEach(item => {
+                md += `* ${item.innerText}\n`;
+            });
+            md += `\n`;
+            
+            md += `### 🛠️ 从业人员进化路径\n`;
+            const practItems = document.querySelectorAll("#pract-presc-list .presc-item");
+            practItems.forEach(item => {
+                md += `* ${item.innerText}\n`;
+            });
+            md += `\n`;
+            
+            md += `## 📊 5层对账与漏洞详情\n\n`;
+            const matrixCards = document.querySelectorAll("#matrix-container .matrix-card");
+            matrixCards.forEach(card => {
+                const name = card.querySelector(".matrix-dim-info h4").innerText;
+                const formula = card.querySelector(".matrix-dim-info span").innerText;
+                const status = card.querySelector(".matrix-status p").innerText;
+                const path = card.querySelector(".matrix-path p").innerText;
+                
+                md += `### ${name} (${formula})\n`;
+                md += `* **诊断状态**: ${status}\n`;
+                md += `* **进化路径**: ${path}\n\n`;
+            });
+            
+            const blob = new Blob([md], { type: "text/markdown" });
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = `IPC_Scheme_Audit_Report_${new Date().toISOString().split('T')[0]}.md`;
+            a.click();
+        }
+
+        // 分享链接生成
+        function generateShareLink() {
+            const serialized = JSON.stringify(answers);
+            const encoded = btoa(encodeURIComponent(serialized));
+            const shareUrl = `${window.location.origin}${window.location.pathname}?answers=${encoded}`;
+            
+            navigator.clipboard.writeText(shareUrl).then(() => {
+                alert("📋 诊断结果分享链接已复制到剪贴板！发送给他人，即可在浏览器中瞬间复现您的物理实相与诊断结果。");
+            }).catch(err => {
+                console.error("复制失败:", err);
+                alert(`分享链接生成成功，请手动复制：\n${shareUrl}`);
+            });
+        }
+
+        // 监听 URL 自动载入答案
+        window.addEventListener("DOMContentLoaded", () => {
+            const params = new URLSearchParams(window.location.search);
+            const encodedAnswers = params.get("answers");
+            if (encodedAnswers) {
+                try {
+                    const decoded = decodeURIComponent(atob(encodedAnswers));
+                    answers = JSON.parse(decoded);
+                    
+                    // 同步高亮每个卡片的选中状态
+                    for (let qNum = 1; qNum <= 5; qNum++) {
+                        const userVal = answers[qNum];
+                        if (userVal !== null) {
+                            const qCard = document.getElementById(`qcard-${qNum}`);
+                            if (qCard) {
+                                const items = qCard.querySelectorAll(".option-item");
+                                items.forEach((item, index) => {
+                                    if (index === userVal - 1) {
+                                        item.classList.add("selected");
+                                    } else {
+                                        item.classList.remove("selected");
+                                    }
+                                });
+                            }
+                        }
+                    }
+                    
+                    // 直接渲染报告
+                    generateReport();
+                } catch(e) {
+                    console.error("Failed to parse answers from URL query string:", e);
+                }
+            }
+        });
+
+        // 初始化
+        startViewerAnimation(0);
+    </script>
+</body>
+</html>
