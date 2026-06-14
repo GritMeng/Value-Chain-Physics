@@ -4,7 +4,7 @@ from datetime import datetime
 
 # 配置
 BASE_URL = "https://gritmeng.github.io/Value-Chain-Physics"
-DOCS_PAGE = "docs.html"  # Docsify 路由页面
+DOCS_PAGE = "index.html"  # Docsify 路由页面
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # 需要排除的目录和文件
@@ -38,7 +38,7 @@ def generate_sitemap(md_files):
     sitemap_content.append('  </url>')
     
     # 2. 添加其他的静态 HTML 页面
-    extra_htmls = ['docs.html', 'IPC_Video_Lectures.html', 'value_chain_audit_agent.html', 'ipc_scheme_audit_agent.html']
+    extra_htmls = ['showcase.html', 'IPC_Video_Lectures.html', 'value_chain_audit_agent.html', 'ipc_scheme_audit_agent.html']
     for html in extra_htmls:
         if os.path.exists(os.path.join(ROOT_DIR, html)):
             sitemap_content.append('  <url>')
