@@ -1,198 +1,2718 @@
 <!DOCTYPE html>
-<html lang="zh-CN" class="notranslate" translate="no">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <title>价值链物理学</title>
-  <meta name="google" content="notranslate">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/dark.css">
-  
-  <!-- KaTeX CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
-  
-  <style>
-    :root {
-      --theme-color: #d29922;
-      --background: #06090e;
-      --sidebar-background: #0d1117;
-      --sidebar-border-color: rgba(48, 54, 61, 0.7);
-      --text-color: #c9d1d9;
-      --heading-color: #ffffff;
-      --link-color: #58a6ff;
-    }
-    
-    /* Force dark theme on all core wrappers to prevent white leaks */
-    body, main, .content, .markdown-section, .sidebar {
-      background-color: var(--background) !important;
-      color: var(--text-color) !important;
-      font-family: 'Outfit', 'Inter', -apple-system, sans-serif;
-    }
-    
-    body {
-      background-color: var(--background) !important;
-    }
-    
-    .content {
-      background-color: var(--background) !important;
-    }
-
-    .sidebar {
-      background-color: var(--sidebar-background) !important;
-      border-right: 1px solid var(--sidebar-border-color) !important;
-    }
-    
-    .sidebar-nav li a {
-      color: #8b949e !important;
-      font-size: 14px;
-    }
-    
-    .sidebar-nav li.active > a {
-      color: var(--theme-color) !important;
-      font-weight: 600;
-      border-right: 2px solid var(--theme-color) !important;
-    }
-    
-    .markdown-section {
-      background-color: var(--background) !important;
-      max-width: 900px !important;
-      padding: 30px 45px 40px 45px !important;
-    }
-    
-    .markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4 {
-      color: var(--heading-color) !important;
-      font-weight: 700;
-    }
-    
-    .markdown-section h1 {
-      border-bottom: 1px solid var(--sidebar-border-color);
-      padding-bottom: 10px;
-    }
-    
-    .markdown-section a {
-      color: var(--link-color) !important;
-      text-decoration: none;
-    }
-    
-    .markdown-section a:hover {
-      text-decoration: underline;
-    }
-    
-    .markdown-section code {
-      background-color: rgba(110, 118, 129, 0.2) !important;
-      color: #ff7b72 !important;
-      font-family: monospace;
-      padding: 3px 6px !important;
-      border-radius: 6px;
-    }
-    
-    .markdown-section pre {
-      background-color: rgba(22, 27, 34, 0.8) !important;
-      border: 1px solid var(--sidebar-border-color) !important;
-      border-radius: 8px;
-    }
-    
-    .markdown-section pre code {
-      color: #c9d1d9 !important;
-      background: none !important;
-      padding: 0 !important;
-    }
-    
-    .markdown-section blockquote {
-      border-left: 4px solid var(--theme-color) !important;
-      background-color: rgba(210, 153, 34, 0.05) !important;
-      color: #8b949e !important;
-      border-radius: 0 8px 8px 0;
-    }
-    
-    /* Tables styling */
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 20px 0;
-    }
-    
-    th, td {
-      border: 1px solid var(--sidebar-border-color) !important;
-      padding: 12px;
-      text-align: left;
-      color: var(--text-color) !important;
-    }
-    
-    th {
-      background-color: rgba(22, 27, 34, 0.8) !important;
-      color: white !important;
-    }
-    
-    tr:nth-child(even) {
-      background-color: rgba(22, 27, 34, 0.3) !important;
-    }
-    
-    /* Search Box Widget Styling */
-    .search input {
-      background-color: #0d1117 !important;
-      border: 1px solid var(--sidebar-border-color) !important;
-      color: var(--text-color) !important;
-    }
-    
-    .search input:focus {
-      border-color: var(--theme-color) !important;
-      box-shadow: 0 0 10px rgba(210, 153, 34, 0.2) !important;
-    }
-    
-    .search-results-panel {
-      background-color: var(--background) !important;
-    }
-    
-    .search em {
-      background-color: rgba(210, 153, 34, 0.3) !important;
-      color: #ffffff !important;
-    }
-  </style>
-</head>
-<body class="notranslate" translate="no">
-  <div id="app" class="notranslate" translate="no">加载中...</div>
-  <script>
-    window.$docsify = {
-      name: '价值链物理学',
-      repo: 'GritMeng/Value-Chain-Physics',
-      loadSidebar: true,     // 强行开启侧边栏
-      auto2top: true,        // 路由切换时自动回到顶部
-      maxLevel: 4,
-      subMaxLevel: 3,
-      requestHeaders: {      // 刚性破除浏览器一切历史死缓存
-        'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache'
-      },
-      latex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$']]
-      },
-      plugins: [
-        function(hook, vm) {
-          hook.doneEach(function() {
-            // Force notranslate on all elements that might contain math or code
-            document.querySelectorAll('.katex, .katex-display, .katex-html, code, pre, .markdown-section pre, tex, script[type="math/tex"]').forEach(function(el) {
-              el.classList.add('notranslate');
-              el.setAttribute('translate', 'no');
-            });
-          });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全息抗熵：用价值链物理学统御制造网络 | IPC 电影级全息演示</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@300;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #080b10;
+            --card-bg: rgba(13, 17, 23, 0.7);
+            --border-color: rgba(48, 54, 61, 0.6);
+            --text-color: #c9d1d9;
+            --primary-color: #58a6ff;
+            --accent-color: #d29922;
+            --glow-color: rgba(88, 166, 255, 0.35);
+            --danger-color: #ff7b72;
         }
-      ]
-    }
-  </script>
-  
-  <!-- Docsify v4 -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
-  
-  <!-- KaTeX (LaTeX engine) -->
-  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-  
-  <!-- docsify-latex 核心集成插件 -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify-latex@0"></script>
-  
-  <!-- Docsify 搜索插件 -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Outfit', 'Inter', -apple-system, sans-serif;
+        }
+
+        /* 宇宙暗底网格 */
+        .space-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(20, 30, 48, 0.4) 0%, rgba(8, 11, 16, 1) 100%),
+                linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 100% 100%, 50px 50px, 50px 50px;
+            z-index: 1;
+        }
+
+        /* 主舞台 */
+        #stage {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px;
+        }
+
+        /* 顶部导航标题 */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0.8;
+        }
+
+        header .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--primary-color), #a371f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(163, 113, 247, 0.3);
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+        header .logo:hover {
+            opacity: 0.85;
+        }
+
+        header .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(88, 166, 255, 0.1);
+            border: 1px solid var(--primary-color);
+            font-size: 12px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header .nav-btn-docs {
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(210, 153, 34, 0.15);
+            border: 1px solid var(--accent-color);
+            font-size: 12px;
+            color: var(--accent-color);
+            letter-spacing: 1px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+        header .nav-btn-docs:hover {
+            background: rgba(210, 153, 34, 0.3);
+            box-shadow: 0 0 12px rgba(210, 153, 34, 0.4);
+        }
+
+        header .nav-btn-lectures {
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(88, 166, 255, 0.15);
+            border: 1px solid var(--primary-color);
+            font-size: 12px;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+        header .nav-btn-lectures:hover {
+            background: rgba(88, 166, 255, 0.3);
+            box-shadow: 0 0 12px rgba(88, 166, 255, 0.4);
+        }
+
+        header .nav-btn-audit {
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(163, 113, 247, 0.15);
+            border: 1px solid #a371f7;
+            font-size: 12px;
+            color: #a371f7;
+            letter-spacing: 1px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+        header .nav-btn-audit:hover {
+            background: rgba(163, 113, 247, 0.3);
+            box-shadow: 0 0 12px rgba(163, 113, 247, 0.4);
+        }
+
+        /* 核心展示区 */
+        .viewport {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin: 20px 0;
+        }
+
+        /* 各种动画容器 */
+        .animation-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .animation-container.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* Scene 1: Chaos Grid */
+        #canvas-chaos {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Scene 2: Operator Pi */
+        #canvas-operator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Scene 3: Console Code */
+        .scene-flex-layout {
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .console-box {
+            flex: 1;
+            max-width: 600px;
+            height: 420px;
+            background: rgba(10, 12, 16, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            overflow-y: auto;
+            text-align: left;
+        }
+
+        .dashboard-box {
+            flex: 1;
+            max-width: 600px;
+            height: 420px;
+            background: rgba(13, 17, 23, 0.85);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .dashboard-title {
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        #canvas-cpu {
+            flex: 1;
+            width: 100%;
+            height: calc(100% - 40px);
+            background: transparent;
+        }
+
+        .console-line {
+            line-height: 1.5;
+            margin-bottom: 6px;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: consoleFadeIn 0.3s forwards;
+            font-size: 14px;
+        }
+
+        .console-prompt {
+            color: #58a6ff;
+        }
+
+        .console-success {
+            color: #3fb950;
+            font-weight: bold;
+        }
+
+        .console-warning {
+            color: #d29922;
+        }
+
+        @keyframes consoleFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scene 4: Obsidian Constellation */
+        #canvas-obsidian {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 底部字幕面板 */
+        .subtitle-panel {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px 40px;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+            position: relative;
+        }
+
+        .subtitle-text {
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.6;
+            letter-spacing: 1px;
+            background: linear-gradient(180deg, #ffffff 0%, #a8b2c1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .scene-indicator {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1f2937;
+            border: 1px solid var(--border-color);
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #8b949e;
+        }
+
+        /* 控制浮层 - 开屏点火 */
+        #launcher {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(8, 11, 16, 0.95);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        #launcher.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .play-btn {
+            background: linear-gradient(135deg, #1f6feb 0%, #8b5cf6 100%);
+            border: none;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 24px;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 50px rgba(139, 92, 246, 0.9);
+        }
+
+        .play-btn svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+            margin-left: 6px;
+        }
+
+        .play-btn::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            border: 2px dashed rgba(139, 92, 246, 0.4);
+            animation: rotateDashed 20s linear infinite;
+        }
+
+        @keyframes rotateDashed {
+            to { transform: rotate(360deg); }
+        }
+
+        .launcher-title {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            color: white;
+            text-align: center;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, #ffffff 0%, #8b949e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .launcher-desc {
+            font-size: 14px;
+            color: #8b949e;
+            max-width: 500px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* 录屏辅助提示 - 本地录屏时可手动去除 display:none */
+        .record-hint {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 123, 114, 0.1);
+            border: 1px solid var(--danger-color);
+            color: var(--danger-color);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 11px;
+            z-index: 5;
+            display: none; /* 对外发布时隐藏，本地录屏时改为 flex */
+            align-items: center;
+            gap: 8px;
+            animation: flashRed 2s infinite;
+        }
+
+        @keyframes flashRed {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.4; }
+        }
+
+        /* 配乐提示板 - 对外发布时隐藏 */
+        .audio-track-card {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(22, 27, 34, 0.8);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 11px;
+            color: #8b949e;
+            z-index: 5;
+            display: none; /* 对外发布时隐藏 */
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .eq-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 12px;
+        }
+        .eq-bar {
+            width: 2px;
+            background-color: var(--primary-color);
+            animation: bounceBar 1s ease infinite alternate;
+        }
+        .eq-bar:nth-child(2) { animation-delay: 0.2s; }
+        .eq-bar:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes bounceBar {
+            from { height: 2px; }
+            to { height: 12px; }
+        }
+
+        /* 磨砂玻璃全息放映控制台 */
+        .playback-console {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(13, 17, 23, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            transition: all 0.3s ease;
+        }
+        
+        .playback-console.hidden-console {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(10px);
+        }
+        
+        .console-btn-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .console-btn {
+            background: rgba(22, 27, 34, 0.6);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            border-radius: 6px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .console-btn:hover {
+            background: rgba(88, 166, 255, 0.15);
+            border-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 0 10px rgba(88, 166, 255, 0.3);
+        }
+
+        .console-btn.active {
+            background: rgba(88, 166, 255, 0.2);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .console-select {
+            background: rgba(22, 27, 34, 0.8);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 11px;
+            font-family: inherit;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .console-select:hover {
+            border-color: var(--primary-color);
+        }
+
+        .console-divider {
+            width: 1px;
+            height: 20px;
+            background: var(--border-color);
+        }
+        
+        .playback-console .status-info {
+            font-size: 11px;
+            color: #8b949e;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="space-grid"></div>
+
+    <!-- 录屏提示与音轨 -->
+    <div class="record-hint">
+        <span style="display:inline-block; width:8px; height:8px; background:var(--danger-color); border-radius:50%;"></span>
+        <span>提示: 可按下 [Win + G] 或使用 OBS 开启录屏与录音进行高保真视频保存</span>
+    </div>
+    <div class="audio-track-card">
+        <div class="eq-bars">
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+        </div>
+        <span id="bgm-indicator">配乐状态: 无源伴奏模式</span>
+    </div>
+
+    <!-- 启动点火遮罩 -->
+    <div id="launcher">
+        <button class="play-btn" id="start-btn" onclick="startShowcase()">
+            <svg viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+            </svg>
+        </button>
+        <h1 class="launcher-title">全息抗熵：用价值链物理学统御制造网络</h1>
+        <p class="launcher-desc">点击上方按钮，拉起 C++ DOD 大脑全息拓扑，启动电影级自动放映与语音讲述。请确保您的系统扬声器已开启。</p>
+    </div>
+
+    <!-- 悬浮播放控制台 -->
+    <div id="playback-console" class="playback-console hidden-console">
+        <div class="status-info">
+            <span id="console-bgm-indicator">🔊 无源伴奏</span>
+        </div>
+        <div class="console-divider"></div>
+        <div class="console-btn-group">
+            <button class="console-btn" id="btn-prev-line" onclick="prevLineControl()" title="上一幕">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg>
+            </button>
+            <button class="console-btn" id="btn-play-pause" onclick="togglePlayPause()" title="暂停/播放">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+            </button>
+            <button class="console-btn" id="btn-next-line" onclick="nextLine()" title="下一幕">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
+            </button>
+        </div>
+        <div class="console-divider"></div>
+        <select id="scene-selector" class="console-select" onchange="jumpToScriptIndex(parseInt(this.value))">
+            <!-- 动态填充 -->
+        </select>
+        <div class="console-divider"></div>
+        <select id="speed-selector" class="console-select" onchange="changeSpeed(this.value)" title="播放语速">
+            <option value="0.8">0.8x 语速</option>
+            <option value="1.0" selected>1.0x 语速</option>
+            <option value="1.2">1.2x 语速</option>
+            <option value="1.5">1.5x 语速</option>
+        </select>
+    </div>
+
+    <div id="stage">
+        <!-- 头部 -->
+        <header>
+            <div class="logo" onclick="window.location.href='./'">IPC DEEPMIND ENGINE</div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <div class="badge" id="scene-badge">Scene 01: Chaos</div>
+                <button class="nav-btn-docs" onclick="window.location.href='docs.html'">📖 系统科学文档</button>
+                <button class="nav-btn-lectures" onclick="window.location.href='IPC_Video_Lectures.html'">🎓 全息视频讲堂</button>
+                <button class="nav-btn-audit" onclick="window.location.href='value_chain_audit_agent.html'">🔮 智能审计体</button>
+            </div>
+        </header>
+
+        <!-- 视觉展示区 -->
+        <div class="viewport">
+            <!-- 场景 1：无序熵增 -->
+            <div class="animation-container active" id="scene-1">
+                <canvas id="canvas-chaos"></canvas>
+            </div>
+
+            <!-- 场景 2：Pi算符重整 -->
+            <div class="animation-container" id="scene-2">
+                <canvas id="canvas-operator"></canvas>
+            </div>
+
+            <!-- 场景 3：C++ 裸金属压测 -->
+            <div class="animation-container scene-flex-layout" id="scene-3">
+                <div class="console-box" id="console-output"></div>
+                <div class="dashboard-box">
+                    <div class="dashboard-title">DOD CACHE SENSITIVE FLUID THREAD SIMULATION</div>
+                    <canvas id="canvas-cpu"></canvas>
+                </div>
+            </div>
+
+            <!-- 场景 4：Obsidian 星云 -->
+            <div class="animation-container" id="scene-4">
+                <canvas id="canvas-obsidian"></canvas>
+            </div>
+        </div>
+
+        <!-- 字幕栏 -->
+        <div class="subtitle-panel">
+            <div class="scene-indicator" id="indicator-text">Thermodynamic Core</div>
+            <div class="subtitle-text" id="subtitle-content">点火就绪，等待统御指令...</div>
+        </div>
+    </div>
+
+    <script>
+        // 脚本数据定义：旁白与场景绑定
+        const videoScript = [
+            // 第一幕：混沌的重力与低维布朗运动 (0s - 40s)
+            {
+                scene: 1,
+                badge: "Scene 01: Chaos Grid",
+                indicator: "Thermodynamic Core",
+                text: "无论宇宙的终局是热寂还是坍缩，热力学第二定律已为一切存在设定了无可规避的物理重力——万物皆向混乱与无序滑落。"
+            },
+            {
+                scene: 1,
+                badge: "Scene 01: Chaos Grid",
+                indicator: "Complexity Trap",
+                text: "在由成百上千个供应商、机台与 SKU 交织的价值链网络中，当协同节点为 N 时，系统的复杂度将呈 N 的平方指数级爆发。"
+            },
+            {
+                scene: 1,
+                badge: "Scene 01: Chaos Grid",
+                indicator: "Axiom of Variety",
+                text: "人脑工作记忆 7 加减 2 的生理极限，注定了我们无法在同一个大脑中，实时求解出兼顾全局交付与利润的‘全局最优解’。"
+            },
+            {
+                scene: 1,
+                badge: "Scene 01: Chaos Grid",
+                indicator: "Babel Tower",
+                text: "我们在用机械时代的‘人治沟通’，去承载指数级变化的商业网络。局部理性的盲目博弈，在物理上化作了系统性内耗的摩擦废热：激增的呆滞料、高频的停工待料与迟滞的决策。"
+            },
+            {
+                scene: 1,
+                badge: "Scene 01: Chaos Grid",
+                indicator: "Whitney Failure",
+                text: "低维的工具，终究会在高维的拓扑面前发生惨烈的模型失效。"
+            },
+
+            // 第二幕：系统物理学宪法与硅基代偿 (40s - 75s)
+            {
+                scene: 2,
+                badge: "Scene 02: Operator Pi",
+                indicator: "Governance Operator",
+                text: "逃离阶乘级黑洞的唯一通道，是硅基的拓扑降维。我们必须在数字宇宙中，完成一场彻底的商业本体论跃迁。"
+            },
+            {
+                scene: 2,
+                badge: "Scene 02: Operator Pi",
+                indicator: "Axiomatic Base",
+                text: "引入‘统御算符’，向系统源源不断注入负熵，重写微观定律。"
+            },
+            {
+                scene: 2,
+                badge: "Scene 02: Operator Pi",
+                indicator: "Single Brain Singularity",
+                text: "这三种能力，无法通过跨部门会议进行物理拼接。在信息论的判决下，它们必须且只能在同一个大脑的神经突触中，完成化学缝合。这就是‘单脑奇点法则’——在同一个大脑里，实现技术与战略的零损耗闭环。"
+            },
+            {
+                scene: 2,
+                badge: "Scene 02: Operator Pi",
+                indicator: "Will-Logic Resonance",
+                text: "系统的推行，是一场权力向量与逻辑向量的投影对齐手术。当统帅将权力的剑锋，与底层的模型算法发生 100% 的同向共振时，夹角 θ 归零，变革的有效做功爆发出绝对极限。"
+            },
+
+            // 第三幕：裸金属做功与百毫秒奇迹 (75s - 130s)
+            {
+                scene: 3,
+                badge: "Scene 03: Bare-metal execution",
+                indicator: "Data-Oriented Design",
+                text: "在最冷酷的 C++ 裸金属层，我们干掉了所有虚无的跳转和垃圾回收。我们用面向数据的 DOD 架构，将全局 3D 需求张量彻底压缩密铺。"
+            },
+            {
+                scene: 3,
+                badge: "Scene 03: Bare-metal execution",
+                indicator: "Hardware Homomorphic",
+                text: "让数据契合 CPU 的硬件本源，实现真正的物理超导化流转。"
+            },
+            {
+                scene: 3,
+                badge: "Scene 03: Bare-metal execution",
+                indicator: "Self-Healing Solver",
+                text: "面对中国制造高频波动的极致场景，我们设计了不完全替代的 SWAP 资源置换算法与 Allotment 配额继承铁律。它是一道叹息之墙，在数字世界里，毫秒级完成计划的自愈，彻底杜绝局部抢空造成的连环呆滞。"
+            },
+            {
+                scene: 3,
+                badge: "Scene 03: Bare-metal execution",
+                indicator: "100ms Benchmark",
+                text: "在 5 万张多维订单的极限压力测试下，IPC 核心消纳计算仅耗时 100.85 毫秒！相比跑数小时的传统系统，速度提升了整整十万至二十八万倍！"
+            },
+            {
+                scene: 3,
+                badge: "Scene 03: Bare-metal execution",
+                indicator: "DuckDB Auditor",
+                text: "这绝非封闭暗箱。基于操作系统级物理克隆的沙箱隔离，将 15 万条高维计算状态在 60 毫秒内导出至 DuckDB。只需简单的 SQL，即可对引擎的每一次流转穿透对账。"
+            },
+
+            // 第四幕：思想的数字孪生体与星火物种进化 (130s - 180s)
+            {
+                scene: 4,
+                badge: "Scene 04: Obsidian constellation",
+                indicator: "Digital Twin of Mind",
+                text: "Obsidian 的 36 个原子神经元图谱，就是这台引擎的数字灵魂。从热力学第二定律的宿命抗争，到 Z 轴偏序格的降维代数演绎，这里全息承载了一个总设计师穿越血与火淬炼出的元认知。"
+            },
+            {
+                scene: 4,
+                badge: "Scene 04: Obsidian constellation",
+                indicator: "Made in Reality",
+                text: "中国制造的躯体已经壮大如巨人，但我们的大脑不能永远寄居在西方的旧逻辑或华丽的 PPT 幻影里。这是一场关于认知权与生存权的终极较量。"
+            },
+            {
+                scene: 4,
+                badge: "Scene 04: Obsidian constellation",
+                indicator: "Grit",
+                text: "我们甘愿化为沙砾，为中国制造业数字化供应链，铺设一条绝对胜利的道路。"
+            },
+            {
+                scene: 4,
+                badge: "Scene 04: Sentinel of Order",
+                indicator: "Holographic Anti-Entropy",
+                text: "智能计划与控制系统。全息抗熵，星火公认，星火燎原。"
+            }
+        ];
+
+        let currentScriptIndex = 0;
+        let isPlaying = false;
+        let synthesis = window.speechSynthesis;
+        let currentUtterance = null;
+        let currentAudio = null;
+        let memoryBlocks = [];
+        let cacheLines = [];
+        let elapsedTimerStart = null;
+        let currentElapsedString = "00.00 ms";
+        
+        // 播放控制台特有状态
+        let speechRate = 1.0;
+        let playTimer = null;
+        let watchdogTimer = null;
+
+        // 初始化所有画布
+        const canvasChaos = document.getElementById("canvas-chaos");
+        const ctxChaos = canvasChaos.getContext("2d");
+        const canvasOperator = document.getElementById("canvas-operator");
+        const ctxOperator = canvasOperator.getContext("2d");
+        const canvasObsidian = document.getElementById("canvas-obsidian");
+        const ctxObsidian = canvasObsidian.getContext("2d");
+        const canvasCPU = document.getElementById("canvas-cpu");
+        const ctxCPU = canvasCPU.getContext("2d");
+
+        function resizeCanvas() {
+            [canvasChaos, canvasOperator, canvasObsidian, canvasCPU].forEach(c => {
+                if (c) {
+                    c.width = c.clientWidth;
+                    c.height = c.clientHeight;
+                }
+            });
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // ==========================================
+        // 场景 1 动画：无序粒子网络 (Chaos Vector Field with Spacetime Warp & Ghost Equations)
+        // ==========================================
+        let particlesChaos = [];
+        let chaosNoiseSeed = Math.random() * 100;
+        let equationsChaos = [];
+        const mathEquationsScene1 = [
+            "dS \u2265 0",
+            "S = k_B ln \u03a9",
+            "H = -\u2211 p_i log p_i",
+            "O(N^2) Complexity",
+            "N! Comb. Explosion",
+            "Memory Limit: 7\u00b12",
+            "dS_{total} = dS_{sys} + dS_{surr} > 0"
+        ];
+        let warpCenters = [];
+
+        function initChaos() {
+            particlesChaos = [];
+            equationsChaos = [];
+            chaosNoiseSeed = Math.random() * 100;
+            
+            // Particles
+            for (let i = 0; i < 100; i++) {
+                particlesChaos.push({
+                    x: Math.random() * canvasChaos.width,
+                    y: Math.random() * canvasChaos.height,
+                    vx: 0,
+                    vy: 0,
+                    speed: Math.random() * 1.5 + 0.5,
+                    radius: Math.random() * 2 + 1,
+                    hue: Math.random() > 0.4 ? 355 : 25, // deep crimson & burning amber
+                    life: Math.random() * 100,
+                    decay: Math.random() * 0.05 + 0.02
+                });
+            }
+            
+            // Warp centers representing core failure hotspots
+            warpCenters = [
+                { x: canvasChaos.width * 0.3, y: canvasChaos.height * 0.4, r: 120, pulse: 0 },
+                { x: canvasChaos.width * 0.7, y: canvasChaos.height * 0.6, r: 150, pulse: Math.PI }
+            ];
+            
+            // Pre-spawn some equations
+            for (let i = 0; i < 5; i++) {
+                spawnEquationChaos();
+            }
+        }
+        
+        function spawnEquationChaos() {
+            equationsChaos.push({
+                text: mathEquationsScene1[Math.floor(Math.random() * mathEquationsScene1.length)],
+                x: Math.random() * (canvasChaos.width - 200) + 100,
+                y: canvasChaos.height + Math.random() * 50,
+                speedY: -(Math.random() * 0.4 + 0.2),
+                alpha: Math.random() * 0.5 + 0.25,
+                scale: Math.random() * 0.3 + 0.85
+            });
+        }
+        
+        function animateChaos() {
+            if (!isPlaying || videoScript[currentScriptIndex].scene !== 1) return;
+            
+            ctxChaos.fillStyle = 'rgba(8, 11, 16, 0.08)'; // fading trail
+            ctxChaos.fillRect(0, 0, canvasChaos.width, canvasChaos.height);
+            
+            let curIdx = currentScriptIndex; 
+            
+            // Draw warped background coordinate lines
+            ctxChaos.strokeStyle = 'rgba(88, 166, 255, 0.015)';
+            ctxChaos.lineWidth = 0.5;
+            const gridSpacing = 40;
+            
+            // Update warp center pulses
+            warpCenters.forEach(wc => {
+                wc.pulse += 0.02;
+                wc.x = wc.x + Math.sin(wc.pulse) * 0.5;
+            });
+            
+            // Draw grid with spacetime gravity warp representing complexity bottlenecks
+            for (let x = 0; x < canvasChaos.width; x += gridSpacing) {
+                ctxChaos.beginPath();
+                for (let y = 0; y < canvasChaos.height; y += 10) {
+                    let wx = x;
+                    let wy = y;
+                    
+                    // Warp calculations
+                    warpCenters.forEach(wc => {
+                        let dx = x - wc.x;
+                        let dy = y - wc.y;
+                        let dist = Math.hypot(dx, dy);
+                        let maxDist = wc.r + Math.sin(wc.pulse) * 20;
+                        if (dist < maxDist) {
+                            let force = (1 - dist / maxDist) * 15;
+                            let angle = Math.atan2(dy, dx);
+                            wx -= Math.cos(angle) * force;
+                            wy -= Math.sin(angle) * force;
+                        }
+                    });
+                    
+                    if (y === 0) ctxChaos.moveTo(wx, wy);
+                    else ctxChaos.lineTo(wx, wy);
+                }
+                ctxChaos.stroke();
+            }
+            
+            for (let y = 0; y < canvasChaos.height; y += gridSpacing) {
+                ctxChaos.beginPath();
+                for (let x = 0; x < canvasChaos.width; x += 10) {
+                    let wx = x;
+                    let wy = y;
+                    
+                    warpCenters.forEach(wc => {
+                        let dx = x - wc.x;
+                        let dy = y - wc.y;
+                        let dist = Math.hypot(dx, dy);
+                        let maxDist = wc.r + Math.sin(wc.pulse) * 20;
+                        if (dist < maxDist) {
+                            let force = (1 - dist / maxDist) * 15;
+                            let angle = Math.atan2(dy, dx);
+                            wx -= Math.cos(angle) * force;
+                            wy -= Math.sin(angle) * force;
+                        }
+                    });
+                    
+                    if (x === 0) ctxChaos.moveTo(wx, wy);
+                    else ctxChaos.lineTo(wx, wy);
+                }
+                ctxChaos.stroke();
+            }
+            
+            // Render warp center warning fields
+            warpCenters.forEach(wc => {
+                let rGlow = wc.r * (0.8 + Math.sin(wc.pulse * 2) * 0.1);
+                let grad = ctxChaos.createRadialGradient(wc.x, wc.y, 5, wc.x, wc.y, rGlow);
+                grad.addColorStop(0, 'rgba(255, 123, 114, 0.04)');
+                grad.addColorStop(0.5, 'rgba(210, 153, 34, 0.01)');
+                grad.addColorStop(1, 'rgba(8, 11, 16, 0)');
+                ctxChaos.fillStyle = grad;
+                ctxChaos.beginPath();
+                ctxChaos.arc(wc.x, wc.y, rGlow, 0, Math.PI * 2);
+                ctxChaos.fill();
+            });
+
+            // Draw floating ghost equations (representing scientific background)
+            ctxChaos.textAlign = 'center';
+            for (let i = equationsChaos.length - 1; i >= 0; i--) {
+                let eq = equationsChaos[i];
+                eq.y += eq.speedY;
+                eq.alpha -= 0.001;
+                if (eq.alpha <= 0 || eq.y < -20) {
+                    equationsChaos.splice(i, 1);
+                    spawnEquationChaos();
+                    continue;
+                }
+                ctxChaos.fillStyle = `rgba(139, 92, 246, ${eq.alpha * 0.45})`;
+                ctxChaos.font = `${Math.floor(13 * eq.scale)}px monospace`;
+                ctxChaos.fillText(eq.text, eq.x, eq.y);
+            }
+            
+            // Draw particles with trails
+            for (let i = 0; i < particlesChaos.length; i++) {
+                let p = particlesChaos[i];
+                
+                // Vector field angle
+                let angle = Math.sin(p.x * 0.004 + chaosNoiseSeed) * Math.cos(p.y * 0.004 + chaosNoiseSeed) * Math.PI * 4;
+                p.vx += Math.cos(angle) * 0.06;
+                p.vy += Math.sin(angle) * 0.06;
+                
+                // Pull toward closest warp center
+                warpCenters.forEach(wc => {
+                    let dx = wc.x - p.x;
+                    let dy = wc.y - p.y;
+                    let dist = Math.hypot(dx, dy);
+                    if (dist < 200) {
+                        p.vx += (dx / dist) * 0.03;
+                        p.vy += (dy / dist) * 0.03;
+                    }
+                });
+                
+                let speed = Math.hypot(p.vx, p.vy);
+                if (speed > p.speed) {
+                    p.vx = (p.vx / speed) * p.speed;
+                    p.vy = (p.vy / speed) * p.speed;
+                }
+                
+                p.x += p.vx;
+                p.y += p.vy;
+                p.life -= p.decay;
+                
+                // Respawn particle if out of bounds or dead
+                if (p.x < 0 || p.x > canvasChaos.width || p.y < 0 || p.y > canvasChaos.height || p.life <= 0) {
+                    p.x = Math.random() * canvasChaos.width;
+                    p.y = Math.random() * canvasChaos.height;
+                    p.vx = 0;
+                    p.vy = 0;
+                    p.life = Math.random() * 100 + 50;
+                }
+                
+                ctxChaos.fillStyle = `hsla(${p.hue}, 90%, 65%, ${0.25 + Math.sin(p.life * 0.1) * 0.2})`;
+                ctxChaos.beginPath();
+                ctxChaos.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctxChaos.fill();
+            }
+            
+            // --- Script-Specific Overlays (100% Matching) ---
+            
+            // Sub-concept 1: Complexity Trap (O(N^2) matrix node connections)
+            if (curIdx === 1) {
+                const nodeCount = 8;
+                const radius = 100;
+                const cx = canvasChaos.width / 2;
+                const cy = canvasChaos.height / 2;
+                let hubs = [];
+                for (let i = 0; i < nodeCount; i++) {
+                    let angle = (i / nodeCount) * Math.PI * 2 + Date.now() * 0.0003;
+                    hubs.push({
+                        x: cx + Math.cos(angle) * (radius + Math.sin(Date.now()*0.002 + i)*15),
+                        y: cy + Math.sin(angle) * (radius + Math.sin(Date.now()*0.002 + i)*15),
+                        name: `Node ${i+1}`
+                    });
+                }
+                
+                // Draw O(N^2) connections
+                ctxChaos.lineWidth = 0.8;
+                for (let i = 0; i < nodeCount; i++) {
+                    for (let j = i + 1; j < nodeCount; j++) {
+                        let pulse = Math.sin(Date.now() * 0.005 + i * j) * 0.5 + 0.5;
+                        ctxChaos.strokeStyle = `rgba(255, 123, 114, ${0.1 + pulse * 0.3})`;
+                        ctxChaos.beginPath();
+                        ctxChaos.moveTo(hubs[i].x, hubs[i].y);
+                        ctxChaos.lineTo(hubs[j].x, hubs[j].y);
+                        ctxChaos.stroke();
+                    }
+                }
+                
+                // Draw hubs
+                hubs.forEach((h, i) => {
+                    ctxChaos.fillStyle = '#ff7b72';
+                    ctxChaos.beginPath();
+                    ctxChaos.arc(h.x, h.y, 6, 0, Math.PI * 2);
+                    ctxChaos.fill();
+                    ctxChaos.strokeStyle = '#ffffff';
+                    ctxChaos.stroke();
+                    
+                    ctxChaos.fillStyle = '#8b949e';
+                    ctxChaos.font = '9px monospace';
+                    ctxChaos.fillText(h.name, h.x, h.y - 12);
+                });
+                
+                // Overlay text
+                ctxChaos.fillStyle = 'rgba(255, 123, 114, 0.85)';
+                ctxChaos.font = 'bold 16px Outfit';
+                ctxChaos.fillText("COMBINATORIAL EXPLOSION: O(N^2) COMPLEXITY", cx, cy - 150);
+            }
+            
+            // Sub-concept 2: Axiom of Variety (Working memory limit 7±2 overflow)
+            if (curIdx === 2) {
+                const cx = canvasChaos.width / 2;
+                const cy = canvasChaos.height / 2;
+                
+                // Working memory window
+                let pulse = Math.sin(Date.now() * 0.003) * 5;
+                let brainR = 110 + pulse;
+                ctxChaos.strokeStyle = '#58a6ff';
+                ctxChaos.lineWidth = 2.5;
+                ctxChaos.setLineDash([6, 6]);
+                ctxChaos.beginPath();
+                ctxChaos.arc(cx, cy, brainR, 0, Math.PI * 2);
+                ctxChaos.stroke();
+                ctxChaos.setLineDash([]);
+                
+                // Glow shading
+                let grad = ctxChaos.createRadialGradient(cx, cy, brainR - 20, cx, cy, brainR);
+                grad.addColorStop(0, 'rgba(8, 11, 16, 0)');
+                grad.addColorStop(1, 'rgba(88, 166, 255, 0.12)');
+                ctxChaos.fillStyle = grad;
+                ctxChaos.beginPath();
+                ctxChaos.arc(cx, cy, brainR, 0, Math.PI * 2);
+                ctxChaos.fill();
+                
+                ctxChaos.fillStyle = '#58a6ff';
+                ctxChaos.font = 'bold 12px Outfit';
+                ctxChaos.fillText("HUMAN WORKING MEMORY LIMIT (7±2 SLOTS)", cx, cy - brainR - 15);
+                
+                // Draw exactly 7 items locked inside the brain
+                const itemsCount = 7;
+                for (let i = 0; i < itemsCount; i++) {
+                    let angle = (i / itemsCount) * Math.PI * 2 + Date.now() * 0.0005;
+                    let ix = cx + Math.cos(angle) * 60;
+                    let iy = cy + Math.sin(angle) * 60;
+                    ctxChaos.fillStyle = '#58a6ff';
+                    ctxChaos.beginPath();
+                    ctxChaos.arc(ix, iy, 8, 0, Math.PI * 2);
+                    ctxChaos.fill();
+                    ctxChaos.fillStyle = '#ffffff';
+                    ctxChaos.font = 'bold 8px monospace';
+                    ctxChaos.fillText(`${i+1}`, ix, iy + 3);
+                }
+                
+                // Draw falling/colliding complex data nodes (SKUs, Suppliers) bouncing off outside
+                for (let i = 0; i < 15; i++) {
+                    let seed = i * 23.4;
+                    let angle = (seed + Date.now() * 0.001) % (Math.PI * 2);
+                    let dist = brainR + 40 + Math.sin(Date.now() * 0.01 + i) * 30;
+                    let ix = cx + Math.cos(angle) * dist;
+                    let iy = cy + Math.sin(angle) * dist;
+                    ctxChaos.fillStyle = '#ff7b72';
+                    ctxChaos.beginPath();
+                    ctxChaos.arc(ix, iy, 4, 0, Math.PI * 2);
+                    ctxChaos.fill();
+                    
+                    // Warning lines
+                    ctxChaos.strokeStyle = 'rgba(255, 123, 114, 0.25)';
+                    ctxChaos.beginPath();
+                    ctxChaos.moveTo(ix, iy);
+                    ctxChaos.lineTo(cx + Math.cos(angle) * brainR, cy + Math.sin(angle) * brainR);
+                    ctxChaos.stroke();
+                }
+                
+                ctxChaos.fillStyle = 'rgba(255, 123, 114, 0.8)';
+                ctxChaos.font = 'bold 13px monospace';
+                ctxChaos.fillText("BUFFER OVERFLOW: COGNITIVE OVERLOAD", cx, cy + brainR + 25);
+            }
+            
+            // Sub-concept 3: Babel Tower (Department silos and friction loss)
+            if (curIdx === 3) {
+                const cx = canvasChaos.width / 2;
+                const cy = canvasChaos.height / 2;
+                
+                // Four departments
+                const depts = [
+                    { name: "Sales (销售)", x: cx - 180, y: cy - 70, color: "#ff7b72" },
+                    { name: "Production (制造)", x: cx - 60, y: cy + 90, color: "#d29922" },
+                    { name: "Procurement (采购)", x: cx + 60, y: cy + 90, color: "#a371f7" },
+                    { name: "Logistics (物流)", x: cx + 180, y: cy - 70, color: "#58a6ff" }
+                ];
+                
+                // Draw department boxes
+                depts.forEach(d => {
+                    ctxChaos.fillStyle = 'rgba(22, 27, 34, 0.85)';
+                    ctxChaos.strokeStyle = d.color;
+                    ctxChaos.lineWidth = 1.5;
+                    ctxChaos.beginPath();
+                    ctxChaos.roundRect(d.x - 65, d.y - 30, 130, 60, 6);
+                    ctxChaos.fill();
+                    ctxChaos.stroke();
+                    
+                    ctxChaos.fillStyle = '#ffffff';
+                    ctxChaos.font = 'bold 11px Outfit';
+                    ctxChaos.fillText(d.name, d.x, d.y);
+                    
+                    // Draw random data points trapped inside
+                    for(let i=0; i<3; i++) {
+                        ctxChaos.fillStyle = 'rgba(255,255,255,0.4)';
+                        ctxChaos.beginPath();
+                        ctxChaos.arc(d.x - 30 + i*30, d.y + 16, 3, 0, Math.PI*2);
+                        ctxChaos.fill();
+                    }
+                });
+                
+                // Draw chaotic and delayed communications
+                ctxChaos.lineWidth = 1;
+                for (let i = 0; i < depts.length; i++) {
+                    for (let j = i + 1; j < depts.length; j++) {
+                        ctxChaos.strokeStyle = 'rgba(255, 123, 114, 0.2)';
+                        ctxChaos.beginPath();
+                        ctxChaos.moveTo(depts[i].x, depts[i].y);
+                        ctxChaos.lineTo(depts[j].x, depts[j].y);
+                        ctxChaos.stroke();
+                        
+                        // Slowly traveling packet representing meeting/email delays
+                        let t = (Date.now() * 0.0004 + i*j*0.25) % 1;
+                        let px = depts[i].x * (1 - t) + depts[j].x * t;
+                        let py = depts[i].y * (1 - t) + depts[j].y * t;
+                        ctxChaos.fillStyle = '#ff7b72';
+                        ctxChaos.beginPath();
+                        ctxChaos.arc(px, py, 4, 0, Math.PI*2);
+                        ctxChaos.fill();
+                        
+                        ctxChaos.fillStyle = 'rgba(255, 123, 114, 0.7)';
+                        ctxChaos.font = '7px monospace';
+                        ctxChaos.fillText("EMAIL/MEETING (DELAY)", px, py - 8);
+                    }
+                }
+                
+                // Floating friction heat alerts
+                if (Math.random() < 0.03) {
+                    let frictionFlares = ["激增的呆滞料!", "高频停工待料", "决策漏斗延迟", "人治沟通摩擦热"];
+                    let selectedAlert = frictionFlares[Math.floor(Math.random() * frictionFlares.length)];
+                    let ax = cx + (Math.random() - 0.5) * 200;
+                    let ay = cy + (Math.random() - 0.5) * 150;
+                    ctxChaos.fillStyle = '#ff7b72';
+                    ctxChaos.font = 'bold 12px monospace';
+                    ctxChaos.fillText(selectedAlert, ax, ay);
+                }
+            }
+            
+            // Sub-concept 4: Whitney Failure (2D grid collapsing)
+            if (curIdx === 4) {
+                const cx = canvasChaos.width / 2;
+                const cy = canvasChaos.height / 2;
+                
+                // Render a flat 2D grid that has cracks/fractures
+                ctxChaos.strokeStyle = 'rgba(255, 75, 75, 0.4)';
+                ctxChaos.lineWidth = 1;
+                
+                // Plane points
+                const gridPoints = 6;
+                const size = 180;
+                
+                ctxChaos.save();
+                ctxChaos.translate(cx, cy);
+                ctxChaos.rotate(Math.sin(Date.now()*0.0002)*0.15 - 0.3); // isometric tilt
+                
+                // Flat Grid
+                for (let i = -gridPoints; i <= gridPoints; i++) {
+                    let offset = (i / gridPoints) * size;
+                    // X lines
+                    ctxChaos.beginPath();
+                    ctxChaos.moveTo(-size, offset + Math.sin(Date.now()*0.001 + i)*8);
+                    ctxChaos.lineTo(size, offset + Math.cos(Date.now()*0.001 + i)*8);
+                    ctxChaos.stroke();
+                    // Y lines
+                    ctxChaos.beginPath();
+                    ctxChaos.moveTo(offset + Math.cos(Date.now()*0.001 + i)*8, -size);
+                    ctxChaos.lineTo(offset + Math.sin(Date.now()*0.001 + i)*8, size);
+                    ctxChaos.stroke();
+                }
+                
+                // Red Glitch fractures on the grid
+                ctxChaos.strokeStyle = '#ff7b72';
+                ctxChaos.lineWidth = 2.5;
+                ctxChaos.beginPath();
+                ctxChaos.moveTo(-60, -40);
+                ctxChaos.lineTo(0, 10);
+                ctxChaos.lineTo(40, -30);
+                ctxChaos.lineTo(90, 30);
+                ctxChaos.stroke();
+                
+                ctxChaos.restore();
+                
+                // High-dimensional particle cluster passing through the plane, ripping it
+                ctxChaos.fillStyle = 'rgba(163, 113, 247, 0.85)';
+                for (let i = 0; i < 20; i++) {
+                    let theta = i * 0.4 + Date.now()*0.003;
+                    let r = 50 + Math.sin(Date.now()*0.01 + i)*20;
+                    let x = cx + Math.cos(theta)*r;
+                    let y = cy + Math.sin(theta)*r - 20;
+                    ctxChaos.beginPath();
+                    ctxChaos.arc(x, y, 3, 0, Math.PI*2);
+                    ctxChaos.fill();
+                }
+                
+                ctxChaos.fillStyle = '#ff7b72';
+                ctxChaos.font = 'bold 15px Outfit';
+                ctxChaos.fillText("MODEL COLLAPSE: HIGH-DIMENSIONAL TOPOLOGY BREAKDOWN", cx, cy - 130);
+            }
+            
+            requestAnimationFrame(animateChaos);
+        }
+
+        // ==========================================
+        // 场景 2 动画：麦克斯韦妖 Pi 过滤 (Cyclotron Vortex & Vector Projection Surgery)
+        // ==========================================
+        let particlesOp = [];
+        const piCenter = { x: 0, y: 0 };
+        let piRadius = 90;
+        let piPulseAngle = 0;
+        let emittedPulses = [];
+        
+        // Vectors for Index 8
+        let vectorAnglePower = 1.3; // arbitrary initial angle (radians)
+        let vectorAngleLogic = -0.5; // arbitrary initial angle (radians)
+        
+        function initOperator() {
+            particlesOp = [];
+            emittedPulses = [];
+            piCenter.x = canvasOperator.width / 2;
+            piCenter.y = canvasOperator.height / 2;
+            
+            // Generate raw particles
+            for (let i = 0; i < 200; i++) {
+                particlesOp.push({
+                    x: Math.random() * (piCenter.x - 250),
+                    y: Math.random() * canvasOperator.height,
+                    vx: Math.random() * 2 + 3.0,
+                    vy: (Math.random() - 0.5) * 1.5,
+                    radius: Math.random() * 1.8 + 1.2,
+                    state: 'raw', 
+                    angle: 0,
+                    orbitRadius: 0,
+                    targetY: 0,
+                    spiralSpeed: Math.random() * 0.06 + 0.04
+                });
+            }
+            vectorAnglePower = 1.3;
+            vectorAngleLogic = -0.5;
+        }
+        
+        function animateOperator() {
+            if (!isPlaying || videoScript[currentScriptIndex].scene !== 2) return;
+            ctxOperator.fillStyle = 'rgba(8, 11, 16, 0.15)';
+            ctxOperator.fillRect(0, 0, canvasOperator.width, canvasOperator.height);
+            
+            piCenter.x = canvasOperator.width / 2;
+            piCenter.y = canvasOperator.height / 2;
+            let curIdx = currentScriptIndex;
+            
+            // Bending grid background
+            ctxOperator.strokeStyle = 'rgba(88, 166, 255, 0.02)';
+            ctxOperator.lineWidth = 0.5;
+            const gridSpacing = 50;
+            for (let x = 0; x < canvasOperator.width; x += gridSpacing) {
+                ctxOperator.beginPath();
+                for (let y = 0; y < canvasOperator.height; y += 10) {
+                    let dx = x - piCenter.x;
+                    let dy = y - piCenter.y;
+                    let dist = Math.hypot(dx, dy);
+                    let wx = x;
+                    let wy = y;
+                    // Bends toward the reactor core
+                    if (dist < 300 && dist > 20) {
+                        let bend = (1 - dist / 300) * 25;
+                        wx -= (dx / dist) * bend;
+                        wy -= (dy / dist) * bend;
+                    }
+                    if (y === 0) ctxOperator.moveTo(wx, wy);
+                    else ctxOperator.lineTo(wx, wy);
+                }
+                ctxOperator.stroke();
+            }
+            
+            // Emitted negative entropy pulses (especially during index 6)
+            if (curIdx === 6 && Math.random() < 0.035) {
+                emittedPulses.push({ radius: 80, alpha: 0.7, color: 'rgba(88, 166, 255,' });
+            } else if (Math.random() < 0.015) {
+                emittedPulses.push({ radius: 80, alpha: 0.5, color: 'rgba(163, 113, 247,' });
+            }
+            
+            ctxOperator.lineWidth = 1.5;
+            emittedPulses.forEach((pulse, idx) => {
+                pulse.radius += 3.5;
+                pulse.alpha -= 0.01;
+                if (pulse.alpha <= 0) {
+                    emittedPulses.splice(idx, 1);
+                } else {
+                    ctxOperator.strokeStyle = `${pulse.color}${pulse.alpha})`;
+                    ctxOperator.beginPath();
+                    ctxOperator.arc(piCenter.x, piCenter.y, pulse.radius, 0, Math.PI * 2);
+                    ctxOperator.stroke();
+                }
+            });
+            
+            // Render Central Pi Reactor Core (Π)
+            piPulseAngle += 0.05;
+            let currentPiRadius = piRadius + Math.sin(piPulseAngle) * 5;
+            
+            // Reactor outer concentric rings spinning
+            ctxOperator.strokeStyle = 'rgba(88, 166, 255, 0.4)';
+            ctxOperator.lineWidth = 1.5;
+            ctxOperator.beginPath();
+            ctxOperator.arc(piCenter.x, piCenter.y, currentPiRadius + 15, Date.now() * 0.001, Date.now() * 0.001 + Math.PI * 1.5);
+            ctxOperator.stroke();
+            
+            ctxOperator.strokeStyle = 'rgba(163, 113, 247, 0.4)';
+            ctxOperator.beginPath();
+            ctxOperator.arc(piCenter.x, piCenter.y, currentPiRadius + 25, -Date.now() * 0.0008, -Date.now() * 0.0008 + Math.PI * 1.2);
+            ctxOperator.stroke();
+            
+            // Glow gradient
+            ctxOperator.shadowBlur = 30;
+            ctxOperator.shadowColor = 'rgba(88, 166, 255, 0.5)';
+            let grad = ctxOperator.createRadialGradient(piCenter.x, piCenter.y, 10, piCenter.x, piCenter.y, currentPiRadius);
+            grad.addColorStop(0, 'rgba(10, 15, 25, 0.95)');
+            grad.addColorStop(0.65, 'rgba(88, 166, 255, 0.15)');
+            grad.addColorStop(1, 'rgba(163, 113, 247, 0.45)');
+            ctxOperator.fillStyle = grad;
+            ctxOperator.beginPath();
+            ctxOperator.arc(piCenter.x, piCenter.y, currentPiRadius, 0, Math.PI * 2);
+            ctxOperator.fill();
+            ctxOperator.shadowBlur = 0;
+            
+            // Draw Pi Symbol in the core
+            ctxOperator.fillStyle = '#ffffff';
+            ctxOperator.font = 'bold 46px Outfit';
+            ctxOperator.textAlign = 'center';
+            ctxOperator.textBaseline = 'middle';
+            ctxOperator.fillText('Π', piCenter.x, piCenter.y);
+            
+            // Particle processing pipeline
+            particlesOp.forEach(p => {
+                if (p.state === 'raw') {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    ctxOperator.fillStyle = '#ff7b72'; // chaotic red
+                    
+                    // Capture tractor arc when near operator boundary
+                    if (p.x >= piCenter.x - 180) {
+                        p.state = 'spiral';
+                        p.angle = Math.atan2(p.y - piCenter.y, p.x - piCenter.x);
+                        p.orbitRadius = Math.hypot(p.x - piCenter.x, p.y - piCenter.y);
+                    }
+                } else if (p.state === 'spiral') {
+                    p.angle += p.spiralSpeed;
+                    p.orbitRadius -= (p.orbitRadius - 25) * 0.08;
+                    p.x = piCenter.x + Math.cos(p.angle) * p.orbitRadius;
+                    p.y = piCenter.y + Math.sin(p.angle) * p.orbitRadius;
+                    ctxOperator.fillStyle = '#d29922'; // orange charging state
+                    
+                    // Tractor electric discharge arcs
+                    if (Math.random() < 0.005) {
+                        ctxOperator.strokeStyle = 'rgba(88, 166, 255, 0.4)';
+                        ctxOperator.lineWidth = 1;
+                        ctxOperator.beginPath();
+                        ctxOperator.moveTo(piCenter.x, piCenter.y);
+                        ctxOperator.lineTo(p.x, p.y);
+                        ctxOperator.stroke();
+                    }
+                    
+                    if (p.orbitRadius <= 28) {
+                        p.state = 'sorting';
+                        p.vx = Math.random() * 3 + 4.5;
+                        p.vy = 0;
+                    }
+                } else if (p.state === 'sorting') {
+                    p.x += p.vx;
+                    let dist = Math.hypot(p.x - piCenter.x, p.y - piCenter.y);
+                    if (dist > piRadius + 20) {
+                        p.state = 'sorted';
+                        // 3 streams representing organized outputs
+                        let paths = [piCenter.y - 70, piCenter.y, piCenter.y + 70];
+                        p.targetY = paths[Math.floor(Math.random() * 3)];
+                        p.amplitude = Math.random() * 10 + 5;
+                        p.frequency = Math.random() * 0.07 + 0.035;
+                        p.sinSeed = Math.random() * 10;
+                    }
+                    ctxOperator.fillStyle = '#a371f7'; // transitioning state
+                } else if (p.state === 'sorted') {
+                    p.x += p.vx;
+                    let targetYY = p.targetY + Math.sin(p.x * p.frequency + p.sinSeed) * p.amplitude;
+                    p.y += (targetYY - p.y) * 0.15;
+                    ctxOperator.fillStyle = '#3fb950'; // organized green
+                }
+                
+                ctxOperator.beginPath();
+                ctxOperator.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctxOperator.fill();
+                
+                // Reset particles
+                if (p.x > canvasOperator.width) {
+                    p.x = 0;
+                    p.y = Math.random() * canvasOperator.height;
+                    p.state = 'raw';
+                    p.vx = Math.random() * 2 + 3.0;
+                    p.vy = (Math.random() - 0.5) * 1.5;
+                }
+            });
+            
+            // --- Script-Specific Details ---
+            
+            // Sub-concept 5: Gravitational Black Hole O(N!) vs. Reactor
+            if (curIdx === 5) {
+                // Draw a swirling black hole on the left
+                const bhx = 100;
+                const bhy = canvasOperator.height / 2;
+                let bhRadius = 60 + Math.sin(Date.now() * 0.005) * 5;
+                
+                let bhGrad = ctxOperator.createRadialGradient(bhx, bhy, 5, bhx, bhy, bhRadius);
+                bhGrad.addColorStop(0, '#000000');
+                bhGrad.addColorStop(0.3, '#0c0f16');
+                bhGrad.addColorStop(0.8, 'rgba(255, 123, 114, 0.15)');
+                bhGrad.addColorStop(1, 'rgba(8,11,16,0)');
+                
+                ctxOperator.fillStyle = bhGrad;
+                ctxOperator.beginPath();
+                ctxOperator.arc(bhx, bhy, bhRadius, 0, Math.PI*2);
+                ctxOperator.fill();
+                
+                // Singularity ring
+                ctxOperator.strokeStyle = 'rgba(255, 123, 114, 0.4)';
+                ctxOperator.lineWidth = 1;
+                ctxOperator.setLineDash([4, 4]);
+                ctxOperator.beginPath();
+                ctxOperator.arc(bhx, bhy, bhRadius - 10, Date.now()*0.002, Date.now()*0.002 + Math.PI*2);
+                ctxOperator.stroke();
+                ctxOperator.setLineDash([]);
+                
+                // Draw magnetic flow beam from black hole to Reactor
+                ctxOperator.strokeStyle = 'rgba(88, 166, 255, 0.25)';
+                ctxOperator.lineWidth = 4;
+                ctxOperator.beginPath();
+                ctxOperator.moveTo(bhx + 20, bhy);
+                ctxOperator.bezierCurveTo(bhx + 150, bhy - 60, piCenter.x - 150, piCenter.y - 60, piCenter.x - 40, piCenter.y);
+                ctxOperator.stroke();
+                
+                ctxOperator.fillStyle = '#ff7b72';
+                ctxOperator.font = 'bold 11px monospace';
+                ctxOperator.fillText("COMPLEXITY SINGULARITY O(N!)", bhx, bhy - bhRadius - 10);
+            }
+            
+            // Sub-concept 6: Negative Entropy Base
+            if (curIdx === 6) {
+                // Floating formulas
+                if (Math.random() < 0.02) {
+                    let formulas = ["dS = diS + deS (deS < 0)", "Negative Entropy Pump", "ΔS_{sys} < 0", "Hasse Lattice Model"];
+                    let txt = formulas[Math.floor(Math.random() * formulas.length)];
+                    ctxOperator.fillStyle = '#58a6ff';
+                    ctxOperator.font = '12px monospace';
+                    ctxOperator.fillText(txt, piCenter.x + (Math.random()-0.5)*300, piCenter.y - 120 - Math.random()*50);
+                }
+            }
+            
+            // Sub-concept 7: Single Brain Singularity (Chemical Fusion of 3 Capabilities)
+            if (curIdx === 7) {
+                // Draw orbiting spheres of Tech, Strategy, and Operation merging
+                const orbitRadius = 130 + Math.sin(Date.now() * 0.003) * 10;
+                const speed = Date.now() * 0.0015;
+                const spheres = [
+                    { name: "Strategy (战略)", color: "#a371f7", angle: speed },
+                    { name: "Technology (技术)", color: "#58a6ff", angle: speed + (Math.PI * 2 / 3) },
+                    { name: "Operation (业务)", color: "#d29922", angle: speed + (Math.PI * 4 / 3) }
+                ];
+                
+                spheres.forEach(s => {
+                    let sx = piCenter.x + Math.cos(s.angle) * orbitRadius;
+                    let sy = piCenter.y + Math.sin(s.angle) * orbitRadius;
+                    
+                    // Glow line from reactor core to orbiters
+                    ctxOperator.strokeStyle = 'rgba(255,255,255,0.08)';
+                    ctxOperator.lineWidth = 1;
+                    ctxOperator.beginPath();
+                    ctxOperator.moveTo(piCenter.x, piCenter.y);
+                    ctxOperator.lineTo(sx, sy);
+                    ctxOperator.stroke();
+                    
+                    // Sphere body
+                    ctxOperator.fillStyle = s.color;
+                    ctxOperator.beginPath();
+                    ctxOperator.arc(sx, sy, 12, 0, Math.PI * 2);
+                    ctxOperator.fill();
+                    
+                    ctxOperator.strokeStyle = '#ffffff';
+                    ctxOperator.lineWidth = 1.5;
+                    ctxOperator.stroke();
+                    
+                    ctxOperator.fillStyle = '#ffffff';
+                    ctxOperator.font = 'bold 9px Outfit';
+                    ctxOperator.fillText(s.name, sx, sy - 18);
+                });
+                
+                ctxOperator.fillStyle = '#a371f7';
+                ctxOperator.font = 'bold 13px Outfit';
+                ctxOperator.fillText("SINGLE BRAIN CHEMICAL FUSION (零损耗闭环)", piCenter.x, piCenter.y + piRadius + 45);
+            }
+            
+            // Sub-concept 8: Power-Logic Vector Resonance (Alignment Surgery)
+            if (curIdx === 8) {
+                // Slowly converge angles to 0 (aligned along right axis, angle = 0)
+                vectorAnglePower += (0 - vectorAnglePower) * 0.015;
+                vectorAngleLogic += (0 - vectorAngleLogic) * 0.015;
+                
+                const vx = piCenter.x - 200;
+                const vy = piCenter.y - 100;
+                const vLen = 90;
+                
+                // Draw coordinate anchor
+                ctxOperator.strokeStyle = 'rgba(255,255,255,0.15)';
+                ctxOperator.lineWidth = 1;
+                ctxOperator.beginPath();
+                ctxOperator.moveTo(vx - 20, vy);
+                ctxOperator.lineTo(vx + vLen + 20, vy);
+                ctxOperator.moveTo(vx, vy - vLen - 10);
+                ctxOperator.lineTo(vx, vy + 20);
+                ctxOperator.stroke();
+                
+                // Power Vector (Green)
+                let px = vx + Math.cos(vectorAnglePower) * vLen;
+                let py = vy - Math.sin(vectorAnglePower) * vLen;
+                ctxOperator.strokeStyle = '#3fb950';
+                ctxOperator.lineWidth = 3;
+                ctxOperator.beginPath();
+                ctxOperator.moveTo(vx, vy);
+                ctxOperator.lineTo(px, py);
+                ctxOperator.stroke();
+                
+                // Power Vector Arrowhead
+                let pAngle = Math.atan2(py - vy, px - vx);
+                ctxOperator.fillStyle = '#3fb950';
+                ctxOperator.beginPath();
+                ctxOperator.moveTo(px, py);
+                ctxOperator.lineTo(px - 10*Math.cos(pAngle-0.4), py - 10*Math.sin(pAngle-0.4));
+                ctxOperator.lineTo(px - 10*Math.cos(pAngle+0.4), py - 10*Math.sin(pAngle+0.4));
+                ctxOperator.fill();
+                
+                // Logic Vector (Purple)
+                let lx = vx + Math.cos(vectorAngleLogic) * vLen;
+                let ly = vy - Math.sin(vectorAngleLogic) * vLen;
+                ctxOperator.strokeStyle = '#a371f7';
+                ctxOperator.lineWidth = 3;
+                ctxOperator.beginPath();
+                ctxOperator.moveTo(vx, vy);
+                ctxOperator.lineTo(lx, ly);
+                ctxOperator.stroke();
+                
+                // Logic Vector Arrowhead
+                let lAngle = Math.atan2(ly - vy, lx - vx);
+                ctxOperator.fillStyle = '#a371f7';
+                ctxOperator.beginPath();
+                ctxOperator.moveTo(lx, ly);
+                ctxOperator.lineTo(lx - 10*Math.cos(lAngle-0.4), ly - 10*Math.sin(lAngle-0.4));
+                ctxOperator.lineTo(lx - 10*Math.cos(lAngle+0.4), ly - 10*Math.sin(lAngle+0.4));
+                ctxOperator.fill();
+                
+                // Calculate angular difference
+                let diff = Math.abs(vectorAnglePower - vectorAngleLogic);
+                let cosineValue = Math.cos(diff).toFixed(4);
+                
+                ctxOperator.fillStyle = '#3fb950';
+                ctxOperator.font = 'bold 9px monospace';
+                ctxOperator.fillText(`\u2192V_p (Power Vector)`, px + 10, py - 5);
+                
+                ctxOperator.fillStyle = '#a371f7';
+                ctxOperator.font = 'bold 9px monospace';
+                ctxOperator.fillText(`\u2192V_l (Logic Vector)`, lx + 10, ly + 10);
+                
+                ctxOperator.fillStyle = '#ffffff';
+                ctxOperator.font = 'bold 12px monospace';
+                ctxOperator.fillText(`Vector Alignment \u03b8 = ${(diff * 180 / Math.PI).toFixed(1)}\u00b0`, vx + 30, vy + 40);
+                ctxOperator.fillStyle = cosineValue > 0.99 ? '#3fb950' : '#d29922';
+                ctxOperator.font = 'bold 16px Outfit';
+                ctxOperator.fillText(`Resonance Coefficient cos(\u03b8) = ${cosineValue}`, vx + 30, vy + 65);
+                
+                if (cosineValue > 0.999) {
+                    ctxOperator.fillStyle = 'rgba(63, 185, 80, 0.15)';
+                    ctxOperator.fillRect(vx - 20, vy + 85, 230, 25);
+                    ctxOperator.strokeStyle = '#3fb950';
+                    ctxOperator.strokeRect(vx - 20, vy + 85, 230, 25);
+                    ctxOperator.fillStyle = '#3fb950';
+                    ctxOperator.font = 'bold 10px Outfit';
+                    ctxOperator.fillText("MAXIMUM TRANSFORMATION POWER (W = F\u00b7S)", vx + 95, vy + 101);
+                    
+                    // Flare arcs from aligned core
+                    if (Math.random() < 0.05) {
+                        ctxOperator.strokeStyle = 'rgba(63, 185, 80, 0.3)';
+                        ctxOperator.strokeRect(vx - 30, vy - vLen - 20, vLen*2, vLen*2);
+                    }
+                }
+            }
+            
+            requestAnimationFrame(animateOperator);
+        }
+
+        // ==========================================
+        // 场景 3 动画：C++ 控制台输出 & L3 Cache Dashboard (DOD Contiguous Sweeps & Allotment Wall)
+        // ==========================================
+        // Variables memoryBlocks and cacheLines are already declared globally at the top level
+        let tensorCompressionY = 0; // for 3D demand tensor compression animation
+        
+        function initCPU() {
+            memoryBlocks = [];
+            cacheLines = [];
+            const rows = 6;
+            const cols = 20;
+            const blockWidth = 20;
+            const blockHeight = 12;
+            const gap = 4;
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    memoryBlocks.push({
+                        x: 40 + c * (blockWidth + gap),
+                        y: 130 + r * (blockHeight + gap),
+                        w: blockWidth,
+                        h: blockHeight,
+                        state: 'idle',
+                        address: `0x7ffee310${(r*cols + c).toString(16).padStart(3, '0')}`,
+                        pulse: Math.random() * Math.PI,
+                        cooldown: 0
+                    });
+                }
+            }
+            for (let i = 0; i < 4; i++) {
+                cacheLines.push({
+                    colIndex: 0,
+                    rowIndex: i % rows,
+                    speed: Math.random() * 0.35 + 0.45
+                });
+            }
+            tensorCompressionY = 0;
+            elapsedTimerStart = Date.now();
+        }
+        
+        function animateCPU() {
+            if (!isPlaying || videoScript[currentScriptIndex].scene !== 3) return;
+            ctxCPU.clearRect(0, 0, canvasCPU.width, canvasCPU.height);
+            
+            let curIdx = currentScriptIndex;
+            
+            // 1. Core Grid (16-cores CPU Thread pool)
+            const coreCount = 16;
+            const cols = 8;
+            const coreWidth = 50;
+            const coreHeight = 32;
+            const coreGap = 10;
+            ctxCPU.fillStyle = '#ffffff';
+            ctxCPU.font = 'bold 11px Outfit';
+            ctxCPU.textAlign = 'left';
+            ctxCPU.fillText("HETEROGENEOUS THREAD CORES (16 THREADS ACTIVE)", 40, 20);
+            
+            for (let i = 0; i < coreCount; i++) {
+                let col = i % cols;
+                let row = Math.floor(i / cols);
+                let x = 40 + col * (coreWidth + coreGap);
+                let y = 32 + row * (coreHeight + coreGap);
+                
+                // Core workload line oscillations
+                let waveSpeed = Date.now() * 0.015 + i;
+                let workloadPercent = 100;
+                
+                if (curIdx === 9) workloadPercent = Math.floor(60 + Math.sin(waveSpeed)*20);
+                else if (curIdx === 10) workloadPercent = Math.floor(80 + Math.sin(waveSpeed)*15);
+                else workloadPercent = 100; // Benchmark running at 100% capacity
+                
+                let flash = Math.sin(Date.now() * 0.02 + i) * 0.5 + 0.5;
+                ctxCPU.fillStyle = `rgba(88, 166, 255, ${0.08 + (workloadPercent/100)*0.22})`;
+                ctxCPU.strokeStyle = workloadPercent === 100 ? `rgba(63, 185, 80, ${0.4 + flash * 0.4})` : `rgba(88, 166, 255, ${0.4 + flash * 0.4})`;
+                ctxCPU.lineWidth = 1;
+                ctxCPU.beginPath();
+                ctxCPU.rect(x, y, coreWidth, coreHeight);
+                ctxCPU.fill();
+                ctxCPU.stroke();
+                
+                // Draw little load waves inside each core
+                ctxCPU.strokeStyle = workloadPercent === 100 ? 'rgba(63, 185, 80, 0.4)' : 'rgba(88, 166, 255, 0.3)';
+                ctxCPU.lineWidth = 0.8;
+                ctxCPU.beginPath();
+                for (let wx = 0; wx < coreWidth; wx += 2) {
+                    let wy = y + coreHeight - 4 - Math.abs(Math.sin((wx + Date.now()*0.08 + i)*0.25)) * (coreHeight - 12) * (workloadPercent/100);
+                    if (wx === 0) ctxCPU.moveTo(x + wx, wy);
+                    else ctxCPU.lineTo(x + wx, wy);
+                }
+                ctxCPU.stroke();
+                
+                ctxCPU.fillStyle = '#c9d1d9';
+                ctxCPU.font = '8px monospace';
+                ctxCPU.textAlign = 'center';
+                ctxCPU.fillText(`C${i+1}`, x + coreWidth/2, y + 10);
+                
+                ctxCPU.fillStyle = workloadPercent === 100 ? '#3fb950' : '#58a6ff';
+                ctxCPU.font = 'bold 8px monospace';
+                ctxCPU.fillText(`${workloadPercent}%`, x + coreWidth/2, y + coreHeight - 3);
+            }
+            
+            // 2. DOD Contiguous Memory (L3 Cache Direct sweeps)
+            ctxCPU.fillStyle = '#ffffff';
+            ctxCPU.font = 'bold 11px Outfit';
+            ctxCPU.textAlign = 'left';
+            ctxCPU.fillText("DOD CONTIGUOUS MEMORY (L3 CACHE DIRECT SWEEP)", 40, 122);
+            
+            cacheLines.forEach(line => {
+                line.colIndex += line.speed;
+                if (line.colIndex >= 20) {
+                    line.colIndex = 0;
+                    line.rowIndex = Math.floor(Math.random() * 6);
+                }
+                let targetCol = Math.floor(line.colIndex);
+                let blockIdx = line.rowIndex * 20 + targetCol;
+                if (memoryBlocks[blockIdx]) {
+                    memoryBlocks[blockIdx].state = 'active';
+                    memoryBlocks[blockIdx].cooldown = 1.0;
+                }
+            });
+            
+            memoryBlocks.forEach(b => {
+                b.pulse += 0.05;
+                if (b.cooldown > 0) {
+                    b.cooldown -= 0.03;
+                    if (b.cooldown <= 0) b.state = 'idle';
+                }
+                
+                let blockColor = `rgba(88, 166, 255, ${0.1 + Math.sin(b.pulse) * 0.08})`;
+                if (b.state === 'active') {
+                    // Different colors for operations
+                    if (curIdx === 11) blockColor = `rgba(210, 153, 34, ${b.cooldown})`; // SWAP (amber)
+                    else if (curIdx === 12) blockColor = `rgba(63, 185, 80, ${b.cooldown})`; // 100ms benchmark (green)
+                    else blockColor = `rgba(163, 113, 247, ${b.cooldown})`; // regular active sweep (purple)
+                    
+                    ctxCPU.shadowBlur = 8;
+                    ctxCPU.shadowColor = blockColor;
+                } else {
+                    ctxCPU.shadowBlur = 0;
+                }
+                
+                ctxCPU.fillStyle = blockColor;
+                ctxCPU.beginPath();
+                ctxCPU.rect(b.x, b.y, b.w, b.h);
+                ctxCPU.fill();
+                ctxCPU.shadowBlur = 0;
+                
+                // Display address overlay when swept
+                if (b.state === 'active' && Math.random() < 0.03) {
+                    ctxCPU.fillStyle = '#8b949e';
+                    ctxCPU.font = '7px monospace';
+                    ctxCPU.textAlign = 'left';
+                    ctxCPU.fillText(b.address, b.x - 5, b.y - 3);
+                }
+            });
+            
+            // --- Script-Specific Visual Overlays ---
+            
+            // Sub-concept 9: 3D Demand Tensor Squeeze / Compression
+            if (curIdx === 9) {
+                // Draw 3D Demand Tensor shape
+                const tx = 260;
+                const ty = 280;
+                tensorCompressionY = Math.min(60, tensorCompressionY + 0.5);
+                
+                ctxCPU.strokeStyle = 'rgba(163, 113, 247, 0.4)';
+                ctxCPU.lineWidth = 1;
+                
+                // Render volumetric cube that is collapsing vertically
+                ctxCPU.save();
+                ctxCPU.translate(tx, ty);
+                
+                // Draw bottom grid
+                ctxCPU.beginPath();
+                ctxCPU.moveTo(-40, 0); ctxCPU.lineTo(0, -20); ctxCPU.lineTo(40, 0); ctxCPU.lineTo(0, 20); ctxCPU.closePath();
+                ctxCPU.stroke();
+                
+                // Draw top grid (collapsing down)
+                let h = 50 - tensorCompressionY;
+                ctxCPU.strokeStyle = h <= 1 ? '#3fb950' : 'rgba(163, 113, 247, 0.7)';
+                ctxCPU.beginPath();
+                ctxCPU.moveTo(-40, -h); ctxCPU.lineTo(0, -20-h); ctxCPU.lineTo(40, -h); ctxCPU.lineTo(0, 20-h); ctxCPU.closePath();
+                ctxCPU.stroke();
+                
+                // Pillars
+                ctxCPU.beginPath();
+                ctxCPU.moveTo(-40, 0); ctxCPU.lineTo(-40, -h);
+                ctxCPU.moveTo(40, 0); ctxCPU.lineTo(40, -h);
+                ctxCPU.moveTo(0, 20); ctxCPU.lineTo(0, 20-h);
+                ctxCPU.stroke();
+                
+                ctxCPU.restore();
+                
+                ctxCPU.fillStyle = '#a371f7';
+                ctxCPU.font = 'bold 9px Outfit';
+                ctxCPU.textAlign = 'center';
+                ctxCPU.fillText("3D DEMAND TENSOR COMPRESSION", tx, ty - 65);
+                ctxCPU.fillStyle = '#3fb950';
+                ctxCPU.fillText("DOD DENSE LAYOUT COMPLETE", tx, ty + 35);
+            }
+            
+            // Sub-concept 10: Hardware Homomorphic flows
+            if (curIdx === 10) {
+                // Draw streams of data packets going from memory to processor
+                ctxCPU.strokeStyle = 'rgba(88, 166, 255, 0.25)';
+                ctxCPU.lineWidth = 1.5;
+                ctxCPU.beginPath();
+                ctxCPU.moveTo(40, 130);
+                ctxCPU.lineTo(40, 80);
+                ctxCPU.moveTo(500, 130);
+                ctxCPU.lineTo(500, 80);
+                ctxCPU.stroke();
+                
+                // Flow packets
+                for (let i = 0; i < 8; i++) {
+                    let t = (Date.now() * 0.002 + i*0.125) % 1;
+                    let px = 40 + i*60;
+                    let py = 130 - t * 45;
+                    ctxCPU.fillStyle = '#58a6ff';
+                    ctxCPU.beginPath();
+                    ctxCPU.arc(px, py, 3, 0, Math.PI*2);
+                    ctxCPU.fill();
+                }
+                
+                ctxCPU.fillStyle = '#58a6ff';
+                ctxCPU.font = 'bold 10px Outfit';
+                ctxCPU.textAlign = 'center';
+                ctxCPU.fillText("L3 CACHE HIT RATE: 99.8% | HARDWARE SUPERCONDUCTIVITY", canvasCPU.width/2, 285);
+            }
+            
+            // Sub-concept 11: Allotment Wall (叹息之墙 / Solver Self-Healing)
+            if (curIdx === 11) {
+                const wallX = canvasCPU.width / 2;
+                const wallY = 270;
+                
+                // Draw the Wall (barrier line)
+                ctxCPU.strokeStyle = 'rgba(210, 153, 34, 0.8)';
+                ctxCPU.lineWidth = 3.5;
+                ctxCPU.beginPath();
+                ctxCPU.moveTo(wallX, wallY - 35);
+                ctxCPU.lineTo(wallX, wallY + 35);
+                ctxCPU.stroke();
+                
+                ctxCPU.fillStyle = '#d29922';
+                ctxCPU.font = 'bold 9px Outfit';
+                ctxCPU.textAlign = 'center';
+                ctxCPU.fillText("ALLOTMENT WALL (叹息之墙)", wallX, wallY - 42);
+                
+                // Fluctuating demand curves
+                ctxCPU.strokeStyle = '#ff7b72'; // raw input
+                ctxCPU.lineWidth = 1.2;
+                ctxCPU.beginPath();
+                for (let x = wallX - 100; x < wallX; x += 3) {
+                    let y = wallY + Math.sin(x*0.1 + Date.now()*0.015) * 18;
+                    if (x === wallX - 100) ctxCPU.moveTo(x, y);
+                    else ctxCPU.lineTo(x, y);
+                }
+                ctxCPU.stroke();
+                
+                // Smoothed out cured curve on the other side
+                ctxCPU.strokeStyle = '#3fb950'; // self-healed
+                ctxCPU.lineWidth = 1.5;
+                ctxCPU.beginPath();
+                for (let x = wallX; x < wallX + 100; x += 3) {
+                    let y = wallY; // completely flat/cured due to SWAP matching
+                    if (x === wallX) ctxCPU.moveTo(x, y);
+                    else ctxCPU.lineTo(x, y);
+                }
+                ctxCPU.stroke();
+                
+                // Glow circles
+                ctxCPU.fillStyle = '#3fb950';
+                ctxCPU.beginPath();
+                ctxCPU.arc(wallX + 15, wallY, 4, 0, Math.PI*2);
+                ctxCPU.fill();
+                
+                ctxCPU.fillStyle = '#ffffff';
+                ctxCPU.font = '8px monospace';
+                ctxCPU.fillText("SWAP DECISION RESOLVED", wallX + 50, wallY - 10);
+            }
+            
+            // Sub-concept 12: 100.85 ms Benchmark Lock
+            let elapsed = 0;
+            if (elapsedTimerStart) {
+                elapsed = Date.now() - elapsedTimerStart;
+                if (curIdx >= 12) {
+                    currentElapsedString = "100.85 ms";
+                } else {
+                    let currentMs = Math.min(100.85, elapsed * 0.08).toFixed(2);
+                    currentElapsedString = `${currentMs.padStart(6, '0')} ms`;
+                }
+            }
+            
+            // Display Board
+            ctxCPU.fillStyle = 'rgba(13, 17, 23, 0.9)';
+            ctxCPU.strokeStyle = curIdx >= 12 ? '#3fb950' : '#58a6ff';
+            ctxCPU.lineWidth = 1.5;
+            ctxCPU.beginPath();
+            ctxCPU.rect(40, 245, 340, 70);
+            ctxCPU.fill();
+            ctxCPU.stroke();
+            
+            ctxCPU.fillStyle = '#8b949e';
+            ctxCPU.font = '9px Outfit';
+            ctxCPU.textAlign = 'left';
+            ctxCPU.fillText("DOD ENGINE ELAPSED COMPUTING TIME", 55, 265);
+            
+            ctxCPU.fillStyle = curIdx >= 12 ? '#3fb950' : '#58a6ff';
+            ctxCPU.font = 'bold 30px monospace';
+            ctxCPU.fillText(currentElapsedString, 55, 298);
+            
+            if (curIdx >= 12) {
+                // Acceleration tag
+                ctxCPU.fillStyle = 'rgba(63, 185, 80, 0.15)';
+                ctxCPU.fillRect(230, 255, 140, 50);
+                ctxCPU.strokeStyle = '#3fb950';
+                ctxCPU.strokeRect(230, 255, 140, 50);
+                ctxCPU.fillStyle = '#3fb950';
+                ctxCPU.font = 'bold 11px Outfit';
+                ctxCPU.fillText("SUCCESS ENGINE", 240, 274);
+                ctxCPU.font = '9px Outfit';
+                ctxCPU.fillText("100,000x+ ACCELERATION", 240, 292);
+            }
+            
+            // Sub-concept 13: DuckDB sandbox database output
+            if (curIdx === 13) {
+                // Draw a database cylinder
+                const dbx = 425;
+                const dby = 280;
+                const dbw = 50;
+                const dbh = 45;
+                
+                ctxCPU.fillStyle = 'rgba(22, 27, 34, 0.85)';
+                ctxCPU.strokeStyle = '#d29922';
+                ctxCPU.lineWidth = 1.5;
+                
+                // bottom base
+                ctxCPU.beginPath();
+                ctxCPU.ellipse(dbx, dby + dbh/2, dbw/2, 10, 0, 0, Math.PI);
+                ctxCPU.lineTo(dbx - dbw/2, dby - dbh/2);
+                ctxCPU.ellipse(dbx, dby - dbh/2, dbw/2, 10, 0, Math.PI, 0);
+                ctxCPU.lineTo(dbx + dbw/2, dby + dbh/2);
+                ctxCPU.fill();
+                ctxCPU.stroke();
+                
+                // top lid
+                ctxCPU.beginPath();
+                ctxCPU.ellipse(dbx, dby - dbh/2, dbw/2, 10, 0, 0, Math.PI*2);
+                ctxCPU.fill();
+                ctxCPU.stroke();
+                
+                ctxCPU.fillStyle = '#ffffff';
+                ctxCPU.font = '8px monospace';
+                ctxCPU.textAlign = 'center';
+                ctxCPU.fillText("DuckDB", dbx, dby + 2);
+                
+                // Draw lines of code/SQL flying
+                ctxCPU.fillStyle = '#8b949e';
+                ctxCPU.font = '8px monospace';
+                ctxCPU.fillText("SELECT * FROM audit_logs;", dbx, dby + dbh/2 + 20);
+                
+                // Stream data packets into the DB
+                ctxCPU.fillStyle = '#3fb950';
+                for (let i = 0; i < 4; i++) {
+                    let pt = (Date.now() * 0.003 + i*0.25) % 1;
+                    let px = dbx - 90 + pt*80;
+                    let py = dby - 10 + Math.sin(pt * Math.PI) * -12;
+                    ctxCPU.beginPath();
+                    ctxCPU.arc(px, py, 2.5, 0, Math.PI*2);
+                    ctxCPU.fill();
+                }
+            }
+            
+            requestAnimationFrame(animateCPU);
+        }
+
+        let consoleIntervals = [];
+        function startConsoleSimulation() {
+            const consoleBox = document.getElementById("console-output");
+            if (!consoleBox) return;
+            
+            // Clear previous simulation timeouts
+            consoleIntervals.forEach(t => clearTimeout(t));
+            consoleIntervals = [];
+            
+            consoleBox.innerHTML = "";
+            
+            const lines = [
+                { type: "prompt", text: "C:\\Users\\Grit\\IPC> deploy_ipc_engine.bat" },
+                { type: "info", text: "[START] Initializing C++ DOD Bare-Metal Engine..." },
+                { type: "info", text: "[INFO] Mapping 10,000 Part entities into continuous contiguous memory arrays." },
+                { type: "info", text: "[INFO] Aligning memory blocks with CPU Cache lines (64-byte padding)..." },
+                { type: "info", text: "[INFO] Parsing 20-level deeply nested BOM trees (DAG validation passed)." },
+                { type: "info", text: "[INFO] Ingesting 50,000 independent demand orders." },
+                { type: "info", text: "[INFO] Spawning 16 thread workers (OpenMP parallel grid: Blelloch Scan)..." },
+                { type: "info", text: "[INFO] Computing Z-axis Poset Lattice substitutions (Hasse Tree search)..." },
+                { type: "info", text: "[INFO] Executing Allocation matching & SWAP resource displacement..." },
+                { type: "success", text: "[SUCCESS] MRP Netting complete. 50,000 orders parsed. Elapsed time: 100.85 ms" },
+                { type: "success", text: "[SUCCESS] Speedup multiplier verified: 280,000x over traditional ERP batch (8 hours)." },
+                { type: "info", text: "[INFO] Exporting 150,000 computed state logs to DuckDB sandbox..." },
+                { type: "success", text: "[SUCCESS] DuckDB sandbox dump complete. Elapsed time: 60.12 ms" },
+                { type: "prompt", text: "C:\\Users\\Grit\\IPC> " }
+            ];
+            
+            let lineIdx = 0;
+            
+            function printLine() {
+                if (lineIdx >= lines.length) return;
+                const line = lines[lineIdx];
+                
+                const p = document.createElement("div");
+                p.className = "console-line";
+                
+                if (line.type === "prompt") {
+                    p.style.opacity = "1";
+                    p.style.transform = "none";
+                    p.style.animation = "none";
+                    p.innerHTML = `<span class="console-prompt">${line.text.substring(0, 19)}</span>`;
+                    consoleBox.appendChild(p);
+                    let charIdx = 19;
+                    function typeChar() {
+                        if (charIdx < line.text.length) {
+                            p.innerHTML = `<span class="console-prompt">${line.text.substring(0, charIdx + 1)}</span>`;
+                            charIdx++;
+                            let t = setTimeout(typeChar, 30);
+                            consoleIntervals.push(t);
+                        } else {
+                            p.innerHTML = `<span class="console-prompt">${line.text}</span>`;
+                            lineIdx++;
+                            let t = setTimeout(printLine, 200);
+                            consoleIntervals.push(t);
+                        }
+                        consoleBox.scrollTop = consoleBox.scrollHeight;
+                    }
+                    typeChar();
+                } else {
+                    if (line.type === "success") {
+                        p.innerHTML = `<span class="console-success">${line.text}</span>`;
+                    } else if (line.type === "warning") {
+                        p.innerHTML = `<span class="console-warning">${line.text}</span>`;
+                    } else {
+                        p.innerHTML = `<span>${line.text}</span>`;
+                    }
+                    consoleBox.appendChild(p);
+                    consoleBox.scrollTop = consoleBox.scrollHeight;
+                    lineIdx++;
+                    let delay = lineIdx === 10 ? 800 : (line.type === "success" ? 450 : 120);
+                    let t = setTimeout(printLine, delay);
+                    consoleIntervals.push(t);
+                }
+            }
+            
+            printLine();
+        }
+
+        // ==========================================
+        // 场景 4 动画：Obsidian 星云 (3D Projective Neural Space with Z-Poset Lattice & Prairie Fire)
+        // ==========================================
+        let nodesObsidian = [];
+        let edgesObsidian = [];
+        let sandParticles = []; // For index 16 sand road
+        let signalPulses = [];
+        
+        let rotationAngleY = 0.003;
+        let rotationAngleX = 0.002;
+        const nodeLabels = [
+            "Thermodynamic Core", "Entropy Resistance", "Ashby Law", "Conant-Ashby Regulator",
+            "Single Brain Singularity", "逆康威定律", "TIO Chemical Fusion", "Vector Work W",
+            "错配夹角 θ", "cosθ = 1", "DOD Contiguous Layout", "Cache Line Friendly",
+            "L3 Cache Occupy", "DAG Ultra-graph", "LLC Code Layers", "SWAP Displacement",
+            "Allotment Quota", "100.85ms Miracle", "DuckDB Sandbox", "DBeaver Auditor",
+            "Operational Ontology", "Site SitePart", "CODP Probability", "Decoupling Point",
+            "Netting Solver", "Forward/Backward Scheduling", "Godel Boundary", "Meta-cognition",
+            "S&OP Consensus", "S&OE Execution", "OTD Guarantee", "DIO Reduction",
+            "Procurement Cost", "L0 Base Design", "Grit Sand", "星火燎原"
+        ];
+
+        function initObsidian() {
+            nodesObsidian = [];
+            edgesObsidian = [];
+            sandParticles = [];
+            signalPulses = [];
+            
+            const cx = canvasObsidian.width / 2;
+            const cy = canvasObsidian.height / 2;
+            
+            // Build the 36 neural nodes in a 3D sphere
+            for (let i = 0; i < 36; i++) {
+                let theta = Math.acos(Math.random() * 2 - 1);
+                let phi = Math.random() * Math.PI * 2;
+                let radius = 200; 
+                nodesObsidian.push({
+                    x3d: Math.sin(theta) * Math.cos(phi) * radius,
+                    y3d: Math.sin(theta) * Math.sin(phi) * radius,
+                    z3d: Math.cos(theta) * radius,
+                    // Store target positions for transitions (e.g. brain outline for index 15)
+                    tx3d: 0, ty3d: 0, tz3d: 0,
+                    label: nodeLabels[i],
+                    pulseSize: Math.random() * 2.5 + 2.5,
+                    pulsePhase: Math.random() * Math.PI
+                });
+            }
+            
+            // Build Z-axis brain outline targets for index 15
+            nodesObsidian.forEach((n, i) => {
+                // Map to a stylized brain silhouette in 3D
+                let angle = (i / 36) * Math.PI * 2;
+                if (i < 18) { // left lobe
+                    n.tx3d = Math.cos(angle) * 180 - 40;
+                    n.ty3d = Math.sin(angle) * 120 + Math.cos(angle*2)*30;
+                    n.tz3d = (Math.random() - 0.5) * 60;
+                } else { // right lobe
+                    n.tx3d = Math.cos(angle) * 180 + 40;
+                    n.ty3d = Math.sin(angle) * 120 + Math.cos(angle*2)*30;
+                    n.tz3d = (Math.random() - 0.5) * 60;
+                }
+            });
+            
+            // Connections
+            for (let i = 0; i < nodesObsidian.length; i++) {
+                let distances = [];
+                for (let j = 0; j < nodesObsidian.length; j++) {
+                    if (i !== j) {
+                        let d = Math.hypot(
+                            nodesObsidian[i].x3d - nodesObsidian[j].x3d,
+                            nodesObsidian[i].y3d - nodesObsidian[j].y3d,
+                            nodesObsidian[i].z3d - nodesObsidian[j].z3d
+                        );
+                        distances.push({ index: j, dist: d });
+                    }
+                }
+                distances.sort((a, b) => a.dist - b.dist);
+                for (let c = 0; c < 3; c++) {
+                    edgesObsidian.push({ from: i, to: distances[c].index });
+                }
+            }
+            
+            // Initialize sand particles (thousands of golden sand grains)
+            for (let i = 0; i < 400; i++) {
+                sandParticles.push({
+                    x: Math.random() * canvasObsidian.width,
+                    y: canvasObsidian.height + Math.random() * 20,
+                    vx: Math.random() * 1.5 - 0.75,
+                    vy: -(Math.random() * 2.0 + 1.0),
+                    alpha: Math.random() * 0.7 + 0.3,
+                    size: Math.random() * 1.5 + 0.8
+                });
+            }
+            
+            rotationAngleY = 0.003;
+            rotationAngleX = 0.002;
+        }
+        
+        function animateObsidian() {
+            if (!isPlaying || videoScript[currentScriptIndex].scene !== 4) return;
+            ctxObsidian.clearRect(0, 0, canvasObsidian.width, canvasObsidian.height);
+            
+            const cx = canvasObsidian.width / 2;
+            const cy = canvasObsidian.height / 2;
+            let curIdx = currentScriptIndex;
+            
+            // 3D rotation matrix calculation
+            let cosY = Math.cos(rotationAngleY);
+            let sinY = Math.sin(rotationAngleY);
+            let cosX = Math.cos(rotationAngleX);
+            let sinX = Math.sin(rotationAngleX);
+            
+            // Transition positions depending on script index
+            nodesObsidian.forEach(n => {
+                let targetX = n.x3d;
+                let targetY = n.y3d;
+                let targetZ = n.z3d;
+                
+                if (curIdx === 15) { // Transition to brain blueprint
+                    targetX = n.tx3d;
+                    targetY = n.ty3d;
+                    targetZ = n.tz3d;
+                }
+                
+                // Interpolate
+                n.x3d += (targetX - n.x3d) * 0.08;
+                n.y3d += (targetY - n.y3d) * 0.08;
+                n.z3d += (targetZ - n.z3d) * 0.08;
+                
+                // Rotations
+                let x1 = n.x3d * cosY - n.z3d * sinY;
+                let z1 = n.x3d * sinY + n.z3d * cosY;
+                let y2 = n.y3d * cosX - z1 * sinX;
+                let z2 = n.y3d * sinX + z1 * cosX;
+                n.x3d = x1; n.y3d = y2; n.z3d = z2;
+                
+                let fov = 400;
+                let scale = fov / (fov + n.z3d);
+                n.x2d = cx + n.x3d * scale;
+                n.y2d = cy + n.y3d * scale;
+                n.scale = scale;
+            });
+            
+            // Draw background Z-axis poset coordinate plane for index 14
+            if (curIdx === 14) {
+                ctxObsidian.strokeStyle = 'rgba(255, 255, 255, 0.02)';
+                ctxObsidian.lineWidth = 1;
+                ctxObsidian.beginPath();
+                for (let i = -4; i <= 4; i++) {
+                    // lines of lattice
+                    ctxObsidian.moveTo(cx - 300, cy + i*40);
+                    ctxObsidian.lineTo(cx + 300, cy + i*40);
+                    
+                    ctxObsidian.moveTo(cx + i*65, cy - 200);
+                    ctxObsidian.lineTo(cx + i*65, cy + 200);
+                }
+                ctxObsidian.stroke();
+                
+                ctxObsidian.fillStyle = 'rgba(139, 92, 246, 0.2)';
+                ctxObsidian.font = '10px monospace';
+                ctxObsidian.fillText("Z-AXIS POSET LATTICE ALGEBRAIC SPACE", cx - 280, cy - 180);
+            }
+            
+            // Render Edges
+            ctxObsidian.lineWidth = 0.65;
+            edgesObsidian.forEach(e => {
+                let fromNode = nodesObsidian[e.from];
+                let toNode = nodesObsidian[e.to];
+                let avgScale = (fromNode.scale + toNode.scale) / 2;
+                let alpha = (avgScale - 0.5) * 0.45;
+                if (alpha > 0) {
+                    ctxObsidian.strokeStyle = curIdx === 17 ? `rgba(63, 185, 80, ${alpha * 1.5})` : `rgba(163, 113, 247, ${alpha})`;
+                    ctxObsidian.beginPath();
+                    ctxObsidian.moveTo(fromNode.x2d, fromNode.y2d);
+                    ctxObsidian.lineTo(toNode.x2d, toNode.y2d);
+                    ctxObsidian.stroke();
+                }
+            });
+            
+            // Neural signals pulses traversal
+            if (Math.random() < 0.06 && edgesObsidian.length > 0) {
+                let edge = edgesObsidian[Math.floor(Math.random() * edgesObsidian.length)];
+                signalPulses.push({
+                    fromNode: nodesObsidian[edge.from],
+                    toNode: nodesObsidian[edge.to],
+                    t: 0,
+                    speed: Math.random() * 0.03 + 0.015
+                });
+            }
+            
+            signalPulses.forEach((p, idx) => {
+                p.t += p.speed;
+                if (p.t >= 1) {
+                    signalPulses.splice(idx, 1);
+                } else {
+                    let px = p.fromNode.x2d * (1 - p.t) + p.toNode.x2d * p.t;
+                    let py = p.fromNode.y2d * (1 - p.t) + p.toNode.y2d * p.t;
+                    let scale = p.fromNode.scale * (1 - p.t) + p.toNode.scale * p.t;
+                    
+                    ctxObsidian.fillStyle = curIdx === 17 ? '#3fb950' : '#ffffff';
+                    ctxObsidian.shadowBlur = 10 * scale;
+                    ctxObsidian.shadowColor = curIdx === 17 ? '#3fb950' : '#a371f7';
+                    ctxObsidian.beginPath();
+                    ctxObsidian.arc(px, py, 2.5 * scale, 0, Math.PI*2);
+                    ctxObsidian.fill();
+                    ctxObsidian.shadowBlur = 0;
+                }
+            });
+            
+            // Render Nodes
+            nodesObsidian.forEach(n => {
+                n.pulsePhase += 0.035;
+                let currentScale = n.scale;
+                let pulseSize = n.pulseSize * currentScale + Math.sin(n.pulsePhase) * 1.5;
+                let alpha = (currentScale - 0.4) * 0.75;
+                
+                if (alpha > 0) {
+                    // Node glow styling
+                    let nColor = curIdx === 17 ? `rgba(63, 185, 80, ${alpha * 0.95})` : `rgba(163, 113, 247, ${alpha * 0.95})`;
+                    ctxObsidian.fillStyle = nColor;
+                    ctxObsidian.shadowBlur = 12 * currentScale;
+                    ctxObsidian.shadowColor = curIdx === 17 ? '#3fb950' : '#a371f7';
+                    ctxObsidian.beginPath();
+                    ctxObsidian.arc(n.x2d, n.y2d, Math.max(1.2, pulseSize), 0, Math.PI * 2);
+                    ctxObsidian.fill();
+                    ctxObsidian.shadowBlur = 0;
+                    
+                    // Node Label details
+                    ctxObsidian.fillStyle = `rgba(201, 209, 217, ${alpha * 0.85})`;
+                    let fontSize = Math.floor(9.5 * currentScale);
+                    if (fontSize > 4) {
+                        ctxObsidian.font = `${fontSize}px Inter`;
+                        ctxObsidian.textAlign = 'left';
+                        ctxObsidian.fillText(n.label, n.x2d + 9 * currentScale, n.y2d + 3 * currentScale);
+                    }
+                }
+            });
+            
+            // --- Script-Specific Visual Overlays ---
+            
+            // Sub-concept 15: Made in Reality - cognitive authority brain blueprint
+            if (curIdx === 15) {
+                // draw volumetric outlines and cognitive authority text overlay
+                ctxObsidian.fillStyle = '#a371f7';
+                ctxObsidian.font = 'bold 15px Outfit';
+                ctxObsidian.textAlign = 'center';
+                ctxObsidian.fillText("COGNITIVE & ARCHITECTURAL INDEPENDENCE (认知权 & 生存权)", cx, cy + 220);
+            }
+            
+            // Sub-concept 16: Sand particles road (甘为沙砾，铺路)
+            if (curIdx === 16) {
+                ctxObsidian.fillStyle = 'rgba(210, 153, 34, 0.7)'; // Golden sand grains
+                
+                // Let nodes slowly emit sand particles drifting downwards
+                if (Math.random() < 0.25) {
+                    let randNode = nodesObsidian[Math.floor(Math.random() * nodesObsidian.length)];
+                    sandParticles.push({
+                        x: randNode.x2d,
+                        y: randNode.y2d,
+                        vx: Math.random() * 1.0 - 0.5,
+                        vy: Math.random() * 2.0 + 1.5,
+                        alpha: 1.0,
+                        size: Math.random() * 1.6 + 0.8
+                    });
+                }
+                
+                sandParticles.forEach((p, idx) => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    // Gather particles at the bottom to form a road
+                    let roadY = canvasObsidian.height - 50 + Math.sin(p.x * 0.01) * 8;
+                    
+                    if (p.y >= roadY) {
+                        p.y = roadY;
+                        p.vx = 0;
+                        p.vy = 0;
+                        p.alpha -= 0.003;
+                    }
+                    
+                    if (p.alpha <= 0) {
+                        sandParticles.splice(idx, 1);
+                    } else {
+                        ctxObsidian.fillStyle = "rgba(210, 153, 34, " + p.alpha + ")";
+                        ctxObsidian.beginPath();
+                        ctxObsidian.arc(p.x, p.y, p.size, 0, Math.PI*2);
+                        ctxObsidian.fill();
+                    }
+                });
+                
+                // Draw a golden glowing road blueprint line
+                ctxObsidian.strokeStyle = 'rgba(210, 153, 34, 0.4)';
+                ctxObsidian.lineWidth = 2.5;
+                ctxObsidian.beginPath();
+                for (let x = 0; x < canvasObsidian.width; x += 10) {
+                    let y = canvasObsidian.height - 50 + Math.sin(x * 0.015) * 6;
+                    if (x === 0) ctxObsidian.moveTo(x, y);
+                    else ctxObsidian.lineTo(x, y);
+                }
+                ctxObsidian.stroke();
+                
+                ctxObsidian.fillStyle = '#d29922';
+                ctxObsidian.font = 'bold 13px Outfit';
+                ctxObsidian.textAlign = 'center';
+                ctxObsidian.fillText("甘为沙砾，铺设绝对胜利的物理通道", cx, canvasObsidian.height - 75);
+            }
+            
+            // Sub-concept 17: Holographic Anti-Entropy / Spreading Prairie Fire Sparks
+            if (curIdx === 17) {
+                // Rising green spark particles representing "星火燎原"
+                if (Math.random() < 0.3) {
+                    sandParticles.push({
+                        x: Math.random() * canvasObsidian.width,
+                        y: canvasObsidian.height - 50,
+                        vx: Math.random() * 2.0 - 1.0,
+                        vy: -(Math.random() * 4.0 + 2.0),
+                        alpha: 1.0,
+                        size: Math.random() * 2.0 + 1.0
+                    });
+                }
+                
+                sandParticles.forEach((p, idx) => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.alpha -= 0.008;
+                    if (p.alpha <= 0) {
+                        sandParticles.splice(idx, 1);
+                    } else {
+                        ctxObsidian.fillStyle = "rgba(63, 185, 80, " + p.alpha + ")"; // Glowing green sparks
+                        ctxObsidian.shadowBlur = 8;
+                        ctxObsidian.shadowColor = '#3fb950';
+                        ctxObsidian.beginPath();
+                        ctxObsidian.arc(p.x, p.y, p.size, 0, Math.PI*2);
+                        ctxObsidian.fill();
+                        ctxObsidian.shadowBlur = 0;
+                    }
+                });
+                
+                // Draw a pulsing green road base
+                ctxObsidian.strokeStyle = 'rgba(63, 185, 80, 0.7)';
+                ctxObsidian.lineWidth = 3.5;
+                ctxObsidian.beginPath();
+                for (let x = 0; x < canvasObsidian.width; x += 10) {
+                    let y = canvasObsidian.height - 50 + Math.sin(x * 0.015) * 6;
+                    if (x === 0) ctxObsidian.moveTo(x, y);
+                    else ctxObsidian.lineTo(x, y);
+                }
+                ctxObsidian.stroke();
+                
+                ctxObsidian.fillStyle = '#3fb950';
+                ctxObsidian.font = 'bold 22px Outfit';
+                ctxObsidian.textAlign = 'center';
+                ctxObsidian.fillText("全息抗熵，星火燎原。", cx, canvasObsidian.height - 85);
+            }
+            
+            requestAnimationFrame(animateObsidian);
+        }
+
+        // ==========================================
+        // 核心放映控制逻辑
+        // ==========================================
+        function startShowcase() {
+            document.getElementById("launcher").classList.add("hidden");
+            document.getElementById("playback-console").classList.remove("hidden-console");
+            isPlaying = true;
+            currentScriptIndex = 0;
+            
+            // 动态填充控制台场景选择下拉菜单
+            const selector = document.getElementById("scene-selector");
+            if (selector && selector.options.length === 0) {
+                videoScript.forEach((item, idx) => {
+                    const opt = document.createElement("option");
+                    opt.value = idx;
+                    opt.textContent = `${(idx+1).toString().padStart(2, '0')}: ${item.badge} (${item.indicator})`;
+                    selector.appendChild(opt);
+                });
+            }
+            if (selector) selector.value = 0;
+            
+            playNextLine();
+        }
+
+        // 播放与暂停切换
+        function togglePlayPause() {
+            const btn = document.getElementById("btn-play-pause");
+            if (isPlaying) {
+                isPlaying = false;
+                if (btn) {
+                    btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>`;
+                    btn.classList.remove("active");
+                }
+                if (currentUtterance) synthesis.cancel();
+                if (currentAudio) currentAudio.pause();
+                clearTimeout(watchdogTimer);
+                clearTimeout(playTimer);
+            } else {
+                isPlaying = true;
+                if (btn) {
+                    btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>`;
+                    btn.classList.add("active");
+                }
+                playNextLine();
+            }
+        }
+
+        // 切换到特定剧本行
+        function jumpToScriptIndex(index) {
+            if (index < 0 || index >= videoScript.length) return;
+            if (currentUtterance) synthesis.cancel();
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+            clearTimeout(watchdogTimer);
+            clearTimeout(playTimer);
+            
+            currentScriptIndex = index;
+            
+            // 同步下拉框状态
+            const selector = document.getElementById("scene-selector");
+            if (selector) selector.value = currentScriptIndex;
+            
+            const current = videoScript[currentScriptIndex];
+            document.getElementById("scene-badge").innerText = current.badge;
+            document.getElementById("indicator-text").innerText = current.indicator;
+            document.getElementById("subtitle-content").innerText = current.text;
+            switchScene(current.scene);
+            
+            if (isPlaying) {
+                playNextLine(true); // jump mode
+            }
+        }
+
+        // 下一幕
+        function nextLine() {
+            if (currentScriptIndex < videoScript.length - 1) {
+                jumpToScriptIndex(currentScriptIndex + 1);
+            }
+        }
+
+        // 上一幕
+        function prevLineControl() {
+            if (currentScriptIndex > 0) {
+                jumpToScriptIndex(currentScriptIndex - 1);
+            }
+        }
+
+        // 改变语速
+        function changeSpeed(rate) {
+            speechRate = parseFloat(rate);
+            if (isPlaying) {
+                jumpToScriptIndex(currentScriptIndex);
+            }
+        }
+
+        function playNextLine(jumpMode = false) {
+            if (!isPlaying) return;
+            if (currentScriptIndex >= videoScript.length) {
+                document.getElementById("subtitle-content").innerText = "🎬 全息抗熵统御演示放映完毕。";
+                isPlaying = false;
+                document.getElementById("launcher").classList.remove("hidden");
+                document.getElementById("playback-console").classList.add("hidden-console");
+                return;
+            }
+            
+            const current = videoScript[currentScriptIndex];
+            document.getElementById("scene-badge").innerText = current.badge;
+            document.getElementById("indicator-text").innerText = current.indicator;
+            document.getElementById("subtitle-content").innerText = current.text;
+            switchScene(current.scene);
+            
+            // 更新下拉选框
+            const selector = document.getElementById("scene-selector");
+            if (selector) selector.value = currentScriptIndex;
+
+            if (currentUtterance) synthesis.cancel();
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+            
+            let lineFinished = false;
+            const estimatedDuration = Math.max(4000, current.text.length * 300 / speechRate + 2000); 
+            
+            watchdogTimer = setTimeout(() => {
+                console.warn("演示看门狗触发：播放超时或挂起，强制进入下一幕。");
+                advance();
+            }, estimatedDuration);
+            
+            function advance() {
+                if (lineFinished) return;
+                lineFinished = true;
+                clearTimeout(watchdogTimer);
+                if (currentUtterance) synthesis.cancel();
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio = null;
+                }
+                playTimer = setTimeout(() => {
+                    currentScriptIndex++;
+                    playNextLine();
+                }, 1000);
+            }
+            
+            const audioPath = `audio/grits_voice_${currentScriptIndex + 1}.mp3`;
+            const audio = new Audio(audioPath);
+            currentAudio = audio;
+            let fallbackExecuted = false;
+            
+            function executeTTSFallback() {
+                if (fallbackExecuted || lineFinished) return;
+                fallbackExecuted = true;
+                
+                const statusLbl = "配乐状态: 无源伴奏 (合成语音播报)";
+                document.getElementById("bgm-indicator").innerText = statusLbl;
+                document.getElementById("console-bgm-indicator").innerText = "🔊 " + statusLbl;
+                
+                currentUtterance = new SpeechSynthesisUtterance(current.text);
+                currentUtterance.lang = "zh-CN";
+                currentUtterance.rate = 0.95 * speechRate; 
+                currentUtterance.pitch = 0.85;
+
+                currentUtterance.onend = advance;
+                currentUtterance.onerror = advance;
+
+                synthesis.speak(currentUtterance);
+            }
+
+            audio.addEventListener('canplaythrough', () => {
+                if (fallbackExecuted || lineFinished) return; 
+                const statusLbl = `配乐状态: 原声模式 (grits_voice_${currentScriptIndex + 1}.mp3)`;
+                document.getElementById("bgm-indicator").innerText = statusLbl;
+                document.getElementById("console-bgm-indicator").innerText = "🔊 " + statusLbl;
+                
+                // Adjust audio rate if supported
+                try {
+                    audio.defaultPlaybackRate = speechRate;
+                    audio.playbackRate = speechRate;
+                } catch(e) {}
+                
+                audio.play().catch(err => {
+                    console.warn("播放本地音频失败，降级为合成语音:", err);
+                    executeTTSFallback();
+                });
+            });
+
+            audio.addEventListener('ended', advance);
+
+            audio.addEventListener('error', (err) => {
+                executeTTSFallback();
+            });
+
+            setTimeout(() => {
+                if (!fallbackExecuted && !lineFinished && audio.readyState < 3) {
+                    executeTTSFallback();
+                }
+            }, 2000);
+        }
+
+        function switchScene(sceneNum) {
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`scene-${i}`).classList.remove("active");
+            }
+            document.getElementById(`scene-${sceneNum}`).classList.add("active");
+            resizeCanvas();
+
+            if (sceneNum === 1) {
+                initChaos();
+                animateChaos();
+            } else if (sceneNum === 2) {
+                initOperator();
+                animateOperator();
+            } else if (sceneNum === 3) {
+                initCPU();
+                animateCPU();
+                startConsoleSimulation();
+            } else if (sceneNum === 4) {
+                initObsidian();
+                animateObsidian();
+            }
+        }
+    </script>
 </body>
 </html>

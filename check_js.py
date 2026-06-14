@@ -4,7 +4,7 @@ import os
 
 html_files = [
     r"h:\系统科学\价值链物理学\IPC_Video_Lectures.html",
-    r"h:\系统科学\价值链物理学\IPC_Governance_Showcase.html",
+    r"h:\系统科学\价值链物理学\index.html",
     r"h:\系统科学\价值链物理学\value_chain_audit_agent.html",
     r"h:\系统科学\价值链物理学\ipc_scheme_audit_agent.html"
 ]

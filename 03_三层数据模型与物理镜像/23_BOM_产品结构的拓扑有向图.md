@@ -38,7 +38,7 @@
 
 *   **最大 LLC 深度合并规则**：
     如果一个共享组件 $C$ 同时属于多个不同的父项，在拓扑编译时，系统遍历所有的依赖路径，强制取其在所有路径中的**最大深度层级**：
-    $$\text{LLC}(C) = \max\_{e \in \text{All\_Paths}} \left( \text{LLC}(\text{Parent}\_e) + 1 \right)$$
+    $$\text{LLC}(C) = \max_{e \in \text{All_Paths}} \left( \text{LLC}(\text{Parent}_e) + 1 \right)$$
     这保证了在消纳结算时，所有向该组件汇总的毛需求已经完全坍缩，实现算法的绝对自洽。
 *   **拓扑环路熔断**：编译过程中，如果检测到首尾相接的闭环（如 $A \rightarrow B \rightarrow A$ 的恶性数据错误），拓扑编译器立即执行**“立法熔断”**并报错，防止 CPU 陷入死循环。
 
@@ -48,7 +48,7 @@
 
 在物理制造中，BOM 有向图并不是一成不变的，而是随着工程变更（ECN - Engineering Change Note）沿时间轴动态演进：
 * **时效窗口过滤 (`eff_start_day`, `eff_end_day`)**：每个 BOM 关系边缘携带了时效起止日期。在需求爆爆过程中，引擎根据当前爆破日（Child Due Day）对 BOM 关系进行时间戳切片过滤：
-  $$\text{Is\_Active} = ( \text{child\_due\_day} \ge \text{eff\_start\_day} ) \land ( \text{child\_due\_day} \le \text{eff\_end\_day} )$$
+  $$\text{Is_Active} = ( \text{child_due_day} \ge \text{eff_start_day} ) \land ( \text{child_due_day} \le \text{eff_end_day} )$$
   只有落在时效窗口内的子组件才会被拉动生产，未起效或已过期的组件会自动被排除，避免因工程更替引发的错误呆滞库存。
 
 ---
@@ -57,11 +57,11 @@
 
 在级联 MRP (Level-by-Level) 的供需消纳中，Lot-sizing 对需求爆破和物料消纳提出了严苛的约束：
 1. **净需求计算与 Lot 进位**：
-   在物料 $i$ 处，当期毛需求（Gross Demand）扣减其物理在手存量与在途订单后，形成净需求 $ND(t)$。若对应的 BOM 组件关系中定义了 `lot_size`，计划订单数量 $PO\_Qty$ 将依据 lot 进位公式进行向上规整：
-   $$PO\_Qty(t) = \lceil \frac{ND(t)}{\text{lot\_size}} \rceil \times \text{lot\_size}$$
+   在物料 $i$ 处，当期毛需求（Gross Demand）扣减其物理在手存量与在途订单后，形成净需求 $ND(t)$。若对应的 BOM 组件关系中定义了 `lot_size`，计划订单数量 $PO_Qty$ 将依据 lot 进位公式进行向上规整：
+   $$PO_Qty(t) = \lceil \frac{ND(t)}{\text{lot_size}} \rceil \times \text{lot_size}$$
 2. **溢出量回灌（Carryover Excess Registration）**：
    由于向上取整，会产生额外的溢出供给量：
-   $$\text{Excess}(t) = PO\_Qty(t) - ND(t)$$
+   $$\text{Excess}(t) = PO_Qty(t) - ND(t)$$
    引擎的 `run_lbl_mrp_engine` 模块会将此 $\text{Excess}(t)$ 自动追加回物料 $i$ 的**时序累积供应曲线（Cumulative Supply $CS(t)$）**中：
    $$CS(k) \leftarrow CS(k) + \text{Excess}(t) \quad (\forall k \ge t)$$
 3. **后续需求自动消化**：

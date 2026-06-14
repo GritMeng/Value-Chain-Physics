@@ -17,37 +17,37 @@
 ## 📐 2. 核心数学重算算子
 
 设父项缺口为 $N$。替代件 $j$ 向上取整后的实际分摊量为：
-$$A\_{\text{actual}, j} = \left\lceil \frac{R\_{\text{ratio}, j} \times N}{L\_j} \right\rceil \times L\_j$$
-*（其中 $L\_j$ 为 $j$ 的 Lot-Size 包装限制，$\lceil \dots \rceil$ 为向上取整算子）*
+$$A_{\text{actual}, j} = \left\lceil \frac{R_{\text{ratio}, j} \times N}{L_j} \right\rceil \times L_j$$
+*（其中 $L_j$ 为 $j$ 的 Lot-Size 包装限制，$\lceil \dots \rceil$ 为向上取整算子）*
 
 扣减后，第一阶段剩余待分配缺口为：
-$$N\_{\text{remain}} = N - A\_{\text{actual}, j}$$
+$$N_{\text{remain}} = N - A_{\text{actual}, j}$$
 
-对于参与下一轮分配的剩余活跃候选集 $\mathbf{K}\_{\text{active}}$，重新进行**配额比例归一化重算**：
-$$R\_{\text{new\_ratio}, m} = \frac{R\_{\text{ratio}, m}}{\sum\_{k \in \mathbf{K}\_{\text{active}}} R\_{\text{ratio}, k}} \quad (\forall m \in \mathbf{K}\_{\text{active}})$$
+对于参与下一轮分配的剩余活跃候选集 $\mathbf{K}_{\text{active}}$，重新进行**配额比例归一化重算**：
+$$R_{\text{new_ratio}, m} = \frac{R_{\text{ratio}, m}}{\sum_{k \in \mathbf{K}_{\text{active}}} R_{\text{ratio}, k}} \quad (\forall m \in \mathbf{K}_{\text{active}})$$
 
 ---
 
 ## ⚙️ 2.1 边界收敛与最后一笔配置算子 (Boundary Convergence & Last Allocation Config)
 
-为了防止在总缺口 $N$ 较小时，Lot-Size 取整动作强行量撑爆总需求导致 $N\_{\text{remain}} < 0$，系统引入配置项：`apply\_last\_lot\_size`（最后一笔分配是否强制应用 Lot-Size 物理取整）。该抽象逻辑与 DOS 合并最后一批需求的逻辑同构。
+为了防止在总缺口 $N$ 较小时，Lot-Size 取整动作强行量撑爆总需求导致 $N_{\text{remain}} < 0$，系统引入配置项：`apply\_last\_lot\_size`（最后一笔分配是否强制应用 Lot-Size 物理取整）。该抽象逻辑与 DOS 合并最后一批需求的逻辑同构。
 
-### 情况 1：迭代首期便发生“物理溢出” ($A\_{\text{actual}, j} \ge N$)
+### 情况 1：迭代首期便发生“物理溢出” ($A_{\text{actual}, j} \ge N$)
 当首个或前序件的最小起运批量已经大于等于当前剩余总缺口时，分配循环立即熔断：
 *   **若 `apply\_last\_lot\_size = true`**（强行凑整发运）：
-    $$A\_{\text{actual}, j} = \text{实际取整计算量}$$
-    溢出富余量（$A\_{\text{actual}, j} - N$）作为**富余库存（Projected Excess）**流向下一时段；
-    $$N\_{\text{remain}} = 0$$
+    $$A_{\text{actual}, j} = \text{实际取整计算量}$$
+    溢出富余量（$A_{\text{actual}, j} - N$）作为**富余库存（Projected Excess）**流向下一时段；
+    $$N_{\text{remain}} = 0$$
 *   **若 `apply\_last\_lot\_size = false`**（拆箱精准交付）：
-    $$A\_{\text{actual}, j} = N$$
-    $$N\_{\text{remain}} = 0$$
+    $$A_{\text{actual}, j} = N$$
+    $$N_{\text{remain}} = 0$$
 
-### 情况 2：分配进行到最后活跃件 $m\_{\text{last}}$ 时
+### 情况 2：分配进行到最后活跃件 $m_{\text{last}}$ 时
 当替代组候选集只剩下最后一个物料时：
 *   **若 `apply\_last\_lot\_size = true`**（最后一笔也必须按整箱起运）：
-    $$A\_{\text{actual}, m\_{\text{last}}} = \left\lceil \frac{N\_{\text{remain}}}{L\_{m\_{\text{last}}}} \right\rceil \times L\_{m\_{\text{last}}}$$
+    $$A_{\text{actual}, m_{\text{last}}} = \left\lceil \frac{N_{\text{remain}}}{L_{m_{\text{last}}}} \right\rceil \times L_{m_{\text{last}}}$$
 *   **若 `apply\_last\_lot\_size = false`**（收尾阶段精准配平，不设整除阻力）：
-    $$A\_{\text{actual}, m\_{\text{last}}} = N\_{\text{remain}}$$
+    $$A_{\text{actual}, m_{\text{last}}} = N_{\text{remain}}$$
 
 ---
 
@@ -57,11 +57,11 @@ $$R\_{\text{new\_ratio}, m} = \frac{R\_{\text{ratio}, m}}{\sum\_{k \in \mathbf{K
 
 ### 1. 初始化参数
 - **替代组**：由 $P1, P2, P3$ 三种替代料组成，其初始合同目标分配比例为：
-  $$R\_{P1} = 50\% \quad R\_{P2} = 30\% \quad R\_{P3} = 20\%$$
+  $$R_{P1} = 50\% \quad R_{P2} = 30\% \quad R_{P3} = 20\%$$
 - **包装离散阻力 (Lot-Size) 约束**：
-  - $P1$ 必须以 **20** 的整倍数起运 ($L\_{P1} = 20$)。
-  - $P2$ 必须以 **15** 的整倍数起运 ($L\_{P2} = 15$)。
-  - $P3$ 必须以 **10** 的整倍数起运 ($L\_{P3} = 10$)。
+  - $P1$ 必须以 **20** 的整倍数起运 ($L_{P1} = 20$)。
+  - $P2$ 必须以 **15** 的整倍数起运 ($L_{P2} = 15$)。
+  - $P3$ 必须以 **10** 的整倍数起运 ($L_{P3} = 10$)。
 - **输入总物料需求净缺口**：
   $$N = 100$$
 
@@ -69,35 +69,35 @@ $$R\_{\text{new\_ratio}, m} = \frac{R\_{\text{ratio}, m}}{\sum\_{k \in \mathbf{K
 
 #### 🔍 第一阶段：计算主料 $P1$ 的离散分配与取整
 1.  **计算 $P1$ 理论分配值**：
-    $$D\_{\text{due}, P1} = R\_{P1} \times N = 50\% \times 100 = 50$$
+    $$D_{\text{due}, P1} = R_{P1} \times N = 50\% \times 100 = 50$$
 2.  **应用 Lot-Size (20) 物理取整阻力**：
-    $$A\_{\text{actual}, P1} = \left\lceil \frac{50}{L\_{P1}} \right\rceil \times L\_{P1} = \left\lceil \frac{50}{20} \right\rceil \times 20 = 3 \times 20 = 60$$
+    $$A_{\text{actual}, P1} = \left\lceil \frac{50}{L_{P1}} \right\rceil \times L_{P1} = \left\lceil \frac{50}{20} \right\rceil \times 20 = 3 \times 20 = 60$$
 3.  **计算第一阶段剩余缺口**：
-    $$N\_{\text{remain}} = 100 - 60 = 40$$
+    $$N_{\text{remain}} = 100 - 60 = 40$$
     *因 $P1$ 离散取整多拿了 10 个，剩余需求被强行挤压为 40。*
 
 #### 🔍 第二阶段：对活跃集 $\{P2, P3\}$ 执行配额归一化重算
 1.  **排除已结算的 $P1$，对活跃集执行归一化**：
-    - 活跃比例和：$R\_{P2} + R\_{P3} = 30\% + 20\% = 50\%$
+    - 活跃比例和：$R_{P2} + R_{P3} = 30\% + 20\% = 50\%$
     - $P2$ 归一化新比例：
-      $$R\_{\text{new\_ratio}, P2} = \frac{30\%}{50\%} = 60\%$$
+      $$R_{\text{new_ratio}, P2} = \frac{30\%}{50\%} = 60\%$$
     - $P3$ 归一化新比例：
-      $$R\_{\text{new\_ratio}, P3} = \frac{20\%}{50\%} = 40\%$$
+      $$R_{\text{new_ratio}, P3} = \frac{20\%}{50\%} = 40\%$$
 2.  **计算 $P2$ 在新比例下的理论分配值**（基于剩余缺口 40）：
-    $$D\_{\text{due}, P2} = 60\% \times 40 = 24$$
+    $$D_{\text{due}, P2} = 60\% \times 40 = 24$$
 3.  **应用 $P2$ 的 Lot-Size (15) 物理取整阻力**：
-    $$A\_{\text{actual}, P2} = \left\lceil \frac{24}{15} \right\rceil \times 15 = 2 \times 15 = 30$$
+    $$A_{\text{actual}, P2} = \left\lceil \frac{24}{15} \right\rceil \times 15 = 2 \times 15 = 30$$
 4.  **计算第二阶段剩余缺口**：
-    $$N\_{\text{remain\_2}} = 40 - 30 = 10$$
+    $$N_{\text{remain_2}} = 40 - 30 = 10$$
 
 #### 🔍 第三阶段：对最后活跃件 $P3$ 进行收尾配平
 1.  **P3** 比例在新一轮归一化中自动拉升为 **100%**。
 2.  **计算 $P3$ 理论分配值**（基于剩余缺口 10）：
-    $$D\_{\text{due}, P3} = 100\% \times 10 = 10$$
+    $$D_{\text{due}, P3} = 100\% \times 10 = 10$$
 3.  **应用 $P3$ 的 Lot-Size (10) 物理取整阻力**：
-    $$A\_{\text{actual}, P3} = \left\lceil \frac{10}{10} \right\rceil \times 10 = 10$$
+    $$A_{\text{actual}, P3} = \left\lceil \frac{10}{10} \right\rceil \times 10 = 10$$
 4.  **计算最终剩余需求**：
-    $$N\_{\text{remain\_3}} = 10 - 10 = 0$$
+    $$N_{\text{remain_3}} = 10 - 10 = 0$$
 
 #### 📊 最终对账对账审计表
 *   **P1 实际分配量**：**60** （完全整除 Lot-Size 20）

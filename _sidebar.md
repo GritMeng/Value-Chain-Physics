@@ -1,3 +1,4 @@
+* <a href="./" target="_self">🎬 返回全息演示主页</a>
 * [📜 八大核心公理](README.md)
 * <a href="value_chain_audit_agent.html" target="_blank">🔮 价值链智能体审计</a>
 * <a href="ipc_scheme_audit_agent.html" target="_blank">🧠 IPC 架构技术审计</a>

@@ -55,7 +55,7 @@
 ## 📐 5. Lot-Sizing（批次批量控制）的物理表达
 
 * **批量控制行（Lot-Sizing Constraints）**：在物料实体与 BOM 关联边缘，通过引入 `lot_size` 物理参数，引擎能够对生成的 `PlannedOrder` 计划订单进行向上批量取整校正（即满足最低生产或包装单元限制）：
-  $$\text{Planned\_Order\_Qty} = \lceil \frac{\text{Net\_Demand\_Qty}}{\text{lot\_size}} \rceil \times \text{lot\_size}$$
+  $$\text{Planned_Order_Qty} = \lceil \frac{\text{Net_Demand_Qty}}{\text{lot_size}} \rceil \times \text{lot_size}$$
 * **余量滚动消纳**：由 lot-sizing 进位产生的富余供给量（Carryover Excess）将自动作为下一阶段的在手存量重新注入 LBL 时间线中，在极速 MRP 的流式交集计算里被随后的毛需求自动消化，完美避免了重复过量排产。
 
 ---
