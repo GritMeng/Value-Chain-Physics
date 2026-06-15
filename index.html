@@ -106,27 +106,47 @@
     }
     
     /* Tables styling */
-    table {
-      border-collapse: collapse;
+    .table-container {
       width: 100%;
+      overflow-x: auto;
       margin: 20px 0;
+      border: 1px solid var(--sidebar-border-color);
+      border-radius: 8px;
+      background-color: rgba(22, 27, 34, 0.2);
     }
     
-    th, td {
+    .markdown-section table {
+      border-collapse: collapse;
+      width: 100% !important;
+      margin: 0 !important;
+      display: table !important;
+      table-layout: auto;
+    }
+    
+    .markdown-section th, .markdown-section td {
       border: 1px solid var(--sidebar-border-color) !important;
       padding: 12px;
       text-align: left;
       color: var(--text-color) !important;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      min-width: 120px;
     }
     
-    th {
+    .markdown-section th {
       background-color: rgba(22, 27, 34, 0.8) !important;
       color: white !important;
     }
     
-    tr:nth-child(even) {
+    .markdown-section tr:nth-child(even) {
       background-color: rgba(22, 27, 34, 0.3) !important;
     }
+
+    .markdown-section td:first-child, .markdown-section th:first-child {
+      min-width: 50px !important;
+      text-align: center;
+    }
+
     
     /* Search Box Widget Styling */
     .search input {
@@ -170,6 +190,37 @@
       },
       plugins: [
         function(hook, vm) {
+          hook.beforeEach(function(content) {
+            // Transform [[path/to/file|display text]]
+            content = content.replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, function(match, path, text) {
+              return '[' + text.trim() + '](' + path.trim() + '.md)';
+            });
+            
+            // Transform [[path/to/file]]
+            content = content.replace(/\[\[([^\]]+)\]\]/g, function(match, path) {
+              if (path.startsWith('#')) {
+                return '[' + path + '](' + path + ')';
+              }
+              // Extract filename
+              var parts = path.split('/');
+              var filename = parts[parts.length - 1];
+              filename = filename.replace(/\.md$/, '');
+              
+              // Strip leading numbering (e.g. 01_ or 09a_)
+              var cleanText = filename.replace(/^\d+[a-z]?_/, '');
+              
+              return '[' + cleanText.trim() + '](' + path.trim() + '.md)';
+            });
+            
+            return content;
+          });
+
+          hook.afterEach(function(html) {
+            // Wrap all <table> elements in a responsive container and force notranslate
+            return html.replace(/<table>/g, '<div class="table-container notranslate" translate="no"><table>')
+                       .replace(/<\/table>/g, '</table></div>');
+          });
+
           hook.doneEach(function() {
             // Force notranslate on all elements that might contain math or code
             document.querySelectorAll('.katex, .katex-display, .katex-html, code, pre, .markdown-section pre, tex, script[type="math/tex"]').forEach(function(el) {
