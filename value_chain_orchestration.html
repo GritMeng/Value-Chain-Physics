@@ -1,0 +1,4084 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能计划与控制 (IPC) 全量数据模型与算法编排脑图 | 价值链物理学</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Outfit:wght@300;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #05070a;
+            --card-bg: rgba(13, 17, 23, 0.85);
+            --border-color: rgba(48, 54, 61, 0.75);
+            --text-color: #c9d1d9;
+            --text-muted: #8b949e;
+            --primary-color: #58a6ff;     /* Neon Blue - Core Master */
+            --accent-color: #d29922;      /* Gold - Output / DDM */
+            --control-color: #3fb950;     /* Neon Green - Rules / BOM */
+            --purple-color: #a371f7;      /* Purple - Cap / Constrain */
+            
+            --glow-blue: rgba(88, 166, 255, 0.25);
+            --glow-gold: rgba(210, 153, 34, 0.25);
+            --glow-green: rgba(63, 185, 80, 0.25);
+            --glow-purple: rgba(163, 113, 247, 0.25);
+            --danger-color: #ff7b72;
+            --console-bg: #090c10;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Outfit', 'Inter', -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* 宇宙时空背景 */
+        .space-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(20, 30, 48, 0.35) 0%, rgba(5, 7, 10, 1) 100%),
+                linear-gradient(rgba(255, 255, 255, 0.005) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.005) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        #app {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 25px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        header .brand-group {
+            cursor: pointer;
+        }
+
+        header .brand-group h1 {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #ffffff, var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header .brand-group p {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        header .nav-btn-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-btn {
+            background: rgba(22, 27, 34, 0.6);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        .nav-btn:hover {
+            background: rgba(88, 166, 255, 0.15);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(88, 166, 255, 0.3);
+        }
+
+        .nav-btn-highlight {
+            background: rgba(210, 153, 34, 0.15);
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .nav-btn-highlight:hover {
+            background: rgba(210, 153, 34, 0.3);
+            box-shadow: 0 0 12px rgba(210, 153, 34, 0.4);
+        }
+
+        /* Banner */
+        .subtitle-banner {
+            background: rgba(13, 17, 23, 0.7);
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #c9d1d9;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .subtitle-banner .warning-icon {
+            font-size: 20px;
+            color: var(--accent-color);
+            flex-shrink: 0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.06); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Tab Controls */
+        .tab-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.4);
+            padding-bottom: 10px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 14.5px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 6px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            color: white;
+            background: rgba(88, 166, 255, 0.12);
+            border: 1px solid var(--primary-color);
+            box-shadow: 0 0 15px rgba(88, 166, 255, 0.1);
+        }
+
+        /* View Panels */
+        .view-panel {
+            display: none;
+            flex: 1;
+            min-height: 650px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .view-panel.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Layout Grid for Tab 1 (190+ ER Browser) */
+        .topology-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr 380px;
+            gap: 20px;
+            flex: 1;
+            height: 750px;
+        }
+
+        /* Left Table List Sidebar */
+        .table-list-sidebar {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            height: 100%;
+        }
+
+        .search-box-wrapper {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            background: #0d1117;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 8px 12px;
+            color: white;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(88,166,255,0.3);
+        }
+
+        .db-table-list-container {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding-right: 5px;
+        }
+
+        /* Custom scrollbar for dark theme list */
+        .db-table-list-container::-webkit-scrollbar, .topology-details-box::-webkit-scrollbar {
+            width: 4px;
+        }
+        .db-table-list-container::-webkit-scrollbar-track, .topology-details-box::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.2);
+        }
+        .db-table-list-container::-webkit-scrollbar-thumb, .topology-details-box::-webkit-scrollbar-thumb {
+            background: rgba(88, 166, 255, 0.2);
+            border-radius: 2px;
+        }
+
+        .sidebar-table-item {
+            background: rgba(22, 27, 34, 0.5);
+            border: 1px solid rgba(48, 54, 61, 0.5);
+            border-radius: 6px;
+            padding: 8px 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+        }
+
+        .sidebar-table-item:hover {
+            background: rgba(22, 27, 34, 0.95);
+            border-color: var(--primary-color);
+        }
+
+        .sidebar-table-item.active {
+            background: rgba(88, 166, 255, 0.08);
+            border-color: var(--primary-color);
+        }
+
+        .sidebar-algo-item {
+            background: rgba(22, 27, 34, 0.5);
+            border: 1px solid rgba(48, 54, 61, 0.5);
+            border-radius: 6px;
+            padding: 6px 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+        }
+
+        .sidebar-algo-item:hover {
+            background: rgba(22, 27, 34, 0.95);
+            border-color: var(--accent-color);
+        }
+
+        .sidebar-algo-item.active {
+            background: rgba(210, 153, 34, 0.08) !important;
+            border-color: var(--accent-color) !important;
+        }
+
+        .sidebar-table-name {
+            font-family: monospace;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .sidebar-table-name.active-color {
+            color: var(--primary-color);
+        }
+
+        .sidebar-table-desc {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Center Dynamic Viewport */
+        .topology-graph-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Neighborhood Column Grid inside Viewport */
+        .neighborhood-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1.3fr 1.1fr;
+            gap: 40px;
+            width: 95%;
+            height: 90%;
+            z-index: 2;
+            position: relative;
+        }
+
+        .neighborhood-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 15px;
+            height: 100%;
+            overflow-y: auto;
+            padding: 10px 0;
+        }
+
+        .neighborhood-column::-webkit-scrollbar {
+            width: 2px;
+        }
+
+        .column-label {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            text-align: center;
+            border-bottom: 1px solid rgba(48,54,61,0.3);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* Table Card Stylings in Graph */
+        .table-card {
+            background: rgba(22, 27, 34, 0.95);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+
+        .table-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.5);
+            border-color: var(--primary-color);
+        }
+
+        .table-card.focus-node {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px var(--glow-gold);
+            transform: scale(1.03);
+            background: rgba(25, 20, 15, 0.95);
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.5);
+            padding-bottom: 4px;
+            margin-bottom: 6px;
+        }
+
+        .table-title {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            font-family: monospace;
+        }
+
+        .odm-color { color: var(--primary-color); }
+        .cdm-color { color: var(--control-color); }
+        .ddm-color { color: var(--accent-color); }
+
+        .table-badge {
+            font-size: 8px;
+            padding: 1px 4px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .odm-badge { background: rgba(88, 166, 255, 0.1); border: 1px solid var(--primary-color); color: var(--primary-color); }
+        .cdm-badge { background: rgba(63, 185, 80, 0.1); border: 1px solid var(--control-color); color: var(--control-color); }
+        .ddm-badge { background: rgba(210, 153, 34, 0.1); border: 1px solid var(--accent-color); color: var(--accent-color); }
+
+        .field-list {
+            list-style: none;
+            font-family: monospace;
+            font-size: 10.5px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .field-item {
+            color: #8b949e;
+            display: flex;
+            justify-content: space-between;
+            padding: 1px 0;
+        }
+
+        .field-key {
+            color: #ff7b72;
+            font-weight: bold;
+        }
+
+        /* SVG Paths */
+        path.connection-line {
+            fill: none;
+            stroke: var(--border-color);
+            stroke-width: 1.5;
+            transition: all 0.3s ease;
+            stroke-dasharray: 4, 4;
+            opacity: 0.4;
+        }
+
+        path.connection-line.active-line {
+            stroke: var(--primary-color);
+            stroke-width: 2.5;
+            stroke-dasharray: none;
+            filter: drop-shadow(0 0 4px var(--primary-color));
+            opacity: 1;
+        }
+
+        /* Right Detail Panel */
+        .topology-details-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            height: 100%;
+        }
+
+        .detail-header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        .detail-name {
+            font-size: 15px;
+            font-weight: 800;
+            color: white;
+            font-family: monospace;
+        }
+
+        .detail-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-top: 5px;
+        }
+
+        .detail-section {
+            margin-bottom: 15px;
+        }
+
+        .detail-section-title {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-color);
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .fields-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11.5px;
+        }
+
+        .fields-table th, .fields-table td {
+            text-align: left;
+            padding: 6px 4px;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.4);
+        }
+
+        .fields-table th {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .fields-table td.type-col {
+            font-family: monospace;
+            color: #ff7b72;
+        }
+
+        .detail-box-highlight {
+            background: rgba(22, 27, 34, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 10px;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .detail-box-highlight code {
+            font-family: monospace;
+            background: rgba(110, 118, 129, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #ff7b72;
+        }
+
+        /* Layout Grid for Tab 2 (Algorithms Sandbox) */
+        .sandbox-layout {
+            display: grid;
+            grid-template-columns: 440px 1fr;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .case-selector-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow-y: auto;
+            max-height: 750px;
+        }
+
+        .case-card {
+            background: rgba(22, 27, 34, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .case-card:hover {
+            background: rgba(22, 27, 34, 0.95);
+            border-color: var(--primary-color);
+        }
+
+        .case-card.active {
+            background: rgba(88, 166, 255, 0.08);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
+        }
+
+        .case-num {
+            font-size: 9px;
+            font-weight: bold;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+        .case-title {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .case-desc {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Execution Arena */
+        .execution-arena {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: 100%;
+        }
+
+        .control-panel-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .control-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: white;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.4);
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .control-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .input-group label {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .input-group select, .input-group input[type="number"] {
+            background: #0d1117;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 6px 10px;
+            color: white;
+            font-family: inherit;
+            outline: none;
+            font-size: 12.5px;
+        }
+
+        .btn-trigger {
+            background: linear-gradient(135deg, #1f6feb 0%, #8b5cf6 100%);
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 12px rgba(139, 92, 246, 0.4);
+            font-family: inherit;
+            font-size: 12.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-trigger:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+        }
+
+        /* Console styling */
+        .console-box {
+            background-color: var(--console-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            height: 350px;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        .console-line {
+            line-height: 1.5;
+            margin-bottom: 4px;
+            font-size: 12.5px;
+            color: #a8b2c1;
+            white-space: pre-wrap;
+        }
+
+        .cons-prompt { color: var(--primary-color); }
+        .cons-success { color: var(--control-color); font-weight: bold; }
+        .cons-warning { color: var(--accent-color); }
+        .cons-danger { color: var(--danger-color); font-weight: bold; }
+        .cons-meta { color: #8b5cf6; font-style: italic; }
+
+        /* Traditional vs Code Duel Card */
+        .duel-card {
+            background: linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(22, 27, 34, 0.6) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            position: relative;
+        }
+
+        .duel-column h4 {
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .duel-left h4 { color: var(--danger-color); }
+        .duel-right h4 { color: var(--control-color); }
+
+        .duel-column p {
+            font-size: 12px;
+            line-height: 1.5;
+            color: var(--text-muted);
+        }
+
+        .duel-column ul {
+            list-style-type: none;
+            margin-top: 6px;
+        }
+
+        .duel-column li {
+            font-size: 11.5px;
+            margin-bottom: 5px;
+            position: relative;
+            padding-left: 12px;
+        }
+
+        .duel-left li::before { content: '×'; color: var(--danger-color); position: absolute; left: 0; font-weight: bold; }
+        .duel-right li::before { content: '✓'; color: var(--control-color); position: absolute; left: 0; font-weight: bold; }
+
+        .duel-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 9.5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 8px;
+        }
+
+        .badge-fail { background: rgba(255, 123, 114, 0.15); border: 1px solid var(--danger-color); color: var(--danger-color); }
+        .badge-win { background: rgba(63, 185, 80, 0.15); border: 1px solid var(--control-color); color: var(--control-color); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0.6;
+            font-size: 11px;
+        }
+    </style>
+    <!-- Load parsed full ER model dataset -->
+    <script src="ipc_data_model_all.js"></script>
+</head>
+<body>
+
+    <div class="space-bg"></div>
+
+    <div id="app">
+        <!-- Header -->
+        <header>
+            <div class="brand-group" onclick="window.location.href='./'">
+                <h1>智能计划与控制 (IPC) 190+ 数据模型与算法编排脑图</h1>
+                <p>基于《计划与控制全景数据字典》—— 实现 198 个物理表、上百个物理字段在内存中的同构与级联导航</p>
+            </div>
+            <div class="nav-btn-group">
+                <a href="index.html" class="nav-btn">📖 系统科学文档</a>
+                <a href="showcase.html" class="nav-btn">🎬 电影级全息放映</a>
+            </div>
+        </header>
+
+        <!-- Subtitle Warning Banner -->
+        <div class="subtitle-banner">
+            <span class="warning-icon">⚠️</span>
+            <p>
+                <strong>控制论与算法同构编排：</strong> 企业计划协同的物理本质是多维网状拓扑。本项目为您展示了 **198个实际物理数据表** 与 **六大核心专利算法** 的一体化端到端编排。选择左侧的算法，画布会高亮其穿透的表与数据流，并在右侧进行 C++ DOD 裸金属实时求解消纳。
+            </p>
+        </div>
+
+        <!-- Integrated ER & Flow Panel -->
+        <div class="view-panel active" style="display: flex; flex-direction: column;">
+            <div class="topology-layout">
+                <!-- Left Sidebar: SCM Algorithms Selector & 198 Tables -->
+                <div class="table-list-sidebar" style="height: 100%; display: flex; flex-direction: column; gap: 15px; overflow: hidden;">
+                    <!-- SCM Algorithms Selector -->
+                    <div style="flex-shrink: 0; display: flex; flex-direction: column; gap: 8px;">
+                        <div style="font-size: 11px; color: var(--accent-color); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid rgba(48,54,61,0.4); padding-bottom: 5px;">⚡ IBP & SCM 专利算法流程编排</div>
+                        <div style="display: flex; flex-direction: column; gap: 5px; max-height: 280px; overflow-y: auto; padding-right: 2px;">
+                            <div class="sidebar-algo-item active" onclick="selectAlgorithmCase(1)" id="algo-1">
+                                <div style="font-size: 9px; font-weight: bold; color: var(--accent-color);">PAGE 01: SC NetWork</div>
+                                <div style="font-size: 11.5px; font-weight: 700; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">E2E 供应链多级网络与推拉边界</div>
+                            </div>
+                            <div class="sidebar-algo-item" onclick="selectAlgorithmCase(2)" id="algo-2">
+                                <div style="font-size: 9px; font-weight: bold; color: var(--accent-color);">PAGE 02: IBP Pipeline</div>
+                                <div style="font-size: 11.5px; font-weight: 700; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">销售预测清理与一致性计划管道</div>
+                            </div>
+                            <div class="sidebar-algo-item" onclick="selectAlgorithmCase(3)" id="algo-3">
+                                <div style="font-size: 9px; font-weight: bold; color: var(--accent-color);">PAGE 03: BOM Substitution</div>
+                                <div style="font-size: 11.5px; font-weight: 700; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">多级 BOM 结构与工艺替代卡尺</div>
+                            </div>
+                            <div class="sidebar-algo-item" onclick="selectAlgorithmCase(4)" id="algo-4">
+                                <div style="font-size: 9px; font-weight: bold; color: var(--accent-color);">PAGE 04: MRP Netting</div>
+                                <div style="font-size: 11.5px; font-weight: 700; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">净需求 MRP 消纳与 Pegging 纠缠</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 198 Tables Search & List -->
+                    <div style="flex: 1; display: flex; flex-direction: column; gap: 8px; overflow: hidden;">
+                        <div style="font-size: 11px; color: var(--primary-color); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid rgba(48,54,61,0.4); padding-bottom: 5px;">🕸️ 198 个物理表目录</div>
+                        <div class="search-box-wrapper">
+                            <input type="text" id="db-search-input" class="search-input" placeholder="过滤表名或描述 (如 bom, part)..." oninput="filterTables()">
+                        </div>
+                        <div class="db-table-list-container" id="sidebar-table-list" style="flex: 1; overflow-y: auto;">
+                            <!-- Dynamic list items loaded here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Center: Focus Viewport (Multi Modes: Galaxy, Logic Flow, Neighborhood Graph) -->
+                <div class="topology-graph-box" id="topology-stage" style="position: relative; overflow: hidden; height: 100%;">
+                    <!-- Canvas for All 198 Tables Galaxy Map -->
+                    <canvas id="galaxy-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block; z-index: 1;"></canvas>
+                    
+                    <!-- SVG and HTML Grid for Focused 1-Step Neighborhood View -->
+                    <div id="neighborhood-view-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; z-index: 2; pointer-events: none;">
+                        <svg class="svg-connections" id="topology-svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></svg>
+                        <div class="neighborhood-grid" style="pointer-events: auto; width: 95%; height: 90%; margin: 5% auto 0 auto;">
+                            <!-- Column 1: Parents (Incoming) -->
+                            <div class="neighborhood-column" id="col-parents">
+                                <div class="column-label">▲ Parent Tables (引用此表)</div>
+                                <div id="col-parents-list" style="display:flex; flex-direction:column; gap:12px;"></div>
+                            </div>
+
+                            <!-- Column 2: Selected Focus Table -->
+                            <div class="neighborhood-column" id="col-focus" style="justify-content: center;">
+                                <div class="column-label" style="color:var(--accent-color); border-bottom-color:var(--accent-color);">★ Focus Table (当前聚焦)</div>
+                                <div id="focus-card-placeholder"></div>
+                            </div>
+
+                            <!-- Column 3: Children (Outgoing) -->
+                            <div class="neighborhood-column" id="col-children">
+                                <div class="column-label">▼ Child Tables (此表引用)</div>
+                                <div id="col-children-list" style="display:flex; flex-direction:column; gap:12px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Galaxy Control Panel -->
+                    <div id="galaxy-controls" style="position: absolute; top: 15px; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; align-items: center; gap: 8px; background: rgba(13, 17, 23, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--border-color); border-radius: 20px; padding: 6px 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); width: max-content;">
+                        <span id="galaxy-mode-indicator" style="font-size: 11px; font-weight: 800; color: var(--accent-color); letter-spacing: 0.5px; text-transform: uppercase;">⚡ 算法逻辑流 (Case 1)</span>
+                        <div style="width: 1px; height: 12px; background: var(--border-color);"></div>
+                        <button class="nav-btn" onclick="setViewMode('galaxy')" id="btn-mode-galaxy" style="padding: 2px 8px; font-size: 10px; border-radius: 12px;">全景星系</button>
+                        <button class="nav-btn nav-btn-highlight" onclick="setViewMode('flow')" id="btn-mode-flow" style="padding: 2px 8px; font-size: 10px; border-radius: 12px;">算法逻辑流</button>
+                        <button class="nav-btn" onclick="setViewMode('neighborhood')" id="btn-mode-neighbor" style="padding: 2px 8px; font-size: 10px; border-radius: 12px;">邻域对齐</button>
+                        <div style="width: 1px; height: 12px; background: var(--border-color);"></div>
+                        <button class="nav-btn" style="padding: 2px 8px; font-size: 10px; border-radius: 12px;" onclick="resetCanvasView()">重置视口</button>
+                        <label style="font-size: 10px; color: var(--text-muted); display: flex; align-items: center; gap: 4px; cursor: pointer; user-select: none;">
+                            <input type="checkbox" id="chk-data-flow" checked onchange="toggleDataFlow(this.checked)" style="accent-color: var(--primary-color);"> 数据流
+                        </label>
+                        <div style="width: 1px; height: 12px; background: var(--border-color);"></div>
+                        <span id="match-counter" style="font-size: 10px; color: var(--accent-color); font-weight: bold; font-family: monospace;">全量呈现</span>
+                    </div>
+                </div>
+
+                <!-- Right Column: Split into Table Schema & Algorithm Solver Console -->
+                <div style="display: flex; flex-direction: column; gap: 20px; height: 100%;">
+                    <!-- Top Box: Table Schema Detail -->
+                    <div class="topology-details-box" id="detail-panel" style="flex: 1; height: 50%; padding: 15px; overflow-y: auto;">
+                        <div class="detail-header">
+                            <div class="detail-name" id="detail-title">请选择实体表</div>
+                            <div class="detail-desc" id="detail-desc">请点击表或算法路径节点以查看其物理字段、时空物理隐喻和 C++ DOD 优化细节。</div>
+                        </div>
+                        
+                        <div id="detail-content" style="display: none;">
+                            <div class="detail-section">
+                                <div class="detail-section-title">核心数据库字段 (DuckDB Columns)</div>
+                                <div style="max-height: 140px; overflow-y: auto; border: 1px solid rgba(48,54,61,0.4); border-radius: 6px;">
+                                    <table class="fields-table" id="fields-table-body">
+                                        <!-- Dynamic -->
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="detail-section" style="margin-top: 10px;">
+                                <div class="detail-section-title">价值链物理学映射隐喻 (Physics Metaphor)</div>
+                                <div class="detail-box-highlight" id="physics-text" style="font-size: 11px; padding: 8px;"></div>
+                            </div>
+
+                            <div class="detail-section" style="margin-top: 10px;">
+                                <div class="detail-section-title">C++ 裸金属 SoA 硬件对齐设计</div>
+                                <pre class="detail-box-highlight" style="font-family: monospace; background: #07090e; border-color: rgba(88,166,255,0.2); font-size: 10.5px; line-height: 1.4; color: #a8b2c1; max-height: 120px; overflow-y: auto; margin:0;" id="cpp-text"></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Box: SCM Solver Control & Console -->
+                    <div class="topology-details-box" style="flex: 1; height: 50%; padding: 15px; display: flex; flex-direction: column; overflow: hidden;">
+                        <div style="font-size: 12px; font-weight: 800; color: white; border-bottom: 1px solid rgba(48, 54, 61, 0.4); padding-bottom: 6px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+                            <span id="case-control-title" style="color: var(--accent-color);">CASE 01 算法输入参数</span>
+                            <span style="font-size: 9px; background: rgba(63, 185, 80, 0.1); border: 1px solid var(--control-color); color: var(--control-color); padding: 1px 4px; border-radius: 4px;">C++ 求解器</span>
+                        </div>
+                        
+                        <!-- Inputs area -->
+                        <div id="case-inputs-container" style="flex: 1; overflow-y: auto; margin-bottom: 10px; flex-shrink: 0; max-height: 120px;">
+                            <!-- Dynamic inputs loaded here -->
+                        </div>
+
+                        <!-- Run button -->
+                        <div style="display: flex; justify-content: flex-end; margin-bottom: 10px; flex-shrink: 0;">
+                            <button class="btn-trigger" onclick="runSandboxAlgorithm()" style="padding: 5px 14px; font-size: 11px; border-radius: 4px; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                启动 C++ DOD 引擎消纳
+                            </button>
+                        </div>
+
+                        <!-- Console stage -->
+                        <div class="console-box" id="console-stage" style="flex: 1.2; height: 130px; min-height: 100px; overflow-y: auto; font-size: 11px; padding: 10px; margin: 0;">
+                            <div class="console-line cons-meta">// 选择左侧算法并注入参数，点击运行启动 C++ 引擎。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VS Duel Card -->
+        <div class="duel-card">
+            <div class="duel-column duel-left">
+                <h4>🔴 传统人治/委员会治理模式</h4>
+                <p>以为拉上大半个公司开会、讨论行政流程或者在 Excel 里搞协同就能解出最优解：</p>
+                <ul>
+                    <li>由于人脑碳基算力极限，多级供需级联退守到各自的局部最优纳什均衡。</li>
+                    <li>多重约束（配额隔离、LotSize、ECN 切换、发运日历）导致 Excel 计算陷入死循环，停工待料与呆滞料齐飞。</li>
+                    <li>通过召开跨部门协调会争夺物料，陷入阿罗不可能定理，委员会无法产生全局最优。</li>
+                </ul>
+                <div class="duel-badge badge-fail">时耗: 48小时会议 / 结果: 局部踏空内耗</div>
+            </div>
+            
+            <div class="duel-column duel-right">
+                <h4>🟢 IPC 硅基数据模型与物理算法法治</h4>
+                <p>将企业的整个价值链物理实体与规则同构映射至底层 C++ 裸金属内存层：</p>
+                <ul>
+                    <li>通过 $O(1)$ 密集倒排索引与 Level-by-Level LLC 拓扑编译，在硬件底层消除递归跳转。</li>
+                    <li>所有配额共享、Lot 溢出、日历平移、ECN 卡尺裁剪由专利算法在毫秒内以绝对理性的逻辑独裁执行。</li>
+                    <li>在物理极限上消除矢量干涉，杜绝一切管理扯皮和人情插单，强力维护做功抗熵效率。</li>
+                </ul>
+                <div class="duel-badge badge-win">时耗: 0.1毫秒 C++ DOD 求解 / 结果: 全网物理自洽</div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <span>© 2026 Grit Meng - 价值链物理学. All Rights Reserved.</span>
+            <span>基于系统科学宪法 | 智能计划与控制中枢 (v3.0)</span>
+        </footer>
+    </div>
+
+    <script>
+
+        // Setup data references
+        const modelData = window.ipcDataModelAll || { relations: [], tables: {} };
+        let currentFocusTable = "ipc_bom_item";
+        let currentViewMode = "flow"; // Flow mode (integrated ER + Flow) active by default
+        let activeCase = 1; // Default SCM Visio Page (1: SC NetWork, 2: IBP, 3: BOM, 4: MRP)
+        
+        // Canvas state variables
+        let canvas = null;
+        let ctx = null;
+        let scale = 0.35;
+        let offsetX = 0;
+        let offsetY = 0;
+        let targetScale = 0.35;
+        let targetOffsetX = 0;
+        let targetOffsetY = 0;
+        let isDragging = false;
+        let isAnimatingViewport = false;
+        let isLoopRunning = false;
+        
+        let hoveredNode = null;
+        let hoveredShape = null; // Hovered Visio shape
+        let selectedShape = null; // Selected Visio shape
+        let nodes = [];
+        let nodeMap = {};
+        let particles = [];
+        let searchQuery = "";
+        let enableDataFlow = true;
+
+        // Group coordinates and styling variables
+        const groupX = [100, 520, 940, 1360, 1780, 2200, 2620];
+        const groupNames = [
+            "需求引力场 (Demand & Orders)",
+            "物理主数据 (Core Master)",
+            "工艺拓扑 (BOM & Process)",
+            "约束门阀 (Capacity & Constraints)",
+            "供需消纳 (Supply & Orders)",
+            "物流时空 (Logistics & Warehousing)",
+            "控制系统 & 审计 (Optimization & Scenario)"
+        ];
+        const groupColors = [
+            "#a371f7", // Purple
+            "#58a6ff", // Blue
+            "#3fb950", // Green
+            "#ff7b72", // Red
+            "#d29922", // Gold
+            "#56b4e9", // Cyan
+            "#009e73"  // Emerald Green
+        ];
+
+        // Define Visio Flowchart Pages (Shapes & Connections & Data Bindings)
+        const flowchartPages = {
+            1: {
+                name: "SC NetWork: E2E 供应链多级网络与推拉边界",
+                shapes: [
+                    {
+                        id: "126",
+                        type: "customer",
+                        text: "Customer",
+                        x: 2470,
+                        y: 840,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_customer", "ipc_sales_order_line"]
+                    },
+                    {
+                        id: "127",
+                        type: "customer",
+                        text: "Customer",
+                        x: 2470,
+                        y: 892,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_customer", "ipc_sales_order_line"]
+                    },
+                    {
+                        id: "128",
+                        type: "customer",
+                        text: "Customer",
+                        x: 2470,
+                        y: 941,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_customer", "ipc_sales_order_line"]
+                    },
+                    {
+                        id: "129",
+                        type: "customer",
+                        text: "Customer",
+                        x: 2470,
+                        y: 988,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_customer", "ipc_sales_order_line"]
+                    },
+                    {
+                        id: "130",
+                        type: "customer",
+                        text: "Customer",
+                        x: 2470,
+                        y: 1051,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_customer", "ipc_sales_order_line"]
+                    },
+                    {
+                        id: "134",
+                        type: "process",
+                        text: "Region DC",
+                        x: 2121,
+                        y: 868,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_logistic_location"]
+                    },
+                    {
+                        id: "135",
+                        type: "process",
+                        text: "Region DC",
+                        x: 2121,
+                        y: 963,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_logistic_location"]
+                    },
+                    {
+                        id: "136",
+                        type: "process",
+                        text: "Central DC",
+                        x: 1719,
+                        y: 900,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_logistic_location"]
+                    },
+                    {
+                        id: "143",
+                        type: "process",
+                        text: "Manufacturer",
+                        x: 1224,
+                        y: 900,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_part_site", "ipc_routing"]
+                    },
+                    {
+                        id: "147",
+                        type: "process",
+                        text: "Manufacturer Subcontractor",
+                        x: 1224,
+                        y: 989,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_work_center", "ipc_routing"]
+                    },
+                    {
+                        id: "148",
+                        type: "process",
+                        text: "Manufacturer (ODM/OEM)",
+                        x: 1224,
+                        y: 1072,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_part_site"]
+                    },
+                    {
+                        id: "162",
+                        type: "supplier",
+                        text: "Tier1 Supplier",
+                        x: 469,
+                        y: 957,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_source_rule", "ipc_supplier"]
+                    },
+                    {
+                        id: "163",
+                        type: "supplier",
+                        text: "Tier2 Supplier",
+                        x: 70,
+                        y: 893,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_procurement_schedule_line"]
+                    },
+                    {
+                        id: "167",
+                        type: "supplier",
+                        text: "Tier2 Supplier",
+                        x: 70,
+                        y: 957,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_procurement_schedule_line"]
+                    },
+                    {
+                        id: "168",
+                        type: "supplier",
+                        text: "Tier1 Supplier",
+                        x: 469,
+                        y: 1015,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_source_rule", "ipc_supplier"]
+                    },
+                    {
+                        id: "169",
+                        type: "supplier",
+                        text: "Tier2 Supplier",
+                        x: 70,
+                        y: 1015,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_procurement_schedule_line"]
+                    },
+                    {
+                        id: "170",
+                        type: "supplier",
+                        text: "Tier1 Supplier",
+                        x: 469,
+                        y: 1072,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_source_rule", "ipc_supplier"]
+                    },
+                    {
+                        id: "171",
+                        type: "supplier",
+                        text: "Tier2 Supplier",
+                        x: 70,
+                        y: 1072,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_procurement_schedule_line"]
+                    },
+                    {
+                        id: "181",
+                        type: "process",
+                        text: "Primary  material flow",
+                        x: 626,
+                        y: 1187,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    },
+                    {
+                        id: "182",
+                        type: "process",
+                        text: "Primary Cash flow",
+                        x: 1848,
+                        y: 1187,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    },
+                    {
+                        id: "183",
+                        type: "process",
+                        text: "Information flows",
+                        x: 1196,
+                        y: 760,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    },
+                    {
+                        id: "185",
+                        type: "process",
+                        text: "Hub",
+                        x: 850,
+                        y: 989,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_logistic_location"]
+                    },
+                    {
+                        id: "191",
+                        type: "process",
+                        text: "Reverse product flow",
+                        x: 1251,
+                        y: 1230,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    },
+                    {
+                        id: "192",
+                        type: "process",
+                        text: "Push : Forecast Driven",
+                        x: 497,
+                        y: 1138,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_forecast"]
+                    },
+                    {
+                        id: "193",
+                        type: "process",
+                        text: "Pull: Order Driven",
+                        x: 1976,
+                        y: 1138,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    },
+                    {
+                        id: "194",
+                        type: "process",
+                        text: "Decouple SC Node: As allocation node",
+                        x: 1270,
+                        y: 1155,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    }
+                ],
+                connections: [
+                    {
+                        from: "185",
+                        to: "143",
+                        label: ""
+                    },
+                    {
+                        from: "185",
+                        to: "148",
+                        label: ""
+                    },
+                    {
+                        from: "171",
+                        to: "168",
+                        label: ""
+                    },
+                    {
+                        from: "169",
+                        to: "168",
+                        label: ""
+                    },
+                    {
+                        from: "167",
+                        to: "162",
+                        label: ""
+                    },
+                    {
+                        from: "168",
+                        to: "185",
+                        label: ""
+                    },
+                    {
+                        from: "163",
+                        to: "162",
+                        label: ""
+                    },
+                    {
+                        from: "170",
+                        to: "148",
+                        label: ""
+                    },
+                    {
+                        from: "148",
+                        to: "130",
+                        label: ""
+                    },
+                    {
+                        from: "147",
+                        to: "130",
+                        label: ""
+                    },
+                    {
+                        from: "143",
+                        to: "136",
+                        label: ""
+                    },
+                    {
+                        from: "143",
+                        to: "126",
+                        label: ""
+                    },
+                    {
+                        from: "136",
+                        to: "135",
+                        label: ""
+                    },
+                    {
+                        from: "136",
+                        to: "134",
+                        label: ""
+                    },
+                    {
+                        from: "134",
+                        to: "126",
+                        label: ""
+                    },
+                    {
+                        from: "134",
+                        to: "127",
+                        label: ""
+                    },
+                    {
+                        from: "135",
+                        to: "129",
+                        label: ""
+                    },
+                    {
+                        from: "143",
+                        to: "148",
+                        label: "B&S"
+                    },
+                    {
+                        from: "167",
+                        to: "170",
+                        label: ""
+                    },
+                    {
+                        from: "162",
+                        to: "185",
+                        label: ""
+                    },
+                    {
+                        from: "147",
+                        to: "136",
+                        label: ""
+                    },
+                    {
+                        from: "143",
+                        to: "147",
+                        label: "Consignment"
+                    },
+                    {
+                        from: "135",
+                        to: "128",
+                        label: ""
+                    }
+                ]
+            },
+            2: {
+                name: "IBP Pipeline: 销售预测清理与一致性计划管道",
+                shapes: [
+                    {
+                        id: "1",
+                        type: "data",
+                        text: "销售历史 HistoricalDemand",
+                        x: 654,
+                        y: 760,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_his_demand_actual", "ipc_his_demand_series"]
+                    },
+                    {
+                        id: "2",
+                        type: "process",
+                        text: "异常值识别 Define Outliers",
+                        x: 654,
+                        y: 819,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_io_safety_stock_item_outlier"]
+                    },
+                    {
+                        id: "3",
+                        type: "data",
+                        text: "统计性的异常值 Statistical Outliers",
+                        x: 1066,
+                        y: 819,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_io_safety_stock_item_outlier"]
+                    },
+                    {
+                        id: "6",
+                        type: "process",
+                        text: "统计预测 Statistical Forecasting Caculation",
+                        x: 654,
+                        y: 878,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_forecast"]
+                    },
+                    {
+                        id: "9",
+                        type: "data",
+                        text: "统计预测 Aggregated Statistical Forecast",
+                        x: 654,
+                        y: 937,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_forecast"]
+                    },
+                    {
+                        id: "11",
+                        type: "process",
+                        text: "预测分解 Disaggregate Statistical Forecasting",
+                        x: 654,
+                        y: 995,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_forecast"]
+                    },
+                    {
+                        id: "13",
+                        type: "data",
+                        text: "详细的统计预测 Statistical Forecast Details",
+                        x: 654,
+                        y: 1054,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_forecast_detail"]
+                    },
+                    {
+                        id: "15",
+                        type: "data",
+                        text: "各类别详细预测 Forecast with Category",
+                        x: 1066,
+                        y: 1112,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_forecast"]
+                    },
+                    {
+                        id: "16",
+                        type: "process",
+                        text: "权重运算 Weighted Caculations",
+                        x: 654,
+                        y: 1112,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_consensus_forecast_weight_by_header"]
+                    },
+                    {
+                        id: "18",
+                        type: "data",
+                        text: "详细的一致性预测 Consensus Forecast Details",
+                        x: 654,
+                        y: 1172,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_consensus_forecast_detail"]
+                    },
+                    {
+                        id: "21",
+                        type: "data",
+                        text: "根据事件调整的详细预测 EventForecastDetailAdjustment",
+                        x: 1814,
+                        y: 1112,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_event_forecast_detail_adjustment"]
+                    },
+                    {
+                        id: "22",
+                        type: "process",
+                        text: "事件管理 Event Management",
+                        x: 1066,
+                        y: 995,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    },
+                    {
+                        id: "24",
+                        type: "data",
+                        text: "基于事件的统计预测调整 Event Statistical Forecast",
+                        x: 1411,
+                        y: 937,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_event_statistical_forecast_detail"]
+                    },
+                    {
+                        id: "26",
+                        type: "process",
+                        text: "预测分解 Disaggregate Statistical Forecasting",
+                        x: 1817,
+                        y: 937,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_forecast"]
+                    },
+                    {
+                        id: "28",
+                        type: "data",
+                        text: "基于事件的统计预测调整明细 EventStatistical ForecastDetailsAdjustment",
+                        x: 1817,
+                        y: 995,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_event_forecast_detail_adjustment"]
+                    },
+                    {
+                        id: "30",
+                        type: "process",
+                        text: "权重运算 Weighted Caculations",
+                        x: 2087,
+                        y: 1052,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_consensus_forecast_weight_by_header"]
+                    },
+                    {
+                        id: "33",
+                        type: "data",
+                        text: "基于事件的一致性预测调整明细 EventForecastDetailsAdjustment",
+                        x: 2470,
+                        y: 1052,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_consensus_forecast_detail"]
+                    },
+                    {
+                        id: "35",
+                        type: "process",
+                        text: "综合运算 Combine Calculations",
+                        x: 1066,
+                        y: 1172,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_consensus_forecast"]
+                    },
+                    {
+                        id: "38",
+                        type: "data",
+                        text: "一致性预测 Consensus Forecast",
+                        x: 1066,
+                        y: 1230,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_consensus_forecast"]
+                    },
+                    {
+                        id: "40",
+                        type: "data",
+                        text: "数据",
+                        x: 70,
+                        y: 772,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    },
+                    {
+                        id: "41",
+                        type: "process",
+                        text: "计算",
+                        x: 70,
+                        y: 830,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    }
+                ],
+                connections: [
+                    {
+                        from: "13",
+                        to: "16",
+                        label: ""
+                    },
+                    {
+                        from: "35",
+                        to: "38",
+                        label: ""
+                    },
+                    {
+                        from: "11",
+                        to: "13",
+                        label: ""
+                    },
+                    {
+                        from: "9",
+                        to: "11",
+                        label: ""
+                    },
+                    {
+                        from: "6",
+                        to: "9",
+                        label: ""
+                    },
+                    {
+                        from: "2",
+                        to: "3",
+                        label: ""
+                    },
+                    {
+                        from: "1",
+                        to: "2",
+                        label: ""
+                    },
+                    {
+                        from: "1",
+                        to: "6",
+                        label: ""
+                    },
+                    {
+                        from: "3",
+                        to: "6",
+                        label: ""
+                    },
+                    {
+                        from: "22",
+                        to: "21",
+                        label: ""
+                    },
+                    {
+                        from: "18",
+                        to: "35",
+                        label: ""
+                    },
+                    {
+                        from: "33",
+                        to: "35",
+                        label: ""
+                    },
+                    {
+                        from: "30",
+                        to: "33",
+                        label: ""
+                    },
+                    {
+                        from: "21",
+                        to: "30",
+                        label: ""
+                    },
+                    {
+                        from: "28",
+                        to: "30",
+                        label: ""
+                    },
+                    {
+                        from: "26",
+                        to: "28",
+                        label: ""
+                    },
+                    {
+                        from: "24",
+                        to: "26",
+                        label: ""
+                    },
+                    {
+                        from: "22",
+                        to: "24",
+                        label: ""
+                    },
+                    {
+                        from: "9",
+                        to: "22",
+                        label: ""
+                    },
+                    {
+                        from: "15",
+                        to: "22",
+                        label: ""
+                    },
+                    {
+                        from: "16",
+                        to: "18",
+                        label: ""
+                    },
+                    {
+                        from: "15",
+                        to: "16",
+                        label: ""
+                    }
+                ]
+            },
+            3: {
+                name: "BOM Substitution: 多级 BOM 结构与工艺替代卡尺",
+                shapes: [
+                    {
+                        id: "52",
+                        type: "process",
+                        text: "",
+                        x: 1252,
+                        y: 936,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    },
+                    {
+                        id: "53",
+                        type: "process",
+                        text: "",
+                        x: 1052,
+                        y: 1069,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    },
+                    {
+                        id: "54",
+                        type: "process",
+                        text: "",
+                        x: 1057,
+                        y: 1071,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    },
+                    {
+                        id: "55",
+                        type: "process",
+                        text: "S001工厂",
+                        x: 1052,
+                        y: 837,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    },
+                    {
+                        id: "169",
+                        type: "process",
+                        text: "",
+                        x: 1256,
+                        y: 1200,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    },
+                    {
+                        id: "170",
+                        type: "process",
+                        text: "",
+                        x: 1052,
+                        y: 1227,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    },
+                    {
+                        id: "171",
+                        type: "process",
+                        text: "",
+                        x: 1057,
+                        y: 1230,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    },
+                    {
+                        id: "172",
+                        type: "process",
+                        text: "供应商",
+                        x: 1052,
+                        y: 1154,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    },
+                    {
+                        id: "1",
+                        type: "process",
+                        text: "alt_grp:01",
+                        x: 839,
+                        y: 841,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alt_grp", "ipc_alt_grp_type"]
+                    },
+                    {
+                        id: "2",
+                        type: "process",
+                        text: "P1",
+                        x: 454,
+                        y: 947,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_part", "ipc_bom_route"]
+                    },
+                    {
+                        id: "5",
+                        type: "process",
+                        text: "B1",
+                        x: 454,
+                        y: 1015,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_part"]
+                    },
+                    {
+                        id: "6",
+                        type: "process",
+                        text: "C1",
+                        x: 663,
+                        y: 1016,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_bom_item"]
+                    },
+                    {
+                        id: "7",
+                        type: "process",
+                        text: "A1",
+                        x: 152,
+                        y: 1016,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_part_site"]
+                    },
+                    {
+                        id: "20",
+                        type: "process",
+                        text: "E1",
+                        x: 70,
+                        y: 1088,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "21",
+                        type: "process",
+                        text: "F1",
+                        x: 234,
+                        y: 1088,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "22",
+                        type: "process",
+                        text: "G1",
+                        x: 379,
+                        y: 1087,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "23",
+                        type: "process",
+                        text: "H1",
+                        x: 539,
+                        y: 1087,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "33",
+                        type: "process",
+                        text: "P2",
+                        x: 1215,
+                        y: 947,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_part", "ipc_bom_route"]
+                    },
+                    {
+                        id: "34",
+                        type: "process",
+                        text: "B2",
+                        x: 1369,
+                        y: 1016,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_part"]
+                    },
+                    {
+                        id: "35",
+                        type: "process",
+                        text: "C2",
+                        x: 832,
+                        y: 1016,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_bom_item"]
+                    },
+                    {
+                        id: "36",
+                        type: "process",
+                        text: "A2",
+                        x: 1055,
+                        y: 1016,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_part_site"]
+                    },
+                    {
+                        id: "37",
+                        type: "process",
+                        text: "E2",
+                        x: 973,
+                        y: 1088,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "38",
+                        type: "process",
+                        text: "F2",
+                        x: 1137,
+                        y: 1088,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "39",
+                        type: "process",
+                        text: "G2",
+                        x: 1294,
+                        y: 1088,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "40",
+                        type: "process",
+                        text: "H2",
+                        x: 1458,
+                        y: 1088,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "57",
+                        type: "process",
+                        text: "E1",
+                        x: 71,
+                        y: 1183,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "97",
+                        type: "process",
+                        text: "F1",
+                        x: 235,
+                        y: 1183,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "98",
+                        type: "process",
+                        text: "G1",
+                        x: 380,
+                        y: 1183,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "99",
+                        type: "process",
+                        text: "H1",
+                        x: 540,
+                        y: 1183,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "100",
+                        type: "process",
+                        text: "E2",
+                        x: 974,
+                        y: 1183,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "144",
+                        type: "process",
+                        text: "F2",
+                        x: 1138,
+                        y: 1183,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "145",
+                        type: "process",
+                        text: "G2",
+                        x: 1295,
+                        y: 1183,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "146",
+                        type: "process",
+                        text: "H2",
+                        x: 1459,
+                        y: 1183,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "147",
+                        type: "process",
+                        text: "C1",
+                        x: 664,
+                        y: 1183,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_bom_item"]
+                    },
+                    {
+                        id: "148",
+                        type: "process",
+                        text: "C2",
+                        x: 833,
+                        y: 1183,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_bom_item"]
+                    },
+                    {
+                        id: "174",
+                        type: "process",
+                        text: "PRO1",
+                        x: 839,
+                        y: 760,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_routing", "ipc_work_center"]
+                    },
+                    {
+                        id: "175",
+                        type: "process",
+                        text: "D",
+                        x: 1598,
+                        y: 945,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    },
+                    {
+                        id: "178",
+                        type: "process",
+                        text: "PRO2",
+                        x: 2133,
+                        y: 760,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_routing", "ipc_work_center"]
+                    },
+                    {
+                        id: "179",
+                        type: "process",
+                        text: "C1",
+                        x: 1740,
+                        y: 860,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_bom_item"]
+                    },
+                    {
+                        id: "180",
+                        type: "process",
+                        text: "D",
+                        x: 1941,
+                        y: 860,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    },
+                    {
+                        id: "181",
+                        type: "process",
+                        text: "E1",
+                        x: 2133,
+                        y: 860,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "182",
+                        type: "process",
+                        text: "H2",
+                        x: 2294,
+                        y: 860,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "183",
+                        type: "process",
+                        text: "G2",
+                        x: 2470,
+                        y: 860,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "189",
+                        type: "process",
+                        text: "G2",
+                        x: 2470,
+                        y: 1183,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "190",
+                        type: "process",
+                        text: "H2",
+                        x: 2294,
+                        y: 1183,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "191",
+                        type: "process",
+                        text: "E1",
+                        x: 2133,
+                        y: 1183,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "192",
+                        type: "process",
+                        text: "D",
+                        x: 1598,
+                        y: 1183,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    },
+                    {
+                        id: "193",
+                        type: "process",
+                        text: "",
+                        x: 1607,
+                        y: 1064,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    },
+                    {
+                        id: "194",
+                        type: "process",
+                        text: "D",
+                        x: 1941,
+                        y: 1183,
+                        w: 160,
+                        h: 40,
+                        boundTables: []
+                    },
+                    {
+                        id: "195",
+                        type: "process",
+                        text: "C1",
+                        x: 1740,
+                        y: 1183,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_bom_item"]
+                    }
+                ],
+                connections: [
+                    {
+                        from: "183",
+                        to: "189",
+                        label: ""
+                    },
+                    {
+                        from: "182",
+                        to: "190",
+                        label: ""
+                    },
+                    {
+                        from: "181",
+                        to: "191",
+                        label: ""
+                    },
+                    {
+                        from: "180",
+                        to: "194",
+                        label: ""
+                    },
+                    {
+                        from: "179",
+                        to: "195",
+                        label: ""
+                    },
+                    {
+                        from: "178",
+                        to: "183",
+                        label: ""
+                    },
+                    {
+                        from: "2",
+                        to: "6",
+                        label: ""
+                    },
+                    {
+                        from: "2",
+                        to: "5",
+                        label: ""
+                    },
+                    {
+                        from: "2",
+                        to: "7",
+                        label: ""
+                    },
+                    {
+                        from: "1",
+                        to: "2",
+                        label: ""
+                    },
+                    {
+                        from: "7",
+                        to: "20",
+                        label: ""
+                    },
+                    {
+                        from: "7",
+                        to: "21",
+                        label: ""
+                    },
+                    {
+                        from: "5",
+                        to: "22",
+                        label: ""
+                    },
+                    {
+                        from: "5",
+                        to: "23",
+                        label: ""
+                    },
+                    {
+                        from: "33",
+                        to: "34",
+                        label: ""
+                    },
+                    {
+                        from: "33",
+                        to: "35",
+                        label: ""
+                    },
+                    {
+                        from: "36",
+                        to: "37",
+                        label: ""
+                    },
+                    {
+                        from: "36",
+                        to: "38",
+                        label: ""
+                    },
+                    {
+                        from: "34",
+                        to: "39",
+                        label: ""
+                    },
+                    {
+                        from: "34",
+                        to: "40",
+                        label: ""
+                    },
+                    {
+                        from: "1",
+                        to: "33",
+                        label: ""
+                    },
+                    {
+                        from: "20",
+                        to: "57",
+                        label: ""
+                    },
+                    {
+                        from: "21",
+                        to: "97",
+                        label: ""
+                    },
+                    {
+                        from: "22",
+                        to: "98",
+                        label: ""
+                    },
+                    {
+                        from: "23",
+                        to: "99",
+                        label: ""
+                    },
+                    {
+                        from: "6",
+                        to: "147",
+                        label: ""
+                    },
+                    {
+                        from: "35",
+                        to: "148",
+                        label: ""
+                    },
+                    {
+                        from: "37",
+                        to: "100",
+                        label: ""
+                    },
+                    {
+                        from: "38",
+                        to: "144",
+                        label: ""
+                    },
+                    {
+                        from: "39",
+                        to: "145",
+                        label: ""
+                    },
+                    {
+                        from: "40",
+                        to: "146",
+                        label: ""
+                    },
+                    {
+                        from: "174",
+                        to: "1",
+                        label: ""
+                    },
+                    {
+                        from: "174",
+                        to: "175",
+                        label: ""
+                    },
+                    {
+                        from: "178",
+                        to: "179",
+                        label: ""
+                    },
+                    {
+                        from: "178",
+                        to: "180",
+                        label: ""
+                    },
+                    {
+                        from: "178",
+                        to: "182",
+                        label: ""
+                    },
+                    {
+                        from: "178",
+                        to: "181",
+                        label: ""
+                    }
+                ]
+            },
+            4: {
+                name: "MRP Netting: 净需求 MRP 消纳与 Pegging 纠缠",
+                shapes: [
+                    {
+                        id: "1",
+                        type: "process",
+                        text: "Bom_item",
+                        x: 70,
+                        y: 842,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_bom_item"]
+                    },
+                    {
+                        id: "2",
+                        type: "process",
+                        text: "Part_source",
+                        x: 70,
+                        y: 942,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_part_site"]
+                    },
+                    {
+                        id: "3",
+                        type: "customer",
+                        text: "Customer_desination",
+                        x: 70,
+                        y: 760,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_customer", "ipc_sales_order_line"]
+                    },
+                    {
+                        id: "4",
+                        type: "process",
+                        text: "RTL生成供应链网络结构",
+                        x: 997,
+                        y: 842,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_bom_route"]
+                    },
+                    {
+                        id: "8",
+                        type: "process",
+                        text: "rtl_sc",
+                        x: 1902,
+                        y: 842,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_bom_route"]
+                    },
+                    {
+                        id: "10",
+                        type: "process",
+                        text: "demand",
+                        x: 70,
+                        y: 1054,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_sales_order_line", "ipc_independent_demand"]
+                    },
+                    {
+                        id: "11",
+                        type: "process",
+                        text: "MRP Netting",
+                        x: 997,
+                        y: 1054,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_mrp_rule"]
+                    },
+                    {
+                        id: "14",
+                        type: "process",
+                        text: "supply",
+                        x: 70,
+                        y: 1144,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_onhand", "ipc_scheduled_receipt"]
+                    },
+                    {
+                        id: "17",
+                        type: "process",
+                        text: "assignment",
+                        x: 1902,
+                        y: 1054,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_supply_assignment"]
+                    },
+                    {
+                        id: "19",
+                        type: "process",
+                        text: "替换料处理",
+                        x: 2470,
+                        y: 1054,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alternate_part"]
+                    },
+                    {
+                        id: "22",
+                        type: "process",
+                        text: "组替代分配",
+                        x: 2453,
+                        y: 1230,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_alt_grp_type"]
+                    },
+                    {
+                        id: "25",
+                        type: "process",
+                        text: "计划单据和公用分配调整",
+                        x: 1893,
+                        y: 1230,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_planned_supply_assignment"]
+                    },
+                    {
+                        id: "26",
+                        type: "process",
+                        text: "计划单据",
+                        x: 980,
+                        y: 1230,
+                        w: 160,
+                        h: 40,
+                        boundTables: ["ipc_planned_order"]
+                    }
+                ],
+                connections: [
+                    {
+                        from: "22",
+                        to: "25",
+                        label: ""
+                    },
+                    {
+                        from: "25",
+                        to: "17",
+                        label: ""
+                    },
+                    {
+                        from: "11",
+                        to: "26",
+                        label: ""
+                    },
+                    {
+                        from: "25",
+                        to: "26",
+                        label: ""
+                    },
+                    {
+                        from: "19",
+                        to: "22",
+                        label: ""
+                    },
+                    {
+                        from: "17",
+                        to: "19",
+                        label: ""
+                    },
+                    {
+                        from: "14",
+                        to: "11",
+                        label: ""
+                    },
+                    {
+                        from: "10",
+                        to: "11",
+                        label: ""
+                    },
+                    {
+                        from: "8",
+                        to: "11",
+                        label: ""
+                    },
+                    {
+                        from: "3",
+                        to: "4",
+                        label: ""
+                    },
+                    {
+                        from: "1",
+                        to: "4",
+                        label: ""
+                    },
+                    {
+                        from: "2",
+                        to: "4",
+                        label: ""
+                    },
+                    {
+                        from: "4",
+                        to: "8",
+                        label: ""
+                    },
+                    {
+                        from: "11",
+                        to: "17",
+                        label: ""
+                    }
+                ]
+            }
+        };
+
+        
+
+        // Determine node group index
+        function getTableGroupIndex(name) {
+            const n = name.toLowerCase();
+            if (n.includes('forecast') || n.includes('demand') || n.includes('sales_order') || n.includes('customer') || n.includes('commercial') || n.includes('event')) {
+                return 0;
+            }
+            if (n.includes('bom') || n.includes('route') || n.includes('routing') || n.includes('operation') || n.includes('alt_grp') || n.includes('alternate_part') || n.includes('alt_bom') || n.includes('part_sequence') || n.includes('node_tans') || n.includes('ans_tnode')) {
+                return 2;
+            }
+            if (n.includes('capacity') || n.includes('constraint') || n.includes('work_center') || n.includes('resource') || n.includes('calendar') || n.includes('wheel') || n.includes('sop_calendar') || n.includes('major_change')) {
+                return 3;
+            }
+            if (n.includes('onhand') || n.includes('planned_order') || n.includes('planned_supply') || n.includes('supply_assignment') || n.includes('scheduled_receipt') || n.includes('supply_order') || n.includes('supply_status') || n.includes('supply_type') || n.includes('purchase_order') || n.includes('reservation') || n.includes('procurement') || n.includes('inventory_type') || n.includes('load_') || n.includes('sr_line')) {
+                return 4;
+            }
+            if (n.includes('logistic') || n.includes('logistics') || n.includes('location') || n.includes('transfer') || n.includes('shipment') || n.includes('transit') || n.includes('carrier') || n.includes('ltrnetwork')) {
+                return 5;
+            }
+            if (n.includes('part') || n.includes('site') || n.includes('uom') || n.includes('currency') || n.includes('country') || n.includes('abc_class') || n.includes('buyer') || n.includes('carrier') || n.includes('department')) {
+                return 1;
+            }
+            return 6;
+        }
+
+        // Left sidebar list load & search
+        function initSidebar() {
+            const container = document.getElementById('sidebar-table-list');
+            container.innerHTML = '';
+
+            const sortedTableKeys = Object.keys(modelData.tables).sort();
+
+            sortedTableKeys.forEach(key => {
+                const table = modelData.tables[key];
+                const item = document.createElement('div');
+                item.className = `sidebar-table-item ${key === currentFocusTable ? 'active' : ''}`;
+                item.id = `sidebar-${key}`;
+                item.onclick = () => focusTable(key);
+
+                item.innerHTML = `
+                    <div class="sidebar-table-name ${key === currentFocusTable ? 'active-color' : ''}">${key}</div>
+                    <div class="sidebar-table-desc">${table.desc || '物理计划分析表'}</div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function filterTables() {
+            const query = document.getElementById('db-search-input').value.toLowerCase().trim();
+            const items = document.querySelectorAll('.sidebar-table-item');
+
+            items.forEach(item => {
+                const name = item.querySelector('.sidebar-table-name').innerText.toLowerCase();
+                const desc = item.querySelector('.sidebar-table-desc').innerText.toLowerCase();
+                if (name.includes(query) || desc.includes(query)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            searchQuery = query;
+            if (currentViewMode !== 'neighborhood') {
+                updateMatchCounter();
+                draw();
+            }
+        }
+
+        // Change target focus table
+        function focusTable(key) {
+            currentFocusTable = key;
+            selectedShape = null; // Clear selected flowchart shape
+            
+            // Update sidebar highlights
+            document.querySelectorAll('.sidebar-table-item').forEach(item => item.classList.remove('active'));
+            document.querySelectorAll('.sidebar-table-name').forEach(name => name.classList.remove('active-color'));
+            const activeItem = document.getElementById(`sidebar-${key}`);
+            if (activeItem) {
+                activeItem.classList.add('active');
+                activeItem.querySelector('.sidebar-table-name').classList.add('active-color');
+                activeItem.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            }
+
+            if (currentViewMode === 'neighborhood') {
+                renderNeighborhood();
+            } else {
+                panToNode(key);
+            }
+            updateDetailPanel(key);
+        }
+
+        // Main algorithm to find and render focus table + parents + children
+        function renderNeighborhood() {
+            const svg = document.getElementById('topology-svg');
+            svg.innerHTML = ''; // Clear SVG lines
+
+            const parentsList = document.getElementById('col-parents-list');
+            const focusPlaceholder = document.getElementById('focus-card-placeholder');
+            const childrenList = document.getElementById('col-children-list');
+
+            parentsList.innerHTML = '';
+            childrenList.innerHTML = '';
+            focusPlaceholder.innerHTML = '';
+
+            const focusTableData = modelData.tables[currentFocusTable];
+            if (!focusTableData) return;
+
+            // 1. Draw Focus Node
+            const focusCard = createTableCard(focusTableData, true);
+            focusPlaceholder.appendChild(focusCard);
+
+            // 2. Scan relationships to identify parents and children
+            const parents = [];
+            const children = [];
+            
+            modelData.relations.forEach(rel => {
+                if (rel.from === currentFocusTable) {
+                    if (modelData.tables[rel.to] && !children.includes(rel.to)) {
+                        children.push(rel.to);
+                    }
+                }
+                if (rel.to === currentFocusTable) {
+                    if (modelData.tables[rel.from] && !parents.includes(rel.from)) {
+                        parents.push(rel.from);
+                    }
+                }
+            });
+
+            // 3. Render parent list
+            if (parents.length === 0) {
+                parentsList.innerHTML = `<div style="font-size:11px; color:var(--text-muted); text-align:center; padding:20px; border:1px dashed var(--border-color); border-radius:6px;">没有外部表直接引用此表</div>`;
+            } else {
+                parents.forEach(pKey => {
+                    const pData = modelData.tables[pKey];
+                    const card = createTableCard(pData, false, 'parent', pKey);
+                    parentsList.appendChild(card);
+                });
+            }
+
+            // 4. Render child list
+            if (children.length === 0) {
+                childrenList.innerHTML = `<div style="font-size:11px; color:var(--text-muted); text-align:center; padding:20px; border:1px dashed var(--border-color); border-radius:6px;">此表未引用外部其他表</div>`;
+            } else {
+                children.forEach(cKey => {
+                    const cData = modelData.tables[cKey];
+                    const card = createTableCard(cData, false, 'child', cKey);
+                    childrenList.appendChild(card);
+                });
+            }
+
+            // 5. Draw SVG lines with timeout to ensure DOM rects are ready
+            setTimeout(() => {
+                const svgRect = svg.getBoundingClientRect();
+                const focusRect = focusCard.getBoundingClientRect();
+                
+                // Draw Parent -> Focus lines
+                parents.forEach(pKey => {
+                    const pEl = document.getElementById(`graph-node-${pKey}`);
+                    if (!pEl) return;
+                    const pRect = pEl.getBoundingClientRect();
+
+                    const x1 = pRect.right - svgRect.left;
+                    const y1 = pRect.top + pRect.height/2 - svgRect.top;
+                    const x2 = focusRect.left - svgRect.left;
+                    const y2 = focusRect.top + focusRect.height/2 - svgRect.top;
+
+                    drawBezier(x1, y1, x2, y2, svg, true);
+                });
+
+                // Draw Focus -> Child lines
+                children.forEach(cKey => {
+                    const cEl = document.getElementById(`graph-node-${cKey}`);
+                    if (!cEl) return;
+                    const cRect = cEl.getBoundingClientRect();
+
+                    const x1 = focusRect.right - svgRect.left;
+                    const y1 = focusRect.top + focusRect.height/2 - svgRect.top;
+                    const x2 = cRect.left - svgRect.left;
+                    const y2 = cRect.top + cRect.height/2 - svgRect.top;
+
+                    drawBezier(x1, y1, x2, y2, svg, false);
+                });
+            }, 80);
+        }
+
+        // Draw individual Bezier connection
+        function drawBezier(x1, y1, x2, y2, svg, isIncoming) {
+            const controlOffset = Math.abs(x2 - x1) * 0.4;
+            const pathStr = `M ${x1} ${y1} C ${x1 + controlOffset} ${y1}, ${x2 - controlOffset} ${y2}, ${x2} ${y2}`;
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', pathStr);
+            path.setAttribute('class', `connection-line active-line`);
+            svg.appendChild(path);
+        }
+
+        // Helper to construct HTML Table card
+        function createTableCard(tableData, isFocus, role = '', key = '') {
+            const card = document.createElement('div');
+            card.className = `table-card ${isFocus ? 'focus-node' : ''}`;
+            if (key) {
+                card.id = `graph-node-${key}`;
+                card.onclick = () => focusTable(key);
+            } else {
+                card.id = 'graph-node-focus';
+            }
+
+            // Determine badge style
+            let badgeClass = 'odm-badge';
+            let badgeText = 'ODM';
+            if (tableData.name.includes('forecast') || tableData.name.includes('sales')) {
+                badgeClass = 'cdm-badge';
+                badgeText = 'Demand';
+            } else if (tableData.name.includes('bom') || tableData.name.includes('routing')) {
+                badgeClass = 'cpm-badge';
+                badgeText = 'BOM';
+            } else if (tableData.name.includes('planned') || tableData.name.includes('ss_result') || tableData.name.includes('ledger')) {
+                badgeClass = 'ddm-badge';
+                badgeText = 'DDM';
+            }
+
+            // Get first 3 fields for teaser preview
+            let fieldTeaser = '';
+            if (tableData.fields && tableData.fields.length > 0) {
+                const limit = Math.min(3, tableData.fields.length);
+                for (let i = 0; i < limit; i++) {
+                    const f = tableData.fields[i];
+                    const isKey = f.key && (f.key.includes('PK') || f.key.includes('Required'));
+                    const keyMarker = isKey ? '<span class="field-key">★</span> ' : '';
+                    fieldTeaser += `<li class="field-item"><span>${keyMarker}${f.code}</span> <span style="color:var(--text-muted)">:${f.type.split('(')[0]}</span></li>`;
+                }
+                if (tableData.fields.length > 3) {
+                    fieldTeaser += `<li class="field-item" style="justify-content:center; color:var(--text-muted); font-size:9px;">... 更多 ${tableData.fields.length - 3} 个字段 ...</li>`;
+                }
+            }
+
+            card.innerHTML = `
+                <div class="table-header">
+                    <span class="table-title" style="color:${isFocus?'var(--accent-color)':'white'}">${tableData.name}</span>
+                    <span class="table-badge ${badgeClass}">${badgeText}</span>
+                </div>
+                <ul class="field-list">
+                    ${fieldTeaser}
+                </ul>
+            `;
+            return card;
+        }
+
+        // Dynamic Physics Metaphor
+        function generatePhysicsMetaphor(name, desc) {
+            if (name.includes('bom_item')) {
+                return "产品结构有向无环图的<strong>乘数边缘 (Multiplier Edges)</strong>。携带工程废品率乘数（$1 + scrap$）。ECN 时效区间则是时间维度上的<strong>时空阀门 (Caliper Window)</strong>，若需求日期超出卡尺，则该边缘自动剪枝失效。";
+            } else if (name.includes('part_site')) {
+                return "<strong>摩擦系数与惯性阻尼</strong>。物理提前期表示流量在该节点所耗费的时间磨损，虚拟件 (Phantom) 则是‘超导直通’，没有阻尼且容量不缓存，瞬间穿透到下层组件质点。";
+            } else if (name.includes('onhand')) {
+                return "系统的<strong>静态位能池 (Static Potential Pool)</strong>。在时空点 $T=0$ 的初始存量，属于零流动阻力的瞬间可用状态。";
+            } else if (name.includes('pegging')) {
+                return "系统内层相互咬合的<strong>质量传递量子纠缠链 (Mass Linkages)</strong>。它提供了系统状态的完全可观测性，将混沌黑盒转换为可以随时 DBeaver/SQL 审计的自洽链路。";
+            }
+
+            if (name.includes('bom') || name.includes('route')) {
+                return `<strong>工艺级联拓扑边缘</strong>。定义流量由 '${name}' 进行质量转化时的传导路径，控制着系统的物流量分布。`;
+            } else if (name.includes('forecast') || name.includes('demand') || name.includes('sales')) {
+                return `<strong>外部边界引力场</strong>。代表系统要中和的负熵亏空，是系统需要自组织做功的‘终极牵引动力源’。`;
+            } else if (name.includes('capacity') || name.includes('work_center') || name.includes('constraint')) {
+                return `<strong>热力学阻塞门阀 (Throttle Gates)</strong>。限制了工艺流水线通过的最大负荷流速，是有限约束计划的核心瓶颈源。`;
+            } else if (name.includes('planned') || name.includes('replenish')) {
+                return `<strong>负熵补给包</strong>。是计划引擎逆向推演生成的质量补给，抵消时空轴上的热寂坍缩。`;
+            } else if (name.includes('ss') || name.includes('safety')) {
+                return `<strong>物理抗干扰防波堤</strong>。对抗供应链随机扰动（方差）的静态位能阻挡，防止短时缺料发生物理断流。`;
+            }
+
+            return `<strong>系统运营本体状态量 (Ontology State)</strong>。是系统科学宪法下，用以计算质量守恒状态转移方程的边界条件之一。`;
+        }
+
+        // Generate C++ SoA Layout
+        function generateCppLayout(name, tableData) {
+            const camelName = name.replace('ipc_', '').split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('');
+            let structFields = "";
+            let alignment = "alignas(64)"; // Cache-line align
+            
+            if (tableData && tableData.fields) {
+                tableData.fields.forEach(f => {
+                    let cppType = "uint32_t";
+                    const t = f.type.toLowerCase();
+                    if (t.includes('varchar')) {
+                        cppType = "StringOffset";
+                    } else if (t.includes('date')) {
+                        cppType = "int32_t";
+                    } else if (t.includes('decimal') || t.includes('double') || t.includes('numeric')) {
+                        cppType = "double";
+                    } else if (t.includes('int')) {
+                        cppType = "int32_t";
+                    } else if (t.includes('bool')) {
+                        cppType = "bool";
+                    }
+                    structFields += `    ${cppType.padEnd(14)} ${f.code.padEnd(16)}; // ${f.comment || '-'}\n`;
+                });
+            } else {
+                structFields = `    uint32_t       id;              // Row Offset\n    double         qty;             // Quantity\n`;
+            }
+            
+            return `// C++ Data-Oriented Design (SoA Flat Layout)\nstruct ${alignment} Flat${camelName}Record {\n${structFields}};`;
+        }
+
+        // Fill detail panel on click
+        function updateDetailPanel(key) {
+            const table = modelData.tables[key];
+            if (!table) return;
+
+            document.getElementById('detail-title').innerText = `${table.name} (${table.desc || '物理运营主表'})`;
+            document.getElementById('detail-desc').innerText = table.desc || '用于存储计划控制决策流中的具体明细参数，是 C++ DOD 引擎快速读取与计算的依据。';
+            
+            document.getElementById('physics-text').innerHTML = generatePhysicsMetaphor(key, table.desc);
+            document.getElementById('cpp-text').innerText = generateCppLayout(key, table);
+
+            // Populate Fields Table
+            const tbody = document.getElementById('fields-table-body');
+            tbody.innerHTML = `
+                <tr>
+                    <th style="width: 35%">字段物理名</th>
+                    <th style="width: 25%">物理类型</th>
+                    <th style="width: 40%">详细备注</th>
+                </tr>
+            `;
+
+            if (table.fields && table.fields.length > 0) {
+                table.fields.forEach(f => {
+                    const tr = document.createElement('tr');
+                    const isKey = f.key && (f.key.includes('PK') || f.key.includes('Required'));
+                    const cleanName = isKey ? `<span style="color:#ff7b72; font-weight:bold">★ ${f.code}</span>` : f.code;
+                    tr.innerHTML = `
+                        <td>${cleanName}</td>
+                        <td class="type-col">${f.type}</td>
+                        <td>${f.comment || '-'}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } else {
+                tbody.innerHTML += `<tr><td colspan="3" style="text-align:center; color:var(--text-muted)">暂无字段架构明细</td></tr>`;
+            }
+
+            document.getElementById('detail-content').style.display = 'block';
+        }
+
+        // Holographic Schema Galaxy Map (Canvas Logic)
+        function initGalaxyNodes() {
+            nodes = [];
+            nodeMap = {};
+            
+            // Group lists
+            const groups = Array.from({ length: 7 }, () => []);
+            
+            // Distribute 198 tables to SCM groups
+            Object.keys(modelData.tables).forEach(key => {
+                const idx = getTableGroupIndex(key);
+                groups[idx].push(key);
+            });
+            
+            // Layout tables in the top portion of the canvas (Y from 80 to 700)
+            const rowSpacing = 28;
+            const nodeWidth = 200;
+            const nodeHeight = 20;
+            
+            for (let g = 0; g < 7; g++) {
+                groups[g].sort();
+                const numNodes = groups[g].length;
+                const colSpacing = 620 / numNodes; // Fit in Y: 80 to 700
+                
+                groups[g].forEach((name, i) => {
+                    const node = {
+                        name: name,
+                        group: g,
+                        x: groupX[g],
+                        y: 80 + i * colSpacing,
+                        w: nodeWidth,
+                        h: nodeHeight
+                    };
+                    nodes.push(node);
+                    nodeMap[name] = node;
+                });
+            }
+            
+            initParticles();
+        }
+
+        function initParticles() {
+            particles = [];
+            modelData.relations.forEach((rel, index) => {
+                const source = nodeMap[rel.from];
+                const target = nodeMap[rel.to];
+                if (source && target) {
+                    const count = Math.random() < 0.5 ? 1 : 2;
+                    for (let i = 0; i < count; i++) {
+                        particles.push({
+                            relIndex: index,
+                            t: Math.random(),
+                            speed: 0.0015 + Math.random() * 0.0025,
+                            color: groupColors[source.group]
+                        });
+                    }
+                }
+            });
+        }
+
+        function updateParticles() {
+            if (!enableDataFlow) return;
+            particles.forEach(p => {
+                p.t += p.speed;
+                if (p.t >= 1) {
+                    p.t = 0;
+                    p.speed = 0.0015 + Math.random() * 0.0025;
+                }
+            });
+        }
+
+        function toggleDataFlow(checked) {
+            enableDataFlow = checked;
+            draw();
+        }
+
+        function updateMatchCounter() {
+            const matchCounter = document.getElementById('match-counter');
+            if (currentViewMode === 'flow') {
+                const page = flowchartPages[activeCase];
+                matchCounter.innerText = `编排: ${page.shapes.length}个节点 | ${page.connections.length}条逻辑流`;
+                return;
+            }
+            if (!searchQuery) {
+                matchCounter.innerText = '全量呈现 (198)';
+                return;
+            }
+            
+            let count = 0;
+            nodes.forEach(n => {
+                const tableData = modelData.tables[n.name];
+                const desc = tableData.desc ? tableData.desc.toLowerCase() : '';
+                if (n.name.includes(searchQuery) || desc.includes(searchQuery)) {
+                    count++;
+                }
+            });
+            matchCounter.innerText = `已匹配: ${count}/198`;
+        }
+
+        function resetCanvasView() {
+            if (!canvas) return;
+            const rect = canvas.getBoundingClientRect();
+            
+            if (currentViewMode === 'flow') {
+                panToActiveCasePath();
+                return;
+            }
+            
+            const scaleX = rect.width / 2950;
+            const scaleY = rect.height / 1750;
+            scale = Math.min(scaleX, scaleY) * 0.96;
+            
+            offsetX = (rect.width - 2950 * scale) / 2;
+            offsetY = (rect.height - 1750 * scale) / 2;
+            
+            targetScale = scale;
+            targetOffsetX = offsetX;
+            targetOffsetY = offsetY;
+            
+            draw();
+        }
+
+        function panToNode(key) {
+            const node = nodes.find(n => n.name === key);
+            if (!node || !canvas) return;
+            
+            const rect = canvas.getBoundingClientRect();
+            targetScale = 0.95;
+            targetOffsetX = (rect.width / 2) - (node.x + node.w / 2) * targetScale;
+            targetOffsetY = (rect.height / 2) - (node.y + node.h / 2) * targetScale;
+            
+            animateViewportTransition();
+        }
+
+        // Pans and zooms to fit the active Visio flowchart path (Y: 750 to 1400)
+        function panToActiveCasePath() {
+            const page = flowchartPages[activeCase];
+            if (!page || page.shapes.length === 0 || !canvas) return;
+            
+            let minX = Infinity, maxX = -Infinity;
+            let minY = Infinity, maxY = -Infinity;
+            
+            page.shapes.forEach(s => {
+                if (s.x < minX) minX = s.x;
+                if (s.x + s.w > maxX) maxX = s.x + s.w;
+                if (s.y < minY) minY = s.y;
+                if (s.y + s.h > maxY) maxY = s.y + s.h;
+            });
+            
+            // Add padding
+            const padding = 150;
+            minX -= padding;
+            maxX += padding;
+            minY -= padding;
+            maxY += padding;
+            
+            const rect = canvas.getBoundingClientRect();
+            const pathW = maxX - minX;
+            const pathH = maxY - minY;
+            
+            const scaleX = rect.width / pathW;
+            const scaleY = rect.height / pathH;
+            targetScale = Math.max(0.15, Math.min(1.0, Math.min(scaleX, scaleY)));
+            
+            targetOffsetX = (rect.width / 2) - ((minX + maxX) / 2) * targetScale;
+            targetOffsetY = (rect.height / 2) - ((minY + maxY) / 2) * targetScale;
+            
+            animateViewportTransition();
+        }
+
+        function animateViewportTransition() {
+            if (isAnimatingViewport) return;
+            isAnimatingViewport = true;
+            
+            function step() {
+                const dx = targetOffsetX - offsetX;
+                const dy = targetOffsetY - offsetY;
+                const ds = targetScale - scale;
+                
+                if (Math.abs(dx) < 0.8 && Math.abs(dy) < 0.8 && Math.abs(ds) < 0.005) {
+                    offsetX = targetOffsetX;
+                    offsetY = targetOffsetY;
+                    scale = targetScale;
+                    isAnimatingViewport = false;
+                    draw();
+                } else {
+                    offsetX += dx * 0.16;
+                    offsetY += dy * 0.16;
+                    scale += ds * 0.16;
+                    draw();
+                    requestAnimationFrame(step);
+                }
+            }
+            requestAnimationFrame(step);
+        }
+
+        function screenToVirtual(sx, sy) {
+            const rect = canvas.getBoundingClientRect();
+            const canvasX = sx - rect.left;
+            const canvasY = sy - rect.top;
+            return {
+                x: (canvasX - offsetX) / scale,
+                y: (canvasY - offsetY) / scale
+            };
+        }
+
+        function getNodeAt(x, y) {
+            // Check database table nodes in background first
+            for (let i = 0; i < nodes.length; i++) {
+                const node = nodes[i];
+                if (x >= node.x && x <= node.x + node.w &&
+                    y >= node.y && y <= node.y + node.h) {
+                    return node;
+                }
+            }
+            return null;
+        }
+
+        // Find Visio Shape node at coordinates
+        function getShapeAt(x, y) {
+            if (currentViewMode !== 'flow') return null;
+            const page = flowchartPages[activeCase];
+            if (!page) return null;
+            
+            for (let i = 0; i < page.shapes.length; i++) {
+                const shape = page.shapes[i];
+                if (x >= shape.x && x <= shape.x + shape.w &&
+                    y >= shape.y && y <= shape.y + shape.h) {
+                    return shape;
+                }
+            }
+            return null;
+        }
+
+        function drawRoundRect(c, x, y, w, h, r) {
+            c.moveTo(x + r, y);
+            c.lineTo(x + w - r, y);
+            c.quadraticCurveTo(x + w, y, x + w, y + r);
+            c.lineTo(x + w, y + h - r);
+            c.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+            c.lineTo(x + r, y + h);
+            c.quadraticCurveTo(x, y + h, x, y + h - r);
+            c.lineTo(x, y + r);
+            c.quadraticCurveTo(x, y, x + r, y);
+            c.closePath();
+        }
+
+        // Draw Parallelogram for Visio Data shapes
+        function drawParallelogram(c, x, y, w, h, slant = 15) {
+            c.moveTo(x + slant, y);
+            c.lineTo(x + w, y);
+            c.lineTo(x + w - slant, y + h);
+            c.lineTo(x, y + h);
+            c.closePath();
+        }
+
+        function draw() {
+            if (!canvas || !ctx) return;
+            const dpr = window.devicePixelRatio || 1;
+            const w = canvas.width / dpr;
+            const h = canvas.height / dpr;
+
+            // Clear canvas
+            ctx.fillStyle = "#05070a";
+            ctx.fillRect(0, 0, w, h);
+
+            // Apply viewport transform
+            ctx.save();
+            ctx.translate(offsetX, offsetY);
+            ctx.scale(scale, scale);
+
+            // 1. Draw background grid
+            ctx.strokeStyle = "rgba(48, 54, 61, 0.08)";
+            ctx.lineWidth = 1;
+            const gridSpacing = 100;
+            ctx.beginPath();
+            for (let y = 0; y < 1750; y += gridSpacing) {
+                ctx.moveTo(0, y);
+                ctx.lineTo(2900, y);
+            }
+            for (let x = 0; x < 2900; x += gridSpacing) {
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, 1750);
+            }
+            ctx.stroke();
+
+            // 2. Draw vertical SCM column categories (drawn in background)
+            for (let i = 0; i < 7; i++) {
+                const name = groupNames[i];
+                
+                ctx.strokeStyle = "rgba(48, 54, 61, 0.04)";
+                ctx.beginPath();
+                ctx.moveTo(groupX[i] + 100, 30);
+                ctx.lineTo(groupX[i] + 100, 1650);
+                ctx.stroke();
+
+                // Column name labels
+                ctx.fillStyle = "rgba(139, 148, 158, 0.35)";
+                ctx.font = "bold 11px 'Outfit', sans-serif";
+                ctx.textAlign = "center";
+                ctx.fillText(name, groupX[i] + 100, 25);
+            }
+
+            // Determine active/highlighted tables based on selected flowchart shape or active case
+            let highlightedTables = [];
+            const activePage = flowchartPages[activeCase];
+            
+            if (currentViewMode === "flow" && activePage) {
+                if (selectedShape && selectedShape.boundTables) {
+                    highlightedTables = selectedShape.boundTables;
+                } else if (hoveredShape && hoveredShape.boundTables) {
+                    highlightedTables = hoveredShape.boundTables;
+                } else {
+                    // Highlight all tables associated with any shape in this page
+                    activePage.shapes.forEach(s => {
+                        if (s.boundTables) {
+                            highlightedTables.push(...s.boundTables);
+                        }
+                    });
+                }
+            }
+
+            // 3. Draw SCM database relations (between tables in background)
+            modelData.relations.forEach((rel) => {
+                const source = nodeMap[rel.from];
+                const target = nodeMap[rel.to];
+                if (!source || !target) return;
+
+                let isActive = false;
+                let isDimmed = false;
+
+                if (currentViewMode === "flow") {
+                    // Dim standard table relations in flow mode
+                    isDimmed = true;
+                } else if (searchQuery) {
+                    const sMatch = rel.from.includes(searchQuery) || (modelData.tables[rel.from].desc && modelData.tables[rel.from].desc.toLowerCase().includes(searchQuery));
+                    const tMatch = rel.to.includes(searchQuery) || (modelData.tables[rel.to].desc && modelData.tables[rel.to].desc.toLowerCase().includes(searchQuery));
+                    if (sMatch || tMatch) isActive = true;
+                    else isDimmed = true;
+                } else if (hoveredNode || currentFocusTable) {
+                    const focusName = hoveredNode ? hoveredNode.name : currentFocusTable;
+                    if (rel.from === focusName || rel.to === focusName) isActive = true;
+                    else isDimmed = true;
+                }
+
+                const x1 = source.x + source.w;
+                const y1 = source.y + source.h / 2;
+                const x2 = target.x;
+                const y2 = target.y + target.h / 2;
+
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                const cp1x = x1 + (x2 - x1) * 0.45;
+                const cp1y = y1;
+                const cp2x = x2 - (x2 - x1) * 0.45;
+                const cp2y = y2;
+                ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x2, y2);
+
+                if (isActive) {
+                    ctx.strokeStyle = (rel.from === (hoveredNode ? hoveredNode.name : currentFocusTable) ? "#3fb950" : "#58a6ff");
+                    ctx.lineWidth = 1.8;
+                    ctx.shadowBlur = 6;
+                    ctx.shadowColor = ctx.strokeStyle;
+                } else if (isDimmed) {
+                    ctx.strokeStyle = "rgba(48, 54, 61, 0.01)"; // almost invisible in flow mode
+                    ctx.lineWidth = 0.5;
+                } else {
+                    ctx.strokeStyle = "rgba(88, 166, 255, 0.08)";
+                    ctx.lineWidth = 1.0;
+                }
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+            });
+
+            // 4. Draw database table nodes (arranged in background)
+            nodes.forEach((node) => {
+                const tableData = modelData.tables[node.name];
+                const groupColor = groupColors[node.group];
+
+                const isNodeFocused = node.name === currentFocusTable;
+                const isNodeHovered = node === hoveredNode;
+                let isMatched = false;
+                let isDimmed = false;
+                let isBoundAndActive = false;
+
+                if (currentViewMode === "flow") {
+                    isBoundAndActive = highlightedTables.includes(node.name);
+                    if (!isBoundAndActive) {
+                        isDimmed = true;
+                    }
+                } else if (searchQuery) {
+                    const desc = tableData.desc ? tableData.desc.toLowerCase() : '';
+                    if (node.name.includes(searchQuery) || desc.includes(searchQuery)) {
+                        isMatched = true;
+                    } else {
+                        isDimmed = true;
+                    }
+                }
+
+                let borderColor = groupColor;
+                let textColor = "#8b949e";
+                let bgFill = "rgba(13, 17, 23, 0.5)";
+
+                if (isNodeFocused) {
+                    borderColor = "#d29922";
+                    textColor = "#ffffff";
+                    bgFill = "rgba(30, 24, 15, 0.92)";
+                } else if (isNodeHovered) {
+                    borderColor = "#ffffff";
+                    textColor = "#ffffff";
+                    bgFill = "rgba(22, 27, 34, 0.95)";
+                } else if (isDimmed) {
+                    borderColor = "rgba(48, 54, 61, 0.05)";
+                    textColor = "rgba(139, 148, 158, 0.08)";
+                    bgFill = "rgba(13, 17, 23, 0.05)";
+                } else if (isMatched) {
+                    borderColor = "#ffffff";
+                    bgFill = "rgba(22, 27, 34, 0.90)";
+                    textColor = "#ffffff";
+                }
+
+                if (currentViewMode === "flow" && isBoundAndActive) {
+                    borderColor = "#00f0ff"; // neon cyan for active database tables
+                    textColor = "#ffffff";
+                    bgFill = "rgba(13, 35, 45, 0.95)";
+                }
+
+                ctx.beginPath();
+                drawRoundRect(ctx, node.x, node.y, node.w, node.h, 4);
+                ctx.fillStyle = bgFill;
+                ctx.fill();
+
+                ctx.lineWidth = (isNodeFocused || isNodeHovered || isBoundAndActive) ? 1.5 : 0.75;
+                ctx.strokeStyle = borderColor;
+                
+                if (isNodeFocused || isNodeHovered || isMatched || isBoundAndActive) {
+                    ctx.shadowBlur = 6;
+                    ctx.shadowColor = borderColor;
+                }
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+
+                // Label table name
+                ctx.fillStyle = textColor;
+                ctx.font = "600 9px monospace";
+                ctx.textAlign = "left";
+                ctx.textBaseline = "middle";
+                ctx.fillText(node.name, node.x + 6, node.y + node.h / 2);
+            });
+
+            // 5. Draw Visio Flowchart Overlay (Foreground)
+            if (currentViewMode === "flow" && activePage) {
+                // First draw flowchart process connection arrows
+                activePage.connections.forEach(conn => {
+                    const fromShape = activePage.shapes.find(s => s.id === conn.from);
+                    const toShape = activePage.shapes.find(s => s.id === conn.to);
+                    if (!fromShape || !toShape) return;
+
+                    const x1 = fromShape.x + fromShape.w;
+                    const y1 = fromShape.y + fromShape.h / 2;
+                    const x2 = toShape.x;
+                    const y2 = toShape.y + toShape.h / 2;
+
+                    ctx.beginPath();
+                    ctx.moveTo(x1, y1);
+                    ctx.lineTo(x2, y2);
+                    
+                    ctx.strokeStyle = "#d29922"; // gold connectors
+                    ctx.lineWidth = 2.0;
+                    ctx.stroke();
+
+                    // Draw Arrowhead
+                    const angle = Math.atan2(y2 - y1, x2 - x1);
+                    ctx.beginPath();
+                    ctx.moveTo(x2, y2);
+                    ctx.lineTo(x2 - 10 * Math.cos(angle - Math.PI/6), y2 - 10 * Math.sin(angle - Math.PI/6));
+                    ctx.lineTo(x2 - 10 * Math.cos(angle + Math.PI/6), y2 - 10 * Math.sin(angle + Math.PI/6));
+                    ctx.closePath();
+                    ctx.fillStyle = "#d29922";
+                    ctx.fill();
+
+                    // Label connection if defined
+                    if (conn.label) {
+                        ctx.fillStyle = "rgba(139, 148, 158, 0.75)";
+                        ctx.font = "bold 9.5px 'Outfit', sans-serif";
+                        ctx.textAlign = "center";
+                        ctx.fillText(conn.label, (x1 + x2)/2, (y1 + y2)/2 - 6);
+                    }
+                });
+
+                // Next draw dashed glowing Data Binding Links from flowchart shapes to DB tables in top half
+                activePage.shapes.forEach(shape => {
+                    if (shape.boundTables) {
+                        const isShapeActive = (shape === hoveredShape || shape === selectedShape);
+                        
+                        shape.boundTables.forEach(tKey => {
+                            const dbNode = nodeMap[tKey];
+                            if (dbNode) {
+                                ctx.beginPath();
+                                ctx.moveTo(shape.x + shape.w / 2, shape.y + shape.h / 2);
+                                ctx.lineTo(dbNode.x + dbNode.w / 2, dbNode.y + dbNode.h / 2);
+                                
+                                ctx.strokeStyle = isShapeActive ? "#00f0ff" : "rgba(0, 240, 255, 0.18)";
+                                ctx.lineWidth = isShapeActive ? 2.0 : 1.0;
+                                ctx.setLineDash([4, 4]);
+                                ctx.stroke();
+                                ctx.setLineDash([]); // Reset line dash
+                            }
+                        });
+                    }
+                });
+
+                // Finally draw the flowchart shape cards (foreground)
+                activePage.shapes.forEach(shape => {
+                    const isHovered = (shape === hoveredShape);
+                    const isSelected = (shape === selectedShape);
+                    
+                    let borderColor = "#d29922"; // gold base
+                    let bgFill = "rgba(13, 17, 23, 0.96)";
+                    let textColor = "#ffffff";
+
+                    if (isSelected) {
+                        borderColor = "#ffaa00"; // bright neon orange
+                        bgFill = "rgba(35, 25, 12, 0.98)";
+                    } else if (isHovered) {
+                        borderColor = "#ffffff";
+                        bgFill = "rgba(22, 27, 34, 0.98)";
+                    }
+
+                    ctx.beginPath();
+                    if (shape.type === 'data') {
+                        drawParallelogram(ctx, shape.x, shape.y, shape.w, shape.h, 15);
+                    } else {
+                        drawRoundRect(ctx, shape.x, shape.y, shape.w, shape.h, 6);
+                    }
+                    ctx.fillStyle = bgFill;
+                    ctx.fill();
+
+                    ctx.lineWidth = (isHovered || isSelected) ? 2.0 : 1.25;
+                    ctx.strokeStyle = borderColor;
+                    
+                    ctx.shadowBlur = (isHovered || isSelected) ? 10 : 3;
+                    ctx.shadowColor = borderColor;
+                    ctx.stroke();
+                    ctx.shadowBlur = 0; // reset
+
+                    // Draw text inside shape
+                    ctx.fillStyle = textColor;
+                    ctx.font = "bold 11px 'Outfit', sans-serif";
+                    ctx.textAlign = "center";
+                    ctx.textBaseline = "middle";
+                    ctx.fillText(shape.text, shape.x + shape.w / 2, shape.y + shape.h / 2);
+                });
+            }
+
+            ctx.restore();
+        }
+
+        function initCanvasEvents() {
+            canvas = document.getElementById('galaxy-canvas');
+            ctx = canvas.getContext('2d');
+
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            let startX = 0;
+            let startY = 0;
+            let dragDistance = 0;
+
+            canvas.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                isAnimatingViewport = false;
+                startX = e.clientX - offsetX;
+                startY = e.clientY - offsetY;
+                dragDistance = 0;
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    const newOffsetX = e.clientX - startX;
+                    const newOffsetY = e.clientY - startY;
+                    dragDistance += Math.abs(newOffsetX - offsetX) + Math.abs(newOffsetY - offsetY);
+                    offsetX = newOffsetX;
+                    offsetY = newOffsetY;
+                    draw();
+                } else {
+                    const virtualMouse = screenToVirtual(e.clientX, e.clientY);
+                    
+                    // Hit test Visio flowchart shapes first
+                    const shape = getShapeAt(virtualMouse.x, virtualMouse.y);
+                    if (shape !== hoveredShape) {
+                        hoveredShape = shape;
+                        canvas.style.cursor = shape ? 'pointer' : 'grab';
+                        draw();
+                        return;
+                    }
+                    
+                    // Fallback to database table nodes
+                    const node = getNodeAt(virtualMouse.x, virtualMouse.y);
+                    if (node !== hoveredNode) {
+                        hoveredNode = node;
+                        canvas.style.cursor = node ? 'pointer' : 'grab';
+                        draw();
+                    }
+                }
+            });
+
+            window.addEventListener('mouseup', (e) => {
+                if (isDragging) {
+                    isDragging = false;
+                    if (dragDistance < 8) {
+                        const virtualMouse = screenToVirtual(e.clientX, e.clientY);
+                        
+                        // Check if flowchart shape clicked
+                        const clickedShape = getShapeAt(virtualMouse.x, virtualMouse.y);
+                        if (clickedShape) {
+                            selectedShape = clickedShape;
+                            draw();
+                            
+                            // If it is bound to tables, focus the first one in details
+                            if (clickedShape.boundTables && clickedShape.boundTables.length > 0) {
+                                const tKey = clickedShape.boundTables[0];
+                                focusTable(tKey);
+                            }
+                            return;
+                        }
+                        
+                        // Check if database node clicked
+                        const clickedNode = getNodeAt(virtualMouse.x, virtualMouse.y);
+                        if (clickedNode) {
+                            focusTable(clickedNode.name);
+                        }
+                    }
+                }
+            });
+
+            canvas.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                isAnimatingViewport = false;
+
+                const rect = canvas.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                const vx = (mouseX - offsetX) / scale;
+                const vy = (mouseY - offsetY) / scale;
+
+                const zoomFactor = e.deltaY < 0 ? 1.15 : 0.85;
+                let newScale = scale * zoomFactor;
+                newScale = Math.max(0.08, Math.min(2.5, newScale));
+
+                scale = newScale;
+                offsetX = mouseX - vx * scale;
+                offsetY = mouseY - vy * scale;
+
+                draw();
+            }, { passive: false });
+            
+            canvas.addEventListener('dblclick', (e) => {
+                const virtualMouse = screenToVirtual(e.clientX, e.clientY);
+                const node = getNodeAt(virtualMouse.x, virtualMouse.y);
+                if (node) {
+                    focusTable(node.name);
+                    setViewMode('neighborhood');
+                }
+            });
+        }
+
+        function resizeCanvas() {
+            const canvasEl = document.getElementById('galaxy-canvas');
+            if (!canvasEl) return;
+            const dpr = window.devicePixelRatio || 1;
+            const rect = canvasEl.getBoundingClientRect();
+            canvasEl.width = rect.width * dpr;
+            canvasEl.height = rect.height * dpr;
+            
+            const ctxEl = canvasEl.getContext('2d');
+            ctxEl.setTransform(dpr, 0, 0, dpr, 0, 0);
+            draw();
+        }
+
+        function animationLoop() {
+            if (currentViewMode !== 'neighborhood') {
+                isLoopRunning = true;
+                updateParticles();
+                draw();
+                requestAnimationFrame(animationLoop);
+            } else {
+                isLoopRunning = false;
+            }
+        }
+
+        // Set viewport display mode
+        function setViewMode(mode) {
+            currentViewMode = mode;
+            
+            const canvasEl = document.getElementById('galaxy-canvas');
+            const neighborhoodEl = document.getElementById('neighborhood-view-container');
+            const indicator = document.getElementById('galaxy-mode-indicator');
+            const matchCounter = document.getElementById('match-counter');
+            
+            // Highlight active button
+            document.getElementById('btn-mode-galaxy').className = `nav-btn ${mode === 'galaxy' ? 'nav-btn-highlight' : ''}`;
+            document.getElementById('btn-mode-flow').className = `nav-btn ${mode === 'flow' ? 'nav-btn-highlight' : ''}`;
+            document.getElementById('btn-mode-neighbor').className = `nav-btn ${mode === 'neighborhood' ? 'nav-btn-highlight' : ''}`;
+            
+            if (mode === 'neighborhood') {
+                canvasEl.style.display = 'none';
+                neighborhoodEl.style.display = 'block';
+                indicator.innerText = '🔍 邻域对齐视图 (Neighborhood View)';
+                matchCounter.innerText = 'Focused';
+                renderNeighborhood();
+            } else {
+                canvasEl.style.display = 'block';
+                neighborhoodEl.style.display = 'none';
+                
+                if (mode === 'galaxy') {
+                    indicator.innerText = '🌌 全局星系网络 (198张表)';
+                    updateMatchCounter();
+                    resetCanvasView();
+                } else if (mode === 'flow') {
+                    indicator.innerText = `⚡ 算法逻辑流 (Page ${activeCase})`;
+                    updateMatchCounter();
+                    panToActiveCasePath();
+                }
+                
+                if (!isLoopRunning) {
+                    animationLoop();
+                }
+            }
+            draw();
+        }
+
+        // Click case on left sidebar
+        function selectAlgorithmCase(id) {
+            activeCase = id;
+            selectedShape = null; // Reset selection
+            
+            // Highlight active SCM Case button in sidebar
+            for (let i = 1; i <= 4; i++) {
+                const btn = document.getElementById(`algo-${i}`);
+                if (btn) {
+                    if (i === id) btn.classList.add('active');
+                    else btn.classList.remove('active');
+                }
+            }
+            
+            // Update inputs & console for Case
+            selectCase(id);
+            
+            // If currently in neighborhood mode, select the first table of this algorithm flow as focus table
+            if (currentViewMode === 'neighborhood') {
+                const page = flowchartPages[id];
+                if (page && page.shapes.length > 0) {
+                    const firstBound = page.shapes.find(s => s.boundTables && s.boundTables.length > 0);
+                    if (firstBound) focusTable(firstBound.boundTables[0]);
+                }
+            } else {
+                setViewMode('flow');
+            }
+        }
+
+        // Algorithm Sandbox Selector
+        function selectCase(id) {
+            activeCase = id;
+            const title = document.getElementById('case-control-title');
+            title.innerText = `PAGE 0${id} 算法输入参数`;
+
+            const container = document.getElementById('case-inputs-container');
+            container.innerHTML = '';
+
+            let html = '';
+            if (id === 1) {
+                html = `
+                    <div class="control-grid">
+                        <div class="input-group">
+                            <label>需求来源 (Customer Demand)</label>
+                            <select id="case1-region">
+                                <option value="Apple">Apple APAC - 5000 Qty</option>
+                                <option value="Huawei">Huawei APAC - 3000 Qty</option>
+                                <option value="Samsung">Samsung EMEA - 2500 Qty</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>推拉边界策略 (Decouple Boundary)</label>
+                            <select id="case1-dp">
+                                <option value="DC">DC (Region DC 作为消纳点)</option>
+                                <option value="MFG">MFG (生产厂作为消纳点)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>自有工厂分流比例 % (Mfg Split %)</label>
+                            <input type="number" id="case1-split" value="60" min="0" max="100">
+                        </div>
+                        <div class="input-group">
+                            <label>在岸寄售在手机量 (Consignment Stock)</label>
+                            <input type="number" id="case1-cons" value="1500" min="0">
+                        </div>
+                    </div>
+                `;
+            } else if (id === 2) {
+                html = `
+                    <div class="control-grid">
+                        <div class="input-group">
+                            <label>异常剔除阈值 (3-Sigma Outlier Coeff)</label>
+                            <input type="number" id="case2-sigma" value="3.0" step="0.1" min="1.0" max="5.0">
+                        </div>
+                        <div class="input-group">
+                            <label>销售与市场预测分配比 (Sales/Mkt Weight)</label>
+                            <select id="case2-weight">
+                                <option value="60_40">60% 销售 / 40% 市场事件</option>
+                                <option value="80_20">80% 销售 / 20% 市场事件</option>
+                                <option value="50_50">50% 销售 / 50% 市场事件</option>
+                            </select>
+                        </div>
+                        <div class="input-group" style="grid-column: span 2;">
+                            <label>市场大促提拉事件调整 % (Event Forecast Lift %)</label>
+                            <input type="number" id="case2-lift" value="25" min="0" max="200">
+                        </div>
+                    </div>
+                `;
+            } else if (id === 3) {
+                html = `
+                    <div class="control-grid">
+                        <div class="input-group">
+                            <label>BOM 激活版本 (Effective BOM Version)</label>
+                            <select id="case3-version">
+                                <option value="V1">Rev 1 (母件 P1 - 贴片贴装工序)</option>
+                                <option value="V2">Rev 2 (母件 P2 - 固件烧录工序)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>贴片控制芯片 C1 在库在手机量</label>
+                            <input type="number" id="case3-c1stock" value="200" min="0">
+                        </div>
+                        <div class="input-group">
+                            <label>芯片替代组 alt_grp:01 优先级</label>
+                            <select id="case3-altprio">
+                                <option value="E1_F1">E1 (Prio 1) -> F1 (Prio 2)</option>
+                                <option value="F1_E1">F1 (Prio 1) -> E1 (Prio 2)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>物料贴片工程废品率 (Scrap Rate %)</label>
+                            <input type="number" id="case3-scrap" value="5" min="0" max="30">
+                        </div>
+                    </div>
+                `;
+            } else if (id === 4) {
+                html = `
+                    <div class="control-grid">
+                        <div class="input-group">
+                            <label>毛需求总量 (Gross Demand Qty)</label>
+                            <input type="number" id="case4-demand" value="8000" min="1">
+                        </div>
+                        <div class="input-group">
+                            <label>在库初始在手机量 (Onhand Stock)</label>
+                            <input type="number" id="case4-onhand" value="3000" min="0">
+                        </div>
+                        <div class="input-group">
+                            <label>在途在制锁定补给量 (Scheduled Receipt)</label>
+                            <input type="number" id="case4-sr" value="2000" min="0">
+                        </div>
+                        <div class="input-group">
+                            <label>计划规整包规合并窗口 (DOS - Days)</label>
+                            <input type="number" id="case4-dos" value="7" min="1">
+                        </div>
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+            
+            // Print welcome log
+            const consoleStage = document.getElementById('console-stage');
+            consoleStage.innerHTML = `<div class="console-line cons-meta">// Visio Page 0${id} 编排沙盘初始化。点击启动消纳引擎进行仿真计算。</div>`;
+        }
+
+        function printConsole(text, type = '') {
+            const consoleStage = document.getElementById('console-stage');
+            const line = document.createElement('div');
+            line.className = 'console-line';
+            
+            let timeStr = new Date().toISOString().split('T')[1].slice(0, -1);
+            let prompt = `<span class="cons-prompt">[${timeStr} IPC-DOD]</span> `;
+            
+            if (type === 'success') {
+                line.innerHTML = `${prompt}<span class="cons-success">${text}</span>`;
+            } else if (type === 'warning') {
+                line.innerHTML = `${prompt}<span class="cons-warning">${text}</span>`;
+            } else if (type === 'danger') {
+                line.innerHTML = `${prompt}<span class="cons-danger">${text}</span>`;
+            } else if (type === 'meta') {
+                line.innerHTML = `<span class="cons-meta">${text}</span>`;
+            } else {
+                line.innerHTML = `${prompt}${text}`;
+            }
+            
+            consoleStage.appendChild(line);
+            consoleStage.scrollTop = consoleStage.scrollHeight;
+        }
+
+        function runSandboxAlgorithm() {
+            const consoleStage = document.getElementById('console-stage');
+            consoleStage.innerHTML = ''; // Clear previous logs
+            
+            printConsole(`// -------------------------------------------------------------------------`, 'meta');
+            printConsole(`// 初始化 IPC C++ 裸金属求解引擎 v3.0 | 搭载 198 张物理表级联拓扑`, 'meta');
+            printConsole(`// SoA (Structure of Arrays) 密铺内存块预分配... 成功 [对齐=64-byte Cache Line]`, 'meta');
+            printConsole(`// -------------------------------------------------------------------------`, 'meta');
+
+            if (activeCase === 1) {
+                const region = document.getElementById('case1-region').value;
+                const dp = document.getElementById('case1-dp').value;
+                const split = parseInt(document.getElementById('case1-split').value) || 0;
+                const consignment = parseInt(document.getElementById('case1-cons').value) || 0;
+
+                printConsole(`载入供应链多级网络拓扑: Page 1 SC NetWork ...`);
+                printConsole(`识别解耦点 (Decouple DP): ${dp} 作为需求分配消纳 node`);
+                printConsole(`客户需求输入: SKU_Phone_01, 节点=${region}, 需求量 = 5000`);
+                
+                printConsole(`第一阶段：转储需求穿透计算...`);
+                printConsole(`  -> Customer ${region} -> Region DC (需求锁定)`);
+                printConsole(`  -> Region DC 触发 3 级逆向爆开 -> 写入转储表 [ipc_logistics_stock_transfer_order]`);
+                
+                let ownQty = Math.round(5000 * split / 100);
+                let oemQty = 5000 - ownQty;
+                printConsole(`第二阶段：制造端有限产能分流计算...`);
+                printConsole(`  -> 自有工厂分流比例 ${split}%: 分流需求量 = ${ownQty} (表: ipc_part_site)`);
+                printConsole(`  -> OEM 外购分流比例 ${100 - split}%: 分流需求量 = ${oemQty} (表: ipc_part_site)`);
+                
+                printConsole(`第三阶段：原材料采购及协作加工核算...`);
+                if (consignment > 1000) {
+                    printConsole(`  -> Consignment 托管库位在手库存充足 (${consignment} > 1000)，触发协力加工装配。`, 'success');
+                } else {
+                    printConsole(`  -> 托管在手库存不足，向 Tier 1 供应商发起紧急采购，对齐发运日历。`, 'warning');
+                }
+                
+                printConsole(`有限产能多级供应链网络流动计算成功！写入财务账目表 [ipc_financial_ledger] 成功。`, 'success');
+                printConsole(`[C++ 性能数据] 耗时: 0.11 毫秒 | LLC Cache 命中率: 99.4%`, 'meta');
+            } 
+            else if (activeCase === 2) {
+                const sigma = parseFloat(document.getElementById('case2-sigma').value) || 3.0;
+                const weightSel = document.getElementById('case2-weight').value;
+                const lift = parseInt(document.getElementById('case2-lift').value) || 0;
+
+                printConsole(`载入销售预测清理管道: Page 2 IBP Pipeline ...`);
+                printConsole(`读取历史销售数据: [ipc_his_demand_actual] 36 个月历史记录载入`);
+                
+                printConsole(`第一阶段：异常值识别 (Define Outliers)...`);
+                printConsole(`  -> 基准均值: 4000, 3-Sigma 偏离上限 = 12000`);
+                printConsole(`  -> 检测到 Day 12 销售毛需求 = 15000 (大于上限)，判定为营销脉冲噪声异常`);
+                printConsole(`  -> 写入异常排除标记表 [ipc_io_safety_stock_item_outlier] 成功。`, 'success');
+                
+                printConsole(`第二阶段：基准统计预测 (Statistical Forecasting)...`);
+                printConsole(`  -> 使用 Holt-Winters 模型计算 Aggregated Statistical Forecast = 4500`);
+                printConsole(`  -> 进行 SKU-Site 粒度自上而下分解，写入 [ipc_forecast_detail] 成功。`);
+                
+                let weights = weightSel.split('_').map(Number);
+                let wSales = weights[0] / 100;
+                let wMkt = weights[1] / 100;
+                let mktEventDemand = 4500 * (1 + lift / 100);
+                let consensus = Math.round(4500 * wSales + mktEventDemand * wMkt);
+                
+                printConsole(`第三阶段：综合一致性计划 (Consensus Forecast)...`);
+                printConsole(`  -> 销售团队输入基准: 4500 | 市场团队大促调整: ${mktEventDemand} (提拉 ${lift}%)`);
+                printConsole(`  -> 加载一致性权重因子: 销售 ${weights[0]}% / 市场 ${weights[1]}%`);
+                printConsole(`  -> 级联汇总 Combine Calculations -> 写入一致性预测最终值 = ${consensus} 件。`, 'success');
+                
+                printConsole(`[C++ 性能数据] 耗时: 0.08 毫秒 | 浮点吞吐: 12.5 GFlops`, 'meta');
+            }
+            else if (activeCase === 3) {
+                const version = document.getElementById('case3-version').value;
+                const c1stock = parseInt(document.getElementById('case3-c1stock').value) || 0;
+                const altprio = document.getElementById('case3-altprio').value;
+                const scrap = parseInt(document.getElementById('case3-scrap').value) || 0;
+
+                printConsole(`载入多级 BOM 与替代卡尺引擎: Page 3 BOM Substitution ...`);
+                printConsole(`当前激活版本: ${version} (BOM 结构与工序路线)`);
+                
+                if (version === 'V1') {
+                    printConsole(`母件 P1 (Rev1 Assembly) 毛需求 = 1000 件`);
+                    printConsole(`  -> 贴片工序 [PRO1] 分配给 SMT 工作中心 [ipc_work_center: WC_SMT_01]`);
+                    printConsole(`  -> 子件 B1 (主板件) 需求 = 1000 件`);
+                    printConsole(`  -> 子件 C1 (主芯片) 需求 = 1000 件 ( scrap = ${scrap}% )`);
+                    
+                    let totalC1Need = Math.round(1000 * (1 + scrap / 100));
+                    printConsole(`第一阶段：主件库存可用性校验 (ATP Check)...`);
+                    printConsole(`  -> 主芯片 C1 实际毛需求 (含废品): ${totalC1Need} 件`);
+                    printConsole(`  -> C1 现有在库库存: ${c1stock} 件`);
+                    
+                    let shortage = totalC1Need - c1stock;
+                    if (shortage > 0) {
+                        printConsole(`  -> [库存缺口警告] C1 缺料 ${shortage} 件！触发 alt_grp:01 替代料检索...`, 'warning');
+                        let p1 = altprio.split('_')[0];
+                        let p2 = altprio.split('_')[1];
+                        printConsole(`第二阶段：替代物料级联分配 (Substitution Allocation)...`);
+                        printConsole(`  -> 替代组 alt_grp:01 载入: 优先使用 ${p1}，次之使用 ${p2}`);
+                        printConsole(`  -> 写入替代分配映射 [ipc_alternate_part]: 满足缺口 ${shortage} 件。`, 'success');
+                    } else {
+                        printConsole(`  -> 主芯片 C1 在手库存充足，无缺口，全额消纳！`, 'success');
+                    }
+                } else {
+                    printConsole(`母件 P2 (Rev2 Assembly) 毛需求 = 1000 件`);
+                    printConsole(`  -> 烧录工序 [PRO2] 分配给软件工作中心 [ipc_work_center: WC_SW_02]`);
+                    printConsole(`  -> 写入烧录子件 C2 (Rev2 主芯片) 替代物料分配 [ipc_alternate_part] 成功。`, 'success');
+                }
+                
+                printConsole(`[C++ 性能数据] 耗时: 0.05 毫秒 | 拓扑图环路检测 (DAG Check): 0.01ms`, 'meta');
+            }
+            else if (activeCase === 4) {
+                const demand = parseInt(document.getElementById('case4-demand').value) || 0;
+                const onhand = parseInt(document.getElementById('case4-onhand').value) || 0;
+                const sr = parseInt(document.getElementById('case4-sr').value) || 0;
+                const dos = parseInt(document.getElementById('case4-dos').value) || 7;
+
+                printConsole(`启动有限产能 MRP 净需求消纳引擎: Page 4 MRP Netting ...`);
+                printConsole(`1. 载入输入: 销售订单 [ipc_sales_order_line] + 在手库存 [ipc_onhand]`);
+                printConsole(`   - 毛需求 Gross Demand = ${demand} 件`);
+                printConsole(`   - 可用在手库存 OnHand = ${onhand} 件`);
+                printConsole(`   - 在途在制锁定补给 ScheduledReceipt = ${sr} 件`);
+                
+                let net = demand - onhand - sr;
+                printConsole(`2. 净需求计算 (Netting Calculation):`);
+                printConsole(`   - Net Demand = Gross (${demand}) - OnHand (${onhand}) - SR (${sr}) = ${net} 件`);
+                
+                if (net > 0) {
+                    let plannedQty = Math.ceil(net / 100) * 100;
+                    printConsole(`3. 建议计划订单生成 (Planned Order Generation):`, 'warning');
+                    printConsole(`   - 考虑 LotSize 合并窗口 (DOS = ${dos} 天)，规整规格 LotSize = 100`);
+                    printConsole(`   - 建议生成计划订单 [PlannedOrder_001] = ${plannedQty} 件 (溢出 = ${plannedQty - net} 件)`);
+                    printConsole(`   - 提前期逆向推算 (Lead Time Offset = 3天) -> 开工日期 = Day 7`);
+                    
+                    printConsole(`4. 供需原子级锁死追溯 (Pegging Mapping):`);
+                    printConsole(`   - 写入 [ipc_planned_supply_assignment] 映射关联线。`, 'success');
+                    printConsole(`   - 写入 [计划订单表 ipc_planned_order] 成功。`, 'success');
+                } else {
+                    printConsole(`3. 在手及在途物料充足，净需求为 0，无需生成补充 PlannedOrder！`, 'success');
+                }
+                
+                printConsole(`[C++ 性能数据] 耗时: 0.14 毫秒 | 内存结构 flat SoA 拷贝消除: 100%`, 'meta');
+            }
+        }
+
+        // Initialize lists on document load
+        window.addEventListener('load', () => {
+            initSidebar();
+            initGalaxyNodes();
+            initCanvasEvents();
+            
+            // Focus table
+            focusTable("ipc_bom_item");
+            
+            // Set default view mode to flow (integrated view) and select Page 1
+            selectAlgorithmCase(1);
+            
+            // Set layout view default fits after browser paints
+            setTimeout(() => {
+                setViewMode('flow');
+                panToActiveCasePath();
+            }, 200);
+            
+            // Start the anim loop
+            animationLoop();
+        });
+
+</script>
+</body>
+</html>
