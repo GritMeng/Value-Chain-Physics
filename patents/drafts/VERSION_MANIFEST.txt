@@ -1,0 +1,71 @@
+========================================================================
+专利交付版本清单 (Patent Delivery Version Manifest) - v1.2.0
+发布日期: 2026-06-03
+交付状态: 交付代理人技术交底书 (Technical Disclosure for Agent)
+========================================================================
+
+一、 交付版本号: v1.2.0-Draft_20260603
+本版本进行了重大技术升级，包含由原先 4 篇扩充至目前的 6 篇完整高标准技术交底书（Word、Markdown及纯文本格式），去除了 Claims 权利要求书，并针对所有底座算法公式、裸金属 C++ 面向数据设计（DOD/SoA）、多线程无锁并发、半群代数规约进行了极高水准的丰富。
+
+二、 文件清单 (Delivery File Checklist)
+
+【主专利 1】
+* 发明名称: 一种基于解耦点刚性配额与优先级排程的双层规划系统及方法
+* 说明书 Word: patent_draft_itp_iop_allotment.docx (内嵌图1至图4)
+* 说明书 文本: patent_draft_itp_iop_allotment.txt
+* 说明书 MD:   patent_draft_itp_iop_allotment.md
+* 配套附图 (CNIPA 黑白线图标准):
+  - fig1_system_architecture.png (图1 系统物理部署与架构示意图)
+  - fig2_overall_flowchart.png (图2 方法整体流程示意图)
+  - fig3_decoupling_point.png (图3 解耦点 Allotment 刚性隔离与配额转换机制示意图)
+  - fig4_preemption_timeline.png (图4 同家族配额内时空无锁置换时序与逻辑对照示意图)
+
+【协同专利 2】
+* 发明名称: 一种基于联副产品分级分流消纳的配产控制系统及方法
+* 说明书 Word: patent_draft_coproduct_solver.docx
+* 说明书 文本: patent_draft_coproduct_solver.txt
+* 说明书 MD:   patent_draft_coproduct_solver.md
+
+【协同专利 3】
+* 发明名称: 一种基于时域并行前缀和分治的同节点ATP供需平衡消纳系统及方法
+* 说明书 Word: patent_draft_parallel_atp.docx
+* 说明书 文本: patent_draft_parallel_atp.txt
+* 说明书 MD:   patent_draft_parallel_atp.md
+
+【协同专利 4】
+* 发明名称: 一种面向级联排产的零分配内存事务性回滚系统及方法
+* 说明书 Word: patent_draft_zero_allocation_rollback.docx
+* 说明书 文本: patent_draft_zero_allocation_rollback.txt
+* 说明书 MD:   patent_draft_zero_allocation_rollback.md
+
+【协同专利 5】
+* 发明名称: 一种基于有向无环图及时间戳锁定的时空产能置换方法及系统
+* 说明书 Word: patent_draft_dbd_swap_solver.docx
+* 说明书 文本: patent_draft_dbd_swap_solver.txt
+* 说明书 MD:   patent_draft_dbd_swap_solver.md
+
+【新增 协同专利 6】
+* 发明名称: 一种基于有向图并行段树与交叉替代分配的多级库存优化方法及系统
+* 说明书 Word: patent_draft_io_optimization_solver.docx
+* 说明书 文本: patent_draft_io_optimization_solver.txt
+* 说明书 MD:   patent_draft_io_optimization_solver.md
+
+三、 提给代理人的对接及审核要点说明
+
+1. 附图规范: 
+   主专利配套的 4 张 PNG 附图已严格采用 CNIPA 电子进案要求的“白底纯黑线条”格式进行绘制，不含任何灰色、渐变色及特殊阴影，且图中主要组件均带有与说明书正文一一对应的数字标记（如 101, 202, 303 等）。
+2. 文档内嵌:
+   在主专利的 Word 文档中，已将对应图片插入于最后一章“八、 说明书附图”的对应位置，供代理人核对排版。
+3. 协同专利格式及核心重构说明:
+   在 v1.2.0 中，已对所有 6 篇专利底稿进行深度“技术交底书化”重构：
+   - 彻底剥离了可能限制范围的“权利要求书（Claims）”草案，完全交由代理人进行更具弹性且专业的保护范围构建。
+   - 专利 3 补充了极其详尽的 Blelloch 并行前缀扫描算法与二叉段树区间状态（Surplus/Deficit）规约抵扣合并算子，并给出了严格的结合律代数证明（满足结合律以确保多处理器并发正确性）。
+   - 专利 4 中补充了极其详尽的底层 C++ 裸金属面向数据设计（DOD）内存结构体定义、DFS 级联扣减原位追踪逻辑，以及 15 层 BOM 及 SMT 产能扣减失败后反向原位加回回滚对账矩阵。
+   - 专利 5 聚焦离散车间多线程并发排程的机台产能消纳，详细交底了微观 DBD 时段派程、OTP 抢占与平移机制、std::atomic 时间戳乐观 CAS 无锁并发校验控制、以及 Swap 削峰填谷算法，包含完整的数值演算对账表。
+   - 专利 6 为新增专利，聚焦全球多级供应链库存计划与优化（IO / MEIO）。其创造性地融合了 ITP/IOP 层面的三大核心技巧（DOD连续物理内存、乐观并发 CAS 时间戳虚拟安全库存池、以及重叠交叉替代组下的安全库存二次分配与动态波动余量分摊算法），给出了双级 RDC ➔ CDC 网络的统计学安全库存公式级联推导与数值对账表。
+   - 全面清洗了所有公式中的 LaTeX 格式以防 Word 编译乱码，应用 Consolas 字体居中斜体代码化。
+   - 若代理人评估需要为协同专利 2、3、4、5、6 补齐单独的物理流程图，可随时向我们提出，我们将在此版本基础上快速生成并完成更新。
+
+========================================================================
+如有任何修改建议，请在各文档的对应版本中进行批注或修改回传。
+========================================================================
