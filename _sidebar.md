@@ -1,6 +1,7 @@
 * [📜 八大核心公理](README.md)
 * <a href="value_chain_audit_agent.html" target="_blank">🔮 价值链智能体审计</a>
 * <a href="ipc_scheme_audit_agent.html" target="_blank">🧠 IPC 架构技术审计</a>
+* <a href="../../战略和公关/IPC_Video_Simulator.html" target="_blank">📽️ 全息视频生成与模拟中枢</a>
 * [🚀 价值链物理学正文](value-chain-physics-book.md)
 * [🔮 全息抗熵正文](holographic-anti-entropy-book.md)
 
