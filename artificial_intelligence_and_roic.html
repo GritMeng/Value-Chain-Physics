@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微信/钛媒体 一键复制排版助手 - 人工智能与ROIC</title>
+    <style>
+        body {
+            font-family: -apple-system-font, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 40px 20px;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 680px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            border-radius: 12px;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* 顶部操作提示区，不属于文章内容 */
+        .copy-banner {
+            max-width: 680px;
+            width: 100%;
+            background: linear-gradient(135deg, #0288d1, #00b0ff);
+            color: #ffffff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 10px rgba(2, 136, 209, 0.2);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .copy-banner strong {
+            font-size: 16px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* 以下为可直接复制的文章内容区域 */
+        .article-content {
+            font-size: 16px;
+            line-height: 1.8;
+            letter-spacing: 0.05em;
+            color: #2f2f2f;
+            word-break: break-all;
+        }
+
+        .article-content h1 {
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 1.4;
+            color: #111111;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .article-content h2 {
+            font-size: 19px;
+            font-weight: bold;
+            color: #0288d1;
+            border-left: 4px solid #0288d1;
+            padding-left: 12px;
+            margin-top: 35px;
+            margin-bottom: 18px;
+        }
+
+        .article-content h3 {
+            font-size: 16px;
+            font-weight: bold;
+            color: #00b0ff;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* 强调重点卡片 */
+        .highlight-card {
+            border-left: 3px solid #ff9100;
+            background-color: #fff8e1;
+            padding: 18px;
+            margin: 24px 0;
+            border-radius: 0 8px 8px 0;
+            color: #455a64;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* 极值数据网格 */
+        .metric-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .metric-item {
+            background-color: #f1f8e9;
+            border: 1px solid #dcedc8;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #33691e;
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            font-size: 13px;
+            color: #558b2f;
+            font-weight: 500;
+        }
+
+        /* 废墟与教训卡片 */
+        .ruin-card {
+            background-color: #fafafa;
+            border: 1px solid #eeeeee;
+            border-radius: 8px;
+            padding: 18px;
+            margin: 24px 0;
+            border-left: 4px solid #757575;
+        }
+        
+        .ruin-title {
+            font-weight: bold;
+            color: #424242;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* 矩阵表格样式 */
+        .article-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .article-content th, .article-content td {
+            padding: 10px 8px;
+            border: 1px solid #e0e0e0;
+            text-align: left;
+        }
+        .article-content th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+            color: #333333;
+        }
+
+        /* 分割线 */
+        .divider {
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 35px 0;
+            border: none;
+        }
+
+        /* 微信/钛媒体特定的列表样式 */
+        .article-content ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        .article-content li {
+            margin-bottom: 8px;
+            list-style-type: circle;
+        }
+
+        .btn-select {
+            background-color: #0288d1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 14px;
+            transition: opacity 0.2s;
+        }
+        .btn-select:hover {
+            opacity: 0.9;
+        }
+    </style>
+    <script>
+        function selectArticle() {
+            var range = document.createRange();
+            range.selectNode(document.getElementById('publishable-article'));
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            alert('文章内容已全选并复制到剪贴板！可以直接粘贴到钛媒体或微信后台的富文本编辑器中。');
+        }
+    </script>
+</head>
+<body>
+
+    <div class="copy-banner">
+        <strong>📋 钛媒体/微信一键复制助手：</strong>
+        钛媒体与微信公众号编辑器均完美支持富文本。点击下方“一键全选复制文章”按钮，直接在编辑器中粘贴（Ctrl+V），即可完美保留所有精心设计的标题边框、数据卡片、重点段落底色，无需再次手动调整样式。
+        <br>
+        <button class="btn-select" onclick="selectArticle()">一键全选复制文章</button>
+    </div>
+
+    <div class="container">
+        <!-- 下方为可直接复制的文章主体 -->
+        <div id="publishable-article" class="article-content">
+            <h1>人工智能与ROIC：从系统科学解构制造企业智能决策的终局</h1>
+
+            <p>在全球现代工业与复杂系统演进的版图中，盛行着一个价值数亿美元的“数智化幻觉”：通过堆砌高精度的单点自动化设备、导入庞大的流程管理软件，试图以此实现世界级的运营秩序。然而，当我们拉开各大制造帝国的最前线帘幕，却往往看到另一副略显荒诞的图景：车间内机械臂以微秒级精度运转，计划室内却围满了成百上千个计划员和采购员，人拉肩扛地用 Excel 手工拆单、博弈、对账，再在系统前台完成人手一单的“数据录入”。这种现象在管理学中被称为“人肉 Excel 代偿”。</p>
+
+            <p>为什么企业的单点数字化投资逐年递增，但系统级的存货周转效率（DSI）却在不断走低，资本回报率（ROIC）陷入增长瓶颈？这并非由于执行力层面的缺失，而是因为在数智化范式层面，我们长期缺乏基于**系统科学（System Science）与控制论第一性原理**的顶层解构。我们错误地将“信息交互的便捷性”视为了“资源配置的智能性”，从而陷入了局部最优与全局退化的恶性循环。</p>
+
+            <div class="highlight-card">
+                <strong>💡 第一性原理：企业治理的本质，就是系统科学</strong><br>
+                企业本质上是一个**开放的复杂巨系统**。既然我们继承并发展了系统科学，我们就必须承认一个事实：企业治理必须由系统科学来定性，不能盲目试错，更不能迎面撞墙。
+                <br><br>
+                今天企业利用智能要解决的所有问题，本质上都是**开放复杂巨系统的治理问题**。市面上无论是大语言模型、机器学习等各种 AI 技术，还是运筹学（Operations Research）的各种优化模型，**最终全部收敛于此**。之所以发生这种收敛，是因为开放复杂巨系统的高维约束与不确定性，**已经超出了人类大脑的对抗极限**。
+            </div>
+
+            <div class="divider"></div>
+
+            <h2>一、 智能对 ROIC 的定性提振路径：物理身体与控制大脑</h2>
+
+            <p>从热力学耗散结构视角来看，企业是一个通过与外界交换物质、资金和信息来维持自身秩序的开放系统。数智化的终极目标，是通过信息流的无损重组来降低物理流的非相干耗散，从而系统性提振 **ROIC（资本回报率 = 息税前净利润 / 投入资本）**。这要求我们必须将企业巨系统拆解为**“价值链物理本体（被控系统）”**与**“计划控制层（控制系统）”**的解耦与协奏：</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>数智化模块</th>
+                        <th>物理职能</th>
+                        <th>ROIC 提振路径 (定性第一性原理)</th>
+                        <th>人在系统中的高维价值发挥 (人机角色)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>模拟仿真 (CAE/EDA)</strong></td>
+                        <td>研发本体</td>
+                        <td><strong>提升分子 (NOPAT)</strong>：实现物理设计的“数字预演”，消除物理样机打样损耗与时间滞后，降低期间研发费。</td>
+                        <td><strong>物理规律的设计师</strong>：发挥直觉和工程创意进行产品概念开发，复杂物理演算交给计算机，专注创意与体验。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>物料管理 (PLM)</strong></td>
+                        <td>研发本体</td>
+                        <td><strong>降低分母 (IC)</strong>：严格推行标准件管控，在源头上掐断 SKU 的无序膨胀，降低整机安全库存基线。</td>
+                        <td><strong>规范与限值制定者</strong>：通过架构约束防止过度设计，强迫工程团队最大化重用已有物料，控制库存的物理源头。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>智能制造 (MES)</strong></td>
+                        <td>制造本体</td>
+                        <td><strong>提升分子 (NOPAT)</strong>：实现车间物理状态的瞬时感知与无损传导，消除换线物理阻力，降低加工成本与废品率。</td>
+                        <td><strong>物理现场的避震器</strong>：将高重复性的加工执行交给机器，人专注于现场不可预测物理异常的消纳与微调。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>仓储物流 (WMS)</strong></td>
+                        <td>物流本体</td>
+                        <td><strong>降低分母 (IC)</strong>：极大化物理通量速度，消除物料在物理空间移动的时间耗散，压降在库资金占用。</td>
+                        <td><strong>物理流瓶颈消纳者</strong>：动态诊断运输及存储路径中的物理阻力，优化物料周转流速。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>需求塑形 (Marketing)</strong></td>
+                        <td>营销边界</td>
+                        <td><strong>提升分子 (NOPAT)</strong>：结合后端物料与产能的刚性限制主动进行引导销售，平顺外部市场需求方差。</td>
+                        <td><strong>商业博弈与关系编织者</strong>：将边界校验交给算力，人专注于客户情感连接、商业博弈与深度需求共创。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>人效活化 (HR)</strong></td>
+                        <td>组织能效</td>
+                        <td><strong>提升分子 (NOPAT)</strong>：消除组织协作中的沟通熵增与信息耗散，将活性劳动力转化为可调度的弹性产能约束。</td>
+                        <td><strong>组织灵魂塑造者与教练</strong>：将行政事务流程信息化，人专注于组织文化的熏陶、士气激发与组织摩擦力的化解。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>实时财务观测 (Finance)</strong></td>
+                        <td>反馈观测</td>
+                        <td><strong>闭环反馈</strong>：打破月结滞后，物理流转瞬时映射为 ROIC/现金流变动，提供精准的资本持有成本（Carrying Cost）。</td>
+                        <td><strong>资本导航员</strong>：摆脱事后记账，基于实时价值仪表盘动态优化投资决策，把控资本红线。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>IPC 计划控制引擎</strong></td>
+                        <td><strong>控制中枢</strong></td>
+                        <td><strong>分子分母双向引爆</strong>：极速消纳全网高维约束冲突，降 DSI 释放现金，减少溢价采购与退价。</td>
+                        <td><strong>战略驾驭者与博弈裁判</strong>：设定安全库存边界和业务优先级规则，在非常规物理断裂时人工干预。</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>在这套大一统蓝图中，研发、制造、物流等“本体智能”构成了赛车的车身与发动机，它们决定了车子能跑多快的**物理极限**；而作为控制系统的 **IPC 引擎，则是车辆的方向盘与行车电脑（ECU）**。如果只有强壮的物理身体，而没有决策大脑，车子马力再大也无法协调避障。这两者的协同，才是数智化判定落子方位和提升 ROIC 的唯一答案。</p>
+
+            <div class="divider"></div>
+
+            <h2>二、 八大核心智能模块的系统科学设计规范：应该怎么做？</h2>
+
+            <p>要终结数字化空转与“人肉 Excel 代偿”，企业在建设各个具体的智能模块和业务系统时，绝不能将其作为孤立的“行政管理表单”，而必须遵循系统科学的约束边界与控制逻辑进行定性设计：</p>
+
+            <ul>
+                <li><strong>1. 模拟仿真 (CAE/EDA) 智能（先遣校验）</strong>：设计阶段的智能必须向后端供应链和可制造性设计（DFM/DFSC）动态打通。设计方案不仅要在物理上可行，更必须在材料供应与产能边界上可行。智能设计的走法是：实现“设计即校验”，在研发构想期就自动对物料采购提前期和可获得性进行刚性约束，避免研发图纸下达后因缺料或极高溢价物料而沦为废纸。</li>
+                <li><strong>2. 物料管理 (PLM) 智能（物理源头抗熵）</strong>：PLM 不应沦为静态的图纸存储库，其核心智能必须定性为“企业物理源头的守门人”。必须建立严格的标准件管控机制与 SKU 重用率反馈环，通过系统刚性过滤防止因局部偏好而导致的 SKU 无序膨胀，从源头上切断安全库存与资金占用的物理膨胀基因。</li>
+                <li><strong>3. 智能制造 (MES) 智能（车间异常就地消纳）</strong>：制造执行系统的智能不应是事后的“无源数据录入”，而必须是“生产现场不确定性（Variance）的就地消纳器”。系统必须实时映射工况（设备状态、人效、品质），在物理现场发生波动（如突发停机或缺料）时，就地通过局部排程消纳冲突，防止微观波动向上传导、级联放大为全局的计划震荡。</li>
+                <li><strong>4. 仓储物流 (WMS) 智能（时空耗散压缩）</strong>：物流仓储的智能核心绝非静态的库位堆放最优，而是物理通量流速（Throughput Velocity）的最大化。物料在仓储内的物理移动节奏必须与后端的实际生产排程实现“高频同步拉动”，将静态的“库存沉淀”转化为动态的“流量管道”，压缩物料在空间中停滞的时间。</li>
+                <li><strong>5. 需求塑形 (Marketing) 智能（基于物理边界的销售引导）</strong>：销售与营销智能不应是脱离后端供应链承受极限的盲目追单，而必须是“基于物理边界的需求塑形器”。前端营销必须实时参考后端“可承诺交期（CTP/ATP）”的刚性限制，通过价格弹性、促销倾斜等智能手段，引导客户向公司具备物料优势、富余产能的标准配置产品下订，平顺外部市场的需求方差。</li>
+                <li><strong>6. 人效活化 (HR) 智能（组织协同熵减）</strong>：组织人效智能应致力于通过自动化的沟通与工作流，最大化吸收组织的沟通熵增。系统负责消纳流程事务，将人的高维能动性从机械的统计汇报中解放出来，人专注于处理机器无法编码的复杂人际协同、士气激发与摩擦消纳，使人的创造力成为系统抗熵的核心催化剂。</li>
+                <li><strong>7. 实时财务 (Finance) 智能（资本航图实时导航）</strong>：财务智能必须打破“事后记账与月结滞后”的旧框，实现物理物流向 ROIC 变化的实时映射。物料的每一次搬运、计划的每一次微调，系统必须即时折算其对资本持有成本（Carrying Cost）的影响，为管理层动态调整策略、把控资本红线提供实时的 ROIC 反馈。</li>
+                <li><strong>8. 计划控制中枢 (IPC) 智能（巨系统的主控 ECU）</strong>：计划控制系统的构建必须作为“开放复杂巨系统的主控 ECU”。它必须抛弃各业务部门“开会协商妥协”的妥协计划，通过一体化引擎（One Plan）在同一张大盘内同时消纳产能、物料、提前期等多维硬约束，输出物理上 100% 可执行的刚性指令，驱动整部企业抗熵机器高速运转。</li>
+            </ul>
+
+            <div class="divider"></div>
+
+            <h2>三、 系统科学定性：整个智能决策系统应该怎么做？</h2>
+
+            <p>基于控制论和系统科学，制造企业的智能决策系统不能仅被视为“报表工具”或“流程辅助工具”，而必须作为**“高维约束消纳体”**，遵循以下三大系统原则落地建设，从而让企业少走弯路：</p>
+
+            <h3>1. 厘清“环内人机协同”与“环外环境进化”的控制论边界</h3>
+            <p>控制论的核心价值在于界定人机协同的物理边界。一个科学的决策系统应当将“人”从低维事务中解放出来，重新分配人在控制回路内外的权重：</p>
+            <ul>
+                <li><strong>环内：高频、高维的人机协同（Symbiotic Operations）</strong>：在日常运作的微观闭环中，算法在环内实时消纳百万级物料守恒与产能冲突，定位异常。人与算法在环内保持紧密、高频的动态互动——算法负责大算力约束消纳，人负责在异常发生时注入基于大客户关系、采购博弈等无法被数字化编码的定性商业决策，两者耦合完成控制环的闭环运行。</li>
+                <li><strong>环外：对人机协同环境本身的进化、优化与控制（Meta-Governance）</strong>：高管团队真正的治理张力存在于“站在环外”。人负责设计、进化和控制这个人机协同的规则环境本身——包括调整宏观目标参数（如存货天数预算、交期达成率红线）、优化物理底座规则（如调整解耦点位置、消纳供应商配额上限），从而确保环内的人机协同永远行驶在 ROIC 最优的轨道上。</li>
+            </ul>
+
+            <div class="highlight-card" style="border-left-color: #0288d1; background-color: #e1f5fe; color: #01579b;">
+                <strong>✈️ 控制论隐喻：现代战机的“电传飞控系统”</strong><br>
+                这如同歼-20等先进战机的飞控逻辑：战机在超音速飞行中如何实时微调襟翼、抗风阻并维持空气动力学平衡，是由飞控计算机与飞行员在**环内（In-the-loop）**自动、瞬时协同完成的，飞行员不需要肉眼去盯每个机械结构。飞行员真正的作用在于**站在环外（On-the-loop）**，驾驶战机、锁定目标，并不断根据战场态势变化，去进化、优化和控制这个由“飞控算法+传感器+物理舵面”构成的整个人机协同环境。
+            </div>
+
+            <h3>2. 刚性约束消纳替代人为妥协</h3>
+            <p>传统供应链决策的痛点是“开会妥协”——各业务团队各退一步，达成一个“折中计划”。这在系统科学上是对物理规律的妥协，必然导致计划执行过程中的库存压降失效。智能决策的正确走法是：**冲突必须由数学求解器在物理约束（物料守恒、提前期阻尼、产能结界）的硬限制下，在数字世界中进行全局硬性消纳，解出唯一物理可行的刚性协同指令，以数学的确定性消灭人为妥协的不确定性。**</p>
+
+            <h3>3. 物理规则不可逾越，拒绝概率幻觉</h3>
+            <p>大模型（LLM）擅长语义空间的信息提取和交互，但在面对包含数百万 SKU 嵌套、多层 BOM 级联图（BOM DAG）的物理流动网络时，决策系统面临着**“计算不可约性（Computational Irreducibility）”**。物料守恒和时序因果不容许一丁点概率幻觉。智能决策的正确走法是：**前台由认知大模型作为人机友好交互的接口，后台必须调用严谨的物理/数学求解器进行 100% 确定性的约束计算。**</p>
+
+            <div class="divider"></div>
+
+            <h2>四、 智能控制引擎的物理学模型：先拉动，后局部置换</h2>
+
+            <p>为了让这套“环内人机协同、环外环境进化”的控制模型真正落地，底层的计算引擎在物理层面上必须严格遵循**时序拉动（Pull / Netting）** 与 **局部置换（SWAP）** 的级联耦合计算次序：</p>
+
+            <div class="highlight-card" style="border-left-color: #0288d1; background-color: #e1f5fe; color: #01579b;">
+                <strong>📐 价值链物理学之“解耦求解定律”：</strong><br>
+                必须先通过 Pull 算法，将全局需求按优先级由高到低排序，将供应按时间倒序匹配（LBL 逻辑，最晚供应最先扣减，以保全早期的库存），在 O(N) 线性复杂度内消纳 99% 的常规供需；然后，只针对那 1% 欠料的局部异常订单，在局部的残差子图内，由自动 SWAP 求解器在常数级复杂度 O(1) 下进行物料和产能的对置换，并在毫秒级内完成回溯和交期更新。
+            </div>
+
+            <p>如果不先进行全局拉动，一上来就试图在全局网络上做置换（先 SWAP 后 Pull），计算复杂度将直接陷入 O(N!) 组合爆炸。这是任何中央服务器都无法逾越的物理算力天堑。</p>
+
+            <p>同时，必须配合 <strong>Allotment（配额边界）结界防守</strong>。ITP（集团战术层）优化输出刚性配额，IOP（微观执行层）将其作为不可逾越的拦截闸门。在控制论中，这扮演了“低通滤波器”的角色，就地将高频的需求和供应抖动吸收并隔离在配额边界内，防止局部扰动向全局级联扩散，彻底解决“系统神经质震荡”。</p>
+
+            <div class="divider"></div>
+
+            <h2>五、 智能决策中枢的“插拔式”架构定位</h2>
+
+            <p>在明晰了智能对 ROIC 的作用及系统科学的走法后，企业在落地数智化控制系统时，必须遵循**“插拔式内核”**的架构定位：</p>
+
+            <p>传统的数字化重构往往陷入“推倒重来”的陷阱——试图用一个新的巨型软件替换掉现有的 ERP、MES 和 WMS 数据库。这不仅开发周期漫长，而且极易导致物理业务线的瘫痪。科学的走法是：**保留现有的被控系统底座（如原有的 MES 负责数据收集、PLM 负责主数据、WMS 负责入库执行），仅在上方“插拔式”地接入一个极速消纳计划控制引擎（IPC）。**</p>
+
+            <p>这个智能决策内核通过标准 API 实时读取物理身体（本体）的工况参数，完成高维消纳计算，然后将唯一正确的刚性指令下发回各个执行系统。这种“轻量插拔、算法赋能”的模式，是以最小的系统摩擦力激活数十亿已有 IT 资产、实现 ROIC 提振的最短路径。</p>
+
+            <div class="divider"></div>
+
+            <h2>结语</h2>
+
+            <p>中国离散制造数智化要走向完全自主、决策闭环，就必须终结对复杂业务流程盲目堆砌的执念，回归系统科学与控制理论的第一性原理。今天，由中国工程师在极限战场上淬炼总结的这套《价值链物理学》公理与设计规范，已经在 GitHub 和 Gitee 上彻底公开（GitHub 开源地址：<a href="https://github.com/GritMeng/Value-Chain-Physics" target="_blank">https://github.com/GritMeng/Value-Chain-Physics</a>，或 Gitee 开源地址：<a href="https://gitee.com/gritmeng/value-chain-physics" target="_blank">https://gitee.com/gritmeng/value-chain-physics</a>）。</p>
+
+            <p>我们坚信，科学属于全人类，而产权分野清晰。虽然具体的决策求解内核保持商业产权，但作为底层公理体系的《价值链物理学》将高悬于公共网络。它像是一面明亮的照妖镜，个人和组织可以选择闭上双眼，但整个工业界都将有机会透过这面镜子，看清数字化空转的真实病灶。</p>
+
+            <p style="font-weight: bold; text-align: center; color: #0288d1; margin-top: 30px;">
+                向系统科学致敬！向大系统工程奠基人钱老致敬！<br>
+                向所有在最前线用肉身与物理定律摩擦的工程师致敬！
+            </p>
+
+        </div>
+    </div>
+
+</body>
+</html>

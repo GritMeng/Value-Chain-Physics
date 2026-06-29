@@ -1,0 +1,2306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>价值链物理学八大公理可视化实验室 - VCP 3D Lab</title>
+    <style>
+        :root {
+            --bg-color: #020617;
+            --panel-bg: rgba(15, 23, 42, 0.8);
+            --panel-border: rgba(255, 255, 255, 0.08);
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --accent-purple: #8b5cf6;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --accent-yellow: #f59e0b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+        }
+
+        /* Sidebar navigation */
+        #sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.95);
+            border-right: 1px solid var(--panel-border);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+        }
+
+        .logo-area {
+            padding: 0 20px 20px 20px;
+            border-bottom: 1px solid var(--panel-border);
+        }
+
+        .logo-area h2 {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            background: linear-gradient(to right, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-area p {
+            font-size: 10px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            text-transform: uppercase;
+        }
+
+        .nav-list {
+            list-style: none;
+            overflow-y: auto;
+            flex: 1;
+            padding: 15px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .nav-item {
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-primary);
+        }
+
+        .nav-item.active {
+            background: rgba(59, 130, 246, 0.12);
+            color: var(--text-primary);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: inset 0 0 10px rgba(59, 130, 246, 0.1);
+        }
+
+        .nav-item .badge {
+            font-size: 9px;
+            background: var(--panel-border);
+            padding: 2px 6px;
+            border-radius: 10px;
+            color: var(--text-secondary);
+        }
+
+        .nav-item.active .badge {
+            background: var(--accent-blue);
+            color: white;
+        }
+
+        /* Simulator core container */
+        #main-container {
+            flex: 1;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Glass Panels overlay */
+        .glass-panel {
+            position: absolute;
+            background: var(--panel-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--panel-border);
+            border-radius: 12px;
+            z-index: 10;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Top Bar info */
+        #top-bar {
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            height: 60px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 11px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            box-shadow: 0 0 8px var(--accent-green);
+        }
+
+        /* Right Panel - Parameters and metrics */
+        #right-panel {
+            top: 100px;
+            right: 20px;
+            width: 320px;
+            bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .section-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-cyan);
+            border-left: 3px solid var(--accent-cyan);
+            padding-left: 8px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+
+        .slider-label span.value {
+            color: var(--accent-blue);
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            cursor: pointer;
+            box-shadow: 0 0 6px var(--accent-blue);
+        }
+
+        .switch-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 11px;
+            color: var(--text-primary);
+        }
+
+        /* Toggle switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 32px;
+            height: 18px;
+        }
+
+        .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider-switch {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: .3s;
+            border-radius: 18px;
+        }
+
+        .slider-switch:before {
+            position: absolute;
+            content: "";
+            height: 12px;
+            width: 12px;
+            left: 3px;
+            bottom: 3px;
+            background-color: var(--text-secondary);
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider-switch {
+            background-color: var(--accent-blue);
+        }
+
+        input:checked + .slider-switch:before {
+            transform: translateX(14px);
+            background-color: white;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 8px;
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .metric-title {
+            font-size: 9px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        .metric-val {
+            font-size: 18px;
+            font-weight: 700;
+            font-family: monospace;
+        }
+
+        /* Explanation box at the bottom */
+        #explanation-panel {
+            bottom: 20px;
+            left: 20px;
+            right: 360px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--panel-border);
+            padding-bottom: 8px;
+        }
+
+        .exp-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        .formula {
+            font-family: monospace;
+            color: var(--accent-purple);
+            font-size: 12px;
+            background: rgba(255,255,255,0.03);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .exp-body {
+            font-size: 11px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .highlight-text {
+            color: var(--text-primary);
+        }
+
+        #dimension-tooltip {
+            position: absolute;
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--accent-cyan);
+            padding: 10px 14px;
+            border-radius: 6px;
+            pointer-events: none;
+            font-size: 12px;
+            display: none;
+            z-index: 100;
+            max-width: 250px;
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
+        }
+
+        .tooltip-title {
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin-bottom: 4px;
+        }
+
+        /* Specific interactive button for Law 8 */
+        #evolution-trigger {
+            display: none;
+            margin-top: 10px;
+        }
+
+        /* Scrollbars */
+        #sidebar::-webkit-scrollbar, #right-panel::-webkit-scrollbar {
+            width: 3px;
+        }
+        #sidebar::-webkit-scrollbar-track, #right-panel::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        #sidebar::-webkit-scrollbar-thumb, #right-panel::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 2px;
+        }
+        
+        .vcp-label {
+            position: absolute;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            padding: 6px 12px;
+            color: var(--text-primary);
+            font-size: 10px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            white-space: nowrap;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            z-index: 5;
+            border-width: 1.5px;
+        }
+        .vcp-label-arrow {
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid rgba(15, 23, 42, 0.9);
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar navigation -->
+    <div id="sidebar">
+        <div class="logo-area">
+            <h2>价值链物理学实验室</h2>
+            <p>VCP 8-Laws Dynamics Cabin</p>
+        </div>
+        <ul class="nav-list">
+            <li class="nav-item active" onclick="switchScene(0)">
+                <span>1. ROI/ROIC 目的引力场</span>
+                <span class="badge">目的论</span>
+            </li>
+            <li class="nav-item" onclick="switchScene(1)">
+                <span>2. 硅基算力代偿极值</span>
+                <span class="badge">本质论</span>
+            </li>
+            <li class="nav-item" onclick="switchScene(2)">
+                <span>3. ⟨D, A⟩ 双螺旋本体</span>
+                <span class="badge">方案论</span>
+            </li>
+            <li class="nav-item" onclick="switchScene(3)">
+                <span>4. 拓扑正交化与单脑奇点</span>
+                <span class="badge">能力论</span>
+            </li>
+            <li class="nav-item" onclick="switchScene(4)">
+                <span>5. 阿罗不可能与逻辑独裁</span>
+                <span class="badge">机制论</span>
+            </li>
+            <li class="nav-item" onclick="switchScene(5)">
+                <span>6. 维纳观测与逆向施工</span>
+                <span class="badge">路径论</span>
+            </li>
+            <li class="nav-item" onclick="switchScene(6)">
+                <span>7. 向量对齐与做功内耗 (cos θ)</span>
+                <span class="badge">动力论</span>
+            </li>
+            <li class="nav-item" onclick="switchScene(7)">
+                <span>8. 哥德尔边界与双环演变</span>
+                <span class="badge">进化论</span>
+            </li>
+            <li class="nav-item" onclick="switchScene(8)">
+                <span>9. 全景大统一动力学模型</span>
+                <span class="badge">全景图</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Container -->
+    <div id="main-container">
+        <div id="canvas-container"></div>
+        <div id="labels-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; overflow: hidden;"></div>
+        <div id="dimension-tooltip">
+            <div class="tooltip-title">提示</div>
+            <div class="tooltip-body">详细描述...</div>
+        </div>
+        
+        <!-- Dynamic VCP State Card -->
+        <div id="vcp-state-card" class="glass-panel" style="position: absolute; top: 100px; left: 50%; transform: translateX(-50%); padding: 12px 24px; pointer-events: none; z-index: 10; display: none; text-align: center; border-width: 1px;">
+            <div id="vcp-state-title" style="font-size: 13px; font-weight: bold; margin-bottom: 4px;"></div>
+            <div id="vcp-state-desc" style="font-size: 10px; color: var(--text-secondary);"></div>
+        </div>
+
+        <!-- Top Bar -->
+        <div id="top-bar" class="glass-panel">
+            <div class="status-group">
+                <span id="active-scene-badge" style="color: var(--accent-cyan); font-weight: bold; text-transform: uppercase;">第 1 定律</span>
+                <span style="color: rgba(255,255,255,0.15)">|</span>
+                <div class="status-dot"></div>
+                <span id="status-text">系统状态平稳</span>
+            </div>
+            <div style="font-family: monospace; font-size: 11px; display: flex; gap: 15px;">
+                <span id="fps-counter">FPS: --</span>
+                <span style="color: rgba(255,255,255,0.15)">|</span>
+                <span id="telemetry-time">t = 0.00s</span>
+            </div>
+        </div>
+
+        <!-- Right Parameter & Telemetry Panel -->
+        <div id="right-panel" class="glass-panel">
+            <div class="section-title" id="param-section-title">环境参数扰动</div>
+            <div class="control-group" id="controls-area">
+                <!-- Sliders dynamically populated here based on scene -->
+            </div>
+
+            <div style="margin-top: 10px;">
+                <div class="section-title">价值链遥测仪 (Telemetry)</div>
+                <div class="control-group">
+                    <div class="metric-card">
+                        <span class="metric-title">系统摩擦废热 Q (内耗呆滞)</span>
+                        <span id="metric-q" class="metric-val" style="color: var(--text-primary)">-- W</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-title">OTIF 齐套交付率</span>
+                        <span id="metric-otif" class="metric-val" style="color: var(--accent-green)">-- %</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-title">ROIC 资本回报率</span>
+                        <span id="metric-roic" class="metric-val" style="color: var(--accent-cyan)">-- %</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Explanation Panel -->
+        <div id="explanation-panel" class="glass-panel">
+            <div class="exp-header">
+                <span class="exp-title" id="exp-title">第一定律：目的论 (ROI/ROIC 驱动与对抗无序做功)</span>
+                <span class="formula" id="exp-formula">V = M &middot; &Pi; [ C &otimes; P &otimes; D ]</span>
+            </div>
+            <div class="exp-body">
+                <div>
+                    <p style="margin-bottom: 6px;"><strong style="color: var(--accent-yellow)">【企业痛点】</strong> <span id="exp-pain">部门墙壁垒导致局部效率看似达标，整体库存周转与交付却在对抗性博弈中内耗抵消，ROIC 持续暴跌。</span></p>
+                    <p><strong style="color: var(--accent-blue)">【物理学映射】</strong> <span id="exp-physics">系统有效做功 V 依赖全局战略意志 M 与统御算符 &Pi; 的正交做功。缺乏 M 的牵引，系统自发滑向高熵混乱的布朗运动。</span></p>
+                </div>
+                <div>
+                    <p style="margin-bottom: 6px;"><strong style="color: var(--accent-green)">【3D 显影解构】</strong> <span id="exp-visual">中央发光体为 ROIC 吸引子。粒子流在引力场约束下收拢为有序柱。增加 Volatility 滑块将扭曲引力场，关掉 Purpose 开关将让粒子彻底崩溃扩散。</span></p>
+                    <button class="btn-trigger" id="evolution-trigger">触发双环架构重构 (Πt+1)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Three.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        let scene, camera, renderer;
+        let algPegging = true;
+        let algSwap = true;
+        let algAllotment = true;
+        let scene1Arrows = [];
+        let currentSceneIndex = 0;
+        let activeMeshes = [];
+        let activeLabels = [];
+        let raycaster, mouse;
+        let initialized = false;
+
+        const dimensions = [
+            { dir: new THREE.Vector3(1, 0, 0), color: 0x3b82f6 },
+            { dir: new THREE.Vector3(-1, 0, 0), color: 0x06b6d4 },
+            { dir: new THREE.Vector3(0, 1, 0), color: 0x8b5cf6 },
+            { dir: new THREE.Vector3(0, -1, 0), color: 0x10b981 },
+            { dir: new THREE.Vector3(0, 0, 1), color: 0xef4444 },
+            { dir: new THREE.Vector3(0, 0, -1), color: 0xeab308 },
+            { dir: new THREE.Vector3(1, 1, 1).normalize(), color: 0xec4899 },
+            { dir: new THREE.Vector3(-1, -1, -1).normalize(), color: 0xf43f5e }
+        ];
+
+        const nodesData = [
+            { id: "plant-1", name: "Plant A (核心总装厂)", type: "factory", x: -6, y: 2, z: -3, color: 0x3b82f6 },
+            { id: "plant-2", name: "Plant B (关键部件厂)", type: "factory", x: 6, y: -2, z: 3, color: 0x3b82f6 },
+            { id: "dc-1", name: "DC East (华东分销仓)", type: "dc", x: -2, y: 4, z: 5, color: 0x06b6d4 },
+            { id: "dc-2", name: "DC South (华南备件仓)", type: "dc", x: 4, y: -3, z: -4, color: 0x06b6d4 },
+            { id: "supplier-1", name: "Tier-1 Vendor (芯片供应商)", type: "supplier", x: -9, y: -1, z: 0, color: 0x8b5cf6 },
+            { id: "supplier-2", name: "Tier-2 Vendor (基础材料商)", type: "supplier", x: 9, y: 3, z: -1, color: 0x8b5cf6 }
+        ];
+        
+        // Universal Telemetry calculations
+        let lastTime = performance.now();
+        let frameCount = 0;
+        let elapsedRealtime = 0;
+
+        // Visual properties / simulation variables
+        let volatility = 25;
+        let delay = 1.5;
+        let alignment = 1.0; 
+        let capacityLimit = 80;
+        let allotmentMargin = 85;
+        let observationState = true;
+        let theta = 15; // Angle
+        let evolutionActive = false;
+        let siliconSolverActive = true;
+
+        // Scene metadata defining VCP 8 Laws
+        const sceneMetadata = [
+            {
+                badge: "第 1 定律",
+                title: "第一定律：目的论 (ROI/ROIC 驱动与对抗无序做功)",
+                formula: "V = M &middot; &Pi; [ C &otimes; P &otimes; D ]",
+                pain: "部门墙割裂导致各自追求局部 KPI 极值，全局有效做功在对消博弈中化为废热，引发 ROIC 衰减。",
+                physics: "复杂巨系统依靠外部负熵注入（战略意志 M 与中枢算符 &Pi;）来截断无效自由度，从而对抗无序熵增。",
+                visual: "发光核心代表 ROIC 吸引子。有秩序的粒子线受引力牵引。拖动『引力强度』滑块影响约束度，关闭『目的场开关』使系统瞬间退化为混乱的布朗运动点云。"
+            },
+            {
+                badge: "第 2 定律",
+                title: "第二定律：本质论 (碳基算力极限与硅基算力代偿)",
+                formula: "Vc &ge; Vs (Ashby 控制带宽定律)",
+                pain: "离散制造的供需决策包含多级BOM、网状替代与高并发配额。组合数呈 O(N!) 指数爆炸，远远击穿了计划员的脑力算力天花板。",
+                physics: "系统复杂度 Vs 高于控制器带宽 Vc 时必失控。必须使用硅基求解器代偿，在内存中完成阶乘级变量收敛。",
+                visual: "左侧 7 个微小的蓝点代表碳基极限脑力；右侧由无数错综连线纠缠的发光网络代表 VCM 阶乘级状态空间。开启『硅基代偿』后，系统瞬间用绿色平行光束将乱线收拢为整齐的管线；关闭它将导致网络彻底陷入高负荷红色预警状态。"
+            },
+            {
+                badge: "第 3 定律",
+                title: "第三定律：方案论 (数据模型 D 与业务算法 A 的双螺旋)",
+                formula: "&Pi; = ⟨ D, A ⟩ (双螺旋本体论)",
+                pain: "数字系统沦为“仅能看账，不能做主”的静态看板，缺少物理真实的约束表达与高频决策自愈内核。",
+                physics: "企业本体是 5D 时空数据容器 D 与 演化算法 A 深度咬合的动态双螺旋。D 提供潜在场，A 沿着时间轴求解状态轨迹。",
+                visual: "蓝色螺旋代表五维数据容器 D（地点/物料/约束/状态/跃迁），紫色螺旋代表算法算符 A，横向的青色连结桥梁为 Pegging (供需因果)。拖动『双核咬合度』滑块，可看到双螺旋偏离与桥梁碎裂，Q 爆表。"
+            },
+            {
+                badge: "第 4 定律",
+                title: "第四定律：能力论 (单脑奇点与正交化解耦)",
+                formula: "Isomorphic: D_Commercial &cong; D_Physical &cong; D_Financial",
+                pain: "业务方案由各怀鬼胎的多部门委员会分裂构建，数据流形不自洽，物理、契约与价值网络发生剪切断裂。",
+                physics: "复杂架构治理需要单脑奇点的绝对立法权，对异构系统执行正交化降维解耦，形成一致的映射流形。",
+                visual: "三层平行发光的正交网格分别代表【物理世界】、【商业契约】与【财务账本】。发光的核心单脑处理器向上下投射正交对齐光线。关闭『正交对齐』，三层平面立刻发生角度倾斜与扭曲错位，代表数据映射断裂。"
+            },
+            {
+                badge: "第 5 定律",
+                title: "第五定律：机制论 (阿罗不可能定理与算法逻辑独裁)",
+                formula: "Arrow Impossibility: f(U_local) != U_global",
+                pain: "试图依靠跨部门协同、委员会投票讨论计划与架构，因偏好冲突陷入循环投票死锁，导致严重内耗，全局最优沦为平庸的折中（矢量对消）。",
+                physics: "社会选择理论证明多目标主体的偏好无法无损聚合。必须在系统计划层面引入刚性算法（逻辑独裁），强制进行全局约束收敛。",
+                visual: "周围四个彩色节点代表各部门（销售、采购、生产、财务）。开启『委员会协商』将使其决策向量激烈冲突旋转并爆发出大量红色碰撞粒子（死锁）；关闭它并开启『算法独裁』，中枢大脑瞬间射出蓝色激光锁死自由度，迫使所有部门对齐齐套方向。"
+            },
+            {
+                badge: "第 6 定律",
+                title: "第六定律：路径论 (不可观测即不可控制与逆向施工)",
+                formula: "dim(Control) &le; dim(Observation) (维纳边界)",
+                pain: "脱离底层物理实相建立宏观“战略大屏”，指令在真空中悬空，执行层被迫用Excel手工排产代偿。",
+                physics: "控制精度受限于观测边界。必须先打通底层物理观测，采集绝对数据状态，然后沿时间轴向后逆向施工建设计划。",
+                visual: "底座为高密度的执行传感器节点阵列，发射跳动的观测脉冲。粒子自下而上逆向射向控制中枢。关闭『底层传感器』，观测脉冲熄灭，控制器与底座断开连接，系统彻底瞎眼失控。"
+            },
+            {
+                badge: "第 7 定律",
+                title: "第七定律：动力论 (向量对齐与 cos θ 做功内耗)",
+                formula: "W = M &middot; V_pi &middot; cos&theta; (向量内积)",
+                pain: "战略方向与实际动作脱节，中层被迫用繁复的流程、会议代替算力自愈，组织高负荷空转，废热惊人。",
+                physics: "有效做功取决于行政意志向量 M 与物理执行轨道矢量 V_pi 的夹角 θ。夹角越大，cosθ 越低，有用功越小，废热耗散 Q 越高。",
+                visual: "显示两个巨大的矢量箭头：蓝色为 M (战略意志)，紫色为 V_pi (物理轨道)。拖动『决策偏差角』滑块可任意改变两向量夹角。夹角为 0 时两向量重合，绿色做功流平稳；夹角变大，连接处激发出剧烈的红色火花粒子并伴随 Q 的激增。"
+            },
+            {
+                badge: "第 8 定律",
+                title: "第八定律：进化论 (哥德尔边界破除与碳硅双环演变)",
+                formula: "&Pi;_(t+1) = f( &Pi;_t, &Delta;t ) (双环进化跃迁)",
+                pain: "系统面对突发的复杂业务变异（如ECN软软切换、共享替代）发生逻辑死锁，无法自发打破原有公理约束。",
+                physics: "常规误差通过硅基自动消纳（单环）；当系统陷入不完备死锁时，唤醒外部高维元认知（碳基总架构师），重写底层数据公理（双环）。",
+                visual: "一条粒子洪流撞上代表哥德尔逻辑限制的红色发光“逻辑墙”，在其表面无序碰撞反弹。点击右下角『触发双环架构重构』按钮，系统将逻辑墙溶解，粒子流瞬间发生高维跃迁，转化为向外扩展的有序金色双螺旋。"
+            },
+            {
+                badge: "第 9 定律",
+                title: "第九定律：全景大统一 (价值链物理学大一统相空间)",
+                formula: "&Pi; = ⟨ D, A ⟩ ⊗ M",
+                pain: "企业管理缺少统一的科学世界观，支离破碎地进行数字化拼凑，导致系统长期陷入高熵摩擦。",
+                physics: "将5D数据容器 D（节点、拓扑、约束簇、矢量、跃迁）与算子 A 及意志 M 统合于同一个正交八维控制相空间中。",
+                visual: "大一统一体化显影：正交八维发光轴线、中央 D-A 双螺旋、外围 Allotment 隔离罩以及货运粒子流同时呈现。您可以通过滑块综合调整所有变量，深度感受价值链大一统引擎的呼吸与自愈相变。"
+            }
+        ];
+
+        // Setup sliders configs based on selected scene
+        const sliderConfigs = [
+            [
+                { id: "input-volatility", label: "需求波动强度 (Volatility)", min: 0, max: 100, step: 1, val: 25, unit: "%" },
+                { id: "input-purpose", label: "目的场引力开关", type: "switch", val: true }
+            ],
+            [
+                { id: "input-silicon", label: "硅基算力代偿开关", type: "switch", val: true },
+                { id: "input-complexity", label: "业务变量组合级数 (N!)", min: 5, max: 100, step: 5, val: 65, unit: " 阶乘" }
+            ],
+            [
+                { id: "input-alignment", label: "D-A 双核咬合度", min: 0, max: 100, step: 5, val: 100, unit: "%" },
+                { id: "input-pegging", label: "原子级 Pegging 开关", type: "switch", val: true }
+            ],
+            [
+                { id: "input-singularity", label: "单脑奇点正交对齐", type: "switch", val: true },
+                { id: "input-skew", label: "多维利益偏离度", min: 0, max: 50, step: 2, val: 0, unit: "°" }
+            ],
+            [
+                { id: "input-committee", label: "委员会民主协商开关", type: "switch", val: true },
+                { id: "input-friction", label: "部门利益冲突强度 (Friction)", min: 0, max: 100, step: 5, val: 50, unit: "%" }
+            ],
+            [
+                { id: "input-observation", label: "底层执行层观测探针", type: "switch", val: true },
+                { id: "input-resolution", label: "观测采集频率 (Hz)", min: 1, max: 60, step: 2, val: 30, unit: " Hz" }
+            ],
+            [
+                { id: "input-theta", label: "做功决策偏差角 (θ)", min: 0, max: 90, step: 1, val: 15, unit: "°" }
+            ],
+            [
+                { id: "input-deadlock", label: "制造非凸死锁点 (Godel)", type: "switch", val: true }
+            ],
+            [
+                { id: "input-volatility", label: "全局需求波动 (Volatility)", min: 0, max: 100, step: 1, val: 25, unit: "%" },
+                { id: "input-delay", label: "物流供应延迟 (Delay)", min: 0, max: 10, step: 0.5, val: 1.5, unit: " 天" },
+                { id: "input-margin", label: "Allotment 隔离罩", min: 20, max: 150, step: 5, val: 85, unit: "%" },
+                { id: "input-swap", label: "SWAP 资源置换引擎", type: "switch", val: true }
+            ]
+        ];
+
+        // Start
+        window.onload = () => {
+            initThree();
+            if (initialized) {
+                switchScene(0);
+                animate();
+            }
+        };
+
+        function initThree() {
+            if (typeof THREE === 'undefined') {
+                document.getElementById('canvas-container').innerHTML = `
+                    <div style="padding: 120px 40px; text-align: center; color: var(--accent-red); font-size: 15px; font-weight: 600; line-height: 2;">
+                        【加载警告：未检测到 Three.js 引擎】<br>
+                        <span style="color: var(--text-secondary); font-size: 12px; font-weight: normal;">
+                            本实验舱需要联网加载 CDN 托管的 Three.js 脚本。请检查您的设备是否联网并重新加载。
+                        </span>
+                    </div>
+                `;
+                document.getElementById('status-text').textContent = "未检测到Three.js";
+                return;
+            }
+
+            const container = document.getElementById('canvas-container');
+            scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x020617, 0.015);
+
+            camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.set(16, 12, 18);
+            camera.lookAt(0, 0, 0);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setClearColor(0x020617, 1);
+            container.appendChild(renderer.domElement);
+
+            // Lighting
+            scene.add(new THREE.AmbientLight(0x0a0f24));
+            const pointLight1 = new THREE.PointLight(0xffffff, 0.7, 100);
+            pointLight1.position.set(10, 20, 10);
+            scene.add(pointLight1);
+
+            raycaster = new THREE.Raycaster();
+            mouse = new THREE.Vector2();
+            window.addEventListener('mousemove', onMouseMove, false);
+            window.addEventListener('resize', onWindowResize, false);
+
+            initialized = true;
+        }
+
+        function switchScene(index) {
+            currentSceneIndex = index;
+            
+            // Highlight sidebar selection
+            const items = document.querySelectorAll('.nav-item');
+            items.forEach((item, idx) => {
+                if (idx === index) item.classList.add('active');
+                else item.classList.remove('active');
+            });
+
+            // Update explanation text
+            const metadata = sceneMetadata[index];
+            document.getElementById('active-scene-badge').textContent = metadata.badge;
+            document.getElementById('exp-title').textContent = metadata.title;
+            document.getElementById('exp-formula').innerHTML = metadata.formula;
+            document.getElementById('exp-pain').textContent = metadata.pain;
+            document.getElementById('exp-physics').textContent = metadata.physics;
+            document.getElementById('exp-visual').textContent = metadata.visual;
+
+            // Trigger evolution button display
+            const btn = document.getElementById('evolution-trigger');
+            if (index === 7) btn.style.display = 'block';
+            else btn.style.display = 'none';
+
+            // Rebuild control panel sliders
+            buildSliders(index);
+
+            // Reset scene content
+            clearScene();
+            buildSceneObjects(index);
+            createSceneLabels(index);
+
+            // Setup camera viewpoint based on scene
+            if (index === 1) { // Ashby
+                camera.position.set(0, 5, 20);
+            } else if (index === 3) { // Orthogonal alignment
+                camera.position.set(0, 15, 12);
+            } else if (index === 6) { // Vectors
+                camera.position.set(0, 4, 18);
+            } else {
+                camera.position.set(16, 12, 18);
+            }
+            camera.lookAt(0, 0, 0);
+        }
+
+        function clearScene() {
+            activeMeshes.forEach(mesh => {
+                scene.remove(mesh);
+            });
+            activeMeshes = [];
+            
+            // Clear HTML labels
+            const container = document.getElementById('labels-container');
+            if (container) container.innerHTML = '';
+            activeLabels = [];
+
+            // Reset evolution state
+            evolutionActive = false;
+            const btn = document.getElementById('evolution-trigger');
+            if (btn) {
+                btn.disabled = false;
+                btn.textContent = "触发双环架构重构 (Πt+1)";
+            }
+        }
+
+        function createLabel(text, position, offset, onUpdate, style) {
+            const container = document.getElementById('labels-container');
+            if (!container) return null;
+            const div = document.createElement('div');
+            div.className = 'vcp-label';
+            div.innerHTML = text + '<div class="vcp-label-arrow"></div>';
+            if (style) {
+                Object.assign(div.style, style);
+            }
+            container.appendChild(div);
+            
+            const labelObj = {
+                element: div,
+                pos: position instanceof THREE.Vector3 ? position : null,
+                bindObject: position instanceof THREE.Object3D ? position : null,
+                offset: offset || new THREE.Vector3(0, 0, 0),
+                onUpdate: onUpdate
+            };
+            
+            activeLabels.push(labelObj);
+            return labelObj;
+        }
+
+        function updateLabels() {
+            if (!renderer || !camera) return;
+            const width = renderer.domElement.clientWidth;
+            const height = renderer.domElement.clientHeight;
+            const widthHalf = width / 2;
+            const heightHalf = height / 2;
+
+            activeLabels.forEach(label => {
+                const pos = new THREE.Vector3();
+                if (label.bindObject) {
+                    label.bindObject.updateMatrixWorld();
+                    pos.setFromMatrixPosition(label.bindObject.matrixWorld);
+                } else if (label.pos) {
+                    pos.copy(label.pos);
+                }
+                
+                if (label.offset) {
+                    pos.add(label.offset);
+                }
+
+                // Project to screen space
+                pos.project(camera);
+
+                // Hide if behind camera
+                if (pos.z > 1) {
+                    label.element.style.display = 'none';
+                    return;
+                }
+
+                const x = (pos.x * widthHalf) + widthHalf;
+                const y = -(pos.y * heightHalf) + heightHalf;
+
+                label.element.style.display = 'flex';
+                label.element.style.left = `${x}px`;
+                label.element.style.top = `${y}px`;
+                label.element.style.transform = 'translate(-50%, -100%) translateY(-10px)';
+                
+                if (label.onUpdate) {
+                    label.onUpdate(label.element);
+                }
+            });
+        }
+
+        function createSceneLabels(index) {
+            switch(index) {
+                case 0: // Law 1: Purpose
+                    createLabel("🎯 全局 ROIC 吸引子 (目标: 35%)", scene1Center, new THREE.Vector3(0, 1.8, 0), null, {
+                        borderColor: "var(--accent-cyan)",
+                        boxShadow: "0 0 10px rgba(6,182,212,0.4)"
+                    });
+                    
+                    // Sales
+                    createLabel("🔴 销售部 (Sales)", new THREE.Vector3(4, 2, 0), null, (el) => {
+                        if (observationState) {
+                            el.innerHTML = "🔴 销售部 (对齐全局计划)<br><span style='color: var(--accent-green)'>齐套承诺交付，降低呆滞备货</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-green)";
+                        } else {
+                            el.innerHTML = "🔴 销售部 (局部利益拔河)<br><span style='color: var(--accent-red); font-weight: bold;'>我不管别人，我要丰富备货防断货！</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-red)";
+                        }
+                    });
+                    
+                    // Procurement
+                    createLabel("采购部 (Procurement)", new THREE.Vector3(-4, -2, 0), null, (el) => {
+                        if (observationState) {
+                            el.innerHTML = "🟣 采购部 (对齐全局计划)<br><span style='color: var(--accent-green)'>按需齐套采购，控制资金占用</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-green)";
+                        } else {
+                            el.innerHTML = "🟣 采购部 (局部利益拔河)<br><span style='color: var(--accent-red); font-weight: bold;'>我要大批量采购拿单价折扣！</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-red)";
+                        }
+                    });
+
+                    // Production
+                    createLabel("生产部 (Production)", new THREE.Vector3(0, 3, 2), null, (el) => {
+                        if (observationState) {
+                            el.innerHTML = "🟡 生产部 (对齐全局计划)<br><span style='color: var(--accent-green)'>小批次柔性排产，平抑积压</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-green)";
+                        } else {
+                            el.innerHTML = "🟡 生产部 (局部利益拔河)<br><span style='color: var(--accent-red); font-weight: bold;'>我要连续大批次跑产，减少换模！</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-red)";
+                        }
+                    });
+
+                    // Finance
+                    createLabel("财务部 (Finance)", new THREE.Vector3(0, -3, -2), null, (el) => {
+                        if (observationState) {
+                            el.innerHTML = "🟢 财务部 (对齐全局计划)<br><span style='color: var(--accent-green)'>释放积压库存，提升现金流周转</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-green)";
+                        } else {
+                            el.innerHTML = "🟢 财务部 (局部利益拔河)<br><span style='color: var(--accent-red); font-weight: bold;'>我不管生产，运营资金占用必须归零！</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-red)";
+                        }
+                    });
+                    break;
+
+                case 1: // Law 2: Essence
+                    createLabel("🧠 碳基人工排程", new THREE.Vector3(-6, 1.2, 0), null, (el) => {
+                        if (!siliconSolverActive) {
+                            el.innerHTML = "🧠 碳基人工 Excel 排程<br><span style='color: var(--accent-red); font-weight: bold;'>脑力破产：O(N!)组合爆炸，无法消纳BOM约束</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-red)";
+                        } else {
+                            el.innerHTML = "🧠 碳基总架构师 (定义规则)<br><span style='color: var(--text-secondary)'>从算力苦役中解放，专注设计边界与模型</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "rgba(255,255,255,0.15)";
+                        }
+                    });
+                    
+                    createLabel("🤖 硅基计算大脑", new THREE.Vector3(5, 2.5, 0), null, (el) => {
+                        if (!siliconSolverActive) {
+                            el.innerHTML = "🤖 硅基计算大脑 (休眠)<br><span style='color: var(--text-secondary)'>计划重算拉长到数天，牛鞭效应无情放大</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "rgba(255,255,255,0.15)";
+                        } else {
+                            el.innerHTML = "⚡ 硅基 C++ 求解器 (极致代偿)<br><span style='color: var(--accent-cyan); font-weight: bold;'>5分钟消纳50万订单，有限产能约束秒级自愈</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-cyan)";
+                        }
+                    });
+                    break;
+
+                case 2: // Law 3: Scheme (Double Helix)
+                    createLabel("🧬 数据容器 D (五维时空容器)", scene3HelixD, new THREE.Vector3(-2, 3, 0), null, {
+                        borderColor: "var(--accent-blue)"
+                    });
+                    createLabel("🧬 算法算符 A (动力学求解器)", scene3HelixA, new THREE.Vector3(2, -3, 0), null, {
+                        borderColor: "var(--accent-purple)"
+                    });
+                    createLabel("⛓️ Pegging 因果链", new THREE.Vector3(0, 0, 0), null, (el) => {
+                        if (algPegging) {
+                            el.innerHTML = "⛓️ 原子级 Pegging 强约束 (对齐)<br><span style='color: var(--accent-green)'>供需因果关系锁定，消纳呆滞，杜绝多余采购</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-green)";
+                        } else {
+                            el.innerHTML = "❌ 因果链断裂 (脱节)<br><span style='color: var(--accent-red); font-weight: bold;'>计划空转：盲目采购与交付断链停工并存</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-red)";
+                        }
+                    });
+                    break;
+
+                case 3: // Law 4: Capability (Orthogonal alignment)
+                    createLabel("💼 商业契约与规划层 (Commercial Layer)", new THREE.Vector3(-4, 4, 0));
+                    createLabel("⚙️ 物理执行与物料层 (Physical Layer)", new THREE.Vector3(-4, 0, 0));
+                    createLabel("💰 财务核算与价值层 (Financial Layer)", new THREE.Vector3(-4, -4, 0));
+                    createLabel("👑 总设计师单脑奇点", new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 1.2, 0), (el) => {
+                        if (observationState) { // alignment active
+                            el.innerHTML = "👑 一号位/总架构师单脑 (正交对齐)<br><span style='color: var(--accent-cyan)'>打破部门壁垒，三层物理镜像完全自洽</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-cyan)";
+                        } else {
+                            el.innerHTML = "⚠️ 部门多头领导 (多脑分裂)<br><span style='color: var(--accent-red); font-weight: bold;'>三维流形剪切扭曲，数据断裂，无效空转</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-red)";
+                        }
+                    });
+                    break;
+
+                case 4: // Law 5: Mechanism (Arrow's Impossibility)
+                    createLabel("🧠 计划中枢 (Arrow's Central Planner)", scene5Brain, new THREE.Vector3(0, 1.5, 0), (el) => {
+                        if (observationState) { // committee
+                            el.innerHTML = "🛑 计划中枢 (死锁)<br><span style='color: var(--accent-red)'>委员会协商：因阿罗不可能定理陷入死循环</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-red)";
+                        } else {
+                            el.innerHTML = "⚡ 硅基计划中枢 (独裁)<br><span style='color: var(--accent-cyan)'>算法逻辑独裁：强制下达全局最优消纳解</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-cyan)";
+                        }
+                    });
+                    
+                    // Sales
+                    createLabel("🔴 销售部", scene5DeptNodes[0], new THREE.Vector3(0, 0.8, 0), (el) => {
+                        if (observationState) {
+                            el.innerHTML = "🔴 销售部 (偏好投票)<br><span style='color: var(--accent-red); font-weight: bold;'>我要多产备库以防断货！</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-red)";
+                        } else {
+                            el.innerHTML = "🔴 销售部 (执行对齐)<br><span style='color: var(--text-secondary)'>承诺交付率达 99.2%</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "rgba(255,255,255,0.15)";
+                        }
+                    });
+                    
+                    // Procurement
+                    createLabel("采购部", scene5DeptNodes[1], new THREE.Vector3(0, 0.8, 0), (el) => {
+                        if (observationState) {
+                            el.innerHTML = "🟣 采购部 (偏好投票)<br><span style='color: var(--accent-red); font-weight: bold;'>我要大批量采购以降低单价！</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-red)";
+                        } else {
+                            el.innerHTML = "🟣 采购部 (执行对齐)<br><span style='color: var(--text-secondary)'>按BOM精准齐套采购</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "rgba(255,255,255,0.15)";
+                        }
+                    });
+                    
+                    // Production
+                    createLabel("生产部", scene5DeptNodes[2], new THREE.Vector3(0, 0.8, 0), (el) => {
+                        if (observationState) {
+                            el.innerHTML = "🟡 生产部 (偏好投票)<br><span style='color: var(--accent-red); font-weight: bold;'>我要大批次排产提高设备稼动率！</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-red)";
+                        } else {
+                            el.innerHTML = "🟡 生产部 (执行对齐)<br><span style='color: var(--text-secondary)'>小批次柔性排产自愈</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "rgba(255,255,255,0.15)";
+                        }
+                    });
+                    
+                    // Finance
+                    createLabel("财务部", scene5DeptNodes[3], new THREE.Vector3(0, 0.8, 0), (el) => {
+                        if (observationState) {
+                            el.innerHTML = "🟢 财务部 (偏好投票)<br><span style='color: var(--accent-red); font-weight: bold;'>我要运营资本占用必须最低！</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-red)";
+                        } else {
+                            el.innerHTML = "🟢 财务部 (执行对齐)<br><span style='color: var(--text-secondary)'>ROIC 资本效率达到 38.5%</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "rgba(255,255,255,0.15)";
+                        }
+                    });
+                    break;
+
+                case 5: // Law 6: Path (Wiener feedback)
+                    createLabel("📶 物理车间 IoT 传感器阵列", new THREE.Vector3(0, -3.5, 0), new THREE.Vector3(0, -0.6, 0), (el) => {
+                        if (observationState) {
+                            el.innerHTML = "📶 物理车间 IoT 传感器 (打通)<br><span style='color: var(--accent-green)'>微观库存 ETA、车间良率实时观测</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-green)";
+                        } else {
+                            el.innerHTML = "❌ 传感器链路断开 (盲区)<br><span style='color: var(--accent-red); font-weight: bold;'>无法获取物理真值，计划悬空闭门造车</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-red)";
+                        }
+                    });
+                    createLabel("🎮 计划控制大脑 (逆向施工重排)", new THREE.Vector3(0, 3, 0), new THREE.Vector3(0, 1.2, 0), null, {
+                        borderColor: "var(--accent-cyan)"
+                    });
+                    break;
+
+                case 6: // Law 7: Power (cos θ)
+                    createLabel("🎯 管理行政意志向量 M", new THREE.Vector3(4, 3, 0));
+                    createLabel("⚙️ 物理真实执行轨道 V_pi", new THREE.Vector3(4, -1, 0));
+                    createLabel("夹角 θ", new THREE.Vector3(1, 0, 0), null, (el) => {
+                        const angleVal = theta;
+                        el.innerHTML = `做功偏差夹角 &theta; = ${angleVal}&deg;<br><span style="color: ${angleVal > 30 ? 'var(--accent-red)' : 'var(--accent-green)'}">有用功做功效率 cos&theta; = ${Math.cos(angleVal * Math.PI / 180).toFixed(2)}</span><div class='vcp-label-arrow'></div>`;
+                        el.style.borderColor = angleVal > 30 ? "var(--accent-red)" : "var(--accent-green)";
+                    });
+                    break;
+
+                case 7: // Law 8: Evolution
+                    createLabel("🛑 哥德尔边界", new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 1.5, 0), (el) => {
+                        const isBroken = !observationState;
+                        if (!isBroken) {
+                            el.innerHTML = "🛑 哥德尔逻辑限制墙 (单环限值)<br><span style='color: var(--accent-red); font-weight: bold;'>常规计划死锁（主板/ECN替代陷入死循环）</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-red)";
+                        } else {
+                            el.innerHTML = "✨ 元模型重构成功 (双环进化)<br><span style='color: var(--accent-green)'>打破原框架，系统高维自适应演跃</span><div class='vcp-label-arrow'></div>";
+                            el.style.borderColor = "var(--accent-green)";
+                        }
+                    });
+                    break;
+
+                case 8: // Panorama
+                    createLabel("🧬 D-A 决策双螺旋中枢", new THREE.Vector3(0, 4, 0));
+                    createLabel("🔒 Allotment 战术配额隔离罩", new THREE.Vector3(-4, 0, -3), null, null, {
+                        borderColor: "var(--accent-green)"
+                    });
+                    break;
+            }
+        }
+
+        function buildSliders(index) {
+            const area = document.getElementById('controls-area');
+            area.innerHTML = '';
+            
+            const configs = sliderConfigs[index];
+            configs.forEach(cfg => {
+                if (cfg.type === 'switch') {
+                    const row = document.createElement('div');
+                    row.className = 'switch-wrapper';
+                    row.innerHTML = `
+                        <span>${cfg.label}</span>
+                        <label class="switch">
+                            <input type="checkbox" id="${cfg.id}" ${cfg.val ? 'checked' : ''}>
+                            <span class="slider-switch"></span>
+                        </label>
+                    `;
+                    area.appendChild(row);
+                    
+                    // Bind switch changes
+                    row.querySelector('input').addEventListener('change', (e) => {
+                        updateGlobalVariable(cfg.id, e.target.checked);
+                    });
+                    updateGlobalVariable(cfg.id, cfg.val);
+                } else {
+                    const wrap = document.createElement('div');
+                    wrap.className = 'slider-wrapper';
+                    wrap.innerHTML = `
+                        <div class="slider-label">
+                            <span>${cfg.label}</span>
+                            <span class="value" id="${cfg.id}-val">${cfg.val}${cfg.unit}</span>
+                        </div>
+                        <input type="range" id="${cfg.id}" min="${cfg.min}" max="${cfg.max}" step="${cfg.step}" value="${cfg.val}">
+                    `;
+                    area.appendChild(wrap);
+                    
+                    // Bind slider adjustments
+                    wrap.querySelector('input').addEventListener('input', (e) => {
+                        const v = e.target.value;
+                        document.getElementById(`${cfg.id}-val`).textContent = v + cfg.unit;
+                        updateGlobalVariable(cfg.id, parseFloat(v));
+                    });
+                    updateGlobalVariable(cfg.id, cfg.val);
+                }
+            });
+        }
+
+        function updateGlobalVariable(id, val) {
+            if (id === 'input-volatility') volatility = val;
+            if (id === 'input-delay') delay = val;
+            if (id === 'input-margin') allotmentMargin = val;
+            if (id === 'input-committee') observationState = val; // true = committee, false = dictator
+            if (id === 'input-friction') volatility = val;
+            if (id === 'input-purpose') observationState = val; // recycle variable names safely
+            if (id === 'input-silicon') siliconSolverActive = val;
+            if (id === 'input-complexity') capacityLimit = val; // recycle complexity size
+            if (id === 'input-alignment') alignment = val / 100;
+            if (id === 'input-pegging') algPegging = val; // Pegging active
+            if (id === 'input-singularity') observationState = val;
+            if (id === 'input-skew') theta = val; // angle skew
+            if (id === 'input-observation') observationState = val;
+            if (id === 'input-resolution') capacityLimit = val; // observation Hz
+            if (id === 'input-theta') theta = val;
+            if (id === 'input-deadlock') observationState = val; // Godel state
+            if (id === 'input-swap') algSwap = val;
+        }
+
+        function onMouseMove(event) {
+            const container = document.getElementById('canvas-container');
+            mouse.x = (event.clientX - container.offsetLeft) / container.clientWidth * 2 - 1;
+            mouse.y = -((event.clientY - container.offsetTop) / container.clientHeight) * 2 + 1;
+        }
+
+        function onWindowResize() {
+            const container = document.getElementById('canvas-container');
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+
+        /* 3D Visual Mesh Generators for 9 Scenes */
+        function buildSceneObjects(index) {
+            switch(index) {
+                case 0: // Purpose Law
+                    buildPurposeScene();
+                    break;
+                case 1: // Essence Law
+                    buildEssenceScene();
+                    break;
+                case 2: // Scheme Law (Double Helix)
+                    buildSchemeScene();
+                    break;
+                case 3: // Capability Law (Orthogonal planes)
+                    buildCapabilityScene();
+                    break;
+                case 4: // Mechanism Law (Allotment Cages)
+                    buildMechanismScene();
+                    break;
+                case 5: // Path Law (Sensor mesh)
+                    buildPathScene();
+                    break;
+                case 6: // Power Law (Vector alignment)
+                    buildPowerScene();
+                    break;
+                case 7: // Evolution Law (Godel logic barrier)
+                    buildEvolutionScene();
+                    break;
+                case 8: // Panoramic Unified Scene
+                    buildPanoramicScene();
+                    break;
+            }
+        }
+
+        // Scene 1 Mesh: Attractor & aligned particle flow lines
+        let scene1Center, scene1Particles;
+        function buildPurposeScene() {
+            // Attractor sphere
+            const geom = new THREE.SphereGeometry(1.5, 32, 32);
+            const mat = new THREE.MeshBasicMaterial({ color: 0x3b82f6, wireframe: true });
+            scene1Center = new THREE.Mesh(geom, mat);
+            scene.add(scene1Center);
+            activeMeshes.push(scene1Center);
+
+            // Flow particles
+            const count = 400;
+            const pGeom = new THREE.BufferGeometry();
+            const positions = new Float32Array(count * 3);
+            const metadata = [];
+
+            for (let i = 0; i < count; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const r = 8 + Math.random() * 8;
+                positions[i*3] = r * Math.cos(angle);
+                positions[i*3+1] = (Math.random() - 0.5) * 8;
+                positions[i*3+2] = r * Math.sin(angle);
+
+                metadata.push({
+                    angle: angle,
+                    r: r,
+                    y: positions[i*3+1],
+                    speed: 0.01 + Math.random() * 0.015
+                });
+            }
+
+            pGeom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const pMat = new THREE.PointsMaterial({ color: 0x06b6d4, size: 0.2, transparent: true, opacity: 0.8 });
+            scene1Particles = new THREE.Points(pGeom, pMat);
+            scene.add(scene1Particles);
+            activeMeshes.push(scene1Particles);
+            scene1Particles.userData = { meta: metadata };
+
+            // Render conflicting arrows to show "Vector Cancellation"
+            scene1Arrows = [];
+            const arrowDirs = [
+                new THREE.Vector3(1, 0.2, 0.1).normalize(),
+                new THREE.Vector3(-1, -0.3, -0.2).normalize(),
+                new THREE.Vector3(0.2, 1, 0.3).normalize(),
+                new THREE.Vector3(-0.1, -1, -0.3).normalize()
+            ];
+            const arrowColors = [0xef4444, 0x8b5cf6, 0xeab308, 0x10b981];
+            const origin = new THREE.Vector3(0, 0, 0);
+            
+            // Layout them offset from center so they are easily visible
+            const offsets = [
+                new THREE.Vector3(4, 2, 0),
+                new THREE.Vector3(-4, -2, 0),
+                new THREE.Vector3(0, 3, 2),
+                new THREE.Vector3(0, -3, -2)
+            ];
+
+            for (let i = 0; i < 4; i++) {
+                const arrow = new THREE.ArrowHelper(arrowDirs[i], offsets[i], 3, arrowColors[i], 0.8, 0.3);
+                scene.add(arrow);
+                activeMeshes.push(arrow);
+                scene1Arrows.push(arrow);
+            }
+        }
+
+        // Scene 2 Mesh: Small brain vs massive state space grid
+        let scene2HumanCluster, scene2SiliconCluster, scene2Permutations;
+        function buildEssenceScene() {
+            // Carbon brain (7 small nodes)
+            scene2HumanCluster = new THREE.Group();
+            const nodeGeom = new THREE.SphereGeometry(0.25, 8, 8);
+            const humanMat = new THREE.MeshBasicMaterial({ color: 0xef4444 });
+            for(let i=0; i<7; i++) {
+                const sphere = new THREE.Mesh(nodeGeom, humanMat);
+                sphere.position.set(-6 + (Math.random()-0.5)*1.5, (Math.random()-0.5)*1.5, (Math.random()-0.5)*1.5);
+                scene2HumanCluster.add(sphere);
+            }
+            scene.add(scene2HumanCluster);
+            activeMeshes.push(scene2HumanCluster);
+
+            // Silicon solver (Large database node network)
+            scene2SiliconCluster = new THREE.Group();
+            const siliconMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4 });
+            const sPositions = [];
+            for(let i=0; i<40; i++) {
+                const sphere = new THREE.Mesh(nodeGeom, siliconMat);
+                const x = 5 + (Math.random()-0.5)*4;
+                const y = (Math.random()-0.5)*4;
+                const z = (Math.random()-0.5)*4;
+                sphere.position.set(x, y, z);
+                scene2SiliconCluster.add(sphere);
+                sPositions.push(new THREE.Vector3(x, y, z));
+            }
+            scene.add(scene2SiliconCluster);
+            activeMeshes.push(scene2SiliconCluster);
+
+            // Permutation connectors representing complexity pathways
+            scene2Permutations = new THREE.Group();
+            const linkMat = new THREE.LineBasicMaterial({ color: 0xff00ff, transparent: true, opacity: 0.25 });
+            for(let i=0; i<sPositions.length; i++) {
+                for(let j=i+1; j<sPositions.length; j++) {
+                    if(Math.random() < 0.12) {
+                        const lGeom = new THREE.BufferGeometry().setFromPoints([sPositions[i], sPositions[j]]);
+                        const line = new THREE.Line(lGeom, linkMat);
+                        scene2Permutations.add(line);
+                    }
+                }
+            }
+            scene.add(scene2Permutations);
+            activeMeshes.push(scene2Permutations);
+        }
+
+        // Scene 3 Mesh: Double Helix D & A with Pegging Rungs
+        let scene3HelixD, scene3HelixA, scene3Rungs;
+        function buildSchemeScene() {
+            scene3HelixD = new THREE.Group();
+            scene3HelixA = new THREE.Group();
+            scene3Rungs = new THREE.Group();
+
+            const numPoints = 50;
+            const radius = 3.0;
+            const pitch = 0.2;
+            const heightOffset = (numPoints * pitch) / 2;
+
+            const matD = new THREE.LineBasicMaterial({ color: 0x3b82f6, transparent: true, opacity: 0.8 });
+            const matA = new THREE.LineBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.8 });
+            const matRung = new THREE.LineBasicMaterial({ color: 0x06b6d4, transparent: true, opacity: 0.4 });
+
+            const pointsD = [];
+            const pointsA = [];
+            const sphereGeom = new THREE.SphereGeometry(0.14, 8, 8);
+            const sphereMatD = new THREE.MeshBasicMaterial({ color: 0x3b82f6 });
+            const sphereMatA = new THREE.MeshBasicMaterial({ color: 0x8b5cf6 });
+
+            for (let i = 0; i < numPoints; i++) {
+                const t = (i / numPoints) * Math.PI * 6; // 3 turns
+                const z = i * pitch - heightOffset;
+
+                const x1 = radius * Math.cos(t);
+                const y1 = radius * Math.sin(t);
+                const x2 = radius * Math.cos(t + Math.PI);
+                const y2 = radius * Math.sin(t + Math.PI);
+
+                pointsD.push(new THREE.Vector3(x1, y1, z));
+                pointsA.push(new THREE.Vector3(x2, y2, z));
+
+                if(i % 2 === 0) {
+                    // Mesh spheres
+                    const sD = new THREE.Mesh(sphereGeom, sphereMatD);
+                    sD.position.set(x1, y1, z);
+                    scene3HelixD.add(sD);
+
+                    const sA = new THREE.Mesh(sphereGeom, sphereMatA);
+                    sA.position.set(x2, y2, z);
+                    scene3HelixA.add(sA);
+
+                    // Add pegging rungs
+                    const rungGeom = new THREE.BufferGeometry().setFromPoints([
+                        new THREE.Vector3(x1, y1, z),
+                        new THREE.Vector3(x2, y2, z)
+                    ]);
+                    const rungLine = new THREE.Line(rungGeom, matRung);
+                    scene3Rungs.add(rungLine);
+                }
+            }
+
+            const lineD = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pointsD), matD);
+            const lineA = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pointsA), matA);
+            scene3HelixD.add(lineD);
+            scene3HelixA.add(lineA);
+
+            scene.add(scene3HelixD);
+            scene.add(scene3HelixA);
+            scene.add(scene3Rungs);
+            activeMeshes.push(scene3HelixD, scene3HelixA, scene3Rungs);
+        }
+
+        // Scene 4 Mesh: Three Parallel planes aligned by central singularity
+        let scene4PlanesGroup, scene4CenterSingularity;
+        function buildCapabilityScene() {
+            scene4PlanesGroup = new THREE.Group();
+            
+            const planeGeom = new THREE.PlaneGeometry(10, 10, 8, 8);
+            const colors = [0x3b82f6, 0x10b981, 0xeab308]; // Physical, Commercial, Financial
+            const labels = ["PHYSICAL NETWORK", "CONTRACT ALLOTMENT", "FINANCIAL ROIC"];
+
+            for(let i=0; i<3; i++) {
+                const mat = new THREE.MeshBasicMaterial({ 
+                    color: colors[i], 
+                    wireframe: true, 
+                    transparent: true, 
+                    opacity: 0.25 
+                });
+                const plane = new THREE.Mesh(planeGeom, mat);
+                plane.rotation.x = -Math.PI / 2;
+                plane.position.y = 4 - i*4; // Stacked planes
+                scene4PlanesGroup.add(plane);
+            }
+            scene.add(scene4PlanesGroup);
+            activeMeshes.push(scene4PlanesGroup);
+
+            // Central laser processor node
+            const coreGeom = new THREE.CylinderGeometry(0.1, 0.1, 10, 8);
+            const coreMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4, transparent: true, opacity: 0.7 });
+            scene4CenterSingularity = new THREE.Mesh(coreGeom, coreMat);
+            scene.add(scene4CenterSingularity);
+            activeMeshes.push(scene4CenterSingularity);
+        }
+
+        // Scene 5 Mesh: Arrow Impossibility Theorem & Logic Dictatorship
+        let scene5Brain, scene5DeptNodes = [], scene5DeptArrows = [], scene5Beams = [], scene5Sparks;
+        function buildMechanismScene() {
+            scene5DeptNodes = [];
+            scene5DeptArrows = [];
+            scene5Beams = [];
+            
+            // Central Brain (glowing core)
+            const brainGeom = new THREE.SphereGeometry(1.0, 16, 16);
+            const brainMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4, wireframe: true });
+            scene5Brain = new THREE.Mesh(brainGeom, brainMat);
+            scene.add(scene5Brain);
+            activeMeshes.push(scene5Brain);
+            
+            const coords = [
+                { pos: new THREE.Vector3(5, 0, 0), color: 0xef4444 },
+                { pos: new THREE.Vector3(-5, 0, 0), color: 0x8b5cf6 },
+                { pos: new THREE.Vector3(0, 0, 5), color: 0xeab308 },
+                { pos: new THREE.Vector3(0, 0, -5), color: 0x10b981 }
+            ];
+            
+            const sphereGeom = new THREE.SphereGeometry(0.5, 16, 16);
+            const origin = new THREE.Vector3(0, 0, 0);
+            
+            coords.forEach((c, idx) => {
+                // Node
+                const sphereMat = new THREE.MeshBasicMaterial({ color: c.color });
+                const sphere = new THREE.Mesh(sphereGeom, sphereMat);
+                sphere.position.copy(c.pos);
+                scene.add(sphere);
+                activeMeshes.push(sphere);
+                scene5DeptNodes.push(sphere);
+                
+                // Arrow Helper attached to sphere pointing outwards initially
+                const arrowDir = c.pos.clone().normalize();
+                const arrow = new THREE.ArrowHelper(arrowDir, c.pos, 2.2, c.color, 0.6, 0.25);
+                scene.add(arrow);
+                activeMeshes.push(arrow);
+                scene5DeptArrows.push(arrow);
+                
+                // Connecting line (beam)
+                const lineGeom = new THREE.BufferGeometry().setFromPoints([c.pos, origin]);
+                const lineMat = new THREE.LineBasicMaterial({ color: 0x06b6d4, transparent: true, opacity: 0.1 });
+                const line = new THREE.Line(lineGeom, lineMat);
+                scene.add(line);
+                activeMeshes.push(line);
+                scene5Beams.push(line);
+            });
+            
+            // Sparks
+            const count = 120;
+            const spGeom = new THREE.BufferGeometry();
+            const spPos = new Float32Array(count * 3);
+            const spMeta = [];
+            for(let i=0; i<count; i++) {
+                spPos[i*3] = 0; spPos[i*3+1] = 999; spPos[i*3+2] = 0; // hide
+                spMeta.push({
+                    vel: new THREE.Vector3(0,0,0),
+                    life: 999,
+                    nodeIdx: i % 4
+                });
+            }
+            spGeom.setAttribute('position', new THREE.BufferAttribute(spPos, 3));
+            const spMat = new THREE.PointsMaterial({ color: 0xef4444, size: 0.2, transparent: true });
+            scene5Sparks = new THREE.Points(spGeom, spMat);
+            scene5Sparks.userData = { meta: spMeta };
+            scene.add(scene5Sparks);
+            activeMeshes.push(scene5Sparks);
+        }
+
+        // Scene 6 Mesh: Dotted execution sensor grid and upward rays
+        let scene6SensorGrid, scene6UpwardRays;
+        function buildPathScene() {
+            // Sensor grid
+            const count = 100;
+            const geom = new THREE.BufferGeometry();
+            const positions = new Float32Array(count * 3);
+            const metadata = [];
+
+            for(let i=0; i<count; i++) {
+                positions[i*3] = (i % 10) - 5 + (Math.random()-0.5)*0.2;
+                positions[i*3+1] = -5; // Floor plane
+                positions[i*3+2] = Math.floor(i / 10) - 5 + (Math.random()-0.5)*0.2;
+                
+                metadata.push({
+                    x: positions[i*3],
+                    z: positions[i*3+2],
+                    pulseOffset: Math.random() * Math.PI * 2
+                });
+            }
+            geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const mat = new THREE.PointsMaterial({ color: 0x10b981, size: 0.35 });
+            scene6SensorGrid = new THREE.Points(geom, mat);
+            scene6SensorGrid.userData = { meta: metadata };
+            scene.add(scene6SensorGrid);
+            activeMeshes.push(scene6SensorGrid);
+
+            // Light rays upwards
+            scene6UpwardRays = new THREE.Group();
+            const lineMat = new THREE.LineBasicMaterial({ color: 0x06b6d4, transparent: true, opacity: 0.15 });
+            for(let i=0; i<20; i++) {
+                const rx = (Math.random()-0.5)*10;
+                const rz = (Math.random()-0.5)*10;
+                const points = [new THREE.Vector3(rx, -5, rz), new THREE.Vector3(0, 4, 0)];
+                const lGeom = new THREE.BufferGeometry().setFromPoints(points);
+                const line = new THREE.Line(lGeom, lineMat);
+                scene6UpwardRays.add(line);
+            }
+            scene.add(scene6UpwardRays);
+            activeMeshes.push(scene6UpwardRays);
+        }
+
+        // Scene 7 Mesh: Large Vectors M and Vpi
+        let scene7VectorM, scene7VectorVpi, scene7FrictionSparks;
+        function buildPowerScene() {
+            scene7VectorM = new THREE.Group();
+            scene7VectorVpi = new THREE.Group();
+
+            // Cylindrical arrows represent vectors
+            const cylinderGeom = new THREE.CylinderGeometry(0.12, 0.12, 8, 8);
+            const coneGeom = new THREE.ConeGeometry(0.4, 1.0, 8);
+
+            const matM = new THREE.MeshBasicMaterial({ color: 0x3b82f6 }); // Blue Strategic Intent
+            const matV = new THREE.MeshBasicMaterial({ color: 0x8b5cf6 }); // Purple Real Execution
+
+            // Build Arrow M
+            const stemM = new THREE.Mesh(cylinderGeom, matM);
+            stemM.position.y = 4;
+            const tipM = new THREE.Mesh(coneGeom, matM);
+            tipM.position.y = 8;
+            scene7VectorM.add(stemM, tipM);
+            scene.add(scene7VectorM);
+            activeMeshes.push(scene7VectorM);
+
+            // Build Arrow Vpi
+            const stemV = new THREE.Mesh(cylinderGeom, matV);
+            stemV.position.y = 4;
+            const tipV = new THREE.Mesh(coneGeom, matV);
+            tipV.position.y = 8;
+            scene7VectorVpi.add(stemV, tipV);
+            scene.add(scene7VectorVpi);
+            activeMeshes.push(scene7VectorVpi);
+
+            // Friction sparks (red particles) generated if misaligned
+            const count = 100;
+            const spGeom = new THREE.BufferGeometry();
+            const spPos = new Float32Array(count * 3);
+            const spMeta = [];
+            for(let i=0; i<count; i++) {
+                spPos[i*3] = 0; spPos[i*3+1] = 4; spPos[i*3+2] = 0; // Origin center
+                spMeta.push({
+                    vel: new THREE.Vector3(0,0,0),
+                    life: 0
+                });
+            }
+            spGeom.setAttribute('position', new THREE.BufferAttribute(spPos, 3));
+            const spMat = new THREE.PointsMaterial({ color: 0xef4444, size: 0.15, transparent: true });
+            scene7FrictionSparks = new THREE.Points(spGeom, spMat);
+            scene7FrictionSparks.userData = { meta: spMeta };
+            scene.add(scene7FrictionSparks);
+            activeMeshes.push(scene7FrictionSparks);
+        }
+
+        // Scene 8 Mesh: Godel logical barrier wall and particles
+        let scene8BarrierWall, scene8FlowParticles, scene8SpiralHelix;
+        function buildEvolutionScene() {
+            // Barrier wall
+            const wallGeom = new THREE.BoxGeometry(0.3, 8, 12);
+            const wallMat = new THREE.MeshBasicMaterial({ color: 0xef4444, transparent: true, opacity: 0.4, wireframe: true });
+            scene8BarrierWall = new THREE.Mesh(wallGeom, wallMat);
+            scene8BarrierWall.position.x = 0;
+            scene.add(scene8BarrierWall);
+            activeMeshes.push(scene8BarrierWall);
+
+            // Flow particles bouncing on wall
+            const count = 150;
+            const geom = new THREE.BufferGeometry();
+            const pos = new Float32Array(count * 3);
+            const meta = [];
+            for(let i=0; i<count; i++) {
+                pos[i*3] = -8 - Math.random()*4;
+                pos[i*3+1] = (Math.random()-0.5)*6;
+                pos[i*3+2] = (Math.random()-0.5)*6;
+                meta.push({
+                    xVel: 0.05 + Math.random()*0.05,
+                    y: pos[i*3+1],
+                    z: pos[i*3+2]
+                });
+            }
+            geom.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+            const mat = new THREE.PointsMaterial({ color: 0x94a3b8, size: 0.22 });
+            scene8FlowParticles = new THREE.Points(geom, mat);
+            scene8FlowParticles.userData = { meta: meta };
+            scene.add(scene8FlowParticles);
+            activeMeshes.push(scene8FlowParticles);
+
+            // Spiral helix (initially hidden, built for transition)
+            scene8SpiralHelix = new THREE.Group();
+            const hPoints = [];
+            for (let i = 0; i < 200; i++) {
+                const t = i * 0.15;
+                const r = t * 0.2;
+                hPoints.push(new THREE.Vector3(r * Math.cos(t), (Math.random()-0.5)*2, r * Math.sin(t)));
+            }
+            const spiralGeom = new THREE.BufferGeometry().setFromPoints(hPoints);
+            const spiralMat = new THREE.PointsMaterial({ color: 0xeab308, size: 0.18 });
+            const spiralPoints = new THREE.Points(spiralGeom, spiralMat);
+            scene8SpiralHelix.add(spiralPoints);
+            scene.add(scene8SpiralHelix);
+            scene8SpiralHelix.visible = false;
+            activeMeshes.push(scene8SpiralHelix);
+
+            // Click listener for transition
+            document.getElementById('evolution-trigger').onclick = () => {
+                evolutionActive = true;
+                document.getElementById('evolution-trigger').disabled = true;
+                document.getElementById('evolution-trigger').textContent = "演变重构中 (Πt+1)...";
+            };
+        }
+
+        // Scene 9: Panoramic grand unification scene (combines double helix, physical nodes, allotment boundary, and orthogonal VCP axes)
+        let panoHelixD, panoHelixA, panoRungs;
+        let panoPhysicalNodes = [], panoConnectionLines = [];
+        let panoFlowParticles = [], panoAttractorBeams = [];
+        let panoSupplyShell, panoFlowParticlesPoints;
+        function buildPanoramicScene() {
+            // Setup 8 VCP axes
+            dimensions.forEach((dim) => {
+                const group = new THREE.Group();
+                const points = [new THREE.Vector3(0,0,0), dim.dir.clone().multiplyScalar(12)];
+                const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints(points), new THREE.LineBasicMaterial({ color: dim.color, transparent: true, opacity: 0.25 }));
+                const cone = new THREE.Mesh(new THREE.ConeGeometry(0.15, 0.45, 8), new THREE.MeshBasicMaterial({ color: dim.color, transparent: true, opacity: 0.5 }));
+                cone.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dim.dir.clone().normalize());
+                cone.position.copy(dim.dir.clone().normalize().multiplyScalar(12));
+                group.add(line, cone);
+                scene.add(group);
+                activeMeshes.push(group);
+            });
+
+            // Double helix
+            panoHelixD = new THREE.Group();
+            panoHelixA = new THREE.Group();
+            panoRungs = new THREE.Group();
+            const numPoints = 40;
+            const radius = 2.5;
+            const pitch = 0.2;
+            const heightOffset = (numPoints * pitch)/2;
+            const matD = new THREE.LineBasicMaterial({ color: 0x3b82f6, transparent: true, opacity: 0.5 });
+            const matA = new THREE.LineBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.5 });
+            const matRung = new THREE.LineBasicMaterial({ color: 0x06b6d4, transparent: true, opacity: 0.15 });
+
+            const pointsD = [], pointsA = [];
+            for (let i = 0; i < numPoints; i++) {
+                const t = (i / numPoints) * Math.PI * 6;
+                const z = i * pitch - heightOffset;
+                const x1 = radius * Math.cos(t), y1 = radius * Math.sin(t);
+                const x2 = radius * Math.cos(t + Math.PI), y2 = radius * Math.sin(t + Math.PI);
+                pointsD.push(new THREE.Vector3(x1, y1, z));
+                pointsA.push(new THREE.Vector3(x2, y2, z));
+
+                if(i % 2 === 0) {
+                    const rung = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x1,y1,z), new THREE.Vector3(x2,y2,z)]), matRung);
+                    panoRungs.add(rung);
+                }
+            }
+            panoHelixD.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pointsD), matD));
+            panoHelixA.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pointsA), matA));
+            scene.add(panoHelixD, panoHelixA, panoRungs);
+            activeMeshes.push(panoHelixD, panoHelixA, panoRungs);
+
+            // Physical Site nodes
+            const factoryGeom = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+            const dcGeom = new THREE.ConeGeometry(0.3, 0.6, 4);
+            const supplierGeom = new THREE.SphereGeometry(0.3, 12, 12);
+            panoPhysicalNodes = [];
+            panoConnectionLines = [];
+
+            nodesData.forEach(data => {
+                let geom = (data.type === "factory") ? factoryGeom : (data.type === "dc") ? dcGeom : supplierGeom;
+                const mesh = new THREE.Mesh(geom, new THREE.MeshBasicMaterial({ color: data.color, transparent: true, opacity: 0.7 }));
+                mesh.position.set(data.x * 0.8, data.y * 0.8, data.z * 0.8);
+                scene.add(mesh);
+                activeMeshes.push(mesh);
+                panoPhysicalNodes.push(mesh);
+
+                // Connector
+                const road = new THREE.Line(new THREE.BufferGeometry().setFromPoints([mesh.position, new THREE.Vector3(0,0,0)]), new THREE.LineBasicMaterial({ color: 0x475569, transparent: true, opacity: 0.15 }));
+                scene.add(road);
+                activeMeshes.push(road);
+                panoConnectionLines.push(road);
+            });
+
+            // Flow particles
+            panoFlowParticles = [];
+            const flowCount = 100;
+            const flowGeom = new THREE.BufferGeometry();
+            const flowPos = new Float32Array(flowCount * 3);
+            for(let i=0; i<flowCount; i++) {
+                const nodeFrom = nodesData[i%2===0?4:5];
+                const nodeTo = nodesData[i%2===0?2:3];
+                const pct = Math.random();
+                flowPos[i*3] = THREE.MathUtils.lerp(nodeFrom.x*0.8, nodeTo.x*0.8, pct);
+                flowPos[i*3+1] = THREE.MathUtils.lerp(nodeFrom.y*0.8, nodeTo.y*0.8, pct);
+                flowPos[i*3+2] = THREE.MathUtils.lerp(nodeFrom.z*0.8, nodeTo.z*0.8, pct);
+                panoFlowParticles.push({ from: nodeFrom, to: nodeTo, pct: pct, speed: 0.006 + Math.random()*0.008 });
+            }
+            flowGeom.setAttribute('position', new THREE.BufferAttribute(flowPos, 3));
+            const flowMat = new THREE.PointsMaterial({ color: 0x3b82f6, size: 0.2 });
+            panoFlowParticlesPoints = new THREE.Points(flowGeom, flowMat);
+            scene.add(panoFlowParticlesPoints);
+            activeMeshes.push(panoFlowParticlesPoints);
+
+            // Allotment Cage
+            panoSupplyShell = new THREE.Mesh(new THREE.SphereGeometry(1, 10, 10), new THREE.MeshBasicMaterial({ color: 0x10b981, wireframe: true, transparent: true, opacity: 0.03 }));
+            scene.add(panoSupplyShell);
+            activeMeshes.push(panoSupplyShell);
+        }
+
+        /* Interactive Animation Loop for each individual Scene */
+        function animate() {
+            requestAnimationFrame(animate);
+
+            frameCount++;
+            const time = performance.now();
+            document.getElementById('telemetry-time').textContent = 't = ' + (time / 1000).toFixed(2) + 's';
+            if (time >= lastTime + 1000) {
+                document.getElementById('fps-counter').textContent = "FPS: " + Math.round((frameCount * 1000) / (time - lastTime));
+                frameCount = 0;
+                lastTime = time;
+            }
+
+            // Universal slow rotation
+            scene.rotation.y += 0.002;
+
+            // Render calculations based on current active scene
+            let qVal = 0, otifVal = 0, roicVal = 0;
+
+            switch(currentSceneIndex) {
+                case 0: // Purpose Law
+                    if (scene1Center && scene1Particles) {
+                        const isPurposeOn = observationState; // observationState maps to Purpose field toggle
+                        
+                        // Rotates center ROIC sphere
+                        scene1Center.rotation.y += 0.005;
+                        scene1Center.rotation.x += 0.003;
+                        
+                        const pos = scene1Particles.geometry.attributes.position.array;
+                        const meta = scene1Particles.userData.meta;
+                        
+                        for (let i = 0; i < meta.length; i++) {
+                            const p = meta[i];
+                            if (isPurposeOn) {
+                                // Draw towards the ROIC center in orbit
+                                p.r -= p.speed * (volatility * 0.1 + 0.5);
+                                if (p.r < 1.5) p.r = 15; // wrap
+                                p.angle += 0.01;
+                                
+                                pos[i*3] = p.r * Math.cos(p.angle);
+                                pos[i*3+1] = THREE.MathUtils.lerp(pos[i*3+1], 0, 0.05); //收拢在Z=0平面上
+                                pos[i*3+2] = p.r * Math.sin(p.angle);
+                            } else {
+                                // Chaotic brownian motion
+                                pos[i*3] += (Math.random() - 0.5) * 0.2;
+                                pos[i*3+1] += (Math.random() - 0.5) * 0.2;
+                                pos[i*3+2] += (Math.random() - 0.5) * 0.2;
+                                if (Math.abs(pos[i*3]) > 15) pos[i*3] = (Math.random()-0.5)*10;
+                            }
+                        }
+                        scene1Particles.geometry.attributes.position.needsUpdate = true;
+                        
+                        // Vector cancellation / alignment visual animation
+                        if (scene1Arrows && scene1Arrows.length > 0) {
+                            for (let i = 0; i < scene1Arrows.length; i++) {
+                                const arrow = scene1Arrows[i];
+                                if (isPurposeOn) {
+                                    // Smoothly align to a unified rotating direction representing vector alignment
+                                    const unifiedDir = new THREE.Vector3(Math.cos(time * 0.001), 0, Math.sin(time * 0.001)).normalize();
+                                    arrow.setDirection(unifiedDir);
+                                } else {
+                                    // Conflicting directions representing vector cancellation
+                                    const speed = 0.001 * (i + 1);
+                                    const angle = time * speed + i * Math.PI / 2;
+                                    const chaoticDir = new THREE.Vector3(Math.cos(angle), Math.sin(angle * 1.5), Math.sin(angle)).normalize();
+                                    arrow.setDirection(chaoticDir);
+                                }
+                            }
+                        }
+
+                        // Calculate Q
+                        qVal = (100 - volatility) * 0.1 + (isPurposeOn ? 4.2 : 45.0);
+                        otifVal = isPurposeOn ? (98.5 - volatility * 0.15) : 32.0;
+                        roicVal = isPurposeOn ? (34.0 - qVal * 0.5) : -12.4;
+                    }
+                    break;
+                    
+                case 1: // Essence Law
+                    if (scene2HumanCluster && scene2SiliconCluster && scene2Permutations) {
+                        const activeComp = siliconSolverActive;
+                        const N = capacityLimit; // complexity N
+                        
+                        // Wiggle carbon nodes
+                        scene2HumanCluster.children.forEach(node => {
+                            node.position.y += Math.sin(time*0.005 + node.position.x)*0.01;
+                        });
+
+                        // Spin complexity network
+                        scene2SiliconCluster.rotation.y += 0.003;
+                        scene2Permutations.rotation.y += 0.003;
+
+                        // Connector links collapse or drift
+                        scene2Permutations.children.forEach((link, idx) => {
+                            if (activeComp) {
+                                link.material.color.setHex(0x10b981); // orderly green paths
+                                link.material.opacity = 0.2;
+                            } else {
+                                link.material.color.setHex(0xef4444); // red pre-alarm
+                                link.material.opacity = 0.3 + Math.sin(time*0.01 + idx)*0.15;
+                            }
+                        });
+
+                        qVal = (N * 0.2) + (activeComp ? 8.2 : 55.4);
+                        otifVal = activeComp ? (99.0 - N * 0.05) : 28.5;
+                        roicVal = activeComp ? (36.5 - qVal * 0.6) : -18.2;
+                    }
+                    break;
+
+                case 2: // Scheme Law (Double Helix)
+                    if (scene3HelixD && scene3HelixA && scene3Rungs) {
+                        const isPeggingOn = algPegging;
+                        const rotSpeed = 0.015 * alignment;
+                        
+                        scene3HelixD.rotation.z += rotSpeed;
+                        scene3HelixA.rotation.z += rotSpeed;
+                        scene3Rungs.rotation.z += rotSpeed;
+
+                        // Align helixes offset based on alignment slider
+                        const targetOffset = (1 - alignment) * 4;
+                        scene3HelixD.position.x += (targetOffset - scene3HelixD.position.x)*0.08;
+                        scene3HelixA.position.x += (-targetOffset - scene3HelixA.position.x)*0.08;
+
+                        scene3Rungs.children.forEach(rung => {
+                            if (isPeggingOn && alignment > 0.3) {
+                                rung.material.opacity = alignment * 0.4;
+                                rung.material.color.setHex(0x06b6d4); // Cyan
+                                rung.scale.x = alignment;
+                            } else {
+                                rung.material.opacity = 0.05 + Math.random() * 0.08; // Flickering
+                                rung.material.color.setHex(0xef4444); // Red warning
+                                rung.scale.x = 0.1;
+                            }
+                        });
+
+                        qVal = (1 - alignment) * 35 + (isPeggingOn ? 6.2 : 28.0);
+                        otifVal = isPeggingOn ? (98.0 * alignment) : 40.0;
+                        roicVal = alignment * 35.0 - qVal * 0.4;
+                    }
+                    break;
+
+                case 3: // Capability Law (Planes alignment)
+                    if (scene4PlanesGroup && scene4CenterSingularity) {
+                        const aligned = observationState; // singularity switch
+                        const skew = theta; // angle skew
+                        
+                        // Plane tilt animation
+                        scene4PlanesGroup.children.forEach((plane, idx) => {
+                            const targetRotX = -Math.PI / 2 + (aligned ? 0 : (idx - 1) * (skew * Math.PI / 180));
+                            plane.rotation.x += (targetRotX - plane.rotation.x)*0.1;
+                        });
+
+                        // Singularity cylinder scale
+                        const targetScaleX = aligned ? 1.0 : 0.1;
+                        scene4CenterSingularity.scale.x += (targetScaleX - scene4CenterSingularity.scale.x)*0.1;
+                        scene4CenterSingularity.scale.z += (targetScaleX - scene4CenterSingularity.scale.z)*0.1;
+                        
+                        if (aligned) {
+                            scene4CenterSingularity.material.color.setHex(0x06b6d4); // Cyan
+                            scene4CenterSingularity.material.opacity = 0.8;
+                        } else {
+                            scene4CenterSingularity.material.color.setHex(0xef4444); // Red warning
+                            scene4CenterSingularity.material.opacity = 0.15 + Math.sin(time * 0.01) * 0.1; // Flickering
+                        }
+                        
+                        qVal = skew * 0.8 + (aligned ? 5.4 : 32.6);
+                        otifVal = aligned ? (99.0 - skew * 0.1) : 45.0;
+                        roicVal = aligned ? (33.4 - skew * 0.2) : 2.5;
+                    }
+                    break;
+
+                case 4: // Mechanism Law (Arrow's Impossibility)
+                    if (scene5Brain && scene5DeptNodes.length > 0) {
+                        const isCommittee = observationState; // true = committee, false = dictator
+                        const friction = volatility; // conflict strength
+                        
+                        // Rotate center brain
+                        scene5Brain.rotation.y += 0.005;
+                        
+                        // Animate each department node and arrow
+                        const origin = new THREE.Vector3(0, 0, 0);
+                        scene5DeptNodes.forEach((node, idx) => {
+                            const arrow = scene5DeptArrows[idx];
+                            const beam = scene5Beams[idx];
+                            
+                            if (isCommittee) {
+                                // Committee Mode: Arrows point in chaotic, conflicting directions (deadlock)
+                                const speed = 0.0015 * friction * (idx + 1) * 0.02;
+                                const angle = time * speed + idx * Math.PI / 2;
+                                const chaoticDir = new THREE.Vector3(Math.cos(angle), Math.sin(angle * 1.2), Math.sin(angle)).normalize();
+                                arrow.setDirection(chaoticDir);
+                                
+                                // Beam connecting line dims (red conflict)
+                                beam.material.color.setHex(0xef4444);
+                                beam.material.opacity = 0.15 + Math.sin(time * 0.01 + idx) * 0.1;
+                            } else {
+                                // Algorithm Dictatorship: Central solver forces alignment
+                                const unifiedDir = new THREE.Vector3(Math.cos(time * 0.001), 0, Math.sin(time * 0.001)).normalize();
+                                arrow.setDirection(unifiedDir);
+                                
+                                // Beam glows blue representing strong computational enforcement
+                                beam.material.color.setHex(0x06b6d4);
+                                beam.material.opacity = 0.8;
+                            }
+                        });
+                        
+                        // Bouncing sparks along the conflict lines if in Committee mode
+                        const spPos = scene5Sparks.geometry.attributes.position.array;
+                        const spMeta = scene5Sparks.userData.meta;
+                        scene5DeptNodes.forEach((node, idx) => {
+                            const nodePos = node.position;
+                            for (let i = 0; i < spMeta.length; i++) {
+                                const m = spMeta[i];
+                                if (m.nodeIdx === idx) {
+                                    if (isCommittee && friction > 5) {
+                                        m.life += 1;
+                                        if (m.life > 30) {
+                                            // spawn spark at node
+                                            spPos[i*3] = nodePos.x;
+                                            spPos[i*3+1] = nodePos.y;
+                                            spPos[i*3+2] = nodePos.z;
+                                            // point towards center with some noise
+                                            const dir = origin.clone().sub(nodePos).normalize();
+                                            m.vel.copy(dir).multiplyScalar(0.08 + Math.random()*0.08);
+                                            m.vel.x += (Math.random()-0.5)*0.08;
+                                            m.vel.y += (Math.random()-0.5)*0.08;
+                                            m.vel.z += (Math.random()-0.5)*0.08;
+                                            m.life = 0;
+                                        } else {
+                                            // move spark towards center
+                                            spPos[i*3] += m.vel.x;
+                                            spPos[i*3+1] += m.vel.y;
+                                            spPos[i*3+2] += m.vel.z;
+                                        }
+                                    } else {
+                                        // hide sparks
+                                        spPos[i*3] = 999;
+                                        spPos[i*3+1] = 999;
+                                        spPos[i*3+2] = 999;
+                                    }
+                                }
+                            }
+                        });
+                        scene5Sparks.geometry.attributes.position.needsUpdate = true;
+                        
+                        // Calculate metrics
+                        qVal = isCommittee ? (friction * 0.45 + 15.0) : 3.8;
+                        otifVal = isCommittee ? Math.max(98.0 - friction * 0.6, 20.0) : 99.2;
+                        roicVal = isCommittee ? (32.0 - qVal * 0.5) : 38.5;
+                    }
+                    break;
+
+                case 5: // Path Law (Wiener boundary sensors)
+                    if (scene6SensorGrid && scene6UpwardRays) {
+                        const activeObs = observationState;
+                        const hz = capacityLimit; // frequency
+
+                        // Pulse grids
+                        const pos = scene6SensorGrid.geometry.attributes.position.array;
+                        const meta = scene6SensorGrid.userData.meta;
+                        
+                        for (let i = 0; i < meta.length; i++) {
+                            const p = meta[i];
+                            if(activeObs) {
+                                // Y coordinate waves representing sensor readings
+                                pos[i*3+1] = -5 + Math.sin(time * 0.001 * hz + p.pulseOffset) * 0.4;
+                            } else {
+                                pos[i*3+1] = -5;
+                            }
+                        }
+                        scene6SensorGrid.geometry.attributes.position.needsUpdate = true;
+
+                        // Rays opacity maps observations
+                        scene6UpwardRays.children.forEach(ray => {
+                            ray.material.opacity = activeObs ? (0.15 + Math.sin(time*0.005)*0.05) : 0.0;
+                        });
+
+                        qVal = activeObs ? (50 / hz) + 3.2 : 58.0;
+                        otifVal = activeObs ? (99.2 - (60 - hz)*0.05) : 15.0;
+                        roicVal = activeObs ? (31.5 - qVal * 0.5) : -22.4;
+                    }
+                    break;
+
+                case 6: // Power Law (Vector angles)
+                    if (scene7VectorM && scene7VectorVpi && scene7FrictionSparks) {
+                        const angleVal = theta; // θ skew
+                        const rad = angleVal * Math.PI / 180;
+
+                        // Rotate arrow Vpi to display skew theta
+                        scene7VectorVpi.rotation.z = -rad;
+
+                        // Spawn red sparks if misalignment exists
+                        const spPos = scene7FrictionSparks.geometry.attributes.position.array;
+                        const spMeta = scene7FrictionSparks.userData.meta;
+
+                        for(let i=0; i<spMeta.length; i++) {
+                            const m = spMeta[i];
+                            if (angleVal > 2) {
+                                m.life += 1;
+                                if(m.life > 40) {
+                                    // Reset spark to origin
+                                    spPos[i*3] = 0;
+                                    spPos[i*3+1] = 4;
+                                    spPos[i*3+2] = 0;
+                                    m.vel.set((Math.random()-0.5)*0.15, (Math.random()-0.2)*0.1, (Math.random()-0.5)*0.15);
+                                    m.life = 0;
+                                } else {
+                                    // Update position
+                                    spPos[i*3] += m.vel.x;
+                                    spPos[i*3+1] += m.vel.y;
+                                    spPos[i*3+2] += m.vel.z;
+                                }
+                            } else {
+                                // Align hide sparks
+                                spPos[i*3] = 999;
+                            }
+                        }
+                        scene7FrictionSparks.geometry.attributes.position.needsUpdate = true;
+
+                        // Q matches friction formula: Q = Base + scale * (1 - cosθ)
+                        const cosTheta = Math.cos(rad);
+                        qVal = 4.2 + (1 - cosTheta) * 90.0;
+                        otifVal = 99.0 * cosTheta;
+                        roicVal = 38.0 * cosTheta - qVal * 0.5;
+                    }
+                    break;
+
+                case 7: // Evolution Law (Godel logic barrier)
+                    if (scene8BarrierWall && scene8FlowParticles && scene8SpiralHelix) {
+                        const godelOn = observationState;
+                        
+                        if (evolutionActive) {
+                            // Wall dissolves
+                            scene8BarrierWall.scale.y += (0.01 - scene8BarrierWall.scale.y)*0.08;
+                            scene8BarrierWall.material.opacity = 0.05;
+
+                            // Turn off flowing dots
+                            scene8FlowParticles.visible = false;
+                            
+                            // Unveil spiral helix structure
+                            scene8SpiralHelix.visible = true;
+                            scene8SpiralHelix.rotation.z += 0.02;
+
+                            qVal = 2.4;
+                            otifVal = 99.8;
+                            roicVal = 42.6;
+                        } else {
+                            scene8BarrierWall.scale.y = 1.0;
+                            scene8FlowParticles.visible = true;
+                            scene8SpiralHelix.visible = false;
+
+                            const pos = scene8FlowParticles.geometry.attributes.position.array;
+                            const meta = scene8FlowParticles.userData.meta;
+
+                            for(let i=0; i<meta.length; i++) {
+                                pos[i*3] += meta[i].xVel;
+                                if(pos[i*3] >= 0.0) {
+                                    if(godelOn) {
+                                        // Bounce back chaotically (Godel deadlock)
+                                        pos[i*3] = -0.1;
+                                        meta[i].xVel *= -1;
+                                    } else {
+                                        // Pass through
+                                        if (pos[i*3] > 8) {
+                                            pos[i*3] = -12; // loop
+                                        }
+                                    }
+                                }
+                                if(pos[i*3] < -12) {
+                                    meta[i].xVel = Math.abs(meta[i].xVel); // forward
+                                }
+                            }
+                            scene8FlowParticles.geometry.attributes.position.needsUpdate = true;
+
+                            qVal = godelOn ? 42.4 : 12.8;
+                            otifVal = godelOn ? 48.0 : 88.5;
+                            roicVal = godelOn ? -5.2 : 24.0;
+                        }
+                    }
+                    break;
+
+                case 8: // Panoramic Unified Scene
+                    if (panoHelixD && panoHelixA && panoRungs) {
+                        // Rotation
+                        panoHelixD.rotation.z += 0.01;
+                        panoHelixA.rotation.z += 0.01;
+                        panoRungs.rotation.z += 0.01;
+
+                        // Align offsets mapping SWAP toggles
+                        const targetOffset = algSwap ? 0 : 3.5;
+                        panoHelixD.position.x += (targetOffset - panoHelixD.position.x)*0.08;
+                        panoHelixA.position.x += (-targetOffset - panoHelixA.position.x)*0.08;
+
+                        // Scale allotment boundaries
+                        const currentRadius = allotmentMargin / 85;
+                        panoSupplyShell.scale.set(currentRadius, currentRadius, currentRadius);
+
+                        // Particle flow
+                        let otifValue = OTIF_Factor();
+                        const speedMult = 1 + (100 - otifValue) * 0.02;
+
+                        if (panoFlowParticlesPoints) {
+                            const positions = panoFlowParticlesPoints.geometry.attributes.position.array;
+                            for(let i=0; i<panoFlowParticles.length; i++) {
+                                const p = panoFlowParticles[i];
+                                if (algSwap) {
+                                    p.pct += p.speed * speedMult;
+                                    if(p.pct >= 1.0) p.pct = 0;
+                                } else {
+                                    p.pct += (Math.random()-0.5)*0.01;
+                                    if(p.pct > 1.0 || p.pct < 0) p.pct = 0.5;
+                                }
+                                positions[i*3] = THREE.MathUtils.lerp(p.from.x*0.8, p.to.x*0.8, p.pct);
+                                positions[i*3+1] = THREE.MathUtils.lerp(p.from.y*0.8, p.to.y*0.8, p.pct);
+                                positions[i*3+2] = THREE.MathUtils.lerp(p.from.z*0.8, p.to.z*0.8, p.pct);
+                                
+                                if(delay > 2) {
+                                    positions[i*3] += (Math.random()-0.5)*(delay*0.12);
+                                    positions[i*3+1] += (Math.random()-0.5)*(delay*0.12);
+                                    positions[i*3+2] += (Math.random()-0.5)*(delay*0.12);
+                                }
+                            }
+                            panoFlowParticlesPoints.geometry.attributes.position.needsUpdate = true;
+                        }
+
+                        // Global metric telemetry calculations
+                        qVal = (volatility * 0.15) + (delay * 4.5);
+                        if(algSwap) qVal *= 0.5; else qVal += 12;
+                        if(algAllotment) qVal *= 0.6; else qVal += 16;
+                        
+                        otifVal = otifValue;
+                        roicVal = 35.0 - (qVal * 0.8) + (allotmentMargin * 0.08);
+                    }
+                    break;
+            }
+
+            // Dynamic VCP State Card updates for Scene 1 and Scene 5
+            const stateCard = document.getElementById('vcp-state-card');
+            const stateTitle = document.getElementById('vcp-state-title');
+            const stateDesc = document.getElementById('vcp-state-desc');
+            
+            if (currentSceneIndex === 0) { // Scene 1: Teleology
+                stateCard.style.display = 'block';
+                const isPurposeOn = observationState;
+                if (isPurposeOn) {
+                    stateTitle.innerHTML = "🎯 矢量对齐 (Vector Alignment)";
+                    stateTitle.style.color = "var(--accent-green)";
+                    stateCard.style.borderColor = "rgba(16, 185, 129, 0.4)";
+                    stateDesc.innerHTML = "全局意志明确：销售 🔴、采购 🟣、生产 🟡、财务 🟢 向量协同对齐，系统合力最大化！";
+                } else {
+                    stateTitle.innerHTML = "⚠️ 矢量对消 (Vector Cancellation)";
+                    stateTitle.style.color = "var(--accent-red)";
+                    stateCard.style.borderColor = "rgba(239, 68, 68, 0.4)";
+                    stateDesc.innerHTML = "无全局意志：各部门偏好方向冲突碰撞（拉力相互抵消），系统合力为零，有效做功 V 降为零！";
+                }
+            } else if (currentSceneIndex === 4) { // Scene 5: Mechanism
+                stateCard.style.display = 'block';
+                const isCommittee = observationState; // true = committee, false = dictator
+                if (isCommittee) {
+                    stateTitle.innerHTML = "🛑 委员会民主协商死锁 (Arrow's Impossibility)";
+                    stateTitle.style.color = "var(--accent-red)";
+                    stateCard.style.borderColor = "rgba(239, 68, 68, 0.4)";
+                    stateDesc.innerHTML = "阿罗不可能定理：各部门偏好投票陷入循环死锁，决策向量剧烈对消，并爆发摩擦废热！";
+                } else {
+                    stateTitle.innerHTML = "⚡ 算法逻辑独裁 (Algorithmic Dictatorship)";
+                    stateTitle.style.color = "var(--accent-cyan)";
+                    stateCard.style.borderColor = "rgba(6, 182, 212, 0.4)";
+                    stateDesc.innerHTML = "刚性算力求解：硅基大脑强制收敛全局唯一最优路径，所有部门意志绝对对齐！";
+                }
+            } else {
+                stateCard.style.display = 'none';
+            }
+
+            // Update real-time metric texts smoothly
+            const qEl = document.getElementById('metric-q');
+            qEl.textContent = qVal.toFixed(1) + " W";
+            if (qVal > 40) qEl.style.color = 'var(--accent-red)';
+            else if (qVal > 20) qEl.style.color = 'var(--accent-yellow)';
+            else qEl.style.color = 'var(--text-primary)';
+
+            const otifEl = document.getElementById('metric-otif');
+            otifEl.textContent = otifVal.toFixed(1) + "%";
+            if (otifVal < 70) otifEl.style.color = 'var(--accent-red)';
+            else if (otifVal < 90) otifEl.style.color = 'var(--accent-yellow)';
+            else otifEl.style.color = 'var(--accent-green)';
+
+            const roicEl = document.getElementById('metric-roic');
+            roicEl.textContent = (roicVal >= 0 ? "+" : "") + roicVal.toFixed(1) + "%";
+            if (roicVal < 5) roicEl.style.color = 'var(--accent-red)';
+            else roicEl.style.color = 'var(--accent-cyan)';
+
+            // Update Status text based on OTIF metrics
+            const statusText = document.getElementById('status-text');
+            const dot = document.querySelector('.status-dot');
+            if (otifVal < 70) {
+                statusText.textContent = "系统严重失衡 - 触发断链死锁";
+                statusText.style.color = 'var(--accent-red)';
+                dot.style.background = 'var(--accent-red)';
+                dot.style.boxShadow = '0 0 10px var(--accent-red)';
+            } else if (otifVal < 90) {
+                statusText.textContent = "局部扰动 - 算法自愈调节中";
+                statusText.style.color = 'var(--accent-yellow)';
+                dot.style.background = 'var(--accent-yellow)';
+                dot.style.boxShadow = '0 0 10px var(--accent-yellow)';
+            } else {
+                statusText.textContent = "全局供需实时自愈中";
+                statusText.style.color = 'var(--text-primary)';
+                dot.style.background = 'var(--accent-green)';
+                dot.style.boxShadow = '0 0 10px var(--accent-green)';
+            }
+
+            // Raycasting hits for double helix tooltips
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(activeMeshes, true);
+            const tooltip = document.getElementById('dimension-tooltip');
+
+            if(intersects.length > 0 && intersects[0].object.userData.name) {
+                const hit = intersects[0].object;
+                tooltip.style.display = 'block';
+                tooltip.style.left = (renderer.domElement.clientWidth * (mouse.x + 1)/2 + 25) + 'px';
+                tooltip.style.top = (renderer.domElement.clientHeight * (-mouse.y + 1)/2 - 20) + 'px';
+                tooltip.querySelector('.tooltip-title').textContent = hit.userData.name;
+                tooltip.querySelector('.tooltip-body').textContent = hit.userData.desc;
+            } else {
+                tooltip.style.display = 'none';
+            }
+
+            updateLabels();
+
+            renderer.render(scene, camera);
+        }
+
+        // Global recovery helper for Panorama
+        function OTIF_Factor() {
+            let otifVal = 99.5 - (volatility * 0.1) - (delay * 1.8);
+            if (algSwap) otifVal += (delay * 1.2);
+            if (algAllotment) otifVal += (volatility * 0.05);
+            return Math.max(Math.min(otifVal, 100), 20);
+        }
+    </script>
+</body>
+</html>
