@@ -406,4 +406,133 @@ Cache 命中率与跳转开销 & 高频 Cache Miss (延迟黑洞)，指针跳转
 \bibitem{marblestone2016} Adam Marblestone, Greg Wayne, Konrad Kording. Toward an Integration of Deep Learning and Neuroscience[J]. \emph{Frontiers in Computational Neuroscience}, 2016.
 \end{thebibliography}
 
+\newpage
+\section*{附录：全息抗熵核心算法元算子描述 (Appendix)}
+
+为确保学术界和工业界的可复用性，本引擎的核心代数元算子算法（包括用于消除 if-else 分支的 Branch-free 预取算法、用于极速前缀和计算的 SIMD 特化算子以及双向推演确权算法）的关键伪代码已在下文附录中完整列出：
+
+\subsection*{附录 A：无分支优先级编码与时序消纳算法 (Branch-Free Priority Netting)}
+
+在操作执行期（IOP），为消除多级条件分支排序导致的 CPU 分支预测失败开销，算法将多维订单属性组合打包为单一的 64 位无符号整数进行平面排序；同时，在时序扣减中采用代数运算符消除 \texttt{if-else} 条件判断，以支持 CPU 的 SIMD 自动向量化：
+
+\begin{verbatim}
+Algorithm 1: Branch-Free Priority Netting
+--------------------------------------------------------------------------------
+Input: 
+  Orders set O = {o_1, o_2, ..., o_m}
+  Supply time-series S = [s_1, s_2, ..., s_T]
+Output: 
+  Updated Supply S, and Allocated quantities for each order.
+
+1.  For each order o_i in O:
+2.      Pack multi-dimensional priorities into a single 64-bit unsigned integer:
+        P_i <- (committed_bit << 62) | (tier_bits << 60) | (due_bits << 44) | 
+              (pri_bits << 28) | (M_rev - min(M_rev, Revenue_i))
+3.  Sort O in ascending order of P_i using standard comparison-free sorting or quicksort.
+4.  For each sorted order o_i in O_sorted:
+5.      D_req <- o_i.quantity
+6.      t_due <- o_i.due_day
+7.      For t = t_due down to 0:
+8.          // Eliminate conditional jump using algebraic min / CMOV:
+            q_alloc <- std::min(S[t], D_req)
+            S[t] <- S[t] - q_alloc
+            D_req <- D_req - q_alloc
+            o_i.allocated[t] <- q_alloc
+9.          If D_req <= 0 Then Break
+--------------------------------------------------------------------------------
+\end{verbatim}
+
+\subsection*{附录 B：时域并行前缀和与多站点段树规约算法 (SIMD Prefix Sum \& Segment Tree Merger)}
+
+针对同一物料节点，时序在库水位及可用量承诺（ATP）计算通过 Blelloch 并行扫描与段树合并实现。在多站点协同下，区间节点的状态采用局部需求缺口和局部供给富余向量描述，并通过满足结合律的合并算子在 $O(\log T)$ 内并行求解：
+
+\begin{verbatim}
+Algorithm 2: Parallel Prefix Scan & Segment Tree Associative Merger
+--------------------------------------------------------------------------------
+Input:
+  Daily net supply/demand array Net[T] = Supply[T] - Demand[T]
+  DAG Sourcing topology matrix eta[K][K] for K collaborative sites
+Output:
+  OnHand time-series and global deficit/surplus vectors.
+
+Part I: Parallel Blelloch Scan (Time Complexity: O(log T))
+1.  // Up-Sweep (Reduction Phase)
+    For d = 0 to log2(T) - 1:
+        Parallel For i = 0 to T - 1 step 2^(d+1):
+            Net[i + 2^(d+1) - 1] <- Net[i + 2^d - 1] + Net[i + 2^(d+1) - 1]
+2.  Set Net[T - 1] <- 0
+3.  // Down-Sweep (Distribution Phase)
+    For d = log2(T) - 1 down to 0:
+        Parallel For i = 0 to T - 1 step 2^(d+1):
+            t <- Net[i + 2^d - 1]
+            Net[i + 2^d - 1] <- Net[i + 2^(d+1) - 1]
+            Net[i + 2^(d+1) - 1] <- t + Net[i + 2^(d+1) - 1]
+
+Part II: Associative Merger Operator (oplus) for Segment Tree Nodes
+Let u_L = (Deficit_L, Surplus_L) and u_R = (Deficit_R, Surplus_R) be child nodes.
+The merged parent node u_Parent = u_L oplus u_R is defined by:
+4.  Initialize temp_deficit <- Deficit_R, temp_surplus <- Surplus_L
+5.  // Match deficits of R with surpluses of L along DAG paths (precedence order):
+    For each destination site i in [0, K-1]:
+        For each source site j in Parents(i):
+            q_trans <- min(temp_deficit[i], temp_surplus[j] * eta[j][i])
+            temp_deficit[i] <- temp_deficit[i] - q_trans
+            temp_surplus[j] <- temp_surplus[j] - q_trans / eta[j][i]
+6.  Deficit_Parent[i] <- Deficit_L[i] + temp_deficit[i]
+7.  Surplus_Parent[j] <- Surplus_R[j] + temp_surplus[j]
+8.  Return u_Parent = (Deficit_Parent, Surplus_Parent)
+--------------------------------------------------------------------------------
+\end{verbatim}
+
+\subsection*{附录 C：OTP 双向推演与线程局部零堆栈回滚算法 (OTP Engine \& TLS Stack)}
+
+为消除有限能力 DFS 路径搜索与插单回溯时的昂贵内存分配开销，算法在线程局部预分配的零堆栈中进行事务状态记录，配合前向软分配（寻找最早交期）与后向刚性拉动，实现无锁的交期确权与 SWAP 置换：
+
+\begin{verbatim}
+Algorithm 3: OTP Bidirectional Scheduling & Zero-Heap Rollback Stack
+--------------------------------------------------------------------------------
+Input:
+  Order demand: due_day, duration, wc_id
+  Flat 2D Spatiotemporal Capacity Grid: CapGrid[WC_Num * Horizon]
+  Thread-Local Rollback Stack: TLS_Stack
+Output:
+  Planned delivery day or schedule rejection.
+
+1.  // Step 1: Forward Soft Allocation (Search for PSD / Best Can Do)
+    PSD <- -1
+    For t = request_day to Horizon - 1:
+        offset <- wc_id * Horizon + t
+        If CapGrid[offset] >= duration Then
+            PSD <- t
+            Break
+    If PSD == -1 Then Return "Insufficient Capacity"
+
+2.  // Step 2: Backward Rigid Pull Scheduling & Preemption
+    TLS_Stack.Clear()
+    success <- False
+    offset <- wc_id * Horizon + PSD
+    If CapGrid[offset] >= duration Then
+        // Deduct capacity and record action in TLS_Stack for potential rollback
+        CapGrid[offset] <- CapGrid[offset] - duration
+        TLS_Stack.Push(wc_id, PSD, duration, 0.0)
+        success <- True
+    Else
+        // Run SWAP Preemption: search for lower-priority orders in PSD
+        For each order o_low in CapGrid[offset].orders where priority(o_low) < priority(current_order):
+            Rollback o_low capacity, push action to TLS_Stack
+            Try rescheduling o_low to PSD + 1
+            If o_low rescheduled successfully Then
+                Allocate current_order to PSD
+                success <- True
+                Break
+
+3.  If success == True Then
+        TLS_Stack.Commit() // O(1) clear, accept allocation
+        Return PSD
+    Else
+        TLS_Stack.Rollback(CapGrid) // O(1) restore to original state
+        Return "Schedule Failed"
+--------------------------------------------------------------------------------
+\end{verbatim}
+
 \end{document}
