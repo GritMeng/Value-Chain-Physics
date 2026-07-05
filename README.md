@@ -4,6 +4,10 @@
 
 **作者 / Author：** Grit Meng (孟凡淳)  
 **开源协议 / License：** AGPL-3.0 © 2026 Grit Meng  
+**学术预印本声明 / Preprint Announcement：**  
+本仓库包含学术论文《全息抗熵理论：开放复杂巨系统的公理化演绎、形式化分析与碳硅共生自愈演化》的预印本草稿（包含 [Markdown版](the_holographic_anti_entropy_system_science_paper.md) 与 [LaTeX版](the_holographic_anti_entropy_system_science_paper.tex)），该论文目前已提交至《系统工程理论与实践》（System Engineering: Theory & Practice）进行同行评审。版权归作者所有，Git 提交记录自带公共可信时间戳确权，供学术讨论与开源存证使用。  
+*This repository contains the preprint of the paper "Holographic Anti-Entropy Theory" submitted to "System Engineering: Theory & Practice". All rights are reserved by the author. Git history serves as cryptographic proof of priority.*
+
 **部署状态 / Status：** ![CI](https://github.com/GritMeng/Value-Chain-Physics/actions/workflows/ci.yml/badge.svg) ![Pages](https://github.com/GritMeng/Value-Chain-Physics/actions/workflows/deploy.yml/badge.svg)
 
 ---
