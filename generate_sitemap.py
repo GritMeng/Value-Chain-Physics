@@ -8,7 +8,7 @@ DOCS_PAGE = "index.html"  # Docsify 路由页面
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # 需要排除的目录和文件
-EXCLUDE_DIRS = {'.git', '.github', '.obsidian', '__pycache__', 'scratch', 'audio', 'audio_manifesto', 'audio_short', 'wechat_images', 'global_candidates', 'extracted_images', '商业演说与PPT大纲'}
+EXCLUDE_DIRS = {'.git', '.github', '.obsidian', '__pycache__', 'scratch', 'audio', 'audio_manifesto', 'audio_short', 'wechat_images', 'global_candidates', 'extracted_images', '商业演说与PPT大纲', 'patents'}
 EXCLUDE_FILES = {'.gitignore', '.nojekyll', '.markdownlint.json', 'publish_tool.py', 'check_js.py', 'inspect_cases.py'}
 
 def get_md_files(root_dir):
