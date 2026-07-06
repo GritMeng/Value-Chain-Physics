@@ -78,3 +78,4 @@ if __name__ == "__main__":
     with open(robots_path, "w", encoding="utf-8") as f:
         f.write(robots_data)
     print(f"成功生成: {robots_path}")
+# Trigger new Pages build with environment restrictions resolved.
