@@ -39,6 +39,7 @@
 |----------|------|-------------|
 | 🎬 **全息演示** | <a href="IPC_Governance_Showcase.html" target="_blank">▶ 启动 3D 全息交互演示</a> | 4幕电影级联动动画 — 展现 C++ DOD 引擎的硬核压测与拓扑重整流程 |
 | 📽️ <strong>视频直录中枢</strong> | <a href="../../战略和公关/IPC_Video_Simulator.html" target="_blank">▶ 启动全息视频直录中枢</a> | 网页端 1080p 画布超清渲染，一键录制并导出电影级视频 |
+| 📜 **系统科学宣言** | [系统科学宣言 · 全文](systems-science-manifesto.md) | 奠定系统科学作为基础科学的认识论纲领，阐述分布式秩序与演化型韧性底层法则 |
 | 📖 **价值链物理学正文** | [价值链物理学 · 全文](value-chain-physics-book.md) | 约35万字，系统性阐述八大物理公理与完整的代数推导过程 |
 | 🔮 **全息抗熵基础** | [全息抗熵 · 全文](holographic-anti-entropy-book.md) | 构建巨系统抗熵生命力的哲学、认识论与复杂系统科学底层基石 |
 | 🌐 **视频讲堂** | <a href="IPC_Video_Lectures.html" target="_blank">IPC 全息视频讲堂</a> | 由总设计师出镜推演的白板风格硬核视频教程 |

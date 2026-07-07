@@ -3,6 +3,7 @@
 * <a href="ipc_scheme_audit_agent.html" target="_blank">🧠 IPC 架构技术审计</a>
 * [🚀 价值链物理学正文](value-chain-physics-book.md)
 * [🔮 全息抗熵正文](holographic-anti-entropy-book.md)
+* [📜 系统科学宣言](systems-science-manifesto.md)
 
 * **01. 系统科学与时空定律**
   * [01. 系统第二定律与热寂宿命](01_系统科学与时空定律/01_系统第二定律与热寂宿命.md)
