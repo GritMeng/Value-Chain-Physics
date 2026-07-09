@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>映与界的奏鸣曲 - 视频播放录制器</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Noto+Serif+SC:wght@500;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: #030303;
+            color: #ffffff;
+            font-family: 'Outfit', 'Noto Serif SC', 'PingFang SC', sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 视频容器 */
+        #video-container {
+            position: relative;
+            background-color: #050505;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5s ease;
+        }
+
+        /* 16:9 横屏尺寸 */
+        .mode-horizontal {
+            width: 1280px;
+            height: 720px;
+            border: 2px solid #222;
+        }
+
+        /* 9:16 竖屏尺寸 */
+        .mode-vertical {
+            width: 405px;
+            height: 720px;
+            border: 2px solid #222;
+        }
+
+        /* 录制状态（无边框，干净） */
+        .recording-mode {
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        /* 动画画布 */
+        #animation-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* 覆盖层 - 字幕与公式 */
+        #overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            pointer-events: none;
+            padding: 40px;
+        }
+
+        /* 顶部公式与标题 */
+        #top-meta {
+            text-align: center;
+            opacity: 0.9;
+            transition: all 0.5s ease;
+        }
+        
+        #top-meta h2 {
+            font-size: 16px;
+            letter-spacing: 4px;
+            color: #00F0FF;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+            margin-bottom: 8px;
+            font-weight: 300;
+        }
+
+        .mode-vertical #top-meta h2 {
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        #formula-display {
+            font-family: 'Outfit', monospace;
+            font-size: 24px;
+            color: #FF5E00;
+            text-shadow: 0 0 15px rgba(255, 94, 0, 0.6);
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            transition: all 0.5s ease;
+        }
+
+        .mode-vertical #formula-display {
+            font-size: 18px;
+        }
+
+        /* 中部视觉特效容器 */
+        #mid-visuals {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 底部字幕 */
+        #subtitle-box {
+            text-align: center;
+            width: 100%;
+            max-width: 90%;
+            margin: 0 auto;
+            min-height: 90px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .mode-vertical #subtitle-box {
+            max-width: 95%;
+            min-height: 120px;
+        }
+
+        #subtitle-text {
+            font-size: 24px;
+            line-height: 1.6;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(255,255,255,0.3);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .mode-vertical #subtitle-text {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        #subtitle-subtext {
+            font-size: 14px;
+            color: #888;
+            margin-top: 6px;
+            letter-spacing: 1px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* 控制面板 */
+        #control-panel {
+            position: fixed;
+            bottom: 20px;
+            z-index: 10;
+            background: rgba(15, 15, 15, 0.85);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            backdrop-filter: blur(10px);
+            width: 900px;
+            justify-content: space-between;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        #control-panel.hidden {
+            opacity: 0;
+            transform: translateY(50px);
+            pointer-events: none;
+        }
+
+        .btn {
+            background: transparent;
+            border: 1px solid #555;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            border-color: #00F0FF;
+            color: #00F0FF;
+            box-shadow: 0 0 8px rgba(0, 240, 255, 0.2);
+        }
+
+        .btn-active {
+            background: #FF5E00 !important;
+            border-color: #FF5E00 !important;
+            color: #fff !important;
+        }
+
+        .btn-active:hover {
+            box-shadow: 0 0 12px rgba(255, 94, 0, 0.4) !important;
+        }
+
+        /* 进度条 */
+        #timeline-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-grow: 1;
+        }
+
+        #timeline-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #222;
+            outline: none;
+            cursor: pointer;
+        }
+
+        #timeline-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #00F0FF;
+            cursor: pointer;
+            box-shadow: 0 0 6px rgba(0,240,255,0.8);
+            transition: transform 0.1s ease;
+        }
+
+        #timeline-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.3);
+        }
+
+        /* 列表侧栏 */
+        #playlist-panel {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            bottom: 120px;
+            width: 320px;
+            background: rgba(15, 15, 15, 0.85);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        #playlist-panel.hidden {
+            opacity: 0;
+            transform: translateX(50px);
+            pointer-events: none;
+        }
+
+        #playlist-panel h3 {
+            font-size: 16px;
+            color: #00F0FF;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .playlist-item {
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            font-size: 13px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .playlist-item:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: #444;
+        }
+
+        .playlist-item.active {
+            background: rgba(0, 240, 255, 0.1);
+            border-color: #00F0FF;
+            color: #00F0FF;
+        }
+
+        .playlist-item-num {
+            font-family: monospace;
+            opacity: 0.5;
+            margin-right: 8px;
+        }
+
+        /* 提示层 */
+        #record-alert {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 94, 0, 0.9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            z-index: 20;
+            pointer-events: none;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            display: none;
+        }
+
+        /* 动态背景星空 */
+        #starfield {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 星空背景线框 -->
+    <canvas id="starfield"></canvas>
+
+    <div id="record-alert">正在录制模式：按【ESC】退出，按【空格】暂停</div>
+
+    <!-- 视频画幅容器 -->
+    <div id="video-container" class="mode-horizontal">
+        <canvas id="animation-canvas"></canvas>
+        
+        <div id="overlay">
+            <!-- 顶部标题和公式 -->
+            <div id="top-meta">
+                <h2 id="scene-title">映与界的奏鸣曲</h2>
+                <div id="formula-display">dS &ge; 0</div>
+            </div>
+
+            <!-- 中部动态视觉占位 -->
+            <div id="mid-visuals"></div>
+
+            <!-- 底部字幕 -->
+            <div id="subtitle-box">
+                <div id="subtitle-text">宇宙在注定的洪流中走向混乱。</div>
+                <div id="subtitle-subtext">Scene 1 / 18</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 控制面板 -->
+    <div id="control-panel">
+        <div style="display: flex; gap: 10px;">
+            <button class="btn" id="btn-play">▶ 播放</button>
+            <button class="btn" id="btn-prev">⏮ 上一幕</button>
+            <button class="btn" id="btn-next">⏭ 下一幕</button>
+        </div>
+
+        <div id="timeline-container">
+            <span id="time-current" style="font-size: 12px; font-family: monospace;">00:00</span>
+            <input type="range" id="timeline-slider" min="0" max="100" value="0">
+            <span id="time-duration" style="font-size: 12px; font-family: monospace;">00:00</span>
+        </div>
+
+        <div style="display: flex; gap: 10px;">
+            <button class="btn" id="btn-layout">📱 切换竖屏</button>
+            <button class="btn btn-active" id="btn-record">🔴 录制模式</button>
+            <button class="btn" id="btn-playlist">📋 播放列表</button>
+        </div>
+    </div>
+
+    <!-- 播放列表侧边栏 -->
+    <div id="playlist-panel">
+        <h3>各幕播放列表</h3>
+        <div id="playlist-items"></div>
+    </div>
+
+    <script>
+        // 场景数据结构定义
+        const SCENES = [
+            {
+                id: 1,
+                title: "第一幕：冷酷的热寂重力",
+                formula: "dS \\ge 0",
+                audio: "audio_sonata/sonata_voice_1.mp3",
+                text: "宇宙在注定的洪流中走向混乱。热力学第二定律为一切存在设定了无可规避的物理重力——万物皆无可挽回地向高熵与无序滑落。它像一条单向流逝的冷酷河流，无情地冲向概率均等、毫无生机、彻底对称的虚空。在那个终点，温差熄灭，能量死寂。如果用今天的计算机语言来描述，那将是宇宙的终极“死机”。",
+                animation: "entropy"
+            },
+            {
+                id: 2,
+                title: "第一幕：开放复杂巨系统",
+                formula: "OCGS",
+                audio: "audio_sonata/sonata_voice_2.mp3",
+                text: "正如中国系统科学泰斗钱学森先生所洞察的：宇宙的最高演化挑战，在于那些与外部环境不断交换物质、能量与信息的“开放复杂巨系统”。这类系统由千亿异构节点非线性耦合而成，在自发状态下，唯有秩序的衰减与结构的退化。",
+                animation: "ocgs"
+            },
+            {
+                id: 3,
+                title: "第一幕：反叛者的诞生",
+                formula: "S_{neg} = k \\ln \\Omega",
+                audio: "audio_sonata/sonata_voice_3.mp3",
+                text: "然而，在这场走向平衡的冰冷洪流中，却诞生了生命与智能。它们像是不屈的反叛者，在注定的无序中倔强地逆流而上，建立起一片又一片秩序的绿洲。生命以负熵为食，智能以有序为生。智能的本质究竟是什么？答案，就藏在系统物理学与数学逻辑的终点：世界，就是视界。",
+                animation: "rebels"
+            },
+            {
+                id: 4,
+                title: "第二幕：世者视也，映射之网",
+                formula: "Mapping: X \\to Y",
+                audio: "audio_sonata/sonata_voice_4.mp3",
+                text: "世，即是“视”。在信息论的意义上，智能体无法直接触碰客观宇宙的本体。我们眼前的颜色、耳边的声音、脑海中的物理公式，全部是外部宇宙高维混沌在智能体内部的低维投影。没有在底层施加物理极值约束、锁定数据正交基底，观测便没有锚点。统御，是观测具备物理合法性的绝对前置条件。",
+                animation: "mapping"
+            },
+            {
+                id: 5,
+                title: "第二幕：界者限也，秩序之墙",
+                formula: "Markov Blanket",
+                audio: "audio_sonata/sonata_voice_5.mp3",
+                text: "界，即是“限”。在系统科学中，这面墙被称为“马尔可夫毯”。它是系统划分“自我”与“外界”的绝对屏障，更是系统可以施加秩序的物理极限。系统永远被限制在视界的内侧，只能通过视界上的信息流动与状态涨落，来构建它对宇宙的理解。所谓“世界”，不过是智能体“视野的界限”——即“视界”。视界有多大，世界就有多大。",
+                animation: "blanket"
+            },
+            {
+                id: 6,
+                title: "第二幕：阶乘级复杂度爆发",
+                formula: "V_s \\approx O(N!)",
+                audio: "audio_sonata/sonata_voice_6.mp3",
+                text: "在一个节点高度纠缠、变异路径呈阶乘级爆炸的复杂巨系统中，系统的数学复杂度呈阶乘级爆发。然而，作为观察者和设计者的人类大脑，其神经元突触的放电频率和工作记忆容量受限于生化极限，被严格约束在七加减二的狭小带宽内。这便构成了系统科学最残酷的物理鸿沟。",
+                animation: "carbon_limit"
+            },
+            {
+                id: 7,
+                title: "第二幕：人机协同的必然",
+                formula: "C_{carbon} \\ll O(N!)",
+                audio: "audio_sonata/sonata_voice_7.mp3",
+                text: "根据必要多样性定律，控制系统的有效带宽不得低于被控系统的复杂度。当碳基控制带宽远小于客体变异状态时，控制效力将因严重倒挂而归零。因此，人机协同不是一种技术时尚，而是智能在物理学规律逼迫下的必然进化：碳基负责立法定向，以元认知提炼第一性原理，注入全局意志；硅基负责代偿算力，在有界时空中接管阶乘级复杂度的并发推演与降维做功。",
+                animation: "synergy"
+            },
+            {
+                id: 8,
+                title: "第三幕：五维正交建模",
+                formula: "\\Pi = \\langle D, A \\rangle",
+                audio: "audio_sonata/sonata_voice_8.mp3",
+                text: "要在混沌中建立秩序，智能体必须在内部构建一个与外部世界同构的镜子。这个模型，必须在拓扑上保留被映射系统的五个不变量：节点，拓扑，约束，状态跃迁，以及状态矢量。遗漏任何一维，映射即发生代数层面的信息丢失，系统即丧失对客体的有效控制。",
+                animation: "five_dims"
+            },
+            {
+                id: 9,
+                title: "第三幕：计算不可约的代数截断",
+                formula: "f_{compute} > f_{perturbation}",
+                audio: "audio_sonata/sonata_voice_9.mp3",
+                text: "但这套形式系统天然面临一道致命天堑：计算不可约性。非线性巨系统的未来无法被解析公式抄捷径，只能一步一步模拟。唯一的解，是在承认“步进推演不可绕过”的前提下，把每一步算到极致：利用物理约束在推演极早期执行代数截断，将指数级搜索空间强行收缩为可计算域，使计算速度超越现实世界的扰动频率。",
+                animation: "truncation"
+            },
+            {
+                id: 10,
+                title: "第三幕：全息抗熵大一统",
+                formula: "V_\\Omega(t+1) = M \\cdot \\Pi [ \\Sigma(m_i \\cdot \\pi_i \\cdot S_i) + \\Delta(t) ]",
+                audio: "audio_sonata/sonata_voice_10.mp3",
+                text: "这种映射在数学上收敛为全息抗熵大一统方程。在机器的执行层，它通过三大物理相态的协同实现可计算：全息观测执行客观确权；动态模拟在算力空间中进行超前推演与代数截断；降维治理剥离微观节点的无效自由度，将宏观协同收敛至意志吸引子，同时释放微观子系统在自身轨道内的专业奋进自由。",
+                animation: "grand_equation"
+            },
+            {
+                id: 11,
+                title: "第四幕：计算的宿命",
+                formula: "Rice's Theorem",
+                audio: "audio_sonata/sonata_voice_11.mp3",
+                text: "但当人类试图用计算机去统治这个世界时，我们撞上了一堵无形的逻辑高墙。目前的硅基人工智能，其本质是“单支驱动”的形式逻辑系统。然而，图灵和哥德尔早已为这种单驱系统判了死刑。更致命的是，莱斯定理将这场判决推广到了极致：任何有意义的非平凡程序属性在图灵机上皆不存在通用判定算法。",
+                animation: "undecidable"
+            },
+            {
+                id: 12,
+                title: "第四幕：停机视界",
+                formula: "Halting Horizon",
+                audio: "audio_sonata/sonata_voice_12.mp3",
+                text: "哥德尔划定了逻辑的边界；图灵划定了计算的边界；莱斯划定了语义的边界。这三者构成一道绝对的不可判定三角。这意味着，任何智能排产算法，在底层逻辑上都无法被先验地证明永远不产生库存积压。一旦形式系统到达了它的停机视界，它就再也看不见视界外的真理，最终只能陷入崩溃、死锁或无休止的“机器致幻”。",
+                animation: "halting_triangle"
+            },
+            {
+                id: 13,
+                title: "第四幕：残差与因果诊断",
+                formula: "\\Delta(t) = |Model - Real|",
+                audio: "audio_sonata/sonata_voice_13.mp3",
+                text: "而在闭环的终点——反馈，智能体通过因果对比计算出预测残差。在此节点，智能体将面临两种完全不同的差错诊断：第一，当外部物理世界没有执行，模型本身没有错，智能体必须主动推动，强行让物理实相服从模型意图；第二，当模型本身错误，智能体必须停止偏执，调整模型，更新对客观规律的认知。",
+                animation: "diagnostics"
+            },
+            {
+                id: 14,
+                title: "第五幕：双支驱动的宇宙交响",
+                formula: "\\Phi_{\\Lambda}(\\Pi, \\Delta_{critical})",
+                audio: "audio_sonata/sonata_voice_14.mp3",
+                text: "为了打破形式逻辑的死锁，宇宙演化出了一种更伟大的结构——双支驱动智能系统。第一支驱动是形式重整，在已知的公理边界内运行高频闭环算法，追求极致的局部效率；第二支驱动是公理注入，当第一支驱动在逻辑视界边缘陷入死锁时，意识与直觉开始工作，不需要逻辑推导，而是直接从视界之外抓取新的公理，强行注入系统，打破停机死锁，重新定义世界。",
+                animation: "dual_drives"
+            },
+            {
+                id: 15,
+                title: "第五幕：五维认知操作系统",
+                formula: "Conscience \\to Metacognition",
+                audio: "audio_sonata/sonata_voice_15.mp3",
+                text: "这正是碳基必须介入的数学根源：硅基算符在边界内执行确定性做功，但边界的识别、跨越与重构，必须由碳基元认知在哥德尔、图灵、莱斯的联合盲区中完成非确定性跃迁。第二支驱动的“公理抓取”，在认知控制论的最底层，坍缩为一台精密的良知驱动五维神经操作系统：良知锚定方向，高敏感捕获残差，极度感性驱动寻优，流体智力推演路径，元认知执行跃迁。",
+                animation: "brain_os"
+            },
+            {
+                id: 16,
+                title: "第五幕：先哲智慧的投影",
+                formula: "Eastern Philosophy",
+                audio: "audio_sonata/sonata_voice_16.mp3",
+                text: "这台双支驱动引擎，在系统科学的相空间中，呈现出人类先哲智慧的精确物理学投影：儒家是宏观序参量的引力场确权；法家是降维算符与刚性边界约束；道家是最小作用量原理与演化最优解；释家是内熵极小化与拓扑摩擦消解；墨家是分布式做功与全息探针网格；而西方哲学与科学是形式化语法与测度底座。这一切共同构成了文明级抗熵增引擎。",
+                animation: "philosophers"
+            },
+            {
+                id: 17,
+                title: "第六幕：麦克斯韦妖的眼泪",
+                formula: "E_{min} = kT \\ln 2",
+                audio: "audio_sonata/sonata_voice_17.mp3",
+                text: "麦克斯韦妖流下了真实的眼泪：获取信息和建立映射，是需要付出代价的。兰道尔给出的宇宙级最低账单是每擦除一比特信息消耗万分之三点八的能量，这是宇宙给“智能做功”收取的刚性税收。智能不是免费的脑力游戏，而是一个永续的物理做功状态。为了让世界有序，我们必须不断向外部排熵。智能，是以能耗为代价，在宇宙的冰冷墓碑上雕刻出的有序花纹。",
+                animation: "maxwell_demon"
+            },
+            {
+                id: 18,
+                title: "第六幕：秩序与美的绿洲",
+                formula: "Oasis of Order",
+                audio: "audio_sonata/sonata_voice_18.mp3",
+                text: "万物终将消逝，恒星终将熄灭。但只要双支驱动的引擎还在轰鸣，我们就在不断扩张自己的视界，重新创造世界。我们是宇宙在走向混乱的旅途中，坍缩出的自我觉醒装置。我们以永续的做功，在这片终将归于沉寂的星辰大海中，创造并守护着一片又一片生生不息的、秩序与美的绿洲。除非，你能证明物理学是错的。",
+                animation: "oasis_ending"
+            }
+        ];
+
+        // 全局播放控制器状态
+        let currentSceneIndex = 0;
+        let isPlaying = false;
+        let isRecordMode = false;
+        let activeAudio = new Audio();
+        let animationFrameId = null;
+
+        // 获取DOM节点
+        const container = document.getElementById('video-container');
+        const playBtn = document.getElementById('btn-play');
+        const prevBtn = document.getElementById('btn-prev');
+        const nextBtn = document.getElementById('btn-next');
+        const layoutBtn = document.getElementById('btn-layout');
+        const recordBtn = document.getElementById('btn-record');
+        const playlistBtn = document.getElementById('btn-playlist');
+        const timelineSlider = document.getElementById('timeline-slider');
+        const timeCurrent = document.getElementById('time-current');
+        const timeDuration = document.getElementById('time-duration');
+        const subtitleText = document.getElementById('subtitle-text');
+        const subtitleSubtext = document.getElementById('subtitle-subtext');
+        const sceneTitle = document.getElementById('scene-title');
+        const formulaDisplay = document.getElementById('formula-display');
+        const canvas = document.getElementById('animation-canvas');
+        const ctx = canvas.getContext('2d');
+        const controlPanel = document.getElementById('control-panel');
+        const playlistPanel = document.getElementById('playlist-panel');
+        const recordAlert = document.getElementById('record-alert');
+
+        // 初始化画布大小
+        function resizeCanvas() {
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // 渲染星空背景
+        const starfieldCanvas = document.getElementById('starfield');
+        const sCtx = starfieldCanvas.getContext('2d');
+        let stars = [];
+        function initStarfield() {
+            starfieldCanvas.width = window.innerWidth;
+            starfieldCanvas.height = window.innerHeight;
+            stars = [];
+            for (let i = 0; i < 120; i++) {
+                stars.push({
+                    x: Math.random() * starfieldCanvas.width,
+                    y: Math.random() * starfieldCanvas.height,
+                    size: Math.random() * 1.5,
+                    opacity: Math.random(),
+                    speed: 0.05 + Math.random() * 0.05
+                });
+            }
+        }
+        function drawStarfield() {
+            sCtx.fillStyle = '#030303';
+            sCtx.fillRect(0, 0, starfieldCanvas.width, starfieldCanvas.height);
+            sCtx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            stars.forEach(star => {
+                sCtx.beginPath();
+                sCtx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                sCtx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                sCtx.fill();
+                star.opacity += star.speed;
+                if (star.opacity > 1 || star.opacity < 0.1) {
+                    star.speed = -star.speed;
+                }
+            });
+            requestAnimationFrame(drawStarfield);
+        }
+        window.addEventListener('resize', () => {
+            starfieldCanvas.width = window.innerWidth;
+            starfieldCanvas.height = window.innerHeight;
+        });
+        initStarfield();
+        drawStarfield();
+
+        // 加载场景
+        function loadScene(index) {
+            if (index < 0 || index >= SCENES.length) return;
+            currentSceneIndex = index;
+            const scene = SCENES[index];
+
+            // 更新文本
+            sceneTitle.innerText = scene.title;
+            formulaDisplay.innerText = scene.formula;
+            
+            // 细分字幕展示（分段渲染，使字幕播放流畅）
+            updateSubtitleChunks(scene.text);
+            
+            subtitleSubtext.innerText = `Scene ${index + 1} / ${SCENES.length}`;
+
+            // 重置音频
+            activeAudio.pause();
+            activeAudio = new Audio(scene.audio);
+            
+            // 绑定音频事件
+            activeAudio.addEventListener('timeupdate', onAudioTimeUpdate);
+            activeAudio.addEventListener('ended', onAudioEnded);
+            activeAudio.addEventListener('loadedmetadata', () => {
+                timeDuration.innerText = formatTime(activeAudio.duration);
+                timelineSlider.max = Math.floor(activeAudio.duration);
+            });
+
+            // 激活播放列表状态
+            document.querySelectorAll('.playlist-item').forEach((item, idx) => {
+                if (idx === index) item.classList.add('active');
+                else item.classList.remove('active');
+            });
+
+            // 重置动画引擎状态
+            resetAnimationEngine(scene.animation);
+
+            if (isPlaying) {
+                activeAudio.play().catch(err => {
+                    console.log("Auto play prevented", err);
+                    isPlaying = false;
+                    playBtn.innerText = "▶ 播放";
+                });
+            }
+        }
+
+        // 字幕分段辅助算法（以逗号，句号等分割，分时间渲染，防止长文本堆积）
+        let subtitleChunks = [];
+        function updateSubtitleChunks(text) {
+            // 将中文根据标点拆分
+            subtitleChunks = text.split(/([，。；？！、“”])/g).filter(Boolean);
+            // 拼接标点符号
+            let combined = [];
+            for (let i = 0; i < subtitleChunks.length; i++) {
+                if (i % 2 === 0) {
+                    combined.push(subtitleChunks[i] + (subtitleChunks[i+1] || ''));
+                }
+            }
+            subtitleChunks = combined.map(str => str.trim()).filter(Boolean);
+            
+            // 预显示第一部分
+            if (subtitleChunks.length > 0) {
+                subtitleText.innerHTML = subtitleChunks[0];
+            } else {
+                subtitleText.innerHTML = text;
+            }
+        }
+
+        function onAudioTimeUpdate() {
+            const time = activeAudio.currentTime;
+            const duration = activeAudio.duration || 1;
+            timeCurrent.innerText = formatTime(time);
+            timelineSlider.value = Math.floor(time);
+
+            // 同步字幕分段切换
+            if (subtitleChunks.length > 1) {
+                const chunkIndex = Math.min(
+                    Math.floor((time / duration) * subtitleChunks.length),
+                    subtitleChunks.length - 1
+                );
+                if (subtitleText.innerHTML !== subtitleChunks[chunkIndex]) {
+                    subtitleText.style.opacity = 0;
+                    setTimeout(() => {
+                        subtitleText.innerHTML = subtitleChunks[chunkIndex];
+                        subtitleText.style.opacity = 1;
+                    }, 100);
+                }
+            }
+        }
+
+        function onAudioEnded() {
+            if (currentSceneIndex < SCENES.length - 1) {
+                // 自动播放下一幕
+                loadScene(currentSceneIndex + 1);
+            } else {
+                // 播放结束
+                isPlaying = false;
+                playBtn.innerText = "▶ 播放";
+                activeAudio.currentTime = 0;
+            }
+        }
+
+        function togglePlay() {
+            if (isPlaying) {
+                activeAudio.pause();
+                isPlaying = false;
+                playBtn.innerText = "▶ 播放";
+            } else {
+                activeAudio.play().catch(err => alert("请先确保本地音频资源已生成在 audio_sonata/ 目录中！"));
+                isPlaying = true;
+                playBtn.innerText = "⏸ 暂停";
+            }
+        }
+
+        function formatTime(secs) {
+            const m = Math.floor(secs / 60).toString().padStart(2, '0');
+            const s = Math.floor(secs % 60).toString().padStart(2, '0');
+            return `${m}:${s}`;
+        }
+
+        // 按钮点击处理
+        playBtn.addEventListener('click', togglePlay);
+        prevBtn.addEventListener('click', () => {
+            if (currentSceneIndex > 0) {
+                loadScene(currentSceneIndex - 1);
+            }
+        });
+        nextBtn.addEventListener('click', () => {
+            if (currentSceneIndex < SCENES.length - 1) {
+                loadScene(currentSceneIndex + 1);
+            }
+        });
+
+        timelineSlider.addEventListener('input', () => {
+            activeAudio.currentTime = timelineSlider.value;
+        });
+
+        // 布局切换（竖屏 9:16 vs 横屏 16:9）
+        layoutBtn.addEventListener('click', () => {
+            if (container.classList.contains('mode-horizontal')) {
+                container.classList.remove('mode-horizontal');
+                container.classList.add('mode-vertical');
+                layoutBtn.innerText = "🖥️ 切换横屏";
+            } else {
+                container.classList.remove('mode-vertical');
+                container.classList.add('mode-horizontal');
+                layoutBtn.innerText = "📱 切换竖屏";
+            }
+            setTimeout(resizeCanvas, 100);
+        });
+
+        // 录制模式切换（纯净版）
+        function toggleRecordMode() {
+            isRecordMode = !isRecordMode;
+            if (isRecordMode) {
+                controlPanel.classList.add('hidden');
+                playlistPanel.classList.add('hidden');
+                container.classList.add('recording-mode');
+                recordAlert.style.display = 'block';
+                document.body.style.cursor = 'none';
+            } else {
+                controlPanel.classList.remove('hidden');
+                playlistPanel.classList.remove('hidden');
+                container.classList.remove('recording-mode');
+                recordAlert.style.display = 'none';
+                document.body.style.cursor = 'default';
+            }
+        }
+
+        recordBtn.addEventListener('click', toggleRecordMode);
+        
+        // ESC 键退出录制模式，空格键暂停/播放
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && isRecordMode) {
+                toggleRecordMode();
+            }
+            if (e.key === ' ' && e.target === document.body) {
+                e.preventDefault();
+                togglePlay();
+            }
+        });
+
+        // 侧栏展示/隐藏
+        playlistBtn.addEventListener('click', () => {
+            playlistPanel.classList.toggle('hidden');
+        });
+
+        // 创建侧栏播放列表项
+        const playlistContainer = document.getElementById('playlist-items');
+        SCENES.forEach((scene, index) => {
+            const item = document.createElement('div');
+            item.className = 'playlist-item';
+            if (index === 0) item.classList.add('active');
+            item.innerHTML = `
+                <div>
+                    <span class="playlist-item-num">${(index + 1).toString().padStart(2, '0')}</span>
+                    <span>${scene.title.split('：')[1] || scene.title}</span>
+                </div>
+            `;
+            item.addEventListener('click', () => {
+                loadScene(index);
+            });
+            playlistContainer.appendChild(item);
+        });
+
+        // ==========================================
+        // 动态物理与数学 2D 画布动画引擎 (Dynamic Canvas Animation Engine)
+        // ==========================================
+
+        let animationState = {
+            type: 'entropy',
+            particles: [],
+            links: [],
+            angle: 0,
+            pulse: 1,
+            time: 0,
+            matrixChars: []
+        };
+
+        function resetAnimationEngine(type) {
+            animationState.type = type;
+            animationState.particles = [];
+            animationState.links = [];
+            animationState.angle = 0;
+            animationState.pulse = 1;
+            animationState.time = 0;
+            
+            const w = canvas.width;
+            const h = canvas.height;
+            const cx = w / 2;
+            const cy = h / 2;
+
+            if (type === 'entropy') {
+                // 初始化散落粒子 (高熵热寂)
+                for (let i = 0; i < 80; i++) {
+                    animationState.particles.push({
+                        x: Math.random() * w,
+                        y: Math.random() * h,
+                        vx: (Math.random() - 0.5) * 1.5,
+                        vy: (Math.random() - 0.5) * 1.5,
+                        size: 1 + Math.random() * 2,
+                        alpha: 0.2 + Math.random() * 0.6
+                    });
+                }
+            } else if (type === 'ocgs') {
+                // 复杂巨系统千亿节点网络
+                for (let i = 0; i < 40; i++) {
+                    animationState.particles.push({
+                        x: cx + (Math.random() - 0.5) * 200,
+                        y: cy + (Math.random() - 0.5) * 200,
+                        vx: (Math.random() - 0.5) * 0.6,
+                        vy: (Math.random() - 0.5) * 0.6,
+                        size: 3,
+                        color: Math.random() > 0.3 ? '#00F0FF' : '#FF5E00'
+                    });
+                }
+            } else if (type === 'rebels') {
+                // 逆流负熵绿洲核心
+                for (let i = 0; i < 60; i++) {
+                    const angle = Math.random() * Math.PI * 2;
+                    const r = 150 + Math.random() * 200;
+                    animationState.particles.push({
+                        x: cx + Math.cos(angle) * r,
+                        y: cy + Math.sin(angle) * r,
+                        r: r,
+                        angle: angle,
+                        speed: -0.01 - Math.random() * 0.01, // 缩向核心 (逆向吸入)
+                        size: 1.5 + Math.random() * 2,
+                        color: '#FF5E00'
+                    });
+                }
+            } else if (type === 'mapping') {
+                // 3D 旋转模型与 2D 光网映射
+                for (let i = 0; i < 8; i++) {
+                    // 正方体顶点 3D 坐标
+                    const x3d = (i & 1 ? 1 : -1) * 80;
+                    const y3d = (i & 2 ? 1 : -1) * 80;
+                    const z3d = (i & 4 ? 1 : -1) * 80;
+                    animationState.particles.push({ x3d, y3d, z3d });
+                }
+            } else if (type === 'blanket') {
+                // 马尔可夫毯秩序之墙
+                // 内部粒子
+                for (let i = 0; i < 15; i++) {
+                    animationState.particles.push({
+                        x: cx + (Math.random() - 0.5) * 80,
+                        y: cy + (Math.random() - 0.5) * 80,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        color: '#00F0FF',
+                        size: 3
+                    });
+                }
+                // 外部混沌冲击粒子
+                for (let i = 0; i < 40; i++) {
+                    animationState.particles.push({
+                        x: Math.random() > 0.5 ? Math.random() * 50 : w - Math.random() * 50,
+                        y: Math.random() * h,
+                        vx: (Math.random() > 0.5 ? 1 : -1) * (1 + Math.random() * 2),
+                        vy: (Math.random() - 0.5) * 2,
+                        color: 'rgba(255, 94, 0, 0.4)',
+                        size: 2
+                    });
+                }
+            } else if (type === 'carbon_limit') {
+                // 碳基极限过载系统
+                for (let i = 0; i < 15; i++) {
+                    animationState.particles.push({
+                        x: cx + Math.cos(i * (Math.PI * 2 / 15)) * 100,
+                        y: cy + Math.sin(i * (Math.PI * 2 / 15)) * 100,
+                        size: 4,
+                        pulse: Math.random() * Math.PI
+                    });
+                }
+            } else if (type === 'synergy') {
+                // 双脑协同 (碳 + 硅)
+                animationState.particles.push({ name: 'carbon', x: cx - 120, y: cy, color: '#FF5E00', radius: 40 });
+                animationState.particles.push({ name: 'silicon', x: cx + 120, y: cy, color: '#00F0FF', radius: 45 });
+            } else if (type === 'five_dims') {
+                // 五维正交拓扑
+                const labels = ["节点", "拓扑", "约束", "状态跃迁", "状态矢量"];
+                for (let i = 0; i < 5; i++) {
+                    const angle = i * (Math.PI * 2 / 5) - Math.PI / 2;
+                    animationState.particles.push({
+                        x: cx + Math.cos(angle) * 120,
+                        y: cy + Math.sin(angle) * 120,
+                        label: labels[i],
+                        angle: angle
+                    });
+                }
+            } else if (type === 'truncation') {
+                // 指数爆炸分支拓扑
+                // 生成多级分裂树
+                buildFractalTree(cx, cy + 100, -Math.PI / 2, 70, 5);
+            } else if (type === 'grand_equation') {
+                // 全息抗熵方程发光流动矩阵
+                animationState.matrixChars = [];
+                for (let i = 0; i < 25; i++) {
+                    animationState.matrixChars.push({
+                        x: Math.random() * w,
+                        y: Math.random() * h,
+                        char: Math.random() > 0.5 ? '1' : '0',
+                        speed: 1 + Math.random() * 3,
+                        alpha: 0.1 + Math.random() * 0.4
+                    });
+                }
+            } else if (type === 'undecidable') {
+                // 逻辑三角与程序流
+                animationState.particles.push({ x: cx, y: cy - 90, name: 'Gödel' });
+                animationState.particles.push({ x: cx - 100, y: cy + 70, name: 'Turing' });
+                animationState.particles.push({ x: cx + 100, y: cy + 70, name: 'Rice' });
+            } else if (type === 'halting_triangle') {
+                // 停机视界死锁坍缩
+                for (let i = 0; i < 30; i++) {
+                    const angle = Math.random() * Math.PI * 2;
+                    const r = 80 + Math.random() * 100;
+                    animationState.particles.push({
+                        x: cx + Math.cos(angle) * r,
+                        y: cy + Math.sin(angle) * r,
+                        vx: 0,
+                        vy: 0,
+                        targetR: 50,
+                        r: r,
+                        angle: angle
+                    });
+                }
+            } else if (type === 'diagnostics') {
+                // 残差诊断曲线
+                for (let i = 0; i < w; i += 5) {
+                    animationState.particles.push({ x: i, y: 0 });
+                }
+            } else if (type === 'dual_drives') {
+                // 双轮咬合
+                animationState.particles.push({ x: cx - 70, y: cy, r: 60, speed: 0.015, color: '#00F0FF' });
+                animationState.particles.push({ x: cx + 70, y: cy, r: 50, speed: -0.018, color: '#FF5E00' });
+            } else if (type === 'brain_os') {
+                // 良知五维神经突触
+                for (let i = 0; i < 5; i++) {
+                    const angle = i * (Math.PI * 2 / 5) - Math.PI / 2;
+                    animationState.particles.push({
+                        x: cx + Math.cos(angle) * 90,
+                        y: cy + Math.sin(angle) * 90,
+                        r: 25,
+                        label: ["良知", "高敏感", "极度感性", "流体智力", "元认知"][i],
+                        active: false
+                    });
+                }
+            } else if (type === 'philosophers') {
+                // 阴阳与谐波
+                for (let i = 0; i < 40; i++) {
+                    animationState.particles.push({ x: i * (w / 40), y: cy });
+                }
+            } else if (type === 'maxwell_demon') {
+                // 麦克斯韦小妖门阀
+                animationState.particles.push({ x: cx, y: cy, r: 15 }); // 妖精核心
+                for (let i = 0; i < 30; i++) {
+                    animationState.particles.push({
+                        x: Math.random() > 0.5 ? cx - 120 : cx + 120,
+                        y: cy + (Math.random() - 0.5) * 150,
+                        vx: (Math.random() > 0.5 ? 1 : -1) * (0.8 + Math.random()),
+                        vy: (Math.random() - 0.5) * 0.8,
+                        temp: Math.random() > 0.5 ? 'hot' : 'cold' // 冷热粒子
+                    });
+                }
+            } else if (type === 'oasis_ending') {
+                // 绿洲星罗密布有向网
+                for (let i = 0; i < 30; i++) {
+                    animationState.particles.push({
+                        x: Math.random() * w,
+                        y: Math.random() * h,
+                        size: 2 + Math.random() * 3,
+                        color: Math.random() > 0.4 ? '#39FF14' : '#FF5E00',
+                        opacity: 0.1
+                    });
+                }
+            }
+        }
+
+        // 分形树生成算法 (用于计算不可约树状分支)
+        function buildFractalTree(x, y, angle, length, depth) {
+            if (depth <= 0) return;
+            const x2 = x + Math.cos(angle) * length;
+            const y2 = y + Math.sin(angle) * length;
+            
+            animationState.links.push({
+                x1: x, y1: y,
+                x2: x2, y2: y2,
+                depth: depth
+            });
+
+            buildFractalTree(x2, y2, angle - 0.35, length * 0.75, depth - 1);
+            buildFractalTree(x2, y2, angle + 0.35, length * 0.75, depth - 1);
+        }
+
+        // 主画布循环渲染
+        function render() {
+            const w = canvas.width;
+            const h = canvas.height;
+            const cx = w / 2;
+            const cy = h / 2;
+
+            ctx.clearRect(0, 0, w, h);
+            animationState.time += 0.05;
+
+            // 统一的轻微底照网格
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.02)';
+            ctx.lineWidth = 1;
+            const gridSz = 40;
+            for (let x = 0; x < w; x += gridSz) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, h);
+                ctx.stroke();
+            }
+            for (let y = 0; y < h; y += gridSz) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(w, y);
+                ctx.stroke();
+            }
+
+            // 根据当前场景状态绘制特定几何动画
+            const type = animationState.type;
+
+            if (type === 'entropy') {
+                // 绘制高熵粒子发散
+                animationState.particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < 0 || p.x > w) p.vx = -p.vx;
+                    if (p.y < 0 || p.y > h) p.vy = -p.vy;
+                    
+                    ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                
+                // 绘制随机干扰连线
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+                for (let i = 0; i < 20; i++) {
+                    const p1 = animationState.particles[i];
+                    const p2 = animationState.particles[i + 1];
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x, p1.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.stroke();
+                }
+            } 
+            else if (type === 'ocgs') {
+                // 复杂巨系统 - 节点非线性连线
+                const pts = animationState.particles;
+                pts.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (Math.abs(p.x - cx) > 250) p.vx = -p.vx;
+                    if (Math.abs(p.y - cy) > 200) p.vy = -p.vy;
+                    
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+
+                // 网络拓扑动态连线
+                ctx.lineWidth = 0.5;
+                for (let i = 0; i < pts.length; i++) {
+                    for (let j = i + 1; j < pts.length; j++) {
+                        const dist = Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
+                        if (dist < 80) {
+                            ctx.strokeStyle = `rgba(0, 240, 255, ${1 - dist/80})`;
+                            ctx.beginPath();
+                            ctx.moveTo(pts[i].x, pts[i].y);
+                            ctx.lineTo(pts[j].x, pts[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            } 
+            else if (type === 'rebels') {
+                // 负熵逆流粒子收拢到核心
+                ctx.fillStyle = 'rgba(255, 94, 0, 0.2)';
+                ctx.beginPath();
+                ctx.arc(cx, cy, 30 + Math.sin(animationState.time) * 10, 0, Math.PI * 2);
+                ctx.fill();
+
+                animationState.particles.forEach(p => {
+                    p.r += p.speed;
+                    p.angle += 0.005;
+                    p.x = cx + Math.cos(p.angle) * p.r;
+                    p.y = cy + Math.sin(p.angle) * p.r;
+
+                    if (p.r < 30) {
+                        p.r = 300 + Math.random() * 100;
+                    }
+
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+            } 
+            else if (type === 'mapping') {
+                // 3D 旋转与 2D 平面投影
+                animationState.angle += 0.015;
+                const rad = animationState.angle;
+                const projected = [];
+
+                // 旋转顶点
+                animationState.particles.forEach(p => {
+                    // X轴旋转
+                    let y1 = p.y3d * Math.cos(rad) - p.z3d * Math.sin(rad);
+                    let z1 = p.y3d * Math.sin(rad) + p.z3d * Math.cos(rad);
+                    // Y轴旋转
+                    let x2 = p.x3d * Math.cos(rad) + z1 * Math.sin(rad);
+                    let z2 = -p.x3d * Math.sin(rad) + z1 * Math.cos(rad);
+
+                    // 透视投影到左侧
+                    const scale = 200 / (200 + z2);
+                    const projX = cx - 180 + x2 * scale;
+                    const projY = cy + y1 * scale;
+                    projected.push({ x: projX, y: projY });
+
+                    // 绘制左侧3D立体顶点
+                    ctx.fillStyle = '#00F0FF';
+                    ctx.beginPath();
+                    ctx.arc(projX, projY, 4, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // 绘制右侧 2D 解耦平面投影
+                    const flatX = cx + 180 + x2 * 0.8;
+                    const flatY = cy + y1 * 0.8;
+                    ctx.fillStyle = '#FF5E00';
+                    ctx.beginPath();
+                    ctx.arc(flatX, flatY, 4, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // 绘制贯穿激光线 (代表高维向低维映射解耦)
+                    ctx.strokeStyle = 'rgba(0, 240, 255, 0.15)';
+                    ctx.lineWidth = 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(projX, projY);
+                    ctx.lineTo(flatX, flatY);
+                    ctx.stroke();
+                });
+
+                // 绘制左侧正方体棱线
+                ctx.strokeStyle = 'rgba(0, 240, 255, 0.4)';
+                ctx.lineWidth = 1;
+                const edges = [
+                    [0,1],[1,3],[3,2],[2,0],
+                    [4,5],[5,7],[7,6],[6,4],
+                    [0,4],[1,5],[2,6],[3,7]
+                ];
+                edges.forEach(e => {
+                    ctx.beginPath();
+                    ctx.moveTo(projected[e[0]].x, projected[e[0]].y);
+                    ctx.lineTo(projected[e[1]].x, projected[e[1]].y);
+                    ctx.stroke();
+                });
+            } 
+            else if (type === 'blanket') {
+                // 马尔可夫毯：中央发光保护壳与外部粒子对撞
+                const rad = 90 + Math.sin(animationState.time) * 5;
+                ctx.strokeStyle = '#00F0FF';
+                ctx.lineWidth = 3;
+                ctx.shadowColor = '#00F0FF';
+                ctx.shadowBlur = 15;
+                ctx.beginPath();
+                ctx.arc(cx, cy, rad, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.shadowBlur = 0; // 重置阴影
+
+                // 绘制内部粒子
+                animationState.particles.slice(0, 15).forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    const dist = Math.hypot(p.x - cx, p.y - cy);
+                    if (dist > rad - 10) {
+                        p.vx = -p.vx;
+                        p.vy = -p.vy;
+                    }
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+
+                // 绘制外部混乱冲击粒子
+                animationState.particles.slice(15).forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    
+                    // 被马尔可夫毯弹开
+                    const dist = Math.hypot(p.x - cx, p.y - cy);
+                    if (dist < rad + 5) {
+                        const angle = Math.atan2(p.y - cy, p.x - cx);
+                        p.vx = Math.cos(angle) * 3;
+                        p.vy = Math.sin(angle) * 3;
+                    }
+
+                    if (p.x < 0 || p.x > w) p.vx = -p.vx;
+                    if (p.y < 0 || p.y > h) p.vy = -p.vy;
+
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+            } 
+            else if (type === 'carbon_limit') {
+                // 碳基并发脑容量超载闪烁
+                const pts = animationState.particles;
+                ctx.strokeStyle = 'rgba(255, 94, 0, 0.3)';
+                ctx.lineWidth = 1;
+                
+                // 绘制中央信息通道
+                ctx.beginPath();
+                ctx.arc(cx, cy, 60, 0, Math.PI * 2);
+                ctx.stroke();
+
+                pts.forEach((p, idx) => {
+                    p.pulse += 0.05;
+                    const scale = 1 + Math.sin(p.pulse) * 0.15;
+                    
+                    // 绘制节点
+                    ctx.fillStyle = '#FF5E00';
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size * scale, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // 节点连线到中央
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(cx, cy);
+                    ctx.stroke();
+
+                    // 超载红色警告波纹
+                    if (idx < 7) { // Miller's law 7+-2
+                        ctx.strokeStyle = '#39FF14';
+                    } else {
+                        ctx.strokeStyle = 'rgba(255, 0, 0, 0.8)';
+                        ctx.fillStyle = 'rgba(255,0,0,0.8)';
+                        ctx.font = '10px monospace';
+                        ctx.fillText("OVERLOAD", p.x + 8, p.y + 4);
+                    }
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size * scale * 2, 0, Math.PI*2);
+                    ctx.stroke();
+                });
+            } 
+            else if (type === 'synergy') {
+                // 双脑协同 (碳基意志与硅基算法)
+                const carbon = animationState.particles[0];
+                const silicon = animationState.particles[1];
+
+                // 绘制连接能量带
+                const grad = ctx.createLinearGradient(carbon.x, carbon.y, silicon.x, silicon.y);
+                grad.addColorStop(0, '#FF5E00');
+                grad.addColorStop(1, '#00F0FF');
+                ctx.strokeStyle = grad;
+                ctx.lineWidth = 4 + Math.sin(animationState.time * 2) * 2;
+                ctx.beginPath();
+                ctx.moveTo(carbon.x, carbon.y);
+                ctx.bezierCurveTo(cx, cy - 80 * Math.sin(animationState.time), cx, cy + 80 * Math.sin(animationState.time), silicon.x, silicon.y);
+                ctx.stroke();
+
+                // 绘制两个核心
+                ctx.fillStyle = carbon.color;
+                ctx.beginPath();
+                ctx.arc(carbon.x, carbon.y, carbon.radius, 0, Math.PI*2);
+                ctx.fill();
+                ctx.fillStyle = '#fff';
+                ctx.font = 'bold 12px sans-serif';
+                ctx.fillText("碳基 M", carbon.x - 20, carbon.y + 5);
+
+                ctx.fillStyle = silicon.color;
+                ctx.beginPath();
+                ctx.arc(silicon.x, silicon.y, silicon.radius, 0, Math.PI*2);
+                ctx.fill();
+                ctx.fillStyle = '#000';
+                ctx.fillText("硅基 𝚷", silicon.x - 20, silicon.y + 5);
+            } 
+            else if (type === 'five_dims') {
+                // 五维正交拓扑
+                animationState.angle += 0.005;
+                const pts = animationState.particles;
+                
+                // 绘制正五边形轮廓
+                ctx.strokeStyle = 'rgba(0, 240, 255, 0.4)';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                pts.forEach((p, idx) => {
+                    const angle = p.angle + animationState.angle;
+                    p.currX = cx + Math.cos(angle) * 110;
+                    p.currY = cy + Math.sin(angle) * 110;
+                    
+                    if (idx === 0) ctx.moveTo(p.currX, p.currY);
+                    else ctx.lineTo(p.currX, p.currY);
+                });
+                ctx.closePath();
+                ctx.stroke();
+
+                // 绘制相互连线 (全息网络)
+                ctx.strokeStyle = 'rgba(0, 240, 255, 0.15)';
+                ctx.lineWidth = 0.5;
+                for (let i = 0; i < pts.length; i++) {
+                    for (let j = i+1; j < pts.length; j++) {
+                        ctx.beginPath();
+                        ctx.moveTo(pts[i].currX, pts[i].currY);
+                        ctx.lineTo(pts[j].currX, pts[j].currY);
+                        ctx.stroke();
+                    }
+                }
+
+                // 绘制发光顶点与文字标签
+                pts.forEach(p => {
+                    ctx.fillStyle = '#FF5E00';
+                    ctx.beginPath();
+                    ctx.arc(p.currX, p.currY, 6, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    ctx.fillStyle = '#fff';
+                    ctx.font = '12px sans-serif';
+                    ctx.fillText(p.label, p.currX - 25, p.currY - 12);
+                });
+            } 
+            else if (type === 'truncation') {
+                // 指数分裂树与代数截断之剪
+                // 绘制原生的分裂连线
+                ctx.lineWidth = 1.5;
+                animationState.links.forEach(l => {
+                    ctx.strokeStyle = `rgba(255, 94, 0, ${l.depth * 0.15})`;
+                    ctx.beginPath();
+                    ctx.moveTo(l.x1, l.y1);
+                    ctx.lineTo(l.x2, l.y2);
+                    ctx.stroke();
+                });
+
+                // 绘制水平绿色截断光束 (代表 f_compute 拦截)
+                const cutY = cy - 20;
+                ctx.strokeStyle = '#39FF14';
+                ctx.lineWidth = 3;
+                ctx.shadowColor = '#39FF14';
+                ctx.shadowBlur = 10;
+                ctx.beginPath();
+                ctx.moveTo(cx - 200, cutY);
+                ctx.lineTo(cx + 200, cutY);
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+
+                ctx.fillStyle = '#39FF14';
+                ctx.font = 'bold 10px monospace';
+                ctx.fillText("代数截断 (ALGEBRAIC TRUNCATION)", cx - 100, cutY - 10);
+            } 
+            else if (type === 'grand_equation') {
+                // 全息流动数字矩阵
+                animationState.matrixChars.forEach(c => {
+                    c.y += c.speed;
+                    if (c.y > h) {
+                        c.y = 0;
+                        c.x = Math.random() * w;
+                    }
+                    ctx.fillStyle = `rgba(0, 240, 255, ${c.alpha})`;
+                    ctx.font = '12px monospace';
+                    ctx.fillText(c.char, c.x, c.y);
+                });
+
+                // 方程四周光圈
+                ctx.strokeStyle = 'rgba(255, 94, 0, 0.4)';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.arc(cx, cy, 180 + Math.sin(animationState.time) * 5, 0, Math.PI*2);
+                ctx.stroke();
+            } 
+            else if (type === 'undecidable') {
+                // 不可判定三角与乱码冲击
+                const pts = animationState.particles;
+                
+                // 绘制三座大碑的连接线
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(pts[0].x, pts[0].y);
+                ctx.lineTo(pts[1].x, pts[1].y);
+                ctx.lineTo(pts[2].x, pts[2].y);
+                ctx.closePath();
+                ctx.stroke();
+
+                // 绘制三座碑石
+                pts.forEach(p => {
+                    ctx.fillStyle = '#222';
+                    ctx.strokeStyle = '#00F0FF';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.rect(p.x - 35, p.y - 25, 70, 50);
+                    ctx.fill();
+                    ctx.stroke();
+                    
+                    ctx.fillStyle = '#fff';
+                    ctx.font = 'bold 12px sans-serif';
+                    ctx.fillText(p.name, p.x - 20, p.y + 5);
+                });
+
+                // 混乱乱码点亮冲击
+                for (let i = 0; i < 5; i++) {
+                    const tx = cx + (Math.random() - 0.5) * 100;
+                    const ty = cy + (Math.random() - 0.5) * 100;
+                    ctx.fillStyle = 'rgba(255, 0, 0, 0.5)';
+                    ctx.font = '9px monospace';
+                    ctx.fillText("HALT_ERROR_404", tx, ty);
+                }
+            } 
+            else if (type === 'halting_triangle') {
+                // 停机死锁环形坍缩
+                animationState.angle += 0.02;
+                ctx.strokeStyle = 'rgba(255, 0, 0, 0.8)';
+                ctx.lineWidth = 4 + Math.sin(animationState.time * 5) * 2;
+                
+                // 绘制死锁振动圆环
+                ctx.beginPath();
+                const shakeX = (Math.random() - 0.5) * 5;
+                const shakeY = (Math.random() - 0.5) * 5;
+                ctx.arc(cx + shakeX, cy + shakeY, 80, 0, Math.PI * 2);
+                ctx.stroke();
+
+                // 闪烁文本警告
+                if (Math.floor(animationState.time * 2) % 2 === 0) {
+                    ctx.fillStyle = 'red';
+                    ctx.font = 'bold 14px monospace';
+                    ctx.fillText("CRITICAL HALTING DEADLOCK", cx - 110, cy + 5);
+                }
+            } 
+            else if (type === 'diagnostics') {
+                // 残差诊断波形对比
+                ctx.lineWidth = 2;
+
+                // 理论模型线 (平滑正弦 - 蓝色)
+                ctx.strokeStyle = '#00F0FF';
+                ctx.beginPath();
+                animationState.particles.forEach((p, idx) => {
+                    const py = cy - 40 + Math.sin(idx * 0.1 + animationState.time) * 50;
+                    if (idx === 0) ctx.moveTo(p.x, py);
+                    else ctx.lineTo(p.x, py);
+                });
+                ctx.stroke();
+
+                // 实际执行线 (带噪点折线 - 橘色)
+                ctx.strokeStyle = '#FF5E00';
+                ctx.beginPath();
+                animationState.particles.forEach((p, idx) => {
+                    // 在第四幕中后期引入扰动差
+                    const noise = (Math.sin(idx * 0.4 + animationState.time * 2.5) * 20) * (idx > w/2 ? 1.5 : 0.2);
+                    const py = cy - 40 + Math.sin(idx * 0.1 + animationState.time) * 50 + noise;
+                    if (idx === 0) ctx.moveTo(p.x, py);
+                    else ctx.lineTo(p.x, py);
+                });
+                ctx.stroke();
+
+                // 标注误差残差区 Delta
+                ctx.fillStyle = 'rgba(255,0,0,0.15)';
+                for (let i = Math.floor(w/2); i < w - 50; i += 20) {
+                    const py1 = cy - 40 + Math.sin(i * 0.1 + animationState.time) * 50;
+                    const py2 = cy - 40 + Math.sin(i * 0.1 + animationState.time) * 50 + (Math.sin(i * 0.4 + animationState.time * 2.5) * 20) * 1.5;
+                    ctx.fillRect(i, Math.min(py1, py2), 6, Math.abs(py1 - py2));
+                }
+            } 
+            else if (type === 'dual_drives') {
+                // 双轮齿轮咬合
+                const w1 = animationState.particles[0];
+                const w2 = animationState.particles[1];
+                
+                w1.angle = (w1.angle || 0) + w1.speed;
+                w2.angle = (w2.angle || 0) + w2.speed;
+
+                // 绘制左齿轮
+                drawGear(w1.x, w1.y, w1.r, w1.angle, w1.color, 12);
+                ctx.fillStyle = '#fff';
+                ctx.font = '10px sans-serif';
+                ctx.fillText("形式重整 (硅)", w1.x - 30, w1.y + 4);
+
+                // 绘制右齿轮
+                drawGear(w2.x, w2.y, w2.r, w2.angle, w2.color, 10);
+                ctx.fillStyle = '#fff';
+                ctx.fillText("公理注入 (碳)", w2.x - 30, w2.y + 4);
+            } 
+            else if (type === 'brain_os') {
+                // 五维良知神经网络
+                const pts = animationState.particles;
+                ctx.strokeStyle = 'rgba(255, 94, 0, 0.2)';
+                ctx.lineWidth = 1;
+                
+                // 绘制五维互连
+                for (let i = 0; i < pts.length; i++) {
+                    for (let j = i+1; j < pts.length; j++) {
+                        ctx.beginPath();
+                        ctx.moveTo(pts[i].x, pts[i].y);
+                        ctx.lineTo(pts[j].x, pts[j].y);
+                        ctx.stroke();
+                    }
+                }
+
+                // 绘制五维功能晶格
+                pts.forEach((p, idx) => {
+                    const scale = 1 + Math.sin(animationState.time + idx) * 0.08;
+                    ctx.fillStyle = '#222';
+                    ctx.strokeStyle = '#FF5E00';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r * scale, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.stroke();
+
+                    ctx.fillStyle = '#fff';
+                    ctx.font = '10px sans-serif';
+                    ctx.fillText(p.label, p.x - 18, p.y + 4);
+                });
+            } 
+            else if (type === 'philosophers') {
+                // 太极与谐波共振
+                ctx.save();
+                ctx.translate(cx, cy);
+                ctx.rotate(animationState.time * 0.2);
+                
+                // 绘制抽象阴阳轮廓线
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.arc(0, 0, 80, 0, Math.PI*2);
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.arc(0, -40, 40, 0, Math.PI*2);
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.arc(0, 40, 40, 0, Math.PI*2);
+                ctx.stroke();
+
+                ctx.restore();
+
+                // 绘制底层谐波网格
+                ctx.strokeStyle = '#39FF14';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                animationState.particles.forEach((p, idx) => {
+                    const py = cy + 90 + Math.sin(idx * 0.3 + animationState.time * 2) * 15;
+                    if (idx === 0) ctx.moveTo(p.x, py);
+                    else ctx.lineTo(p.x, py);
+                });
+                ctx.stroke();
+            } 
+            else if (type === 'maxwell_demon') {
+                // 麦克斯韦小妖分类模拟
+                const demon = animationState.particles[0];
+                const pts = animationState.particles.slice(1);
+
+                // 绘制分界墙与阀门闸口
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(cx, cy - 150);
+                ctx.lineTo(cx, cy - 25);
+                ctx.moveTo(cx, cy + 25);
+                ctx.lineTo(cx, cy + 150);
+                ctx.stroke();
+
+                // 绘制可动小闸门
+                const gateOpen = Math.sin(animationState.time * 3) > 0;
+                ctx.strokeStyle = gateOpen ? 'rgba(255,0,0,0.2)' : '#39FF14';
+                ctx.lineWidth = 5;
+                ctx.beginPath();
+                ctx.moveTo(cx, cy - 25);
+                ctx.lineTo(cx, gateOpen ? cy - 5 : cy + 25);
+                ctx.stroke();
+
+                // 绘制小妖精核心
+                ctx.fillStyle = '#00F0FF';
+                ctx.beginPath();
+                ctx.arc(demon.x, demon.y - 40, demon.r, 0, Math.PI*2);
+                ctx.fill();
+
+                // 移动冷热粒子
+                pts.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    // 碰撞分界墙
+                    if (Math.abs(p.x - cx) < 6) {
+                        if (p.y < cy - 25 || p.y > cy + 25 || !gateOpen) {
+                            p.vx = -p.vx;
+                        }
+                    }
+
+                    // 边界反弹
+                    if (p.x < cx - 180 || p.x > cx + 180) p.vx = -p.vx;
+                    if (p.y < cy - 150 || p.y > cy + 150) p.vy = -p.vy;
+
+                    // 渲染粒子颜色 (红为热，蓝为冷)
+                    ctx.fillStyle = p.temp === 'hot' ? '#FF5E00' : '#00F0FF';
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+            } 
+            else if (type === 'oasis_ending') {
+                // 终局绿洲：生机盎然的负熵网格
+                const pts = animationState.particles;
+                pts.forEach((p, idx) => {
+                    p.opacity = Math.min(p.opacity + 0.005, 0.8);
+                    
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size * (1 + Math.sin(animationState.time + idx) * 0.15), 0, Math.PI*2);
+                    ctx.fill();
+                });
+
+                // 连接生成生态线
+                ctx.strokeStyle = 'rgba(57, 255, 20, 0.08)';
+                ctx.lineWidth = 0.5;
+                for (let i = 0; i < pts.length; i++) {
+                    for (let j = i+1; j < pts.length; j++) {
+                        const dist = Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
+                        if (dist < 120) {
+                            ctx.beginPath();
+                            ctx.moveTo(pts[i].x, pts[i].y);
+                            ctx.lineTo(pts[j].x, pts[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            animationFrameId = requestAnimationFrame(render);
+        }
+
+        // 齿轮绘制辅助算法
+        function drawGear(x, y, radius, angle, color, teethNum) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(angle);
+            ctx.fillStyle = color;
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2;
+
+            ctx.beginPath();
+            ctx.arc(0, 0, radius - 6, 0, Math.PI * 2);
+            ctx.fill();
+
+            // 绘制轮齿
+            for (let i = 0; i < teethNum; i++) {
+                ctx.rotate(Math.PI * 2 / teethNum);
+                ctx.beginPath();
+                ctx.moveTo(radius - 6, -5);
+                ctx.lineTo(radius + 4, -3);
+                ctx.lineTo(radius + 4, 3);
+                ctx.lineTo(radius - 6, 5);
+                ctx.closePath();
+                ctx.fill();
+            }
+
+            // 镂空轴心
+            ctx.fillStyle = '#050505';
+            ctx.beginPath();
+            ctx.arc(0, 0, 12, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#fff';
+            ctx.stroke();
+
+            ctx.restore();
+        }
+
+        // 默认初始化加载第一幕
+        loadScene(0);
+        render();
+    </script>
+</body>
+</html>

@@ -15,6 +15,8 @@ def get_sidebar_headers():
         '* <a href="ipc_scheme_audit_agent.html" target="_blank">🧠 IPC 架构技术审计</a>',
         "* [🚀 价值链物理学正文](value-chain-physics-book.md)",
         "* [🔮 全息抗熵正文](holographic-anti-entropy-book.md)",
+        '* <a href="the_holographic_anti_entropy_system_science_paper.html" target="_blank">📄 全息抗熵学术论文 (HTML)</a>',
+        '* <a href="the_holographic_anti_entropy_system_science_paper.pdf" target="_blank">📕 全息抗熵学术论文 (PDF)</a>',
         ""
     ]
 
