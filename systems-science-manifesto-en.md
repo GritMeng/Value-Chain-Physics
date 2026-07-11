@@ -1,5 +1,8 @@
 # Systems Science Is Destined to Become a Foundational Science
 
+[![LICENSE: GPL v3](https://img.shields.io/badge/LICENSE-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) 
+⚖️ COPYRIGHT © 2026 [孟凡淳/GRIT MENG]. LICENSED UNDER [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0).
+
 ## From Heat Death to Order — A Universal Constitution Running Through the Cosmos and Civilization
 
 The universe has an immutable ultimate destiny: heat death.
