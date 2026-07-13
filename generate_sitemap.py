@@ -38,7 +38,17 @@ def generate_sitemap(md_files):
     sitemap_content.append('  </url>')
     
     # 2. 添加其他的静态 HTML 页面
-    extra_htmls = ['showcase.html', 'IPC_Video_Lectures.html', 'value_chain_audit_agent.html', 'ipc_scheme_audit_agent.html']
+    extra_htmls = [
+        'showcase.html', 
+        'IPC_Video_Lectures.html', 
+        'value_chain_audit_agent.html', 
+        'ipc_scheme_audit_agent.html',
+        'the_holographic_anti_entropy_system_science_paper.html',
+        'academic_papers_draft_for_cao.html',
+        'Paper1_Decentralized_Learning_Dynamics.html',
+        'Paper2_Hybrid_Intelligence_Mind_OS.html',
+        'Paper3_Complex_Supply_Networks_Projection.html'
+    ]
     for html in extra_htmls:
         if os.path.exists(os.path.join(ROOT_DIR, html)):
             sitemap_content.append('  <url>')

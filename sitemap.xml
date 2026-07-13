@@ -2,31 +2,61 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://gritmeng.github.io/Value-Chain-Physics/</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://gritmeng.github.io/Value-Chain-Physics/showcase.html</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://gritmeng.github.io/Value-Chain-Physics/IPC_Video_Lectures.html</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://gritmeng.github.io/Value-Chain-Physics/value_chain_audit_agent.html</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://gritmeng.github.io/Value-Chain-Physics/ipc_scheme_audit_agent.html</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gritmeng.github.io/Value-Chain-Physics/the_holographic_anti_entropy_system_science_paper.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gritmeng.github.io/Value-Chain-Physics/academic_papers_draft_for_cao.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gritmeng.github.io/Value-Chain-Physics/Paper1_Decentralized_Learning_Dynamics.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gritmeng.github.io/Value-Chain-Physics/Paper2_Hybrid_Intelligence_Mind_OS.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gritmeng.github.io/Value-Chain-Physics/Paper3_Complex_Supply_Networks_Projection.html</loc>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
