@@ -5,10 +5,6 @@
 * [🔮 全息抗熵正文](holographic-anti-entropy-book.md)
 * <a href="the_holographic_anti_entropy_system_science_paper.html" target="_blank">📄 全息抗熵学术论文 (HTML)</a>
 * <a href="the_holographic_anti_entropy_system_science_paper.pdf" target="_blank">📕 全息抗熵学术论文 (PDF)</a>
-* <a href="academic_papers_draft_for_cao.html" target="_blank">📝 呈送操龙兵教授的联合研究计划与学术论文草案</a>
-* <a href="Paper1_Decentralized_Learning_Dynamics.html" target="_blank">  ↳ 论文一：去中心化学习发散与收敛理论</a>
-* <a href="Paper2_Hybrid_Intelligence_Mind_OS.html" target="_blank">  ↳ 论文二：混合智能心智 OS 与边界穿透模型</a>
-* <a href="Paper3_Complex_Supply_Networks_Projection.html" target="_blank">  ↳ 论文三：复杂供应网络物理定律与 O(N!) 求解器</a>
 
 * **01. 系统科学与时空定律**
   * [01. 系统第二定律与热寂宿命](01_系统科学与时空定律/01_系统第二定律与热寂宿命.md)
@@ -36,6 +32,7 @@
   * [16b. 系统架构师的文明跨界与LLM赋能](02_认知革命与变革杠杆/16b_系统架构师的文明跨界与LLM赋能.md)
   * [16c. 5mins与8小时的鸿沟：你买的不是软件而是熵增的组织废热](02_认知革命与变革杠杆/16c_5mins与8小时的鸿沟：你买的不是软件而是熵增的组织废热.md)
   * [16d. 历史的宣判：供应链的物理法则与硅基抗熵的终局](02_认知革命与变革杠杆/16d_历史的宣判：供应链的物理法则与硅基抗熵的终局.md)
+  * [16e. 马列毛系统力学与认知同构](02_认知革命与变革杠杆/16e_马列毛系统力学与认知同构.md)
 
 * **03. 三层数据模型与物理镜像**
   * [17. 数据本体双螺旋结构](03_三层数据模型与物理镜像/17_数据本体双螺旋结构.md)
