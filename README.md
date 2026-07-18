@@ -3,7 +3,7 @@
 > **🚀 终结系统科学“只能定性、无法计算”的尴尬！我们攻克了系统治理“不可计算”的硬核天堑，让价值链管理从经验走向物理科学。本项目承载源自联想千亿级制造现场实证的「全息抗熵」决策脑，C++ 裸金属排产引擎 5 分钟搞定 50 万订单，以八大物理公理为工业数智化立宪，接受全球 CTO 物理审判！**
 
 **作者 / Author：** Grit Meng (孟凡淳)  
-**开源协议 / License：** AGPL-3.0 © 2026 Grit Meng  
+**开源协议 / License：** CC BY-NC-ND 4.0 © 2026 Grit Meng  
 **部署状态 / Status：** ![CI](https://github.com/GritMeng/Value-Chain-Physics/actions/workflows/ci.yml/badge.svg) ![Pages](https://github.com/GritMeng/Value-Chain-Physics/actions/workflows/deploy.yml/badge.svg)
 
 ---
@@ -269,7 +269,7 @@
   year      = {2026},
   publisher = {GitHub Open Source},
   url       = {https://github.com/GritMeng/Value-Chain-Physics},
-  license   = {AGPL-3.0}
+  license   = {CC-BY-NC-ND-4.0}
 }
 ```
 
