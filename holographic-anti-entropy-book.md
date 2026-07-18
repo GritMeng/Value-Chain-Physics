@@ -1,15 +1,15 @@
-# 全息抗熵：开放复杂巨系统的物理学宪法
-
-****——从涌现自洽到意志统御的范式跃迁****
-
-**[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)**
-
-**⚖️ Copyright © 2026 [孟凡淳/Grit meng]. Licensed under [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0).**
-
----
-
-## 代序：系统科学，一门被低估的基础科学
-
+# 全息抗熵：开放复杂巨系统的物理学宪法
+
+**——从涌现自洽到意志统御的范式跃迁**
+
+**[![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)**
+
+**⚖️ Copyright © 2026 [孟凡淳/Grit Meng]. Licensed under [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/).**
+
+---
+
+## 代序：系统科学，一门被低估的基础科学
+
 我们谈论科学的 “基础” 时，总习惯沿着物质的层级向下追溯：粒子比原子基础，原子比分子基础，分子比细胞基础。在这套默认的标尺里，研究整体规律的系统学，天然被归为 “交叉应用学科”—— 仿佛它是物理、生物、社会学的衍生产物，是站在基础科学肩膀上的次级学问。
 
 但这其实是一种认知上的倒置，更遮蔽了系统学领域正在发生的、足以重构人类秩序观的底层突破。

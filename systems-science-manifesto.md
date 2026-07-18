@@ -1,7 +1,7 @@
 # 系统科学必将成为基础科学
 
-[![LICENSE: GPL v3](https://img.shields.io/badge/LICENSE-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) 
-⚖️ COPYRIGHT © 2026 [孟凡淳/GRIT MENG]. LICENSED UNDER [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0).
+[![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+⚖️ COPYRIGHT © 2026 [孟凡淳/GRIT MENG]. LICENSED UNDER [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/).
 
 —— 从热寂到秩序：一套贯穿宇宙与文明的底层宪法
 

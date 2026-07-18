@@ -1,8 +1,8 @@
 # 映与界的奏鸣曲：关于智能、生命与宇宙的世纪启示录
 *作者：孟凡淳 (Grit Meng) & Antigravity*
 
-[![LICENSE: GPL v3](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-⚖️ COPYRIGHT © 2026 [孟凡淳/GRIT MENG]. LICENSED UNDER [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0).
+[![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+⚖️ COPYRIGHT © 2026 [孟凡淳/GRIT MENG]. LICENSED UNDER [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/).
 
 ---
 
