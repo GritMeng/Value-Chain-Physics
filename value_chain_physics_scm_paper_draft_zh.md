@@ -178,11 +178,12 @@ $$\Phi: \mathcal{K}_t \xrightarrow{\Lambda} \mathcal{K}_{t+1}$$
 ---
 
 ## 参考文献
+
 *   钱学森, 于景元, 戴汝为. 1990. "一个科学新领域——开放的复杂巨系统及其方法论." *自然杂志*, 13(1), pp. 3-10.
-*   Cao, L. 2022. "Beyond i.i.d.: Non-IID Thinking, Informatics, and Learning." *IEEE Intelligent Systems*, 37(4), pp. 5-17.
-*   Hopp, W. J. and Spearman, M. L. 2011. *Factory Physics*. 3rd ed. Waveland Press.
-*   Spearman, M. L., Woodruff, D. L. and Hopp, W. J. 1990. "CONWIP: a pull alternative to MRP." *International Journal of Production Research*, 28(5), pp. 879-894.
+*   钱学森. 1954. *工程控制论*. 科学出版社.
 *   Simon, H. A. 1962. "The architecture of complexity." *Proceedings of the American Philosophical Society*, 106(6), pp. 467-482.
+*   Prigogine, I. 1977. "Time, structure and fluctuations." *Nobel Lecture*.
+*   Bertalanffy, L. von. 1968. *General System Theory*. George Braziller.
 *   Bar-Yam, Y. 2003. *Dynamics of Complex Systems*. Westview Press.
 *   Grieves, M. 2014. "Digital twin: manufacturing excellence through virtual factory replication." *White paper*.
 *   Gino, F. and Pisano, G. P. 2008. "Toward a theory of behavioral operations." *Manufacturing & Service Operations Management*, 10(4), pp. 676-691.
@@ -190,9 +191,28 @@ $$\Phi: \mathcal{K}_t \xrightarrow{\Lambda} \mathcal{K}_{t+1}$$
 *   Galbraith, J. R. 1974. "Organization design: An information processing view." *Interfaces*, 4(3), pp. 28-36.
 *   March, J. G. and Simon, H. A. 1958. *Organizations*. John Wiley & Sons.
 *   Miller, G. A. 1956. "The magical number seven, plus or minus two: Some limits on our capacity for processing information." *Psychological Review*, 63(2), pp. 81-97.
-*   Bertalanffy, L. von. 1968. *General System Theory*. George Braziller.
-*   Prigogine, I. 1977. "Time, structure and fluctuations." *Nobel Lecture*.
+*   Shannon, C. E. 1948. "A mathematical theory of communication." *Bell System Technical Journal*, 27(3), pp. 379-423.
+*   Wiener, N. 1948. *Cybernetics: Or Control and Communication in the Animal and the Machine*. John Wiley & Sons.
+*   Ashby, W. R. 1956. *An Introduction to Cybernetics*. Chapman & Hall.
+*   Hopp, W. J. and Spearman, M. L. 2011. *Factory Physics*. 3rd ed. Waveland Press.
+*   Spearman, M. L., Woodruff, D. L. and Hopp, W. J. 1990. "CONWIP: a pull alternative to MRP." *International Journal of Production Research*, 28(5), pp. 879-894.
 *   Vollmann, T. E., Berry, W. L. and Whybark, D. C. 2005. *Manufacturing Planning and Control for Supply Chain Management*. McGraw-Hill.
 *   Silver, E. A., Pyke, D. F. and Peterson, R. 1998. *Inventory Management and Production Planning and Scheduling*. John Wiley & Sons.
 *   Mantegna, R. N. and Stanley, H. E. 2000. *Introduction to Econophysics: Correlations and Complexity in Finance*. Cambridge University Press.
 *   Bouchaud, J. P. and Mezard, M. 2000. "Wealth condensation in a simple model of economy." *Physica A*, 282(3-4), pp. 536-545.
+*   Forrester, J. W. 1961. *Industrial Dynamics*. MIT Press.
+*   Sterman, J. D. 1989. "Modeling managerial behavior: Misperceptions of feedback in a dynamic decision making environment." *Management Science*, 35(3), pp. 321-339.
+*   Lee, H. L., Padmanabhan, V. and Whang, S. 1997. "The bullwhip effect in supply chains." *Sloan Management Review*, 38(3), pp. 93-102.
+*   Fisher, M. L. 1997. "What is the right supply chain for your product?" *Harvard Business Review*, 75(2), pp. 105-116.
+*   Graves, S. C. 1999. "A feedback control model for inventory management in a multi-echelon supply chain." *Manufacturing & Service Operations Management*, 1(1), pp. 85-103.
+*   Cachon, G. P. 2003. "Supply chain coordination with contracts." *Handbooks in Operations Research and Management Science*, 11, pp. 227-339.
+*   Zipkin, P. H. 2000. *Foundations of Inventory Management*. McGraw-Hill.
+*   Goedel, K. 1931. "Ueber formal unentscheidbare Saetze der Principia Mathematica und verwandter Systeme I." *Monatshefte fuer Mathematische und Physik*, 38, pp. 173-198.
+*   Prigogine, I. and Stengers, I. 1984. *Order out of Chaos: Man's new dialogue with nature*. Bantam Books.
+*   Haken, H. 1977. *Synergetics: An Introduction*. Springer-Verlag.
+*   Grieves, M. and Vickers, J. 2017. "Digital Twin: Mitigating Risk in Product Life Cycle Management." In: *Transdisciplinary Perspectives on Complex Systems*. Springer, pp. 85-113.
+*   Bendoly, E. 2011. "Linking task-related feedback to system use, error prevention, and productivity in enterprise systems." *Production and Operations Management*, 20(6), pp. 864-876.
+*   Kahneman, D. and Tversky, A. 1979. "Prospect theory: An analysis of decision under risk." *Econometrica*, 47(2), pp. 263-291.
+*   Boulding, K. E. 1956. "General systems theory—the skeleton of science." *Management Science*, 2(3), pp. 197-208.
+*   Laszlo, E. 1972. *Introduction to Systems Philosophy*. George Braziller.
+*   Dietmar, G. et al. 2018. "Algorithm appreciation: People prefer algorithmic to human judgment." *Organizational Behavior and Human Decision Processes*, 148, pp. 43-59.
