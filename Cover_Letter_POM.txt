@@ -1,0 +1,25 @@
+Dear Editor-in-Chief / Senior Editor,
+
+I am writing to submit our manuscript, titled "The Physics of Value Chains: An Axiomatic Framework for Complexity and Symbiosis in Global Operations," for consideration of publication as a research article in Production and Operations Management.
+
+For decades, operations management literature has struggled with the widening chasm between theoretical optimization models (e.g., stochastic inventory theory, multi-echelon math programming) and the heuristic, spreadsheets-driven reality of global manufacturing. In ultra-large-scale supply networks, combinatorial constraint explosions (such as a 20-layer BOM with hundreds of thousands of constraints) render traditional paradigms computationally infeasible or highly dissipative.
+
+This paper bridges this fundamental gap by presenting a rare, globally unique empirical milestone and translating it into a rigorous systems science. We document the Integrated Planning System (IPS) successfully deployed across a 100-billion-scale global manufacturing network (Lenovo's global in-house plants and LCFC joint venture, which rose to 5th in Gartner’s Top 25 Global Supply Chains in 2026). Over 18 months, this system achieved a stabilized 97% OTIF delivery rate, reduced structural parts inventory by 50%, and lowered manual planner interventions by 94%, realizing a stable "Human-Out-of-the-Loop" closed-loop control.
+
+To explain the physical necessity of this success, we propose a new theoretical paradigm: "Value-Chain Physics" (VCP):
+1. We project supply network dynamics onto a five-dimensional orthogonal topological manifold, defining the non-linear tensor propagation of capacity and component allocation along multi-echelon BOM networks.
+2. We derive eight foundational laws of value-chain physics that dictate information entropy, computational limits, and organizational boundaries (e.g., reversing Conway's Law via the single-planner singularity).
+3. We map Gödel's Incompleteness Theorem to SCM planning deadlocks, mathematically defining the boundary of human-machine symbiosis (silicon handles autonomous self-healing, while carbon rewrites axioms).
+
+Furthermore, we demonstrate a next-generation solver (IPC) on a single personal computer (PC) that resolves a global stress-test network of 500,000 discrete demands and 2,000,000 SKU-locations in just 296 seconds—bypassing computational irreducibility without reliance on massive cloud clusters.
+
+Given the journal's focus on publishing paradigm-shifting research in operations management and decision sciences, we believe our manuscript is a perfect fit for Production and Operations Management, particularly within the Manufacturing Operations department. This work is entirely original, has not been published elsewhere, and is not under consideration by any other journal. 
+
+Thank you very much for your time and consideration.
+
+Sincerely,
+
+Grit Meng
+Former Product Lead of Lenovo IPS, Creator of IPC Engine
+General Design Department of Global Digital Neural System Centroid
+Email: [Your Email Address]
