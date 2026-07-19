@@ -1,5 +1,6 @@
-\documentclass[11pt,a4paper,UTF8]{ctexart}
+\documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
+\usepackage{CJKutf8} % 100% pdfLaTeX Chinese support on Overleaf
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{booktabs}
@@ -14,6 +15,7 @@
 \date{\today}
 
 \begin{document}
+\begin{CJK*}{UTF8}{gbsn}
 
 \maketitle
 
@@ -268,4 +270,5 @@ $$\Phi: \mathcal{K}_t \xrightarrow{\Lambda} \mathcal{K}_{t+1}$$
 \bibitem{dietmar2018} Dietmar, G. et al. 2018. "Algorithm appreciation: People prefer algorithmic to human judgment." \textit{Organizational Behavior and Human Decision Processes}, 148, pp. 43-59.
 \end{thebibliography}
 
+\end{CJK*}
 \end{document}
