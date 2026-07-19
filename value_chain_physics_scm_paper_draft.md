@@ -133,17 +133,30 @@ To solve the $O(N!)$ combinatorial complexity under high-frequency operational u
 
 ---
 
-## 5. Empirical Validation
-The VCP framework and its bare-metal IPC engine have been deployed at LCFC, the largest laptop manufacturing base globally, with annual revenues exceeding 100 billion RMB. 
+## 5. Empirical Validation: The Multi-Enterprise Industrial Case Study
+The VCP framework and its bare-metal IPC engine have been deployed at LCFC, the largest laptop manufacturing base globally, with annual revenues exceeding 100 billion RMB. This empirical study focuses on verifying the physical necessity of the eight laws in a real-world, multi-enterprise manufacturing network.
 
-### 5.1 Experimental Scale
+### 5.1 Experimental Scale and Supply Chain Scope
+Unlike traditional localized factory scheduling studies, the scope of this deployment covers the entire end-to-end collaborative value chain network:
+- **Ecosystem Node Coverage**: The network incorporates internal sub-factories, joint ventures (co-located component suppliers and assembly units), and external Original Design Manufacturer (ODM) partners.
 - **Daily Discrete Demand Orders**: 500,000.
 - **Bill of Materials (BOM) Nodes**: Over 2,000,000 SKU-locations, with depth up to 20 levels.
 - **Physical Equipment \& Tooling Constraints**: 150,000.
 - **Computation Hardware**: A single server with 16-Core 3.2GHz CPU and 128GB RAM (engine memory footprint: 12GB).
 
-### 5.2 Performance Comparison
-We compared the IPC engine with the prevailing ERP/APS engines of major international vendors under identical data sets. The results are summarized in Table 1:
+### 5.2 Closed-Loop Planning, Execution, and Feedback
+The core operational mechanism of the system is a high-frequency **"Planning-to-Execution-to-Feedback" closed loop**:
+1. **Dynamic Netting (Planning)**: The double-helix engine netting occurs dynamically, outputting rigid material and capacity allotments.
+2. **Allotment Write-Back (Execution)**: The planned allocation is written back directly to the execution layer (MES/ERP), freezing the production schedule and locking component allocations.
+3. **Real-time Telemetry (Feedback)**: Execution-layer sensors (MES terminals, warehouse RFID scans, supplier logistics status) continuously feed back actual operational events (shipments, arrivals, line speeds) to recalculate the prediction residual $\Delta(t)$ and trigger automatic self-healing when deviations occur.
+
+### 5.3 Human-Out-of-the-Loop Operation
+A key feature of the VCP paradigm is the **"Human-Out-of-the-Loop" (人在环外)** mechanism during standard operations. Traditional supply chains rely on constant human intervention (manual overrides, phone coordination, planner adjustments) during daily netting, which introduces cognitive bottlenecks (Miller's limit) and delays. Under VCP:
+- In the normal execution domain, the silicon solver runs autonomously, executing allocation and write-back without human intervention.
+- The human experts are placed **outside the daily operational loop**, stepping in only at the **metacognitive level** (Law 3.8) when the solver hits G\"odelian logical deadlocks (e.g., critical supplier shut down due to force majeure), rewriting the constraints and axioms rather than manually tweaking individual orders.
+
+### 5.4 Performance Comparison
+We compared the VCP-based IPC engine with the prevailing ERP/APS engines of major international vendors under identical data sets. The results are summarized in Table 1:
 
 \begin{table}[htbp]
 \centering
@@ -166,14 +179,16 @@ Memory Architecture & Relational tables, OOP pointer-heavy graphs & Data-Oriente
 \end{tabular}
 \end{table}
 
-The empirical validation demonstrates that by adhering to the eight laws of value-chain physics, the planning engine achieved global capacity convergence in under 5 minutes on a single workstation, releasing billions of RMB in liquid capital and proving the physical validity of the VCP framework.
-
 ---
 
-## 6. Discussions and Conclusions
-This paper presented Value-Chain Physics, an axiomatic framework that transforms supply chain orchestration from heuristic management to a formal science. By mapping systems science onto the 5D supply chain ontology and establishing the eight physical laws, we provide a mathematically rigorous foundation for real-time human-machine collaborative decision-making. 
+## 6. Discussion: Accidental Success versus Physical Necessity
+The successful closure of the planning-execution-feedback loop across sub-factories, joint ventures, and ODMs is extremely rare in global operations. Many SCM scholars might dismiss Lenovo's success as an accidental case study—a localized triumph of corporate scale or specific management culture. 
 
-Future research will focus on extending the VCP framework to multi-enterprise collaborative ecosystems and integrating quantum computing models to further accelerate high-dimensional constraint netting.
+However, VCP asserts that this success is a **mathematical and physical necessity** of complying with the eight laws of value-chain physics:
+1. **The Inevitability of the Laws**: If any enterprise attempts to run a global value chain while violating the single-planner singularity (Law 3.4) or the Wiener boundary (Law 3.6), the communication friction $O(K^2)$ and the lack of execution feedback will mathematically guarantee system-wide inventory dissipation and OTIF collapse.
+2. **Replicability of the Paradigm**: Lenovo's success is not a fluke; it is the inevitable physical result of aligning their digital twin and operations with the eight laws. When the system satisfies the Nyquist computational frequency (Law 3.3) and places humans out of the daily execution loop while using bare-metal algebraic pruning, global convergence in under 5 minutes becomes a physical necessity.
+
+This shift in perspective—from an accidental case study to a replicable physical law—is the core contribution of Value-Chain Physics, providing a standard, scientific constitution for global operations management.
 
 ---
 
