@@ -21,15 +21,23 @@ Since the birth of systems science and complexity theory nearly a century ago, o
 
 ---
 
-## 2. Empirical Fact: Multi-Enterprise Value Chain Closed-Loop and "Human-Out-of-the-Loop" Operation
+## 2. Empirical Fact: Closed-Loop Control and Performance Verification of Multi-Enterprise Value Chains
 
-As the physical foundation of this study, we present the empirical facts verified across Lenovo's global supply chain network. The production system deployed is Lenovo's Integrated Planning System (IPS). It was first successfully developed and validated in Lenovo's in-house manufacturing plants—initially in Beijing, Shanghai, and Chengdu, followed by Shenzhen and Mexico—before being expanded to joint ventures (such as LCFC, a World Economic Forum "Lighthouse Factory") and the broader Original Design Manufacturer (ODM) partner ecosystem.
+As the physical foundation of this study, we present the empirical facts verified across a 100-billion-scale global discrete manufacturing network. The deployed production planning system is Lenovo's Integrated Planning System (IPS). This system was first fully validated in Lenovo's in-house plants (Beijing, Shanghai, Chengdu, Shenzhen, and Mexico) before being expanded to joint ventures—including LCFC (a World Economic Forum "Lighthouse Factory")—and the broader Original Design Manufacturer (ODM) partner network. Across this highly complex global network, the operational performance under its orchestration has been rigorously verified by both official disclosures and long-term internal metrics.
 
-### 2.1 Empirical Scale and Supply Chain Scope
-The empirical validation is rooted in the production deployment of Lenovo's IPS system across its global network:
-- **Ecosystem Node Coverage**: The network incorporates global in-house plants (Beijing, Shanghai, Chengdu, Shenzhen, Mexico), joint ventures (LCFC), and external ODM partners. The deployed production planning system is Lenovo's IPS.
-- **Daily Production Planning Scale**: The core manufacturing plant (Hefei LCFC Lighthouse Factory) handles a daily backlog of **50,000 to 100,000 discrete orders**, with other global plants scaling accordingly.
-- **Time Window and Statistical Metrics**: The primary performance metric (97% OTIF) represents the monthly average over an 18-month stable operational window (Q3 2024 to Q1 2026), with a standard deviation of less than 1.2 percentage points. The inventory reduction (50%) and inventory turnover increase (1.9x) are calculated on a Year-over-Year (YoY) basis. During this period, the manual override and planner intervention rate dropped by **94%**, filtering out decision noise.
+During this implementation period, Lenovo was ranked in Gartner's Top 25 Global Supply Chains for five consecutive years in the global top 10 (listed 12 times in total, leading all Chinese companies), and rose to 5th globally in 2026, a historic high.
+
+### 2.1 Empirical Performance and Statistical Metrics
+According to Lenovo's official public disclosures, the deployment of the IPS system achieved significant operational improvements:
+- **Delivery Commitment Rate**: Increased to **3.5 times** the pre-deployment baseline (official disclosure).
+- **Order Delivery Accuracy**: Increased by **32%**, and **order processing capability** increased by **24%** (official data).
+- **Inventory & Working Capital**: Structural parts inventory decreased by **50%**, overall inventory turnover increased by **1.9 times** (YoY), releasing billions of RMB in liquid capital directly from the value chain (official disclosure).
+
+Furthermore, internal operational logs from the core manufacturing node (such as LCFC, which handles a daily backlog of 50,000 to 100,000 discrete orders) show the following operational transitions:
+- **Order-Delivery Response Rate**: Increased from **54%** to **98%** (stabilized).
+- **Delivery Response Accuracy**: Improved from **60%–70%** to **95% not late, 80% not early**.
+- **Planner Override Reduction**: Manual planner overrides and adjustments dropped by **94%**, drastically filtering out decision noise.
+- **Statistical Time Window**: The performance metrics represent monthly averages over an 18-month stable operational window (Q3 2024 to Q1 2026), with a standard deviation of less than 1.2 percentage points. All inventory and turnover reductions are calculated on a Year-over-Year (YoY) basis.
 
 ### 2.2 The Six-Phase Closed-Loop Execution Flow
 The operational core of the system is a high-frequency **"Planning-to-Execution-to-Feedback" closed loop** executing through six sequential phases:
