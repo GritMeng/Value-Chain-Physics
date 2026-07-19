@@ -144,11 +144,20 @@ Unlike traditional localized factory scheduling studies, the scope of this deplo
 - **Physical Equipment \& Tooling Constraints**: 150,000.
 - **Computation Hardware**: A single server with 16-Core 3.2GHz CPU and 128GB RAM (engine memory footprint: 12GB).
 
-### 5.2 Closed-Loop Planning, Execution, and Feedback
-The core operational mechanism of the system is a high-frequency **"Planning-to-Execution-to-Feedback" closed loop**:
-1. **Dynamic Netting (Planning)**: The double-helix engine netting occurs dynamically, outputting rigid material and capacity allotments.
-2. **Allotment Write-Back (Execution)**: The planned allocation is written back directly to the execution layer (MES/ERP), freezing the production schedule and locking component allocations.
-3. **Real-time Telemetry (Feedback)**: Execution-layer sensors (MES terminals, warehouse RFID scans, supplier logistics status) continuously feed back actual operational events (shipments, arrivals, line speeds) to recalculate the prediction residual $\Delta(t)$ and trigger automatic self-healing when deviations occur.
+### 5.2 Closed-Loop Planning, Execution, and Feedback Flow
+The core operational mechanism of the VCP framework is a high-frequency **"Planning-to-Execution-to-Feedback" closed loop** that translates abstract flow fields into concrete factory events. This closed loop executes through six sequential operational phases:
+1.  **Dynamic Delivery Date Update (ATP/CTP Calculation)**: Real-time calculation of Available-to-Promise (ATP) and Capable-to-Promise (CTP) delivery dates based on current component levels and line capacities.
+2.  **Production Master Planning**: Generating the finite-capacity master production schedule (MPS) to balance global demand pulls against physical supply network limits.
+3.  **Work Order Dispatching**: Releasing discrete manufacturing work orders to specific assembly plants and production lines.
+4.  **Line-level Sequencing & Scheduling**: Real-time micro-sequencing of production sequences at the work center level.
+5.  **Component Pulling & Kitting**: Automatically pulling and routing specific component SKUs to the physical assembly lines based on line sequence requirements.
+6.  **Warehouse Dispatch Notification**: Notifying warehouse and logistics systems to dispatch materials to the assembly floor in synchronization with line schedules.
+
+By linking these six phases, the system establishes a continuous flow of feedback:
+*   **The Causal Residual Chain**: Any disruption (e.g., component shortage, line breakdown) at any of the six stages generates a deviation between the planned state and the actual state. Rather than treating this deviation as random noise, VCP maps it as a **traceable causal chain of residuals (因果链)**. This allows the system to diagnose exactly **why an order is early, late, or modified**.
+*   **The Two Adaptation Pathways**: Based on the diagnosed causal chain, the system executes two distinct adaptation mechanisms:
+    -   **Active Inference (Path A - 主动推断)**: The system or planners initiate corrective actions in the physical world (e.g., expediting a supplier, shifting labor) to force physical reality to align with the plan, minimizing the surprise/residual.
+    -   **Model Adaptation & Evolution (Path B - 优化与进化)**: If the physical mismatch reflects a structural change (e.g., permanent machine capacity degradation), the system adapts its internal model. Planners update the constraints, lead times, or BOM topologies in $D$, ensuring the formal model evolves to accurately mirror the new physical reality.
 
 ### 5.3 Human-Out-of-the-Loop Operation
 A key feature of the VCP paradigm is the **"Human-Out-of-the-Loop" (人在环外)** mechanism during standard operations. Traditional supply chains rely on constant human intervention (manual overrides, phone coordination, planner adjustments) during daily netting, which introduces cognitive bottlenecks (Miller's limit) and delays. Under VCP:
