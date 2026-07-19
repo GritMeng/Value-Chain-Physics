@@ -21,11 +21,11 @@ When facing these Non-IID combinatorial explosions, traditional planning models 
 
 ## 2. Empirical Fact: Multi-Enterprise Value Chain Closed-Loop and "Human-Out-of-the-Loop" Operation
 
-As the physical foundation of this study, we present the empirical facts verified in Lenovo's global supply chain network and合肥联宝科技 (a World Economic Forum "Lighthouse Factory").
+As the physical foundation of this study, we present the empirical facts verified across Lenovo's global supply chain network. The system was first successfully developed and validated in Lenovo's in-house manufacturing plants—initially in Beijing, Shanghai, and Chengdu, followed by Shenzhen and Mexico—before being expanded to joint ventures (such as LCFC, a World Economic Forum "Lighthouse Factory") and the broader Original Design Manufacturer (ODM) partner ecosystem.
 
 ### 2.1 Empirical Scale and Supply Chain Scope
-The scope of this deployment covers an end-to-end collaborative multi-enterprise value chain network:
-- **Ecosystem Node Coverage**: The network incorporates internal sub-factories, joint ventures (co-located component suppliers and assembly units), and external Original Design Manufacturer (ODM) partners.
+The scope of this deployment covers a multi-tier, end-to-end collaborative supply network:
+- **Ecosystem Node Coverage**: The network incorporates global in-house plants (Beijing, Shanghai, Chengdu, Shenzhen, Mexico), joint ventures (jointly-operated and co-located suppliers), and external ODM partners.
 - **Daily Discrete Demand Orders**: 500,000.
 - **Bill of Materials (BOM) Nodes**: Over 2,000,000 SKU-locations, with depth up to 20 levels.
 - **Physical Equipment \& Tooling Constraints**: 150,000.
