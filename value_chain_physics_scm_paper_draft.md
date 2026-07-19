@@ -21,11 +21,11 @@ When facing these Non-IID combinatorial explosions, traditional planning models 
 
 ## 2. Empirical Fact: Multi-Enterprise Value Chain Closed-Loop and "Human-Out-of-the-Loop" Operation
 
-As the physical foundation of this study, we present the empirical facts verified across Lenovo's global supply chain network. The system was first successfully developed and validated in Lenovo's in-house manufacturing plants—initially in Beijing, Shanghai, and Chengdu, followed by Shenzhen and Mexico—before being expanded to joint ventures (such as LCFC, a World Economic Forum "Lighthouse Factory") and the broader Original Design Manufacturer (ODM) partner ecosystem.
+As the physical foundation of this study, we present the empirical facts verified across Lenovo's global supply chain network. The production system deployed is Lenovo's Integrated Planning System (IPS). It was first successfully developed and validated in Lenovo's in-house manufacturing plants—initially in Beijing, Shanghai, and Chengdu, followed by Shenzhen and Mexico—before being expanded to joint ventures (such as LCFC, a World Economic Forum "Lighthouse Factory") and the broader Original Design Manufacturer (ODM) partner ecosystem.
 
 ### 2.1 Empirical Scale and Supply Chain Scope
 The scope of this deployment covers a multi-tier, end-to-end collaborative supply network:
-- **Ecosystem Node Coverage**: The network incorporates global in-house plants (Beijing, Shanghai, Chengdu, Shenzhen, Mexico), joint ventures (LCFC), and external ODM partners.
+- **Ecosystem Node Coverage**: The network incorporates global in-house plants (Beijing, Shanghai, Chengdu, Shenzhen, Mexico), joint ventures (LCFC), and external ODM partners. The deployed production planning system is Lenovo's IPS.
 - **Daily Discrete Demand Orders**: 500,000.
 - **Bill of Materials (BOM) Nodes**: Over 2,000,000 SKU-locations, with depth up to 20 levels.
 - **Physical Equipment \& Tooling Constraints**: 150,000.
@@ -169,6 +169,11 @@ Daily Manual Planner Interventions & 1,420 overrides & \textbf{0 overrides (Huma
 \bottomrule
 \end{tabular}
 \end{table}
+
+### 5.3 Next-Generation IPC Engine Performance Leap on a Personal Computer (PC)
+To further demonstrate the computational limits dictated by value-chain physical laws (Law 3.2, Law 3.3), the author developed a next-generation solver engine, IPC (Intelligent Planning and Control), built upon the principles of Lenovo's production IPS. It is important to clarify that this counterfactual benchmarking and solver test—demonstrating that a global network of 500,000 discrete demands, 2,000,000 SKU-locations, and 150,000 physical constraints can be solved in 296 seconds—**was executed on a single personal computer (PC, a consumer-grade workstation) using the extracted real-world dataset, rather than being deployed on Lenovo's production server clusters.**
+
+The benchmark demonstrates that the IPC engine solves the entire network in just **296 seconds (approximately 5 minutes)** on commodity PC hardware. In contrast, traditional SCM engines under the same hardware configuration often crash due to memory depletion or fail to converge after 6 hours. This confirms that through Data-Oriented Design (DOD, aligning variables in 1D contiguous memory arrays to achieve near-100% L1/L2 cache hit rates) and algebraic constraint pruning, VCP achieves a "state-level transition" (阶级跃迁) in calculation performance on standard personal computers, rendering high-dimensional complexity manageable.
 
 The counterfactual simulation proves that violating the axioms leads to a **72%** OTIF collapse and a **45%** inventory surge. The benchmarking shows that the success of the system is the **mathematical and physical necessity of satisfying VCP laws**, rather than an accidental byproduct of management culture.
 
