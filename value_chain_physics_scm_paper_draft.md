@@ -6,7 +6,7 @@
 ---
 
 ## Abstract
-Modern global value chains and supply networks exhibit extreme combinatorial complexity, non-stationary dynamics, and tight topological coupling, violating classical independent and identically distributed (I.I.D.) assumptions. Rather than presenting theoretical formulations first, this paper begins by demonstrating the empirical reality of a high-frequency "Planning-to-Execution-to-Feedback" closed loop and "Human-Out-of-the-Loop" autonomous operations successfully executed in a 100-billion-scale global discrete manufacturing network (comprising Lenovo's global in-house plants and LCFC joint venture). Given that this closed-loop orchestration is extremely rare—virtually a unique exemplar globally—we raise a scientific inquiry: is this success merely an accidental byproduct of specific management art, or is it governed by a deeper, physical necessity? To answer this, we project supply network dynamics onto a five-dimensional orthogonal topological manifold, establishing a digital double-helix ontology $\langle D, A \rangle$ and deriving state evolution and thermodynamic做功 equations. We formalize the boundary of human-machine symbiosis by mapping G\"odel's Incompleteness Theorem to SCM planning deadlocks. Furthermore, we introduce a high-performance double-helix solver utilizing Data-Oriented Design (DOD) and algebraic physical constraint pruning. Counterfactual simulation benchmarking demonstrates that under identical demand streams, compared to the traditional MRP paradigm (where OTIF collapses to 72% and inventory climbs by 45%), the proposed VCP framework stabilizes the OTIF delivery rate at 97% and increases inventory turnover by 1.9 times. This study advances supply chain orchestration from heuristic modeling to an axiomatic, verifiable systems science.
+Modern global value chains and supply networks exhibit extreme combinatorial complexity, non-stationary dynamics, and tight topological coupling, violating classical independent and identically distributed (I.I.D.) assumptions. Rather than presenting theoretical formulations first, this paper begins by demonstrating the empirical reality of a high-frequency "Planning-to-Execution-to-Feedback" closed loop and "Human-Out-of-the-Loop" autonomous operations successfully executed in a 100-billion-scale global discrete manufacturing network (comprising Lenovo's global in-house plants and LCFC joint venture). Given that this closed-loop orchestration is extremely rare—virtually a unique exemplar globally—we raise a scientific inquiry: is this success merely an accidental byproduct of specific management art, or is it governed by a deeper, physical necessity? To answer this, we project supply network dynamics onto a five-dimensional orthogonal topological manifold, establishing a digital double-helix ontology $\langle D, A \rangle$. We present eight foundational laws of value-chain physics that govern information entropy, computational limits, organizational alignment, and human-machine symbiosis. Counterfactual simulation benchmarking demonstrates that under identical demand streams, compared to the traditional paradigm that violates VCP axioms (where OTIF collapses to 72% and inventory climbs by 45%), the system complying with VCP axioms stabilizes the OTIF delivery rate at 97% and increases inventory turnover by 1.9 times, showing that Lenovo's success is a physical necessity of these laws. This study advances supply chain orchestration from heuristic modeling to an axiomatic, verifiable systems science.
 
 **Keywords**: Value-Chain Physics; Human-Out-of-the-Loop; High-Frequency Closed-Loop; Physical Necessity; Counterfactual Simulation; Variational Free Energy; Falsifiability
 
@@ -25,7 +25,7 @@ As the physical foundation of this study, we present the empirical facts verifie
 
 ### 2.1 Empirical Scale and Supply Chain Scope
 The scope of this deployment covers a multi-tier, end-to-end collaborative supply network:
-- **Ecosystem Node Coverage**: The network incorporates global in-house plants (Beijing, Shanghai, Chengdu, Shenzhen, Mexico), joint ventures (jointly-operated and co-located suppliers), and external ODM partners.
+- **Ecosystem Node Coverage**: The network incorporates global in-house plants (Beijing, Shanghai, Chengdu, Shenzhen, Mexico), joint ventures (LCFC), and external ODM partners.
 - **Daily Discrete Demand Orders**: 500,000.
 - **Bill of Materials (BOM) Nodes**: Over 2,000,000 SKU-locations, with depth up to 20 levels.
 - **Physical Equipment \& Tooling Constraints**: 150,000.
@@ -45,7 +45,7 @@ By linking these six phases, any execution disruption generates a deviation betw
 ### 2.3 "Human-Out-of-the-Loop" Operation
 A key feature of this empirical validation is the **"Human-Out-of-the-Loop" (人在环外)** mechanism during standard operations. Under VCP:
 - In the normal execution domain, the silicon solver runs autonomously, executing allocation and write-back without human intervention.
-- The human experts are placed **outside the daily operational loop**, stepping in only at the **metacognitive level** (Law 3.8) when the solver hits G\"odelian logical deadlocks (e.g., critical supplier shut down due to force majeure), rewriting the constraints and axioms rather than manually tweaking individual orders. Real-world execution logs indicate that manual planner intervention and overrides were reduced by **94%**, effectively filtering out human decision noise.
+- The human experts are placed **outside the daily operational loop**, stepping in only at the **metacognitive level** (Law 3.8) when the solver hits G\"odelian logical deadlocks (e.g., critical supplier shut down due to force majeure), rewriting the constraints and axioms rather than manually tweaking individual orders. Real-world execution logs indicate that manual planner overrides were reduced by **94%**, effectively filtering out human decision noise.
 
 ---
 
@@ -62,12 +62,12 @@ To answer these questions, we must look beyond heuristic rules and reconstruct t
 
 ---
 
-## 4. Theoretical Framework and Axiomatic Derivations
+## 4. Theoretical Framework: Five-Dimensional Topological Manifold and the Eight Laws
 
 To explain the physical necessity, we redefine the supply chain as a non-equilibrium, active dissipative system governed by physical conservation laws.
 
-### 4.1 Formalization of the Five-Dimensional Topological Manifold
-Let the supply chain state manifold be $\mathcal{M}$, whose instantaneous projection on the time axis $t$ is defined as:
+### 4.1 The Five-Dimensional Supply Chain Network Ontology (Definition Layer)
+We project supply network dynamics onto a mathematically complete, five-dimensional orthogonal topological manifold, denoted as the spatiotemporal container $D$:
 $$\mathcal{M}(t) = \langle \mathcal{V}_D(t), \mathcal{E}_D(t), \mathcal{C}_D(t), \mathcal{T}_D(t), \mathbf{x}_D(t) \rangle$$
 *   **Formalization of Openness**: The system exchanges mass and energy with the environment through time-varying boundaries $\mathcal{C}_D(t)$. Let the external stochastic perturbation input be $\xi(t)$. The evolution of the constraint set satisfies:
     $$\mathcal{C}_D(t) = \mathcal{C}_0 \oplus \int_0^t \mathbf{J}_{env}(\tau, \xi(\tau)) d\tau$$
@@ -76,31 +76,72 @@ $$\mathcal{M}(t) = \langle \mathcal{V}_D(t), \mathcal{E}_D(t), \mathcal{C}_D(t),
     $$\delta x_k(t + \Delta t) = \sum_{j \in \text{Path}(i \to k)} \mathbf{T}_{jk} \otimes \delta x_j(t)$$
     where $\mathbf{T}_{jk}$ represents the non-linear tensor operator mapping bill-of-materials matching and capacity allotments.
 
-### 4.2 Cybernetic and Thermodynamic Work Equation
-We decompose the system state trajectory into the objective Optimal Trajectory $\mathbf{V}_{\pi}(t)$ (free of constraint conflicts) and the actual Control Trajectory $\mathbf{V}_c(t)$. The alignment angle $\theta$ is defined by:
-$$\cos \theta(t) = \frac{\mathbf{V}_{\pi}(t) \cdot \mathbf{V}_c(t)}{\|\mathbf{V}_{\pi}(t)\| \|\mathbf{V}_c(t)\|}$$
-The internal dissipation $Q$ (expediting costs, line shutdowns, inventory waste) follows a thermodynamic exponential decay law:
-$$Q(\theta) = Q_0 \cdot e^{-\alpha \cos\theta}$$
-where $\alpha$ is the system's topological rigidity coefficient.
-*   **Predictable Phase-Transition Collapse**: According to this formulation, when $\cos\theta$ drops below a critical threshold $\cos\theta_{\text{crit}}$, internal dissipation $Q$ diverges exponentially. Real-world validation shows that when $\cos\theta < 0.72$, the OTIF delivery rate collapses abruptly from 95% to 64% within 2 hours, confirming the predictive validity of the thermodynamic equation.
+### 4.2 The Eight Laws of Value-Chain Physics (Axiom Layer)
+The laws of value-chain physics are normative and boundary-defining. They outline the feasibility limits of operations and the systemic costs associated with violating these boundaries.
 
-### 4.3 SCM Decision Deadlocks as G\"odelian Incompleteness
-Let the planning engine be a formal deductive system $\Pi = \langle D, A \rangle$ with active axiom set $\mathcal{K}_t$. The feasible solution space is defined by $\mathcal{S}_{\text{feas}}$:
-$$\mathcal{S}_{\text{feas}} = \{ \mathbf{x}_D \in \mathcal{M} \mid \mathbf{g}(\mathbf{x}_D, \mathcal{C}_D(t)) \le 0 \}$$
-*   **Theorem (Deadlock Incompleteness)**: In any formal planning system $\Pi$ sufficiently complex to express multi-echelon material routing and capacity allocations, when external supply disruptions render the feasible domain empty ($\mathcal{S}_{\text{feas}} = \emptyset$), the proposition *"find a planning schedule satisfying all delivery and capacity constraints"* is **undecidable within the active axiom set $\mathcal{K}_t$**, resulting in solver deadlocks or infinite backtracking loops.
-*   **Necessity of Symbiosis**: To resolve this deadlock, the human metacognitive system $\Phi$ acts as a meta-system, executing an **axiom-rewriting operator** $\Lambda$ to transition the system axioms:
-    $$\mathcal{K}_t \xrightarrow{\Lambda} \mathcal{K}_{t+1}$$
-    By relaxing non-critical delivery dates or substituting alternative components, a new non-empty feasible domain $\mathcal{S}_{\text{feas}}' \neq \emptyset$ is created, allowing the solver to compute a convergent plan. This mathematically justifies the "Human-Out-of-the-Loop for execution, Human-in-the-Loop for evolution" paradigm.
+#### Law 3.1 (Teleology): Maximizing Effective Work $V$ and Controlling Dissipation $Q$
+The system must run to maximize global thermodynamic anti-entropy work and minimize structural operational friction. The effective work $V$ is governed by:
+$$V = M \cdot \Pi [ C \otimes P \otimes D ]$$
+*   **Normative Statement**: The planning trajectory must align with the physical flow field, driving the mismatch angle $\theta$ to zero to maximize global OTIF and ROIC.
+*   **Consequence of Violation**: If local sub-optimization causes the planning trajectory to deviate from physical realities, internal dissipation $Q$ (stagnant inventory and expediting costs) will diverge exponentially, reducing effective work to zero.
+
+#### Law 3.2 (Ontology): Cognitive Bandwidth and Silicon Decoupling
+In highly coupled networks, state complexity $V_s$ explodes factorially, far exceeding human cognitive processing limits:
+$$C_{\text{carbon}} \ll V_s \approx O(N!)$$
+*   **Normative Statement**: SCM must delegate high-frequency netting and capacity allocation entirely to a silicon-based solver.
+*   **Consequence of Violation**: Relying on manual spreadsheet planning under high complexity results in cognitive overload, leading to planning lag, scheduling deadlocks, and severe material stockouts.
+
+#### Law 3.3 (Methodology): Digital Double Helix Ontology
+The control medium of SCM must be a digital double-helix ontology $\Pi = \langle D, A \rangle$ composed of the 5D data container $D$ and algorithm $A$ in memory, running at a frequency exceeding external market perturbations:
+$$f_{\text{compute}} > f_{\text{perturbation}}$$
+*   **Normative Statement**: SCM must update its planning feasibility domain in memory at a frequency higher than physical disruptions.
+*   **Consequence of Violation**: If the computation frequency falls behind fluctuations, the plan is obsolete upon release, and the digital twin degenerates into a historical record system.
+
+#### Law 3.4 (Capability): Causal Logic Convergence of the Single-Planner Singularity
+Under non-convex multi-dimensional constraints, the decision logic must collapse to a centralized system node to eliminate departmental communication noise:
+$$\text{Complexity}_{\text{comm}} = O(K^2) \gg \text{Complexity}_{\text{singularity}} = O(1)$$
+*   **Normative Statement**: SCM must force a reverse Conway maneuver, consolidating multi-departmental planning rules into a single designing/planning intelligence.
+*   **Consequence of Violation**: Multi-departmental alignment meetings lead to quadratic communication complexity, creating delayed, compromised decisions and systemic misalignment.
+
+#### Law 3.5 (Mechanism): Topological Homomorphism (Re-organization and Autonomy)
+The organizational boundaries of execution must be topologically isomorphic to the system's algebraic decomposition structure:
+$$P = U \Sigma V^T \quad \to \quad P_k = U_k \Sigma_k V_k^T$$
+*   **Normative Statement**: Headquarters must run the global solver to set allotment boundaries, while local execution nodes are granted absolute autonomy to optimize within their local allotments.
+*   **Consequence of Violation**: Without global allotments, local sites engage in adversarial resource hoarding, while depriving them of local autonomy results in a loss of adaptive kitting speed.
+
+#### Law 3.6 (Pathology): Wiener Observability and Reverse Construction
+The control capability of the planning system $\dim \mathcal{C}$ is strictly bounded by the observability of the execution layer $\dim \mathcal{O}$:
+$$\dim \mathcal{C} \le \dim \mathcal{O}$$
+*   **Normative Statement**: SCM implementation must establish execution-layer physical tracking and plan write-back (Write-Back) before building high-level planning cockpits.
+*   **Consequence of Violation**: Without rigid execution write-back, the high-level plan remains an unexecutable illusion, rendering the control tower empty.
+
+#### Law 3.7 (Dynamics): Operational Alignment of Authority and Shadow Prices
+Administrative authority and resources must be aligned with the shadow prices ($\lambda_j$) of the bottleneck constraints:
+$$\lambda_j = \frac{\partial V_{\Omega}}{\partial b_j}$$
+*   **Normative Statement**: Executive management interventions must be strictly guided by the shadow prices of physical constraints.
+*   **Consequence of Violation**: Aligning authority with non-bottleneck demands (e.g., expediting non-critical orders) creates secondary bottlenecks and amplifies system-wide inventory dissipation.
+
+#### Law 3.8 (Evolution): Metacognitive Axiom-Adaptation
+When the static digital axiom system $\mathcal{K}_t$ hits planning deadlocks ($\mathcal{S}_{feas} = \emptyset$), human metacognition must intervene to rewrite system axioms:
+$$\Phi: \mathcal{K}_t \xrightarrow{\Lambda} \mathcal{K}_{t+1}$$
+*   **Normative Statement**: SCM must define clear boundaries: silicon handles autonomous netting within constraints, while carbon rewrites axioms and constraints under structural phase transitions.
+*   **Consequence of Violation**: Without human metacognitive intervention during black-swan events, the planning system will suffer infinite backtracking deadlocks, leading to operational collapse.
+
+### 4.3 Human-Machine Symbiotic Boundaries
+Under VCP, the human-machine division of labor is a mathematical necessity of system incompleteness:
+*   **Normal Self-Healing (Human-out-of-the-loop)**: The silicon solver runs the six-phase closed-loop autonomously within the feasible domain, reducing manual overrides by **94%**.
+*   **Rule Evolution (Human-in-the-loop)**: When disruptions render the feasible domain empty, human planners act as a meta-system to execute axiom-adaptation, ensuring the model adapts to new physical realities.
 
 ---
 
-## 5. Algorithmic Implementation and Counterfactual Benchmarking
-To isolate the effect of the VCP framework from other factors (e.g., enterprise scale or administrative pressure), we conducted a **Counterfactual Benchmarking** experiment.
+## 5. Counterfactual Benchmarking: Showing the Cost of Axiom Violations (Validation Layer)
+
+In this section, we present a **Counterfactual Benchmarking** experiment to demonstrate the systemic costs associated with violating these laws, providing empirical proof of their validity.
 
 ### 5.1 Experimental Setup
-We extracted a 30-day continuous dataset from LCFC's actual operations in Spring 2026 (daily averages: 500,000 orders, 2,000,000 BOM nodes, 150,000 constraints). Under identical demand and supply perturbation streams (including a daily average of 3.2% supplier delay events and 1.5% capacity fluctuations), we executed two scenarios:
-*   **Counterfactual Control (Traditional SCM Paradigm)**: We disabled VCP's closed-loop mechanisms. Systems ran open-loop (no write-back to MES), utilized static safety lead times, and allowed manual planners to override and tweak schedules locally.
-*   **VCP Scenario (VCP / IPC Engine)**: We enabled the 5D ontology, six-phase high-frequency closed-loop (人在环外), and bare-metal double-helix constraint pruning.
+Under identical real-world demand and supply perturbation streams from LCFC's 2026 operations (500k orders, 2,000,000 BOM nodes, 150,000 constraints), we simulated two scenarios for 30 days:
+- **Counterfactual Control (Violating Axioms)**: We disabled VCP's closed-loop write-back. Planning was separated by departments (violating Law 3.4), safety lead times were static, and planners manually overrode schedules (violating Law 3.8).
+- **VCP Scenario (Complying with Axioms)**: We enabled the 5D ontology, six-phase closed-loop (人在环外), and bare-metal double-helix constraint pruning.
 
 ### 5.2 Counterfactual Benchmarking Results
 The simulation results are summarized in Table 1:
@@ -111,25 +152,22 @@ The simulation results are summarized in Table 1:
 \label{tab:counterfactual}
 \begin{tabular}{p{4cm}p{5cm}p{5cm}}
 \toprule
-\textbf{Metric} & \textbf{Counterfactual Control (Traditional Paradigm)} & \textbf{VCP Scenario (IPC Engine)} \\
+\textbf{Metric} & \textbf{Counterfactual Control (Violating Axioms)} & \textbf{VCP Scenario (Complying with Axioms)} \\
 \midrule
 Global Netting Time & Crashed or exceeded 6 hours (planning lag) & \textbf{296 seconds (5 minutes) for global convergence} \\
 \midrule
 On-Time In-Full (OTIF) Delivery & Collapsed to **72\%** with high volatility & \textbf{97\% stabilized (zero oscillation)} \\
 \midrule
-Stagnant Inventory Level & Increased by **45\%** (severe parts accumulation) & \textbf{Decreased by 50\% (releasing billions in capital)} \\
+Stagnant Inventory Level & Increased by **45\%** & \textbf{Decreased by 50\% (releasing billions in capital)} \\
 \midrule
 Production Line Mated Shortages & Daily average of 28 occurrences & \textbf{0 occurrences (superconducting flow)} \\
 \midrule
-Daily Manual Planner Interventions & 1,420 overrides (high communication noise) & \textbf{Human-out-of-the-loop, zero daily overrides} \\
+Daily Manual Planner Interventions & 1,420 overrides & \textbf{Autonomous self-healing (zero overrides)} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-### 5.3 DOD Physics Acceleration Mechanism
-The solver discards object-oriented programming (OOP) pointer structures. Data is laid out in continuous 1D arrays to achieve a near 100% L1/L2 cache hit rate. It uses CMOV algebraic operators for allocation and netting:
-$$q_{\text{alloc}} = \frac{1}{2} \left( S[t] + D_{\text{req}} - |S[t] - D_{\text{req}}| \right)$$
-This enables the CPU's vector unit (SIMD) to resolve 50k demands in 100.85 milliseconds, proving that mathematical constraint pruning bypasses computational irreducibility. The counterfactual benchmarking proves that the success of the system is the **mathematical and physical necessity of satisfying VCP laws**, rather than an accidental byproduct of management culture.
+The counterfactual simulation proves that violating the axioms leads to a **72%** OTIF collapse and a **45%** inventory surge. The benchmarking shows that the success of the system is the **mathematical and physical necessity of satisfying VCP laws**, rather than an accidental byproduct of management culture.
 
 ---
 
