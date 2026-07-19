@@ -26,11 +26,9 @@ Since the birth of systems science and complexity theory nearly a century ago, o
 As the physical foundation of this study, we present the empirical facts verified across Lenovo's global supply chain network. The production system deployed is Lenovo's Integrated Planning System (IPS). It was first successfully developed and validated in Lenovo's in-house manufacturing plants—initially in Beijing, Shanghai, and Chengdu, followed by Shenzhen and Mexico—before being expanded to joint ventures (such as LCFC, a World Economic Forum "Lighthouse Factory") and the broader Original Design Manufacturer (ODM) partner ecosystem.
 
 ### 2.1 Empirical Scale and Supply Chain Scope
-The scope of this deployment covers a multi-tier, end-to-end collaborative supply network:
+The empirical validation is rooted in the production deployment of Lenovo's IPS system across its global network:
 - **Ecosystem Node Coverage**: The network incorporates global in-house plants (Beijing, Shanghai, Chengdu, Shenzhen, Mexico), joint ventures (LCFC), and external ODM partners. The deployed production planning system is Lenovo's IPS.
-- **Daily Discrete Demand Orders**: 500,000.
-- **Bill of Materials (BOM) Nodes**: Over 2,000,000 SKU-locations, with depth up to 20 levels.
-- **Physical Equipment \& Tooling Constraints**: 150,000.
+- **Daily Production Planning Scale**: The core manufacturing plant (Hefei LCFC Lighthouse Factory) handles a daily backlog of **50,000 to 100,000 discrete orders**, with other global plants scaling accordingly.
 - **Time Window and Statistical Metrics**: The primary performance metric (97% OTIF) represents the monthly average over an 18-month stable operational window (Q3 2024 to Q1 2026), with a standard deviation of less than 1.2 percentage points. The inventory reduction (50%) and inventory turnover increase (1.9x) are calculated on a Year-over-Year (YoY) basis. During this period, the manual override and planner intervention rate dropped by **94%**, filtering out decision noise.
 
 ### 2.2 The Six-Phase Closed-Loop Execution Flow
@@ -144,7 +142,7 @@ Based on incompleteness constraints, VCP establishes the following design princi
 In this section, we present a **Counterfactual Benchmarking** experiment to demonstrate the systemic costs associated with violating these laws, providing empirical proof of their validity.
 
 ### 5.1 Experimental Setup and Fairness Statement
-Under identical real-world demand and supply perturbation streams from LCFC's 2026 operations (500k orders, 2,000,000 BOM nodes, 150,000 constraints), we simulated two scenarios for 30 days:
+This simulation experiment scales up Lenovo's global supply chain dataset to build an extreme stress-testing case. We deploy the next-generation IPC solver engine on a single personal computer (PC) to resolve a stress-test case comprising **500,000 global discrete demands, 2,000,000 SKU-location nodes, and 150,000 constraints (maximum BOM depth of 20 levels)**, benchmarking it against traditional solvers for a 30-day simulated run:
 - **Counterfactual Control (Violating Axioms)**: We disabled VCP's closed-loop write-back. Planning was separated by departments (violating Law 3.4), safety lead times were static, and planners manually overrode schedules (violating Law 3.8). **Special Statement: The counterfactual control group was strictly configured according to classical MRP logic (fixed lead times, safety stocks, net requirements explosion), utilizing the same demand forecasts. Its "open-loop" and "manual intervention" characteristics reflect the real-world operational baseline of over 95% of manufacturing companies, rather than a simulated poorly-managed business. We simulate the industry benchmark.**
 - **VCP Scenario (Complying with Axioms)**: We enabled the 5D ontology, six-phase closed-loop (人在环外), and bare-metal double-helix constraint pruning.
 
