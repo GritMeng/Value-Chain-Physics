@@ -42,6 +42,8 @@
 | 🔮 **智能体审计** | <a href="value_chain_audit_agent.html" target="_blank">▶ 开启价值链智能体审计</a> | **【行业评估唯一物理标准】** 基于 8 大物理公理，内嵌 8 幕动态物理仿真沙盒，为企业价值链协同进行深度病理审计 |
 | 🧠 **IPC 架构审计** | <a href="ipc_scheme_audit_agent.html" target="_blank">▶ 开启 IPC 架构技术审计</a> | **【计划与控制架构唯一审计标准】** 基于时空消纳规则，为甲/乙双方及从业人员的计划架构（ERP/APS/IPC）提供生存判定 |
 | 📚 **文献输出库** | [GritMeng_Research_Outputs.bib](GritMeng_Research_Outputs.bib) | 包含 2部著作、3篇学术论文和9项核心专利的完整 BibTeX 引用数据库 |
+| 🆔 **ORCID 导入指南** | [ORCID_Import_Guide.md](ORCID_Import_Guide.md) | 引导用户通过 .bib 文件一键将 14 项成果同步并确权至 ORCID 个人中心 |
+
 
 ---
 
