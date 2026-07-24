@@ -1,8 +1,11 @@
-* [📜 八大核心公理](README.md)
+* [📜 首页 & 八大核心公理](README.md)
+* [🌌 秩序之元：系统与复杂性科学的第一性原理](Origin_of_Order.md)
+* [📜 系统科学宣言：系统与复杂性科学全论](systems-science-manifesto.md)
+* [🏛️ 全息抗熵：系统治理的形式化宪理](the_holographic_anti_entropy_system_science_paper.md)
+* [📖 价值链物理学正文](value-chain-physics-book.md)
+* [🔮 全息抗熵基础正文](holographic-anti-entropy-book.md)
 * <a href="value_chain_audit_agent.html" target="_blank">🔮 价值链智能体审计</a>
 * <a href="ipc_scheme_audit_agent.html" target="_blank">🧠 IPC 架构技术审计</a>
-* [🚀 价值链物理学正文](value-chain-physics-book.md)
-* [🔮 全息抗熵正文](holographic-anti-entropy-book.md)
 * <a href="the_holographic_anti_entropy_system_science_paper.html" target="_blank">📄 全息抗熵学术论文 (HTML)</a>
 * <a href="the_holographic_anti_entropy_system_science_paper.pdf" target="_blank">📕 全息抗熵学术论文 (PDF)</a>
 
