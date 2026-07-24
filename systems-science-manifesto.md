@@ -1,4 +1,5 @@
-# 系统科学必将成为基础科学
+# 系统与复杂性科学：秩序的构建、存续与进化
+### —— 系统科学必将成为基础科学
 
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 ⚖️ COPYRIGHT © 2026 [孟凡淳/GRIT MENG]. LICENSED UNDER [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/).

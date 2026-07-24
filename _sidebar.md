@@ -1,6 +1,6 @@
 * [📜 首页 & 八大核心公理](README.md)
 * [🌌 秩序之元：系统与复杂性科学的第一性原理](Origin_of_Order.md)
-* [📜 系统科学宣言：系统与复杂性科学全论](systems-science-manifesto.md)
+* [📜 《系统与复杂性科学：秩序的构建、存续与进化》全论](systems-science-manifesto.md)
 * [🏛️ 全息抗熵：系统治理的形式化宪理](the_holographic_anti_entropy_system_science_paper.md)
 * [📖 价值链物理学正文](value-chain-physics-book.md)
 * [🔮 全息抗熵基础正文](holographic-anti-entropy-book.md)
