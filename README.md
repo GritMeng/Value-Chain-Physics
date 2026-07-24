@@ -3,8 +3,9 @@
 > **🚀 终结系统科学“只能定性、无法计算”的尴尬！我们攻克了系统治理“不可计算”的硬核天堑，让价值链管理从经验走向物理科学。本项目承载源自联想千亿级制造现场实证的「全息抗熵」决策脑，C++ 裸金属排产引擎 5 分钟搞定 50 万订单，以八大物理公理为工业数智化立宪，接受全球 CTO 物理审判！**
 
 **作者 / Author：** Grit Meng (孟凡淳)  
-**开源协议 / License：** CC BY-NC-ND 4.0 © 2026 Grit Meng  
-**部署状态 / Status：** ![CI](https://github.com/GritMeng/Value-Chain-Physics/actions/workflows/ci.yml/badge.svg) ![Pages](https://github.com/GritMeng/Value-Chain-Physics/actions/workflows/deploy.yml/badge.svg) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21467701.svg)](https://doi.org/10.5281/zenodo.21467701)
+**开源协议 / License**： CC-BY-NC-ND-4.0  
+**重磅独立论文 / Featured Paper**： [秩序之元：系统与复杂性科学的第一性原理 (Origin_of_Order.md)](Origin_of_Order.md)  
+**部署状态 / Status**： [![CI](https://github.com/GritMeng/Value-Chain-Physics/actions/workflows/ci.yml/badge.svg)](https://github.com/GritMeng/Value-Chain-Physics/actions) [![Deploy to GitHub Pages](https://github.com/GritMeng/Value-Chain-Physics/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/GritMeng/Value-Chain-Physics/actions) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21467701.svg)](https://doi.org/10.5281/zenodo.21467701)
 
 ---
 
