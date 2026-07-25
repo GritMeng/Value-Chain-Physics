@@ -43,7 +43,7 @@
    * **年份**：2026 年
    * **内容摘要**：将系统科学从对复杂性与涌现现象的“描述与解释”推向“可计算与可治理”，提供形式化数学模型，开源于 GitHub 并归档于 Zenodo。
 
-### 二、 联合研究学术论文 (Joint Research Papers with Prof. Longbing Cao)
+### 二、 独立研究学术论文 (Independent Research Papers by Grit Meng)
 3. **《Non-IID 复杂网络中的去中心化学习：动力学收敛极限与谱发散证明》 (Decentralized Learning in Non-IID Complex Networks)**
    * **类型**：学术论文 (Unpublished Paper)
    * **年份**：2026 年
