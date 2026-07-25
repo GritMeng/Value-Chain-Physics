@@ -44,12 +44,36 @@ $$\text{二阶元认知 } \Phi: \text{觉察自身并审视所识之元觉知}$$
 
 要彻底解决 AI 幻觉，迈向真正的通用人工智能（AGI）与具身智能（Embodied AI），必须将**“物理学宪法”**植入 AI 的底层架构：
 
-```
-五维心智架构 (5D Embodied Mind):
-[ 空间 Space ] <--> [ 时间 Time ] <--> [ 信息 Information ] <--> [ 能量 Energy ]
-                                  ^
-                                  |
-                        [ 元认知 Meta-Cognition (Φ) ]
+```mermaid
+graph TD
+    %% 样式定义
+    classDef meta fill:#4a148c,stroke:#ab47bc,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef dim fill:#1a237e,stroke:#42a5f5,stroke-width:2px,color:#ffffff;
+    classDef env fill:#004d40,stroke:#26a69a,stroke-width:2px,color:#ffffff;
+
+    subgraph Embodied_Mind ["具身五维心智宪法架构 (5D Embodied Mind)"]
+        Phi["元认知审视中心 Φ<br/>(Meta-Cognition / 二阶觉知)"]:::meta
+        
+        subgraph Physical_Coupling ["一阶物理与信息交互 (1st-Order Coupling)"]
+            Space["空间 Space<br/>(物理拓扑)"]:::dim
+            Time["时间 Time<br/>(动力学演化)"]:::dim
+            Info["信息 Information<br/>(全息编码/熵)"]:::dim
+            Energy["能量 Energy<br/>(耗散结构)"]:::dim
+        end
+        
+        Environment["外部物理环境 / 多模态世界 (Environment)"]:::env
+    end
+
+    %% 交互流
+    Phi -->|"自省调控 & 划界 constraint"| Physical_Coupling
+    Physical_Coupling -->|"一阶状态漂移反馈"| Phi
+    
+    Space <--> Time
+    Time <--> Info
+    Info <--> Energy
+    Energy <--> Space
+    
+    Physical_Coupling <==>"全息抗熵耗散吞吐"==> Environment
 ```
 
 1. **引入元认知算符 $\Phi$**：在神经网络外层注入二阶审视机制，实时监控一阶输出的应然框架漂移度；
