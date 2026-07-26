@@ -1,7 +1,7 @@
 # Value Chain Physics & System Governance Constitution
 ### First-Principles Physics, Governance Laws, and Algorithmic Execution for Open Complex Giant Systems
 
-**Author:** Grit Meng (Meng Fanchun)  
+**Author:** Grit Meng (Fanchun Meng (Grit Meng))  
 **Publication Status:** arXiv Pre-print Submitted & Verified
 
 ---
@@ -29,7 +29,8 @@
 
 1. **First Law (Teleology):** Holographic Anti-Entropy Law ($\Delta S_{	ext{system}} + \Delta S_{	ext{controller}} \ge 0$)
 2. **Second Law (Ontology):** Non-IID Complexity & Freedom Stripping Law ($\mathbf{x}_ot(t) 	o 0$)
-3. **Third Law (Methodology):** Digital Double Helix Isomorphism Law ($\mathbf{\Pi} = \langle D, A angle$)
+3. **Third Law (Methodology):** Digital Double Helix Isomorphism Law ($\mathbf{\Pi} = \langle D, A 
+angle$)
 4. **Fourth Law (Capability):** Single-Brain Singularity Causal Logic Law ($O(1)$ vs $O(K^2)$)
 5. **Fifth Law (Mechanism):** Algebraic Topological Isomorphic Mapping Law (SVD Truncation)
 6. **Sixth Law (Pathology):** Wiener-Kalman Observability Boundary Law ($\dim C \le \dim O$)
@@ -37,4 +38,4 @@
 8. **Eighth Law (Evolution):** Self-Adaptive Anti-Heat-Death Law ($\Delta t_{	ext{rewrite}}$)
 
 ---
-*© 2026 Grit Meng (Meng Fanchun). All rights reserved.*
+*© 2026 Grit Meng (Fanchun Meng (Grit Meng)). All rights reserved.*
