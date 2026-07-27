@@ -1,57 +1,113 @@
 # 价值链物理学：开放复杂巨系统的治理法则
-### Physics of Value Chain Management: Governance Laws for Open Complex Giant Systems
+### System and Complexity Science: Generation, Persistence, and Evolution of Order
+**—— 开放复杂巨系统的物理学宪法**
 
-**作者：** 孟凡淳 (Grit Meng)  
-前联想集团全球供应链计划系统（IPS）首席架构师 | 《价值链物理学》与《全息抗熵》作者  
-**官方 GitHub 主页：** [gritmeng.github.io/Value-Chain-Physics](https://gritmeng.github.io/Value-Chain-Physics/)  
+**作者：** 孟凡淳 (Grit Meng / Fanchun Meng)  
+**作者身份：** 前联想集团全球供应链计划系统（IPS）首席架构师 | 《价值链物理学》与《全息抗熵》作者  
 **联系邮箱：** gritmeng@outlook.com  
+**ORCID 认证：** [https://orcid.org/0009-0000-0000-0000](https://orcid.org/0009-0000-0000-0000)  
+**预印本提交凭证：** arXiv:submit/7871432 [cs.AI] (已成功验证提交)
 
 ---
 
-## 🏛️ 专著与论文导览 (Monographs & Manuscripts)
+## 🚀 快速入口 | Quick Access
 
-### 1. 【最新 Version 2 极简公理正本】系统与复杂性科学：秩序的生成、存续和进化
-* **英文标题：** *System and Complexity Science: Generation, Persistence, and Evolution of Order — The Physical Constitution for Open Complex Giant Systems*
-* **arXiv 预印本凭证：** `arXiv:submit/7871432` [cs.AI] (已成功提交与验证)
-* **资源入口：**
-  - 📄 **[英文 LaTeX 源码 (main.tex)](./main.tex)**
-  - 📦 **[arXiv 完整提交包 (arXiv_clean_package.tar.gz)](./arXiv_clean_package.tar.gz)**
-  - 📝 **[中文全量定稿文本 (canonical_chinese_text.txt)](./canonical_chinese_text.txt)**
-* **核心内容概述：**
-  本专著从最朴素的物理原点——**无序（Disorder）** 与 **观察者（Observer）** 出发，运用奥卡姆剃刀剃除一切中间冗余，建立了“划界生序、刚性存序、残差进序”的三大第一性公理。确立了先验划界算符 $\mathbf{\Pi} = \langle D, A \rangle$、刚性轨道流形 $\mathbf{\Pi}_\bot$、残差范数差分 $\mathbf{\Delta}$、二阶自省算符 $\mathbf{\Phi}$ 与良知紧支撑算符 $\mathbf{E}_{\mathrm{sp}}$。运用 Banach 压缩映射证明了 $O(N!)$ 阶乘级复杂度降维至 $O(N \log N)$ 的代数剪枝定理，并建立了与老庄、心学、康德、钱学森巨系统、吴学谋泛系及操龙兵 Non-IID 理论的 1:1 绝对拓扑同构。
-
----
-
-### 2. 【工程法典与降维实证】价值链物理学：开放复杂巨系统的治理法则 (100+ 页出版级正本)
-* **核心定位：** 将物理宪法降维投影至千亿级离散制造与商业网络中，正面攻克 $O(N!)$ 组合爆炸。
-* **物理三隔离与七大病理：**
-  - **决策隔离**：控制塔后视镜效应、执行开环、预测概率陷阱；
-  - **利益隔离**：纳什均衡死锁、线性流程拓扑失效、能力外包幻觉；
-  - **物理隔离**：人力算力高成本代偿、状态空间与离散代码维度错位。
-* **千亿级工程实证：** 联想集团全球制造网络（包含合肥联宝灯塔工厂），在 80%+ 碎单极端离散环境下，实现 50万日订单、200万物料节点、15万不等式约束在 296 秒（5分钟）内全局收敛，交期应答率从 54% 提升至 98%，周转提升 1.9 倍，释放数十亿流动资金。
+| 资源类别 | 快速访问链接 (在浏览器新标签页中打开) | 核心内容描述 |
+|----------|------|-------------|
+| 🌐 **最新 arXiv 预印本** | **[System & Complexity Science V2 (arXiv Source)](./main.tex)** \| **[arXiv 打包文件 (.tar.gz)](./arXiv_clean_package.tar.gz)** | **【最新 2.0 极简公理英文正本】** 从“无序”与“观察者”出发，导出五大做功算子，完成 $O(N!) \to O(N \log N)$ 证明与 19 先哲同构 |
+| 🎬 **全息演示** | <a href="IPC_Governance_Showcase.html" target="_blank">▶ 启动 3D 全息交互演示</a> | 4幕电影级联动动画 — 展现 C++ DOD 引擎的硬核压测与拓扑重整流程 |
+| 📽️ **视频直录中枢** | <a href="战略和公关/IPC_Video_Simulator.html" target="_blank">▶ 启动全息视频直录中枢</a> | 网页端 1080p 画布超清渲染，一键录制并导出电影级视频 |
+| 🌌 **系统与复杂性科学** | [系统与复杂性科学 · 全本正文](systems-and-complexity-science.md) | **【进化版巨著全本】** 由《全息抗熵》升级进化的《系统与复杂性科学：秩序的生成、存续与进化》中文全本 |
+| 📜 **系统科学宣言** | [系统科学宣言 · 全文](systems-science-manifesto.md) | 奠定系统科学作为基础科学的认识论纲领，阐述分布式秩序与演化型韧性底层法则 |
+| 🌌 **秩序之元** | [秩序之元 · 全文](Origin_of_Order.md) | **【第一性元科学论著】** 阐述观察者、划界、实然/应然/残差三重实在与三大公理，探索秩序何以可能 |
+| 🏛️ **形式化宪理** | [全息抗熵：形式化宪理 · 全文](the_holographic_anti_entropy_system_science_paper.md) | **【巨系统形式化证明】** 构建全息抗熵巨系统治理的形式化宪理、可计算算子与形式化证明全文 |
+| 📖 **价值链物理学正文** | [价值链物理学 · 全文](value-chain-physics-book.md) | 约35万字，系统性阐述八大物理公理与完整的代数推导过程 |
+| 🔮 **全息抗熵基础** | [全息抗熵 · 全文](holographic-anti-entropy-book.md) | 构建巨系统抗熵生命力的哲学、认识论与复杂系统科学底层基石 |
+| 🌐 **视频讲堂** | <a href="IPC_Video_Lectures.html" target="_blank">IPC 全息视频讲堂</a> | 由总设计师出镜推演的白板风格硬核视频教程 |
+| 🔮 **智能体审计** | <a href="value_chain_audit_agent.html" target="_blank">▶ 开启价值链智能体审计</a> | **【行业评估唯一物理标准】** 基于 8 大物理公理，内嵌 8 幕动态物理仿真沙盒 |
+| 🧠 **IPC 架构审计** | <a href="ipc_scheme_audit_agent.html" target="_blank">▶ 开启 IPC 架构技术审计</a> | **【计划与控制架构唯一审计标准】** 基于时空消纳规则提供生存判定 |
+| 📚 **文献输出库** | [GritMeng_Research_Outputs.bib](GritMeng_Research_Outputs.bib) | 包含 2部著作、3篇学术论文和9项核心专利的完整 BibTeX 引用数据库 |
+| 🆔 **ORCID 导入指南** | [ORCID_Import_Guide.md](ORCID_Import_Guide.md) | 引导用户通过 .bib 文件一键将成果同步并确权至 ORCID 个人中心 |
 
 ---
 
-## 📜 价值链物理学八大做功律 (The Eight Physics Laws of Value Chain)
+## 🏛️ 创世专著全本典藏
 
-1. **第一律（目的论）：全息抗熵做功律** ($\Delta S_{\text{system}} + \Delta S_{\text{controller}} \ge 0$)
-2. **第二律（本质论）：Non-IID 复杂度与自由度剥离律** ($\mathbf{x}_\bot(t) \to 0$)
-3. **第三律（方案论）：数字双螺旋同构律** ($V = M \cdot \mathbf{\Pi}[N \otimes T \otimes C_{st}]$)
-4. **第四律（能力论）：单脑奇点因果逻辑律** ($O(1) \text{ vs } O(K^2)$)
-5. **第五律（机制论）：代数拓扑同构映射律** (SVD 奇异值剪枝)
-6. **第六律（路线论）：维纳-卡尔曼观测边界律** ($\dim C \le \dim O$)
-7. **第七律（做功论）：执行力与逻辑场对齐律** ($W_{\text{eff}} = W_{\text{total}} \cdot \cos\theta$)
-8. **第八律（进化论）：自适应抗热寂进化律** ($\mathbf{\Phi} : \mathbf{\Pi}_k \to \mathbf{\Pi}_{k+1}$)
+### 1. 《系统与复杂性科学：秩序的生成、存续与进化》（物理学宪法全四卷）
+- **[最新 2.0 极简公理英文 arXiv 正本 (LaTeX Source main.tex)](./main.tex)**
+- **[arXiv 官方 2.0 提交包 (arXiv_clean_package.tar.gz)](./arXiv_clean_package.tar.gz)**
+- **[中文全本专著与第一性原理公理](./Origin_of_Order.md)**
+
+### 2. 《价值链物理学：开放复杂巨系统的治理法则》（工程实证与算法篇）
+- **[中文全本实证专著](./Value_Chain_Physics_Full.md)**
+- **[英文全量 PDF 专著 (Full Master PDF)](./English_Manuscript/Value_Chain_Physics_Full_135Page_Master_En.pdf)**
 
 ---
 
-## 引用与学术元数据 (Citation & Metadata)
+## ⚡ 八大物理与系统公理框架 | The 8 System Principles
 
-如果您的研究引用了本著作，请使用以下 BibTeX 标准条目：
+| 序号 | 系统科学视角 | 理论本质 | 形式化探讨 (HAE) |
+|:---|:---|:---|:---|
+| **公理 01** | 目的论 (Teleology) | **系统负熵输入** —— 对抗自发熵增倾向 | 引入全局统御算法，执行资源正交分流 |
+| **公理 02** | 本质论 (Ontology) | **控制带宽代偿** —— 克服碳基大脑控制带宽极限 | 将复杂决策代偿给硅基算法，划定刚性算法边界 |
+| **公理 03** | 方案论 (Methodology) | **代码形式本体** —— 规则与数据本体同构 | 采用代码形式化，固化为 $\mathbf{\Pi} = \langle D, A \rangle$ 双螺旋本体 |
+| **公理 04** | 能力论 (Capability) | **架构收敛** —— 跨越专业切片完成架构整合 | 强化总设计师架构整合与一票否决机制 |
+| **公理 05** | 机制论 (Mechanism) | **自创生闭环** —— 协作机制与统御算法同构 | 构建统一的 $\mathbf{\Pi}$ 循环自创生闭环，保证系统自洽 |
+| **公理 06** | 路径论 (Pathology) | **微观可观测性** —— 建立现场状态的物理观测 | 执行“逆向施工”，先在执行端建立确定性，再驱动宏观计划 |
+| **公理 07** | 动力论 (Dynamics) | **矢量对齐** —— 组织行政矢量与客观逻辑同向 | 调整组织利益与目标夹角 $\cos\theta$，使权力与算法同向做功 |
+| **公理 08** | 进化论 (Evolution) | **碳硅协奏自愈** —— 应对哥德尔不完备性崩溃边界 | 建立碳硅自适应机制，硅基高效做功，碳基架构师更新规则 |
 
+---
+
+## 🏆 联想 13 年千亿工程实证数据
+
+在年产数千万台智能设备、80%~85% 为 5 台以下极度离散碎单的极端物理场景中：
+- **48 小时交期应答率**：$\ge 98\%$
+- **订单无延迟交付率**：$\ge 95\%$
+- **精准 JIT 无提前发货**：$\ge 82\%$
+- **可建成库存 (ATB) 周转率**：提升 $15\% \sim 25\%$
+- **整体营运资金周转**：提升 $20\%$
+- **硅基自主决策自动化率**：$\ge 95\%$
+
+---
+
+## 🏗️ 架构与数据引擎 | Architecture & DOD Engine
+
+```
+                    ┌─────────────────────────────────────┐
+                    │        GOVERNANCE OPERATOR Π         │
+                    │            Π = ⟨D, A⟩               │
+                    └──────────────┬──────────────────────┘
+                                   │
+              ┌─────────────────────┼──────────────────────┐
+              ▼                     ▼                      ▼
+     ┌─────────────┐      ┌──────────────────┐   ┌──────────────────┐
+     │  ODM Layer  │      │   CDM Layer      │   │   DDM Layer      │
+     │ 物理镜像层   │      │ 规则算法大脑     │   │ 全息模拟推演     │
+     │ Mirror of   │      │ Decision Rules & │   │ Holographic      │
+     │ Physical    │      │ Algorithm Brain  │   │ Analytics Engine │
+     │ Site/Part   │      │ Allotment Quota  │   │ DuckDB Sandbox   │
+     │ BOM DAG     │      │ SWAP Solver      │   │ SQL Audit Trail  │
+     │ Demand Flow │      │ LSC Tree         │   │ 150K states/60ms │
+     └─────────────┘      │ LLC Compiler     │   └──────────────────┘
+                          └──────────────────┘
+
+     ┌──────────────────────────────────────────────────────────┐
+     │              C++ DOD BARE-METAL ENGINE                    │
+     │  • 内存连续密铺布局 (Cache-line 对齐优化)               │
+     │  • OpenMP 16核并行 Blelloch 前缀扫描网格计算              │
+     │  • 50万张订单、2M+物料全链路消纳与排产：5分钟             │
+     └──────────────────────────────────────────────────────────┘
+```
+
+---
+
+## ✒️ 学术引用与 ORCID 挂载 | Citation & ORCID
+
+### 1. BibTeX 引用格式 (BibTeX Entry)
 ```bibtex
 @article{Meng2026SystemComplexity,
-  author    = {Fanchun Meng (Grit Meng)},
+  author    = {Meng, Fanchun (Grit)},
   title     = {System and Complexity Science: Generation, Persistence, and Evolution of Order --- The Physical Constitution for Open Complex Giant Systems},
   title_zh  = {系统与复杂性科学：秩序的生成、存续和进化——开放复杂巨系统的物理学宪法},
   journal   = {arXiv preprint arXiv:submit/7871432 [cs.AI]},
@@ -60,6 +116,13 @@
 }
 ```
 
+### 2. 学术成果数据库与 ORCID 挂载
+- **[GritMeng_Research_Outputs.bib](GritMeng_Research_Outputs.bib)**: 包含孟凡淳先生全套研究成果的完整 BibTeX 数据库。
+- **[ORCID_Import_Guide.md](ORCID_Import_Guide.md)**: 如何将本仓库成果导入 ORCID 官方学术档案的完整指南。
+
 ---
 
-*版权所有 © 2026 孟凡淳 (Grit Meng)。保留所有权利。*
+## ⚖️ 版权与授权声明 | License
+
+* 本仓库所有学术文本与理论成果采用 **[CC BY-NC-ND 4.0 International](LICENSE)** 协议授权（署名-非商业性使用-禁止演绎）。
+* *Copyright (c) 2026 孟凡淳 (Grit Meng). All rights reserved.*
