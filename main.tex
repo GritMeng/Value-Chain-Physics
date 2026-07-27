@@ -34,7 +34,7 @@
 \maketitle
 
 \begin{abstract}
-Modern large-scale discrete manufacturing networks and global value chains represent classic Open Complex Giant Systems (OCGS), characterized by non-independent and identically distributed (Non-IID) interactions and factorial state-space explosions ($O(N!)$). Traditional management paradigms—relying on steady-state assumptions, local optimization, and open-loop administrative workflows—inevitably collapse under Wolfram computational irreducibility and organizational entropic dissipation. In this monograph, we establish \textbf{Value Chain Physics (VCP)}, an axiomatic theoretical framework for open complex giant systems. Reconstructing Qian Xuesen's "metasynthesis" through first-principles physics, we define the Digital Double-Helix Ontology $\langle \mathcal{D}, A \rangle$, coupling a five-dimensional orthogonal value-chain container $\mathcal{D}$ with a discrete-time algorithm engine $A$. We prove five foundational theorems: (1) algebraic irreducibility and topological completeness of container $\mathcal{D}$; (2) the quadratic decay law of Return on Invested Capital (ROIC) with respect to manufacturing lead time; (3) non-linear WIP inflation under non-kit arrival delays; (4) absolute optimality of physical-constraint truncated IF-THEN-ELSE stepping search; and (5) governance as a necessary mathematical precondition for observability. For engineering execution, we deploy Data-Oriented Design (DOD) with SIMD bitset vectorization in the IPC engine, achieving a decisive empirical benchmark: resolving 500,000 discrete demand orders, 2,000,000 SKU-location nodes, and 150,000 physical constraints in 296 seconds (5 minutes) on a single commodity personal computer (PC) for LCFC (World Economic Forum Lighthouse Factory). Finally, we demonstrate a 1:1 mathematical isomorphism between VCP and five classical system theories (Prigogine Dissipative Structures, Ashby Requisite Variety, Karl Friston Free Energy Principle, Conant-Ashby Good Regulator Theorem, and Renormalization Group Dynamics), elevating value chain governance from heuristic management to an empirical, falsifiable hard physics science.
+Modern large-scale discrete manufacturing networks and global value chains represent classic Open Complex Giant Systems (OCGS), characterized by non-independent and identically distributed (Non-IID) interactions and factorial state-space explosions ($O(N!)$). Traditional management paradigms---relying on steady-state assumptions, local optimization, and open-loop administrative workflows---inevitably collapse under Wolfram computational irreducibility and organizational entropic dissipation. In this monograph, we establish \textbf{Value Chain Physics (VCP)}, an axiomatic theoretical framework for open complex giant systems. Reconstructing Qian Xuesen's "metasynthesis" through first-principles physics, we define the Digital Double-Helix Ontology $\langle \mathcal{D}, A \rangle$, coupling a five-dimensional orthogonal value-chain container $\mathcal{D}$ with a discrete-time algorithm engine $A$. We prove five foundational theorems: (1) algebraic irreducibility and topological completeness of container $\mathcal{D}$; (2) the quadratic decay law of Return on Invested Capital (ROIC) with respect to manufacturing lead time; (3) non-linear WIP inflation under non-kit arrival delays; (4) absolute optimality of physical-constraint truncated IF-THEN-ELSE stepping search; and (5) governance as a necessary mathematical precondition for observability. For engineering execution, we deploy Data-Oriented Design (DOD) with SIMD bitset vectorization in the IPC engine, achieving a decisive empirical benchmark: resolving 500,000 discrete demand orders, 2,000,000 SKU-location nodes, and 150,000 physical constraints in 296 seconds (5 minutes) on a single commodity personal computer (PC) for LCFC (World Economic Forum Lighthouse Factory). Finally, we demonstrate a 1:1 mathematical isomorphism between VCP and five classical system theories (Prigogine Dissipative Structures, Ashby Requisite Variety, Karl Friston Free Energy Principle, Conant-Ashby Good Regulator Theorem, and Renormalization Group Dynamics), elevating value chain governance from heuristic management to an empirical, falsifiable hard physics science.
 \end{abstract}
 
 \textbf{Keywords}: Value Chain Physics; Open Complex Giant Systems; Digital Double-Helix Ontology; Computational Irreducibility; ROIC Quadratic Decay; Kalman Observability; Human-Out-of-the-Loop; Free Energy Principle
@@ -53,7 +53,7 @@ The management paradigms of human industrial civilization have experienced two m
 
 However, as global manufacturing networks deepen, modern production networks have evolved into \textbf{Open Complex Giant Systems (OCGS)} comprising hundreds of plants, millions of SKUs, dynamic rush orders, component substitutions, and shared line capacities. In this high-dimensional gravity field, traditional paradigms experience systemic physical collapse:
 \begin{itemize}
-    \item \textbf{Organizational Entropy & Communication Friction}: Human concurrent processing bandwidth is bounded by Miller's limit ($7 \pm 2$). Across multi-departmental networks, communication complexity explodes as $O(K^2)$. Without unified physical constraints, departments lock into local Nash equilibria, generating massive organizational "friction heat" while net forward work approaches zero.
+    \item \textbf{Organizational Entropy \& Communication Friction}: Human concurrent processing bandwidth is bounded by Miller's limit ($7 \pm 2$). Across multi-departmental networks, communication complexity explodes as $O(K^2)$. Without unified physical constraints, departments lock into local Nash equilibria, generating massive organizational "friction heat" while net forward work approaches zero.
     \item \textbf{Goodhart Collapse of Probabilistic AI}: Black-box AI models lacking physical priors suffer from Goodhart's Law under non-stationary distributions. Optimizing low-dimensional reward metrics leads to proxy arbitrage and hallucinations, causing catastrophic real-world delivery failures.
     \item \textbf{ERP/APS Two-Layer Disconnection}: Traditional ERP/APS systems rely on steady-state, I.I.D., and unconstrained capacity assumptions. Facing multi-level BOM entanglements, their computation overflows to $O(N!)$, leading to complete decoupling between digital plans and shop-floor execution.
 \end{itemize}
@@ -208,12 +208,12 @@ Auditability & Black-box statistical aggregates & \textbf{100\% Causal Traceabil
 \end{threeparttable}
 \end{table}
 
-\subsection{Verified Financial & Operational Results}
+\subsection{Verified Financial \& Operational Results}
 Deploying the IPC engine closed-loop resulted in:
 \begin{itemize}
     \item \textbf{Delivery Response Rate}: Increased from \textbf{54\%} to \textbf{98\%} (stabilized).
     \item \textbf{Order Delivery Accuracy}: Improved to \textbf{95\% not late, 80\% not early}.
-    \item \textbf{Inventory & Liquidity}: Reduced structural parts inventory by \textbf{50\%}, increased overall inventory turnover by \textbf{1.9}\times (YoY), releasing billions of RMB in working capital.
+    \item \textbf{Inventory \& Liquidity}: Reduced structural parts inventory by \textbf{50\%}, increased overall inventory turnover by \textbf{$1.9\times$} (YoY), releasing billions of RMB in working capital.
 \end{itemize}
 
 \section{Discussion: Unification with Five Classical System Theories}
@@ -270,9 +270,9 @@ Output: Updated Supply S, and Allocated quantities.
 --------------------------------------------------------------------------------
 \end{verbatim}
 
-\subsection*{Appendix B: SIMD Parallel Prefix Scan & Segment Tree Merger}
+\subsection*{Appendix B: SIMD Parallel Prefix Scan \& Segment Tree Merger}
 \begin{verbatim}
-Algorithm 2: Parallel Prefix Scan & Segment Tree Associative Merger
+Algorithm 2: Parallel Prefix Scan \& Segment Tree Associative Merger
 --------------------------------------------------------------------------------
 Input: Daily net supply/demand array Net[T], Topology matrix eta[K][K]
 Output: OnHand time-series and global deficit/surplus vectors.
@@ -290,9 +290,9 @@ Output: OnHand time-series and global deficit/surplus vectors.
 --------------------------------------------------------------------------------
 \end{verbatim}
 
-\subsection*{Appendix C: OTP Bidirectional Scheduling & Zero-Heap Rollback Stack}
+\subsection*{Appendix C: OTP Bidirectional Scheduling \& Zero-Heap Rollback Stack}
 \begin{verbatim}
-Algorithm 3: OTP Scheduling & Thread-Local Zero-Heap Stack
+Algorithm 3: OTP Scheduling \& Thread-Local Zero-Heap Stack
 --------------------------------------------------------------------------------
 Input: Order (due_day, duration, wc_id), CapGrid[WC_Num * Horizon], TLS_Stack
 Output: Planned delivery day or rejection.
