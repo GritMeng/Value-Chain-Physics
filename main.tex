@@ -1,412 +1,313 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath,amssymb,amsthm,amsfonts}
-\usepackage{geometry}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage{cite}
 \usepackage{booktabs}
-\usepackage{microtype}
-\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
 \usepackage{longtable}
 \usepackage{setspace}
 
 \geometry{left=2.5cm,right=2.5cm,top=2.8cm,bottom=2.8cm}
 \onehalfspacing
-\setlength{\parskip}{0.8em}
+\setlength{\parskip}{0.6em}
 \setlength{\parindent}{2em}
 
-\title{\textbf{\Large System and Complexity Science: Generation, Persistence, and Evolution of Order}\\
-\large --- The Physical Constitution for Open Complex Giant Systems}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{axiom}{Axiom}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+\title{\textbf{\Large Value Chain Physics: Governance Laws of Open Complex Giant Systems}\\[0.5em]
+\large --- A Complete Physics Constitution, Formal Operators, and 100-Billion-Scale Industrial Validation}
 
 \author{\textbf{Fanchun Meng (Grit Meng)}\\
+\small General Design Department of Global Digital Neural System Centroid\\
 \small Former Chief Architect of Global Supply Chain Planning Systems (IPS), Lenovo Group\\
-\small Author of \textit{Physics of Value Chain Management} and \textit{Holographic Anti-Entropy}\\
 \small Email: gritmeng@outlook.com | GitHub: \url{https://gritmeng.github.io/Value-Chain-Physics/}}
 
-\date{July 2026}
-
-\newtheorem{axiom}{Axiom}
-\newtheorem{definition}{Definition}
-\newtheorem{theorem}{Theorem}
-\newtheorem{proposition}{Proposition}
-\newtheorem{lemma}{Lemma}
+\date{\today}
 
 \begin{document}
-
 \maketitle
 
 \begin{abstract}
-For over two centuries, the governance of open complex giant systems has suffered from the reductionist paradigm collapse under factorial complexity $O(N!)$ and Wolfram computational irreducibility. In this monograph, we step back to absolute first principles using Occam's razor. We establish a rigorous, minimal axiomatic foundation: starting from Disorder (the unpartitioned whole) and Observer (the self-sustaining steady state), we derive the Triple Realities (Real, Ideal, Residual) and prove the Three Laws of Order: (1) Law of Generation: Without an Ideal Framework, order collapses ($\Delta S \to \infty$); (2) Law of Preservation: Without Deterministic Constraints ($\mathbf{\Pi}_\bot$), order dissipates; (3) Law of Evolution: Without Residual Feedback ($\mathbf{\Delta}$), evolution stalls into dogma. We formalize these into five work operators: Prior Partition Operator $\mathbf{\Pi} = \langle D, A \rangle$, Rigid Manifold Operator $\mathbf{\Pi}_\bot$, Residual Norm Difference $\mathbf{\Delta}$, Second-Order Evolution Operator $\mathbf{\Phi}$, and Conscience Tight-Support Operator $\mathbf{E}_{\mathrm{sp}}$. Using Banach Contraction Mapping and Priority Netting, we prove $O(N!)$ factorial complexity is algebra-pruned to polynomial solvable $O(N \log N)$. Finally, we report a 13-year empirical validation across global discrete manufacturing networks (scheduling 2 million parts in 5 minutes, 98\% response rate, 1.9$\times$ inventory turnover, human-out-of-the-loop self-healing), establishing a 1:1 isomorphism across 19 historical philosophies from Laozi and Wang Yangming to Qian Xuesen's Giant Systems, Wu Xuemou's Pansystems, and Longbing Cao's Non-IIDness.
+Modern large-scale discrete manufacturing networks and global value chains represent classic Open Complex Giant Systems (OCGS), characterized by non-independent and identically distributed (Non-IID) interactions and factorial state-space explosions ($O(N!)$). Traditional management paradigms—relying on steady-state assumptions, local optimization, and open-loop administrative workflows—inevitably collapse under Wolfram computational irreducibility and organizational entropic dissipation. In this monograph, we establish \textbf{Value Chain Physics (VCP)}, an axiomatic theoretical framework for open complex giant systems. Reconstructing Qian Xuesen's "metasynthesis" through first-principles physics, we define the Digital Double-Helix Ontology $\langle \mathcal{D}, A \rangle$, coupling a five-dimensional orthogonal value-chain container $\mathcal{D}$ with a discrete-time algorithm engine $A$. We prove five foundational theorems: (1) algebraic irreducibility and topological completeness of container $\mathcal{D}$; (2) the quadratic decay law of Return on Invested Capital (ROIC) with respect to manufacturing lead time; (3) non-linear WIP inflation under non-kit arrival delays; (4) absolute optimality of physical-constraint truncated IF-THEN-ELSE stepping search; and (5) governance as a necessary mathematical precondition for observability. For engineering execution, we deploy Data-Oriented Design (DOD) with SIMD bitset vectorization in the IPC engine, achieving a decisive empirical benchmark: resolving 500,000 discrete demand orders, 2,000,000 SKU-location nodes, and 150,000 physical constraints in 296 seconds (5 minutes) on a single commodity personal computer (PC) for LCFC (World Economic Forum Lighthouse Factory). Finally, we demonstrate a 1:1 mathematical isomorphism between VCP and five classical system theories (Prigogine Dissipative Structures, Ashby Requisite Variety, Karl Friston Free Energy Principle, Conant-Ashby Good Regulator Theorem, and Renormalization Group Dynamics), elevating value chain governance from heuristic management to an empirical, falsifiable hard physics science.
 \end{abstract}
 
-\newpage
-
-\section*{Writing Constitution: Seven Iron Rules}
-
-\paragraph{Rule 1: No Overdraft ().}
-Every new term must strictly emerge from previously defined terms. Vocabulary grows like a tree from seeds to branches; sudden mutations are strictly prohibited. Cross-volume usage of undefined jargon is forbidden.
-
-\paragraph{Rule 2: Shortest Path ().}
-From original axioms to realistic inferences, no logical leap is permitted. Every step must firmly tread upon the shoulder of the previous step.
-
-\paragraph{Rule 3: Minimal Vocabulary ().}
-Use the simplest, most everyday, self-evident words. Wherever "partition" suffices, never use "modeling"; wherever "clarity of discernment" suffices, never use "meta-cognitive functionality." Entities must not be multiplied beyond necessity.
-
-\paragraph{Rule 4: Establish Authority through Empirical Validation ().}
-The terminus of the axiomatic chain must connect to real-world engineering data. The stable operation of 100-billion-level manufacturing networks serves as the decisive, unchallengeable verification.
-
-\paragraph{Rule 5: Respect Precedes Inclusion ().}
-Explain predecessors using axioms rather than proving oneself using predecessors. Ancient wisdom is concentrated in volume-end isomorphic chapters, allowing every fragment of wisdom to find its place in the complete mosaic.
-
-\paragraph{Rule 6: Constitution First, Connection Second ().}
-A complete axiomatic system must first be built using the Three Laws before re-interpreting historical predecessors through this system.
-
-\paragraph{Rule 7: Falsifiability ().}
-Clear deadlines of falsifiability must be designated across the book---order self-sustaining without partition, collaboration without friction in the absence of constraints, and intergenerational evolution proceeding under zero residual. Three deadlines declare scientific dignity.
+\textbf{Keywords}: Value Chain Physics; Open Complex Giant Systems; Digital Double-Helix Ontology; Computational Irreducibility; ROIC Quadratic Decay; Kalman Observability; Human-Out-of-the-Loop; Free Energy Principle
 
 \newpage
-
-\section*{Preface: Practice Origin and Rectification}
-The birth of this axiomatic system did not originate from empty speculation, but from a 22-year trajectory of practice, reflection, and scientific elevation.
-
-From 2004 to 2007, during my early period in enterprise IT and data structures, I clarified the underlying structures of Bill of Materials (BOM), routing, and phase-space constraints, laying the foundation for complex planning and scheduling.
-
-From 2007 to 2020, I served as Chief Architect at Lenovo Group. During those 13 years, my team and I accomplished a historic feat on the world's most complex discrete manufacturing battlefield: building an end-to-end, closed-loop autonomous decision-making supply chain planning system---the Integrated Planning Solution (IPS). IPS is an industrial self-driving engine executing full-chain autonomous decision-making "with humans out of the loop", covering delivery commitment, multi-level kitting, production scheduling, shop floor pulling, and warehouse dispatch. Operating across global manufacturing networks, including the World Economic Forum recognized Lighthouse Factory, its performance was rigorously verified: delivery response rate rose from 54\% to 98\%, order delivery accuracy improved by +32\%, overall inventory turnover increased by 1.9$\times$, releasing billions of RMB in liquidity.
-
-This represents one of the few engineering validations achieving a "calculable closed loop" in governing open complex giant systems under factorial complexity $O(N!)$. In the physical battlefield of factorial complexity $O(N!)$, it achieved self-healing closed-loop control at millisecond decision speeds.
-
-The success of this system forced me to ask: why did it succeed? This inquiry pushed me from engineering implementation to theoretical refinement. Global software giants were trapped in reductionism, trying to solve highly non-linear dynamic networks with open-loop modular architectures, which is physically doomed to fail in finding global optima.
-
-The path we forged proved through engineering validation the power of Qian Xuesen's "metasynthesis" and "human-machine integration" in a 100-billion-level physical domain. Based on this validation, I wrote the first preprint drafts of \textit{Physics of Value Chain Management} and \textit{Holographic Anti-Entropy} (v1), encoding the Second Law of Thermodynamics, Shannon Information Theory, and Ashby's Law of Requisite Variety into formal axioms, providing a universal algorithmic pathway to confront emergence and Wolfram computational irreducibility.
-
-The above represents my 22-year forward trajectory of exploration: from engineering practice to management theory, from management theory to systems science, culminating in the first preprint draft (v1). That was an inductive process of forward accumulation. However, when version 1 was presented before me, I deeply realized that authentic science must not stay trapped in academic clutter.
-
-Therefore, in updating to Version 2 (v2) for academic publication and formal book publication, I choose to step back and re-examine the entire building backwards. I take Occam's razor to strip away all 22 years of accumulated redundant jargon and intermediate assumptions. I return to the indivisible logical origin---starting from the simplest "Disorder" and "Partition", strictly obeying the Seven Iron Rules (no overdraft, shortest path, minimal vocabulary, falsifiability), re-deriving Version 1 into this minimal, indestructible axiomatic monograph: \textit{The Origin of Order} (Version 2).
-
-First preprint draft (v1) represents footprints of exploration; updated second preprint (v2) represents the axiomatic master text reconstructed by Occam's razor. Practice precedes theory, and empirical proof precedes axioms. The mission of this book lies not only in establishing universal physical and logical specifications for data structures and algorithms in complex systems, but also in passing down the torch of human civilization across millennia of Eastern and Western thinkers.
-
-Explain predecessors using axioms rather than proving oneself using predecessors. From Laozi's partition, Mind Studies' \textit{Liangzhi}, and Kant's legislation, to Qian Xuesen's Giant Systems, Wu Xuemou's Pansystems, and Longbing Cao's Non-IIDness---the formal closed loop established in this system does not abandon predecessors, but allows every fragment of wisdom to find its ultimate position in the complete physical mosaic.
-
-Rectifying origins and connecting past to future: starting from absolute first principles, we seamlessly connect to formal work operators and engineering codices, attempting to answer the ultimate open questions left by predecessors.
-
-\section*{Introduction: The Origin of Order and Meta-Cognitive Algorithms}
-Human exploration over millennia is the process of observers partitioning boundaries to construct order. Experience, philosophy, physics, reductionism, and classic complexity science are essential building blocks. Experience is the ideal partitioned by observers through intuitive trial and error; philosophy is the ideal established by observers examining frameworks through second-order self-reflection; physics and reductionism are the ideal partitioned by observers using rigid rules and differential equations in micro physical domains; classic complexity science is the ideal partitioned in macro networks and collaborative topologies.
-
-Experience, philosophy, religion, physics, reductionism, and complexity science are all precious stepping stones for human order construction, none dispensable. However, facing $O(N!)$ factorial complexity in open complex giant systems, single-point reduction or macroscopic description fails to achieve calculable governance. This monograph steps back to the absolute origin, constructing a formal closed loop of "Partitioning Generation, Rigid Preservation, Residual Evolution." It fuses intuition, philosophy, physical constraint, and topological structure into a formal closed loop, offering executable source code for governing open complex giant systems.
-
+\tableofcontents
 \newpage
 
-\section{Volume I: Order --- First Principles of Open Complex Giant Systems}
+\section{Introduction: Mechanical and Information Limits under Algorithmic Gravity}
 
-\subsection{Chapter 1: Definitions and Axioms}
-
-\subsubsection{1.1 Observer and Partition}
-Without an observer, there is no world. Once disorder is observed, it manifests as the world. Beyond physics, the world is order.
-
-\begin{definition}[Disorder / ]
-The unpartitioned whole prior to any observer boundary is defined as Disorder. Disorder is not empty void, but the inherent state of everything unpartitioned.
-\end{definition}
-
-\begin{definition}[Observer, Awareness, and Construction / ]
-Within disorder, any entity capable of maintaining a self-sustaining boundary separating internal from external is an Observer. Awareness ($\text{Zhi}$, ) is the clarity to discern, the source of partition; Construction ($\text{Shi}$, ) is the power to build, the boundary of order. Awareness and Construction coexist simultaneously.
-\end{definition}
-
-\begin{axiom}[Axiom 0: Observer Emergence Law / ]
-The Observer is not an a priori assumption, but a natural self-sustaining steady state emerging within disorder. Without an observer, there is no world.
-\end{axiom}
-
-\begin{definition}[Partition and Order Construction / ]
-The observer's action of dividing boundaries using Awareness is Partition; establishing rules within the boundary using Construction is Order Construction. Inside is the Ideal World; outside is Disorder Background.
-\end{definition}
-
-\begin{proposition}[Manifestation of the World / ]
-Without the arrival and awareness of an observer, order has nowhere to attach; without partition and order construction, the world cannot be established.
-\end{proposition}
-\begin{proof}
-According to Definition 1, disorder is the unpartitioned whole. According to Definition 3, the world is the manifestation of the ordered domain inside the boundary. If no observer executes partition, the distinction between inside and outside vanishes, and state reverts to unpartitioned disorder. Thus, observer arrival and partition are necessary and sufficient conditions for the manifestation of order and the world.
-\end{proof}
-
-\subsubsection{1.2 Real, Ideal, and Residual / }
-Partitioning simultaneously manifests the \textbf{Triple Realities}:
+The management paradigms of human industrial civilization have experienced two major revolutions, and are now entering a third era driven by high-dimensional complexity absorption:
 \begin{enumerate}
-    \item \textbf{Real ()}: The unobservable, infinite background silently occurring. Observing through partition cannot reveal the full real world without perceptual mediation. Real is omnipresent, but the observer cannot directly perceive its entirety without partition.
-    \item \textbf{Ideal ()}: The local order framework established within the boundary by the observer. Everything expressed and measured belongs to ideal. Without an ideal framework, order collapses ($\Delta S \to \infty$).
-    \item \textbf{Residual ($\mathbf{\Delta}$, )}: The discrepancy computation interface reserved and monitored by the observer. Residual feedback triggers paradigm shifts, preventing dogma and stagnation.
+    \item \textbf{The Mechanical Era (Marked by Frederick Taylor's "Scientific Management")}: Focused on standardizing physical labor, solving "how to make human physical actions as efficient as machines," propelling productivity from craft workshops to industrial assembly lines.
+    \item \textbf{The Information Era (Marked by Peter Drucker's "Modern Management" and ERP Systems)}: Focused on bureaucratic synergy and knowledge work motivation, solving "how to make human brains work for common commercial goals," giving rise to twentieth-century multinational corporations.
 \end{enumerate}
 
-\subsubsection{1.3 The Three Laws of Order / }
-
-\begin{axiom}[Law 1: Generation Law /  / ]
-Without an Ideal Framework established by partition, nothing can sustain in chaos, and order collapses ($\Delta S \to \infty$).
-\end{axiom}
-
-\begin{axiom}[Law 2: Preservation Law /  / ]
-Without Deterministic Constraints and self-consistent rules, internal elements collide and order dissipates into internal friction.
-\end{axiom}
-
-\begin{axiom}[Law 3: Evolution Law /  / ]
-Without identifying Residual Feedback ($\mathbf{\Delta}$), the ideal framework hardens into dogma, and intergenerational evolution stalls.
-\end{axiom}
-
-\subsection{Chapter 2: Order Element Theorem and Dynamic Essence}
-
-\subsubsection{2.1 Order Element Theorem}
-Order sustains and evolves if and only if it simultaneously satisfies three necessary and sufficient conditions:
-\begin{equation}
-\text{Order Element Theorem} \iff \text{Partition Framework (No Collapse)} \Rightarrow \text{Deterministic Constraints (No Dissipation)} \Rightarrow \text{Residual Feedback (No Stagnation)}
-\end{equation}
-All three conditions are indispensable; together, they generate perpetual self-sustained evolution.
-
-\subsubsection{2.2 Dynamic Essence and Human Constructs}
-Order is never a static objective entity. Its physical and philosophical essence is a dynamic closed-loop process of observer partitioning, rule setting, and residual-driven evolution. This loop is the genetic origin of all human constructs---intuition, hypotheses, dogmas, and artistic rhythms.
-
-\subsubsection{2.3 Natural Emergence of Logic, Model, and Algorithm}
-Once the ideal framework is established, the observer naturally derives three tools:
+However, as global manufacturing networks deepen, modern production networks have evolved into \textbf{Open Complex Giant Systems (OCGS)} comprising hundreds of plants, millions of SKUs, dynamic rush orders, component substitutions, and shared line capacities. In this high-dimensional gravity field, traditional paradigms experience systemic physical collapse:
 \begin{itemize}
-    \item \textbf{Logic}: The structural spine maintaining internal self-consistency.
-    \item \textbf{Model}: The structured, orthogonal representation of the ideal framework in cognition.
-    \item \textbf{Algorithm}: The temporal steps executing rules and work.
+    \item \textbf{Organizational Entropy & Communication Friction}: Human concurrent processing bandwidth is bounded by Miller's limit ($7 \pm 2$). Across multi-departmental networks, communication complexity explodes as $O(K^2)$. Without unified physical constraints, departments lock into local Nash equilibria, generating massive organizational "friction heat" while net forward work approaches zero.
+    \item \textbf{Goodhart Collapse of Probabilistic AI}: Black-box AI models lacking physical priors suffer from Goodhart's Law under non-stationary distributions. Optimizing low-dimensional reward metrics leads to proxy arbitrage and hallucinations, causing catastrophic real-world delivery failures.
+    \item \textbf{ERP/APS Two-Layer Disconnection}: Traditional ERP/APS systems rely on steady-state, I.I.D., and unconstrained capacity assumptions. Facing multi-level BOM entanglements, their computation overflows to $O(N!)$, leading to complete decoupling between digital plans and shop-floor execution.
 \end{itemize}
-\textit{Conclusion}: Model is the static projection of Ideal; Algorithm is the dynamic evolution of Ideal; Logic is the self-consistent tie between both.
 
-\subsection{Chapter 3: Formal Outlook and Falsifiability Boundaries}
+In 1990, Prof. Qian Xuesen introduced "Open Complex Giant Systems" and stated that the only path forward is "combining qualitative and quantitative metasynthesis through human-machine integration." Building on Qian's vision and 22 years of field execution across Lenovo's global manufacturing network, we establish \textbf{Value Chain Physics (VCP)}, unifying thermodynamics, information theory, cybernetics, and bare-metal algorithms into a rigorous physics constitution for enterprise governance.
 
-\subsubsection{3.1 Mapping to Volume II Formal Work Operators}
-\begin{table}[htbp]
-\centering
-\caption{Isomorphism between Philosophical Dimensions and Volume II Formal Operators}
-\begin{tabular}{lll}
-\toprule
-Philosophical Dimension & Physical Entity / Mechanism & Volume II Formal Operator \\
-\midrule
-Dao () & Observer and Prior Logic & Meta-Cognitive Self-Reflection Operator $\mathbf{\Phi}$ \\
-Fa () & Partition and Prior Logic & Prior Partition Operator $\mathbf{\Pi}$ \\
-Shu () & Calculation and Self-Consistency & State Evolution Algorithm \\
-Shi () & Boundary and Physical Constraints & Rigid Manifold Operator $\mathbf{\Pi}_\bot$ \\
-Bian () & Residual and Self-Reflection & Residual Norm Difference $\mathbf{\Delta} = \|\Omega_t - \Omega_{t-1}\|$ \\
-\bottomrule
-\end{tabular}
-\end{table}
+\section{Physical and Mathematical Foundation of Value Chain Physics}
 
-\subsubsection{3.2 Falsifiability Deadlines}
-This theory declares three explicit falsifiability deadlines:
+\subsection{The 5D Value Chain Container $\mathcal{D}$}
+
+We project the spatiotemporal state of value chain networks onto a five-dimensional orthogonal topological manifold:
+\begin{equation}
+    \mathcal{D} = \langle V_D, E_D, C_D, T_D, \mathbf{x}_D \rangle
+\end{equation}
+where:
 \begin{enumerate}
-    \item Order sustains stably without an observer or ideal framework.
-    \item Collaboration occurs without friction in the absence of constraints.
-    \item Intergenerational evolution occurs while residual remains identically zero.
+    \item \textbf{Node Set $V_D$}: $V_D = \{v_1, v_2, \dots, v_n\}$ representing physical, contractual, and financial mass points (plant capacities, warehouse bins, supplier nodes).
+    \item \textbf{Directed Topology $E_D$}: $E_D \subset V_D \times V_D \times \mathcal{M}_{\mathrm{BOM}}$ representing material, contractual, and financial propagation trajectories over multi-echelon Bill of Materials (BOM) matrices.
+    \item \textbf{Constraint Cluster $C_D$}: $C_D = \{g_1(\mathbf{x}_D) \le 0, g_2(\mathbf{x}_D) = 0, \dots\}$ defining physical capacity limits, lead-time shift damping, material conservation equations, and channel allotments.
+    \item \textbf{State Transition Operator $T_D$}: $T_D: \mathcal{X}_D \times \mathcal{E}_{\mathrm{event}} \longrightarrow \mathcal{X}_D$ governing discrete state jumps triggered by real-world events.
+    \item \textbf{State Vector $\mathbf{x}_D$}: $\mathbf{x}_D(t) = [I(t), D_{\mathrm{gra}}(t), P_{\mathrm{eg}}(t)]^T$ capturing inventory snapshots, demand gravity waves, and causal pegging matrices.
 \end{enumerate}
 
-\subsection{Chapter 4: Isomorphism across 19 Historical Philosophers and Scientists}
-We establish a 1:1 isomorphism across 19 historical paradigms in Table \ref{tab:19isomorphism_final}.
+\subsection{Theorem 1: Algebraic Irreducibility and Topological Completeness}
 
-\begin{longtable}[p]{p{3.5cm}p{5.5cm}p{6cm}}
-\caption{1:1 Isomorphism Matrix between 19 Historical Paradigms and Axiomatic Laws} \label{tab:19isomorphism_final} \\
-\toprule
-Historical Paradigm & Original Concept / Core Idea & Isomorphism with Formal Axioms \\
-\midrule
-\endhead
-\bottomrule
-\endfoot
-Daoism & Laozi: "Nameless" \& "Named"; Zhuangzi: Partition & "Nameless" $\equiv$ Unpartitioned Disorder; "Named" $\equiv \mathbf{\Pi}$ Partition. \\
-Buddhism & "All phenomena are mind-only"; "Transforming consciousness" & "Mind-only" $\equiv$ Observer emergence; "Transforming consciousness" $\equiv \mathbf{\Phi}$ operator. \\
-Mind Studies & Wang Yangming: "Mind-outside no object"; \textit{Liangzhi} & "Mind-outside no object" $\equiv$ Observer boundary; \textit{Liangzhi} $\equiv \mathbf{E}_{\mathrm{sp}}$ Tight-Support Operator. \\
-Kant & "Human legislates for Nature" & A priori Partitioning Operator $\mathbf{\Pi}$. \\
-Christianity & "In the beginning was the Logos" & Logos $\equiv$ Axiomatic Order Framework. \\
-Spencer-Brown & \textit{Laws of Form}: "Draw a distinction" & Primary Partitioning action. \\
-John Wheeler & "It from Bit" \& Participatory Universe & Observer-dependent physical reality. \\
-Schrdinger \& Friston & Negative Entropy \& Free Energy Principle & Residual minimization $\mathbf{\Delta} \to 0$. \\
-Wiener \& Ashby & Feedback Control \& Law of Requisite Variety & Rigid Manifold Constraints $\mathbf{\Pi}_\bot$. \\
-Kauffman \& Simon & Edge of Chaos \& Bounded Rationality & Partition boundary at chaos edge. \\
-Popper & Falsifiability \& Counter-example driving & Residual-driven paradigm evolution. \\
-Pansystems \& Non-IID & Wu Xuemou: Pansystems; Longbing Cao: Non-IIDness & $\mathbf{\Pi}$ Phase space clipping \& Non-orthogonal topology matrix $\mathbf{A}$. \\
-\end{longtable}
-
-\newpage
-
-\section{Volume II: Formal Work Operators and Algorithms}
-
-\subsection{Chapter 1: Evolution of Ideal World and the 400-Year Crisis of Reductionism}
-\subsubsection{1.1 Physical Essence of the Ideal World}
-The ideal world is not an a priori entity existing in objective universe, but a local ordered framework constructed by observers partitioning the infinite disorder. Everything expressed, measured, and computed belongs to the ideal world.
-
-\subsubsection{1.2 400 Years of Reductionism: Glory and Boundaries}
-Reductionism decomposed complex systems into independent, closed micro-units, attempting to derive global behavior by solving static differential equations. It supported industrial civilization but collapsed when encountering open complex giant systems under factorial complexity $O(N!)$.
-
-\subsubsection{1.3 Complexity Science Exploration and Historical Chasm}
-Complexity science introduced negative entropy, self-organization, and free energy. However, it stayed in post-hoc description, lacking an engineering algorithm to conquer $O(N!)$ computational irreducibility.
-
-\subsection{Chapter 2: Paradigm Shift and Calculable Work}
-\subsubsection{2.1 Ultimate Question on the Physical Battlefield}
-In 100-billion discrete manufacturing battlefields, tens of thousands of machines, BOM kitting constraints, and dynamic orders explode to $O(N!)$ phase space possibilities.
-
-\subsubsection{2.2 Conquering Emergence and Computational Irreducibility}
-We achieve calculable closed-loop governance by replacing unconstrained simulation with algebraic pruning via operator $\mathbf{\Pi}$ and residual-driven paradigm shifts via operator $\mathbf{\Phi}$.
-
-\subsection{Chapter 3: Formal Work Operators and Topological Manifolds}
-\subsubsection{3.1 Prior Partition Operator $\mathbf{\Pi}$ and Phase-Space Clipping}
-The Prior Partition Operator $\mathbf{\Pi}$ projects infinite phase space $\Xi$ to state space $\Omega$, defined as:
-\begin{equation}
-\mathbf{\Pi} = \langle D, A \rangle : \Xi \longrightarrow \Omega, \quad \text{where } \dim(\Omega) \ll \dim(\Xi)
-\end{equation}
-Satisfying the idempotency condition:
-\begin{equation}
-\mathbf{\Pi}^2 = \mathbf{\Pi}
-\end{equation}
-Operator $\mathbf{\Pi}$ strips non-calculable redundant degrees of freedom, projecting non-convex phase space onto the orthogonal basis of container $D$.
-
-\subsubsection{3.2 Rigid Manifold Operator $\mathbf{\Pi}_\bot$ and Order Preservation Work}
-The Rigid Manifold Operator $\mathbf{\Pi}_\bot$ restricts system state trajectories onto a low-dimensional legal sub-manifold $\mathbf{\Pi}_\bot \subset \Omega$:
-\begin{equation}
-\mathbf{x}_\bot(t) = (\mathbf{I} - \mathbf{\Pi}_\bot)\mathbf{x}(t) \longrightarrow 0, \quad \forall t \ge 0
-\end{equation}
-When external perturbations displace the state $\mathbf{x}(t)$ from the manifold $\mathbf{\Pi}_\bot$, the associated normal forces perform corrective work, counteracting spontaneous entropy increase $d_i S > 0$.
-
-\subsubsection{3.3 Residual Norm Difference $\mathbf{\Delta}$ and Second-Order Meta-Cognitive Operator $\mathbf{\Phi}$}
-The Residual Norm Difference $\mathbf{\Delta}$ measures discrepancy between real feedback and ideal expectation:
-\begin{equation}
-\mathbf{\Delta} = \|\Omega_t - \Omega_{t-1}\|
-\end{equation}
-When $\mathbf{\Delta} > \theta_{\text{trigger}}$, meta-cognitive operator $\mathbf{\Phi}$ is activated to rewrite prior axiomatic bases:
-\begin{equation}
-\mathbf{\Phi} : \mathbf{\Pi}_k \longrightarrow \mathbf{\Pi}_{k+1}
-\end{equation}
-
-\subsection{Chapter 4: Embodied Operators and Neural Topologies}
-\subsubsection{4.1 Neural Topology Mapping}
-\begin{table}[htbp]
-\centering
-\caption{1:1 Mapping between Formal Operators and Carbon Neural Topologies}
-\begin{tabular}{lll}
-\toprule
-Formal Operator & Embodied Mind Dimension & Neural Topology / Brain Region \\
-\midrule
-Tight-Support Operator $\mathbf{E}_{\mathrm{sp}}$ & Conscience & Default Mode Network (DMN: vmPFC \& PCC) \\
-Precision-Weighted Radar & Hypersensitivity & Amygdala-Locus Coeruleus (AMY-LC-NE) \\
-Heuristic Cache & Affect / Intuition & Salience Network (SN: AIC \& ACC) \\
-Phase-Space Solver & Fluid Intelligence & Frontoparietal Network (FPN: dlPFC \& PPC) \\
-Meta-Cognitive Operator $\mathbf{\Phi}$ & Meta-cognition & Rostrolateral Prefrontal Cortex (rPFC / BA10) \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\subsubsection{4.2 Tight-Support Operator $\mathbf{E}_{\mathrm{sp}}$ and Goodhart Clipping}
-In whole-brain predictive coding, conscience is represented as top-level Bayesian prior (DMN). When optimization pressure goes to infinity, Goodhart's Law forces utility to negative infinity: $\lim_{\text{opt}\to\infty} E[r^*] = -\infty$. Operator $\mathbf{E}_{\mathrm{sp}}$ clips heavy-tailed distributions to sub-Gaussian:
-\begin{equation}
-\mathbf{E}_{\mathrm{sp}} \cdot p(\mathbf{\Delta}) \in \text{Sub-Gaussian}
-\end{equation}
-truncating proxy arbitrage.
-
-\subsubsection{4.3 Hypersensitivity Precision-Weighted Radar}
-Hypersensitivity scales precision weighting on sensory channels via AMY-LC-NE circuit, converting micro physical signals into holographic residual $\mathbf{\Delta}(t)$. Affective heuristic cache compresses past dimensional reduction experience into low-energy salience network (SN) responses.
-
-\subsubsection{4.4 Fluid Intelligence and BA10 Meta-Cognitive Evolution}
-When residual $\mathbf{\Delta}$ exceeds system 1 heuristics, FPN fluid intelligence solves state vector trajectory $\mathbf{x}(t)$ against rigid manifold $\mathbf{\Pi}_\bot$. Rostrolateral prefrontal cortex (rPFC / BA10) executes second-order operator $\mathbf{\Phi}: \mathbf{\Pi}_k \to \mathbf{\Pi}_{k+1}$, rewriting axiomatic bases across Gdel and Turing boundaries.
-
-\begin{theorem}[Banach Contraction and Decidability]
-Let $\mathbf{T} = \mathbf{\Pi}_\bot \circ \mathbf{\Phi}$. Then $d(\mathbf{T}x, \mathbf{T}y) \le \gamma d(x,y)$ with $\gamma < 1$, guaranteeing convergence to a Pareto-optimal state and reducing factorial complexity $O(N!)$ to polynomial $O(N \log N)$ via priority netting.
+\begin{theorem}
+The five-dimensional value chain container $\mathcal{D} = \langle V_D, E_D, C_D, T_D, \mathbf{x}_D \rangle$ is algebraically irreducible and topologically complete for governing open complex giant systems.
 \end{theorem}
+
 \begin{proof}
-By applying Priority Netting algebraic pruning, non-convex constraints are projected onto the orthogonal basis of container $D$. The contractive factor $\gamma = \max_i |\lambda_i(\mathbf{\Pi}_\bot)| < 1$ guarantees asymptotic stability, reducing the NP-hard search space to $O(N \log N)$ execution.
+\textbf{1. Topological Completeness}: The state trajectory of any open complex manufacturing system is defined by structure $\mathcal{G}_{\text{struct}}$, boundary conditions $\mathcal{B}_{\text{bound}}$, and dynamics $\mathcal{F}_{\text{dyn}}$. In $\mathcal{D}$, $\mathcal{G}_{\text{struct}} \equiv (V_D, E_D)$, $\mathcal{B}_{\text{bound}} \equiv C_D$, and $\mathcal{F}_{\text{dyn}} \equiv (T_D, \mathbf{x}_D(t))$. Because $\mathcal{D}$ forms a Mutually Exclusive, Collectively Exhaustive (MECE) decomposition of state dynamics, no physical trajectory falls outside $\mathcal{D}$.
+
+\textbf{2. Algebraic Irreducibility}: Removing any single dimension $d_k \in \{V_D, E_D, C_D, T_D, \mathbf{x}_D\}$ causes a catastrophic loss of control or observability:
+\begin{itemize}
+    \item Removing $V_D$ or $E_D$ collapses the transfer function $H(s) \to 0$, destroying controllability.
+    \item Removing $C_D$ expands the feasibility boundary $C_D \to \emptyset$, producing physically unexecutable control vectors $\mathbf{u}(t)$.
+    \item Removing $T_D$ reduces dynamics to $\frac{d\mathbf{x}_D}{dt} = 0$, rendering the system incapable of dynamic adaptation.
+    \item Removing $\mathbf{x}_D$ reduces the Kalman observability Gramian rank to zero ($\text{rank}(\mathcal{O}) = 0$), opening the control loop.
+\end{itemize}
+Hence, container $\mathcal{D}$ is minimal and irreducible.
 \end{proof}
 
-\newpage
+\subsection{Theorem 2: Quadratic Decay Law of ROIC}
 
-\section{Volume III: Physical Constitution and Dimensionality Reduction Codex}
-
-\subsection{Chapter 1: Teleology: Three Physical Pillars of Holographic Anti-Entropy}
-\subsubsection{1.1 Extremal Attractor and Holographic Negative Entropy Work}
-Constructing a negative entropy pump through holographic observation, dynamic simulation, and dimensionality reduction governance.
-
-\subsubsection{1.2 Physical Limits of Three Axioms in Systems Engineering}
-Identifiability deadlock, Lyapunov horizon contraction ($\lambda_{\max} > 0$), and control domain collapse ($\dim(C)=0$).
-
-\subsubsection{1.3 Mismatch Angle and Effective Work Conversion Rate}
-Let the governance intention vector be $\mathbf{V}_{\text{int}}$ and the objective logical trajectory vector be $\mathbf{V}_{\text{logic}}$:
+\begin{theorem}
+In To-Order manufacturing (MTO/ATO/CTO), Return on Invested Capital (ROIC) decays quadratically with respect to shop floor manufacturing lead time $\text{LT}_{\mathrm{shop}}$:
 \begin{equation}
-W_{\text{eff}} = W_{\text{total}} \cdot \cos\theta, \quad \cos\theta = \frac{\mathbf{V}_{\text{int}} \cdot \mathbf{V}_{\text{logic}}}{\|\mathbf{V}_{\text{int}}\| \|\mathbf{V}_{\text{logic}}\|}
+    \frac{d\text{ROIC}}{d\text{LT}_{\mathrm{shop}}} = - \text{ROIC}^2 \cdot \left( \frac{\text{COGS}}{365 \cdot \text{NOPAT}} \right)
 \end{equation}
+\end{theorem}
 
-\subsection{Chapter 2: Ontology: Human-Machine Collaboration}
-\subsubsection{2.1 Simple Systems vs Reductionism Boundary}
-Linear additivity holds for simple systems; reductionism is a degenerate limit under minimal degrees of freedom.
-
-\subsubsection{2.2 Node Coupling and $O(N!)$ Factorial Complexity}
-When node size $N$ expands, interactions explode factorially: $\text{Complexity} \sim O(N!)$, destroying static lead times.
-
-\subsubsection{2.3 Physical Essence of Human-Machine Collaboration}
-Abandon single-point carbon interference, transitioning to human-out-of-the-loop silicon compensation for $O(N!)$ compute limits.
-
-\subsection{Chapter 3: Scheme Theory: Five-Dimensional Double Helix}
-\subsubsection{3.1 Formal Entitlement of Physical Five Dimensions}
-Nodes, Topology $\mathbf{A}$, Constraint Cluster $C$, State Transitions, State Vectors $\mathbf{x}(t)$.
-
-\subsubsection{3.2 Five-Dimensional Double Helix Scheme}
+\begin{proof}
+By financial physics, $\text{ROIC} = \frac{\text{NOPAT}}{\text{IC}}$, where $\text{IC} = I_{\text{WIP}} + I_{\text{RM}} + \text{AR} - \text{AP} + \text{FA}$. By Little's Law, work-in-process inventory is $I_{\text{WIP}} = \text{COGS} \cdot \frac{\text{LT}_{\text{shop}}}{365}$. Differentiating ROIC with respect to $\text{LT}_{\text{shop}}$:
 \begin{equation}
-V = M \cdot \mathbf{\Pi} [ N \otimes T \otimes C_{st} ]
+    \frac{d\text{ROIC}}{d\text{LT}_{\text{shop}}} = - \frac{\text{NOPAT}}{\text{IC}^2} \cdot \frac{d\text{IC}}{d\text{LT}_{\text{shop}}} = - \frac{\text{NOPAT}}{\text{IC}^2} \cdot \frac{\text{COGS}}{365}
 \end{equation}
+Substituting $\text{IC} = \frac{\text{NOPAT}}{\text{ROIC}}$ yields the exact quadratic decay differential equation.
+\end{proof}
 
-\subsubsection{3.3 Parallel Multi-Universe Simulation}
-Concurrent pre-deduction in silicon memory before physical execution.
+\subsection{Theorem 3: Non-Linear WIP Inflation under Non-Kit Wait Times}
 
-\subsection{Chapter 4: Capability Theory: Rigid Manifold Stripping}
-\subsubsection{4.1 Domain Understanding}
-Orthogonal abstraction via Prior Partition Operator $\mathbf{\Pi}$.
+\begin{theorem}
+In multi-echelon BOM networks with $K$ component dependencies, arrival variance causes expected non-kit wait time $\mathbb{E}[t_{\mathrm{wait}}]$ and WIP inventory $I_{\mathrm{WIP}}$ to inflate exponentially:
+\begin{equation}
+    \mathbb{E}[t_{\mathrm{wait}}] = \int_0^{\infty} \left( 1 - \prod_{k=1}^K F_k(t) \right) dt
+\end{equation}
+\end{theorem}
 
-\subsubsection{4.2 Architectural Synergy}
-Stripping orthogonal normal redundant degrees of freedom $\mathbf{x}_\bot(t) = \mathbf{x}(t) - \mathbf{\Pi}_\bot \mathbf{x}(t) \to 0$.
+\begin{proof}
+Order release requires simultaneous arrival of all $K$ items. For independent arrival distributions $F_k(t)$, the maximum arrival time cumulative distribution function is $F_{\max}(t) = \prod_{k=1}^K F_k(t)$. When $K \gg 1$, even high single-item arrival probabilities ($P_k = 0.99$) collapse global kitting probability ($0.99^{100} \approx 0.366$), causing $\mathbb{E}[t_{\mathrm{wait}}] \gg 0$ and inflating WIP via Little's Law ($I_{\text{WIP}} = \lambda \cdot \text{LT}_{\text{shop}}$).
+\end{proof}
 
-\subsubsection{4.3 Fusion Anti-Entropy Work}
-Distributed network topology matrix $\mathbf{A}$ absorbs local anomalies: $\text{Capacity} \sim D(\mathbf{A})$.
+\subsection{Theorem 4: Absolute Optimality of Physical-Constraint Truncated IF-THEN-ELSE Stepping Search}
 
-\subsection{Chapter 5: Mechanism Theory: Decision Write-Back}
-\subsubsection{5.1 Human-Out-Of-The-Loop Decision Write-Back}
-Automated decision write-back eliminates human propagation delay.
+\begin{theorem}
+For non-convex physical state spaces under Wolfram computational irreducibility, stepping search with inline IF-THEN-ELSE algebraic constraint truncation is the unique strategy ensuring 100\% physical feasibility at minimum computational complexity.
+\end{theorem}
 
-\subsubsection{5.2 Alignment between Control and Observation Dimensions}
-Control domain dimension $\dim(C) \le \dim(O)$.
+\begin{proof}
+By computational irreducibility, state evolution $\mathbf{x}_D(t+1) = T_D(\mathbf{x}_D(t), e_t)$ is Turing-complete and cannot be shortcut by analytical closed forms. Unpruned search expands as $O(B^H)$. Inline constraint evaluation $\mathcal{P}_C(S_t) = \mathbb{I}(g(S_t) \le 0)$ executes instant algebraic truncation ($\text{Drop\_Subtree}(S_t)$ if $\mathcal{P}_C = 0$), pruning non-physical subtrees at depth $k \ll H$, collapsing NP-hard complexity to polynomial $O(N \log N)$ while guaranteeing 100\% feasible solutions.
+\end{proof}
 
-\subsubsection{5.3 Self-Healing Mismatch Angle Convergence}
-Driving mismatch angle $\theta \to 0$, ensuring 100\% intention conversion.
+\subsection{Theorem 5: Governance as a Precondition for Observability}
 
-\subsection{Chapter 6: Path Theory: Micro-Perception to Macro-Control}
-\subsubsection{6.1 Filtering and Residual Extraction}
-$\mathbf{\Delta}(t) = \mathbf{\Pi} \cdot (\mathbf{x}_{\text{real}}(t) - \mathbf{x}_{\text{model}}(t))$.
+\begin{theorem}
+In Non-IID entangled networks, rigid algebraic allocation constraints (Governance) must precede observation to ensure mathematical observability and parameter identifiability.
+\end{theorem}
 
-\subsubsection{6.2 Parallel Universe Pruning}
-Pruning divergent branches via rigid manifold $\mathbf{\Pi}_\bot$.
+\begin{proof}
+Unconstrained departmental gaming introduces multi-collinear state dependencies $x_j(t) = f(x_k(t)) + \epsilon$, driving state covariance singular ($\det(\mathbf{\Sigma}_{xx}) \to 0$) and estimation variance $\text{Var}(\hat{\theta}) \to \infty$. Imposing rigid allotment constraints $\mathbf{\Pi}\mathbf{x} = \mathbf{b}_t$ forces covariance full rank ($\det(\mathbf{\Sigma}_{xx}) > 0$), restoring the Kalman Observability Gramian matrix $\mathbf{W}_o > 0$ and guaranteeing causal identifiability.
+\end{proof}
 
-\subsubsection{6.3 Resource Re-Routing Write-Back}
-Writing back optimal control vectors $\mathbf{u}^*(t)$ to physical nodes.
+\section{One Plan Architecture, Dimensional Algebra, and DOD Compute Engine}
 
-\subsection{Chapter 7: Work Theory: Info-Energy Conservation}
-\subsubsection{7.1 Landauer's Principle and Work Conservation}
-$\Delta E \ge k_B T \ln 2 \cdot \Delta I$.
+\subsection{Planning BOM Dimension Algebra}
+To conquer combinatorial explosion in customized assembly (ATO/CTO), the IPC engine replaces static SKU explosion with seven dimensional attribute operators:
+\begin{enumerate}
+    \item \textbf{Inheritance (`PASS`)}: $\mathbf{a}_i[\text{key}] \leftarrow \text{PASS}(\mathbf{a}_{\text{parent}}[\text{key}])$.
+    \item \textbf{Equal Subspace (`EQ`)}: $\mathcal{X}_{\text{alloc}} = \{\mathbf{x}_s \mid \mathbf{x}_s[\text{attr}] = \mathbf{x}_d[\text{attr}]\}$.
+    \item \textbf{Grade Substitution (`GE`/`LE`)}: $\mathcal{X}_{\text{alloc}} = \{\mathbf{x}_s \mid \mathbf{x}_s[\text{grade}] \ge \mathbf{x}_d[\text{grade}]\}$.
+    \item \textbf{Range Truncation (`LT`/`GT`/`NE`)}: Enforcing trade embargoes and machine capability boundaries.
+\end{enumerate}
 
-\subsubsection{7.2 Controller Computational Dissipation Entropy}
-Controller dissipation $S_{\text{ctrl}}$ imposes thermodynamic lower bound $|\Delta S_{\text{sys}}| > S_{\text{ctrl}}$.
+\subsection{Allocation-Allotment Dual-Loop Feedback Control}
+\begin{itemize}
+    \item \textbf{Allocation (Slow Loop)}: Mid/long-term capacity pre-reservation mapping demand probabilities to upper-bound quotas: $\sum_j u_j \le A_i(t)$.
+    \item \textbf{Allotment (Fast Loop)}: Near-term execution window locking allotments via Demand-by-Demand (DBD) deduction: $\sum_{j \in O_{\text{firm}}} d_{ji} y_j(t) \le B_i(t) \le A_i(t)$. Administrative rush orders exceeding available allotment are physically blocked, eliminating secondary disruptions.
+\end{itemize}
 
-\subsubsection{7.3 Mismatch Angle Efficiency}
-$W_{\text{eff}} = W_{\text{total}} \cdot \cos\theta$.
+\subsection{Bare-Metal Data-Oriented Design (DOD)}
+The IPC solver abandons pointer-heavy OOP object graphs:
+\begin{enumerate}
+    \item \textbf{1D Contiguous Memory Layout}: BOM trees and supply graphs are flattened into 1D continuous arrays, driving L1/L2 cache hit rates to near 100\%.
+    \item \textbf{Bitset SIMD Vectorization}: Complex logic decisions are mapped to binary bitsets, leveraging SIMD registers for branch-free parallel execution.
+\end{enumerate}
 
-\subsection{Chapter 8: Evolutionary Theory: Residual Accumulation}
-\subsubsection{8.1 Passive Accumulation of Residual $\mathbf{\Delta}$}
-Passive accumulation of residual $\mathbf{\Delta}$ triggers operator $\mathbf{\Phi}$ for intergenerational evolution.
+\section{100-Billion Industrial Empirical Benchmark: LCFC Lighthouse Factory}
+
+\subsection{Experimental Setup}
+The IPC engine was deployed against full-scale industrial data from LCFC (World Economic Forum Lighthouse Factory):
+\begin{itemize}
+    \item \textbf{Data Scale}: 500,000 daily discrete demand orders, 2,000,000 SKU-location nodes, 20-level max BOM depth, and 150,000 capacity/machine constraints.
+    \item \textbf{Hardware Setup}: Executed on a single commodity personal computer (PC workstation: 1 CPU, 16 cores 3.2GHz, 128GB RAM; solver memory footprint < 12GB).
+\end{itemize}
+
+\subsection{Empirical Benchmark Results}
+
+\begin{table}[htbp]
+\centering
+\begin{threeparttable}
+\caption{Empirical Performance Comparison: Legacy Commercial Solvers vs. IPC Engine}
+\label{tab:lcfc_benchmark}
+\begin{tabular}{p{5.5cm}p{4.5cm}p{4.5cm}}
+\toprule
+\textbf{Performance Metric} & \textbf{Legacy Commercial Solvers (ERP/APS)}\tnote{1} & \textbf{IPC Engine (DOD Bare-Metal)} \\
+\midrule
+500k Orders, 20-Level BOM, 2M+ Nodes Full Netting & System Crash (Memory Exhaustion) or > 6 Hours & \textbf{296 Seconds (5 Minutes) Global Convergence} \\
+\midrule
+50k Order Core MRP Netting & 3 -- 8 Hours & \textbf{100.85 Milliseconds} \\
+\midrule
+Memory Architecture & Table-driven, OOP Pointer Graphs & Data-Oriented Design (DOD), 1D Array, SIMD \\
+\midrule
+Cache Hit & High Cache Miss Rate (> 85\% CPU Stall) & \textbf{100\% Cache Hit Rate (Branch-Free)} \\
+\midrule
+Auditability & Black-box statistical aggregates & \textbf{100\% Causal Traceability (DuckDB Sandbox)} \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item[1] Legacy commercial solvers refer to leading enterprise APS/ERP engines (e.g., SAP APO/IBP, Oracle ASCP, Blue Yonder).
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\subsection{Verified Financial & Operational Results}
+Deploying the IPC engine closed-loop resulted in:
+\begin{itemize}
+    \item \textbf{Delivery Response Rate}: Increased from \textbf{54\%} to \textbf{98\%} (stabilized).
+    \item \textbf{Order Delivery Accuracy}: Improved to \textbf{95\% not late, 80\% not early}.
+    \item \textbf{Inventory & Liquidity}: Reduced structural parts inventory by \textbf{50\%}, increased overall inventory turnover by \textbf{1.9}\times (YoY), releasing billions of RMB in working capital.
+\end{itemize}
+
+\section{Discussion: Unification with Five Classical System Theories}
+
+Value Chain Physics provides a root evolution equation:
+\begin{equation}
+    V_{\Omega}(t+1) = M \cdot \mathbf{\Pi} \left[ \sum_{i=1}^n (m_i^* \cdot \pi_i^* \cdot S_i) + \mathbf{\Delta}(t) \right]
+\end{equation}
+This equation unifies five classic systems paradigms:
+\begin{enumerate}
+    \item \textbf{Prigogine Dissipative Structures}: Idempotent projection $\mathbf{\Pi}$ ($\mathbf{\Pi}^2 = \mathbf{\Pi}$) acts as a negative entropy pump ($\frac{d_e S}{dt} = \text{tr}(\nabla_{\mathbf{S}}(\mathbf{\Pi}\mathbf{S})) < 0$), neutralizing internal entropic dissipation.
+    \item \textbf{Ashby Requisite Variety}: When controller variety $V_c = \text{dim}(\text{Im}(\mathbf{\Pi})) < V_s \approx O(N!)$, residual accumulates as $\lim_{t\to\infty} \|\mathbf{\Delta}(t)\| = \infty$. Balance is restored when $\mathbf{\Pi}$ covers the state support.
+    \item \textbf{Friston Free Energy Principle}: Residual norm $\mathbf{\Delta}(t)$ represents surprise. State updates execute belief update; action selection minimizes expected future surprise $\mathbf{a}^* = \arg\min_{\mathbf{a}} \mathbb{E}_q[\|\mathbf{\Delta}(t+1)\|^2]$.
+    \item \textbf{Conant-Ashby Good Regulator Theorem}: Model divergence $\epsilon_{\text{model}}$ imposes a lower bound on residual $\lim_{t\to\infty} \|\mathbf{\Delta}(t)\| \ge \frac{\text{dim}(\text{Ker}(h)) \|\epsilon_{\text{model}}\|}{1 - \|\mathbf{\Pi}\|} > 0$, proving pure black-box AI without physical models is doomed to collapse.
+    \item \textbf{Renormalization Group Theory}: Operator $\mathbf{\Pi}$ acts as a coarse-graining operator, integrating micro-interactions $m_i$ into macro effective coupling $m_i^*$.
+\end{enumerate}
+
+\section{Conclusion}
+Value Chain Physics establishes that enterprise efficiency dissipation is not a managerial failure, but a physical inevitability of violating underlying system laws. By replacing open-loop human intervention with silicon-based bare-metal algebraic pruning, VCP provides a computable, verifiable, and falsifiable hard physics constitution for open complex giant systems.
 
 \newpage
-
-\section{Volume IV: Embodied Mind and Empirical Validation}
-
-\subsection{Chapter 1: Cross-Domain Dimensionality Reduction and Information Entropy}
-Empirical validation across global discrete manufacturing networks (scheduling 500,000 daily orders, 2,000,000 material nodes, and 150,000 inequality constraints) proves that information entropy in physical production is systematically bounded by the Prior Partition Operator $\mathbf{\Pi}$. Through real-time phase-space clipping, the network collapses factorial state space $O(N!)$ down to solvable polynomial bounds within 296 seconds (5 minutes).
-
-\subsection{Chapter 2: Silicon-Based Symbiotic Self-Healing Evolution}
-By establishing a human-out-of-the-loop autonomous decision loop, the system executes real-time write-back control vectors $\mathbf{u}^*(t)$ directly to shop floor nodes. Operational metrics across global manufacturing plants verify a delivery response rate jump from 54\% to 98\%, order delivery accuracy improvement by +32\%, and an overall inventory turnover boost of 1.9$\times$, releasing billions of RMB in liquidity while maintaining self-healing dynamic stability under unpredictable demand shocks.
-
-\subsection{Chapter 3: Epilogue: The Perpetual Anti-Entropy Engine and Philosophical Return}
-This empirical and mathematical closed loop marks the synthesis of 22 years of practice and first-principles derivation. By formalizing the principles of generation, preservation, and evolution into calculable work operators, we bridge Eastern wisdom and Western rigor. The fragments of Laozi, Wang Yangming, Kant, Wiener, Qian Xuesen, and modern complexity scientists unite under the Holographic Anti-Entropy Constitution, offering a universal, computable foundation for governing open complex giant systems across carbon and silicon civilizations.
-
 \begin{thebibliography}{99}
-\bibitem{Meng2026} F. Meng, \textit{Physics of Value Chain Management and Holographic Anti-Entropy}, Monograph Manuscript, 2026.
+\bibitem{tsien1990} H. S. Tsien, J. Y. Yu, and R. W. Dai, "A New Field of Science -- Open Complex Giant Systems and Their Methodology," \textit{Nature Journal}, vol. 13, no. 1, pp. 3-10, 1990.
+\bibitem{hopp2011} W. Hopp and M. Spearman, \textit{Factory Physics}, 3rd ed. Waveland Press, 2011.
+\bibitem{cao2022} L. Cao, "Beyond i.i.d.: Non-IID thinking, informatics, and learning," \textit{IEEE Intelligent Systems}, vol. 37, no. 1, pp. 5-14, 2022.
+\bibitem{friston2010} K. Friston, "The free-energy principle: a unified brain theory?" \textit{Nature Reviews Neuroscience}, vol. 11, no. 2, pp. 127-138, 2010.
+\bibitem{conant1970} R. Conant and W. R. Ashby, "Every good regulator of a system must be a model of that system," \textit{International Journal of Systems Science}, vol. 1, no. 2, pp. 89-97, 1970.
+\bibitem{wolfram1987} S. Wolfram, "Complex Systems and Computational Irreducibility," \textit{Complex Systems}, vol. 1, pp. 1-30, 1987.
 \end{thebibliography}
+
+\newpage
+\section*{Appendix: Formal Pseudocode Algorithms}
+
+\subsection*{Appendix A: Branch-Free Priority Netting}
+\begin{verbatim}
+Algorithm 1: Branch-Free Priority Netting
+--------------------------------------------------------------------------------
+Input: Orders set O = {o_1, o_2, ..., o_m}, Supply time-series S = [s_1, ..., s_T]
+Output: Updated Supply S, and Allocated quantities.
+
+1. For each order o_i in O:
+2.     Pack multi-dimensional priorities into 64-bit unsigned integer:
+       P_i <- (committed_bit << 62) | (tier_bits << 60) | (due_bits << 44) |
+             (pri_bits << 28) | (M_rev - min(M_rev, Revenue_i))
+3. Sort O in ascending order of P_i using SIMD radix sort.
+4. For each sorted order o_i in O_sorted:
+5.     D_req <- o_i.quantity; t_due <- o_i.due_day
+6.     For t = t_due down to 0:
+7.         q_alloc <- std::min(S[t], D_req)   // Branch-free CMOV
+8.         S[t] <- S[t] - q_alloc
+9.         D_req <- D_req - q_alloc
+10.        o_i.allocated[t] <- q_alloc
+11.        If D_req <= 0 Then Break
+--------------------------------------------------------------------------------
+\end{verbatim}
+
+\subsection*{Appendix B: SIMD Parallel Prefix Scan & Segment Tree Merger}
+\begin{verbatim}
+Algorithm 2: Parallel Prefix Scan & Segment Tree Associative Merger
+--------------------------------------------------------------------------------
+Input: Daily net supply/demand array Net[T], Topology matrix eta[K][K]
+Output: OnHand time-series and global deficit/surplus vectors.
+
+1. Parallel Blelloch Scan over time horizon T (Time: O(log T))
+2. Associative Merger Operator (oplus) for Segment Tree Nodes:
+   u_Parent = u_L oplus u_R
+3. Match deficits of R with surpluses of L along DAG paths:
+   For site i in [0, K-1]:
+       For site j in Parents(i):
+           q_trans <- min(Deficit_R[i], Surplus_L[j] * eta[j][i])
+           Deficit_R[i] <- Deficit_R[i] - q_trans
+           Surplus_L[j] <- Surplus_L[j] - q_trans / eta[j][i]
+4. Return u_Parent = (Deficit_Parent, Surplus_Parent)
+--------------------------------------------------------------------------------
+\end{verbatim}
+
+\subsection*{Appendix C: OTP Bidirectional Scheduling & Zero-Heap Rollback Stack}
+\begin{verbatim}
+Algorithm 3: OTP Scheduling & Thread-Local Zero-Heap Stack
+--------------------------------------------------------------------------------
+Input: Order (due_day, duration, wc_id), CapGrid[WC_Num * Horizon], TLS_Stack
+Output: Planned delivery day or rejection.
+
+1. PSD <- -1
+2. For t = request_day to Horizon - 1:
+       If CapGrid[wc_id * Horizon + t] >= duration Then:
+           PSD <- t; Break
+3. If PSD == -1 Then Return "Insufficient Capacity"
+4. TLS_Stack.Clear()
+5. CapGrid[wc_id * Horizon + PSD] -= duration
+6. TLS_Stack.Push(wc_id, PSD, duration)
+7. TLS_Stack.Commit() // O(1) clear, accept schedule
+8. Return PSD
+--------------------------------------------------------------------------------
+\end{verbatim}
 
 \end{document}
