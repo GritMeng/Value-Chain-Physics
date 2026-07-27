@@ -1,3 +1,10 @@
+## 🌟 重磅长文终极正本 (The Master Monograph)
+
+| 资源类别 | 快速访问链接 | 核心内容描述 |
+|:---|:---|:---|
+| 💥 **企业治理物理宪法长文** | **[阅读中文全文 (Markdown)](./The_Physics_Constitution_of_Enterprise_Governance.md)** | **【全量单篇重磅长文】** 跨越 2500 年思想史与工业界，含 68 行 7 列全景审查大表，立定企业治理的三重物理逻辑阶次与物理宪法。 |
+
+
 # 价值链物理学：开放复杂巨系统的治理法则
 ### System and Complexity Science: Generation, Persistence, and Evolution of Order
 **—— 开放复杂巨系统的物理学宪法**
