@@ -1,65 +1,54 @@
-# 系统与复杂性科学：秩序的生成、存续与进化
-### ——开放复杂巨系统的物理学宪法
+# Physics of Value Chain Management & System Science
 
-**作者：** 孟凡淳 (Fanchun Meng / Grit Meng)  
-**文档状态：** arXiv 预印本已提交 (cs.AI / Systems Science)
+### System and Complexity Science: Generation, Persistence, and Evolution of Order
+**The Physical Constitution for Open Complex Giant Systems (Version 2 Monograph)**
 
----
-
-## 📄 专著与论文文档
-
-### 1. 《系统与复杂性科学：秩序的生成、存续与进化》
-- **[中文专著正本 (Markdown)](./Origin_of_Order.md)**
-- **[英文版 PDF (Unabridged Monograph PDF)](./English_Manuscript/System_and_Complexity_Science_Full_Book_Unabridged_En.pdf)**
-
-### 2. 《价值链物理学：开放复杂巨系统的治理法则》
-- **[中文实证文稿 (Markdown)](./Value_Chain_Physics_Full.md)**
-- **[英文全本 PDF (Full Master PDF)](./English_Manuscript/Value_Chain_Physics_Full_135Page_Master_En.pdf)**
-- **[arXiv 135页源码提交包 (tar.gz)](./English_Manuscript/arxiv_submission_master_135p.tar.gz)**
+**Author:** Fanchun Meng (Grit Meng)  
+Former Chief Architect of Global Supply Chain Planning Systems (IPS), Lenovo Group  
+Author of *Physics of Value Chain Management* and *Holographic Anti-Entropy*  
+**Email:** gritmeng@outlook.com | **GitHub:** [gritmeng.github.io/Value-Chain-Physics](https://gritmeng.github.io/Value-Chain-Physics/)  
+**Publication Status:** arXiv Preprint Submitted & Verified (`arXiv:submit/7871432` [cs.AI])
 
 ---
 
-## 🔬 核心推导与第一性原理
+## 📖 Canonical Monograph Manuscripts
 
-针对开放复杂巨系统在变量组合跨越 $N!$ 阶乘临界点时的系统耗散问题，本研究推导了三大第一性原理公理与八大做功宪律：
-
-### 三大第一性原理公理
-1. **生成公理 (Generation Axiom)**：无先验划界框架，秩序必然坍缩。
-2. **存续公理 (Persistence Axiom)**：无刚性流形约束，秩序必然耗散。
-3. **进化公理 (Evolution Axiom)**：无残差反馈自省，秩序必然僵化。
-
-### 五大形式化做功算子
-- **先验划界算符 $\mathbf{\Pi}$**：$\mathbf{\Pi} = \langle D, A angle : \Omega_{O(N!)} \longrightarrow \Omega_{O(k)}$
-- **刚性流形算符 $\mathbf{\Pi}_ot$**：$\mathbf{x}_ot(t) = \mathbf{x}(t) - \mathbf{\Pi}_ot \cdot \mathbf{x}(t) \longrightarrow 0$
-- **残差范数差分算符 $\mathbf{\Delta}$**：$\mathbf{\Delta}(t) = \|\mathbf{x}_{\mathrm{real}}(t) - \mathbf{x}_{\mathrm{ideal}}(t)\|$
-- **二阶自省进化算符 $\mathbf{\Phi}$**：$\mathbf{\Pi}_{t+1} = \mathbf{\Phi}\Big(\mathbf{\Pi}_t, X_{\Delta_{	ext{critical}}}\Big)$
-- **良知紧支撑算子 $\mathbf{E}_{\mathrm{sp}}$**：限制 Goodhart 效应引发的系统收敛失稳。
+### 1. [System and Complexity Science: Generation, Persistence, and Evolution of Order (Version 2)](./main.tex)
+* **Status:** Complete Unabridged Formal Monograph (LaTeX Source: [`main.tex`](./main.tex) | arXiv Package: [`arXiv_clean_package.tar.gz`](./arXiv_clean_package.tar.gz))
+* **Core Contribution:** Starting from the minimal origin of **Disorder** (unpartitioned whole) and **Observer** (self-sustaining steady state), this monograph derives the **Triple Realities** (Real, Ideal, Residual) and proves the **Three Laws of Order**:
+  1. **Law of Generation:** Without an Ideal Framework ($\mathbf{\Pi}$), order collapses ($\Delta S \to \infty$).
+  2. **Law of Preservation:** Without Deterministic Constraints ($\mathbf{\Pi}_\bot$), order dissipates into internal friction.
+  3. **Law of Evolution:** Without Residual Feedback ($\mathbf{\Delta}$), evolution stalls into dogma ($\mathbf{\Phi}: \mathbf{\Pi}_k \to \mathbf{\Pi}_{k+1}$).
+* **Formulas & Verification:** Formalized via 5 Work Operators ($\mathbf{\Pi}, \mathbf{\Pi}_\bot, \mathbf{\Delta}, \mathbf{\Phi}, \mathbf{E}_{\mathrm{sp}}$), Banach Contraction Mapping ($O(N!) \to O(N \log N)$), and 13-year empirical validation across Lenovo's global discrete manufacturing network (scheduling 2,000,000 material nodes in 5 minutes, 98% response rate, 1.9$\times$ inventory turnover).
+* **Philosophical Isomorphism:** Establishes a 1:1 mathematical isomorphism across 19 historical paradigms (Laozi, Wang Yangming, Kant, Spencer-Brown, Wheeler, Schrödinger, Friston, Wiener, Ashby, Popper, Wu Xuemou's Pansystems, and Longbing Cao's Non-IIDness).
 
 ---
 
-## 📊 工业现场实证数据
-
-基于全球离散制造网络（联想及联宝科技）13 年的工程实践检验：
-- 48 小时交期应答率：$\ge 98\%$
-- 订单无延迟交付率：$\ge 95\%$
-- JIT 无提前发货控制率：$\ge 82\%$
-- 可建成库存 (ATB) 周转率提升：$15\% \sim 25\%$
-- 营运资金周转率提升：$20\%$
-- 硅基自主决策自动化率：$\ge 95\%$
+### 2. Physics of Value Chain Management (Applied Monograph)
+* **Status:** Engineering Codex & Applied Dimensionality Reduction Monograph
+* **Core Contribution:** Translates the First-Principles Physics Constitution into 100-billion-level discrete manufacturing battlefield execution, addressing node coupling, $O(N!)$ combinatorial complexity, and human-out-of-the-loop autonomous decision write-back.
 
 ---
 
-## 📚 思想同构映射
+## 🛠️ Repository Assets & arXiv Package
 
-文稿梳理了老庄、唯识、心学、康德、斯宾塞-布朗、惠勒、薛定谔、弗里斯顿、维纳、阿什比、考夫曼、西蒙、波普尔，以及钱学森（开放复杂巨系统）、吴学谋（泛系理论）、操龙兵（Non-IIDness 数据动力学）等学者在系统科学领域的机制同构。
-
----
-
-## 🌐 English Resources Section
-
-- **[Master Monograph PDF](./English_Manuscript/Value_Chain_Physics_Full_135Page_Master_En.pdf)**
-- **[System Constitution PDF](./English_Manuscript/System_and_Complexity_Science_Full_Book_Unabridged_En.pdf)**
-- **[Overleaf Source (`main.tex`)](./main.tex)**
+- **Canonical Monograph LaTeX Source:** [`main.tex`](./main.tex)
+- **arXiv Clean Submission Tarball:** [`arXiv_clean_package.tar.gz`](./arXiv_clean_package.tar.gz)
+- **Canonical Text Data:** [`canonical_chinese_text.txt`](./canonical_chinese_text.txt)
 
 ---
-*© 2026 孟凡淳. 保留所有权利。*
+
+## 🏛️ Summary of Axiomatic Laws
+
+```
+[Disorder] --(Observer Partition \Pi)--> [Ideal World \Omega] --(Rigid Constraint \Pi_\bot)--> [Preserved Order]
+                                                                        |
+                                                                  (Residual \Delta)
+                                                                        |
+                                                              (Meta-Cognition \Phi)
+                                                                        v
+                                                           [Intergenerational Evolution]
+```
+
+---
+*Copyright © 2026 Grit Meng (Fanchun Meng). All rights reserved.*

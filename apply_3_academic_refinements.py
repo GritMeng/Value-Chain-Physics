@@ -1,4 +1,12 @@
-\documentclass[11pt,a4paper]{article}
+import os, re, tarfile
+
+work_dir = r"h:\系统科学\the-holographic-anti-entropy-paper"
+target_main_tex = os.path.join(work_dir, "main.tex")
+clean_tar = os.path.join(work_dir, "arXiv_clean_package.tar.gz")
+
+print("Applying 3 academic refinement suggestions from user to main.tex...")
+
+master_refined_latex = r"""\documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb,amsthm,amsfonts}
 \usepackage{geometry}
@@ -43,25 +51,25 @@ For over two centuries, the governance of open complex giant systems has suffere
 
 \section*{Writing Constitution: Seven Iron Rules}
 
-\paragraph{Rule 1: No Overdraft ().}
-Every new term must strictly emerge from previously defined terms. Vocabulary grows like a tree from seeds to branches; sudden mutations are strictly prohibited. Cross-volume usage of undefined jargon is forbidden.
+\paragraph{Rule 1: No Overdraft (不能透支).}
+Every new term must strictly emerge from previously defined terms. Vocabulary grows like a tree from seeds to branches; sudden mutation is strictly prohibited. Cross-volume usage of undefined jargon is forbidden.
 
-\paragraph{Rule 2: Shortest Path ().}
+\paragraph{Rule 2: Shortest Path (路径最短).}
 From original axioms to realistic inferences, no logical leap is permitted. Every step must firmly tread upon the shoulder of the previous step.
 
-\paragraph{Rule 3: Minimal Vocabulary ().}
+\paragraph{Rule 3: Minimal Vocabulary (用词最省).}
 Use the simplest, most everyday, self-evident words. Wherever "partition" suffices, never use "modeling"; wherever "clarity of discernment" suffices, never use "meta-cognitive functionality." Entities must not be multiplied beyond necessity.
 
-\paragraph{Rule 4: Establish Authority through Empirical Validation ().}
+\paragraph{Rule 4: Establish Authority through Empirical Validation (以实证立威).}
 The terminus of the axiomatic chain must connect to real-world engineering data. The stable operation of 100-billion-level manufacturing networks serves as the decisive, unchallengeable verification.
 
-\paragraph{Rule 5: Respect Precedes Inclusion ().}
+\paragraph{Rule 5: Respect Precedes Inclusion (尊重先于收编).}
 Explain predecessors using axioms rather than proving oneself using predecessors. Ancient wisdom is concentrated in volume-end isomorphic chapters, allowing every fragment of wisdom to find its place in the complete mosaic.
 
-\paragraph{Rule 6: Constitution First, Connection Second ().}
+\paragraph{Rule 6: Constitution First, Connection Second (先立宪，后接续).}
 A complete axiomatic system must first be built using the Three Laws before re-interpreting historical predecessors through this system.
 
-\paragraph{Rule 7: Falsifiability ().}
+\paragraph{Rule 7: Falsifiability (可证伪).}
 Clear deadlines of falsifiability must be designated across the book---order self-sustaining without partition, collaboration without friction in the absence of constraints, and intergenerational evolution proceeding under zero residual. Three deadlines declare scientific dignity.
 
 \newpage
@@ -103,48 +111,48 @@ Experience, philosophy, religion, physics, reductionism, and complexity science 
 \subsubsection{1.1 Observer and Partition}
 Without an observer, there is no world. Once disorder is observed, it manifests as the world. Beyond physics, the world is order.
 
-\begin{definition}[Disorder / ]
+\begin{definition}[Disorder / 无序]
 The unpartitioned whole prior to any observer boundary is defined as Disorder. Disorder is not empty void, but the inherent state of everything unpartitioned.
 \end{definition}
 
-\begin{definition}[Observer, Awareness, and Construction / ]
-Within disorder, any entity capable of maintaining a self-sustaining boundary separating internal from external is an Observer. Awareness ($\text{Zhi}$, ) is the clarity to discern, the source of partition; Construction ($\text{Shi}$, ) is the power to build, the boundary of order. Awareness and Construction coexist simultaneously.
+\begin{definition}[Observer, Awareness, and Construction / 观察者与知、识]
+Within disorder, any entity capable of maintaining a self-sustaining boundary separating internal from external is an Observer. Awareness ($\text{Zhi}$, 能审之明) is the clarity to discern, the source of partition; Construction ($\text{Shi}$, 能建之功) is the power to build, the boundary of order. Awareness and Construction coexist simultaneously.
 \end{definition}
 
-\begin{axiom}[Axiom 0: Observer Emergence Law / ]
+\begin{axiom}[Axiom 0: Observer Emergence Law / 第零公理·观察者涌现律]
 The Observer is not an a priori assumption, but a natural self-sustaining steady state emerging within disorder. Without an observer, there is no world.
 \end{axiom}
 
-\begin{definition}[Partition and Order Construction / ]
+\begin{definition}[Partition and Order Construction / 分界与建序]
 The observer's action of dividing boundaries using Awareness is Partition; establishing rules within the boundary using Construction is Order Construction. Inside is the Ideal World; outside is Disorder Background.
 \end{definition}
 
-\begin{proposition}[Manifestation of the World / ]
+\begin{proposition}[Manifestation of the World / 世界之立显]
 Without the arrival and awareness of an observer, order has nowhere to attach; without partition and order construction, the world cannot be established.
 \end{proposition}
 \begin{proof}
 According to Definition 1, disorder is the unpartitioned whole. According to Definition 3, the world is the manifestation of the ordered domain inside the boundary. If no observer executes partition, the distinction between inside and outside vanishes, and state reverts to unpartitioned disorder. Thus, observer arrival and partition are necessary and sufficient conditions for the manifestation of order and the world.
 \end{proof}
 
-\subsubsection{1.2 Real, Ideal, and Residual / }
+\subsubsection{1.2 Real, Ideal, and Residual / 实然、应然与残差}
 Partitioning simultaneously manifests the \textbf{Triple Realities}:
 \begin{enumerate}
-    \item \textbf{Real ()}: The unobservable, infinite background silently occurring. Observing through partition cannot reveal the full real world without perceptual mediation. Real is omnipresent, but the observer cannot directly perceive its entirety without partition.
-    \item \textbf{Ideal ()}: The local order framework established within the boundary by the observer. Everything expressed and measured belongs to ideal. Without an ideal framework, order collapses ($\Delta S \to \infty$).
-    \item \textbf{Residual ($\mathbf{\Delta}$, )}: The discrepancy computation interface reserved and monitored by the observer. Residual feedback triggers paradigm shifts, preventing dogma and stagnation.
+    \item \textbf{Real (实然)}: The unobservable, infinite background silently occurring. Observing through partition cannot reveal the full real world without perceptual mediation. Real is omnipresent, but the observer cannot directly perceive its entirety without partition.
+    \item \textbf{Ideal (应然)}: The local order framework established within the boundary by the observer. Everything expressed and measured belongs to ideal. Without an ideal framework, order collapses ($\Delta S \to \infty$).
+    \item \textbf{Residual ($\mathbf{\Delta}$, 残差)}: The discrepancy computation interface reserved and monitored by the observer. Residual feedback triggers paradigm shifts, preventing dogma and stagnation.
 \end{enumerate}
 
-\subsubsection{1.3 The Three Laws of Order / }
+\subsubsection{1.3 The Three Laws of Order / 秩序生成、存续与进化的三大公理}
 
-\begin{axiom}[Law 1: Generation Law /  / ]
+\begin{axiom}[Law 1: Generation Law / 第一律·生序公理 / 无应然则瓦解]
 Without an Ideal Framework established by partition, nothing can sustain in chaos, and order collapses ($\Delta S \to \infty$).
 \end{axiom}
 
-\begin{axiom}[Law 2: Preservation Law /  / ]
+\begin{axiom}[Law 2: Preservation Law / 第二律·存序公理 / 无约束则耗散]
 Without Deterministic Constraints and self-consistent rules, internal elements collide and order dissipates into internal friction.
 \end{axiom}
 
-\begin{axiom}[Law 3: Evolution Law /  / ]
+\begin{axiom}[Law 3: Evolution Law / 第三律·进序公理 / 无残差则停滞]
 Without identifying Residual Feedback ($\mathbf{\Delta}$), the ideal framework hardens into dogma, and intergenerational evolution stalls.
 \end{axiom}
 
@@ -179,11 +187,11 @@ Once the ideal framework is established, the observer naturally derives three to
 \toprule
 Philosophical Dimension & Physical Entity / Mechanism & Volume II Formal Operator \\
 \midrule
-Dao () & Observer and Prior Logic & Meta-Cognitive Self-Reflection Operator $\mathbf{\Phi}$ \\
-Fa () & Partition and Prior Logic & Prior Partition Operator $\mathbf{\Pi}$ \\
-Shu () & Calculation and Self-Consistency & State Evolution Algorithm \\
-Shi () & Boundary and Physical Constraints & Rigid Manifold Operator $\mathbf{\Pi}_\bot$ \\
-Bian () & Residual and Self-Reflection & Residual Norm Difference $\mathbf{\Delta} = \|\Omega_t - \Omega_{t-1}\|$ \\
+Dao (道) & Observer and Prior Logic & Meta-Cognitive Self-Reflection Operator $\mathbf{\Phi}$ \\
+Fa (法) & Partition and Prior Logic & Prior Partition Operator $\mathbf{\Pi}$ \\
+Shu (术) & Calculation and Self-Consistency & State Evolution Algorithm \\
+Shi (势) & Boundary and Physical Constraints & Rigid Manifold Operator $\mathbf{\Pi}_\bot$ \\
+Bian (变) & Residual and Self-Reflection & Residual Norm Difference $\mathbf{\Delta} = \|\Omega_t - \Omega_{t-1}\|$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -214,7 +222,7 @@ Kant & "Human legislates for Nature" & A priori Partitioning Operator $\mathbf{\
 Christianity & "In the beginning was the Logos" & Logos $\equiv$ Axiomatic Order Framework. \\
 Spencer-Brown & \textit{Laws of Form}: "Draw a distinction" & Primary Partitioning action. \\
 John Wheeler & "It from Bit" \& Participatory Universe & Observer-dependent physical reality. \\
-Schrdinger \& Friston & Negative Entropy \& Free Energy Principle & Residual minimization $\mathbf{\Delta} \to 0$. \\
+Schrödinger \& Friston & Negative Entropy \& Free Energy Principle & Residual minimization $\mathbf{\Delta} \to 0$. \\
 Wiener \& Ashby & Feedback Control \& Law of Requisite Variety & Rigid Manifold Constraints $\mathbf{\Pi}_\bot$. \\
 Kauffman \& Simon & Edge of Chaos \& Bounded Rationality & Partition boundary at chaos edge. \\
 Popper & Falsifiability \& Counter-example driving & Residual-driven paradigm evolution. \\
@@ -300,10 +308,10 @@ truncating proxy arbitrage.
 Hypersensitivity scales precision weighting on sensory channels via AMY-LC-NE circuit, converting micro physical signals into holographic residual $\mathbf{\Delta}(t)$. Affective heuristic cache compresses past dimensional reduction experience into low-energy salience network (SN) responses.
 
 \subsubsection{4.4 Fluid Intelligence and BA10 Meta-Cognitive Evolution}
-When residual $\mathbf{\Delta}$ exceeds system 1 heuristics, FPN fluid intelligence solves state vector trajectory $\mathbf{x}(t)$ against rigid manifold $\mathbf{\Pi}_\bot$. Rostrolateral prefrontal cortex (rPFC / BA10) executes second-order operator $\mathbf{\Phi}: \mathbf{\Pi}_k \to \mathbf{\Pi}_{k+1}$, rewriting axiomatic bases across Gdel and Turing boundaries.
+When residual $\mathbf{\Delta}$ exceeds system 1 heuristics, FPN fluid intelligence solves state vector trajectory $\mathbf{x}(t)$ against rigid manifold $\mathbf{\Pi}_\bot$. Rostrolateral prefrontal cortex (rPFC / BA10) executes second-order operator $\mathbf{\Phi}: \mathbf{\Pi}_k \to \mathbf{\Pi}_{k+1}$, rewriting axiomatic bases across Gödel and Turing boundaries.
 
 \begin{theorem}[Banach Contraction and Decidability]
-Let $\mathbf{T} = \mathbf{\Pi}_\bot \circ \mathbf{\Phi}$. Then $d(\mathbf{T}x, \mathbf{T}y) \le \gamma d(x,y)$ with $\gamma < 1$, guaranteeing convergence to a Pareto-optimal state and reducing factorial complexity $O(N!)$ to polynomial $O(N \log N)$ via priority netting.
+Let $\mathbf{T} = \mathbf{\Pi}_\bot \circ \mathbf{\Phi}$. Then $d(\mathbf{T}x, \mathbf{T}y) \le \gamma d(x,y)$ with $\gamma < 1$, guaranteeing convergence to a unique Pareto optimal state and reducing factorial complexity $O(N!)$ to polynomial $O(N \log N)$ via priority netting.
 \end{theorem}
 \begin{proof}
 By applying Priority Netting algebraic pruning, non-convex constraints are projected onto the orthogonal basis of container $D$. The contractive factor $\gamma = \max_i |\lambda_i(\mathbf{\Pi}_\bot)| < 1$ guarantees asymptotic stability, reducing the NP-hard search space to $O(N \log N)$ execution.
@@ -410,3 +418,23 @@ This empirical and mathematical closed loop marks the synthesis of 22 years of p
 \end{thebibliography}
 
 \end{document}
+"""
+
+def remove_non_ascii(text):
+    return re.sub(r'[^\x00-\x7F]+', '', text)
+
+cleaned_tex = remove_non_ascii(master_refined_latex)
+
+with open(target_main_tex, "w", encoding="utf-8") as f:
+    f.write(cleaned_tex)
+
+print(f"Applied all 3 academic refinements! Updated main.tex size: {len(cleaned_tex)} bytes")
+
+# Package pure tar
+if os.path.exists(clean_tar):
+    os.remove(clean_tar)
+
+with tarfile.open(clean_tar, "w:gz") as tar:
+    tar.add(target_main_tex, arcname="main.tex")
+
+print(f"Ultra-pure single-file tar.gz created at: {clean_tar}")

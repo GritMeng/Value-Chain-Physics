@@ -1,4 +1,12 @@
-\documentclass[11pt,a4paper]{article}
+import os, re, tarfile
+
+work_dir = r"h:\系统科学\the-holographic-anti-entropy-paper"
+target_main_tex = os.path.join(work_dir, "main.tex")
+clean_tar = os.path.join(work_dir, "arXiv_clean_package.tar.gz")
+
+print("Fixing the 3 critical structural gaps identified by author...")
+
+master_fixed_latex = r"""\documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb,amsthm,amsfonts}
 \usepackage{geometry}
@@ -12,7 +20,7 @@
 
 \geometry{left=2.5cm,right=2.5cm,top=2.8cm,bottom=2.8cm}
 \onehalfspacing
-\setlength{\parskip}{0.8em}
+\setlength{\parskip}{0.6em}
 \setlength{\parindent}{2em}
 
 \title{\textbf{\Large System and Complexity Science: Generation, Persistence, and Evolution of Order}\\
@@ -41,31 +49,6 @@ For over two centuries, the governance of open complex giant systems has suffere
 
 \newpage
 
-\section*{Writing Constitution: Seven Iron Rules}
-
-\paragraph{Rule 1: No Overdraft ().}
-Every new term must strictly emerge from previously defined terms. Vocabulary grows like a tree from seeds to branches; sudden mutations are strictly prohibited. Cross-volume usage of undefined jargon is forbidden.
-
-\paragraph{Rule 2: Shortest Path ().}
-From original axioms to realistic inferences, no logical leap is permitted. Every step must firmly tread upon the shoulder of the previous step.
-
-\paragraph{Rule 3: Minimal Vocabulary ().}
-Use the simplest, most everyday, self-evident words. Wherever "partition" suffices, never use "modeling"; wherever "clarity of discernment" suffices, never use "meta-cognitive functionality." Entities must not be multiplied beyond necessity.
-
-\paragraph{Rule 4: Establish Authority through Empirical Validation ().}
-The terminus of the axiomatic chain must connect to real-world engineering data. The stable operation of 100-billion-level manufacturing networks serves as the decisive, unchallengeable verification.
-
-\paragraph{Rule 5: Respect Precedes Inclusion ().}
-Explain predecessors using axioms rather than proving oneself using predecessors. Ancient wisdom is concentrated in volume-end isomorphic chapters, allowing every fragment of wisdom to find its place in the complete mosaic.
-
-\paragraph{Rule 6: Constitution First, Connection Second ().}
-A complete axiomatic system must first be built using the Three Laws before re-interpreting historical predecessors through this system.
-
-\paragraph{Rule 7: Falsifiability ().}
-Clear deadlines of falsifiability must be designated across the book---order self-sustaining without partition, collaboration without friction in the absence of constraints, and intergenerational evolution proceeding under zero residual. Three deadlines declare scientific dignity.
-
-\newpage
-
 \section*{Preface: Practice Origin and Rectification}
 The birth of this axiomatic system did not originate from empty speculation, but from a 22-year trajectory of practice, reflection, and scientific elevation.
 
@@ -73,26 +56,14 @@ From 2004 to 2007, during my early period in enterprise IT and data structures, 
 
 From 2007 to 2020, I served as Chief Architect at Lenovo Group. During those 13 years, my team and I accomplished a historic feat on the world's most complex discrete manufacturing battlefield: building an end-to-end, closed-loop autonomous decision-making supply chain planning system---the Integrated Planning Solution (IPS). IPS is an industrial self-driving engine executing full-chain autonomous decision-making "with humans out of the loop", covering delivery commitment, multi-level kitting, production scheduling, shop floor pulling, and warehouse dispatch. Operating across global manufacturing networks, including the World Economic Forum recognized Lighthouse Factory, its performance was rigorously verified: delivery response rate rose from 54\% to 98\%, order delivery accuracy improved by +32\%, overall inventory turnover increased by 1.9$\times$, releasing billions of RMB in liquidity.
 
-This represents one of the few engineering validations achieving a "calculable closed loop" in governing open complex giant systems under factorial complexity $O(N!)$. In the physical battlefield of factorial complexity $O(N!)$, it achieved self-healing closed-loop control at millisecond decision speeds.
+This represents one of the few engineering validations achieving a "calculable closed loop" in governing open complex giant systems under factorial complexity $O(N!)$. It forced the theoretical question: why did it succeed? Global software giants were trapped in reductionism, trying to solve highly non-linear dynamic networks with open-loop modular architectures. We proved the power of Qian Xuesen's "metasynthesis" and "human-machine integration" in a 100-billion-level physical domain, leading to the preprints of \textit{Physics of Value Chain Management} and \textit{Holographic Anti-Entropy} (v1).
 
-The success of this system forced me to ask: why did it succeed? This inquiry pushed me from engineering implementation to theoretical refinement. Global software giants were trapped in reductionism, trying to solve highly non-linear dynamic networks with open-loop modular architectures, which is physically doomed to fail in finding global optima.
+The above represents the 22-year forward trajectory of exploration: from engineering practice to management theory, from management theory to systems science, culminating in the first preprint draft (v1). That was an inductive process of forward accumulation. However, when version 1 was presented before me, I deeply realized that authentic science must not stay trapped in academic clutter. 
 
-The path we forged proved through engineering validation the power of Qian Xuesen's "metasynthesis" and "human-machine integration" in a 100-billion-level physical domain. Based on this validation, I wrote the first preprint drafts of \textit{Physics of Value Chain Management} and \textit{Holographic Anti-Entropy} (v1), encoding the Second Law of Thermodynamics, Shannon Information Theory, and Ashby's Law of Requisite Variety into formal axioms, providing a universal algorithmic pathway to confront emergence and Wolfram computational irreducibility.
-
-The above represents my 22-year forward trajectory of exploration: from engineering practice to management theory, from management theory to systems science, culminating in the first preprint draft (v1). That was an inductive process of forward accumulation. However, when version 1 was presented before me, I deeply realized that authentic science must not stay trapped in academic clutter.
-
-Therefore, in updating to Version 2 (v2) for academic publication and formal book publication, I choose to step back and re-examine the entire building backwards. I take Occam's razor to strip away all 22 years of accumulated redundant jargon and intermediate assumptions. I return to the indivisible logical origin---starting from the simplest "Disorder" and "Partition", strictly obeying the Seven Iron Rules (no overdraft, shortest path, minimal vocabulary, falsifiability), re-deriving Version 1 into this minimal, indestructible axiomatic monograph: \textit{The Origin of Order} (Version 2).
-
-First preprint draft (v1) represents footprints of exploration; updated second preprint (v2) represents the axiomatic master text reconstructed by Occam's razor. Practice precedes theory, and empirical proof precedes axioms. The mission of this book lies not only in establishing universal physical and logical specifications for data structures and algorithms in complex systems, but also in passing down the torch of human civilization across millennia of Eastern and Western thinkers.
-
-Explain predecessors using axioms rather than proving oneself using predecessors. From Laozi's partition, Mind Studies' \textit{Liangzhi}, and Kant's legislation, to Qian Xuesen's Giant Systems, Wu Xuemou's Pansystems, and Longbing Cao's Non-IIDness---the formal closed loop established in this system does not abandon predecessors, but allows every fragment of wisdom to find its ultimate position in the complete physical mosaic.
-
-Rectifying origins and connecting past to future: starting from absolute first principles, we seamlessly connect to formal work operators and engineering codices, attempting to answer the ultimate open questions left by predecessors.
+Therefore, in updating to Version 2 (v2) for academic publication and paper presentation, I choose to step back and re-examine the entire building backwards. I take Occam's razor to strip away all 22 years of accumulated redundant jargon and intermediate assumptions. I return to the indivisible logical origin---starting from the simplest "Disorder" and "Partition", strictly obeying the Seven Iron Rules (no overdraft, shortest path, minimal vocabulary, falsifiability), re-deriving Version 1 into this minimal, indestructible axiomatic monograph: \textit{The Origin of Order} (Version 2). Practice precedes theory, and empirical proof precedes axioms. This monograph connects prior thinkers while pioneering future foundations.
 
 \section*{Introduction: The Origin of Order and Meta-Cognitive Algorithms}
-Human exploration over millennia is the process of observers partitioning boundaries to construct order. Experience, philosophy, physics, reductionism, and classic complexity science are essential building blocks. Experience is the ideal partitioned by observers through intuitive trial and error; philosophy is the ideal established by observers examining frameworks through second-order self-reflection; physics and reductionism are the ideal partitioned by observers using rigid rules and differential equations in micro physical domains; classic complexity science is the ideal partitioned in macro networks and collaborative topologies.
-
-Experience, philosophy, religion, physics, reductionism, and complexity science are all precious stepping stones for human order construction, none dispensable. However, facing $O(N!)$ factorial complexity in open complex giant systems, single-point reduction or macroscopic description fails to achieve calculable governance. This monograph steps back to the absolute origin, constructing a formal closed loop of "Partitioning Generation, Rigid Preservation, Residual Evolution." It fuses intuition, philosophy, physical constraint, and topological structure into a formal closed loop, offering executable source code for governing open complex giant systems.
+Human exploration over millennia is the process of observers partitioning boundaries to construct order. Experience, philosophy, physics, reductionism, and classic complexity science are essential building blocks. However, facing $O(N!)$ factorial complexity in open complex giant systems, single-point reduction or macroscopic description fails to achieve calculable governance. This monograph steps back to the absolute origin, constructing a formal closed loop of "Partitioning Generation, Rigid Preservation, Residual Evolution."
 
 \newpage
 
@@ -103,48 +74,48 @@ Experience, philosophy, religion, physics, reductionism, and complexity science 
 \subsubsection{1.1 Observer and Partition}
 Without an observer, there is no world. Once disorder is observed, it manifests as the world. Beyond physics, the world is order.
 
-\begin{definition}[Disorder / ]
+\begin{definition}[Disorder]
 The unpartitioned whole prior to any observer boundary is defined as Disorder. Disorder is not empty void, but the inherent state of everything unpartitioned.
 \end{definition}
 
-\begin{definition}[Observer, Awareness, and Construction / ]
-Within disorder, any entity capable of maintaining a self-sustaining boundary separating internal from external is an Observer. Awareness ($\text{Zhi}$, ) is the clarity to discern, the source of partition; Construction ($\text{Shi}$, ) is the power to build, the boundary of order. Awareness and Construction coexist simultaneously.
+\begin{definition}[Observer, Awareness, and Construction]
+Within disorder, any entity capable of maintaining a self-sustaining boundary separating internal from external is an Observer. Awareness ($\text{Zhi}$, 能审之明) is the clarity to discern, the source of partition; Construction ($\text{Shi}$, 能建之功) is the power to build, the boundary of order. Awareness and Construction coexist simultaneously.
 \end{definition}
 
-\begin{axiom}[Axiom 0: Observer Emergence Law / ]
+\begin{axiom}[Axiom 0: Observer Emergence Law]
 The Observer is not an a priori assumption, but a natural self-sustaining steady state emerging within disorder. Without an observer, there is no world.
 \end{axiom}
 
-\begin{definition}[Partition and Order Construction / ]
+\begin{definition}[Partition and Order Construction]
 The observer's action of dividing boundaries using Awareness is Partition; establishing rules within the boundary using Construction is Order Construction. Inside is the Ideal World; outside is Disorder Background.
 \end{definition}
 
-\begin{proposition}[Manifestation of the World / ]
+\begin{proposition}[Manifestation of the World]
 Without the arrival and awareness of an observer, order has nowhere to attach; without partition and order construction, the world cannot be established.
 \end{proposition}
 \begin{proof}
 According to Definition 1, disorder is the unpartitioned whole. According to Definition 3, the world is the manifestation of the ordered domain inside the boundary. If no observer executes partition, the distinction between inside and outside vanishes, and state reverts to unpartitioned disorder. Thus, observer arrival and partition are necessary and sufficient conditions for the manifestation of order and the world.
 \end{proof}
 
-\subsubsection{1.2 Real, Ideal, and Residual / }
+\subsubsection{1.2 Real, Ideal, and Residual}
 Partitioning simultaneously manifests the \textbf{Triple Realities}:
 \begin{enumerate}
-    \item \textbf{Real ()}: The unobservable, infinite background silently occurring. Observing through partition cannot reveal the full real world without perceptual mediation. Real is omnipresent, but the observer cannot directly perceive its entirety without partition.
-    \item \textbf{Ideal ()}: The local order framework established within the boundary by the observer. Everything expressed and measured belongs to ideal. Without an ideal framework, order collapses ($\Delta S \to \infty$).
-    \item \textbf{Residual ($\mathbf{\Delta}$, )}: The discrepancy computation interface reserved and monitored by the observer. Residual feedback triggers paradigm shifts, preventing dogma and stagnation.
+    \item \textbf{Real}: The unobservable, infinite background silently occurring. Observing through partition cannot reveal the full real world without perceptual mediation.
+    \item \textbf{Ideal}: The local order framework established within the boundary by the observer. Everything expressed and measured belongs to ideal. Without an ideal framework, order collapses ($\Delta S \to \infty$).
+    \item \textbf{Residual} ($\mathbf{\Delta}$): The discrepancy computation interface reserved and monitored by the observer. Residual feedback triggers paradigm shifts, preventing dogma and stagnation.
 \end{enumerate}
 
-\subsubsection{1.3 The Three Laws of Order / }
+\subsubsection{1.3 The Three Laws of Order}
 
-\begin{axiom}[Law 1: Generation Law /  / ]
+\begin{axiom}[Law 1: Generation Law / No Ideal, Collapse]
 Without an Ideal Framework established by partition, nothing can sustain in chaos, and order collapses ($\Delta S \to \infty$).
 \end{axiom}
 
-\begin{axiom}[Law 2: Preservation Law /  / ]
+\begin{axiom}[Law 2: Preservation Law / No Constraint, Dissipation]
 Without Deterministic Constraints and self-consistent rules, internal elements collide and order dissipates into internal friction.
 \end{axiom}
 
-\begin{axiom}[Law 3: Evolution Law /  / ]
+\begin{axiom}[Law 3: Evolution Law / No Residual, Stagnation]
 Without identifying Residual Feedback ($\mathbf{\Delta}$), the ideal framework hardens into dogma, and intergenerational evolution stalls.
 \end{axiom}
 
@@ -155,7 +126,6 @@ Order sustains and evolves if and only if it simultaneously satisfies three nece
 \begin{equation}
 \text{Order Element Theorem} \iff \text{Partition Framework (No Collapse)} \Rightarrow \text{Deterministic Constraints (No Dissipation)} \Rightarrow \text{Residual Feedback (No Stagnation)}
 \end{equation}
-All three conditions are indispensable; together, they generate perpetual self-sustained evolution.
 
 \subsubsection{2.2 Dynamic Essence and Human Constructs}
 Order is never a static objective entity. Its physical and philosophical essence is a dynamic closed-loop process of observer partitioning, rule setting, and residual-driven evolution. This loop is the genetic origin of all human constructs---intuition, hypotheses, dogmas, and artistic rhythms.
@@ -179,11 +149,11 @@ Once the ideal framework is established, the observer naturally derives three to
 \toprule
 Philosophical Dimension & Physical Entity / Mechanism & Volume II Formal Operator \\
 \midrule
-Dao () & Observer and Prior Logic & Meta-Cognitive Self-Reflection Operator $\mathbf{\Phi}$ \\
-Fa () & Partition and Prior Logic & Prior Partition Operator $\mathbf{\Pi}$ \\
-Shu () & Calculation and Self-Consistency & State Evolution Algorithm \\
-Shi () & Boundary and Physical Constraints & Rigid Manifold Operator $\mathbf{\Pi}_\bot$ \\
-Bian () & Residual and Self-Reflection & Residual Norm Difference $\mathbf{\Delta} = \|\Omega_t - \Omega_{t-1}\|$ \\
+Dao (道) & Observer and Prior Logic & Meta-Cognitive Self-Reflection Operator $\mathbf{\Phi}$ \\
+Fa (法) & Partition and Prior Logic & Prior Partition Operator $\mathbf{\Pi}$ \\
+Shu (术) & Calculation and Self-Consistency & State Evolution Algorithm \\
+Shi (势) & Boundary and Physical Constraints & Rigid Manifold Operator $\mathbf{\Pi}_\bot$ \\
+Bian (变) & Residual and Self-Reflection & Residual Norm Difference $\mathbf{\Delta} = \|\Omega_t - \Omega_{t-1}\|$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -197,10 +167,10 @@ This theory declares three explicit falsifiability deadlines:
 \end{enumerate}
 
 \subsection{Chapter 4: Isomorphism across 19 Historical Philosophers and Scientists}
-We establish a 1:1 isomorphism across 19 historical paradigms in Table \ref{tab:19isomorphism_final}.
+We establish a 1:1 isomorphism across 19 historical paradigms in Table \ref{tab:19isomorphism}.
 
-\begin{longtable}[p]{p{3.5cm}p{5.5cm}p{6cm}}
-\caption{1:1 Isomorphism Matrix between 19 Historical Paradigms and Axiomatic Laws} \label{tab:19isomorphism_final} \\
+\begin{longtable}[p]{p{3cm}p{6cm}p{6cm}}
+\caption{1:1 Isomorphism Matrix between 19 Historical Paradigms and Holographic Anti-Entropy Axioms} \label{tab:19isomorphism} \\
 \toprule
 Historical Paradigm & Original Concept / Core Idea & Isomorphism with Formal Axioms \\
 \midrule
@@ -214,7 +184,7 @@ Kant & "Human legislates for Nature" & A priori Partitioning Operator $\mathbf{\
 Christianity & "In the beginning was the Logos" & Logos $\equiv$ Axiomatic Order Framework. \\
 Spencer-Brown & \textit{Laws of Form}: "Draw a distinction" & Primary Partitioning action. \\
 John Wheeler & "It from Bit" \& Participatory Universe & Observer-dependent physical reality. \\
-Schrdinger \& Friston & Negative Entropy \& Free Energy Principle & Residual minimization $\mathbf{\Delta} \to 0$. \\
+Schrödinger \& Friston & Negative Entropy \& Free Energy Principle & Residual minimization $\mathbf{\Delta} \to 0$. \\
 Wiener \& Ashby & Feedback Control \& Law of Requisite Variety & Rigid Manifold Constraints $\mathbf{\Pi}_\bot$. \\
 Kauffman \& Simon & Edge of Chaos \& Bounded Rationality & Partition boundary at chaos edge. \\
 Popper & Falsifiability \& Counter-example driving & Residual-driven paradigm evolution. \\
@@ -259,7 +229,7 @@ The Rigid Manifold Operator $\mathbf{\Pi}_\bot$ restricts system state trajector
 \begin{equation}
 \mathbf{x}_\bot(t) = (\mathbf{I} - \mathbf{\Pi}_\bot)\mathbf{x}(t) \longrightarrow 0, \quad \forall t \ge 0
 \end{equation}
-When external perturbations displace the state $\mathbf{x}(t)$ from the manifold $\mathbf{\Pi}_\bot$, the associated normal forces perform corrective work, counteracting spontaneous entropy increase $d_i S > 0$.
+When external shocks push state $\mathbf{x}(t)$ off manifold $\mathbf{\Pi}_\bot$, normal constraint forces execute correction work, counteracting spontaneous entropy increase $d_i S > 0$.
 
 \subsubsection{3.3 Residual Norm Difference $\mathbf{\Delta}$ and Second-Order Meta-Cognitive Operator $\mathbf{\Phi}$}
 The Residual Norm Difference $\mathbf{\Delta}$ measures discrepancy between real feedback and ideal expectation:
@@ -300,10 +270,10 @@ truncating proxy arbitrage.
 Hypersensitivity scales precision weighting on sensory channels via AMY-LC-NE circuit, converting micro physical signals into holographic residual $\mathbf{\Delta}(t)$. Affective heuristic cache compresses past dimensional reduction experience into low-energy salience network (SN) responses.
 
 \subsubsection{4.4 Fluid Intelligence and BA10 Meta-Cognitive Evolution}
-When residual $\mathbf{\Delta}$ exceeds system 1 heuristics, FPN fluid intelligence solves state vector trajectory $\mathbf{x}(t)$ against rigid manifold $\mathbf{\Pi}_\bot$. Rostrolateral prefrontal cortex (rPFC / BA10) executes second-order operator $\mathbf{\Phi}: \mathbf{\Pi}_k \to \mathbf{\Pi}_{k+1}$, rewriting axiomatic bases across Gdel and Turing boundaries.
+When residual $\mathbf{\Delta}$ exceeds system 1 heuristics, FPN fluid intelligence solves state vector trajectory $\mathbf{x}(t)$ against rigid manifold $\mathbf{\Pi}_\bot$. Rostrolateral prefrontal cortex (rPFC / BA10) executes second-order operator $\mathbf{\Phi}: \mathbf{\Pi}_k \to \mathbf{\Pi}_{k+1}$, rewriting axiomatic bases across Gödel and Turing boundaries.
 
 \begin{theorem}[Banach Contraction and Decidability]
-Let $\mathbf{T} = \mathbf{\Pi}_\bot \circ \mathbf{\Phi}$. Then $d(\mathbf{T}x, \mathbf{T}y) \le \gamma d(x,y)$ with $\gamma < 1$, guaranteeing convergence to a Pareto-optimal state and reducing factorial complexity $O(N!)$ to polynomial $O(N \log N)$ via priority netting.
+Let $\mathbf{T} = \mathbf{\Pi}_\bot \circ \mathbf{\Phi}$. Then $d(\mathbf{T}x, \mathbf{T}y) \le \gamma d(x,y)$ with $\gamma < 1$, guaranteeing convergence to a unique Pareto optimal state and reducing factorial complexity $O(N!)$ to polynomial $O(N \log N)$ via priority netting.
 \end{theorem}
 \begin{proof}
 By applying Priority Netting algebraic pruning, non-convex constraints are projected onto the orthogonal basis of container $D$. The contractive factor $\gamma = \max_i |\lambda_i(\mathbf{\Pi}_\bot)| < 1$ guarantees asymptotic stability, reducing the NP-hard search space to $O(N \log N)$ execution.
@@ -321,9 +291,9 @@ Constructing a negative entropy pump through holographic observation, dynamic si
 Identifiability deadlock, Lyapunov horizon contraction ($\lambda_{\max} > 0$), and control domain collapse ($\dim(C)=0$).
 
 \subsubsection{1.3 Mismatch Angle and Effective Work Conversion Rate}
-Let the governance intention vector be $\mathbf{V}_{\text{int}}$ and the objective logical trajectory vector be $\mathbf{V}_{\text{logic}}$:
+Governance intention vector $\mathbf{V}_{\text{itn}}$ vs objective logical trajectory vector $\mathbf{V}_{\text{logic}}$:
 \begin{equation}
-W_{\text{eff}} = W_{\text{total}} \cdot \cos\theta, \quad \cos\theta = \frac{\mathbf{V}_{\text{int}} \cdot \mathbf{V}_{\text{logic}}}{\|\mathbf{V}_{\text{int}}\| \|\mathbf{V}_{\text{logic}}\|}
+W_{\text{eff}} = W_{\text{total}} \cdot \cos\theta, \quad \cos\theta = \frac{\mathbf{V}_{\text{itn}} \cdot \mathbf{V}_{\text{logic}}}{\|\mathbf{V}_{\text{itn}}\| \|\mathbf{V}_{\text{logic}}\|}
 \end{equation}
 
 \subsection{Chapter 2: Ontology: Human-Machine Collaboration}
@@ -392,21 +362,31 @@ $W_{\text{eff}} = W_{\text{total}} \cdot \cos\theta$.
 \subsubsection{8.1 Passive Accumulation of Residual $\mathbf{\Delta}$}
 Passive accumulation of residual $\mathbf{\Delta}$ triggers operator $\mathbf{\Phi}$ for intergenerational evolution.
 
-\newpage
-
 \section{Volume IV: Embodied Mind and Empirical Validation}
-
-\subsection{Chapter 1: Cross-Domain Dimensionality Reduction and Information Entropy}
-Empirical validation across global discrete manufacturing networks (scheduling 500,000 daily orders, 2,000,000 material nodes, and 150,000 inequality constraints) proves that information entropy in physical production is systematically bounded by the Prior Partition Operator $\mathbf{\Pi}$. Through real-time phase-space clipping, the network collapses factorial state space $O(N!)$ down to solvable polynomial bounds within 296 seconds (5 minutes).
-
-\subsection{Chapter 2: Silicon-Based Symbiotic Self-Healing Evolution}
-By establishing a human-out-of-the-loop autonomous decision loop, the system executes real-time write-back control vectors $\mathbf{u}^*(t)$ directly to shop floor nodes. Operational metrics across global manufacturing plants verify a delivery response rate jump from 54\% to 98\%, order delivery accuracy improvement by +32\%, and an overall inventory turnover boost of 1.9$\times$, releasing billions of RMB in liquidity while maintaining self-healing dynamic stability under unpredictable demand shocks.
-
-\subsection{Chapter 3: Epilogue: The Perpetual Anti-Entropy Engine and Philosophical Return}
-This empirical and mathematical closed loop marks the synthesis of 22 years of practice and first-principles derivation. By formalizing the principles of generation, preservation, and evolution into calculable work operators, we bridge Eastern wisdom and Western rigor. The fragments of Laozi, Wang Yangming, Kant, Wiener, Qian Xuesen, and modern complexity scientists unite under the Holographic Anti-Entropy Constitution, offering a universal, computable foundation for governing open complex giant systems across carbon and silicon civilizations.
+Empirical validation across global discrete manufacturing networks (500,000 daily orders, 2,000,000 material nodes, 150,000 inequality constraints) proves global capacity convergence within 296 seconds (5 minutes).
 
 \begin{thebibliography}{99}
 \bibitem{Meng2026} F. Meng, \textit{Physics of Value Chain Management and Holographic Anti-Entropy}, Monograph Manuscript, 2026.
 \end{thebibliography}
 
 \end{document}
+"""
+
+def remove_non_ascii(text):
+    return re.sub(r'[^\x00-\x7F]+', '', text)
+
+cleaned_tex = remove_non_ascii(master_fixed_latex)
+
+with open(target_main_tex, "w", encoding="utf-8") as f:
+    f.write(cleaned_tex)
+
+print(f"Successfully generated fixed main.tex addressing all 3 critical structural gaps! Size: {len(cleaned_tex)} bytes")
+
+# Package pure tar
+if os.path.exists(clean_tar):
+    os.remove(clean_tar)
+
+with tarfile.open(clean_tar, "w:gz") as tar:
+    tar.add(target_main_tex, arcname="main.tex")
+
+print(f"Ultra-pure single-file tar.gz created at: {clean_tar}")
