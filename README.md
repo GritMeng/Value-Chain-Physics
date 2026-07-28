@@ -1,16 +1,17 @@
 # 系统与复杂性科学：秩序的生成、存续与进化
+# System & Complexity Science: Generation, Persistence, and Evolution of Order
 ### —— 价值链物理学与开放复杂巨系统的物理立宪
-*(System & Complexity Science: Value Chain Physics & The Physics Constitution of Open Complex Systems)*
+### —— Value Chain Physics & The Physics Constitution of Open Complex Systems
 
-> **预印本凭证**：[arXiv:submit/7871466 [cs.AI]](https://arxiv.org/) (价值链物理学) | [arXiv:submit/7871481 [cs.AI]](https://arxiv.org/) (系统与复杂性科学)  
-> **作者**：孟凡淳 (Grit Meng)  
-> **履历**：前联想集团全球供应链集成计划体系负责人 & 体系架构师 | 《价值链物理学》《全息抗熵》作者  
-> **联系邮箱**：gritmeng@outlook.com  
-> **项目代码库**：[https://github.com/GritMeng/Value-Chain-Physics](https://github.com/GritMeng/Value-Chain-Physics)
+> **arXiv Submissions**: [submit/7871466 [cs.AI]](https://arxiv.org/) (Value Chain Physics) | [submit/7871481 [cs.AI]](https://arxiv.org/) (System & Complexity Science)  
+> **Author**: Fanchun Meng (Grit Meng) / 孟凡淳  
+> **Title**: Former Head & Systems Architect, Global Supply Chain Integrated Planning, Lenovo Group / 前联想集团全球供应链集成计划体系负责人 & 体系架构师  
+> **Contact**: gritmeng@outlook.com  
+> **Repository**: [https://github.com/GritMeng/Value-Chain-Physics](https://github.com/GritMeng/Value-Chain-Physics)
 
 ---
 
-## 终局结果：22 年千亿级工业生态实证与复杂性科学突破
+## 终局结果 | Core Breakthroughs & Results
 
 本研究与工程体系历经 **22 年**战场洗礼，立足于**联想集团及其全球生态圈（涵盖多 BU 事业部、全球数十座工厂、跨国供应链）的千亿级真实工况**，取得了三项终局突破：
 
@@ -18,36 +19,44 @@
 2. **超级工业智能引擎**：贯通业务模型、算法算子与 **DOD（Data-Oriented Design / 面向数据设计）内存物理镜像**，实现了千亿级工况下的极速求解与抗熵治理；
 3. **复杂性科学可计算性的孤本实证**：构筑了**人类历史上极其罕见、针对千亿级真实工业生态复杂巨系统的可计算性实证**。
 
----
-
-## 思想升维与四重演进
-
-* **破局算法与底层结构**：为了打破求解器死锁与决策质速瓶颈，从业务方案算子切割，深入至 DOD 内存数据结构算法，实现了决策性能的穿透性飞跃；
-* **从经验走向物理科学**：为了区分经验规律中的偶然与必然，确立 8 大物理公理、做功夹角 $\cos\theta \to 1$ 与流量守恒，创立**《价值链物理学》**；
-* **复杂性科学大一统与立宪**：视角升维至**《系统与复杂性科学》**，形式化攻克复杂系统的“计算不可约性”（Computational Irreducibility），确立划界、刚性、残差三大公理，导出 5 大做功算子与 $O(N!) \to O(N \log N)$ 算子降维推导；
-* **秩序与全息元认知**：在《秩序的生成、存续与进化》中，阐明秩序、信息、系统与世界的内在一体性，归纳至**全息元认知**的心智本体。
-
----
-
-## 🧭 5 类读者专属探索通道
-
-* 🔬 **【复杂性科学与物理学者】** 👉 直达 [arXiv 预印本英文正本](./systems-and-complexity-science.md) 与 [形式化数学证明附录](./Formal_Mathematical_Proofs_Appendix.md)
-* 🏭 **【供应链与工业运营家】** 👉 直达 [破局篇：剖析工业界盲区](./Article_1_400Year_Reductionism_Breakthrough.md) 与 [《价值链物理学》8大公理](./value-chain-physics-book.md)
-* 💻 **【软件架构师与算法工程师】** 👉 直达 <a href="IPC_Governance_Showcase.html" target="_blank">3D 全息拓扑交互演示</a> 与 <a href="ipc_scheme_audit_agent.html" target="_blank">IPC 27项专利审查大表</a>
-* 👑 **【企业决策者与战略家】** 👉 直达 [《企业治理的物理宪法长文》](./The_Physics_Constitution_of_Enterprise_Governance.md) 与 [实施篇：离散制造转型迷途](./Article_3_Discrete_Manufacturing_Breakthrough.md)
-* 🤖 **【AI 与具身智能研究者】** 👉 直达 [《AI与具身宪法：大模型为什么会产生幻觉》](./系列B_AI与具身宪法_大模型为什么会产生幻觉.md)
+> **Executive Summary**:  
+> Grounded in 22 years of real-world practice across Lenovo's $100B+ global industrial ecosystem (covering multiple BUs, dozens of global factories, and cross-border supply chains), this work establishes the **Physics Constitution for Open Complex Giant Systems**. 
+> 
+> Key Achievements:
+> • **Autonomous Decision-Making**: Achieves automated end-to-end alignment from planning to execution to feedback.  
+> • **DOD Bare-Metal Engine**: Deploys a Data-Oriented Design (DOD) memory physics engine for high-concurrency anti-entropy governance.  
+> • **Empirical Proof of Computability**: Overcomes computational irreducibility in complex giant systems, reducing complexity from $O(N!) \to O(N \log N)$, serving as a rare empirical benchmark in human history.
 
 ---
 
-## 🏛️ 核心文献双轨阵营 (Document Directory)
+## 思想升维与四重演进 | Evolution of Paradigm
 
-### 阵营一：形式化理论与数学证明 (Formal Science & Proofs)
+* **破局算法与底层结构 (Engine & Algorithm Level)**：为了打破求解器死锁与决策质速瓶颈，从业务方案算子切割，深入至 DOD 内存数据结构算法，实现了决策性能的穿透性飞跃；
+* **从经验走向物理科学 (Value Chain Physics Level)**：为了区分经验规律中的偶然与必然，确立 8 大物理公理、做功夹角 $\cos\theta \to 1$ 与流量守恒，创立**《价值链物理学》**；
+* **复杂性科学大一统与立宪 (System Science & Constitution Level)**：视角升维至**《系统与复杂性科学》**，形式化攻克复杂系统的“计算不可约性”（Computational Irreducibility），确立划界、刚性、残差三大公理，导出 5 大做功算子与 $O(N!) \to O(N \log N)$ 算子降维推导；
+* **秩序与全息元认知 (Order & Holographic Meta-Cognition)**：在《秩序的生成、存续与进化》中，阐明秩序、信息、系统与世界的内在一体性，归纳至**全息元认知**的心智本体。
+
+---
+
+## 🧭 5 类读者专属探索通道 | Fast Tracks by Persona
+
+* 🔬 **【复杂性科学与物理学者】 Complex Systems & Physics Scholars** 👉 直达 [arXiv 预印本英文正本](./systems-and-complexity-science.md) 与 [形式化数学证明附录](./Formal_Mathematical_Proofs_Appendix.md)
+* 🏭 **【供应链与工业运营家】 Operations & Supply Chain Leaders** 👉 直达 [破局篇：剖析工业界盲区](./Article_1_400Year_Reductionism_Breakthrough.md) 与 [《价值链物理学》8大公理](./value-chain-physics-book.md)
+* 💻 **【软件架构师与算法工程师】 Software Architects & Engineers** 👉 直达 <a href="IPC_Governance_Showcase.html" target="_blank">3D 全息拓扑交互演示</a> 与 <a href="ipc_scheme_audit_agent.html" target="_blank">IPC 27项专利审查大表</a>
+* 👑 **【企业决策者与战略家】 C-Suite Executives & Strategists** 👉 直达 [《企业治理的物理宪法长文》](./The_Physics_Constitution_of_Enterprise_Governance.md) 与 [实施篇：离散制造转型迷途](./Article_3_Discrete_Manufacturing_Breakthrough.md)
+* 🤖 **【AI 与具身智能研究者】 Industrial AI & Embodied AI Researchers** 👉 直达 [《AI与具身宪法：大模型为什么会产生幻觉》](./系列B_AI与具身宪法_大模型为什么会产生幻觉.md)
+
+---
+
+## 🏛️ 核心文献双轨阵营 | Document Directory
+
+### 阵营一：形式化理论与数学证明 | Formal Science & Proofs
 * **arXiv 预印本英文正本**：[System & Complexity Science V2 (arXiv Source)](./systems-and-complexity-science.md)
 * **形式化数学证明附录**：[5大做功算子与 $O(N!) \to O(N \log N)$ 降维推导](./Formal_Mathematical_Proofs_Appendix.md)
 * **秩序之元宣言**：[三大第一性公理与形式化推导](./Origin_of_Order.md)
 * **全息抗熵形式化宪理正本**：[开放复杂巨系统治理的形式化宪理](./the_holographic_anti_entropy_system_science_paper.md)
 
-### 阵营二：破局长文与工业批判 (Critical Manifestos & Dissections)
+### 阵营二：破局长文与工业批判 | Critical Manifestos & Dissections
 * **企业治理物理宪法长文**：[跨越 2500 年思想史与工业界的终极正本](./The_Physics_Constitution_of_Enterprise_Governance.md)
 * **上篇·破局篇**：[《为什么 400 年还原论惯性让人们听不懂全息抗熵？》](./Article_1_400Year_Reductionism_Breakthrough.md)
 * **中篇·立宪篇**：[《秩序的诞生：当无序被划界，世界始显》](./Article_2_The_Origin_of_Order_Manifesto.md)
@@ -56,7 +65,7 @@
 
 ---
 
-## 🏗️ 架构与 DOD 数据引擎 (Architecture & DOD Engine)
+## 🏗️ 架构与 DOD 数据引擎 | Architecture & DOD Engine
 
 ```
                     ┌─────────────────────────────────────┐
@@ -87,7 +96,7 @@
 
 ---
 
-## ✒️ 学术引用与版权声明 (Citation & License)
+## ✒️ 学术引用与版权声明 | Citation & License
 
 ```bibtex
 @article{Meng2026SystemComplexity,
@@ -101,7 +110,7 @@
 @article{Meng2026ValueChainPhysics,
   author    = {Meng, Fanchun (Grit)},
   title     = {Value Chain Physics: Governance Laws of Open Complex Giant Systems},
-  journal   = {arXiv preprint submit/7871466 [cs.AI]},
+  journal   = {arXiv preprint submit/7871666 [cs.AI]},
   year      = {2026},
   url       = {https://github.com/GritMeng/Value-Chain-Physics}
 }
