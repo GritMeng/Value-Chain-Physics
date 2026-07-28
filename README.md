@@ -3,29 +3,39 @@
 ### —— 价值链物理学与开放复杂巨系统的物理立宪
 ### —— Value Chain Physics & The Physics Constitution of Open Complex Systems
 
-> **arXiv Submissions**: [submit/7871466 [cs.AI]](https://arxiv.org/) (Value Chain Physics) | [submit/7871481 [cs.AI]](https://arxiv.org/) (System & Complexity Science)  
-> **Author**: Fanchun Meng (Grit Meng) / 孟凡淳  
-> **Title**: Former Head & Systems Architect, Global Supply Chain Integrated Planning, Lenovo Group / 前联想集团全球供应链集成计划体系负责人 & 体系架构师  
-> **Contact**: gritmeng@outlook.com  
-> **Repository**: [https://github.com/GritMeng/Value-Chain-Physics](https://github.com/GritMeng/Value-Chain-Physics)
+> **arXiv Submissions / 预印本凭证**:  
+> • `submit/7871466 [cs.AI]` — Value Chain Physics: Governance Laws of Open Complex Giant Systems  
+> • `submit/7871481 [cs.AI]` — System and Complexity Science: Generation, Persistence, and Evolution of Order  
 
 ---
 
-## 终局结果 | Core Breakthroughs & Results
+## 作者与背景 | Author Profile & Context
 
-本研究与工程体系历经 **22 年**战场洗礼，立足于**联想集团及其全球生态圈（涵盖多 BU 事业部、全球数十座工厂、跨国供应链）的千亿级真实工况**，取得了三项终局突破：
+* **姓名 / Name**: 孟凡淳 (Fanchun Meng / Grit Meng)
+* **履历 / Title**: 前联想集团全球供应链集成计划体系负责人 & 体系架构师  
+  *Former Head & Systems Architect, Global Supply Chain Integrated Planning, Lenovo Group*
+* **著作 / Works**: 《价值链物理学》(Value Chain Physics)、《全息抗熵》(Holographic Anti-Entropy) 作者
+* **联系邮箱 / Email**: gritmeng@outlook.com
+* **代码库 / Repository**: [https://github.com/GritMeng/Value-Chain-Physics](https://github.com/GritMeng/Value-Chain-Physics)
+
+---
+
+## 核心结果与阶段性成果 | Core Results & Achievements
+
+### 🇨🇳 中文概述
+本研究与工程体系历经 **22 年**战场洗礼，立足于**联想集团及其全球生态圈（涵盖多 BU 事业部、全球数十座工厂、跨国供应链）的千亿级真实工况**，取得了三项核心结果与阶段性成果：
 
 1. **“计划 - 执行 - 反馈” 全链路自主决策闭环**：打破了复杂工业巨系统中计划与执行长久脱节的物理死锁，实现了高动态环境下的自动化闭环决策；
 2. **超级工业智能引擎**：贯通业务模型、算法算子与 **DOD（Data-Oriented Design / 面向数据设计）内存物理镜像**，实现了千亿级工况下的极速求解与抗熵治理；
 3. **复杂性科学可计算性的孤本实证**：构筑了**人类历史上极其罕见、针对千亿级真实工业生态复杂巨系统的可计算性实证**。
 
-> **Executive Summary**:  
-> Grounded in 22 years of real-world practice across Lenovo's $100B+ global industrial ecosystem (covering multiple BUs, dozens of global factories, and cross-border supply chains), this work establishes the **Physics Constitution for Open Complex Giant Systems**. 
-> 
-> Key Achievements:
-> • **Autonomous Decision-Making**: Achieves automated end-to-end alignment from planning to execution to feedback.  
-> • **DOD Bare-Metal Engine**: Deploys a Data-Oriented Design (DOD) memory physics engine for high-concurrency anti-entropy governance.  
-> • **Empirical Proof of Computability**: Overcomes computational irreducibility in complex giant systems, reducing complexity from $O(N!) \to O(N \log N)$, serving as a rare empirical benchmark in human history.
+### 🇬🇧 English Executive Summary
+Grounded in 22 years of real-world practice across Lenovo's $100B+ global industrial ecosystem (covering multiple BUs, dozens of global factories, and cross-border supply chains), this work establishes the **Physics Constitution for Open Complex Giant Systems**. 
+
+Key Stage Achievements:
+1. **Autonomous Closed-Loop Decision-Making**: Achieves automated end-to-end alignment from planning to execution to feedback.
+2. **DOD Bare-Metal Engine**: Deploys a Data-Oriented Design (DOD) memory physics engine for high-concurrency anti-entropy governance.
+3. **Empirical Proof of Computability**: Overcomes computational irreducibility in complex giant systems, reducing complexity from $O(N!) \to O(N \log N)$, serving as a rare empirical benchmark in human history.
 
 ---
 
@@ -91,7 +101,7 @@
       │  • 内存连续密铺布局 (Cache-line 对齐优化)               │
       │  • 多核并行 Blelloch 前缀扫描网格计算                   │
       │  • 50万张订单、2M+物料全链路消纳与排产：5分钟             │
-      └──────────────────────────────────────────────────────────┘
+      └─────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -110,7 +120,7 @@
 @article{Meng2026ValueChainPhysics,
   author    = {Meng, Fanchun (Grit)},
   title     = {Value Chain Physics: Governance Laws of Open Complex Giant Systems},
-  journal   = {arXiv preprint submit/7871666 [cs.AI]},
+  journal   = {arXiv preprint submit/7871466 [cs.AI]},
   year      = {2026},
   url       = {https://github.com/GritMeng/Value-Chain-Physics}
 }
