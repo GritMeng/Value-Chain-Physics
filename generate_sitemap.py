@@ -58,8 +58,19 @@ def generate_sitemap(md_files):
             sitemap_content.append('    <priority>0.8</priority>')
             sitemap_content.append('  </url>')
 
-    # 3. Docsify 路由页面包含 '#'（哈希片段），根据 Google 官方规范，Sitemap XML 中严禁出现 '#'，否则会被拒绝读取。
-    # 我们只保留主入口和静态独立 HTML 页面，Google 会通过抓取主页并执行 JS 自动索引其余 Docsify 页面。
+    # 3. 添加 Docsify 动态 Markdown 路由页面（History 模式，无井号）
+    for md in md_files:
+        clean_path = md.replace('\\', '/').rstrip('.md')
+        if clean_path.endswith('/README'):
+            clean_path = clean_path[:-7]
+        encoded_path = urllib.parse.quote(clean_path)
+        sitemap_content.append('  <url>')
+        sitemap_content.append(f'    <loc>{BASE_URL}/{encoded_path}</loc>')
+        sitemap_content.append(f'    <lastmod>{datetime.now().strftime("%Y-%m-%d")}</lastmod>')
+        sitemap_content.append('    <changefreq>weekly</changefreq>')
+        sitemap_content.append('    <priority>0.6</priority>')
+        sitemap_content.append('  </url>')
+
     sitemap_content.append('</urlset>')
     return '\n'.join(sitemap_content)
 
