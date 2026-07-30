@@ -4,71 +4,47 @@ from datetime import datetime
 
 # 配置
 BASE_URL = "https://gritmeng.github.io/Value-Chain-Physics"
-DOCS_PAGE = "index.html"  # Docsify 路由页面
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# 需要排除的目录和文件
-EXCLUDE_DIRS = {'.git', '.github', '.obsidian', '__pycache__', 'scratch', 'audio', 'audio_manifesto', 'audio_short', 'wechat_images', 'global_candidates', 'extracted_images', '商业演说与PPT大纲', 'patents'}
-EXCLUDE_FILES = {'.gitignore', '.nojekyll', '.markdownlint.json', 'publish_tool.py', 'check_js.py', 'inspect_cases.py'}
+def get_valid_html_pages(root_dir):
+    """
+    搜集所有根目录下真实可直接 HTTP 200 访问的 HTML 静态页面
+    排除 404.html、.venv、git 等内部页面
+    """
+    valid_pages = []
+    
+    # 核心根目录 HTML 页面
+    for file in os.listdir(root_dir):
+        if file.endswith('.html') and file != '404.html' and file != 'google41f8bfc02cf1af0b.html':
+            valid_pages.append(file)
+            
+    return sorted(valid_pages)
 
-def get_md_files(root_dir):
-    md_files = []
-    for dirpath, dirnames, filenames in os.walk(root_dir):
-        # 排除不需要的目录
-        dirnames[:] = [d for d in dirnames if d not in EXCLUDE_DIRS]
-        
-        for file in filenames:
-            if file.endswith('.md') and file not in EXCLUDE_FILES:
-                full_path = os.path.join(dirpath, file)
-                rel_path = os.path.relpath(full_path, root_dir)
-                md_files.append(rel_path)
-    return md_files
-
-def generate_sitemap(md_files):
+def generate_sitemap(html_files):
     sitemap_content = []
     sitemap_content.append('<?xml version="1.0" encoding="UTF-8"?>')
     sitemap_content.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
     
-    # 1. 添加主演示主页 (index.html)
+    today = datetime.now().strftime("%Y-%m-%d")
+    
+    # 1. 首页 (Highest priority)
     sitemap_content.append('  <url>')
     sitemap_content.append(f'    <loc>{BASE_URL}/</loc>')
-    sitemap_content.append(f'    <lastmod>{datetime.now().strftime("%Y-%m-%d")}</lastmod>')
-    sitemap_content.append('    <changefreq>weekly</changefreq>')
+    sitemap_content.append(f'    <lastmod>{today}</lastmod>')
+    sitemap_content.append('    <changefreq>daily</changefreq>')
     sitemap_content.append('    <priority>1.0</priority>')
     sitemap_content.append('  </url>')
     
-    # 2. 添加其他的静态 HTML 页面
-    extra_htmls = [
-        'showcase.html', 
-        'IPC_Video_Lectures.html', 
-        'value_chain_audit_agent.html', 
-        'ipc_scheme_audit_agent.html',
-        'the_holographic_anti_entropy_system_science_paper.html',
-        'academic_papers_draft_for_cao.html',
-        'Paper1_Decentralized_Learning_Dynamics.html',
-        'Paper2_Hybrid_Intelligence_Mind_OS.html',
-        'Paper3_Complex_Supply_Networks_Projection.html'
-    ]
-    for html in extra_htmls:
-        if os.path.exists(os.path.join(ROOT_DIR, html)):
-            sitemap_content.append('  <url>')
-            sitemap_content.append(f'    <loc>{BASE_URL}/{html}</loc>')
-            sitemap_content.append(f'    <lastmod>{datetime.now().strftime("%Y-%m-%d")}</lastmod>')
-            sitemap_content.append('    <changefreq>weekly</changefreq>')
-            sitemap_content.append('    <priority>0.8</priority>')
-            sitemap_content.append('  </url>')
-
-    # 3. 添加 Docsify 动态 Markdown 路由页面（History 模式，无井号）
-    for md in md_files:
-        clean_path = md.replace('\\', '/').rstrip('.md')
-        if clean_path.endswith('/README'):
-            clean_path = clean_path[:-7]
-        encoded_path = urllib.parse.quote(clean_path)
+    # 2. 真实可访问的 HTML 静态页面
+    for html in html_files:
+        if html == 'index.html':
+            continue  # 已由 BASE_URL/ 覆盖
+        encoded_html = urllib.parse.quote(html)
         sitemap_content.append('  <url>')
-        sitemap_content.append(f'    <loc>{BASE_URL}/{encoded_path}</loc>')
-        sitemap_content.append(f'    <lastmod>{datetime.now().strftime("%Y-%m-%d")}</lastmod>')
+        sitemap_content.append(f'    <loc>{BASE_URL}/{encoded_html}</loc>')
+        sitemap_content.append(f'    <lastmod>{today}</lastmod>')
         sitemap_content.append('    <changefreq>weekly</changefreq>')
-        sitemap_content.append('    <priority>0.6</priority>')
+        sitemap_content.append('    <priority>0.8</priority>')
         sitemap_content.append('  </url>')
 
     sitemap_content.append('</urlset>')
@@ -83,20 +59,19 @@ def generate_robots():
     return '\n'.join(robots_content)
 
 if __name__ == "__main__":
-    print("正在扫描 Markdown 文件...")
-    md_files = get_md_files(ROOT_DIR)
+    print("正在扫描真实 HTML 页面...")
+    html_files = get_valid_html_pages(ROOT_DIR)
     
     # 写入 sitemap.xml
     sitemap_path = os.path.join(ROOT_DIR, "sitemap.xml")
-    sitemap_data = generate_sitemap(md_files)
+    sitemap_data = generate_sitemap(html_files)
     with open(sitemap_path, "w", encoding="utf-8") as f:
         f.write(sitemap_data)
-    print(f"成功生成: {sitemap_path} (共 {len(md_files)} 个文档路由)")
+    print(f"成功生成纯净版 Sitemap: {sitemap_path}")
     
     # 写入 robots.txt
     robots_path = os.path.join(ROOT_DIR, "robots.txt")
     robots_data = generate_robots()
     with open(robots_path, "w", encoding="utf-8") as f:
         f.write(robots_data)
-    print(f"成功生成: {robots_path}")
-# Trigger new Pages build with environment restrictions resolved.
+    print(f"成功生成 Robots.txt: {robots_path}")
