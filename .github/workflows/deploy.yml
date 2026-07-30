@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:  # 允许手动触发
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -25,6 +25,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
           publish_branch: gh-pages
-          exclude_assets: '.github,*.py,*.docx,audio,.obsidian,.git'
-          force_orphan: false
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          force_orphan: true
           commit_message: '🚀 Deploy: ${{ github.event.head_commit.message }}'
