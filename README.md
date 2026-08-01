@@ -3,9 +3,12 @@
 ### —— 价值链物理学与开放复杂巨系统的物理立宪
 ### —— Value Chain Physics & The Physics Constitution of Open Complex Systems
 
-> **arXiv Submissions / 预印本凭证**:  
-> • `submit/7871466 [cs.AI]` — Value Chain Physics: Governance Laws of Open Complex Giant Systems  
-> • `submit/7871481 [cs.AI]` — System and Complexity Science: Generation, Persistence, and Evolution of Order  
+> **arXiv & SSRN Submissions / 预印本凭证**:  
+> • `SSRN 7216903` — [Innovation: Cognitive Folding and Civilizational Leap](./physics_of_innovation_master.md)  
+> • `SSRN 7216862` — [The Conscience-Driven Holographic Metacognition OS](./the_5d_conscience_holographic_metacognition_os.md)  
+> • `SSRN 7216338` — [System and Complexity Science: Generation, Persistence, and Evolution of Order](./systems-and-complexity-science.md)  
+> • `SSRN 7192798` / `submit/7871466` — [Value Chain Physics: Governance Laws of Open Complex Giant Systems](./value-chain-physics-book.md)  
+> • `SSRN 7155021` / `submit/7871481` — [System & Complexity Science V2](./systems-and-complexity-science.md)  
 
 ---
 

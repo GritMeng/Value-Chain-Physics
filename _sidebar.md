@@ -1,7 +1,9 @@
 * [🏠 首页与全景概览](README.md)
 
-* **核心论文与重磅正本**
-  * [System & Complexity Science V2 (arXiv Source)](systems-and-complexity-science.md)
+* **核心论文与 SSRN 预印本**
+  * [创新：认知折叠与文明跃迁 (SSRN 7216903)](physics_of_innovation_master.md)
+  * [良知驱动五维心智 OS (SSRN 7216862)](the_5d_conscience_holographic_metacognition_os.md)
+  * [System & Complexity Science V2 (SSRN 7216338)](systems-and-complexity-science.md)
   * [企业治理的物理宪法长文](The_Physics_Constitution_of_Enterprise_Governance.md)
   * [破局篇：400年还原论惯性剖析](Article_1_400Year_Reductionism_Breakthrough.md)
   * [立宪篇：秩序的诞生](Article_2_The_Origin_of_Order_Manifesto.md)
