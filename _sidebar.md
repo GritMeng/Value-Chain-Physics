@@ -1,16 +1,19 @@
 * [🏠 首页与全景概览](README.md)
 
-* **核心论文与 SSRN 预印本**
+* **核心论文与 SSRN 预印本 (SSRN Preprints & Papers)**
+  * [系统与复杂性科学 (中文 V2 正本)](docs/System_and_Complexity_Science_Monograph_v2_CN.md)
+  * [System & Complexity Science V2 (English Unabridged)](docs/ssrn_submissions/System_and_Complexity_Science_Full_English_Monograph.md)
+  * [📄 下载英文专著 PDF (Download Full Monograph PDF)](docs/ssrn_submissions/System_and_Complexity_Science_Full_English_Monograph.pdf)
   * [创新：认知折叠与文明跃迁 (SSRN 7216903)](physics_of_innovation_master.md)
   * [良知驱动五维心智 OS (SSRN 7216862)](the_5d_conscience_holographic_metacognition_os.md)
-  * [System & Complexity Science V2 (SSRN 7216338)](systems-and-complexity-science.md)
   * [企业治理的物理宪法长文](The_Physics_Constitution_of_Enterprise_Governance.md)
   * [破局篇：400年还原论惯性剖析](Article_1_400Year_Reductionism_Breakthrough.md)
   * [立宪篇：秩序的诞生](Article_2_The_Origin_of_Order_Manifesto.md)
   * [实施篇：离散制造转型的迷途与破局](Article_3_Discrete_Manufacturing_Breakthrough.md)
 
-* **🏛️ 形式化理论与数学证明**
-  * [系统与复杂性科学全本](systems-and-complexity-science.md)
+* **🏛️ 形式化理论与数学证明 (Formal Theories & Proofs)**
+  * [系统与复杂性科学全本 (中文)](systems-and-complexity-science.md)
+  * [System & Complexity Science (English)](docs/ssrn_submissions/System_and_Complexity_Science_Full_English_Monograph.md)
   * [形式化数学证明附录](Formal_Mathematical_Proofs_Appendix.md)
   * [秩序之元：第一性原理](Origin_of_Order.md)
   * [全息抗熵：形式化宪理](the_holographic_anti_entropy_system_science_paper.md)
@@ -21,7 +24,7 @@
   * [企业治理的物理宪法](The_Physics_Constitution_of_Enterprise_Governance.md)
   * [价值链管理科学化宣言](One_Plan_Manifesto.md)
 
-* **⚡ 价值链物理学**
+* **⚡ 价值链物理学 (Value Chain Physics)**
   * [价值链物理学全本](value-chain-physics-book.md)
   * [全息抗熵基础正本](holographic-anti-entropy-book.md)
   * <a href="value_chain_audit_agent.html" target="_blank">价值链智能体物理审计</a>

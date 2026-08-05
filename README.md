@@ -3,12 +3,13 @@
 ### —— 价值链物理学与开放复杂巨系统的物理立宪
 ### —— Value Chain Physics & The Physics Constitution of Open Complex Systems
 
-> **arXiv & SSRN Submissions / 预印本凭证**:  
+> **arXiv & SSRN Submissions / 预印本与专著正本**:  
+> • `SSRN 7216338` — **[系统与复杂性科学 (中文 V2 正本)](docs/System_and_Complexity_Science_Monograph_v2_CN.md)**  
+> • `SSRN 7216338` — **[System & Complexity Science V2 (English Unabridged)](docs/ssrn_submissions/System_and_Complexity_Science_Full_English_Monograph.md)**  
+> • `PDF Download` — **[📄 下载英文专著完整 PDF (Full Monograph PDF)](docs/ssrn_submissions/System_and_Complexity_Science_Full_English_Monograph.pdf)**  
 > • `SSRN 7216903` — [Innovation: Cognitive Folding and Civilizational Leap](./physics_of_innovation_master.md)  
 > • `SSRN 7216862` — [The Conscience-Driven Holographic Metacognition OS](./the_5d_conscience_holographic_metacognition_os.md)  
-> • `SSRN 7216338` — [System and Complexity Science: Generation, Persistence, and Evolution of Order](./systems-and-complexity-science.md)  
 > • `SSRN 7192798` / `submit/7871466` — [Value Chain Physics: Governance Laws of Open Complex Giant Systems](./value-chain-physics-book.md)  
-> • `SSRN 7155021` / `submit/7871481` — [System & Complexity Science V2](./systems-and-complexity-science.md)  
 
 ---
 
@@ -17,7 +18,7 @@
 * **姓名 / Name**: 孟凡淳 (Fanchun Meng / Grit Meng)
 * **履历 / Title**: 前联想集团全球供应链集成计划体系负责人 & 体系架构师  
   *Former Head & Systems Architect, Global Supply Chain Integrated Planning, Lenovo Group*
-* **著作 / Works**: 《价值链物理学》(Value Chain Physics)、《全息抗熵》(Holographic Anti-Entropy) 作者
+* **著作 / Works**: 《系统与复杂性科学》(System & Complexity Science)、《价值链物理学》(Value Chain Physics)、《全息抗熵》(Holographic Anti-Entropy) 作者
 * **联系邮箱 / Email**: gritmeng@outlook.com
 * **代码库 / Repository**: [https://github.com/GritMeng/Value-Chain-Physics](https://github.com/GritMeng/Value-Chain-Physics)
 
@@ -32,102 +33,14 @@
 2. **超级工业智能引擎**：贯通业务模型、算法算子与 **DOD（Data-Oriented Design / 面向数据设计）内存物理镜像**，实现了千亿级工况下的极速求解与抗熵治理；
 3. **复杂性科学可计算性的孤本实证**：构筑了**人类历史上极其罕见、针对千亿级真实工业生态复杂巨系统的可计算性实证**。
 
+---
+
 ### 🇬🇧 English Executive Summary
-Grounded in 22 years of real-world practice across Lenovo's $100B+ global industrial ecosystem (covering multiple BUs, dozens of global factories, and cross-border supply chains), this work establishes the **Physics Constitution for Open Complex Giant Systems**. 
+Grounded in 22 years of real-world practice across Lenovo's $100B+ global industrial ecosystem (covering multiple BUs, dozens of global factories, and cross-border supply chains), this work establishes:
 
-Key Stage Achievements:
-1. **Autonomous Closed-Loop Decision-Making**: Achieves automated end-to-end alignment from planning to execution to feedback.
-2. **DOD Bare-Metal Engine**: Deploys a Data-Oriented Design (DOD) memory physics engine for high-concurrency anti-entropy governance.
-3. **Empirical Proof of Computability**: Overcomes computational irreducibility in complex giant systems, reducing complexity from $O(N!) \to O(N \log N)$, serving as a rare empirical benchmark in human history.
-
----
-
-## 思想升维与四重演进 | Evolution of Paradigm
-
-* **破局算法与底层结构 (Engine & Algorithm Level)**：为了打破求解器死锁与决策质速瓶颈，从业务方案算子切割，深入至 DOD 内存数据结构算法，实现了决策性能的穿透性飞跃；
-* **从经验走向物理科学 (Value Chain Physics Level)**：为了区分经验规律中的偶然与必然，确立 8 大物理公理、做功夹角 $\cos\theta \to 1$ 与流量守恒，创立**《价值链物理学》**；
-* **复杂性科学大一统与立宪 (System Science & Constitution Level)**：视角升维至**《系统与复杂性科学》**，形式化攻克复杂系统的“计算不可约性”（Computational Irreducibility），确立划界、刚性、残差三大公理，导出 5 大做功算子与 $O(N!) \to O(N \log N)$ 算子降维推导；
-* **秩序与全息元认知 (Order & Holographic Meta-Cognition)**：在《秩序的生成、存续与进化》中，阐明秩序、信息、系统与世界的内在一体性，归纳至**全息元认知**的心智本体。
+1. **Full-chain autonomous decision-making closed loop** with human out of the loop.
+2. **Data-Oriented Design (DOD) physical memory engine** for real-time phase-space clipping and anti-entropy governance.
+3. **Calculable empirical proof** reducing factorial complexity $\mathcal{O}(N!)$ to polynomial $\mathcal{O}(N \log N)$.
 
 ---
-
-## 🧭 5 类读者专属探索通道 | Fast Tracks by Persona
-
-* 🔬 **【复杂性科学与物理学者】 Complex Systems & Physics Scholars** 👉 直达 [arXiv 预印本英文正本](./systems-and-complexity-science.md) 与 [形式化数学证明附录](./Formal_Mathematical_Proofs_Appendix.md)
-* 🏭 **【供应链与工业运营家】 Operations & Supply Chain Leaders** 👉 直达 [破局篇：剖析工业界盲区](./Article_1_400Year_Reductionism_Breakthrough.md) 与 [《价值链物理学》8大公理](./value-chain-physics-book.md)
-* 💻 **【软件架构师与算法工程师】 Software Architects & Engineers** 👉 直达 <a href="IPC_Governance_Showcase.html" target="_blank">3D 全息拓扑交互演示</a> 与 <a href="ipc_scheme_audit_agent.html" target="_blank">IPC 27项专利审查大表</a>
-* 👑 **【企业决策者与战略家】 C-Suite Executives & Strategists** 👉 直达 [《企业治理的物理宪法长文》](./The_Physics_Constitution_of_Enterprise_Governance.md) 与 [实施篇：离散制造转型迷途](./Article_3_Discrete_Manufacturing_Breakthrough.md)
-* 🤖 **【AI 与具身智能研究者】 Industrial AI & Embodied AI Researchers** 👉 直达 [《AI与具身宪法：大模型为什么会产生幻觉》](./系列B_AI与具身宪法_大模型为什么会产生幻觉.md)
-
----
-
-## 🏛️ 核心文献双轨阵营 | Document Directory
-
-### 阵营一：形式化理论与数学证明 | Formal Science & Proofs
-* **arXiv 预印本英文正本**：[System & Complexity Science V2 (arXiv Source)](./systems-and-complexity-science.md)
-* **形式化数学证明附录**：[5大做功算子与 $O(N!) \to O(N \log N)$ 降维推导](./Formal_Mathematical_Proofs_Appendix.md)
-* **秩序之元宣言**：[三大第一性公理与形式化推导](./Origin_of_Order.md)
-* **全息抗熵形式化宪理正本**：[开放复杂巨系统治理的形式化宪理](./the_holographic_anti_entropy_system_science_paper.md)
-
-### 阵营二：破局长文与工业批判 | Critical Manifestos & Dissections
-* **企业治理物理宪法长文**：[跨越 2500 年思想史与工业界的终极正本](./The_Physics_Constitution_of_Enterprise_Governance.md)
-* **上篇·破局篇**：[《为什么 400 年还原论惯性让人们听不懂全息抗熵？》](./Article_1_400Year_Reductionism_Breakthrough.md)
-* **中篇·立宪篇**：[《秩序的诞生：当无序被划界，世界始显》](./Article_2_The_Origin_of_Order_Manifesto.md)
-* **下篇·实施篇**：[《离散制造转型的迷途与破局：从六大方案盲区到“数据模型即业务”》](./Article_3_Discrete_Manufacturing_Breakthrough.md)
-* **价值链管理科学化宣言**：[《从经验走向物理科学》](./One_Plan_Manifesto.md)
-
----
-
-## 🏗️ 架构与 DOD 数据引擎 | Architecture & DOD Engine
-
-```
-                    ┌─────────────────────────────────────┐
-                    │        GOVERNANCE OPERATOR Π        │
-                    │            Π = ⟨D, A⟩               │
-                    └──────────────┬──────────────────────┘
-                                   │
-               ┌─────────────────────┼──────────────────────┐
-               ▼                     ▼                      ▼
-      ┌─────────────┐      ┌──────────────────┐   ┌──────────────────┐
-      │  ODM Layer  │      │   CDM Layer      │   │   DDM Layer      │
-      │ 物理镜像层   │      │ 规则算法大脑     │   │ 全息模拟推演     │
-      │ Mirror of   │      │ Decision Rules & │   │ Holographic      │
-      │ Physical    │      │ Algorithm Brain  │   │ Analytics Engine │
-      │ Site/Part   │      │ Allotment Quota  │   │ Sandbox          │
-      │ BOM DAG     │      │ SWAP Solver      │   │ SQL Audit Trail  │
-      │ Demand Flow │      │ LSC Tree         │   │ 150K states/60ms │
-      └─────────────┘      │ LLC Compiler     │   └──────────────────┘
-                           └──────────────────┘
-
-      ┌──────────────────────────────────────────────────────────┐
-      │               DOD BARE-METAL ENGINE                      │
-      │  • 内存连续密铺布局 (Cache-line 对齐优化)               │
-      │  • 多核并行 Blelloch 前缀扫描网格计算                   │
-      │  • 50万张订单、2M+物料全链路消纳与排产：5分钟             │
-      └─────────────────────────────────────────────────────────┘
-```
-
----
-
-## ✒️ 学术引用与版权声明 | Citation & License
-
-```bibtex
-@article{Meng2026SystemComplexity,
-  author    = {Meng, Fanchun (Grit)},
-  title     = {System and Complexity Science: Generation, Persistence, and Evolution of Order},
-  journal   = {arXiv preprint submit/7871481 [cs.AI]},
-  year      = {2026},
-  url       = {https://github.com/GritMeng/Value-Chain-Physics}
-}
-
-@article{Meng2026ValueChainPhysics,
-  author    = {Meng, Fanchun (Grit)},
-  title     = {Value Chain Physics: Governance Laws of Open Complex Giant Systems},
-  journal   = {arXiv preprint submit/7871466 [cs.AI]},
-  year      = {2026},
-  url       = {https://github.com/GritMeng/Value-Chain-Physics}
-}
-```
-
-* 本仓库所有学术文本与理论成果采用 **[CC BY-NC-ND 4.0 International](LICENSE)** 协议授权（署名-非商业性使用-禁止演绎）。
-* *Copyright (c) 2026 孟凡淳 (Grit Meng). All rights reserved.*
+*© 2026 Grit Meng (Fanchun Meng / 孟凡淳). All Rights Reserved.*
