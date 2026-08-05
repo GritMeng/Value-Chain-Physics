@@ -4,9 +4,9 @@
 ### —— Value Chain Physics & The Physics Constitution of Open Complex Systems
 
 > **arXiv & SSRN Submissions / 预印本与专著正本**:  
-> • `SSRN 7216338` — **[系统与复杂性科学 (中文 V2 正本)](docs/System_and_Complexity_Science_Monograph_v2_CN.md)**  
-> • `SSRN 7216338` — **[System & Complexity Science V2 (English Unabridged)](docs/ssrn_submissions/System_and_Complexity_Science_Full_English_Monograph.md)**  
-> • `PDF Download` — **[📄 下载英文专著完整 PDF (Full Monograph PDF)](docs/ssrn_submissions/System_and_Complexity_Science_Full_English_Monograph.pdf)**  
+> • `SSRN 7216338` — [系统与复杂性科学 (中文 V2 正本)](docs/System_and_Complexity_Science_Monograph_v2_CN.md)  
+> • `SSRN 7216338` — [System & Complexity Science V2 (English Unabridged)](docs/ssrn_submissions/System_and_Complexity_Science_Full_English_Monograph.md)  
+> • `PDF Download` — [📄 下载英文专著完整 PDF (Full Monograph PDF)](docs/ssrn_submissions/System_and_Complexity_Science_Full_English_Monograph.pdf)  
 > • `SSRN 7216903` — [Innovation: Cognitive Folding and Civilizational Leap](./physics_of_innovation_master.md)  
 > • `SSRN 7216862` — [The Conscience-Driven Holographic Metacognition OS](./the_5d_conscience_holographic_metacognition_os.md)  
 > • `SSRN 7192798` / `submit/7871466` — [Value Chain Physics: Governance Laws of Open Complex Giant Systems](./value-chain-physics-book.md)  
@@ -15,23 +15,23 @@
 
 ## 作者与背景 | Author Profile & Context
 
-* **姓名 / Name**: 孟凡淳 (Fanchun Meng / Grit Meng)
-* **履历 / Title**: 前联想集团全球供应链集成计划体系负责人 & 体系架构师  
+- **姓名 / Name**: 孟凡淳 (Fanchun Meng / Grit Meng)
+- **履历 / Title**: 前联想集团全球供应链集成计划体系负责人 & 体系架构师  
   *Former Head & Systems Architect, Global Supply Chain Integrated Planning, Lenovo Group*
-* **著作 / Works**: 《系统与复杂性科学》(System & Complexity Science)、《价值链物理学》(Value Chain Physics)、《全息抗熵》(Holographic Anti-Entropy) 作者
-* **联系邮箱 / Email**: gritmeng@outlook.com
-* **代码库 / Repository**: [https://github.com/GritMeng/Value-Chain-Physics](https://github.com/GritMeng/Value-Chain-Physics)
+- **著作 / Works**: 《系统与复杂性科学》(System & Complexity Science)、《价值链物理学》(Value Chain Physics)、《全息抗熵》(Holographic Anti-Entropy) 作者
+- **联系邮箱 / Email**: gritmeng@outlook.com
+- **代码库 / Repository**: [https://github.com/GritMeng/Value-Chain-Physics](https://github.com/GritMeng/Value-Chain-Physics)
 
 ---
 
 ## 核心结果与阶段性成果 | Core Results & Achievements
 
 ### 🇨🇳 中文概述
-本研究与工程体系历经 **22 年**战场洗礼，立足于**联想集团及其全球生态圈（涵盖多 BU 事业部、全球数十座工厂、跨国供应链）的千亿级真实工况**，取得了三项核心结果与阶段性成果：
+本研究与工程体系历经 22 年战场洗礼，立足于联想集团及其全球生态圈（涵盖多 BU 事业部、全球数十座工厂、跨国供应链）的千亿级真实工况，取得了三项核心结果与阶段性成果：
 
 1. **“计划 - 执行 - 反馈” 全链路自主决策闭环**：打破了复杂工业巨系统中计划与执行长久脱节的物理死锁，实现了高动态环境下的自动化闭环决策；
-2. **超级工业智能引擎**：贯通业务模型、算法算子与 **DOD（Data-Oriented Design / 面向数据设计）内存物理镜像**，实现了千亿级工况下的极速求解与抗熵治理；
-3. **复杂性科学可计算性的孤本实证**：构筑了**人类历史上极其罕见、针对千亿级真实工业生态复杂巨系统的可计算性实证**。
+2. **超级工业智能引擎**：贯通业务模型、算法算子与 DOD（Data-Oriented Design / 面向数据设计）内存物理镜像，实现了千亿级工况下的极速求解与抗熵治理；
+3. **复杂性科学可计算性的孤本实证**：构筑了人类历史上极其罕见、针对千亿级真实工业生态复杂巨系统的可计算性实证。
 
 ---
 
@@ -41,6 +41,15 @@ Grounded in 22 years of real-world practice across Lenovo's $100B+ global indust
 1. **Full-chain autonomous decision-making closed loop** with human out of the loop.
 2. **Data-Oriented Design (DOD) physical memory engine** for real-time phase-space clipping and anti-entropy governance.
 3. **Calculable empirical proof** reducing factorial complexity $\mathcal{O}(N!)$ to polynomial $\mathcal{O}(N \log N)$.
+
+---
+
+## 思想升维与四重演进 | Evolution of Paradigm
+
+- **破局算法与底层结构 (Engine & Algorithm Level)**：为了打破求解器死锁与决策质速瓶颈，从业务方案算子切割，深入至 DOD 内存数据结构算法，实现了决策性能的穿透性飞跃；
+- **从经验走向物理科学 (Value Chain Physics Level)**：为了区分经验规律中的偶然与必然，确立 8 大物理公理、做功夹角 $\cos	heta 	o 1$ 与流量守恒，创立《价值链物理学》；
+- **复杂性科学大一统与立宪 (System Science & Constitution Level)**：视角升维至《系统与复杂性科学》，形式化攻克复杂系统的“计算不可约性”（Computational Irreducibility），确立划界、刚性、残差三大公理，导出 5 大做功算子与 $\mathcal{O}(N!) 	o \mathcal{O}(N \log N)$ 算子降维推导；
+- **秩序与全息元认知 (Order & Holographic Meta-Cognition)**：在《秩序的生成、存续与进化》中，阐明秩序、信息、系统与世界的内在一体性，归纳至全息元认知的心智本体。
 
 ---
 *© 2026 Grit Meng (Fanchun Meng / 孟凡淳). All Rights Reserved.*
