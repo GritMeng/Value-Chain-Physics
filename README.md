@@ -3,13 +3,15 @@
 ### —— 价值链物理学与开放复杂巨系统的物理立宪
 ### —— Value Chain Physics & The Physics Constitution of Open Complex Systems
 
-> **arXiv & SSRN Submissions / 预印本与专著正本**:  
-> • `SSRN 7216338` — [系统与复杂性科学 (中文 V2 正本)](docs/System_and_Complexity_Science_Monograph_v2_CN.md)  
-> • `SSRN 7216338` — [System & Complexity Science V2 (English Unabridged)](docs/ssrn_submissions/System_and_Complexity_Science_Full_English_Monograph.md)  
-> • `PDF Download` — [📄 下载英文专著完整 PDF (Full Monograph PDF)](docs/ssrn_submissions/System_and_Complexity_Science_Full_English_Monograph.pdf)  
-> • `SSRN 7216903` — [Innovation: Cognitive Folding and Civilizational Leap](./physics_of_innovation_master.md)  
-> • `SSRN 7216862` — [The Conscience-Driven Holographic Metacognition OS](./the_5d_conscience_holographic_metacognition_os.md)  
-> • `SSRN 7192798` / `submit/7871466` — [Value Chain Physics: Governance Laws of Open Complex Giant Systems](./value-chain-physics-book.md)  
+> ** Zenodo DOIs & SSRN Submissions / 权威学术发布与预印本归档**:
+> 
+> | 论文/专著名称 (Title) | 语言/版本 | Zenodo DOI 归档 | SSRN Submission | 📄 本地阅读 / PDF |
+> | :--- | :--- | :--- | :--- | :--- |
+> | **系统与复杂性科学：秩序的生成、存续和进化** | 中文 1.3 版专著 | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21866584.svg)](https://doi.org/10.5281/zenodo.21866584) | - | [📄 查看中专 1.3](docs/System_and_Complexity_Science_Monograph_v2_CN.md) |
+> | **System and Complexity Science: Generation, Persistence, and Evolution of Order** | Axiomatic Preprint v2 | [![Zenodo](https://img.shields.io/badge/Zenodo-DOI_v2-blue.svg)](https://zenodo.org/) | `SSRN 7249880` | [📄 View PDF](docs/ssrn_submissions/System_and_Complexity_Science_Axiomatic_Preprint_v2_EN.pdf) |
+> | **System and Complexity Science: The Physics Constitution of Open Complex Giant Systems** | Full Monograph | [![Zenodo](https://img.shields.io/badge/Zenodo-Monograph_DOI-blue.svg)](https://zenodo.org/) | `SSRN 7216338` | [📄 View PDF](docs/ssrn_submissions/System_and_Complexity_Science_Full_English_Monograph.pdf) |
+> | **Holographic Anti-Entropy: The Physics Constitution of Open Complex Giant Systems** | Full Unabridged | [![Zenodo](https://img.shields.io/badge/Zenodo-HAE_DOI-blue.svg)](https://zenodo.org/) | `SSRN 7251098` | [📄 View PDF](docs/ssrn_submissions/Holographic_Anti_Entropy_Full_Unabridged_EN.pdf) |
+> | **The Conscience-Driven Holographic Metacognition OS** | Full Paper | [![Zenodo](https://img.shields.io/badge/Zenodo-MetaOS-blue.svg)](https://zenodo.org/) | `SSRN 7251101` | [📄 View PDF](docs/ssrn_submissions/the_5d_conscience_holographic_metacognition_os_EN.pdf) |
 
 ---
 
