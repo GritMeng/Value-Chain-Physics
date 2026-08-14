@@ -1,57 +1,54 @@
-# 系统与复杂性科学：秩序的生成、存续与进化
-# System & Complexity Science: Generation, Persistence, and Evolution of Order
-### —— 价值链物理学与开放复杂巨系统的物理立宪
-### —— Value Chain Physics & The Physics Constitution of Open Complex Systems
+# Physics of Value Chain Management & System Science
 
-> ** Zenodo DOIs & SSRN Submissions / 权威学术发布与预印本归档**:
-> 
-> | 论文/专著名称 (Title) | 语言/版本 | Zenodo DOI 归档 | SSRN Submission | 📄 本地阅读 / PDF |
-> | :--- | :--- | :--- | :--- | :--- |
-> | **系统与复杂性科学：秩序的生成、存续和进化** | 中文 1.3 版专著 | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21866584.svg)](https://doi.org/10.5281/zenodo.21866584) | - | [📄 查看中专 1.3](docs/System_and_Complexity_Science_Monograph_v2_CN.md) |
-> | **System and Complexity Science: Generation, Persistence, and Evolution of Order** | Axiomatic Preprint v2 | [![Zenodo](https://img.shields.io/badge/Zenodo-DOI_v2-blue.svg)](https://zenodo.org/) | `SSRN 7249880` | [📄 View PDF](docs/ssrn_submissions/System_and_Complexity_Science_Axiomatic_Preprint_v2_EN.pdf) |
-> | **System and Complexity Science: The Physics Constitution of Open Complex Giant Systems** | Full Monograph | [![Zenodo](https://img.shields.io/badge/Zenodo-Monograph_DOI-blue.svg)](https://zenodo.org/) | `SSRN 7216338` | [📄 View PDF](docs/ssrn_submissions/System_and_Complexity_Science_Full_English_Monograph.pdf) |
-> | **Holographic Anti-Entropy: The Physics Constitution of Open Complex Giant Systems** | Full Unabridged | [![Zenodo](https://img.shields.io/badge/Zenodo-HAE_DOI-blue.svg)](https://zenodo.org/) | `SSRN 7251098` | [📄 View PDF](docs/ssrn_submissions/Holographic_Anti_Entropy_Full_Unabridged_EN.pdf) |
-> | **The Conscience-Driven Holographic Metacognition OS** | Full Paper | [![Zenodo](https://img.shields.io/badge/Zenodo-MetaOS-blue.svg)](https://zenodo.org/) | `SSRN 7251101` | [📄 View PDF](docs/ssrn_submissions/the_5d_conscience_holographic_metacognition_os_EN.pdf) |
+### System and Complexity Science: Generation, Persistence, and Evolution of Order
+**The Physical Constitution for Open Complex Giant Systems (Version 2 Monograph)**
+
+**Author:** Fanchun Meng (Grit Meng)  
+Former Chief Architect of Global Supply Chain Planning Systems (IPS), Lenovo Group  
+Author of *Physics of Value Chain Management* and *Holographic Anti-Entropy*  
+**Email:** gritmeng@outlook.com | **GitHub:** [gritmeng.github.io/Value-Chain-Physics](https://gritmeng.github.io/Value-Chain-Physics/)  
+**Publication Status:** SSRN Distributed (Abstract ID: [7251098](https://ssrn.com/abstract=7251098)) | arXiv Preprint Submitted & On Hold (Submission ID: submit/7871481 [cs.AI] since July 28, 2026)
 
 ---
 
-## 作者与背景 | Author Profile & Context
+## 📖 Canonical Monograph Manuscripts
 
-- **姓名 / Name**: 孟凡淳 (Fanchun Meng / Grit Meng)
-- **履历 / Title**: 前联想集团全球供应链集成计划体系负责人 & 体系架构师  
-  *Former Head & Systems Architect, Global Supply Chain Integrated Planning, Lenovo Group*
-- **著作 / Works**: 《系统与复杂性科学》(System & Complexity Science)、《价值链物理学》(Value Chain Physics)、《全息抗熵》(Holographic Anti-Entropy) 作者
-- **联系邮箱 / Email**: gritmeng@outlook.com
-- **代码库 / Repository**: [https://github.com/GritMeng/Value-Chain-Physics](https://github.com/GritMeng/Value-Chain-Physics)
-
----
-
-## 核心结果与阶段性成果 | Core Results & Achievements
-
-### 🇨🇳 中文概述
-本研究与工程体系历经 22 年战场洗礼，立足于联想集团及其全球生态圈（涵盖多 BU 事业部、全球数十座工厂、跨国供应链）的千亿级真实工况，取得了三项核心结果与阶段性成果：
-
-1. **“计划 - 执行 - 反馈” 全链路自主决策闭环**：打破了复杂工业巨系统中计划与执行长久脱节的物理死锁，实现了高动态环境下的自动化闭环决策；
-2. **超级工业智能引擎**：贯通业务模型、算法算子与 DOD（Data-Oriented Design / 面向数据设计）内存物理镜像，实现了千亿级工况下的极速求解与抗熵治理；
-3. **复杂性科学可计算性的孤本实证**：构筑了人类历史上极其罕见、针对千亿级真实工业生态复杂巨系统的可计算性实证。
+### 1. [System and Complexity Science: Generation, Persistence, and Evolution of Order (Version 2)](./main.tex)
+* **Status:** Complete Unabridged Formal Monograph (LaTeX Source: [`main.tex`](./main.tex) | arXiv Package: [`arXiv_clean_package.tar.gz`](./arXiv_clean_package.tar.gz))
+* **Core Contribution:** Starting from the minimal origin of **Disorder** (unpartitioned whole) and **Observer** (self-sustaining steady state), this monograph derives the **Triple Realities** (Real, Ideal, Residual) and proves the **Three Laws of Order**:
+  1. **Law of Generation:** Without an Ideal Framework ($\mathbf{\Pi}$), order collapses ($\Delta S \to \infty$).
+  2. **Law of Preservation:** Without Deterministic Constraints ($\mathbf{\Pi}_\bot$), order dissipates into internal friction.
+  3. **Law of Evolution:** Without Residual Feedback ($\mathbf{\Delta}$), evolution stalls into dogma ($\mathbf{\Phi}: \mathbf{\Pi}_k \to \mathbf{\Pi}_{k+1}$).
+* **Formulas & Verification:** Formalized via 5 Work Operators ($\mathbf{\Pi}, \mathbf{\Pi}_\bot, \mathbf{\Delta}, \mathbf{\Phi}, \mathbf{E}_{\mathrm{sp}}$), Banach Contraction Mapping ($O(N!) \to O(N \log N)$), and 13-year empirical validation across Lenovo's global discrete manufacturing network (scheduling 2,000,000 material nodes in 5 minutes, 98% response rate, 1.9$\times$ inventory turnover).
+* **Philosophical Isomorphism:** Establishes a 1:1 mathematical isomorphism across 19 historical paradigms (Laozi, Wang Yangming, Kant, Spencer-Brown, Wheeler, Schrödinger, Friston, Wiener, Ashby, Popper, Wu Xuemou's Pansystems, and Longbing Cao's Non-IIDness).
 
 ---
 
-### 🇬🇧 English Executive Summary
-Grounded in 22 years of real-world practice across Lenovo's $100B+ global industrial ecosystem (covering multiple BUs, dozens of global factories, and cross-border supply chains), this work establishes:
-
-1. **Full-chain autonomous decision-making closed loop** with human out of the loop.
-2. **Data-Oriented Design (DOD) physical memory engine** for real-time phase-space clipping and anti-entropy governance.
-3. **Calculable empirical proof** reducing factorial complexity $\mathcal{O}(N!)$ to polynomial $\mathcal{O}(N \log N)$.
+### 2. Physics of Value Chain Management (Applied Monograph)
+* **Status:** Engineering Codex & Applied Dimensionality Reduction Monograph
+* **Core Contribution:** Translates the First-Principles Physics Constitution into 100-billion-level discrete manufacturing battlefield execution, addressing node coupling, $O(N!)$ combinatorial complexity, and human-out-of-the-loop autonomous decision write-back.
 
 ---
 
-## 思想升维与四重演进 | Evolution of Paradigm
+## 🛠️ Repository Assets & arXiv Package
 
-- **破局算法与底层结构 (Engine & Algorithm Level)**：为了打破求解器死锁与决策质速瓶颈，从业务方案算子切割，深入至 DOD 内存数据结构算法，实现了决策性能的穿透性飞跃；
-- **从经验走向物理科学 (Value Chain Physics Level)**：为了区分经验规律中的偶然与必然，确立 8 大物理公理、做功夹角 $\cos	heta 	o 1$ 与流量守恒，创立《价值链物理学》；
-- **复杂性科学大一统与立宪 (System Science & Constitution Level)**：视角升维至《系统与复杂性科学》，形式化攻克复杂系统的“计算不可约性”（Computational Irreducibility），确立划界、刚性、残差三大公理，导出 5 大做功算子与 $\mathcal{O}(N!) 	o \mathcal{O}(N \log N)$ 算子降维推导；
-- **秩序与全息元认知 (Order & Holographic Meta-Cognition)**：在《秩序的生成、存续与进化》中，阐明秩序、信息、系统与世界的内在一体性，归纳至全息元认知的心智本体。
+- **Canonical Monograph LaTeX Source:** [`main.tex`](./main.tex)
+- **arXiv Clean Submission Tarball:** [`arXiv_clean_package.tar.gz`](./arXiv_clean_package.tar.gz)
+- **Canonical Text Data:** [`canonical_chinese_text.txt`](./canonical_chinese_text.txt)
 
 ---
-*© 2026 Grit Meng (Fanchun Meng / 孟凡淳). All Rights Reserved.*
+
+## 🏛️ Summary of Axiomatic Laws
+
+```
+[Disorder] --(Observer Partition \Pi)--> [Ideal World \Omega] --(Rigid Constraint \Pi_\bot)--> [Preserved Order]
+                                                                        |
+                                                                  (Residual \Delta)
+                                                                        |
+                                                              (Meta-Cognition \Phi)
+                                                                        v
+                                                           [Intergenerational Evolution]
+```
+
+---
+*Copyright © 2026 Grit Meng (Fanchun Meng). All rights reserved.*
