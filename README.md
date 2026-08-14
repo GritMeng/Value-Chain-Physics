@@ -1,54 +1,40 @@
-# Physics of Value Chain Management & System Science
+# Value Chain Physics & System Governance Constitution
+### First-Principles Physics, Governance Laws, and Algorithmic Execution for Open Complex Giant Systems
 
-### System and Complexity Science: Generation, Persistence, and Evolution of Order
-**The Physical Constitution for Open Complex Giant Systems (Version 2 Monograph)**
-
-**Author:** Fanchun Meng (Grit Meng)  
-Former Chief Architect of Global Supply Chain Planning Systems (IPS), Lenovo Group  
-Author of *Physics of Value Chain Management* and *Holographic Anti-Entropy*  
-**Email:** gritmeng@outlook.com | **GitHub:** [gritmeng.github.io/Value-Chain-Physics](https://gritmeng.github.io/Value-Chain-Physics/)  
+**Author:** Grit Meng (Meng Fanchun)  
 **Publication Status:** SSRN Distributed (Abstract ID: [7251098](https://ssrn.com/abstract=7251098)) | arXiv Preprint Submitted & On Hold (Submission ID: submit/7871481 [cs.AI] since July 28, 2026)
 
 ---
 
-## 📖 Canonical Monograph Manuscripts
+## 📖 Key Monograph Manuscripts
 
-### 1. [System and Complexity Science: Generation, Persistence, and Evolution of Order (Version 2)](./main.tex)
-* **Status:** Complete Unabridged Formal Monograph (LaTeX Source: [`main.tex`](./main.tex) | arXiv Package: [`arXiv_clean_package.tar.gz`](./arXiv_clean_package.tar.gz))
-* **Core Contribution:** Starting from the minimal origin of **Disorder** (unpartitioned whole) and **Observer** (self-sustaining steady state), this monograph derives the **Triple Realities** (Real, Ideal, Residual) and proves the **Three Laws of Order**:
-  1. **Law of Generation:** Without an Ideal Framework ($\mathbf{\Pi}$), order collapses ($\Delta S \to \infty$).
-  2. **Law of Preservation:** Without Deterministic Constraints ($\mathbf{\Pi}_\bot$), order dissipates into internal friction.
-  3. **Law of Evolution:** Without Residual Feedback ($\mathbf{\Delta}$), evolution stalls into dogma ($\mathbf{\Phi}: \mathbf{\Pi}_k \to \mathbf{\Pi}_{k+1}$).
-* **Formulas & Verification:** Formalized via 5 Work Operators ($\mathbf{\Pi}, \mathbf{\Pi}_\bot, \mathbf{\Delta}, \mathbf{\Phi}, \mathbf{E}_{\mathrm{sp}}$), Banach Contraction Mapping ($O(N!) \to O(N \log N)$), and 13-year empirical validation across Lenovo's global discrete manufacturing network (scheduling 2,000,000 material nodes in 5 minutes, 98% response rate, 1.9$\times$ inventory turnover).
-* **Philosophical Isomorphism:** Establishes a 1:1 mathematical isomorphism across 19 historical paradigms (Laozi, Wang Yangming, Kant, Spencer-Brown, Wheeler, Schrödinger, Friston, Wiener, Ashby, Popper, Wu Xuemou's Pansystems, and Longbing Cao's Non-IIDness).
+1. **[Value Chain Physics: Governance Laws of Open Complex Giant Systems (Full 135-Page Master Monograph PDF)](./Value_Chain_Physics_Full_135Page_Master_En.pdf)**
+   - *Complete 110,000-Word Unabridged Master Monograph.*
+   - Contains complete Category Theory homomorphism, 3 Physical Isolations, 7 Clinical Symptoms, historical 400-year trajectory, 19-paradigm isomorphism (Laozi, Kant, Qian Xuesen, Wu Xuemou, Cao Longbing), and the Eight Fundamental Physics Work Laws.
 
----
-
-### 2. Physics of Value Chain Management (Applied Monograph)
-* **Status:** Engineering Codex & Applied Dimensionality Reduction Monograph
-* **Core Contribution:** Translates the First-Principles Physics Constitution into 100-billion-level discrete manufacturing battlefield execution, addressing node coupling, $O(N!)$ combinatorial complexity, and human-out-of-the-loop autonomous decision write-back.
+2. **[System and Complexity Science: The Generation, Persistence, and Evolution of Order (PDF)](./System_and_Complexity_Science_Full_Book_Unabridged_En.pdf)**
+   - *A Physics Constitution for Open Complex Giant Systems.*
+   - Complete 4-volume unabridged manuscript detailing First-Principles Axioms, Formal Operators ($\mathbf{\Pi}, \mathbf{\Pi}_ot, \mathbf{\Delta}, \mathbf{\Phi}, \mathbf{E}_{\mathrm{sp}}$), and LLM/Multi-Agent symbiosis roadmap.
 
 ---
 
-## 🛠️ Repository Assets & arXiv Package
+## 🛠️ Monograph LaTeX Source & arXiv Package
 
-- **Canonical Monograph LaTeX Source:** [`main.tex`](./main.tex)
-- **arXiv Clean Submission Tarball:** [`arXiv_clean_package.tar.gz`](./arXiv_clean_package.tar.gz)
-- **Canonical Text Data:** [`canonical_chinese_text.txt`](./canonical_chinese_text.txt)
-
----
-
-## 🏛️ Summary of Axiomatic Laws
-
-```
-[Disorder] --(Observer Partition \Pi)--> [Ideal World \Omega] --(Rigid Constraint \Pi_\bot)--> [Preserved Order]
-                                                                        |
-                                                                  (Residual \Delta)
-                                                                        |
-                                                              (Meta-Cognition \Phi)
-                                                                        v
-                                                           [Intergenerational Evolution]
-```
+- **Main LaTeX Source:** [`main.tex`](./main.tex) / [`Value_Chain_Physics_Full_135Page_Master_En.tex`](./Value_Chain_Physics_Full_135Page_Master_En.tex)
+- **arXiv Submission Package:** [`arxiv_submission_master_135p.tar.gz`](./arxiv_submission_master_135p.tar.gz)
 
 ---
-*Copyright © 2026 Grit Meng (Fanchun Meng). All rights reserved.*
+
+## 🌟 Core Governance Laws
+
+1. **First Law (Teleology):** Holographic Anti-Entropy Law ($\Delta S_{	ext{system}} + \Delta S_{	ext{controller}} \ge 0$)
+2. **Second Law (Ontology):** Non-IID Complexity & Freedom Stripping Law ($\mathbf{x}_ot(t) 	o 0$)
+3. **Third Law (Methodology):** Digital Double Helix Isomorphism Law ($\mathbf{\Pi} = \langle D, A angle$)
+4. **Fourth Law (Capability):** Single-Brain Singularity Causal Logic Law ($O(1)$ vs $O(K^2)$)
+5. **Fifth Law (Mechanism):** Algebraic Topological Isomorphic Mapping Law (SVD Truncation)
+6. **Sixth Law (Pathology):** Wiener-Kalman Observability Boundary Law ($\dim C \le \dim O$)
+7. **Seventh Law (Dynamics):** Executive Power & Logic Field Alignment Law ($\cos	heta 	o 1$)
+8. **Eighth Law (Evolution):** Self-Adaptive Anti-Heat-Death Law ($\Delta t_{	ext{rewrite}}$)
+
+---
+*© 2026 Grit Meng (Meng Fanchun). All rights reserved.*
