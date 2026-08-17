@@ -7,9 +7,26 @@
 *Former Head & Chief Architect of Global Supply Chain Integrated Planning (IPS), Lenovo Group*  
 **官方 GitHub 主页：** [gritmeng.github.io/Value-Chain-Physics](https://gritmeng.github.io/Value-Chain-Physics/)  
 **联系邮箱 / Email：** gritmeng@outlook.com  
-**学术预印本凭证 / Publication Status：**  
-- **SSRN Distributed:** Abstract IDs: [7251098](https://ssrn.com/abstract=7251098) | [7216338](https://ssrn.com/abstract=7216338) | [7216903](https://ssrn.com/abstract=7216903) | [7216862](https://ssrn.com/abstract=7216862) | [7192798](https://ssrn.com/abstract=7192798)
-- **arXiv Preprint:** Submitted & On Hold (`submit/7871481` / `submit/7871432` [cs.AI / Systems Science])
+
+---
+
+## 📊 官方学术预印本与 SSRN / arXiv 实时状态 (Official Academic Submissions & Status)
+
+### 🏛️ SSRN 预印本平台 (SSRN Author Dashboard)
+- **SSRN 7251098 (Distributed / 已正本发布与分布式传播):**  
+  [*Holographic Anti-Entropy: The Physics Constitution of Open Complex Giant Systems - A Paradigm Shift from Emergent Self-Consistency to Will-Governed Mastery*](https://ssrn.com/abstract=7251098)
+- **SSRN 7282118 (In Review / 审核中):**  
+  *System and Complexity Science: Generation, Persistence, and Evolution of Order (Axiomatic Preprint v2: Origin of Order)*
+- **SSRN 7282098 (In Review / 审核中):**  
+  *System and Complexity Science: The Generation, Persistence, and Evolution of Order — Full English Monograph Edition*
+
+### 🚀 arXiv 官方预印本平台 (arXiv.org Account: GritMeng)
+- **arXiv submit/7871466 (Status: on hold):**  
+  *Value Chain Physics: Governance Laws of Open Complex Giant Systems -- A Paradigm Shift in Digitalization and AI Autonomous Decision-Making*
+- **arXiv submit/7871481 (Status: on hold):**  
+  *System and Complexity Science: The Generation, Persistence, and Evolution of Order*
+- **arXiv submit/7898045 (Status: on hold):**  
+  *Holographic Anti-Entropy Theory: First-Principles Deduction, Formal Analysis, and Carbon-Silicon Symbiotic Self-Healing Evolution for Open Complex Giant Systems*
 
 ---
 
@@ -33,6 +50,7 @@
 
 ### 1. 专著一正本：《系统与复杂性科学：秩序的生成、存续和进化》
 * **英文标题：** *System and Complexity Science: Generation, Persistence, and Evolution of Order — The Physical Constitution for Open Complex Giant Systems*
+* **预印本凭证：** SSRN `7282118` / `7282098` | arXiv `submit/7871481`
 * **核心定位：** 开放复杂巨系统的第一性原理物理立宪正本
 * **第一性原理三大公理：**
   1. **生成公理 (Generation Axiom)：** 没有先验划界框架，秩序必坍缩（反无序）。
@@ -56,6 +74,7 @@
 
 ### 2. 专著二正本：《价值链物理学：开放复杂巨系统的治理法则》
 * **英文标题：** *Physics of Value Chain Management: Governance Laws for Open Complex Giant Systems*
+* **预印本凭证：** arXiv `submit/7871466`
 * **核心定位：** 工程法典与 100+ 页出版级正本
 * **物理三隔离与七大临床病理：**
   - **决策隔离：** 控制塔后视镜效应、执行开环、预测概率陷阱；
@@ -77,7 +96,8 @@
 ---
 
 ### 3. 专著三 / 创新篇：《全息抗熵与良知驱动五维心智物理引擎 / 认知 OS》
-* **英文标题：** *Holographic Anti-Entropy & The Conscience-Driven 5D Metacognition OS*
+* **英文标题：** *Holographic Anti-Entropy Theory: First-Principles Deduction, Formal Analysis, and Carbon-Silicon Symbiotic Self-Healing Evolution for Open Complex Giant Systems*
+* **预印本凭证：** SSRN `7251098` (Distributed) | arXiv `submit/7898045` (on hold)
 * **核心定位：** 认知折叠、碳硅共生自愈演化与 AI 治理宪章
 * **核心贡献：** 攻克大语言模型（LLM）幻觉与 Goodhart 重尾崩溃，建立以“致良知”为紧支撑域的五维心智物理引擎，实现碳硅共生体下的自适应进化与人类自由度提升。
 
@@ -134,16 +154,25 @@ For international researchers, reviewers, and Overleaf users:
   author    = {Fanchun Meng (Grit Meng)},
   title     = {System and Complexity Science: Generation, Persistence, and Evolution of Order --- The Physical Constitution for Open Complex Giant Systems},
   title_zh  = {系统与复杂性科学：秩序的生成、存续和进化——开放复杂巨系统的物理学宪法},
-  journal   = {arXiv preprint arXiv:submit/7871481 [cs.AI]},
+  journal   = {SSRN Electronic Journal, SSRN ID: 7282118 / 7282098 | arXiv:submit/7871481},
   year      = {2026},
   url       = {https://gritmeng.github.io/Value-Chain-Physics/}
 }
 
 @article{Meng2026ValueChainPhysics,
   author    = {Fanchun Meng (Grit Meng)},
-  title     = {Physics of Value Chain Management: Governance Laws of Open Complex Giant Systems},
+  title     = {Value Chain Physics: Governance Laws of Open Complex Giant Systems -- A Paradigm Shift in Digitalization and AI Autonomous Decision-Making},
   title_zh  = {价值链物理学：开放复杂巨系统的治理法则},
-  journal   = {SSRN Electronic Journal, SSRN ID: 7251098},
+  journal   = {arXiv preprint arXiv:submit/7871466 [cs.AI]},
+  year      = {2026},
+  url       = {https://gritmeng.github.io/Value-Chain-Physics/}
+}
+
+@article{Meng2026HolographicAntiEntropy,
+  author    = {Fanchun Meng (Grit Meng)},
+  title     = {Holographic Anti-Entropy: The Physics Constitution of Open Complex Giant Systems - A Paradigm Shift from Emergent Self-Consistency to Will-Governed Mastery},
+  title_zh  = {全息抗熵理论：开放复杂巨系统的物理宪法与碳硅共生自愈演化},
+  journal   = {SSRN Electronic Journal, SSRN ID: 7251098 | arXiv:submit/7898045},
   year      = {2026},
   url       = {https://ssrn.com/abstract=7251098}
 }
