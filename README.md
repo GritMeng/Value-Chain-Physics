@@ -15,18 +15,16 @@
 ### 🏛️ SSRN 预印本平台 (SSRN Author Dashboard)
 - **SSRN 7251098 (Distributed / 已正本发布与分布式传播):**  
   [*Holographic Anti-Entropy: The Physics Constitution of Open Complex Giant Systems - A Paradigm Shift from Emergent Self-Consistency to Will-Governed Mastery*](https://ssrn.com/abstract=7251098)
-- **SSRN 7282118 (In Review / 审核中):**  
-  *System and Complexity Science: Generation, Persistence, and Evolution of Order (Axiomatic Preprint v2: Origin of Order)*
-- **SSRN 7282098 (In Review / 审核中):**  
-  *System and Complexity Science: The Generation, Persistence, and Evolution of Order — Full English Monograph Edition*
+- **Zenodo Academic Repository (Alternative Preprints / 学术托管):**  
+  *The other monographs (System and Complexity Science, Value Chain Physics) have been migrated to Zenodo to obtain permanent DataCite DOIs, bypassing SSRN's social science scope restrictions.*
 
 ### 🚀 arXiv 官方预印本平台 (arXiv.org Account: GritMeng)
 - **arXiv submit/7871466 (Status: on hold):**  
   *Value Chain Physics: Governance Laws of Open Complex Giant Systems -- A Paradigm Shift in Digitalization and AI Autonomous Decision-Making*
 - **arXiv submit/7871481 (Status: on hold):**  
   *System and Complexity Science: The Generation, Persistence, and Evolution of Order*
-- **arXiv submit/7898045 (Status: on hold):**  
-  *Holographic Anti-Entropy Theory: First-Principles Deduction, Formal Analysis, and Carbon-Silicon Symbiotic Self-Healing Evolution for Open Complex Giant Systems*
+- **arXiv (Third Slot / 准备上传中):**  
+  *Holographic Anti-Entropy Theory (arXiv-compatible LaTeX source synced with SSRN 7251098, ready to upload using HAE LaTeX package)*
 
 ---
 
