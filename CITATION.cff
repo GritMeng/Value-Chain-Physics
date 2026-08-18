@@ -1,22 +1,28 @@
 cff-version: 1.2.0
-title: "System and Complexity Science: Generation, Persistence, and Evolution of Order"
-message: "If you use this monograph or software, please cite it as below."
-type: book
+message: "If you use this work, please cite it using the metadata below."
+title: "System and Complexity Science: Generation, Persistence, and Evolution of Order — The Physical Constitution for Open Complex Giant Systems"
+title-zh: "系统与复杂性科学：秩序的生成、存续和进化——开放复杂巨系统的物理学宪法"
 authors:
   - family-names: "Meng"
     given-names: "Fanchun (Grit)"
     email: "gritmeng@outlook.com"
-    affiliation: "Institute of Value Chain Physics"
-repository-code: "https://github.com/GritMeng/Value-Chain-Physics"
-url: "https://doi.org/10.5281/zenodo.21866584"
+    orcid: "https://orcid.org/0009-0000-0000-0000"
+    affiliation: "Former Chief Architect of Global Supply Chain Planning Systems (IPS), Lenovo Group"
+year: 2026
+date-released: 2026-07-27
 identifiers:
-  - type: doi
-    value: "10.5281/zenodo.21866584"
-    description: "Chinese Monograph v1.3 on Zenodo"
-date-released: 2026-08-08
+  - type: url
+    value: "https://ssrn.com/abstract=7251098"
+    description: "SSRN Live Preprint: Holographic Anti-Entropy"
+  - type: other
+    value: "arXiv:submit/7871481"
+    description: "arXiv Preprint ID: System and Complexity Science"
+repository-code: "https://github.com/GritMeng/Value-Chain-Physics"
 keywords:
-  - "System Science"
-  - "Complexity Science"
+  - "System and Complexity Science"
   - "Open Complex Giant Systems"
   - "Holographic Anti-Entropy"
-  - "Value Chain Physics"
+  - "Order Generation Persistence Evolution"
+  - "Non-IID Complexity"
+  - "Banach Contraction Mapping"
+  - "Carbon-Silicon Symbiosis"
