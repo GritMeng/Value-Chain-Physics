@@ -30,7 +30,7 @@ From this, the Three Physical Laws of Order emerge:
 
 Partitioning prevents collapse; rigid constraints prevent dissipation; residual feedback prevents stagnation. Together, they form the necessary and sufficient loop of Holographic Anti-Entropy.
 
-Projecting these axioms into mathematical work, we derive five formal operators: Prior Partition Operator $\mathbf{\Pi} = \langle D, A \rangle$, Rigid Manifold Operator $\mathbf{\Pi}_\bot$, Residual Norm Difference $\mathbf{\Delta}$, Second-Order Evolution Operator $\mathbf{\Phi}$, and Conscience Operator $\mathbf{E}_{\mathrm{sp}}$. Via Banach Contraction Mapping and Priority Netting, we prove $O(N!)$ factorial complexity is algebra-pruned to polynomial solvable $O(N \log N)$ bounds.
+Projecting these axioms into mathematical work, we derive five formal operators: Prior Partition Operator $\mathbf{\Pi} = \langle D, A \rangle$, Rigid Manifold Operator $\mathbf{\Pi}_\bot$, Residual Norm Difference $\mathbf{\Delta}$, Second-Order Evolution Operator $\mathbf{\Phi}$, and Conscience Operator $\mathbf{E}_{\mathrm{supp}}$. Via Banach Contraction Mapping and Priority Netting, we prove $O(N!)$ factorial complexity is algebra-pruned to polynomial solvable $O(N \log N)$ bounds.
 
 This is verified on global industrial battlefields. Across Lenovo's manufacturing networks, scheduling 500,000 daily orders, 2,000,000 material nodes, and 150,000 inequality constraints converges within 296 seconds (5 minutes), boosting delivery response to 98% and inventory turnover by 1.9$\times$, releasing billions in liquidity through human-out-of-the-loop self-healing.
 

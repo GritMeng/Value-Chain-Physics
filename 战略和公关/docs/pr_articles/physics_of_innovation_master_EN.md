@@ -111,7 +111,7 @@ Traditional identification mechanisms try to evaluate "proposals" through interv
 2. **Metacognitive Distance ($\mathbf{\Phi}$)**: The algebraic ability to step out of one's current belief model at any time and perform second-order self-reflection and self-negation.
 3. **Fluid Intelligence ($G_f$)**: The general compute capacity to rapidly extract orthogonal dimensions in the midst of chaos without pre-existing rules.
 4. **Sentient Impulse**: The non-rational gravitational pull that drives oneself to cross past established safety zones.
-5. **Embodied Conscience ($\mathbf{E}_{\text{supp}}$)**: A physical belief in the authenticity of global system work, acting as a compact-support operator to intercept metric arbitrage.
+5. **Embodied Conscience ($\mathbf{E}_{\mathrm{supp}}$)**: A physical belief in the authenticity of global system work, acting as a compact-support operator to intercept metric arbitrage.
 
 ### 4.3 Measurement Protocol: Adversarial Stress Testing and the Surprise Operator
 

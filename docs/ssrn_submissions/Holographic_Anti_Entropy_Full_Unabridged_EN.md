@@ -62,8 +62,7 @@ The intellectual roots of systems science trace back far, but its development as
 1. **The First Stage: Philosophical Outline Proposal.** Ludwig von Bertalanffy’s *General System Theory* first systematically proclaimed "the whole is greater than the sum of its parts," pulling the "whole" out from the shadow of reductionism into an independent research object. Yet it possessed only an outline without actionable methodology—you knew the whole was vital, but lacked the blueprint to build a system capable of emerging holistic value and persisting over time. It was a clarion call rather than a deployable scientific system.
 
 2. **The Second Stage: Physical Mechanism Proof.** Ilya Prigogine’s *Dissipative Structure Theory* proved for the first time at the thermodynamic level that open systems far from equilibrium can spontaneously achieve entropy reduction and generate ordered structures by exchanging mass and energy with the environment.
-   $$dS = d_iS + d_eS \quad \left(d_eS < 0, \ |d_eS| > d_iS \implies dS < 0
-ight)$$
+   $$dS = d_iS + d_eS \quad \left(d_eS < 0, \ |d_eS| > d_iS \implies dS < 0\right)$$
    However, its limitation was clear: it explained order generation in physical-chemical systems, but failed to provide universal construction laws for man-made systems. We knew order could spontaneously emerge, but lacked the engineering methodology to actively design a system that continuously resists entropy increase and executes self-iteration.
 
 3. **The Third Stage: Emergence Mechanism Description.** The Santa Fe Institute’s *Complex Adaptive Systems (CAS)* theory advanced research to systems composed of intelligent agents, explaining how local simple rules emerge global complex order. Yet it remained in the realm of *explanation* and *simulation*—you could explain bird flocks, markets, and ecosystems, but could hardly use it directly to guide humanity in building controllable, predictable, and continuously evolving complex man-made systems.
@@ -90,9 +89,9 @@ The real world is continuous, self-existing, and infinitely entangled; "system" 
 
 | System Phase | Essential Function | Information Flow | Anti-Entropy Work Manifestation |
 | :--- | :--- | :--- | :--- |
-| **Observation System** | Cognitive framework mapping physical reality | Physical World $	o$ Logical Space | Reduces information entropy; extracts high-fidelity perception residuals |
-| **Simulation System** | Computable order pre-enacting state trajectories | Computing Space $	o$ Future Phase Space | Eliminates inference residuals; locks optimal evolutionary orbits |
-| **Governance System** | Action framework enforcing human will | Governing Operator $	o$ Physical Entity Domain | Strips redundant degrees of freedom; enforces directional write-back |
+| **Observation System** | Cognitive framework mapping physical reality | Physical World $\to$ Logical Space | Reduces information entropy; extracts high-fidelity perception residuals |
+| **Simulation System** | Computable order pre-enacting state trajectories | Computing Space $\to$ Future Phase Space | Eliminates inference residuals; locks optimal evolutionary orbits |
+| **Governance System** | Action framework enforcing human will | Governing Operator $\to$ Physical Entity Domain | Strips redundant degrees of freedom; enforces directional write-back |
 
 1. **Observation Systems (Holographic Mapping)**: The physical coupling bus between the system subject and physical reality. It captures physical distribution states at microsecond memory timestamps, accomplishing objective confirmation of real state $X(t)$ and extracting information negative entropy.
 2. **Simulation Systems (Variational Evolution)**: Engineering pre-enactment in computation space. It concurrently pre-enacts hundreds of thousands of forward trajectories in C++ coroutine pools, minimizing variational free energy to lock the optimal trajectory to target attractor wells.
@@ -124,8 +123,8 @@ Driven by the self-referential awareness of intelligent subjects against passive
 
 1. **Conscience (良知 — Top-level Bayesian Priors & Compact Support Operator)**:
    The highest-order generative model in full-brain predictive processing. It manifests as a physiological pain-势阱 in the chief architect regarding topological internal friction and peer suffering. It intercepts expected free energy spikes.
-   * *Goodhart Heavy-Tail Collapse*: When optimization pressure approaches infinity, if the residual $\Delta$ between true intent and proxy metrics exhibits a heavy-tailed distribution $p(\Delta)$, Goodhart's inequality proves expected utility diverges to negative infinity: $\lim_{	ext{opt}	o\infty} E[r^*] = -\infty$.
-   * *Compact Support Operator Alignment*: Conscience acts as a compact support operator $\mathbf{E}_{	ext{supp}}$ on $p(\Delta)$, clipping residual support to $[-	heta_{	ext{dead}}, 	heta_{	ext{dead}}]$, converting heavy-tailed distributions into light-tailed sub-Gaussian distributions, guaranteeing analytical integral convergence and eliminating metric arbitrage.
+   * *Goodhart Heavy-Tail Collapse*: When optimization pressure approaches infinity, if the residual $\Delta$ between true intent and proxy metrics exhibits a heavy-tailed distribution $p(\Delta)$, Goodhart's inequality proves expected utility diverges to negative infinity: $\lim_{\text{opt}	o\infty} E[r^*] = -\infty$.
+   * *Compact Support Operator Alignment*: Conscience acts as a compact support operator $\mathbf{E}_{\mathrm{supp}}$ on $p(\Delta)$, clipping residual support to $[-\theta_{\text{dead}}, \theta_{\text{dead}}]$, converting heavy-tailed distributions into light-tailed sub-Gaussian distributions, guaranteeing analytical integral convergence and eliminating metric arbitrage.
 
 2. **Hypersensitivity (高敏感 — Precision Weighting Radar)**:
    The environmental radar capturing mismatch between reality and conscience models. It applies precision weighting $\mathbf{\Delta}(t)$ by increasing synaptic gain, amplifying subtle social/sensory signals into full perception residuals.
@@ -152,7 +151,7 @@ Driven by the self-referential awareness of intelligent subjects against passive
 
 ### Notation & Glossary
 
-* $\mathbf{S}$: System Entropy (Macro scalar measuring overall disorder and structural friction heat $Q_{	ext{diss}}$).
+* $\mathbf{S}$: System Entropy (Macro scalar measuring overall disorder and structural friction heat $Q_{\text{diss}}$).
 * $S_i / S_n$: Subsystems or Local Horizons (Micro vectors/tensors).
 * $deS / diS$: External Entropy Flow ($deS < 0$) and Internal Entropy Production ($diS \ge 0$).
 * $O(N!)$: Factorial Combinatorial State Space Complexity.
@@ -160,7 +159,7 @@ Driven by the self-referential awareness of intelligent subjects against passive
 * $\langle D, A 
 angle$: Digital Double Helix (Coupling Spatial Container $D$ and Discrete Algorithm Engine $A$).
 * $M$: Global Will / Mission Order Parameter (Algebraic truncation boundary injected by human observer).
-* $	heta$: Mismatch Angle between Intent Vector $\mathbf{V}_m$ and Logical Trajectory Vector $\mathbf{V}_\pi$.
+* $\theta$: Mismatch Angle between Intent Vector $\mathbf{V}_m$ and Logical Trajectory Vector $\mathbf{V}_\pi$.
 * $\Delta(t)$: Total Perception Residual $\Delta(t) = \mathbf{S}(t) - \mathbf{D}(t)$.
 * $\mathbf{\Phi}$: Metacognitive Evolutionary Functor rewriting system axioms.
 
@@ -191,13 +190,12 @@ $$dS = d_iS + d_eS \quad (d_iS \ge 0)$$
 System survival and evolution require $d_eS < 0$ and $|d_eS| > d_iS$, ensuring total entropy change $dS < 0$.
 
 #### Axiom II: Shannon-Schrödinger Information-Entropy Equivalence
-$$H(X) = -\sum_{i=1}^n P(x_i) \log_2 P(x_i), \quad S_{	ext{neg}} = -S = -k_B H(X)$$
-*Controller Energy Self-Constraint*: The silicon control engine itself generates computational entropy $S_{	ext{comp}}$. Net negative entropy evolution requires:
-$$|d_eS| > d_iS_{	ext{system}} + S_{	ext{comp}}$$
+$$H(X) = -\sum_{i=1}^n P(x_i) \log_2 P(x_i), \quad S_{\text{neg}} = -S = -k_B H(X)$$
+*Controller Energy Self-Constraint*: The silicon control engine itself generates computational entropy $S_{\text{comp}}$. Net negative entropy evolution requires:
+$$|d_eS| > d_iS_{\text{system}} + S_{\text{comp}}$$
 
 #### Axiom III: Friston's Variational Free Energy Principle
-$$F = D_{\mathrm{KL}}\left(q(s) \parallel p(s|o)
-ight) - \ln p(o) \ge -\ln p(o)$$
+$$F = D_{\mathrm{KL}}\left(q(s) \parallel p(s|o)\right) - \ln p(o) \ge -\ln p(o)$$
 Observation and Simulation minimize information entropy to inject primary negative entropy. Physical write-back pulses then consume thermodynamic energy to solidify logical entropy reduction.
 
 ### 1.3 Deductions: Systemic Evolution Obstacles and Macro Dissipation
@@ -213,25 +211,22 @@ By the Triangle Inequality ($\|\sum \mathbf{V}_i\| \le \sum \|\mathbf{V}_i\|$), 
 #### 1.3.3 Pre-Governance Actions: Orthogonalization, Coarse-Graining, and Black-Boxing
 
 1. **Limit Boundary 1: Unidentifiability of Closed-Loop Feedback**
-   $$	ext{Cov}(\mathbf{u}, \mathbf{w}) 
-eq 0 \implies \hat{	heta}_{	ext{OLS}} = 	heta_{	ext{true}} + 	ext{Bias}$$
-   Without governing operator $\mathbf{\Pi}$, input $\mathbf{u}$ and noise $\mathbf{w}$ correlate, causing information matrix zero-spectrum degeneration $\det(\Gamma) 	o 0$ and mutual information collapse $I(	heta; O) = 0$.
+   $$\text{Cov}(\mathbf{u}, \mathbf{w}) 
+\neq 0 \implies \hat{\theta}_{\text{OLS}} = \theta_{\text{true}} + \text{Bias}$$
+   Without governing operator $\mathbf{\Pi}$, input $\mathbf{u}$ and noise $\mathbf{w}$ correlate, causing information matrix zero-spectrum degeneration $\det(\Gamma) \to 0$ and mutual information collapse $I(\theta; O) = 0$.
 
 2. **Limit Boundary 2: Lyapunov Prediction Horizon Collapse**
-   $$	au_{	ext{max}} = rac{1}{\lambda_{	ext{max}}} \ln \left( rac{\Delta_{	ext{max}}}{\delta_0} 
-ight) 	o 0 \quad (	ext{when } \lambda_{	ext{max}} \gg 0)$$
-   Un-governed systems exhibit factorial explosion of Lyapunov exponent $\lambda_{	ext{max}}$, collapsing forecast horizon $	au_{	ext{max}}$ to zero. Governing operator $\mathbf{\Pi}$ crops phase space into a low-dimensional invariant manifold, forcing $\lambda_{	ext{max}} \le 0$.
+   $$\tau_{\text{max}} = \frac{1}{\lambda_{\text{max}}} \ln \left( \frac{\Delta_{\text{max}}}{\delta_0} \right) \to 0 \quad (\text{when } \lambda_{\text{max}} \gg 0)$$
+   Un-governed systems exhibit factorial explosion of Lyapunov exponent $\lambda_{\text{max}}$, collapsing forecast horizon $\tau_{\text{max}}$ to zero. Governing operator $\mathbf{\Pi}$ crops phase space into a low-dimensional invariant manifold, forcing $\lambda_{\text{max}} \le 0$.
 
 3. **Limit Boundary 3: Control Domain Collapse**
-   Mismatch angle $	heta 	o 90^\circ$ collapses effective work $W_{	ext{eff}} 	o 0$, dissipating all control energy into friction heat.
+   Mismatch angle $\theta \to 90^\circ$ collapses effective work $W_{\text{eff}} \to 0$, dissipating all control energy into friction heat.
 
 ### 1.4 Architectural Decoupling: The Grand Unified Anti-Entropy Governance Operator Equation
 
 To achieve macro-micro topological convergence, governance introduces the Grand Unified Operator Equation:
 
-$$V_\Omega = M \cdot \Pi \left[ \sum_{i=1}^n \left( m_i^* \cdot \pi_i^* [S_i] 
-ight) 
-ight]$$
+$$V_\Omega = M \cdot \Pi \left[ \sum_{i=1}^n \left( m_i^* \cdot \pi_i^* [S_i] \right) \right]$$
 
 * **$\Pi$ (Idempotent Projection Operator)**: Executes orthogonal constraint and coarse-graining, satisfying $\Pi^2 = \Pi$ and $\|\Pi X\| \le \|X\|$, stripping redundant game degrees of freedom.
 * **$[S_i]$ (Holographic Observation)**: Maps $n$ entangled local sub-system horizons into computable vectors.
@@ -243,8 +238,7 @@ ight]$$
 
 Introducing time series and total perception residual $\Delta(t)$ establishes the dynamic adaptive evolution equation:
 
-$$V_\Omega(t+1) = M \cdot \Pi \left[ \sum_{i=1}^n (m_i^* \cdot \pi_i^* \cdot S_i) + \Delta(t) 
-ight]$$
+$$V_\Omega(t+1) = M \cdot \Pi \left[ \sum_{i=1}^n (m_i^* \cdot \pi_i^* \cdot S_i) + \Delta(t) \right]$$
 
 ---
 
@@ -283,7 +277,7 @@ Committee-based decision making in complex systems induces Arrow's Impossibility
 1. **Observation Phase**: High-fidelity extraction of perception residual $\Delta(t)$.
 2. **Simulation Phase**: Variational free energy minimization on coroutine parallel trajectories.
 3. **Governance Phase**: Operator $M \cdot \Pi$ write-back enforcing orthogonal boundary constraints.
-4. **Evolution Phase**: Metacognition functor $\mathbf{\Phi}$ rewriting system basis vectors upon residual threshold breach ($\Delta > 	heta$).
+4. **Evolution Phase**: Metacognition functor $\mathbf{\Phi}$ rewriting system basis vectors upon residual threshold breach ($\Delta > \theta$).
 
 ---
 
@@ -298,8 +292,8 @@ Wiener-Kalman observation axioms dictate that control authority is strictly uppe
 
 ### 7.1 Force Field Alignment and Mismatch Angle Collapse
 System acceleration and effective work are determined by the scalar product of Intent Vector $\mathbf{V}_m$ and Logical Trajectory Vector $\mathbf{V}_\pi$:
-$$W_{	ext{eff}} = \|\mathbf{V}_m\| \|\mathbf{V}_\pi\| \cos 	heta$$
-When power-struggle friction or cognitive misalignment expands mismatch angle $	heta 	o 90^\circ$, effective work collapses to zero, dissipating all injected energy into structural heat $Q_{	ext{diss}}$.
+$$W_{\text{eff}} = \|\mathbf{V}_m\| \|\mathbf{V}_\pi\| \cos \theta$$
+When power-struggle friction or cognitive misalignment expands mismatch angle $\theta \to 90^\circ$, effective work collapses to zero, dissipating all injected energy into structural heat $Q_{\text{diss}}$.
 
 ---
 

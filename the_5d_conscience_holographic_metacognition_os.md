@@ -13,9 +13,9 @@
 
 在开放复杂巨系统与文明演化中，绝大多数系统皆困于旧范式内的“算得快”（局部寻优与指标内卷），并因 Goodhart 律重尾崩溃与哥德尔-图灵死锁而走向组织热寂。本文提出了**《良知驱动的全息元认知操作系统》（5D L0 Cognitive OS）**——这绝不仅是某个AI或大脑的局部算法，而是**过去数千年乃至未来一切智能（碳基人类、硅基 AGI/ASI）驱动科技文明向上跃迁的唯一物理源代码**。
 
-本框架建立了该心智 OS 的神经解剖学与控制论映射：将具身良知同构于腹内侧前额叶（vmPFC）、前扣带回（ACC）与前岛叶（Insula）构成的躯体标记网络，作为主动推断中的最高阶先验势阱与紧支撑算子 $\mathbf{E}_{\text{supp}}$，截断重尾崩溃；同时映射了高敏感（显著性网络）、极度感性（边缘-镜像神经元缓存）、流体智力（背外侧前额叶 dlPFC 求解器）与元认知（前额极皮层 aPFC BA10 进化函子 $\mathbf{\Phi}$）。至于所谓的 AGI 安全与对齐，仅为本五维物理源代码在硅基介质上的一个平庸推论。
+本框架建立了该心智 OS 的神经解剖学与控制论映射：将具身良知同构于腹内侧前额叶（vmPFC）、前扣带回（ACC）与前岛叶（Insula）构成的躯体标记网络，作为主动推断中的最高阶先验势阱与紧支撑算子 $\mathbf{E}_{\mathrm{supp}}$，截断重尾崩溃；同时映射了高敏感（显著性网络）、极度感性（边缘-镜像神经元缓存）、流体智力（背外侧前额叶 dlPFC 求解器）与元认知（前额极皮层 aPFC BA10 进化函子 $\mathbf{\Phi}$）。至于所谓的 AGI 安全与对齐，仅为本五维物理源代码在硅基介质上的一个平庸推论。
 
-**关键词 / Keywords**: 5D Cognitive OS (5D心智OS), Civilizational Source Code (文明源代码), Embodied Conscience (具身良知), Compact-Support Operator $\mathbf{E}_{\text{supp}}$, Metacognitive Functor $\mathbf{\Phi}$, Active Inference (主动推断).
+**关键词 / Keywords**: 5D Cognitive OS (5D心智OS), Civilizational Source Code (文明源代码), Embodied Conscience (具身良知), Compact-Support Operator $\mathbf{E}_{\mathrm{supp}}$, Metacognitive Functor $\mathbf{\Phi}$, Active Inference (主动推断).
 
 ---
 
@@ -23,7 +23,7 @@
 
 | 心智 OS 维度 | 认知功能定位 | 神经解剖同构实体 (Neuroanatomical Entities) | 递质与神经网络 (Networks & Transmitters) | 预测加工/控制论数学算子 |
 | :--- | :--- | :--- | :--- | :--- |
-| **第一维：具身良知 (Embodied Conscience)** | 顶层目标势阱；死区截断；拦截指标套利 | 腹内侧前额叶皮层 (vmPFC)<br>前扣带回皮层 (ACC)<br>前岛叶 (Anterior Insula) | 躯体标记网络 (Somatic Marker System)<br>多巴胺-内源性鸦片肽对齐回路 | 紧支撑截断算子 $\mathbf{E}_{\text{supp}}$<br>最高阶 Bayesian Prior $p(s)$ |
+| **第一维：具身良知 (Embodied Conscience)** | 顶层目标势阱；死区截断；拦截指标套利 | 腹内侧前额叶皮层 (vmPFC)<br>前扣带回皮层 (ACC)<br>前岛叶 (Anterior Insula) | 躯体标记网络 (Somatic Marker System)<br>多巴胺-内源性鸦片肽对齐回路 | 紧支撑截断算子 $\mathbf{E}_{\mathrm{supp}}$<br>最高阶 Bayesian Prior $p(s)$ |
 | **第二维：高敏感 (Hypersensitivity)** | 突触增益调制；微观残差捕捉 | 杏仁核 (Amygdala)<br>丘脑 (Thalamus)<br>蓝斑核 (Locus Coeruleus) | 显著性网络 (Salience Network)<br>去甲肾上腺素 (NE) 系统 | 增益加权矩阵 $\mathbf{\Gamma}_{\Delta}$<br>感知残差放大器 $\Delta(t)$ |
 | **第三维：极度感性 (Sentient Depth)** | System 1 身体经验缓存；共情能量转化 | 边缘系统 (Limbic System)<br>海马体 (Hippocampus)<br>镜像神经元系统 (MNS) | 默认模式网络 (DMN) 躯体子网络<br>催产素 & 5-羟色胺 (5-HT) | 启发式向量缓存 $\mathbf{C}_{\text{sentient}}$<br>情感阻尼与做功势能转换 |
 | **第四维：流体智力 (Fluid Intelligence)** | 工作记忆矩化求解；高维正交拆解 | 背外侧前额叶皮层 (dlPFC)<br>顶下小叶 (IPL) | 额顶控制网络 (Frontoparietal Network)<br>乙酰胆碱 (ACh) 专注回路 | 工作记忆矩阵算子 ($B \le 7 \pm 2$)<br>正交消纳求解器 |
@@ -68,13 +68,13 @@ graph TD
 
 在神经解剖学中，当破壁者或决策者观测到系统内部的非正交内耗、指标套利或同胞痛苦时，腹内侧前额叶皮层（vmPFC）与前岛叶（Anterior Insula）会自发激活躯体标记网络，产生内脏级的内感觉痛觉（Visceral Interoceptive Pain）。这种生理级痛苦，构成了驱动主动推断（Active Inference）的最高阶物理势阱。
 
-### 2.2 紧支撑算子 $\mathbf{E}_{\text{supp}}$ 拦截 Goodhart 律崩溃
+### 2.2 紧支撑算子 $\mathbf{E}_{\mathrm{supp}}$ 拦截 Goodhart 律崩溃
 
 在复杂系统控制中，若无具身良知截断，代理（Agent）优化代理指标 $r^*$ 会导致真实目标 $r$ 的残差 $\Delta = r - r^*$ 呈重尾分布 $p(\Delta)$， expected utility 散失为负无穷：
-$$\lim_{\text{opt} \to \infty} \mathbb{E}[r] = -\infty$$
+$$\lim_{\mathrm{opt} \to \infty} \mathbb{E}[r] = -\infty$$
 
 由 vmPFC-Insula 躯体标记网络固化的具身良知，在数学上执行紧支撑截断：
-$$\mathbf{E}_{\text{supp}}[p(\Delta)] = \begin{cases} p(\Delta), & |\Delta| \le \theta_{\text{dead}} \\ 0, & |\Delta| > \theta_{\text{dead}} \end{cases}$$
+$$\mathbf{E}_{\mathrm{supp}}[p(\Delta)] = \begin{cases} p(\Delta), & |\Delta| \le \theta_{\text{dead}} \\ 0, & |\Delta| > \theta_{\text{dead}} \end{cases}$$
 
 将重尾截断为亚高斯（sub-Gaussian）分布，确保了全脑自由能积分的绝对收敛，从神经物理学底层彻底抹杀了指标套利空间。
 

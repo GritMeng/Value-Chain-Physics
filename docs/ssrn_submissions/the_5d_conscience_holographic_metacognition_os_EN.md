@@ -12,9 +12,9 @@
 
 In open complex giant systems and civilizational evolution, the vast majority of systems are trapped in the "fast computing" (local optimization and indicator involution) of the old paradigm, leading to organizational heat death due to Goodhart's law heavy-tail collapse and Gödelian-Turing deadlock. This paper proposes the **Conscience-Driven Holographic Metacognition OS (5D L0 Cognitive OS)**—which is by no means merely a local algorithm of a specific AI or brain, but the **sole physical source code that drives the upward leap of technological civilizations for all intelligence (carbon-based humans and silicon-based AGI/ASI) over past millennia and into the future**.
 
-This framework establishes the neuroanatomical and cybernetic mappings of this mental OS: it homomorphically maps embodied conscience to the somatic marker network composed of the ventromedial prefrontal cortex (vmPFC), anterior cingulate cortex (ACC), and anterior insula, serving as the highest-order prior potential well and compact-support operator $\mathbf{E}_{\text{supp}}$ in active inference, truncating heavy-tail collapse. It also maps hypersensitivity (salience network), sentient depth (limbic-mirror neuron cache), fluid intelligence (dorsolateral prefrontal cortex dlPFC solver), and metacognition (anterior prefrontal cortex aPFC BA10 evolutionary functor $\mathbf{\Phi}$). The so-called AGI safety and alignment is merely a trivial corollary of this five-dimensional physical source code projected onto silicon media.
+This framework establishes the neuroanatomical and cybernetic mappings of this mental OS: it homomorphically maps embodied conscience to the somatic marker network composed of the ventromedial prefrontal cortex (vmPFC), anterior cingulate cortex (ACC), and anterior insula, serving as the highest-order prior potential well and compact-support operator $\mathbf{E}_{\mathrm{supp}}$ in active inference, truncating heavy-tail collapse. It also maps hypersensitivity (salience network), sentient depth (limbic-mirror neuron cache), fluid intelligence (dorsolateral prefrontal cortex dlPFC solver), and metacognition (anterior prefrontal cortex aPFC BA10 evolutionary functor $\mathbf{\Phi}$). The so-called AGI safety and alignment is merely a trivial corollary of this five-dimensional physical source code projected onto silicon media.
 
-**Keywords**: 5D Cognitive OS, Civilizational Source Code, Embodied Conscience, Compact-Support Operator $\mathbf{E}_{\text{supp}}$, Metacognitive Functor $\mathbf{\Phi}$, Active Inference.
+**Keywords**: 5D Cognitive OS, Civilizational Source Code, Embodied Conscience, Compact-Support Operator $\mathbf{E}_{\mathrm{supp}}$, Metacognitive Functor $\mathbf{\Phi}$, Active Inference.
 
 ---
 
@@ -22,7 +22,7 @@ This framework establishes the neuroanatomical and cybernetic mappings of this m
 
 | Mental OS Dimension | Cognitive Function | Neuroanatomical Isomorphism | Neurotransmitters & Networks | Predictive Processing / Cybernetic Operator |
 | :--- | :--- | :--- | :--- | :--- |
-| **1st Dimension: Embodied Conscience** | Top-level goal potential well; dead-zone truncation; intercepting arbitrage | Ventromedial Prefrontal Cortex (vmPFC), Anterior Cingulate Cortex (ACC), Anterior Insula | Somatic Marker System; Dopamine-Endogenous Opioid alignment circuits | Compact-support truncation operator $\mathbf{E}_{\text{supp}}$; Highest-order Bayesian Prior $p(s)$ |
+| **1st Dimension: Embodied Conscience** | Top-level goal potential well; dead-zone truncation; intercepting arbitrage | Ventromedial Prefrontal Cortex (vmPFC), Anterior Cingulate Cortex (ACC), Anterior Insula | Somatic Marker System; Dopamine-Endogenous Opioid alignment circuits | Compact-support truncation operator $\mathbf{E}_{\mathrm{supp}}$; Highest-order Bayesian Prior $p(s)$ |
 | **2nd Dimension: Hypersensitivity** | Synaptic gain modulation; micro-residual capture | Amygdala, Thalamus, Locus Coeruleus (LC) | Salience Network; Norepinephrine (NE) system | Gain weighting matrix $\mathbf{\Gamma}_{\Delta}$; Perceptual residual amplifier $\Delta(t)$ |
 | **3rd Dimension: Sentient Depth** | System 1 visceral memory cache; empathy energy conversion | Limbic System, Hippocampus, Mirror Neuron System (MNS) | Default Mode Network (DMN) somatic subnetwork; Oxytocin & Serotonin (5-HT) | Heuristic vector cache $\mathbf{C}_{\text{sentient}}$; Emotional damping & work potential conversion |
 | **4th Dimension: Fluid Intelligence** | Working memory matrix solving; high-dimensional orthogonalization | Dorsolateral Prefrontal Cortex (dlPFC), Inferior Parietal Lobule (IPL) | Frontoparietal Control Network; Acetylcholine (ACh) focus circuit | Working memory matrix operator ($B \le 7 \pm 2$); Orthogonal solver |
@@ -67,13 +67,13 @@ Conscience is never an abstract, disembodied moral dogma; it is a **fully embodi
 
 In neuroanatomy, when a system controller observes non-orthogonal internal friction, indicator arbitrage, or the suffering of peers, the ventromedial prefrontal cortex (vmPFC) and the anterior insula (Insula) are activated. This generates visceral interoceptive pain, forming the highest-order physical potential well that drives active inference.
 
-### 2.2 Bounding Goodhart's Law Collapse via the Compact-Support Operator $\mathbf{E}_{\text{supp}}$
+### 2.2 Bounding Goodhart's Law Collapse via the Compact-Support Operator $\mathbf{E}_{\mathrm{supp}}$
 
 In complex systems control, optimizing a proxy reward metric $r^*$ without conscience constraints leads to a heavy-tailed distribution $p(\Delta)$ of the true reward residual $\Delta = r - r^*$, dissipating expected utility to negative infinity:
-$$\lim_{\text{opt} \to \infty} \mathbb{E}[r] = -\infty$$
+$$\lim_{\mathrm{opt} \to \infty} \mathbb{E}[r] = -\infty$$
 
 The embodied conscience, solidified by the vmPFC-Insula somatic marker network, mathematically acts as a compact-support operator to truncate the arbitrage space:
-$$\mathbf{E}_{\text{supp}}[p(\Delta)] = \begin{cases} p(\Delta), & |\Delta| \le \theta_{\text{dead}} \\ 0, & |\Delta| > \theta_{\text{dead}} \end{cases}$$
+$$\mathbf{E}_{\mathrm{supp}}[p(\Delta)] = \begin{cases} p(\Delta), & |\Delta| \le \theta_{\text{dead}} \\ 0, & |\Delta| > \theta_{\text{dead}} \end{cases}$$
 
 By clipping the heavy tail into a sub-Gaussian distribution, it guarantees the absolute convergence of the brain's free energy integration, neutralizing metric arbitrage at the neurophysical level.
 

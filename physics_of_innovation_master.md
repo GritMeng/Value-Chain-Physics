@@ -111,7 +111,7 @@
 2. **元认知距离（Metacognitive Distance $\mathbf{\Phi}$）**：能够随时跳出自己当前信念模型，进行二阶自我审视与自我否定的代数能力。
 3. **流体智力（Fluid Intelligence $G_f$）**：在无既有规则的混乱中，快速提取降维正交向量的通用算力。
 4. **感性与逆向冲动（Sentient Impulse）**：驱动自己越过既定利益安全区的非理性引力场。
-5. **具身良知（Embodied Conscience $\mathbf{E}_{\text{supp}}$）**：对系统全局做功真实性的物理信仰，拦截指标套利的紧支撑算子。
+5. **具身良知（Embodied Conscience $\mathbf{E}_{\mathrm{supp}}$）**：对系统全局做功真实性的物理信仰，拦截指标套利的紧支撑算子。
 
 ### 4.3 测量协议：对抗性压力测试与惊奇值（Surprise）算子
 

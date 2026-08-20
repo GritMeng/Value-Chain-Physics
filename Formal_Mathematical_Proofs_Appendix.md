@@ -8,13 +8,13 @@
 ## 壹、 完备性定理证明（Theorem of Completeness）
 
 ### 定理 1（完备降维推导定理）
-设开放复杂巨系统的状态空间为高维 Hilbert 流形 $\mathcal{H}$，其无约束状态组合维度为 $O(N!)$。在生成公理、存续公理与进化公理的作用下，八大物理做功宪律构成了 $\mathcal{H}$ 到良知流形 $\mathcal{M}_{	ext{conscience}}$ 的**完备投影推论闭包**。
+设开放复杂巨系统的状态空间为高维 Hilbert 流形 $\mathcal{H}$，其无约束状态组合维度为 $O(N!)$。在生成公理、存续公理与进化公理的作用下，八大物理做功宪律构成了 $\mathcal{H}$ 到良知流形 $\mathcal{M}_{\text{conscience}}$ 的**完备投影推论闭包**。
 
 #### 证明过程：
 1. **生成公理 $\implies$ 宪法一（全息抗熵律）与 宪法二（Non-IID 剥离律）**：
-   - 若不存在先验划界算符 $\mathbf{\Pi} = \langle D, A angle$，概率密度分布自发均匀化，系统信息熵 $\Delta S 	o \infty$。
-   - 欲维持 $\Delta S_{	ext{system}} + \Delta S_{	ext{controller}} \ge 0$，必须施加正交划界投影 $\mathbf{\Pi}_ot$，强制使法向非正交自由度收敛：
-     $$\mathbf{x}_ot(t) = (\mathbf{I} - \mathbf{\Pi}_ot) \mathbf{x}(t) \longrightarrow 0 \quad (t 	o \infty)$$
+   - 若不存在先验划界算符 $\mathbf{\Pi} = \langle D, A angle$，概率密度分布自发均匀化，系统信息熵 $\Delta S \to \infty$。
+   - 欲维持 $\Delta S_{\text{system}} + \Delta S_{\text{controller}} \ge 0$，必须施加正交划界投影 $\mathbf{\Pi}_ot$，强制使法向非正交自由度收敛：
+     $$\mathbf{x}_ot(t) = (\mathbf{I} - \mathbf{\Pi}_ot) \mathbf{x}(t) \longrightarrow 0 \quad (t \to \infty)$$
 2. **存续公理 $\implies$ 宪法三（双螺旋同构律）、宪法四（单脑奇点律）与 宪法五（代数拓扑映射律）**：
    - 若不存在刚性边界 $\mathbf{\Pi}_ot$，热力学第二定律导致系统轨迹发散。
    - 欲保证状态收敛，必须施加奇异值分解（SVD）低秩截断：
@@ -23,7 +23,7 @@
 3. **进化公理 $\implies$ 宪法六（观测边界律）、宪法七（逻辑场对齐律）与 宪法八（自适应反热寂律）**：
    - 残差范数 $\mathbf{\Delta}(t) = \|\mathbf{x}_{\mathrm{real}}(t) - \mathbf{x}_{\mathrm{ideal}}(t)\|$ 驱动二阶自省算符 $\mathbf{\Phi}$。
    - 由 Wiener-Kalman 观测边界限制 $\dim C \le \dim O$ 与 Landauer 最小做功极限 $\Delta E \ge k_B T \ln 2 \cdot \Delta I$，推导出自适应重置周期公式：
-     $$\Delta t_{	ext{rewrite}} \le rac{S_{	ext{ctrl}}}{k_B \ln 2 \cdot \|\mathbf{\Pi}_{k+1} - \mathbf{\Pi}_k\|}$$
+     $$\Delta t_{\text{rewrite}} \le \frac{S_{\text{ctrl}}}{k_B \ln 2 \cdot \|\mathbf{\Pi}_{k+1} - \mathbf{\Pi}_k\|}$$
    - 证毕。该证明确定了八大宪律均由三大公理严格推导导出，系统满足完备性。
 
 ---
