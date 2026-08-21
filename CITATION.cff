@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it using the metadata below."
+title: "System and Complexity Science: Generation, Persistence, and Evolution of Order — The Physical Constitution for Open Complex Giant Systems"
+title-zh: "系统与复杂性科学：秩序的生成、存续和进化——开放复杂巨系统的物理学宪法"
+authors:
+  - family-names: "Meng"
+    given-names: "Fanchun (Grit)"
+    email: "gritmeng@outlook.com"
+    orcid: "https://orcid.org/0009-0003-8603-119X"
+    affiliation: "Former Chief Architect of Global Supply Chain Planning Systems (IPS), Lenovo Group"
+year: 2026
+date-released: 2026-07-27
+identifiers:
+  - type: url
+    value: "https://ssrn.com/abstract=7251098"
+    description: "SSRN Live Preprint: System and Complexity Science"
+  - type: other
+    value: "IEEE TSMC-Systems: SMCA-26-08-4527"
+    description: "Submitted Journal Manuscript ID"
+repository-code: "https://github.com/GritMeng/Value-Chain-Physics"
+keywords:
+  - "System and Complexity Science"
+  - "Open Complex Giant Systems"
+  - "Holographic Anti-Entropy"
+  - "Order Generation Persistence Evolution"
+  - "Non-IID Complexity"
+  - "Banach Contraction Mapping"
+  - "Carbon-Silicon Symbiosis"
