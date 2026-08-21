@@ -14,17 +14,15 @@
 
 ### 🏛️ SSRN 预印本平台 (SSRN Author Dashboard)
 - **SSRN 7251098 (Distributed / 已正本发布与分布式传播):**  
-  [*Holographic Anti-Entropy: The Physics Constitution of Open Complex Giant Systems - A Paradigm Shift from Emergent Self-Consistency to Will-Governed Mastery*](https://ssrn.com/abstract=7251098)
+  [*System and Complexity Science: The Generation, Persistence, and Evolution of Order — The Physics Constitution of Open Complex Giant Systems*](https://ssrn.com/abstract=7251098)
 - **Zenodo Academic Repository (Alternative Preprints / 学术托管):**  
   *The other monographs (System and Complexity Science, Value Chain Physics) have been migrated to Zenodo to obtain permanent DataCite DOIs, bypassing SSRN's social science scope restrictions.*
 
-### 🚀 arXiv 官方预印本平台 (arXiv.org Account: GritMeng)
-- **arXiv submit/7871466 (Status: on hold):**  
-  *Value Chain Physics: Governance Laws of Open Complex Giant Systems -- A Paradigm Shift in Digitalization and AI Autonomous Decision-Making*
-- **arXiv submit/7871481 (Status: on hold):**  
-  *System and Complexity Science: The Generation, Persistence, and Evolution of Order*
-- **arXiv (Third Slot / 准备上传中):**  
-  *Holographic Anti-Entropy Theory (arXiv-compatible LaTeX source synced with SSRN 7251098, ready to upload using HAE LaTeX package)*
+### 🏛️ 国际顶级学术期刊投稿状态 (Top Journal Submission Status)
+- **IEEE Transactions on Systems, Man and Cybernetics: Systems (Manuscript ID: SMCA-26-08-4527):**  
+  *System and Complexity Science: Generation, Persistence, and Evolution of Order — The Physical Constitution for Open Complex Giant Systems*  
+  **当前状态 / Status:** Under consideration (Submitted on August 20, 2026; currently undergoing initial assessment by the Pre-screening Committee)
+
 
 ---
 
@@ -48,7 +46,7 @@
 
 ### 1. 专著一正本：《系统与复杂性科学：秩序的生成、存续和进化》
 * **英文标题：** *System and Complexity Science: Generation, Persistence, and Evolution of Order — The Physical Constitution for Open Complex Giant Systems*
-* **预印本凭证：** SSRN `7282118` / `7282098` | arXiv `submit/7871481`
+* **期刊与预印本凭证：** IEEE TSMC-Systems `SMCA-26-08-4527` (Under review) / SSRN `7251098` (Distributed)
 * **核心定位：** 开放复杂巨系统的第一性原理物理立宪正本
 * **第一性原理三大公理：**
   1. **生成公理 (Generation Axiom)：** 没有先验划界框架，秩序必坍缩（反无序）。
@@ -64,15 +62,16 @@
 * **19 位东西方先哲拓扑同构：** 建立了与老庄（无名/有名）、心学（致良知/知行合一）、康德（先验范畴）、钱学森（开放复杂巨系统）、吴学谋（泛系理论）、操龙兵（Non-IIDness 跨域数据动力学）等 19 位巨擘的 1:1 绝对拓扑同构。
 * **典藏入口：**
   - 📝 **[中文全量定稿正本 (canonical_chinese_text.txt)](./canonical_chinese_text.txt)**
-  - 📄 **[英文 Overleaf / arXiv LaTeX 源码 (main.tex)](./main.tex)**
-  - 📦 **[arXiv 完整提交包 (arXiv_clean_package.tar.gz)](./arXiv_clean_package.tar.gz)**
-  - 📄 **[英文专著完整 PDF (System_and_Complexity_Science_Full_Book_Unabridged_En.pdf)](./System_and_Complexity_Science_Full_Book_Unabridged_En.pdf)**
+  - 📝 **[英文专著定稿正本 Markdown (System_and_Complexity_Science_Full_English_Monograph.md)](./docs/ssrn_submissions/System_and_Complexity_Science_Full_English_Monograph.md)**
+  - 📄 **[英文专著完整 PDF (System_and_Complexity_Science_Full_English_Monograph.pdf)](./docs/ssrn_submissions/System_and_Complexity_Science_Full_English_Monograph.pdf)**
+  - 📄 **[英文 Overleaf LaTeX 源码 (main.tex)](./main.tex)**
+  - 📦 **[Overleaf LaTeX 完整提交包 (arXiv_clean_package.tar.gz)](./arXiv_clean_package.tar.gz)**
 
 ---
 
 ### 2. 专著二正本：《价值链物理学：开放复杂巨系统的治理法则》
 * **英文标题：** *Physics of Value Chain Management: Governance Laws for Open Complex Giant Systems*
-* **预印本凭证：** arXiv `submit/7871466`
+* **学术托管凭证：** Zenodo Academic Repository (DOI: 10.5281/zenodo.system_complexity_science_2026)
 * **核心定位：** 工程法典与 100+ 页出版级正本
 * **物理三隔离与七大临床病理：**
   - **决策隔离：** 控制塔后视镜效应、执行开环、预测概率陷阱；
@@ -95,9 +94,14 @@
 
 ### 3. 专著三 / 创新篇：《全息抗熵与良知驱动五维心智物理引擎 / 认知 OS》
 * **英文标题：** *Holographic Anti-Entropy Theory: First-Principles Deduction, Formal Analysis, and Carbon-Silicon Symbiotic Self-Healing Evolution for Open Complex Giant Systems*
-* **预印本凭证：** SSRN `7251098` (Distributed) | arXiv `submit/7898045` (on hold)
+* **预印本凭证：** SSRN `7251098` (Distributed)
 * **核心定位：** 认知折叠、碳硅共生自愈演化与 AI 治理宪章
 * **核心贡献：** 攻克大语言模型（LLM）幻觉与 Goodhart 重尾崩溃，建立以“致良知”为紧支撑域的五维心智物理引擎，实现碳硅共生体下的自适应进化与人类自由度提升。
+* **典藏入口：**
+  - 📝 **[全息抗熵英文论文 Markdown (Holographic_Anti_Entropy_Full_Unabridged_EN.md)](./docs/ssrn_submissions/Holographic_Anti_Entropy_Full_Unabridged_EN.md)**
+  - 📄 **[全息抗熵英文论文 PDF (Holographic_Anti_Entropy_Full_Unabridged_EN.pdf)](./docs/ssrn_submissions/Holographic_Anti_Entropy_Full_Unabridged_EN.pdf)**
+  - 📝 **[五维心智 OS 英文论文 Markdown (the_5d_conscience_holographic_metacognition_os_EN.md)](./docs/ssrn_submissions/the_5d_conscience_holographic_metacognition_os_EN.md)**
+  - 📄 **[五维心智 OS 英文论文 PDF (the_5d_conscience_holographic_metacognition_os_EN.pdf)](./docs/ssrn_submissions/the_5d_conscience_holographic_metacognition_os_EN.pdf)**
 
 ---
 
@@ -138,8 +142,8 @@
 For international researchers, reviewers, and Overleaf users:
 * 📄 **[English Unabridged Monograph PDF (Full Master PDF)](./English_Manuscript/Value_Chain_Physics_Full_135Page_Master_En.pdf)**
 * 📄 **[System Constitution Full PDF](./System_and_Complexity_Science_Full_Book_Unabridged_En.pdf)**
-* 📝 **[arXiv / Overleaf `main.tex` Source](./main.tex)**
-* 📦 **[arXiv Clean Package (`arXiv_clean_package.tar.gz`)](./arXiv_clean_package.tar.gz)**
+* 📝 **[Overleaf `main.tex` Source](./main.tex)**
+* 📦 **[Overleaf LaTeX 完整提交包 (arXiv_clean_package.tar.gz)](./arXiv_clean_package.tar.gz)**
 
 ---
 
@@ -152,16 +156,17 @@ For international researchers, reviewers, and Overleaf users:
   author    = {Fanchun Meng (Grit Meng)},
   title     = {System and Complexity Science: Generation, Persistence, and Evolution of Order --- The Physical Constitution for Open Complex Giant Systems},
   title_zh  = {系统与复杂性科学：秩序的生成、存续和进化——开放复杂巨系统的物理学宪法},
-  journal   = {SSRN Electronic Journal, SSRN ID: 7282118 / 7282098 | arXiv:submit/7871481},
+  journal   = {SSRN Electronic Journal, SSRN ID: 7251098 | Submitted to IEEE Transactions on Systems, Man and Cybernetics: Systems},
   year      = {2026},
-  url       = {https://gritmeng.github.io/Value-Chain-Physics/}
+  url       = {https://ssrn.com/abstract=7251098},
+  note      = {Submitted to IEEE Transactions on Systems, Man and Cybernetics: Systems (Manuscript ID: SMCA-26-08-4527)}
 }
 
 @article{Meng2026ValueChainPhysics,
   author    = {Fanchun Meng (Grit Meng)},
   title     = {Value Chain Physics: Governance Laws of Open Complex Giant Systems -- A Paradigm Shift in Digitalization and AI Autonomous Decision-Making},
   title_zh  = {价值链物理学：开放复杂巨系统的治理法则},
-  journal   = {arXiv preprint arXiv:submit/7871466 [cs.AI]},
+  journal   = {Zenodo Repository},
   year      = {2026},
   url       = {https://gritmeng.github.io/Value-Chain-Physics/}
 }
@@ -170,7 +175,7 @@ For international researchers, reviewers, and Overleaf users:
   author    = {Fanchun Meng (Grit Meng)},
   title     = {Holographic Anti-Entropy: The Physics Constitution of Open Complex Giant Systems - A Paradigm Shift from Emergent Self-Consistency to Will-Governed Mastery},
   title_zh  = {全息抗熵理论：开放复杂巨系统的物理宪法与碳硅共生自愈演化},
-  journal   = {SSRN Electronic Journal, SSRN ID: 7251098 | arXiv:submit/7898045},
+  journal   = {SSRN Electronic Journal, SSRN ID: 7251098},
   year      = {2026},
   url       = {https://ssrn.com/abstract=7251098}
 }
