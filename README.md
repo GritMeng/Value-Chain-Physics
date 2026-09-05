@@ -23,7 +23,6 @@
   *System and Complexity Science: Generation, Persistence, and Evolution of Order — The Physical Constitution for Open Complex Giant Systems*  
   **当前状态 / Status:** Under consideration (Submitted on August 20, 2026; currently undergoing initial assessment by the Pre-screening Committee)
 
-
 ---
 
 ## 🏛️ 作者简介与 22 年千亿级工业战场实证 (Author Profile & Empirical Proof)
@@ -42,25 +41,25 @@
 
 ---
 
-## 📖 创世专著全系典藏 (Canonical Monograph Manuscripts)
+## 📖 核心专著与论文典藏 (Core Monographs & Papers)
 
 ### 1. 专著一正本：《系统与复杂性科学：秩序的生成、存续和进化》
-* **英文标题：** *System and Complexity Science: Generation, Persistence, and Evolution of Order — The Physical Constitution for Open Complex Giant Systems*
-* **期刊与预印本凭证：** IEEE TSMC-Systems `SMCA-26-08-4527` (Under review) / SSRN `7251098` (Distributed)
-* **核心定位：** 开放复杂巨系统的第一性原理物理立宪正本
-* **第一性原理三大公理：**
+- **英文标题：** *System and Complexity Science: Generation, Persistence, and Evolution of Order — The Physical Constitution for Open Complex Giant Systems*
+- **期刊与预印本凭证：** IEEE TSMC-Systems `SMCA-26-08-4527` (Under review) / SSRN `7251098` (Distributed)
+- **核心定位：** 开放复杂巨系统的第一性原理物理立宪正本
+- **第一性原理三大公理：**
   1. **生成公理 (Generation Axiom)：** 没有先验划界框架，秩序必坍缩（反无序）。
   2. **存续公理 (Persistence Axiom)：** 没有刚性流形约束，秩序必耗散（防熵退化）。
   3. **进化公理 (Evolution Axiom)：** 没有残差反馈自省，秩序必僵化（二阶重置）。
-* **五大形式化做功算子：**
+- **五大形式化做功算子：**
   - 先验划界算符 $\mathbf{\Pi} = \langle D, A \rangle$
   - 刚性流形算符 $\mathbf{\Pi}_\bot$
   - 残差范数差分算符 $\mathbf{\Delta}$
   - 二阶自省进化算符 $\mathbf{\Phi}$
   - 良知紧支撑算子 $\mathbf{E}_{\mathrm{supp}}$
-* **代数剪枝定理：** 运用 Banach 压缩映射严密证明了 $O(N!)$ 阶乘级复杂度降维至 $O(N \log N)$ 的可计算性定理。
-* **19 位东西方先哲拓扑同构：** 建立了与老庄（无名/有名）、心学（致良知/知行合一）、康德（先验范畴）、钱学森（开放复杂巨系统）、吴学谋（泛系理论）、操龙兵（Non-IIDness 跨域数据动力学）等 19 位巨擘的 1:1 绝对拓扑同构。
-* **典藏入口：**
+- **代数剪枝定理：** 运用 Banach 压缩映射严密证明了 $O(N!)$ 阶乘级复杂度降维至 $O(N \log N)$ 的可计算性定理。
+- **19 位东西方先哲拓扑同构：** 建立了与老庄（无名/有名）、心学（致良知/知行合一）、康德（先验范畴）、钱学森（开放复杂巨系统）、吴学谋（泛系理论）、操龙兵（Non-IIDness 跨域数据动力学）等 19 位巨擘的 1:1 绝对拓扑同构。
+- **典藏入口：**
   - 📝 **[中文全量定稿正本 (canonical_chinese_text.txt)](./canonical_chinese_text.txt)**
   - 📝 **[英文专著定稿正本 Markdown (System_and_Complexity_Science_Full_English_Monograph.md)](./docs/ssrn_submissions/System_and_Complexity_Science_Full_English_Monograph.md)**
   - 📄 **[英文专著完整 PDF (System_and_Complexity_Science_Full_English_Monograph.pdf)](./docs/ssrn_submissions/System_and_Complexity_Science_Full_English_Monograph.pdf)**
@@ -70,14 +69,14 @@
 ---
 
 ### 2. 专著二正本：《价值链物理学：开放复杂巨系统的治理法则》
-* **英文标题：** *Physics of Value Chain Management: Governance Laws for Open Complex Giant Systems*
-* **学术托管凭证：** Zenodo Academic Repository (DOI: 10.5281/zenodo.system_complexity_science_2026)
-* **核心定位：** 工程法典与 100+ 页出版级正本
-* **物理三隔离与七大临床病理：**
+- **英文标题：** *Physics of Value Chain Management: Governance Laws for Open Complex Giant Systems*
+- **学术托管凭证：** Zenodo Academic Repository (DOI: 10.5281/zenodo.system_complexity_science_2026)
+- **核心定位：** 工程法典与 100+ 页出版级正本
+- **物理三隔离与七大临床病理：**
   - **决策隔离：** 控制塔后视镜效应、执行开环、预测概率陷阱；
   - **利益隔离：** 纳什均衡死锁、线性流程拓扑失效、能力外包幻觉；
   - **物理隔离：** 人力算力高成本代偿、状态空间与离散代码维度错位。
-* **八大物理做功律：**
+- **八大物理做功律：**
   1. **第一律（目的论）：** 全息抗熵做功律 ($\Delta S_{\text{system}} + \Delta S_{\text{controller}} \ge 0$)
   2. **第二律（本质论）：** Non-IID 复杂度与自由度剥离律 ($\mathbf{x}_\bot(t) \to 0$)
   3. **第三律（方案论）：** 数字双螺旋同构律 ($V = M \cdot \mathbf{\Pi}[N \otimes T \otimes C_{st}]$)
@@ -86,18 +85,18 @@
   6. **第六律（路线论）：** 维纳-卡尔曼观测边界律 ($\dim C \le \dim O$)
   7. **第七律（做功论）：** 执行力与逻辑场对齐律 ($W_{\text{eff}} = W_{\text{total}} \cdot \cos\theta$)
   8. **第八律（进化论）：** 自适应抗热寂进化律 ($\mathbf{\Phi} : \mathbf{\Pi}_k \to \mathbf{\Pi}_{k+1}$)
-* **典藏入口：**
+- **典藏入口：**
   - 📄 **[价值链物理学 135 页英文 Master PDF](./English_Manuscript/Value_Chain_Physics_Full_135Page_Master_En.pdf)**
   - 📝 **[中文专著正本 Markdown](./value-chain-physics-book.md)**
 
 ---
 
 ### 3. 专著三 / 创新篇：《全息抗熵与良知驱动五维心智物理引擎 / 认知 OS》
-* **英文标题：** *Holographic Anti-Entropy Theory: First-Principles Deduction, Formal Analysis, and Carbon-Silicon Symbiotic Self-Healing Evolution for Open Complex Giant Systems*
-* **预印本凭证：** SSRN `7251098` (Distributed)
-* **核心定位：** 认知折叠、碳硅共生自愈演化与 AI 治理宪章
-* **核心贡献：** 攻克大语言模型（LLM）幻觉与 Goodhart 重尾崩溃，建立以“致良知”为紧支撑域的五维心智物理引擎，实现碳硅共生体下的自适应进化与人类自由度提升。
-* **典藏入口：**
+- **英文标题：** *Holographic Anti-Entropy Theory: First-Principles Deduction, Formal Analysis, and Carbon-Silicon Symbiotic Self-Healing Evolution for Open Complex Giant Systems*
+- **预印本凭证：** SSRN `7251098` (Distributed)
+- **核心定位：** 认知折叠、碳硅共生自愈演化与 AI 治理宪章
+- **核心贡献：** 攻克大语言模型（LLM）幻觉与 Goodhart 重尾崩溃，建立以“致良知”为紧支撑域的五维心智物理引擎，实现碳硅共生体下的自适应进化与人类自由度提升。
+- **典藏入口：**
   - 📝 **[全息抗熵英文论文 Markdown (Holographic_Anti_Entropy_Full_Unabridged_EN.md)](./docs/ssrn_submissions/Holographic_Anti_Entropy_Full_Unabridged_EN.md)**
   - 📄 **[全息抗熵英文论文 PDF (Holographic_Anti_Entropy_Full_Unabridged_EN.pdf)](./docs/ssrn_submissions/Holographic_Anti_Entropy_Full_Unabridged_EN.pdf)**
   - 📝 **[五维心智 OS 英文论文 Markdown (the_5d_conscience_holographic_metacognition_os_EN.md)](./docs/ssrn_submissions/the_5d_conscience_holographic_metacognition_os_EN.md)**
@@ -107,7 +106,7 @@
 
 ## 🗺️ 思想升维与 22 年演进全过程记载 (Evolutionary Process Log)
 
-```
+```text
 +-------------------------------------------------------------------------------------------------+
 |  [阶段 I: 算法与底层结构破局]                                                                     |
 |  研发 DOD 内存物理镜像与求解器剪枝，突破千亿级组合爆炸                                            |
@@ -140,10 +139,10 @@
 ## 🌐 英文版与国际预印本专区 (English & International Section)
 
 For international researchers, reviewers, and Overleaf users:
-* 📄 **[English Unabridged Monograph PDF (Full Master PDF)](./English_Manuscript/Value_Chain_Physics_Full_135Page_Master_En.pdf)**
-* 📄 **[System Constitution Full PDF](./System_and_Complexity_Science_Full_Book_Unabridged_En.pdf)**
-* 📝 **[Overleaf `main.tex` Source](./main.tex)**
-* 📦 **[Overleaf LaTeX 完整提交包 (arXiv_clean_package.tar.gz)](./arXiv_clean_package.tar.gz)**
+- 📄 **[English Unabridged Monograph PDF (Full Master PDF)](./English_Manuscript/Value_Chain_Physics_Full_135Page_Master_En.pdf)**
+- 📄 **[System Constitution Full PDF](./System_and_Complexity_Science_Full_Book_Unabridged_En.pdf)**
+- 📝 **[Overleaf `main.tex` Source](./main.tex)**
+- 📦 **[Overleaf LaTeX 完整提交包 (arXiv_clean_package.tar.gz)](./arXiv_clean_package.tar.gz)**
 
 ---
 
