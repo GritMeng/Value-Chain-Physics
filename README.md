@@ -10,6 +10,85 @@
 
 ---
 
+> [!IMPORTANT]
+> **📢 关于 IPC 系统覆盖范围、专利保护与开源目的的官方声明 (Official System Declaration)**
+> 
+> 1. **全链路覆盖范围 (End-to-End Governance Coverage)**：
+>    IPC (Intelligent Planning & Control) 系统完整覆盖从 **IBP (Integrated Business Planning 业务共识与需求分解)** 到 **ITP (Intelligent Tactical Planning 战术主计划防波堤)**、**IOP (Intelligent Operational Planning 执行计划配额阻断)**，直至 **车间级详细调度与排程 (Shop-Floor Dispatching & Scheduling)** 的端到端供应链协同闭环。
+> 
+> 2. **为什么暂未 100% 全量开源？(Active Patent Filing Protection)**：
+>    由于 IPC 统御引擎中大量突破性的求解架构、多沙箱推演与并发水位算子目前**正处于专利正式申报与法律审查流程中 (Patents Pending)**。为保护核心商业资产与知识产权，系统暂无法将生产环境下的全量商业代码库（包含 DuckDB 物理适配层、大模型预测中枢及完整商业控制塔）100% 无保留公开。
+> 
+> 3. **开源 `ipc-core-benchmark` 的真正目的 (Proving Physical & Mathematical Feasibility)**：
+>    我们之所以开放本开源微内核基准测试集，是为了向全球开发者、架构师与工业同行**证明“百万级规模毫秒级求解”与“交付准且快”在物理与数学上是完全真实可达的 (Physically & Mathematically Achievable)**。本仓库开放脱敏后的 C++17 核心算法算子与 50万需求 / 200万 SKU 基准压测套件，供全球专家直接下载、本地一键运行并物理对账。
+
+---
+
+## 🚀 开源可审计算子与自测套件 (IPC Core Open Benchmark)
+
+针对工业供应链中的关键核心痛点，开源微内核 [`ipc-core-benchmark/`](ipc-core-benchmark/) 提供了全套脱敏代码、测试用例与数学白皮书，供外部开发者与专家进行**物理确权与本地自测**：
+
+| 核心亮点 (Key Highlight) | 算法机制与代码映射 | 审计与自测支持 |
+| :--- | :--- | :--- |
+| **1. 交付又准又快 (Real-Time ATP/CTP)** | 递归 ATP/CTP 预留与 **零堆内存回滚 (Zero-Heap Rollback)**，支持多层 BOM 实时交期计算（[`atp_ctp_engine.cpp`](ipc-core-benchmark/src/atp_ctp_engine.cpp)） | `bin/test_delivery_precision.exe` |
+| **2. 主计划与执行计划协同 (ITP/IOP Alignment)** | ITP 战术防波堤（软约束）与 IOP 车间刚性配额阻断（硬拦截），解决计划漂移与越权抢料（[`itp_iop_alignment.cpp`](ipc-core-benchmark/src/itp_iop_alignment.cpp)） | `bin/test_itp_iop_alignment.exe` |
+| **3. 三级动态替代料规则 (Substitution Rules)** | 一类平摊配额平衡、二类组内优先级选优、三类跨组动态归一化与安全库存保护（[`substitution_engine.cpp`](ipc-core-benchmark/src/substitution_engine.cpp)） | `bin/test_substitution_rules.exe` |
+| **4. 50万需求/200万SKU 极速求解 (Extreme Performance)** | CPU 裸金属 SoA 连续内存调度，50万需求协同求解仅需 **~240ms**，吞吐量 **>2,000,000 需求/秒**（[`stress_benchmark_2m.cpp`](ipc-core-benchmark/benchmarks/stress_benchmark_2m.cpp)） | `bin/stress_benchmark_2m.exe` |
+
+### 🛠️ 本地一键运行自测 (Quick Self-Test Guide)
+
+切换到 `ipc-core-benchmark` 目录下，直接运行一键脚本：
+
+```cmd
+cd ipc-core-benchmark
+.\compile_and_run.bat
+```
+
+或使用 Python 运行双发对账交叉校验器：
+```bash
+python ipc-core-benchmark/verifier/cross_validator.py
+```
+
+---
+
+## 📂 整体工作区文件夹架构 (Workspace Directory Layout)
+
+```text
+h:/IPC/
+├── ipc-core-benchmark/        # 【核心开源标杆】脱敏可审计算子、数学白皮书与本地自测套件
+│   ├── include/ipc_core/      # 核心引擎脱敏头文件 (atp_ctp_engine.h, itp_iop_alignment.h, substitution_engine.h)
+│   ├── src/                   # 核心算法 C++17 实现文件 (Zero-Heap Rollback, Allotment Blocking)
+│   ├── benchmarks/            # 50万需求/200万SKU 极限性能压测与交付精度测试集
+│   ├── verifier/              # Python 独立参考引擎与双发自动化交叉校验器 (cross_validator.py)
+│   ├── docs/                  # MATHEMATICAL_SPEC.md 算法公式推导与数学规范白皮书
+│   ├── compile_and_run.bat    # Windows 环境一键编译与自测运行脚本
+│   └── CMakeLists.txt         # 跨平台 CMake 构建文件
+├── backups/                   # 历史备份目录
+├── bin/                       # 编译二进制分发目标目录
+│   ├── holo_stress.exe        # 46项全息单元测试执行文件
+│   └── itp_iop_stress.exe     # 200万级超大型压力测试执行文件
+├── build/                     # 临时编译对象目录（由 cl.exe 自动输出）
+├── data/                      # 静态数据与压力测试数据中心
+├── docs/                      # 全面设计文档与系统规范说明书
+│   ├── architecture_explanation.md            # IPC 顶层全景架构说明书
+│   ├── ipc_engine_evolution_and_specification.md# 【核心】细化进化白皮书与 API/数学规范
+│   └── DEPLOYMENT.md                          # 开发者与服务器部署手册
+├── include/                   # 生产级别 C++ 头文件目录
+├── src/                       # 生产级别 C++ 核心统御引擎源文件目录 (namespace ipc)
+├── scripts/                   # 开发与运行期自动化工具脚本
+├── tests/                     # 回归测试套件源码目录
+├── frontend/                  # React 19 + TypeScript 现代控制塔前端项目
+├── templates/                 # 仪表盘模板与静态 HTML 资源
+├── main_mem3.exe              # 【根目录组件】IPC统御引擎内核程序（由 python server 动态调用）
+├── test_runner_validation.exe # 【根目录组件】验证大盘重算主程序
+├── ipc.db                     # 【根目录组件】运行期 DuckDB 主数据库
+├── app_cockpit.py             # 【根目录组件】Streamlit AI 控制塔副驾驶
+├── server.py                  # 【根目录组件】FastAPI 后台集成服务器
+└── run_all.bat                # 前端编译与控制塔服务一键启动批处理
+```
+
+---
+
 ## 📊 官方学术预印本与期刊投稿状态 (Official Academic Status)
 
 ### 🏛️ SSRN 预印本平台 (SSRN Author Dashboard)
@@ -63,12 +142,6 @@
 ### 3. 第三阶段：提炼《价值链物理学》与钱学森 OCGS 同构 (Value Chain Physics & OCGS Isomorphism)
 提炼业务状态向量 $\mathbf{B}$ 与资源网络向量 $\mathbf{N}$，推导出《价值链物理学 v1.0》。惊觉该物理学框架与钱学森先生提出的**“开放复杂巨系统”（Open Complex Giant Systems, OCGS）**存在完美的结构性拓扑同构。
 
-### 4. 第四阶段：深入系统与复杂性科学，继承与证明前人 (System Science Inheritance & Proof)
-深入探究系统科学与复杂性科学，攻克复杂系统的“计算不可约性”（Computational Irreducibility），获得了俯瞰复杂巨系统的“鸟瞰视角”。怀着对钱学森先生等科学泰斗的无比敬重，以严密态度**“继承、发展与证明前人”**，接续解答了前人留下的未尽数学与工程追问。
-
-### 5. 第五阶段：第一性原理立宪——秩序生成与五维心智 OS (First-Principles Order Generation & 5D OS)
-从热力学第二定律与耗散结构切入，洞察到物理定律本质上是系统秩序在生成与演化过程中的固有属性。挥动奥卡姆剃刀，确立《秩序的生成、存续和进化》三大第一性原理公理（生成公理、存续公理、进化公理），并建立《良知驱动的五维全息元认知心智模型 OS》，实现碳硅共生体的自适应进化。
-
 ---
 
 ## 📖 SSRN 八大核心学术单篇典藏 (Chinese & English Single Monographs)
@@ -103,43 +176,27 @@
 
 ### 📍 第一阵线：旧范式破局与伪智能解构（病理诊断与伪命题剥离）
 1. **《就是这5个词，锁死了你们的供应链。华为、美的、联想、大疆……全一个样。》**（发布时间：2026.07.14 | 阅读量：8.8万）
-   - *解构招聘 JD 中 5 个伪命题，指出用碳基肉身对抗热力学第二定律的荒谬。*
 2. **《数智化转型为何屡屡空转？因为你的“底层范式”从一开始就错了。》**（发布时间：2026.04.08）
-   - *揭示企业数字化空转根源：用机械还原论求解高维非线性网络。*
 3. **《别再迷信伪智能了：为什么系统越买越贵，公司却越来越乱？》**（发布时间：2026.04.06）
-   - *撕下传统 APS/ERP/控制塔伪智能外衣，无自适应闭环系统只是数据垃圾。*
 4. **《数智化的最大谎言：为什么高管的战略宏图，总是碎于底层的执行泥潭？》**
-   - *剖析战略与执行断层原因：计划不可执行、全员靠 Excel 苟延残喘。*
 5. **《顶级的算力，失效的模型：西方“最佳实践”如何落地中国。》**
-   - *解剖 SAP/Oracle/JDA 在强物理约束、高频插单中国战场中的模型失灵。*
 6. **《供应链管理数智化的残酷真相：99%的失败，与那1%的“唯一解”。》**
-   - *提出唯有基于物理公理与形式化剪枝才是 1% 的物理唯一解。*
 7. **《可执行性是计划的唯一试金石——工厂不按照计划执行是最大的谎言。》**（发布时间：2026.02.22 | 阅读量：27.3万）
-   - *颠覆惯性认知：“工厂不执行计划”是遮羞布，主计划输出指令本身即不可执行。*
 
 ### 📍 第二阵线：物理学立宪与全息世界模型（科学公理高地）
 8. **《全息世界模型：破译从生命到AGI的终极生存算法。》**（发布时间：2026.05.17 | 阅读量：28.8万）
-   - *将复杂系统治理升维至 AGI 终极生存算法，提出变分自由能最小化与耗散结构。*
 9. **《价值链数智化本体论：从硅基代偿到系统演化的工程逻辑。》**（发布时间：2026.04.10 | 阅读量：18.6万 | 1.8万字长文）
-   - *确立数智化本体论，完成从碳基经验代偿向硅基自适应演化的工程飞跃。*
 10. **《为什么最聪明的大脑，却困在了最笨重的组织里？ —— 范式的黄昏：当精英协同撞上数学黑洞。》**
-    - *证明 $O(N^2)$ 或 $O(N!)$ 阶乘爆炸击垮碳基精英协同，宣告科层制物理黄昏。*
 11. **《伟大的灵魂，为何带不动庞大的肉身？—致卓越管理者：被N²复杂度困住的组织，与破局的物理学真相。》**
-    - *致企业家与 CEO 的物理学告白，揭示组织内耗与熵增的数学真相。*
 
 ### 📍 第三阵线：全维统合治理与主权降维突围（从反思到主权重构）
 12. **《解码“世界级孤本”：ROIC重塑与价值链数智化的“全维统合治理范式”。》**
-    - *结合联想 18 年孤本与 ROIC 财务重塑，给出全维统合治理商业与物理解法。*
 13. **《我们建造了顶级供应链体系，却可能输掉了最重要的战争：一位亲历者对数字化转型的终极反思。》**
-    - *以 22 年老兵与总架构师身份，对全球数字化转型进行深刻灵魂反思。*
 14. **《中国制造的供应链“暗战”：被西方架构锁死的神经中枢，与 N² 级复杂度的降维突围。》**（发布时间：2026.02.22 | 阅读量：25.9万）
-    - *打破被西方套件锁死的神经中枢，用 IPC 实现自主可控的降维突围。*
 
 ---
 
 ## 📜 引用与学术元数据 (Citation & Metadata)
-
-如果您在学术研究或工程实践中引用了本系列著作，请使用以下 BibTeX 条目：
 
 ```bibtex
 @article{Meng2026SystemComplexity,
@@ -160,17 +217,4 @@
   year      = {2026},
   url       = {https://gritmeng.github.io/Value-Chain-Physics/}
 }
-
-@article{Meng2026HolographicAntiEntropy,
-  author    = {Fanchun Meng (Grit Meng)},
-  title     = {Holographic Anti-Entropy: The Physics Constitution of Open Complex Giant Systems - A Paradigm Shift from Emergent Self-Consistency to Will-Governed Mastery},
-  title_zh  = {全息抗熵理论：开放复杂巨系统的物理宪法与碳硅共生自愈演化},
-  journal   = {SSRN Electronic Journal, SSRN ID: 7251098},
-  year      = {2026},
-  url       = {https://ssrn.com/abstract=7251098}
-}
 ```
-
----
-
-*版权所有 © 2026 孟凡淳 (Grit Meng / Fanchun Meng)。保留所有权利。*
