@@ -143,7 +143,7 @@ fMRI experiments ($N=48$) under moral override tasks confirmed specific BOLD act
 ## References
 1. X. Qian, J. Yu, R. Dai, "A new discipline of science--the study of open complex giant systems and its methodology," *Chin. J. Syst. Eng. Electron.*, 1990.
 2. X. Wu, *Pansystems Methodology: Concepts, Theorems and Applications*, Wuhan Univ. Press, 1990.
-3. W. R. Ashby, *An Introduction to Cybernetics*, Chapman \& Hall, 1956.
+3. W. R. Ashby, *An Introduction to Cybernetics*, Chapman & Hall, 1956.
 4. N. Wiener, *Cybernetics*, MIT Press, 1948.
 5. L. Cao, "Non-IID informational learning," *IEEE TNNLS*, 2014.
 6. A. R. Damasio, *Descartes' Error*, G. P. Putnam's Sons, 1994.
@@ -151,3 +151,8 @@ fMRI experiments ($N=48$) under moral override tasks confirmed specific BOLD act
 8. G. Tononi et al., "Integrated information theory," *Nat. Rev. Neurosci.*, 2016.
 9. K. Friston, "The free-energy principle," *Nat. Rev. Neurosci.*, 2010.
 10. G. Meng, *Value Chain Physics: Governance Laws of Open Complex Giant Systems*, Master Monograph, 2026.
+
+---
+
+## Author Biography
+**Grit Meng (Fanchun Meng)** is the Founder and Chief Scientist of the Value Chain Physics & Metacognitive Cybernetics Laboratory, Beijing, China (email: gritmeng@outlook.com, ORCID: 0009-0004-9840-9494). His research focuses on non-equilibrium thermodynamics, second-order cybernetics, Open Complex Giant Systems (OCGS) theory, and AI safety alignment. He is the principal author of the monograph series *Value Chain Physics: Governance Laws of Open Complex Giant Systems*.
