@@ -1,6 +1,6 @@
 # Conscience-Driven Holographic Metacognition: The 5D Mind Model as a Cybernetic Paradigm for Open Complex Giant Systems
 
-**Author**: Grit Meng (Fanchun Meng / 孟凡淳)  
+**Author**: Grit Meng (Fanchun Meng)  
 **Affiliation**: Founder & Chief Scientist, Value Chain Physics & Metacognitive Cybernetics Laboratory  
 **Email**: gritmeng@outlook.com | **ORCID**: 0009-0004-9840-9494  
 **Target Journal**: IEEE Transactions on Systems, Man, and Cybernetics: Systems (IEEE TSMC)
