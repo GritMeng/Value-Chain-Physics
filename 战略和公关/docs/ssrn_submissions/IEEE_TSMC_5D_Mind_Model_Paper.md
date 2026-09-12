@@ -23,11 +23,11 @@ To address these fundamental limitations, this monograph proposes the **Conscien
 
 ### A. Hypothesis-Evidence Dual-Track Validation Paradigm
 This work strictly enforces the **Dual-Track Scientific Validation Paradigm**:
-- **Track 1 (Qualitative Cybernetic Judgment)**: Utilizing non-equilibrium thermodynamics, differential topology, and second-order operators ($E_{\text{supp}}, \nabla R, \mathcal{S}_{\text{buff}}, \hat{\mathcal{A}}_{\text{fluid}}, \hat{\Omega}_{\text{meta}}$) to establish rigorous decision rules.
+- **Track 1 (Qualitative Cybernetic Judgment)**: Utilizing non-equilibrium thermodynamics, differential topology, and second-order operators ($E_{\text{supp}}, \nabla R, \mathcal{S}_{\text{buff}}, \hat{\mathcal{A}}_{\text{fluid}}, \hat{\Omega}_{\text{meta}}$) to establish decision rules.
 - **Track 2 (Quantitative Science & Computational Verification)**:
-  - *Neuroimaging Secondary Data Mining*: Re-analyzing task-fMRI / dFC data from OpenNeuro and Human Connectome Project (HCP) using Laplacian Eigenmaps / Diffusion Maps.
-  - *In-Silico AGI Computation*: Constructing control loops with/without 5D operators in neural network architectures to quantitatively evaluate zero-shot transfer under Out-of-Distribution ($M_{	ext{unseen}}$) stress.
-  - *Dual Evidence Chain*: Bridging cognitive neuroscience literature (Raichle, Seeley, Craig, Duncan, Fleming) with manufacturing and LLM agent engineering data.
+  - *Neuroimaging Data Mining*: Re-analyzing task-fMRI / dFC data from OpenNeuro and Human Connectome Project (HCP) using Laplacian Eigenmaps / Diffusion Maps.
+  - *In-Silico AGI Computation*: Constructing control loops with/without 5D operators in neural network architectures to quantitatively evaluate zero-shot calibration under Out-of-Distribution ($M_{	ext{unseen}}$) stress.
+  - *Dual Evidence Chain*: Bridging cognitive neuroscience literature (Raichle, Seeley, Craig, Duncan, Fleming) with LLM agent engineering data.
 
 Every dimension follows a four-stage paradigm:
 $$\text{Empirical Case} \longrightarrow \text{Neuro Mapping} \longrightarrow \text{Formal Operator} \longrightarrow \text{Falsifiability}$$
@@ -41,7 +41,7 @@ FEP (Friston 2010, 2021) posits that agents adapt by minimizing variational free
 
 ### C. Single-Source Ontological Origin via Non-IID Theory
 Relying solely on Prof. Longbing Cao's Non-IID Theory as single ontological origin:
-- **Second Law of Thermodynamics**: Strong non-linear coupling $A_{ij} \neq \mathbf{0}$ and heterogeneous distributions $P(S_i) \neq P(S_j)$ under open-loop work generate waste heat projections.
+- **Second Law of Thermodynamics**: Strong non-linear coupling $A_{ij} \neq \mathbf{0}$ and heterogeneous distributions $P(S_i) \neq P(S_j)$ under open-loop work generate waste heat.
 - **Prigogine Dissipative Structures**: Open Non-IID networks maintain far-from-equilibrium self-organization driven by negative entropy work flows ($E_{\text{supp}}$ barrier).
 - **Friston FEP**: Represents a first-order computational dimensionality reduction slice ($\nabla R, \mathcal{S}_{\text{buff}}, \hat{\mathcal{A}}_{\text{fluid}}$).
 
@@ -143,7 +143,7 @@ fMRI experiments ($N=48$) under moral override tasks confirmed specific BOLD act
 ## References
 1. X. Qian, J. Yu, R. Dai, "A new discipline of science--the study of open complex giant systems and its methodology," *Chin. J. Syst. Eng. Electron.*, 1990.
 2. X. Wu, *Pansystems Methodology: Concepts, Theorems and Applications*, Wuhan Univ. Press, 1990.
-3. W. R. Ashby, *An Introduction to Cybernetics*, Chapman & Hall, 1956.
+3. W. R. Ashby, *An Introduction to Cybernetics*, Chapman \& Hall, 1956.
 4. N. Wiener, *Cybernetics*, MIT Press, 1948.
 5. L. Cao, "Non-IID informational learning," *IEEE TNNLS*, 2014.
 6. A. R. Damasio, *Descartes' Error*, G. P. Putnam's Sons, 1994.
