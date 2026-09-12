@@ -1,0 +1,32 @@
+Fanchun (Grit) Meng, Chief Architect of Systems Physics and Value Chain Physics.
+
+1. IPS Industrial Validation: Backed by two decades of enterprise-scale engineering across global discrete manufacturing networks (Lenovo IPS) processing 500K orders daily, establishing a rare closed-loop "Plan -> Execution -> Feedback" validation system.
+
+2. IPC Governance Engine & Patents: Developed the Intelligent Planning & Control (IPC) engine powered by C++ Data-Oriented Design (DOD) bare-metal architecture. Holds 3 landmark academic monographs and 9 invention patents (including 5 granted core patents: ZL202210197370.3, ZL202211172170.9, ZL202310586572.1, ZL202410178520.5, ZL202511715244.2).
+
+3. Value Chain Physics (From Experience to Hard Science): Author of "Value Chain Physics". Transformed empirical supply chain management into a formal, falsifiable hard science based on Kalman observability, non-equilibrium thermodynamics, and Ashby's law of requisite variety.
+
+4. Systems & Complexity Science: Author of "System and Complexity Science: Generation, Persistence, and Evolution of Order". Formulated the Holographic Anti-Entropy (HAE) theory to establish physical constitutions and anti-entropy laws for Open Complex Giant Systems (OCGS).
+
+5. 5D Mind Model (Conscience-Driven Metacognition): Author of "Conscience-Driven Holographic Metacognition: The 5D Mind Model". Established the 5D Holographic Meta-Cognitive OS (operators E_supp, \nabla R, S_buff, A_fluid, \Omega_meta), completing neuro-isomorphic mappings onto DMN, SN, FPN, and rPFC (BA10), and pioneering silicon hardware-level bus fuse circuits for overcoming LLM hallucinations.
+
+
+==================================================
+
+
+孟凡淳 (Grit Meng)，系统科学与价值链物理学总设计师。
+
+一、孤本级闭环实证 (IPS)
+成果源自全球最大离散制造现场（联想千亿级产业网络、日均消纳50万笔订单）二十年淬炼，构建了全球范围内极度罕见、孤本级的「计划 -> 执行 -> 反馈」全链路闭环实证系统 (IPS)。
+
+二、IPC 统御引擎与专利阵列
+研制 IPC (智能计划与控制) 统御引擎，依托 C++ DOD 面向数据裸金属架构攻克复杂巨系统八大物理天堑。著有 3 部学术专著，持有 9 项核心发明专利（包含 5 项已授权专利：ZL202210197370.3、ZL202211172170.9、ZL202310586572.1、ZL202410178520.5、ZL202511715244.2）。
+
+三、价值链管理：从经验走向硬科学
+著有学术专著《价值链物理学》。破除传统依赖拍脑袋与经验主义拼贴的开环微操，基于卡尔曼可观测性、非平衡态热力学与阿什比控制律，建立可计算、可推导、可证伪的形式化治理硬科学。
+
+四、系统与复杂性科学
+著有学术专著《系统与复杂性科学：秩序的生成、存续与进化》，确立全息抗熵 (HAE) 理论体系，为开放复杂巨系统建立抗熵物理学公理。
+
+五、五维心智模型 (良知驱动的全息元认知)
+著有学术专著《良知驱动的全息元认知：五维心智模型》。构建碳基 L0“五维心智认知操作系统”(具身良知 E_supp、残差敏感 ∇R、感性缓存 S_buff、流体智力 A_fluid、全息元认知 Ω_meta)，完成与大脑四大神经网络 (DMN、SN、FPN、rPFC/BA10) 的微分同构映射，并提出硅基 LLM 硬件总线级熔断与痛感模拟路径。

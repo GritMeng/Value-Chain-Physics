@@ -1,0 +1,347 @@
+%%%%%%%% Sample LaTeX input for Complex Systems %%%%%%%%%%% 
+% Revision 4, Jun 27, 2018
+%
+% This is a LaTeX input file  
+% Text following % on a particular line is treated as a comment, and 
+% ignored by LaTeX.  
+% You do not need to type any text that follows a % 
+% 
+\documentclass{article}
+
+\usepackage{epsf,hyperref}
+\usepackage{amssymb,ComplexSystems}
+
+% complex-systems.sty is the macro package for Complex Systems.
+% It is available at
+% http://www.complex-systems.com/samples/complex-systems.sty
+% epsf.sty is the preferred graphics import method
+
+\begin{document}
+
+\title{Sample Paper for Complex Systems% 
+% Use \\ to indicate line breaks in titles longer than about 
+% 55 characters. 
+%
+}
+
+\author{\authname{First Author}\\[2pt] 
+% Use \\[2pt] to end the line and add space between author name and affiliation. 
+\authadd{University Department, University Name}\\
+\authadd{Address}\\
+\authadd{City, State ZIP/Zone, Country}\\
+\and
+% For extra space, precede the second set of authors with \and.
+\authname{Second Author}\\
+% Each author name goes on its own line.
+\authname{Third Author}\\[2pt]
+\authadd{Group, Laboratory}\\
+\authadd{Address}\\
+\authadd{City, State ZIP/Zone, Country}
+% Do not use a ``.'' at the end of any line in the address. 
+}
+
+% The following specifies the running headings 
+%
+% Each running heading should be less than about 50 characters long. 
+% If necessary, give a shortened version of the title. 
+%
+% Use initials for first and second names. If all author names do not fit, truncate the 
+% list and end with ``et al.''.
+\markboth{Complex Systems} 
+{Sample Paper for Complex Systems} 
+
+\maketitle
+% End title section
+
+\begin{abstract}
+The abstract should summarize the content of the paper, including its context and conclusions. Make sure that it is possible to understand
+the abstract without having read the entire paper. Remember that many database systems will access the paper through the listed keywords and from
+the title and abstract. If possible, use the passive voice and avoid personal pronouns in the abstract ({``}X is shown,{''} rather than {``}we show
+X{''}), but not if it leads to awkward sentence constructions. Try to keep the abstract below 150 words in length (and shorter for short papers).
+Do not cite references or display equations in the abstract.
+\end{abstract}
+
+\begin{keywords}
+sample paper; formatting systems; equations and mathematical symbols; about the references
+\end{keywords}
+
+% The text of the paper follows. All of the text should be in the same file. 
+% Use separate files for large tabular material and graphics.
+
+\section{Introduction}
+\label{intro}
+% \label is a hyperlink target for cross-referencing to this section using \ref{intro} (optional).
+
+The title serves as a headline for the paper and many readers will use it to decide whether or not to look at the paper. Avoid excessively general,
+technical or cutesy titles. Questions are acceptable as titles. In the title and other headings, capitalize the first letters of important words
+and proper names only. 
+
+Give complete affiliation and mailing address, including country. Use standard two-letter abbreviations for state names. For foreign addresses, give
+as much as possible in English. Authors are encouraged to give their first names and middle initials. Titles and positions should not be given or
+implied. Authors are listed by their affiliation. The example given has the first author at one organization and the second and third with a different
+affiliation. Funding and personal acknowledgments go at the end of the paper in an Acknowledgments section. 
+
+\break
+
+The introduction is a crucial part of a paper. It should explain the background and goals and should strive to be as widely accessible
+as possible. Jargon and abbreviations should be avoided. References to textbooks and other basic material should be cited, for example, as \cite{a-review,text-a,text-b}. 
+% \cite is used for marking citations to its \bibitem label in the References. 
+% Collect the References at the end of the paper ordered by their appearance in the text. 
+% The \cite and \bibitem tags can be any unique words; they do not have to have the form 
+% given here. You might use names of first authors.
+% When several references appear together, use a single \cite macro. 
+References should be numbered in the order in which they appear in the text. A space should be left before the brackets used to indicate a citation
+to a reference. If an arbitrary choice out of many possible references is made, indicate it as (e.g., [3]). It is preferred that author names are
+not used when referencing their works. 
+
+Except for very short papers, division into sections is strongly encouraged. The first section need not necessarily be entitled {``}Introduction.{''}
+% Note: quotation marks should be entered in pairs as above, and not with ".
+%
+There may be subsections as well as sections. Subsubsections should only be used for lengthy papers where more structure is required. All section
+headings are numbered. 
+% \subsection{title} is used for a numbered subsection;
+% \subsubsection{title} is used for a numbered subsubsection;
+
+A paper should be long enough to convey its main points to the general readership of \textit{Complex Systems}. It is OK for a paper to be shorter
+than average. The length of a typical paper is between 20 and 30 pages.
+
+\section{Formatting Systems}
+
+Authors are encouraged to send electronic media as their submission. Although we prefer that papers be submitted as Wolfram Mathematica notebooks, we can process papers from a variety of other formats, such as LaTeX. Papers prepared using other formatting systems or submitted in hard copy only may have to be retyped, causing delays in processing. This sample paper was prepared with Wolfram Mathematica and can be used as a template. It is available for download at \url{www.complex-systems.com/contribute.html}. A LaTeX version is also available.
+
+\section{Figures and Other Displays}
+
+Figures are an excellent mechanism for communicating many kinds of results. Great care should be taken to produce clear, well-constructed figures.When there are many related graphs or images, they should usually be combined into a single figure. 
+
+Figures should be displayed near where they are first mentioned in the text and are numbered sequentially: Figure \ref{ex-fig} is an example. All figures and tables should be mentioned in the text.
+
+It is best to send your figures in a {``}scalable{''} form such as Wolfram Mathematica Graphics Objects, Encapsulated PostScript (EPS) or PortableDocument Format (PDF). Figures can also be processed in {``}bitmap{''} formats such as BMP, PICT or TIFF, but scalable formats generally reproduce better.
+
+\begin{figure}
+\centerline{\epsffile{JCS_SamplePaper-SaveAsLatex_gr1.eps}}
+\caption{An example figure. The first sentence of a figure caption should serve as a title for the figure. The remainder should describe the figure in a way that does not rely on the main text of the paper. Readers may look at the figures and their captions before reading
+the full text.}
+\label{ex-fig}
+\end{figure}
+ 
+Figures should reproduce well (i.e., without noticeable aliasing) on common printers. The source file for a particular figure must include all elements of the figure and should not require modification. Lettering should be consistent throughout a figure and must be no smaller than 6 points when the figure is at final size. Lines should be thick enough that they do not break up under reduction (single-pixel lines rarely suffice). Filled black areas must not drop out. Whenever possible, the figures should be oriented in the same sense as text (portrait mode). 
+
+Computer programs or algorithm descriptions may be given either in equations or in figures. Literal expressions that occur as computer input or output should be given in typewriter font. 
+
+Tables should include captions similar to those for figures and should be numbered sequentially throughout the paper: Table \ref{ex-table} is an example. Tables must be oriented with the text and use 9-point type, and should be enclosed by a box. 
+
+\begin{table}
+\centerline{\small\begin{tabular}{|c|c|}
+\hline
+ $P$-Value &Interpretation \\
+\hline
+ $0.01<p<0.99$ &Clear passed\\
+\hline
+$p$ or $(1-p)<10^{-10}$ &Clear failure \\
+\hline
+\end{tabular}}
+\caption{A sample table. Avoid using tables for numerical data; figures usually present such material more meaningfully.Also avoid putting extensive text into tables. Column headings should follow title capitalization rules.}
+\label{ex-table}
+\end{table}
+
+\section{The Main Text}
+\label{main-text}
+
+Good English grammar is essential. Authors not fluent in English are strongly encouraged to have their paper checked for grammar by colleagues fluent in the topic of the paper and English. American spelling should be used and, if possible, checked by computer. Contractions such as {``}weren{'}t{''}should never be used, nor should exclamation marks.
+
+Acronyms should be spelled out at their first use and given in capitals thereafter: cellular automaton (CA for singular), cellular automata (CAs for plural). Avoid introducing too many acronyms. Spell out abbreviations when they are first used. Spell out integers under 10 unless they are used with units of measure or begin a sentence (i.e., write {``}two{''} rather than {``}2{''} but use {``}2 miles{''}). 
+
+Italicize defined terms when they are introduced. Also italicize foreign language phrases on first use, if they are likely to be unfamiliar to the reader. The abbreviations {``}e.g.,{''} {``}i.e.{''} and {``}etc.{''} should not be italicized and should be used only in parenthetical material; spell out {``}for example,{''} {``}that is{''} and {``}and so forth{''} (or equivalents) in regular text. 
+
+Cross-references can be made to other sections in the paper (e.g., Section \ref{intro}) and to other numbered elements. When referencing displayed formulas use, for example, equation (\ref{exponential-equation}). Footnotes should be avoided. Points worth making should appear in the main text. 
+
+Lists of items should be preceded by a complete sentence and may be laid out as follows.
+
+\begin{itemize}
+\item Each item will be like a separate paragraph. 
+
+\item Another item. 
+\end{itemize}
+% Numbered lists of items are obtained with \begin{enumerate} ... \end{enumerate}
+
+If a list of items is given in the text, such as: (\textit{a}) first item; (\textit{b})~second item; and so forth, they should be indicated with parenthesized letters in italic typeface.
+
+\section{Equations and Mathematical Symbols}
+
+Consistent mathematical notation is essential to clear exposition. Try to use familiar notation; for example, avoid having \(x\)stand for an integer index.
+
+All standard mathematical symbols and notations must be formatted in equation form, whether inline or displayed. Even standard English letters such as x must appear as \(x\) (mathematical font) if they correspond to mathematical symbols. Use roman for abbreviations in equations, for example,\(\sin (x)\).
+% In LaTeX, such in-line equations are delimited by \(...\).
+%
+% For a full list of TeX symbols, see the LaTeX or TeX manuals.
+% Boldface is obtained with \textbf{...}
+% Roman (ordinary) font, often used for English words within equations,
+% is obtained with \textrm{...} (note that spaces between words must be
+% indicated explicitly).
+
+Displayed equations that are referenced in the text should be numbered sequentially: 
+% This is done automatically if the correct tags are used in LaTeX. 
+\begin{equation}
+e^{2\pi i}=1.
+\label{exponential-equation}
+\end{equation}
+% Any text can be used in a \label to mark an equation. Usually it will 
+% be a tag that relates to the content of the equation. 
+
+Spaces should be inserted in equations where necessary to improve readability. Equations should be referred to as {``}equation (\ref{exponential-equation}).{''} Short equations may be inserted directly in the text, as in \(\beta =2\). Equations that involve extensive subscripts, superscripts or built-up objects should be displayed. Special symbols in equations must be strictly limited to those that can be produced with Wolfram Mathematica using common fonts.
+
+If a formatting system other than Wolfram Mathematica or LaTeX is used, make sure that all symbols are very clearly identified, and that all subscripts and superscripts are evident. \textit{Complex Systems} allows many kinds of notation. It is suggested that symbols or words related to actual or theoretical computers be indicated in \texttt{typewriter font}. 
+
+Great care should be taken in mixing plain English, mathematics and algorithm descriptions. Say, for example, {``}\(x\) is the position{''} rather than {``}\(x=\) position.{''} Consistency must be maintained between different occurrences of a symbol. If \(x\) is a mathematical symbol, make sure it appears as \(x\) everywhere, not sometimes as x or as \texttt{x}. As a rough guide, mathematical symbols should appear as \(x\) and computer symbols as \texttt{x}. 
+
+\begin{theorem}
+Theorems and other structured mathematical text should be used when it improves the presentation. They should not be a substitute for clear English exposition. 
+\end{theorem}
+
+\begin{proof}
+Proofs can continue for several paragraphs. They should end with an empty square.
+\end{proof}
+
+
+\section{About the References}
+
+References should give pointers to background material and related work. They should record credit due to other authors. 
+
+References are numbered sequentially throughout the text. 
+% This is achieved automatically using \cite in LaTeX.
+Each item should be given a separate number (except when citations are made to different portions of the same document: these should be indicated as {``}\cite[pp. 3--56]{text-a}{''} or {``}\cite[Chapter 14]{text-b}{''}). 
+
+\textit{Full titles of papers should be given}. They should be enclosed in quotation marks, with all important words capitalized. Titles of printed items should be followed by a comma inside the quotation marks. Include the paper{'}s digital object identifier (DOI) name (number) if it is available(\url{www.doi.org/hb.html}). Titles accessible only via the internet are treated differently based on their type. See the examples described in the References section of this sample paper.
+
+To cater to a wide variety of disciplines, it is important that \textit{all names of journals be spelled out in full} and italicized. (Use \textit{Physical ReviewLetters}, not\textit{ Phys. Rev. Lett.}, and \textit{Journal of Computer and System Science}, not \textit{J. Comput. Sys. Sci.}) 
+
+For printed items, give the journal{'}s volume number in boldface (do not write the word {``}volume{''} explicitly). The issue number should be placed in parentheses immediately following the volume number, but not in bold: for example, \textbf{4}(1). Include months only when necessary, using their three-letter abbreviation. Give starting and ending page numbers.
+
+Author names should be given with initials first, with spaces after each period. For sources that list more than 10 authors, the names of the first seven authors should be given, followed by {``}et al.{''} For sources with fewer than 10 authors, all names are listed.
+
+Titles of books (i.e., published material with ISBN numbers) should be italicized. Names and cities of publishers and dates of publication should always be given. Conference proceedings that are distributed through ordinary publishers should be cited like books. 
+
+Titles of proceedings and reports that are distributed in other ways or via the internet should be given in full in the standard roman typeface.URLs or other information on how to obtain them should be given following the title. Pricing information should not be included.
+
+\section*{Acknowledgments}
+
+Acknowledgments should thank individuals and organizations for their contributions to the work. All funding information should be placed in the acknowledgments.If acknowledgments imply some endorsement of the paper (e.g., {``}We thank X for checking\(\ldots\){''}), make sure the parties involved approve the statements made.
+
+\begin{thebibliography}{99}
+% The number of 9s indicate how many digits to allow for to align the indented list.
+
+\bibitem{a-review}
+% ``a-review'' is a sample tag: use a unique tag for each paper.
+F. Authorlast and S. Authorlast, ``Article Title,'' \textit{Full
+Name of Journal}, \textbf{volume}(issue number), year pp. \#--\#.
+doi:name.\\
+R. Albert and A.-L. Barab{\' a}si, ``Statistical Mechanics of Complex
+Networks,'' \textit{Reviews of Modern Physics}, \textbf{74}(1), 
+2002 pp. 47--97.  doi:10.1103/RevModPhys.74.47.
+% Use \textit{...} for italics, \textbf{...} for boldface.
+% Do not explicitly use the word ``volume''
+% The full year (e.g., 1991) should be used for the date.
+% Use -- to get an appropriate dash between page numbers.
+
+\bibitem{text-a}
+I. J. Authorlast, \textit{Book Title}, Publisher Location: Publisher Name, year. \\
+T. C. Schelling, \textit{Micromotives and Macrobehavior}, New York: Norton, 1978. 
+
+\bibitem{text-b}
+A. Authorlast, ``Paper Title,'' in \textit{A Collection} (F. Editor and
+S. Editor, eds.), Publisher Location: Publisher Name, year pp.
+\#--\#. doi:name.\\
+S. Hou, J. Sterling, S. Chen, and G. Doolen, ``A Lattice Boltzmann
+Subgrid Model for High Reynolds Number Flows,'' in \textit{Pattern
+Formation and Lattice Gas Automata} (A. T. Lawniczak and R. Kapral,
+eds.), Toronto: Fields Institute Communications, \textbf{6}, 1996
+pp. 151--166.
+
+\bibitem{edbook}
+A. Editor, ed., \textit{Book Title}, nth ed., Publisher Location: Publisher Name, year. \\
+A. Law and D. Kelton, eds., \textit{Simulation Modeling and
+Analysis}, 3rd ed., Boston: McGraw-Hill, 2000.
+
+\bibitem{proc}
+A. Authorlast, ``Paper Title,'' in \textit{Conference Proceedings
+Title} (\textit{Conference Acronym and year}), Conference Location
+(A. Authorlast, ed.), Publisher Location: Publisher Name, year pp.
+\#--\#.\\
+P. Fritzson, L. Viklund, J. Herber and D. Fritzson, ``Industrial
+Application of Object-Oriented Mathematical Modeling and Computer
+Algebra in Mechanical Analysis,'' in \textit{Proceedings of the
+Seventh  International Conference on Technology of Object-Oriented
+Languages and Systems (TOOLS EUROPE'92)}, Dortmund, Germany 
+(G.  Heeg, B. Magnosson, and B. Meyer, eds.), Hertfordshire, UK: Prentice
+Hall International (UK) Ltd., 1992 pp. 167--181.
+
+\bibitem{report}
+A. Authorlast, \textit{Technical Report Title}, Classification/Number,
+Department, University or Organization, Location, year. URL if
+available.\\
+C. Lemieux, M. Cieslak, and K. Luttmer, \textit{RandQMC User's
+Guide: A Package for Randomized Quasi-Monte Carlo Methods in C},
+Technical report 2002-712-15, Department of Computer Science,
+University of Calgary, 2002. hdl.handle.net/1880/46569.
+
+\bibitem{preprint}
+A. Authorlast, \textit{Preprint Book Title}, Publisher Location:
+Publisher Name, forthcoming. \\
+J.-P. Aubin, L. Chen, and O. Dordan, \textit{Tychastic Measure of
+Viability Risk: A Viabilist Portfolio Performance and Insurance
+Approach}, Heidelberg: Springer, forthcoming. 
+vimades.com/AUBIN/EradicationVPPI-Presentation.pdf.
+
+\bibitem{manual}
+Company Name, \textit{Computer Program Reference Manual} (available from Name, address). \\
+Xerox, \textit{InterLISP Reference Manual} (available from Xerox
+Palo Alto Research Center, Palo Alto, CA).
+
+\bibitem{future}
+A. Authorlast, ``Future Paper,'' \textit{Full Name of Journal}, forthcoming.\\ 
+J. Riedel and H. Zenil, ``Cross-Boundary Behavioural Reprogrammability Reveals Evidence of Pervasive Universality,'' \textit{ International Journal of Unconventional Computing}, forthcoming. arxiv.org/abs/1510.01671.
+
+\bibitem{talk}
+A. Authorlast, ``Title,'' presentation given at \textit{Conference
+Name (Conference Acronym and year)}, Location. URL of abstract if
+available.\\
+A. Banos, ``Exploring Network Effects in Schelling's Segregation
+Model,'' presentation given at \textit{S4-Modus Workshop: Multi-scale
+Interactions between Urban Forms and Processes}, Besan{\c c}on,
+France, 2009.
+
+\bibitem{program}
+Software Name, Release Version Number, Location: Organization, year.\\
+U. Wilensky. ``NetLogo.'' Center for Connected Learning and
+Computer-Based Modeling, Northwestern University, Evanston, IL.
+(Oct 25, 2012) ccl.northwestern.edu/netlogo/index.shtml.
+
+\bibitem{website}
+A. Authorlast. ``Website (or page) Title.'' (Month Day, Year) URL.\\
+OnlineAtlas.us. ``United States Interstate Highway Map.'' (May 7,
+2012) www.onlineatlas.us/interstate-highways.htm.
+
+\bibitem{blog}
+A. Authorlast. ``Blog Title,'' Blog Series Name (blog). (Month Day, Year) URL.\\
+B. Yorgey, ``Recounting the Rationals, Part II,'' \textit{The Math
+Less Traveled} (blog). (Apr 2, 2010) www.mathlesstraveled.com/?p=97.
+
+\bibitem{forum}
+A. Authorlast. ``Forum Post'' from Forum Name. (Month Day, Year) URL.\\
+T. Rowland. ``Enumerating Strings'' from The NKS Forum---A
+Wolfram Web Resource. (Apr 02, 2010)\\
+forum.wolframscience.com/showthread.php?s=$\&$threadid=929.
+
+\bibitem{demonstration}
+A. Authorlast. ``Demonstration Title'' from the Wolfram Demonstrations
+Project---A Wolfram Web Resource. URL.\\
+E. Pegg Jr. ``Coin Flips'' from the Wolfram Demonstrations Project---A
+Wolfram Web Resource. www.demonstrations.wolfram.com/CoinFlips.
+
+\bibitem{cloud}
+A. Authorlast. ``Wolfram Cloud Article Title.'' (Month Day, Year) URL.\\
+A. A. de Laix. ``Encryption with Enigma.'' (Jul 1, 2014) www.wolframcloud.com/objects/1f52ae4b-0686-4bde-966e-5e60d8225ae4.
+
+\end{thebibliography}
+
+\end{document}
