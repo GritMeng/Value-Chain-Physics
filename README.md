@@ -11,16 +11,16 @@
 ---
 
 > [!IMPORTANT]
-> **📢 关于 IPC 系统覆盖范围、专利保护与开源目的的官方声明 (Official System Declaration)**
+> 📢 关于 IPC 系统覆盖范围、专利保护与开源目的的官方声明 (Official System Declaration)
 > 
-> 1. **全链路覆盖范围 (End-to-End Governance Coverage)**：
->    IPC (Intelligent Planning & Control) 系统完整覆盖从 **IBP (Integrated Business Planning 业务共识与需求分解)** 到 **ITP (Intelligent Tactical Planning 战术主计划防波堤)**、**IOP (Intelligent Operational Planning 执行计划配额阻断)**，直至 **车间级详细调度与排程 (Shop-Floor Dispatching & Scheduling)** 的端到端供应链协同闭环。
+> 1. 全链路覆盖范围 (End-to-End Governance Coverage)：
+>    IPC (Intelligent Planning & Control) 系统完整覆盖从 IBP (Integrated Business Planning 业务共识与需求分解) 到 ITP (Intelligent Tactical Planning 战术主计划防波堤)、IOP (Intelligent Operational Planning 执行计划配额阻断)，直至 车间级详细调度与排程 (Shop-Floor Dispatching & Scheduling) 的端到端供应链协同闭环。
 > 
-> 2. **为什么暂未 100% 全量开源？(Active Patent Filing Protection)**：
->    由于 IPC 统御引擎中大量突破性的求解架构、多沙箱推演与并发水位算子目前**正处于专利正式申报与法律审查流程中 (Patents Pending)**。为保护核心商业资产与知识产权，系统暂无法将生产环境下的全量商业代码库（包含 DuckDB 物理适配层、大模型预测中枢及完整商业控制塔）100% 无保留公开。
+> 2. 为什么暂未 100% 全量开源？(Active Patent Filing Protection)：
+>    由于 IPC 统御引擎中大量突破性的求解架构、多沙箱推演与并发水位算子目前正处于专利正式申报与法律审查流程中 (Patents Pending)。为保护核心商业资产与知识产权，系统暂无法将生产环境下的全量商业代码库（包含 DuckDB 物理适配层、大模型预测中枢及完整商业控制塔）100% 无保留公开。
 > 
-> 3. **开源 `ipc-core-benchmark` 的真正目的 (Proving Physical & Mathematical Feasibility)**：
->    我们之所以开放本开源微内核基准测试集，是为了向全球开发者、架构师与工业同行**证明“百万级规模毫秒级求解”与“交付准且快”在物理与数学上是完全真实可达的 (Physically & Mathematically Achievable)**。本仓库开放脱敏后的 C++17 核心算法算子与 50万需求 / 200万 SKU 基准压测套件，供全球专家直接下载、本地一键运行并物理对账。
+> 3. 开源 `ipc-core-benchmark` 的真正目的 (Proving Physical & Mathematical Feasibility)：
+>    我们之所以开放本开源微内核基准测试集，是为了向全球开发者、架构师与工业同行证明“百万级规模毫秒级求解”与“交付准且快”在物理与数学上是完全真实可达的 (Physically & Mathematically Achievable)。本仓库开放脱敏后的 C++17 核心算法算子与 50万需求 / 200万 SKU 基准压测套件，供全球专家直接下载、本地一键运行并物理对账。
 
 ---
 
