@@ -118,11 +118,6 @@ h:/IPC/
 - **Zenodo Academic Repository (Alternative Preprints / 学术托管):**  
   *The other monographs (System and Complexity Science, Value Chain Physics) have been migrated to Zenodo to obtain permanent DataCite DOIs, bypassing SSRN's social science scope restrictions.*
 
-### 🏛️ 国际顶级学术期刊投稿状态 (Top Journal Submission Status)
-- **IEEE Transactions on Systems, Man and Cybernetics: Systems (Manuscript ID: SMCA-26-08-4527):**  
-  *System and Complexity Science: Generation, Persistence, and Evolution of Order — The Physical Constitution for Open Complex Giant Systems*  
-  **当前状态 / Status:** Under consideration (Submitted on August 20, 2026; currently undergoing initial assessment by the Pre-screening Committee)
-
 ---
 
 ## 🗺️ 思想升维与 22 年演进全过程记载 (Evolutionary Process & Empirical Proof)
@@ -255,10 +250,9 @@ h:/IPC/
   author    = {Fanchun Meng (Grit Meng)},
   title     = {System and Complexity Science: Generation, Persistence, and Evolution of Order --- The Physical Constitution for Open Complex Giant Systems},
   title_zh  = {系统与复杂性科学：秩序的生成、存续和进化——开放复杂巨系统的物理学宪法},
-  journal   = {SSRN Electronic Journal, SSRN ID: 7251098 | Submitted to IEEE Transactions on Systems, Man and Cybernetics: Systems},
+  journal   = {SSRN Electronic Journal, SSRN ID: 7251098},
   year      = {2026},
-  url       = {https://ssrn.com/abstract=7251098},
-  note      = {Submitted to IEEE Transactions on Systems, Man and Cybernetics: Systems (Manuscript ID: SMCA-26-08-4527)}
+  url       = {https://ssrn.com/abstract=7251098}
 }
 
 @article{Meng2026ValueChainPhysics,

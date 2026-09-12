@@ -14,9 +14,6 @@ identifiers:
   - type: url
     value: "https://ssrn.com/abstract=7251098"
     description: "SSRN Live Preprint: System and Complexity Science"
-  - type: other
-    value: "IEEE TSMC-Systems: SMCA-26-08-4527"
-    description: "Submitted Journal Manuscript ID"
 repository-code: "https://github.com/GritMeng/Value-Chain-Physics"
 keywords:
   - "System and Complexity Science"
