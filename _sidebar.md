@@ -1,4 +1,6 @@
 * [🏠 首页与全景概览](README.md)
+* <a href="flipbook_reader.html" target="_blank" style="color: #d29922; font-weight: bold;"><i class="fa-solid fa-book-open"></i> 📖 3D 交互翻页典藏电子书</a>
+* <a href="flipbook_reader.html" target="_blank" style="color: #58a6ff; font-weight: bold;"><i class="fa-solid fa-award"></i> 🎁 CRC Press 出版大礼包与成果展示</a>
 
 * **核心论文与 SSRN 预印本 (SSRN Preprints & Papers)**
   * [系统与复杂性科学 (中文 V2 正本)](docs/System_and_Complexity_Science_Monograph_v2_CN.md)

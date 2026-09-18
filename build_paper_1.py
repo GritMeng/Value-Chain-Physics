@@ -1,4 +1,13 @@
-# 价值链物理学：基于非独立同分布（Non-IID）与钱学森开放复杂巨系统的公理化框架与实证
+import os
+import subprocess
+import docx
+from docx.shared import Pt, Inches, RGBColor
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.enum.table import WD_TABLE_ALIGNMENT
+from docx.oxml.ns import qn
+from docx.oxml import OxmlElement
+
+paper_md_content = r"""# 价值链物理学：基于非独立同分布（Non-IID）与钱学森开放复杂巨系统的公理化框架与实证
 
 **孟凡淳 (Grit Meng)**  
 前联想全球供应链集成计划方案（IPS）系统负责人兼总架构师  
@@ -235,3 +244,41 @@ $$J(\mathbf{x}) = \int_{0}^T \left[ \|\mathbf{x}(t) - \mathbf{x}_{\text{target}}
 **声明**：作者声明无利益冲突（No Conflict of Interest）。脱敏数据与仿真代码可根据合理学术请求提供（Data Availability Statement）。
 
 **作者简介**：**孟凡淳 (Grit Meng)**，前联想全球供应链集成计划方案（IPS）系统负责人兼总架构师，IPC 智能计划与控制引擎缔造者。学术著作包括《价值链物理学》《系统与复杂性科学：秩序的生成、存续和进化》及《良知驱动的全息元认知五维心智模型》。现任全球数字神经系统总设计部总架构师（深圳，中国）。
+"""
+
+# Write to markdown file
+paper_md_path = r"H:\系统科学\价值链物理学\Paper_1_Formal_Proof_OCGS_Qian_Xuesen_ZH.md"
+with open(paper_md_path, "w", encoding="utf-8") as f:
+    f.write(paper_md_content)
+
+print(f"Successfully wrote {paper_md_path}")
+
+# Also update value_chain_physics_scm_paper_draft_zh.md for compatibility
+draft_md_path = r"H:\系统科学\价值链物理学\value_chain_physics_scm_paper_draft_zh.md"
+with open(draft_md_path, "w", encoding="utf-8") as f:
+    f.write(paper_md_content)
+
+print(f"Successfully updated {draft_md_path}")
+
+# Run Pandoc to convert MD -> DOCX (native OMML equations)
+temp_docx_path = r"H:\系统科学\价值链物理学\temp_paper_1.docx"
+final_paper_docx = r"H:\系统科学\价值链物理学\Paper_1_Formal_Proof_OCGS_Qian_Xuesen_ZH.docx"
+final_draft_docx = r"H:\系统科学\价值链物理学\value_chain_physics_scm_paper_draft_zh.docx"
+
+cmd = f'pandoc "{paper_md_path}" -o "{temp_docx_path}" --mathjax'
+subprocess.run(cmd, shell=True, check=True)
+print("Pandoc conversion completed.")
+
+# Apply style script
+import sys
+sys.path.append(r"H:\系统科学\价值链物理学")
+from style_native_docx import process_document
+
+process_document(temp_docx_path, final_paper_docx, is_english=False)
+process_document(temp_docx_path, final_draft_docx, is_english=False)
+
+# Remove temp file
+if os.path.exists(temp_docx_path):
+    os.remove(temp_docx_path)
+
+print(f"Successfully generated {final_paper_docx} and {final_draft_docx}!")

@@ -8,6 +8,10 @@
 **官方 GitHub 主页：** [gritmeng.github.io/Value-Chain-Physics](https://gritmeng.github.io/Value-Chain-Physics/)  
 **联系邮箱 / Email：** gritmeng@outlook.com  
 
+> [!TIP]
+> 📖 **[打开 3D 交互式翻页典藏电子书 (Interactive 3D Flipbook Reader)](flipbook_reader.html)**  
+> 🎁 **[查看 CRC Press / Taylor & Francis 出版大礼包与全景成果 (CRC Press Publishing Package)](flipbook_reader.html)**  
+
 ---
 
 > [!IMPORTANT]
