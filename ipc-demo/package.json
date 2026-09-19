@@ -1,0 +1,30 @@
+{
+  "name": "ipc-demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "IPC 优化引擎可视化演示 Demo（Node.js 编排 C++ 引擎 + DuckDB 分析）",
+  "dependencies": {
+    "@duckdb/node-api": "^1.5.5-r.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "recharts": "^2.15.4"
+  },
+  "scripts": {
+    "start": "node src/server/index.js",
+    "demo": "node scripts/demo.mjs",
+    "import:full": "node scripts/import-full.mjs",
+    "build:web": "node scripts/build-web.mjs",
+    "test": "node scripts/build-tests.mjs && node --test \"test/*.test.mjs\""
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/react": "^16.3.3",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "jsdom": "^24.1.3",
+    "typescript": "^5.9.3",
+    "vite": "^5.4.21"
+  }
+}

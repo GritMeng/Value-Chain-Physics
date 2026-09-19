@@ -1,0 +1,4 @@
+part_id,part_code,site,safety_stock,initial_on_hand,lot_size,lead_time
+0,FINISHED_PRODUCT_A,PLANT_01,0.0,0.0,1.0,2
+1,SUB_ASSEMBLY_B,PLANT_01,0.0,50.0,1.0,1
+2,RAW_MATERIAL_C,PLANT_01,0.0,20.0,1.0,0

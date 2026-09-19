@@ -15,20 +15,24 @@ CXXFLAGS="-std=c++17 -O2 -I include -Wall"
 
 mkdir -p build bin
 
-echo "[1/4] 编译核心引擎模块..."
+echo "[1/5] 编译核心引擎模块..."
 for src in data_loader atp_ctp_engine itp_iop_alignment substitution_engine; do
     echo "      - $src.cpp"
     $CXX $CXXFLAGS -c "src/$src.cpp" -o "build/$src.o"
 done
 
-echo "[2/4] 链接基准测试可执行文件..."
+echo "[2/5] 链接基准测试可执行文件..."
 OBJS="build/data_loader.o build/atp_ctp_engine.o build/itp_iop_alignment.o build/substitution_engine.o"
 for t in test_delivery_precision test_itp_iop_alignment test_substitution_rules stress_benchmark_2m; do
     $CXX $CXXFLAGS "benchmarks/$t.cpp" $OBJS -o "bin/$t"
     echo "      - bin/$t"
 done
 
-echo "[3/4] 运行 C++ 引擎基准..."
+echo "[3/5] 链接 CSV 驱动 CLI 可执行文件..."
+$CXX $CXXFLAGS -I cli "cli/ipc_engine_cli.cpp" $OBJS -o "bin/ipc_engine_cli"
+echo "      - bin/ipc_engine_cli"
+
+echo "[4/5] 运行 C++ 引擎基准..."
 echo
 ./bin/test_delivery_precision
 echo
@@ -44,7 +48,7 @@ else
 fi
 echo
 
-echo "[4/4] 运行 Python 数学交叉校验..."
+echo "[5/5] 运行 Python 数学交叉校验..."
 ( cd verifier && python3 cross_validator.py )
 echo
 echo "========================================================"

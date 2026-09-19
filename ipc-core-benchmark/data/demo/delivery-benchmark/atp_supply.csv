@@ -1,0 +1,3 @@
+supply_code,supply_type,part_id,available_day,qty,priority
+OH_B,On-Hand,1,0,50.0,100
+OH_C,On-Hand,2,0,20.0,100

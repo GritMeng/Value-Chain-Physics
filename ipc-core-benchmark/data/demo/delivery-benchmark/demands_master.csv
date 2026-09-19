@@ -1,0 +1,2 @@
+demand_id,part_id,due_day,qty,priority,customer_group,region
+1,0,3,30.0,1,VIP_CLIENT_A,NORTH_AMERICA

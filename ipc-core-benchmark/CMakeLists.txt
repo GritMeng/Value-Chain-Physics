@@ -37,3 +37,11 @@ target_link_libraries(stress_benchmark_2m PRIVATE ipc_core_static)
 # 让压测程序默认以项目根为工作目录，便于找 data/
 set_target_properties(stress_benchmark_2m PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
+# CLI: CSV 输入 / CSV 输出 命令行驱动 (供 Node.js 编排层调用)
+# 说明: 复用 ipc_core_static 中既有算子, 不修改既有引擎与基准。
+add_executable(ipc_engine_cli cli/ipc_engine_cli.cpp)
+target_include_directories(ipc_engine_cli PRIVATE cli)
+target_link_libraries(ipc_engine_cli PRIVATE ipc_core_static)
+set_target_properties(ipc_engine_cli PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)

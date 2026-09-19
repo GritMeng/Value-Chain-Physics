@@ -1,0 +1,17 @@
+# 依赖
+node_modules/
+
+# DuckDB 数据库与运行工作目录（演示产物，不入库）
+.data/
+runs/
+*.duckdb
+*.duckdb.wal
+
+# 前端构建产物（vite outDir = public/）
+public/
+!public/.gitkeep
+
+# 测试与临时产物
+test/tmp/
+test/.tsx-build/
+*.log

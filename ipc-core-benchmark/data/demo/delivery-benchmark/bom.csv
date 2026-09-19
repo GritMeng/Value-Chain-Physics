@@ -1,0 +1,3 @@
+parent_id,child_id,usage_qty,alt_class,alt_group,target_ratio,historical_qty,lot_size
+0,1,1.0,0,0,1.0,0.0,1.0
+1,2,2.0,0,0,1.0,0.0,1.0

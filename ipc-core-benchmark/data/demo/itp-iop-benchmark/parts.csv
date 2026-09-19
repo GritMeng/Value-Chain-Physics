@@ -1,0 +1,3 @@
+part_id,part_code,site,safety_stock,initial_on_hand,lot_size,lead_time
+10,SKU_10,PLANT_MAIN,10.0,100.0,1.0,1
+20,SKU_20,PLANT_MAIN,10.0,100.0,1.0,1
