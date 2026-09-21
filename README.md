@@ -113,6 +113,8 @@ h:/IPC/
 ## 📊 官方学术预印本与期刊投稿状态 (Official Academic Status)
 
 ### 🏛️ SSRN 预印本平台 (SSRN Author Dashboard)
+- **Paper 2 (最新重磅学术论文 / 钱学森 OCGS 同构与巴拿赫不动点形式化证明):**
+  [*开放复杂巨系统的生成、存续与进化——基于 Non-IID 第一性原理的推论推演与 OCGS 同构证明*](./Paper_2_System_Science_NonIID_Fixed_Point_ZH.md)
 - **SSRN 7251098 (Distributed / 已正本发布与分布式传播):**  
   [*System and Complexity Science: The Generation, Persistence, and Evolution of Order — The Physics Constitution of Open Complex Giant Systems*](https://ssrn.com/abstract=7251098)
 - **Zenodo Academic Repository (Alternative Preprints / 学术托管):**  
