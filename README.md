@@ -110,7 +110,7 @@ h:/IPC/
 
 ---
 
-## 📊 官方学术预印本与期刊投稿状态 (Official Academic Status)
+## 📊 官方学术专著与预印本索引 (Official Academic Status)
 
 ### 🏛️ SSRN 预印本平台 (SSRN Author Dashboard)
 - **Paper 2 (最新重磅学术论文 / 钱学森 OCGS 同构与巴拿赫不动点形式化证明):**
