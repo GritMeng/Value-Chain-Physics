@@ -5,6 +5,11 @@ IPC Core Cross Validator (双发数学结果自动化交叉校验器)
 
 import sys
 import json
+import io
+
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+
 from reference_engine import allocate_class1_python, itp_iop_alignment_python
 
 def run_cross_validation():

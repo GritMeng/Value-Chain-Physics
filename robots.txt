@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://gritmeng.github.io/Value-Chain-Physics/sitemap.xml

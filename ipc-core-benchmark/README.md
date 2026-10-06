@@ -49,16 +49,16 @@
 ## 🌟 核心开源算子 (Auditable Micro-Kernel Operators)
 
 ### 1. 交付又准又快 (Real-Time ATP/CTP Delivery Promising)
-* **算子位置**：`include/ipc_core/atp_ctp_engine.h` & `src/atp_ctp_engine.cpp`
-* **解法亮点**：支持多层 BOM 深度优先展开与瓶颈工时预留；在能力或物料不足时，触发 **零堆内存回滚 (Zero-Heap Rollback)**，确保微秒级求得精准承诺交期且不占用非法资源。
+- **算子位置**：`include/ipc_core/atp_ctp_engine.h` & `src/atp_ctp_engine.cpp`
+- **解法亮点**：支持多层 BOM 深度优先展开与瓶颈工时预留；在能力或物料不足时，触发 **零堆内存回滚 (Zero-Heap Rollback)**，确保微秒级求得精准承诺交期且不占用非法资源。
 
 ### 2. 主计划与执行计划协同 (Master Plan vs. Execution Plan Alignment)
-* **算子位置**：`include/ipc_core/itp_iop_alignment.h` & `src/itp_iop_alignment.cpp`
-* **解法亮点**：ITP 战术主计划生成宏观产能防波堤（Soft Capacity Buffer），IOP 执行计划在车间排产时进行刚性配额阻断（Hard Quota Blocking），彻底解决“计划下发到车间后发生漂移与抢料”的行业难题。
+- **算子位置**：`include/ipc_core/itp_iop_alignment.h` & `src/itp_iop_alignment.cpp`
+- **解法亮点**：ITP 战术主计划生成宏观产能防波堤（Soft Capacity Buffer），IOP 执行计划在车间排产时进行刚性配额阻断（Hard Quota Blocking），彻底解决“计划下发到车间后发生漂移与抢料”的行业难题。
 
 ### 3. 三级动态替代料分配 (Material Substitution Engine)
-* **算子位置**：`include/ipc_core/substitution_engine.h` & `src/substitution_engine.cpp`
-* **解法亮点**：支持一类（按历史配额比例平衡）、二类（组内优先级选优）、三类（跨组动态归一化、批量倍数与安全库存保护）替代料分配决策。
+- **算子位置**：`include/ipc_core/substitution_engine.h` & `src/substitution_engine.cpp`
+- **解法亮点**：支持一类（按历史配额比例平衡）、二类（组内优先级选优）、三类（跨组动态归一化、批量倍数与安全库存保护）替代料分配决策。
 
 ---
 
@@ -72,7 +72,19 @@
 | **IOP 车间协同刚性阻断** | 500,000 Demands | **~24 ms** | ~20,800,000 / 秒 |
 | **全链路协同总响应** | **2,000,000 SKUs** | **< 45 ms** | **> 11,000,000 / 秒** |
 
-*(注：测试环境为 AMD Ryzen 9 7950X / 64GB DDR5 / Windows 11，无 GPU 依赖，纯 CPU 裸金属调度)*
+> 注：测试环境为 AMD Ryzen 9 7950X / 64GB DDR5 / Windows 11，无 GPU 依赖，纯 CPU 裸金属调度。
+
+## 💾 运行时环境与数据来源说明 (Environment & Data Source)
+
+> [!NOTE]
+> **问：运行基准测试是否需要安装或连接数据库 (DuckDB / MySQL / PostgreSQL)？**
+> 
+> **答：完全不需要！** 
+> 1. **零数据库与零 IO 依赖**：本开源基准套件将数据库/磁盘 IO 与求解算子彻底解耦。开箱即用，无需配置任何数据库驱动、SQL 引擎或网络连接，开发者拥有 C++17 编译器或 Python 3 即可直接运行。
+> 2. **数据生成与加载机制**：
+>    - **微观规则测试数据**：在 `benchmarks/test_*.cpp` 中内置脱敏的标准业务用例（包含 ATP 零堆回滚、ITP/IOP 配额阻断、三级替代料分配）。
+>    - **200万级压测数据**：由 `benchmarks/stress_benchmark_2m.cpp` 的 `[Phase 1]` 在内存中高效合成 (In-Memory SoA Arrays)，瞬间构建 2,000,000 个 SKU 主数据与 500,000 条并发独立需求，专为测试裸金属 CPU 算法瓶颈而设计。
+> 3. **生产环境与开源基准的区别**：在企业生产部署中，IPC 系统通过 DuckDB 接口与企业 ERP/MES/WMS 数据库对接；而本 `ipc-core-benchmark` 仓库专门提供脱敏的离线微内核，方便全球架构师与开发者免去复杂数据库搭建成本，直接审计求解质量与速度。
 
 ---
 

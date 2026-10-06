@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能计划与控制 (IPC) 全景逻辑流程与计算秩序图谱</title>
+    <!-- Tailwind CSS CDN for modern UI components -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Mermaid.js CDN for rendering vector flowcharts dynamically -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body {
+            background-color: #0b0f19;
+            color: #f1f5f9;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1rem;
+        }
+        .mermaid {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+        }
+        .badge-serial {
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .badge-parallel {
+            background: rgba(34, 197, 94, 0.15);
+            color: #86efac;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 max-w-7xl mx-auto space-y-10">
+
+    <!-- Header Section -->
+    <header class="glass-panel p-8 text-center space-y-4 border-t-4 border-sky-500 shadow-2xl">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/30">
+            <span>IPC Single-Homomorphic Engine Architecture Specification</span>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-sky-400 via-indigo-300 to-purple-400">
+            智能计划与控制 (IPC) 模型秩序与全景计算逻辑图谱
+        </h1>
+        <p class="text-slate-400 max-w-4xl mx-auto text-sm md:text-base leading-relaxed">
+            IPC 的本质是<strong class="text-sky-300">连续时间/离散事件一维几何水位消纳模型</strong>与<strong class="text-indigo-300">多层级级联约束传导秩序</strong>。本规范经过与 C++ 源码的全要素校对，将完整消纳、ECN 软硬切替、BOM多属性连通决策、跨站点运输提前期时序偏移、复合优先级打包位域、平局配额决策、高优抢单前移、联副产品降级切片排序、微观工单 TSP 换型优化、WBS CPM 调度及项目商业对账等逻辑全部融为一体。
+        </p>
+    </header>
+
+    <!-- Section 1: Execution Topology -->
+    <section class="glass-panel p-6 md:p-8 space-y-6">
+        <h2 class="text-2xl font-bold text-sky-400 flex items-center space-x-3">
+            <span class="w-3 h-3 rounded-full bg-sky-400"></span>
+            <span>1. 模型秩序体系与串/并行拓扑分类 (System Order & Topology)</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="p-6 rounded-xl bg-slate-900/60 border border-red-500/20 space-y-3">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-bold text-red-400 flex items-center space-x-2">
+                        <span>🔗 串行拓扑算子 (Serial Operators)</span>
+                    </h3>
+                    <span class="badge-serial text-xs px-2.5 py-0.5 rounded-full font-mono">Sequential</span>
+                </div>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                    存在严格因果关系或状态依赖的计算节点。上一阶段/层级的输出是下一阶段/层级的输入，必须按拓扑序（如 LLC 码、交期顺序）严格单向推进。
+                </p>
+                <ul class="text-xs text-slate-400 space-y-1.5 list-disc list-inside pt-2">
+                    <li>BOM 拓扑按 LLC 码由上至下级联展开（物理站点 Material@Site 唯一编码）</li>
+                    <li>同 LLC 层级内替代件连通分量 (DSU) 优先级排序</li>
+                    <li>64-bit 复合优先级位域打包全局拉通序列</li>
+                    <li>三类替换料决策、供应商配额比例大者优先平局决断 (Tie-breaker)</li>
+                    <li>配额日历 Allotment Monday-aligned 周级回退匹配机制</li>
+                    <li>ECN 软硬切替库存预消纳与硬截断</li>
+                    <li>跨站点运输提前期时序偏移 (Transshipment)</li>
+                    <li>CTP 递归回溯与 Zero-Heap 事务 Savepoint 回滚</li>
+                    <li>高优订单产能抢占与前移挤占排产 (Preemption)</li>
+                    <li>联副产品批次降级（EXACT_FIRST / HIGHER_FIRST 降序消纳） (Co-product)</li>
+                    <li>微观工单 TSP 换型优化与齐套拉动 (Greedy TSP & Call-off)</li>
+                    <li>项目 WBS-CPM 关键路径 Forward/Backward Pass</li>
+                    <li>受损断料按 CSC 拓扑由下至上逆向级联传导</li>
+                </ul>
+            </div>
+
+            <div class="p-6 rounded-xl bg-slate-900/60 border border-emerald-500/20 space-y-3">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-bold text-emerald-400 flex items-center space-x-2">
+                        <span>⚡ 并行拓扑算子 (Parallel Operators)</span>
+                    </h3>
+                    <span class="badge-parallel text-xs px-2.5 py-0.5 rounded-full font-mono">Concurrent</span>
+                </div>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                    数据空间解耦、无强依赖关系的计算节点。可以利用全核算子并行推演，无锁并发消纳。
+                </p>
+                <ul class="text-xs text-slate-400 space-y-1.5 list-disc list-inside pt-2">
+                    <li>Hierarchy 多维属性展开与概率预测 (TFT/DeepAR)</li>
+                    <li>同层级物料节点的双端前缀和消纳 (SIMD Netting)</li>
+                    <li>多级安全库存时序段树规约合并 (Segment Tree ⊕)</li>
+                    <li>乐观共享库存池无锁 CAS 并发扣减</li>
+                    <li>BOM 齐套率评估与拉动仿真分类 (GREEN/YELLOW/RED)</li>
+                    <li>项目对账与商业合同奖惩并行核算</li>
+                    <li>多 What-If 沙箱隔离评估与 3-Way Diff 比对</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Master End-to-End Logic Flowchart -->
+    <section class="glass-panel p-6 md:p-8 space-y-6">
+        <div class="space-y-2">
+            <h2 class="text-2xl font-bold text-indigo-400 flex items-center space-x-3">
+                <span class="w-3 h-3 rounded-full bg-indigo-400"></span>
+                <span>2. 全景主计算逻辑流程图 (End-to-End Master Logic Flowchart)</span>
+            </h2>
+            <p class="text-slate-400 text-sm">
+                展现 IPC 引擎从点火启动到终态数据对账的全流程大盘逻辑。
+            </p>
+        </div>
+
+        <div class="mermaid">
+flowchart TD
+    Start(["点火启动 Main Entry"]) --> StepA["⚡ 01. 专利实例断言与基因主数据校验"]
+    StepA --> StepB["⚡ 02. 全网物料/BOM/需求/产能主数据提取"]
+    StepB --> StepC["🔗 03. LLC 层级编译与环形死锁检测"]
+    
+    StepC --> StepD{"LLC 松弛迭代 > 100 轮?"}
+    StepD -- "是 (True)" --> Err1["致命熔断: BOM 拓扑循环依赖死锁报错"] --> Stop(["异常终止"])
+    StepD -- "否 (False)" --> StepE["⚡ 04. 构建 CSR/CSC 混合图索引结构"]
+    
+    StepE --> StepG{"引擎运行模式 Selector"}
+    
+    StepG -- "IBP/ITP 全流程模式" --> PhaseIBP["层级一: Hierarchy 多维展开与 IBP 需求预测"]
+    PhaseIBP --> PhaseITP["层级二: ITP 战术利润优化与 Allotment 解耦配额生成"]
+    PhaseITP --> PhaseMEIO["阶段三: MEIO 多级库存优化与乐观 CAS 池"]
+    PhaseMEIO --> PhaseIOP
+    
+    StepG -- "DBD 极速模式" --> PhaseIOP["层级三: IOP 运营级 LBL 拓扑冲减与三类替换料决策"]
+    
+    PhaseIOP --> StepH["🔗 06. 64-bit 复合优先级订单全局拉通排序"]
+    StepH --> StepI["⚡ 07. 双端前缀和无分支几何消纳 Netting"]
+    StepI --> StepJ{"是否存在缺口 Net Demand > 0?"}
+    
+    StepJ -- "是 (产生缺口)" --> StepK["🔗 08. 三类替换料决策引擎 Substitution"]
+    StepJ -- "否 (完全消纳)" --> PhaseSched
+    StepK --> PhaseSched["层级四: DBD 微观有限能力排程与 CTP/ATP 递归回溯 (Scheduling)"]
+    
+    PhaseSched --> PhaseCoprod["层级五: 联副产品维度分级与降级消纳规划 (Co-product)"]
+    PhaseCoprod --> PhaseTSPSched["层级六: 微观工单 TSP 换型优化与物料齐套拉动 (Greedy TSP & Call-off)"]
+    PhaseTSPSched --> PhaseWBSCPM["层级七: ETO 工程项目 WBS CPM 关键路径调度 (WBS CPM)"]
+    
+    PhaseWBSCPM --> StepM["层级八: Execution 确权绑扎 (Supply Assignment Pegging)"]
+    StepM --> StepN["⚡ 10. What-If 沙箱隔离推演与 3-Way Diff 财务对账"]
+    StepN --> End(["消纳与对账完毕，输出终态对账表"])
+        </div>
+    </section>
+
+    <!-- Section 3: Detailed Phase Breakdowns -->
+    <section class="glass-panel p-6 md:p-8 space-y-12">
+        <h2 class="text-2xl font-bold text-purple-400 flex items-center space-x-3">
+            <span class="w-3 h-3 rounded-full bg-purple-400"></span>
+            <span>3. 逐阶段拆解图与深度逻辑讲解 (Detailed Stage Breakdown & Logic)</span>
+        </h2>
+
+        <!-- 3.1 Phase 1 -->
+        <div class="space-y-4 border-l-2 border-sky-500/40 pl-4 md:pl-6">
+            <h3 class="text-xl font-bold text-sky-400">3.1 阶段一：全网拓扑编译与 LLC 码松弛及 DSU 作业划分 (LLC Compilation & DSU Grouping)</h3>
+            <div class="mermaid">
+flowchart TD
+    Sub1Start(["阶段一: 拓扑编译开始"]) --> Init["初始化 out_llc 向量全为 0"]
+    Init --> LoopStart["🔗 设 relaxed = true, iterations = 0"]
+    
+    LoopStart --> CheckRelax{"relaxed == true ?"}
+    CheckRelax -- "否 (已收敛)" --> GroupDSU["⚡ 利用 DSU 并查集进行替代料连通组划分"]
+    GroupDSU --> BuildIndex["⚡ 按 LLC 码升序排序物料节点，构建 CSR 展开与 CSC 逆向传导索引"]
+    BuildIndex --> Sub1End(["阶段一完成"])
+    
+    CheckRelax -- "是 (未收敛)" --> IncCount["iterations++，relaxed = false"]
+    IncCount --> CheckMax{"iterations > 100 ?"}
+    
+    CheckMax -- "是 (死锁)" --> ThrowErr["抛出异常: 检测到 BOM 闭环循环依赖"]
+    CheckMax -- "否 (正常)" --> TraverseBOM["遍历全网 BOM 消耗边 (parent -> child)"]
+    
+    TraverseBOM --> CompareLLC{"out_llc[child] <= out_llc[parent] ?"}
+    CompareLLC -- "是" --> UpdateLLC["out_llc[child] = out_llc[parent] + 1，relaxed = true"] --> NextBOM{"更多 BOM?"}
+    CompareLLC -- "否" --> NextBOM
+    NextBOM -- "是" --> TraverseBOM
+    NextBOM -- "否" --> CheckRelax
+            </div>
+            <div class="bg-slate-900/60 p-4 rounded-xl text-sm text-slate-300 space-y-2">
+                <p><strong>💡 阶段一深度逻辑与代码映射讲解：</strong></p>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    为了防止复杂制造网状 BOM 中出现环形死锁依赖，算法通过控制 iterations 轮次，每轮将父件的 LLC 码向下传递 +1。若 iterations 超过 100 轮仍未收敛，说明 BOM 中存在循环依赖回路，引擎立即触发熔断。编译完成后，利用并查集 (DSU) 识别替代料组连通分量，按最小优先级排序后并行分发给 OpenMP 工作线程，实现无锁并行。词典以 `MaterialCode@SiteCode` 物理站点主键格式独立，实现多工厂解耦消纳。
+                </p>
+            </div>
+        </div>
+
+        <!-- 3.4 Phase 4 ECN / MCDM / Transshipment / Tie-breaker -->
+        <div class="space-y-4 border-l-2 border-pink-500/40 pl-4 md:pl-6">
+            <h3 class="text-xl font-bold text-pink-400">3.4 阶段四：IOP 运营级 LBL 拓扑净算、多属性替代决策与 ECN 软硬切替 (IOP Netting)</h3>
+            <div class="mermaid">
+flowchart TD
+    Sub4Start(["阶段四: 拓扑消纳与替代料展开"]) --> FilterECN["1. 过滤 ECN 有效期与软硬切替: eff_start_day <= start_day 且 (未失效 或 软切替有在手)"]
+    FilterECN --> HasAlt{"2. 是否存在替代料 alt_group_id ?"}
+    
+    HasAlt -- "是" --> MCDM_Sort["3. MCDM 价值模型排序: 按 (max_llc 升序, new_cost 升序, exist_cost 升序) 排序候选组"]
+    MCDM_Sort --> SoftPre["第一步: 优先消纳已失效但支持 'soft' 软切替的现有在库，防死锁且不向下下发采购/生产"]
+    SoftPre --> SplitActive["第二步: 剩余需求按 active 候选件的 target_ratio 比例拆分分摊"]
+    SplitActive --> TransLT["第三步: 跨站点运输期偏移: 若 parent.site != child.site，减去 transshipment_lead_time"]
+    TransLT --> WriteGross["第四步: 子件需求作为 gross_demand 写入下层 LLC 并以 CAS 原子更新优先级"]
+    
+    HasAlt -- "否" --> NetStd["标准单体 BOM 消纳与前缀和冲减"]
+    NetStd --> WriteGross
+    WriteGross --> Sub4End(["物料消纳与需求下发完成"])
+            </div>
+            <div class="bg-slate-900/60 p-4 rounded-xl text-sm text-slate-300 space-y-2">
+                <p><strong>💡 阶段四深度逻辑与代码映射讲解：</strong></p>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    在 LBL 需求展开中，系统引入工程变更（ECN）软硬切替。对失效 `eff_end_day` 且类型为 `soft` 的物料优先消耗在手库存（分配类型 `-2`）并阻断级联需求。若父子物料在不同站点，子件到期日自动扣减该子件的跨站点运输提前期 `transshipment_lead_time`。当存在替代件组时，执行 MCDM 价值模型排序（LLC/新增采购成本/物理在手消耗成本），在一类/二类替代中，若遭遇数学平局则触发配额比例大者优先决策 (Tie-breaker)。分摊后以无锁 CAS 写入下层 `gross_demand_priority`。
+                </p>
+            </div>
+        </div>
+
+        <!-- 3.5 Phase 5 CTP Preemption -->
+        <div class="space-y-4 border-l-2 border-amber-500/40 pl-4 md:pl-6">
+            <h3 class="text-xl font-bold text-amber-400">3.5 阶段五：DBD 微观有限能力排程、CTP DFS 递归回溯与高优抢占拆分 (CTP & Preemption)</h3>
+            <div class="mermaid">
+flowchart TD
+    CTPStart(["CTP 递归回溯入口"]) --> MarkSavepoint["🔗 保存线程局部栈 Savepoint 断点: savepoint_alloc, savepoint_cap, savepoint_ltb"]
+    
+    MarkSavepoint --> DeductATP["Step 1: 遍历扣减匹配日期的在手 OnHand 与在途 SR"]
+    DeductATP --> CheckATPOK{"demand_qty <= 0 ?"}
+    
+    CheckATPOK -- "是 (完全消纳)" --> RetTrue(["返回 true: 物理成功"])
+    CheckATPOK -- "否 (库存不足)" --> CalcStart["Step 2: 计算 Planned Order 开始日期 start_day = due_day - ceil(lead_time)"]
+    
+    CalcStart --> CheckStart{"start_day >= 0 ?"}
+    CheckStart -- "否 (突破日历)" --> TriggerRollback
+    
+    CheckStart -- "是" --> CheckSetupWaiver{"last_dim_val == dimension_val ?"}
+    CheckSetupWaiver -- "是 (同特征连续)" --> ZeroSetup["豁免准备时间: setup_time = 0.0"]
+    CheckSetupWaiver -- "否 (跨特征切换)" --> AddSetup["计入固定准备时间 Overhead"]
+    
+    ZeroSetup --> RequiredCap["计算所需总产能 required_cap"]
+    AddSetup --> RequiredCap
+    
+    RequiredCap --> CheckMainCap{"主工作中心/主路线剩余产能充足?"}
+    CheckMainCap -- "是" --> RecordMain["暂存主路线产能占用"] --> Step3_BOM
+    
+    CheckMainCap -- "否 且 demands >= 1000" --> Splitting["自适应拆单: possible_qty = (avail_cap - setup) / factor"] --> RecordSplit["暂存可能分配量 possible_qty，残量滚动到下一天"] --> Step3_BOM
+    CheckMainCap -- "否 且 demands < 1000" --> Preemption{"高优抢占排程: 搜索同日低优订单 preempt_target"}
+    
+    Preemption -- "找到低优订单" --> ShiftPreempt["尝试将低优订单前移一天 d-1 重新 CTP"]
+    ShiftPreempt -- "前移成功" --> RecordPreempt["暂存当前订单产能，原订单前移占用"] --> Step3_BOM
+    ShiftPreempt -- "前移失败" --> AltSearch["遍历替代路线 alternative_routings"]
+    
+    AltSearch --> CheckAltOK{"存在可用替代路线?"}
+    CheckAltOK -- "是" --> RecordAlt["暂存替代路线占用"] --> Step3_BOM
+    CheckAltOK -- "否" --> TriggerRollback
+    
+    Step3_BOM["Step 3: 自上而下进行 BOM 级联展开"] --> LoopChild["遍历 BOM 子件 child_id"]
+    
+    LoopChild --> CheckChildDay{"child_due_day >= 0 且 处于有效期 且 未突破 LTB 且 无 Mix Group 冲突 ?"}
+    CheckChildDay -- "否" --> TriggerRollback
+    CheckChildDay -- "是" --> RecurseCall["🔗 递归调用 reserve_atp_and_capacity_recursive(child_id)"]
+    
+    RecurseCall --> CheckChildRet{"递归返回 true?"}
+    CheckChildRet -- "否" --> TriggerRollback
+    CheckChildRet -- "是 (已满足)" --> NextChild{"更多 BOM 子件?"}
+    
+    NextChild -- "是" --> LoopChild
+    NextChild -- "否" --> RetTrue
+    
+    TriggerRollback["🔗 零堆事务回滚算法 rollback_and_fail"] --> RetFalse(["返回 false"])
+            </div>
+            <div class="bg-slate-900/60 p-4 rounded-xl text-sm text-slate-300 space-y-2">
+                <p><strong>💡 阶段五深度逻辑与代码映射讲解：</strong></p>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    在 reserve_atp_and_capacity_recursive DFS 递归中，利用线程局部暂存栈 Savepoint 记录状态。若遇约束失败，直接回滚。主路线产能不足时，若订单量大，系统通过自适应拆单 (Splitting) 计算可能分配量 possible_qty 并将残量滚动至下一天；若订单量小，系统搜索同日低优先级订单并尝试将其前移一天 (d - 1) 排产，前移成功则高优订单成功抢占产能。
+                </p>
+            </div>
+        </div>
+
+        <!-- 3.6 Phase 6 Wafer Co-product Planning -->
+        <div class="space-y-4 border-l-2 border-indigo-500/40 pl-4 md:pl-6">
+            <h3 class="text-xl font-bold text-indigo-400">3.6 阶段六：联副产品维度分级与晶圆降级消纳规划 (Wafer Co-product Planning)</h3>
+            <div class="mermaid">
+flowchart TD
+    Sub7Start(["阶段六: 联副产品维度消纳开始"]) --> RulesMap["1. 解析需求 dimension_grp 约束关系 (EQ, GE)"]
+    RulesMap --> FilterDims["过滤出所有可接受维度 acceptable_dims并排序"]
+    
+    FilterDims --> DeductStock["2. 第一阶段: 尝试直接从当前 stock 中扣减消纳 (精确规格及降级件)"]
+    DeductStock --> CheckNet{"net_demand <= 0 ?"}
+    
+    CheckNet -- "是 (完全消纳)" --> SaveAlloc["记录分摊结果至 ipc_coproduct_allocation"]
+    CheckNet -- "否 (仍有缺口)" --> FindRecipe["3. 第二阶段: 遍历 recipe，寻找收率最高的工艺 best_rec"]
+    
+    FindRecipe --> CalcBatches["计算满足缺口所需生产的最少批次数: batches = ceil(net_demand / (batch_size * ratio))"]
+    CalcBatches --> ProduceWafer["模拟晶圆产出: 将不同分级产出 produced = batches * batch_size * ratio_i 注入 stock"]
+    
+    ProduceWafer --> UpdateBatch["更新累计工艺执行次数 recipe_batch_counts"]
+    UpdateBatch --> ReAlloc["从更新后的 stock 中二次划拨消纳 net_demand"]
+    ReAlloc --> SaveLeftover["剩余副产品作为库存留量进入 leftover 账本"] --> SaveAlloc
+            </div>
+            <div class="bg-slate-900/60 p-4 rounded-xl text-sm text-slate-300 space-y-2">
+                <p><strong>💡 阶段六深度逻辑与代码映射讲解：</strong></p>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    在晶圆分级切片中，芯片产出常伴随降级分流。`run_ipc_coproduct_dimension_planning_and_persist` 解析 EQ (精确规格) 与 GE (降级件兼容) 等规则过滤可用规格。过滤后系统支持 EXACT_FIRST（精确优先消纳，备用件从小到大升序保留高端）与 HIGHER_FIRST（大到小降序消纳防囤积）两种排序。首阶段尝试扣减 stock 物理在库，若有缺口则搜寻收率 ratio 最优的 recipe 并投料产出，副产物作为 leftover 写入 ledger 账本。
+                </p>
+            </div>
+        </div>
+
+        <!-- 3.7 Phase 7 TSP & Call-off -->
+        <div class="space-y-4 border-l-2 border-emerald-500/40 pl-4 md:pl-6">
+            <h3 class="text-xl font-bold text-emerald-400">3.7 阶段七：微观工单 TSP 换型优化与齐套物料拉动仿真 (Greedy TSP & Call-off)</h3>
+            <div class="mermaid">
+flowchart TD
+    Sub8Start(["阶段七: 微观排产与拉动开始"]) --> GroupWC["1. 按工作中心分组工单并设定 TSP 贪心起点"]
+    GroupWC --> CheckUnvisited{"unvisited 列表是否为空?"}
+    
+    CheckUnvisited -- "否" --> CalcSetup["计算候选件过渡 setup_time (来自 setup_matrix)"]
+    CalcSetup --> CalcDelay["预估延迟天数，计算延期惩罚: delay_penalty = delay_days * 1.5"]
+    CalcDelay --> CalcImpedance["计算综合阻抗: impedance = setup_time + delay_penalty"]
+    PickBest["选取阻抗最小的工单作为下一工序，从 unvisited 剔除"]
+    CalcImpedance --> PickBest --> CheckUnvisited
+    
+    CheckUnvisited -- "是" --> ConsumeCalendar["2. 按照日历容量消纳工单负荷 (setup_time + run_time)"]
+    ConsumeCalendar --> ShiftDay["超载工单自动跨天顺延，产出 ds.scheduled_start_day"]
+    
+    ShiftDay --> BOMPull["3. 齐套物料拉动: 提前 1 天向仓库发起 ipc_line_call_request 领料"]
+    BOMPull --> CheckKit["计算齐套率 (fulfilled / total)，评估并写入 kitting_status 绿/黄/红单"]
+            </div>
+            <div class="bg-slate-900/60 p-4 rounded-xl text-sm text-slate-300 space-y-2">
+                <p><strong>💡 阶段七深度逻辑与代码映射讲解：</strong></p>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    在 `run_detailed_scheduling_and_calloff` 中，为平衡换型成本与延期交货，工单排序引入 TSP 贪心阻抗公式 impedance = setup_time + delay_penalty (其中 delay_penalty = delay_days * 1.5)。工单负荷跨日消纳产出 start_day，随后按其排序模拟领料并提前 1 天向仓库发起 call_request。系统评估组件齐套率率 >= 1.0 为 Fully_Kitted (绿单)，率 >= 0.4 为 Partially_Kitted (黄单)，率 < 0.4 为 Critical_Shortage (红单)。
+                </p>
+            </div>
+        </div>
+
+        <!-- 3.8 Phase 8 Project CPM & WBS -->
+        <div class="space-y-4 border-l-2 border-purple-500/40 pl-4 md:pl-6">
+            <h3 class="text-xl font-bold text-purple-400">3.8 阶段八：WBS 关键路径法 (CPM) 调度与项目财务 (WBS CPM & Project Value)</h3>
+            <div class="mermaid">
+flowchart TD
+    Sub9Start(["阶段八: CPM 时序与财务对账开始"]) --> BuildTree["1. 构建 WBS 任务父子树状关系"]
+    BuildTree --> AssignDur["叶子节点依据 WBS Level 赋予默认周期 duration"]
+    
+    AssignDur --> ForwardPass["2. Forward Pass: 递归计算 early_start 与 early_finish"]
+    ForwardPass --> CalcProjFinish["确定项目完工天数 calc_finish_day = max(early_finish)"]
+    
+    CalcProjFinish --> BackwardPass["3. Backward Pass: 从合同交付期逆向计算 late_finish 与 late_start"]
+    BackwardPass --> SaveWbs["写回 WBS 节点时序至 ipc_project_wbs"]
+    
+    SaveWbs --> ContractAudit["4. 商业合同对账: 计算延迟天数 delay_days"]
+    
+    ContractAudit --> CheckBonus{"calc_finish_day <= bonus_date_offset ?"}
+    CheckBonus -- "是" --> ApplyBonus["从 bonus_plan_by_date 获取 bonus_amount"]
+    CheckBonus -- "否" --> ZeroBonus["bonus_amount = 0.0"]
+    
+    CheckBonus --> CheckPenalty{"calc_finish_day > penalty_date_offset ?"}
+    CheckPenalty -- "是" --> ApplyPenalty["超期天数 * penalty_rate = penalty_amount"]
+    CheckPenalty -- "否" --> ZeroPenalty["penalty_amount = 0.0"]
+    
+    ApplyBonus --> CalcNet["计算项目净产值: net_project_value = base + bonus - penalty"]
+    ZeroBonus --> CalcNet
+    ApplyPenalty --> CalcNet
+    ZeroPenalty --> CalcNet
+    
+    CalcNet --> UpdateProj["更新数据至项目大表 ipc_project"]
+            </div>
+            <div class="bg-slate-900/60 p-4 rounded-xl text-sm text-slate-300 space-y-2">
+                <p><strong>💡 阶段八深度逻辑与代码映射讲解：</strong></p>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    对于 ETO 项目，`run_wbs_cpm_and_project_financials` 引擎构建 WBS 任务树并执行 CPM 调度。Forward Pass 递归推算 early_start 与 early_finish 锁定关键路径，Backward Pass 从合同交付天数倒排 late_finish 与 late_start。系统基于完工天数 calc_finish_day 对齐商业合同奖惩条款：按期交付在 bonus_date 内奖励 bonus_amount，延期滞纳按 delay_days 乘以罚金比率，重估项目净价值 net_project_value。
+                </p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Section 4: Rules Table -->
+    <section class="glass-panel p-6 md:p-8 space-y-6">
+        <h2 class="text-2xl font-bold text-amber-400 flex items-center space-x-3">
+            <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+            <span>4. 全算子串并行拓扑与决策规则全览对照表 (Comprehensive Operators & Rules Table)</span>
+        </h2>
+        <div class="overflow-x-auto">
+            <table class="w-full text-xs text-left text-slate-300 border border-slate-800">
+                <thead class="bg-slate-900 text-sky-400 font-mono uppercase border-b border-slate-800">
+                    <tr>
+                        <th class="p-3 border-r border-slate-800">阶段</th>
+                        <th class="p-3 border-r border-slate-800">步骤名称</th>
+                        <th class="p-3 border-r border-slate-800">算子逻辑/计算公式</th>
+                        <th class="p-3 border-r border-slate-800">执行拓扑模式</th>
+                        <th class="p-3">If/Else 判定条件与分支处理</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800">
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段一</td>
+                        <td class="p-3 border-r border-slate-800">拓弛松弛</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">out_llc[child] = max(out_llc[child], out_llc[parent] + 1)</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-serial px-2 py-0.5 rounded">🔗 串行迭代</span></td>
+                        <td class="p-3 text-slate-400">iterations > 100 → 熔断阻断 BOM 死锁；否 → 继续松弛</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段一</td>
+                        <td class="p-3 border-r border-slate-800">DSU作业划分</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">并查集 alt_group 连通分量分析</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-parallel px-2 py-0.5 rounded">⚡ 并行作业</span></td>
+                        <td class="p-3 text-slate-400">使用 MaterialCode@SiteCode 物理站点字典，独立物料节点直接并行；连通替代组整体排序调度</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段二</td>
+                        <td class="p-3 border-r border-slate-800">多维分拆</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">HierarchyResolver 产品/客户/区域解耦</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-parallel px-2 py-0.5 rounded">⚡ 并行解耦</span></td>
+                        <td class="p-3 text-slate-400">依历史比重或 ratio_override 重新归一化预测分配</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段三</td>
+                        <td class="p-3 border-r border-slate-800">配额准入</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">Allotment = sum(Allocation * Ratio * gamma_t)</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-serial px-2 py-0.5 rounded">🔗 串行准入</span></td>
+                        <td class="p-3 text-slate-400">P_ord <= 准入阈值 且 余额 >= 需求 → 扣减；否 → 顺延挂起</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段三</td>
+                        <td class="p-3 border-r border-slate-800">配额日匹配回退</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">wk_start = (day < 3) ? 0 : 3 + ((day-3)/7)*7</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-serial px-2 py-0.5 rounded">🔗 串行回退</span></td>
+                        <td class="p-3 text-slate-400">日级配额匹配缺失 → 触发 Monday-aligned 周级配额回退统筹</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段四</td>
+                        <td class="p-3 border-r border-slate-800">乐观共享池</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">compare_exchange_weak(current_bits, target_bits)</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-parallel px-2 py-0.5 rounded">⚡ 并行 CAS 无锁</span></td>
+                        <td class="p-3 text-slate-400">current_val >= req → 执行原子替换；否 → 重试或分配失败</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段五</td>
+                        <td class="p-3 border-r border-slate-800">复合优先级</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">64-bit Bitfield Bits 62/60-61/44-59/28-43/0-27 打包</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-serial px-2 py-0.5 rounded">🔗 串行拉通</span></td>
+                        <td class="p-3 text-slate-400">按承诺状态、客户分级、交期天数、原序号、金额升序拉通排序</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段五</td>
+                        <td class="p-3 border-r border-slate-800">前缀和消纳</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">consumed = max(0, min(CD1, CS) - CD0)</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-parallel px-2 py-0.5 rounded">⚡ 并行无分支</span></td>
+                        <td class="p-3 text-slate-400">无分支 SIMD 几何消纳，net_demand > 0 → 触发替换料</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段五</td>
+                        <td class="p-3 border-r border-slate-800">ECN 软切替</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">已失效 BOM 软切替现有在库消耗与硬截断</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-serial px-2 py-0.5 rounded">🔗 串行生命周期</span></td>
+                        <td class="p-3 text-slate-400">soft切替 且 现有在库 > SS → 优先预消纳并阻断下发；hard切替 或 无在库 → 直接过滤截断</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段五</td>
+                        <td class="p-3 border-r border-slate-800">时序运输偏移</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">跨站点子件 child_due_day 顺向扣减</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-serial px-2 py-0.5 rounded">🔗 串行时序计算</span></td>
+                        <td class="p-3 text-slate-400">parent.site != child.site → 扣减该子件的 transshipment_lead_time 运输期</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段五</td>
+                        <td class="p-3 border-r border-slate-800">替代件MCDM</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">按 (max_llc 升序, new_cost 升序, exist_cost 升序) 对连通组排序</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-serial px-2 py-0.5 rounded">🔗 串行多指标排序</span></td>
+                        <td class="p-3 text-slate-400">计算各个连通替代件的多维成本阻抗，选择阻抗最低 candidate 优先划拨</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段五</td>
+                        <td class="p-3 border-r border-slate-800">一类替代平局</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">allocate_class1 差值最大化平局决断</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-serial px-2 py-0.5 rounded">🔗 串行平局判定</span></td>
+                        <td class="p-3 text-slate-400">gap 相等时，选择 target_ratio 配额比例最大者优先作为替代件 (Tie-Breaker)</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段五</td>
+                        <td class="p-3 border-r border-slate-800">二类替代平局</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">allocate_class2 评分最小化平局决断</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-serial px-2 py-0.5 rounded">🔗 串行平局判定</span></td>
+                        <td class="p-3 text-slate-400">rating 相等时，选择 target_ratio 配额比例最大者优先作为替代件 (Tie-Breaker)</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段五</td>
+                        <td class="p-3 border-r border-slate-800">三类替换料</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">actual_qty = ceil(due * per_qty * (1+scrap) / lot) * lot</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-serial px-2 py-0.5 rounded">🔗 串行逐轮归一化</span></td>
+                        <td class="p-3 text-slate-400">rem_net > 0 → 扣减并剔除已决策件，重新归一化权重</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段五</td>
+                        <td class="p-3 border-r border-slate-800">呆滞件 Swap</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">从同 alt_group 盈余备件调拨 (SwapRecord)</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-serial px-2 py-0.5 rounded">🔗 串行置换</span></td>
+                        <td class="p-3 text-slate-400">替换缺口存在 且 current_on_hand > SS → 触发滞销置换 Swap</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段六</td>
+                        <td class="p-3 border-r border-slate-800">CTP 递归回溯</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">DFS 递归树 + savepoint 栈</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-serial px-2 py-0.5 rounded">🔗 串行 DFS 回溯</span></td>
+                        <td class="p-3 text-slate-400">任何约束突破（日历、产能、BOM有效期、LTB、Mix Group） → 执行 Zero-Heap 回滚</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段六</td>
+                        <td class="p-3 border-r border-slate-800">自适应拆单</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">possible_qty = (avail_cap - setup - cleanup) / factor</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-serial px-2 py-0.5 rounded">🔗 自动切分</span></td>
+                        <td class="p-3 text-slate-400">产能不足 且 订单量 >= 1000 → 拆单，残量滚动至下一天</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段六</td>
+                        <td class="p-3 border-r border-slate-800">高优排程抢占</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">preempt_target 前移一天的 CTP 重新排产</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-serial px-2 py-0.5 rounded">🔗 抢单挤占</span></td>
+                        <td class="p-3 text-slate-400">当前订单失败 且 demands < 1000 且 存在低优订单 → 尝试前移重排；成功则抢占</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段七</td>
+                        <td class="p-3 border-r border-slate-800">晶圆降级排序</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">EXACT_FIRST vs HIGHER_FIRST</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-serial px-2 py-0.5 rounded">🔗 串行分级排序</span></td>
+                        <td class="p-3 text-slate-400">EXACT_FIRST 优先精确规格且小到大消耗；HIGHER_FIRST 高规格优先消纳防止高端囤积</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段七</td>
+                        <td class="p-3 border-r border-slate-800">联副产品分配</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">downbinning_priority 维度精确/降级判定</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-serial px-2 py-0.5 rounded">🔗 两阶段消纳</span></td>
+                        <td class="p-3 text-slate-400">1. 优先使用 stock 中可用规格；2. 缺口触发最佳 recipe 批量生产注入并划拨</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段八</td>
+                        <td class="p-3 border-r border-slate-800">TSP 换型优化</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">Greedy TSP 最小化 setup + delay * 1.5</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-serial px-2 py-0.5 rounded">🔗 串行 TSP</span></td>
+                        <td class="p-3 text-slate-400">遍历 unvisited 寻找阻抗最小的工单作为下一工序</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段八</td>
+                        <td class="p-3 border-r border-slate-800">工单日历消纳</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">工单负荷跨日消纳，动态顺延 finish_day</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-serial px-2 py-0.5 rounded">🔗 串行排期</span></td>
+                        <td class="p-3 text-slate-400">工单 load > 当日产能 → 扣减完当日后 current_day++ 滚动</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段八</td>
+                        <td class="p-3 border-r border-slate-800">齐套物料拉动</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">kitting_rate = fulfilled / total 判定 kit 状态</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-parallel px-2 py-0.5 rounded">⚡ 并行齐套评估</span></td>
+                        <td class="p-3 text-slate-400">rate >= 1.0 → Fully; rate >= 0.4 → Partially; else → Critical</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段九</td>
+                        <td class="p-3 border-r border-slate-800">WBS CPM 调度</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">Forward Pass (ES/EF) 与 Backward Pass (LS/LF)</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-serial px-2 py-0.5 rounded">🔗 双向拓扑</span></td>
+                        <td class="p-3 text-slate-400">确定项目完工天数 calc_finish_day 与各 WBS 节点时延差</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段九</td>
+                        <td class="p-3 border-r border-slate-800">项目合同对账</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">net_project_value = base + bonus - penalty</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-parallel px-2 py-0.5 rounded">⚡ 并行项目对账</span></td>
+                        <td class="p-3 text-slate-400">完工 <= bonus_offset → 获奖励；完工 > penalty_offset → 扣罚超期款</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段十</td>
+                        <td class="p-3 border-r border-slate-800">3-Way Diff</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">基准 P vs 子场景 C vs 主库 M</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-parallel px-2 py-0.5 rounded">⚡ 并行比对</span></td>
+                        <td class="p-3 text-slate-400">P != C 且 P != M 且 C != M → 触发 409 冲突警告；否 → 下发变更</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/40">
+                        <td class="p-3 font-bold border-r border-slate-800">阶段十</td>
+                        <td class="p-3 border-r border-slate-800">受损级联传导</td>
+                        <td class="p-3 font-mono text-slate-400 border-r border-slate-800">沿 CSC 拓扑自底向上逆向级联传导</td>
+                        <td class="p-3 border-r border-slate-800"><span class="badge-serial px-2 py-0.5 rounded">🔗 串行自底向上</span></td>
+                        <td class="p-3 text-slate-400">扣减顶层销售订单，重新平衡 ipc_financial_ledger 财务账本</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer class="text-center text-xs text-slate-500 py-6 border-t border-slate-800">
+        <p>IPC (Intelligent Planning & Control) Engine Master Flowchart Specification &copy; 2026</p>
+    </footer>
+
+    <script>
+        // Initialize mermaid with dark theme
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            securityLevel: 'loose',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>
