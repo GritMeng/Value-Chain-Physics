@@ -20,7 +20,12 @@ Creator of the Intelligent Planning & Control (IPC) Engine | Independent Scholar
 
 Physical reality is in-accessible directly; an observer must draw boundaries to establish an Ought-to-be System (the observer-constructed model). Eliminating work vector cancellation ($\mathbf{v}_i, \mathbf{v}_j$) inside boundaries achieves conditional self-consistency:
 
-$$\text{Physical Reality (Strongly Coupled)} \overset{\text{Boundary Drawing}}{\longrightarrow} \text{Ought-to-be Model (Self-Consistent Medium, the observer-constructed model)} \implies \langle \mathbf{v}_i, \mathbf{v}_j \rangle \ge 0 \implies \Delta W_{\text{heat}} \to 0$$
+$$
+\begin{aligned}
+\text{Physical Reality (Strongly Coupled)} &\overset{\text{Boundary Drawing}}{\longrightarrow} \text{Ought-to-be Model (Self-Consistent Medium, model)} \\[4pt]
+&\implies \langle \mathbf{v}_i, \mathbf{v}_j \rangle \ge 0 \implies \Delta W_{\text{heat}} \to 0
+\end{aligned}
+$$
 
 ### 1.2 Theorem 1.1 (Minimal Completeness Theorem of 5D Manifold)
 
@@ -101,7 +106,8 @@ In the Dual-Helix framework, "Feasibility", "Zero Cancellation", and "In-Boundar
 | **Tier 2** | **Temporal Domain** | DAG depth physical truncation ($K < +\infty$) | Locks polynomial complexity, guaranteeing computation within time bounds |
 | **Tier 3** | **Residual Domain** | Gödel residual triggers meta-cognitive operator $\Phi$ | Absorbs external perturbations, guaranteeing non-rigidification of paradigms |
 
-$$\mathbf{\text{Living Governance Three-State Loop: Generation (Boundary Est.)} \longrightarrow \text{Survival (Self-Consistent Computing)} \longrightarrow \text{Evolution (Meta-Cognitive Re-bounding)}}$$
+**Living Governance Three-State Loop:**  
+$$\text{Generation (Boundary Est.)} \longrightarrow \text{Survival (Self-Consistent Computing)} \longrightarrow \text{Evolution (Meta-Cognitive Re-bounding)}$$
 
 ---
 

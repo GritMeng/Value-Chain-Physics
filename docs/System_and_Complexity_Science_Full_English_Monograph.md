@@ -1,4 +1,4 @@
-# System and Complexity Science: The Generation, Persistence, and Evolution of Order —— The Governing Principles of Open Complex Giant Systems
+# Systems and Complexity Science: The Generation, Persistence, and Evolution of Order — The Governing Principles of Open Complex Giant Systems
 
 ### A Formal Unified Monograph: From First Principles Qualitative Eight Treatises, Dual-Helix Five-Dimensional Manifold, to Metacognitive Re-boundary Creation
 
@@ -22,7 +22,7 @@ Engineering success prompted the pursuit of its essence, driving the exploration
 
 The path we forged proved through empirical engineering the power of Qian Xuesen's "Metasynthetic Method" and "human-machine synergy" in a hundred-billion-scale physical world. Precisely because closed-loop computability was verified on the physical battlefield, I was able to stand back at the origin, shedding all burdens of post-hoc academic jargon. Starting from the most plain boundary creation and disorder, following the shortest logical path, I recognized the Second Law of Thermodynamics, Shannon Information Theory, and Ashby's Law of Requisite Variety as isomorphic mappings, and under prior boundary creation conditions, proved intra-boundary closed-loop computability and extreme uniqueness.
 
-Stepping back to re-examine the whole edifice, I realized that *Value Chain Physics* is precisely the physical projection of system and complexity science in supply chain management; and since a projection exists, universal physical and logical isomorphisms across domains must inevitably be extracted.
+Stepping back to re-examine the whole edifice, I realized that *Value Chain Physics* is precisely the physical projection of systems and complexity science in supply chain management; and since a projection exists, universal physical and logical isomorphisms across domains must inevitably be extracted.
 
 I took Occam's razor to shave off all redundant jargon and intermediate assumptions accumulated over the past twenty-two years. I returned to the irreducible logical starting point—starting from the most plain and everyday "disorder" and "partitioning", adhering to the Seven Iron Laws of "no overdraft, shortest path, parsimony of words, empirical authority, respect before assimilation, constitution first, and falsifiability", forging the entire system into this rigorous, rock-solid minimal axiomatic text of *The Origin of Order*.
 
@@ -52,9 +52,9 @@ Human civilization's exploration of the world over thousands of years is essenti
 
 Humans cannot physically access the objective actual reality directly, fully, and losslessly; we can only observe, simulate, and govern the real physical world by establishing an "ought-to-be system" through observer boundary creation. And the essence of an ought-to-be system is precisely "order."
 
-Empiricism is the ought-to-be established through intuitive trial and error; philosophy is the ought-to-be established through second-order reflection; physics is the ought-to-be established through microscopic rigid rules; system science is the ought-to-be established through macroscopic collaborative topology. Empiricism, philosophy, physics, and system science are all cornerstones of human order construction.
+Empiricism is the ought-to-be established through intuitive trial and error; philosophy is the ought-to-be established through second-order reflection; physics is the ought-to-be established through microscopic rigid rules; systems science is the ought-to-be established through macroscopic collaborative topology. Empiricism, philosophy, physics, and systems science are all cornerstones of human order construction. Systems and Complexity Science, as the horizontal axis studying the universal laws of generation, persistence, and evolution of ought-to-be systems across all specific disciplines, naturally occupies the common underlying mediating position of all specific disciplines, and is therefore established as "Metascience (i.e., the Science of Sciences)".
 
-However, facing open complex giant systems with factorial complexity, humanity encounters the most difficult challenge of ought-to-be governance. A single microscopic disassembly or open-loop description cannot accomplish computable dimension-reduced governance. This book, *System and Complexity Science: The Generation, Persistence, and Evolution of Order*, steps back to the most primitive logical starting point, uses Occam's razor to shave off all intermediate redundancies, and establishes the **first principles of order generation, persistence, and evolution** at the dimension of the **underlying meta-algorithm**. This meta-algorithm is essentially a self-consistent closed loop where an observer sets ought-to-be by boundary creation, sets rigid rules by ought-to-be, inspects residuals by rules, and drives self-reflection re-boundary creation by residuals. It governs concrete calculation rules inside the system, constituting the living mechanism of the system.
+However, facing open complex giant systems with factorial complexity, humanity encounters the most difficult challenge of ought-to-be governance. A single microscopic disassembly or open-loop description cannot accomplish computable dimension-reduced governance. This book, *Systems and Complexity Science: The Generation, Persistence, and Evolution of Order*, steps back to the most primitive logical starting point, uses Occam's razor to shave off all intermediate redundancies, and establishes the **first principles of order generation, persistence, and evolution** at the dimension of the **underlying meta-algorithm**. This meta-algorithm is essentially a self-consistent closed loop where an observer sets ought-to-be by boundary creation, sets rigid rules by ought-to-be, inspects residuals by rules, and drives metacognitive re-boundary creation by residuals. It governs concrete calculation rules inside the system, constituting the living mechanism of the system.
 
 Once the order of the most difficult open complex giant systems is established and closed-loop computability is achieved, empirical trial and error, philosophical self-reflection, religious precepts, and reductionist models all transform into their boundary-creation dimension reduction and degenerate fallbacks in local phase space. It seamlessly fuses the intuition of empiricism, the self-reflection of philosophy, the constraints of physics, and the topology of systems into a formal closed loop of "generation by boundary creation, persistence by rigid constraints, and evolution by residual feedback." Far from discarding predecessors, it provides universal executable physical and mathematical source codes for governing open complex giant systems.
 
@@ -62,7 +62,7 @@ Once the order of the most difficult open complex giant systems is established a
 
 # Volume I: Order
 
-### —— The Origin of Order: The First Principles of Open Complex Giant Systems
+### — The Origin of Order: The First Principles of Open Complex Giant Systems
 
 ## Chapter 1: Definitions and Axioms
 
@@ -78,12 +78,12 @@ Once the order of the most difficult open complex giant systems is established a
 * **Proposition 1 (Manifestation of the World)**: Without the presence and awareness of an observer, order has nowhere to attach; without boundary creation and order establishment, the world cannot be established.
   * **Deduction**: According to Definition 1, disorder is the unpartitioned whole. According to Definition 3, the world is the manifestation of the bounded orderly scope after boundary creation. The instant the observer performs boundary creation to cut inside from outside, it not only establishes the ought-to-be boundary, but also simultaneously establishes the all-domain scalar potential energy field and negative entropy attractor pointing to the self-sustaining steady state inside the boundary. If no observer performs boundary creation, the distinction between inside and outside ceases to exist, and states return to unpartitioned disorder. Therefore, observer presence and execution of boundary creation are the prerequisite necessary and sufficient conditions for the manifestation of the world, potential energy fields, and order.
 
-### 1.2 Actual Reality, Ought-To-Be Reality, and Residuals (Definition 2)
+### 1.2 Actual Reality, Ought-to-be Reality, and Residuals (Definition 2)
 
 When an observer performs boundary creation and observation, three-fold reality simultaneously manifests:
 
 * **Actual Reality**: The infinite background silently occurring in boundary creation. Whether inside or outside the boundary, actual reality fills it, but the observer cannot directly know the full picture of actual reality apart from perceptual media.
-* **Ought-To-Be Reality**: Order inside the boundary. The local orderly framework constructed by the observer through boundary creation. All that is expressed and measured belongs to ought-to-be. Without an ought-to-be framework, order cannot attach, and everything inside the boundary collapses.
+* **Ought-to-be Reality**: Order inside the boundary. The local orderly framework constructed by the observer through boundary creation. All that is expressed and measured belongs to ought-to-be. Without an ought-to-be framework, order cannot attach, and everything inside the boundary collapses.
 * **Residuals**: Difference computation interfaces reserved and established by the observer in the ought-to-be framework. Regardless of whether the residual numerical value is zero, residuals are monitored in real time by the observer. When deviation occurs between new and old frameworks, residuals are triggered, becoming the sole evolutionary driving force breaking dogma and promoting reconstruction; without residual feedback, order degenerates into rigidity and stagnation.
 * **Physical Exclusivity and Intra-boundary Constraints**: Entities inside the ought-to-be framework possess original physical exclusivity (entities in the world cannot occupy overlapping positions) and rule constraints; occupation at one location means obstruction at another, which is the physical foundation of intra-boundary order persistence and hard collision. Intra-boundary entities possess exclusivity; without rule constraints, they inevitably dissipate due to mutual confrontation.
 
@@ -100,7 +100,7 @@ All formal and cybernetic terms in this system are not borrowed from external so
 
 ### 1.3 The Three Axioms of Order Generation, Persistence, and Evolution
 
-* **Axiom 1 (First Law · Generation Axiom / Collapse Without Ought-To-Be)**: If the observer does not perform boundary creation to construct an ought-to-be framework, nothing in chaos can persist. Without an ought-to-be framework, everything collapses into dissolution.
+* **Axiom 1 (First Law · Generation Axiom / Collapse Without Ought-to-be)**: If the observer does not perform boundary creation to construct an ought-to-be framework, nothing in chaos can persist. Without an ought-to-be framework, everything collapses into dissolution.
 * **Axiom 2 (Second Law · Persistence Axiom / Dissipation Without Constraints)**: Observer enters the world by boundary creation establishing ought-to-be; if self-consistent rules and rigid constraints are not formulated, elements inside the ought-to-be framework inevitably dissipate due to disorderly confrontation. Without rigid constraints and rules, order inside the boundary inevitably dissipates.
 * **Axiom 3 (Third Law · Evolution Axiom / Stagnation Without Residuals)**: The ought-to-be framework inevitably possesses local partiality when facing infinite actual reality. If the observer does not identify ought-to-be residuals, the framework solidifies into dogma, and evolution stagnates. Without residual feedback, generational evolution stagnates.
 
@@ -138,10 +138,10 @@ Once the ought-to-be framework is established, the observer, to maintain interna
 
 **Deduction Conclusion: Models are static projections of ought-to-be, algorithms are dynamic evolutions of ought-to-be, and logic is the bond of self-consistency between the two.**
 
-#### [Terminology Native Growth Chain III: First-Order Calculus, Gödel Deadlock, Self-Reflection Operator, and Tensor Product]
+#### [Terminology Native Growth Chain III: First-Order Calculus, Gödel Deadlock, Metacognitive Constitutional Amendment Operator, and Tensor Product]
 
 5. **First-Order Calculus $\implies$ Self-Referential Exhaustion and Gödel Deadlock / Turing Halting**: Step evolution where observers mechanically execute preset rules inside established boundaries is called [First-Order Calculus]. When system encounters major external impact not mapped into original framework, if it refuses to re-partition boundaries and foolishly attempts to prove or eliminate this residual within old rules, old rules inevitably fall into infinite loops of "explaining itself using own definition". This physical halting state of **"unable to self-prove or self-heal relying on intra-boundary rules"** is mathematically equivalent to [Gödel Incompleteness and Turing Halting Deadlock] (Gödel incompleteness and Turing halting are actually two statements of the same physical halting state in two disciplines: former says "system cannot self-prove inside old rules", latter says "algorithm cannot halt inside old rules". The two are isomorphic, both referring to first-order calculus failing to self-heal inside old boundaries).
-6. **Re-boundary Creation $\implies$ Second-Order Self-Reflection Operator $\Phi$**: Facing first-order deadlock, all first-order calculus fails. The system's only way out is jumping out of current rules, re-examining, breaking old boundaries, and drawing new boundaries containing new dimensions, an action called [Re-boundary Creation]. The formal work formula describing leap rewriting from "old boundary" to "new boundary" is the [Second-Order Self-Reflection Operator $\Phi: \Pi_k \to \Pi_{k+1}$].
+6. **Re-boundary Creation $\implies$ Second-Order Metacognitive Constitutional Amendment Operator $\Phi$**: Facing first-order deadlock, all first-order calculus fails. The system's only way out is jumping out of current rules, re-examining, breaking old boundaries, and drawing new boundaries containing new dimensions, an action called [Re-boundary Creation]. The formal work formula describing leap rewriting from "old boundary" to "new boundary" is the [Second-Order Metacognitive Constitutional Amendment Operator $\Phi: \Pi_k \to \Pi_{k+1}$].
 7. **Unity of Essence and Function & Orthogonal Fusion $\implies$ Tensor Product ($\otimes$)**: Governance of open complex giant systems requires two forces of work: human brain responsible for "jumping out of deadlock, re-drawing big boundary" (second-order function), and machine responsible for "extremely fast concurrent computation inside set big boundary" (first-order essence). These two forces expand in independent directions and can never replace each other (orthogonal), but in every genuine system work, they must be tightly interlocked and completely entangled together (unity). This mathematical relationship of "expanding independently yet indivisibly fusing into one to perform work" is the [Tensor Product $\otimes$].
 
 ---
@@ -152,7 +152,7 @@ Once the ought-to-be framework is established, the observer, to maintain interna
 
 This system declares its own falsifiability deadlines. If any counterexample below is captured in real observation or logical deduction, this theory collapses:
 
-1. **[Epistemological / Emergence Level Deadline] No Ought-To-Be, yet order does not collapse**: If no observer executing boundary creation can be traced, no ought-to-be framework constructed, yet order can spontaneously and stably persist—this system is epistemologically falsified.
+1. **[Epistemological / Emergence Level Deadline] No Ought-to-be, yet order does not collapse**: If no observer executing boundary creation can be traced, no ought-to-be framework constructed, yet order can spontaneously and stably persist—this system is epistemologically falsified.
 2. **[Ontological / Dynamical Level Deadline] No constraints, yet order does not dissipate**: If no rigid constraints are defined inside the ought-to-be framework, yet order has no structural entropy increase or dissipation—this system is physically/ontologically falsified.
 3. **[Evolutionary / Developmental Level Deadline] No residuals, yet order can evolve**: If the ought-to-be framework can accomplish generational evolution under constant zero residual norm—this system is evolutionarily falsified.
 4. **[Epistemological / Boundary Medium Level Deadline] No boundary creation, yet observer directly accesses actual reality**: If an observer, without passing through boundary creation medium and ought-to-be framework, can directly, fully, and losslessly know and govern the full picture of physical actual reality—this system is falsified on first principle epistemology.
@@ -233,7 +233,7 @@ Popper proposed counterexample-driven scientific revolutions. Third law of this 
 
 # Volume II: Formal Work and Algorithms
 
-### —— Evolution of the Ought-To-Be, Paradigm Breakthrough, and Work Operators
+### — Evolution of the Ought-to-be, Paradigm Breakthrough, and Work Operators
 
 ## Volume Prelude: Logical Deduction from Three Axioms to Four Work Operators
 
@@ -245,15 +245,15 @@ Deduction relations from Volume I three axioms to Volume II four work operators 
 
 * **Generation Axiom** (Boundary creation establishing order $\to$ collapse without ought-to-be) $\implies$ Formally derives **Prior Boundary Creation Operator $\Pi$** (dimension-reduction projection of Vol I 1.1 partitioning rights in phase space $\Xi$);
 * **Persistence Axiom** (Rigid constraints $\to$ dissipation without constraints) $\implies$ Formally derives **Rigid Trajectory Manifold $\Pi_{\bot}$** (smooth survival channel bounded by Vol I 1.2 hard rules);
-* **Evolution Axiom** (Residual feedback $\to$ stagnation without residuals) $\implies$ Formally derives **Residual Norm Difference $\Delta$** (absolute measure of gap between Vol I 1.2 expectation and actual reality) and **Second-Order Self-Reflection Operator $\Phi$** (re-boundary creation work formula jumping out of Vol I 2.3 Gödel deadlock).
+* **Evolution Axiom** (Residual feedback $\to$ stagnation without residuals) $\implies$ Formally derives **Residual Norm Difference $\Delta$** (absolute measure of gap between Vol I 1.2 expectation and actual reality) and **Second-Order Metacognitive Constitutional Amendment Operator $\Phi$** (re-boundary creation work formula jumping out of Vol I 2.3 Gödel deadlock).
 
 This volume aims to express natively grown axioms and concepts of Volume I as formal work operators $\langle \Pi, \Pi_{\bot}, \Delta, \Phi \rangle$, laying hard-core computable algorithm specifications for system and complexity science.
 
 ---
 
-## Chapter 1: Evolution of the Ought-To-Be World and the Four-Hundred-Year Scientific Impasse
+## Chapter 1: Evolution of the Ought-to-be World and the Four-Hundred-Year Scientific Impasse
 
-### 1.1 Physical Essence of the Ought-To-Be World
+### 1.1 Physical Essence of the Ought-to-be World
 
 Volume I established: partition boundaries, ought-to-be manifests.
 
@@ -299,7 +299,7 @@ This system does not originate from applying abstract academic concepts, but fro
 Core of this breakthrough lies in completing system science **paradigm leap from "descriptive philosophy" to "work science"**:
 
 1. **Rejecting empty qualitative descriptions, establishing rigorous operators and physical constraints**. We are not satisfied with exclaiming "the whole is greater than sum of parts", but through prior boundary creation operator $\Pi$, forcibly strip uncomputable and uncontrollable redundant degrees of freedom in phase space, performing algebraic pruning on factorial complexity $\mathcal{O}(N!)$.
-2. **Rejecting open-loop static predictions, establishing dynamic feedback closed-loop based on residuals**. We established residual norm difference $\Delta$ **as sole driving force of evolution**. Systems no longer obsess over maintaining zero-fluctuation static steady states, but convert external impacts and passively triggered residuals into evolutionary energy driving system self-reflection operator $\Phi$ to rewrite paradigms.
+2. **Rejecting open-loop static predictions, establishing dynamic feedback closed-loop based on residuals**. We established residual norm difference $\Delta$ **as sole driving force of evolution**. Systems no longer obsess over maintaining zero-fluctuation static steady states, but convert external impacts and passively triggered residuals into evolutionary energy driving system metacognitive constitutional amendment operator $\Phi$ to rewrite paradigms.
 
 Based on this engineering empirical proof, we proved "intra-boundary closed-loop computability and extreme uniqueness" of open complex giant systems under boundary creation conditions. This self-consistent path laid solid physical and engineering bedrock for subsequent work operators and algorithm specifications.
 
@@ -344,11 +344,11 @@ $$X \in \Pi_{\bot}, \quad \forall t \ge 0$$
 
 When system is impacted externally and deviates from rigid trajectory manifold $\Pi_{\bot}$, normal manifold constraint forces perform corrective work. Its physical essence: stripping non-orthogonal degrees of freedom normally, forcibly counteracting spontaneous entropy increase, achieving anti-entropy persistence of system.
 
-In physical work mechanism, intent vectors $\mathbf{v}_i = \frac{\text{d}x_i}{\text{d}t}$ of nodes along state transition directions produce physical phase interference, resulting in joint vector magnitude strictly smaller than sum of independent magnitudes (vector triangle inequality): $\left\Vert\sum_{i=1}^{N} \Delta W_{\text{heat}} = \sum_{i=1}^{N} \|\mathbf{v}_i\| - \left\Vert\sum_{i=1}^{N} \mathbf{v}_i\\right\Vert\right\Vert < \sum_{i=1}^{N} \Vert \mathbf{v}_i \Vert$
+In physical work mechanism, intent vectors $\mathbf{v}_i = \frac{\text{d}x_i}{\text{d}t}$ of nodes along state transition directions produce physical phase interference, resulting in joint vector magnitude strictly smaller than sum of independent magnitudes (vector triangle inequality): $\left\Vert\sum_{i=1}^{N} \mathbf{v}_i\right\Vert < \sum_{i=1}^{N} \Vert \mathbf{v}_i \Vert$
 
 Difference between the two is exact physical work cancellation of force collision in phase space described in Vol I, completely converting into internal friction waste heat of system:
 
-$$\Delta W_{\text{heat}} = \sum_{i=1}^{N} \Vert \mathbf{v}_i \Vert - \left\Vert\sum_{i=1}^{N} \Delta W_{\text{heat}} = \sum_{i=1}^{N} \|\mathbf{v}_i\| - \left\Vert\sum_{i=1}^{N} \mathbf{v}_i\\right\Vert\right\Vert$$
+$$\Delta W_{\text{heat}} = \sum_{i=1}^{N} \|\mathbf{v}_i\| - \left\Vert\sum_{i=1}^{N} \mathbf{v}_i\right\Vert \ge 0$$
 
 Work essence of rigid manifold $\Pi_{\bot}$ is precisely eliminating vector cancellation by stripping non-orthogonal degrees of freedom normally ($\langle \mathbf{v}_i, \mathbf{v}_j \rangle \ge 0 \implies \Delta W_{\text{heat}} \to 0$), achieving orthogonal decoupling and first-order self-healing inside system.
 
@@ -356,7 +356,7 @@ Work essence of rigid manifold $\Pi_{\bot}$ is precisely eliminating vector canc
 1. **Variational Extremum and Work Internal Friction Minimization Theorem**: Constraint manifold $\mathcal{C}$ rigidly writes entity spatiotemporal exclusivity laws and vector cancellation elimination conditions ($\langle \mathbf{v}_i, \mathbf{v}_j \rangle \ge 0$). According to physical variational principles, work internal friction waste heat naturally has non-negative absolute physical baseline ($\mathcal{W}_{\text{heat}} \ge 0$). Algorithm $\mathcal{A}$ deduces forward along causal DAG and crops conflict branches normally; as long as path succeeds inside boundary, full work waste heat is constantly zero ($\mathcal{W}_{\text{heat}} = 0$), definitionally equivalent to global absolute optimal inside boundary; and under rigid exclusive constraints, non-orthogonal paths are completely pruned, legal execution trajectories have no alternative and must be unique ($\exists! S^*_k \in \text{Sol}(\mathcal{C})$).
 2. **Causal Finiteness Lemma 1.1 ($K < +\infty$)**: Physical clock step size $\Delta t_{\text{clock}} > 0$ and instability relaxation window $\tau_{\text{phy}} < +\infty$ strictly truncate causal depth into finite steps ($K \le \frac{\tau_{\text{phy}}}{\Delta t_{\text{clock}}} < +\infty$). Cooperating with single-step atomic evolution operator solvable polynomially without backtracking friction (formally denoted $P_k \sim O(N \log N)$), it formally guarantees system closed-loop computation time $T(N) = O(K \cdot N \log N) \in \mathbf{P}$ and $T(N) \le \tau_{\text{phy}} < +\infty$, qualitatively guaranteeing closed-loop solution finishes before system physical instability.
 
-### 3.3 Residual Norm Difference $\Delta$ and Second-Order Self-Reflection Operator $\Phi$
+### 3.3 Residual Norm Difference $\Delta$ and Second-Order Metacognitive Constitutional Amendment Operator $\Phi$
 
 **Vol I Evolution Axiom established: without residual feedback, generational evolution stagnates.**
 
@@ -370,13 +370,13 @@ When external environment paradigm undergoes drastic phase transition, causing r
 
 $$\Delta > \theta_{\text{trigger}}$$
 
-Residual is forcibly triggered, and system leaps from first-order ought-to-be calculus to activate second-order self-reflection operator $\Phi$.
+Residual is forcibly triggered, and system leaps from first-order ought-to-be calculus to activate second-order metacognitive constitutional amendment operator $\Phi$.
 
-Second-Order Self-Reflection Operator $\Phi$ does not make local parameter adjustments inside current ought-to-be framework, but transcends current formal axiomatic constraints to rewrite and reconstruct orthogonal bases of prior boundary operator $\Pi$ and rigid manifold $\Pi_{\bot}$:
+Second-Order Metacognitive Constitutional Amendment Operator $\Phi$ does not make local parameter adjustments inside current ought-to-be framework, but transcends current formal axiomatic constraints to rewrite and reconstruct orthogonal bases of prior boundary operator $\Pi$ and rigid manifold $\Pi_{\bot}$:
 
 $$\Phi: \Pi_k \longrightarrow \Pi_{k+1}$$
 
-Through second-order self-reflection work of operator $\Phi$, rigidity and dogma of old frameworks are broken, promoting system paradigm leap and generational evolution. (For concrete operational mechanisms of rewriting physical five-dimensional matrix values under residual drive, see Appendix B.1.)
+Through second-order metacognitive constitutional amendment work of operator $\Phi$, rigidity and dogma of old frameworks are broken, promoting system paradigm leap and generational evolution. (For concrete operational mechanisms of rewriting physical five-dimensional matrix values under residual drive, see Appendix B.1.)
 
 ---
 
@@ -394,7 +394,7 @@ Self-organizing open systems, to maintain survival boundaries, evolved second-or
 | **Precision-Weighted Radar** | Hypersensitivity | Amygdala-Locus Coeruleus (AMY-LC-NE) Arousal System |
 | **Heuristic Reconstruction Cache** | Affect / Intuition | Salience Network (SN) |
 | **Phase Space Matrix Solution** | Fluid Intelligence | Frontoparietal Control Network (FPN) |
-| **Second-Order Self-Reflection Operator $\Phi$** | Metacognition | Frontopolar Cortex (BA10 Area) |
+| **Second-Order Metacognitive Constitutional Amendment Operator $\Phi$** | Metacognition | Frontopolar Cortex (BA10 Area) |
 
 ### 4.2 Operator $E_{\text{supp}}$ (Conscience/Top-Level Prior) and Goodhart Collapse Truncation
 
@@ -421,30 +421,30 @@ In perception and feedback loops, hypersensitivity and affect constitute neural 
 1. **Hypersensitivity Precision-Weighted Radar (Perception)**: Hypersensitivity in computation layer is essentially precision weighting (so-called precision weighting means brain does not treat all perceptual signals equally, but amplifies key signals according to survival importance, amplifying microscopic gaps into actionable perception residuals) mechanism applied by full-brain system on perception channels. Its hardware foundation is amygdala-locus coeruleus-norepinephrine system (AMY-LC-NE). Hypersensitivity radar turns up synaptic transmission gain, amplifying microscopic physical gaps into holographic perception residuals $\Delta(t)$, injecting initial energy required for driving system.
 2. **Affective Heuristic Cache (Feedback)**: Affect in computation layer manifests as System 1 (so-called System 1 refers to fast, automatic, low-energy intuition response system in brain; affective heuristic cache refers to System 1 compressing past work experience into ultra-low energy reflex responses) emotion and heuristic caching, whose core hub is Salience Network (SN) composed of anterior insula (AIC) and anterior cingulate cortex (ACC). It compresses past dimension-reduction work experience into ultra-low energy reflex responses, forcing fluid intelligence to execute limit optimization in phase space.
 
-### 4.4 Fluid Intelligence Matrix Solution and Second-Order Self-Reflection Operator $\Phi$ (BA10 Evolution)
+### 4.4 Fluid Intelligence Matrix Solution and Second-Order Metacognitive Constitutional Amendment Operator $\Phi$ (BA10 Evolution)
 
 First-order ought-to-be calculus facing environment of factorial complexity $\mathcal{O}(N!)$ inevitably falls into algorithm halting and logical deadlocks. Systems must achieve evolutionary leaps transcending deadlocks through fluid intelligence and second-order operator $\Phi$:
 
 1. **Fluid Intelligence Matrix Solution**: Its hardware foundation is Frontoparietal Control Network (FPN). When residual $\Delta$ appears and cannot be resolved by affective heuristic cache, fluid intelligence is forcibly activated, solving corrective work of state vector $X$ and rigid trajectory manifold $\Pi_{\bot}$ in working memory.
-2. **Second-Order Self-Reflection Operator $\Phi$ and Frontopolar Cortex (BA10 Area) Evolution**: Human brain's frontopolar cortex (BA10 area) expanded 4.7 times in relative volume compared to chimpanzees, evolving second-order self-reflection operator $\Phi$ transcending first-order algorithm deadlocks. When system faces logical deadlocks and singularities, second-order operator $\Phi$ transcends current formal axiomatic constraints, re-drawing prior operator $\Pi$ to complete paradigm rewriting of axiomatic bases:
+2. **Second-Order Metacognitive Constitutional Amendment Operator $\Phi$ and Frontopolar Cortex (BA10 Area) Evolution**: Human brain's frontopolar cortex (BA10 area) expanded 4.7 times in relative volume compared to chimpanzees, evolving second-order metacognitive constitutional amendment operator $\Phi$ transcending first-order algorithm deadlocks. When system faces logical deadlocks and singularities, second-order operator $\Phi$ transcends current formal axiomatic constraints, re-drawing prior operator $\Pi$ to complete paradigm rewriting of axiomatic bases:
 
 $$\Phi: \Pi_k \longrightarrow \Pi_{k+1}$$
 
-This proves second-order self-reflection operator $\Phi$ is precisely the specific evolutionary operator for carbon-based biological brains to cross Gödel incompleteness boundaries and Turing halting boundaries.
+This proves second-order metacognitive constitutional amendment operator $\Phi$ is precisely the specific evolutionary operator for carbon-based biological brains to cross Gödel incompleteness boundaries and Turing halting boundaries.
 
 ---
 
 # Volume III: Governing Principles and Dimension-Reduced Engineering Code
 
-### —— Dimension-Reduced Projection of System Engineering
+### — Dimension-Reduced Projection of System Engineering
 
 ## Volume Prelude: Causal Chains and Mathematical Mechanisms of Four Operators Projecting into Eight Treatises
 
-Volume II established four prior work operators (Prior Boundary Creation Operator $\Pi$, Rigid Trajectory Manifold Operator $\Pi_{\bot}$, Residual Norm Difference Operator $\Delta$, and Second-Order Self-Reflection Operator $\Phi$) and algorithm specifications. This volume aims to deduce rigorous mathematical mechanisms of four work operators projecting down into phase space of system engineering and entity governance.
+Volume II established four prior work operators (Prior Boundary Creation Operator $\Pi$, Rigid Trajectory Manifold Operator $\Pi_{\bot}$, Residual Norm Difference Operator $\Delta$, and Second-Order Metacognitive Constitutional Amendment Operator $\Phi$) and algorithm specifications. This volume aims to deduce rigorous mathematical mechanisms of four work operators projecting down into phase space of system engineering and entity governance.
 
 **[Mathematical Medium Mechanism of Dimension-Reduction Projection and "Eight Treatises" Academic Naming Declaration]**:
 
-1. **"Eight Treatises" Academic Naming Declaration**: Use of "Eight Treatises" (Teleology, Ontology, Schema, Capability, Mechanism, Roadmap, Kinematics & Dynamics, Evolution) in this system strictly corresponds to **"eight rigorous formal system treatises and causal deductions"** in cybernetic and scientific discourse contexts (i.e., Treatise on Establishment of Teleology, Treatise on Compensation of Ontology, Treatise on Equivalence of Schema, Treatise on Singularity of Capability, Treatise on Decoupling of Mechanism, Treatise on Foundation of Roadmap, Treatise on Contract of Dynamics, Treatise on Amendment of Evolution). Clarification: "Treatise" here is a verb meaning "treatise/deduction", by no means static discipline or school labels in metaphysical scholastic philosophy (such as traditional philosophy "Teleology" or "Evolutionism"). It is a formal cybernetic remedy for eight causal gates open complex giant systems must pass through across full life cycles of generation, persistence, and evolution, starting from physical first principles.
+1. **"Eight Treatises" Academic Naming Declaration**: Use of "Eight Treatises" (Teleology, Ontology, Scheme, Capability, Mechanism, Path, Dynamics, Evolution) in this system strictly corresponds to **"eight rigorous formal system treatises and causal deductions"** in cybernetic and scientific discourse contexts (i.e., Treatise on Establishment of Teleology, Treatise on Compensation of Ontology, Treatise on Equivalence of Scheme, Treatise on Singularity of Capability, Treatise on Decoupling of Mechanism, Treatise on Foundation of Path, Treatise on Contract of Dynamics, Treatise on Amendment of Evolution). Clarification: "Treatise" here is a verb meaning "treatise/deduction", by no means static discipline or school labels in metaphysical scholastic philosophy (such as traditional philosophy "Teleology" or "Evolutionism"). It is a formal cybernetic remedy for eight causal gates open complex giant systems must pass through across full life cycles of generation, persistence, and evolution, starting from physical first principles.
 2. **Mathematical Dimension-Reduction Medium**: Mapping medium of four atomic work operators projecting down into eight formal treatises of system engineering is precisely **physical five-dimensional manifold $S = \mathcal{M}_{\text{model}} \otimes \mathcal{A}$** established in Volume II (continuous/discrete hybrid manifold composed of Nodes $\mathcal{N}$, Topology $\mathcal{T}$, Constraint Clusters $\mathcal{C}$, State Vector $X$, and State Transitions with causal residuals $\Delta X$). "Eight Treatises" are by no means empirical management classifications, but strict mathematical projections of four work operators under topological geometric constraints of physical five-dimensional manifold along orthogonal observation planes and control boundaries.
 
 An objective physical reality must be observed: spontaneous evolution direction of any open complex giant system is order decay and entropy increase ($d_i S > 0$). In entity phase space of factorial complexity $\mathcal{O}(N!)$, linear management mechanisms based on local experience suffer computational bottlenecks and dimension deficiencies.
@@ -453,11 +453,11 @@ Four operators projecting down into system engineering phase space sequentially 
 
 1. **Teleology** (Boundary creation establishing all-domain potential energy field and holographic negative entropy attractor) $\to$ but global solving encounters $\mathcal{O}(N!)$ illusion and human brain channel limits $\to$
 2. **Ontology** (Human-out-of-the-loop, silicon computation compensating Metasynthetic Engineering / Hall for Workshop) $\to$ but business and IT division fragment causing information distortion and loss (cross-interface Shannon entropy increase) $\to$
-3. **Schema** (Business ontology, system carrier, algorithm model trinity fusion capability) $\to$ but cross-domain capability blocked $\to$
+3. **Scheme** (Business ontology, system carrier, algorithm model trinity fusion capability) $\to$ but cross-domain capability blocked $\to$
 4. **Capability** (Fusion capability and single-brain origin, stripping degrees of freedom normally) $\to$ but multi-head consultation deadlock and committee decision paralysis $\to$
 5. **Mechanism** (Nodes freely inputting demands, free input with Metasynthetic Engineering logical autocratic convergence, decision automated write-back) $\to$ but lacking closed-loop work route $\to$
-6. **Roadmap** (Establishing human-machine dual ought-to-be carriers, following roadmap of "unobservable means uncontrollable, building backward from controlled end") $\to$ but non-bottleneck crude work and phase angle interference $\to$
-7. **Kinematics & Dynamics** (Eliminating vector cancellation and dual-commander supreme contract) $\to$ but first-order rules encounter environment phase transition falling into Gödel deadlock and Turing halting $\to$
+6. **Path** (Establishing human-machine dual ought-to-be carriers, following path of "unobservable means uncontrollable, building backward from controlled end") $\to$ but non-bottleneck crude work and phase angle interference $\to$
+7. **Dynamics** (Eliminating vector cancellation and Dual-Chief System supreme contract) $\to$ but first-order rules encounter environment phase transition falling into Gödel deadlock and Turing halting $\to$
 8. **Evolution** (Activating active state second-order metacognitive amendment operator $\Phi$ generational leap).
 
 Governing principles deduced in this volume aim to demarcate objective boundaries for intelligent subjects executing dimension-reduced governance on complex physical reality: algorithms define order, computation executes compensation, and conscience anchors gravity.
@@ -474,7 +474,7 @@ Spontaneous evolution direction of open complex giant systems naturally points t
 
 In systems lacking all-domain potential energy field governing, microscopic nodes perform work independently under local interest drives. Intent vectors of nodes present mutual angles or counter-strike in phase space, causing macroscopic joint work magnitude to be strictly smaller than sum of independent magnitudes. Work energy cancelled out by vector cancellation completely converts into internal friction waste heat of system in physics:
 
-$$\Delta W_{\text{heat}} = \sum_{i=1}^{N} \Vert \mathbf{v}_i \Vert - \left\Vert\sum_{i=1}^{N} \Delta W_{\text{heat}} = \sum_{i=1}^{N} \|\mathbf{v}_i\| - \left\Vert\sum_{i=1}^{N} \mathbf{v}_i\\right\Vert\right\Vert$$
+$$\Delta W_{\text{heat}} = \sum_{i=1}^{N} \|\mathbf{v}_i\| - \left\Vert\sum_{i=1}^{N} \mathbf{v}_i\right\Vert \ge 0$$
 
 This is qualitative physical origin of internal friction heat generation in multi-node systems.
 
@@ -518,11 +518,11 @@ Intelligent subjects must utilize extremely fast concurrent computation of silic
 
 ---
 
-## Chapter 3: Schema: Five-Dimensional Dual-Helix and Dimension-Reduced Engineering Schema
+## Chapter 3: Scheme: Five-Dimensional Dual-Helix and Dimension-Reduced Engineering Scheme
 
 ### 3.1 Formal Confirmation of Physical Five-Dimensional Basis
 
-Vol I Generation Axiom established: without ought-to-be framework, everything collapses. Governance schemas of any open complex giant system physically and sufficiently build upon five orthogonal axiomatic primitive elements:
+Vol I Generation Axiom established: without ought-to-be framework, everything collapses. Governance schemes of any open complex giant system physically and sufficiently build upon five orthogonal axiomatic primitive elements:
 
 1. **Nodes ($\mathcal{N}$)**: Discrete or continuous particle elements independently carrying states in phase space;
 2. **Topology ($\mathcal{T}$)**: Directed coupling network matrices $A$ of interactions and energy/information transmission between particles;
@@ -530,11 +530,11 @@ Vol I Generation Axiom established: without ought-to-be framework, everything co
 4. **State Vectors ($X$)**: Phase potential energy coordinates and field distribution vectors of system under instantaneous time slices. Internally containing bi-directionally aligned physical potential differences: Target Tension Vector $X_{\text{target}}$ (attractor pull) and State Potential Vector $X_{\text{state}}$ (base potential energy);
 5. **State Transitions ($\Delta X$)**: State trajectory evolution operators governed by causality and driven by dynamic work.
 
-Without physical confirmation of physical five dimensions, all system engineering schemas are water without source, trees without roots. (For mathematical definitions of physical five dimensions as phase space topological invariants and isomorphic mappings with Prof. Longbing Cao's Non-IID theory, see Appendix A.3 and Appendix C.1.)
+Without physical confirmation of physical five dimensions, all system engineering schemes are water without source, trees without roots. (For mathematical definitions of physical five dimensions as phase space topological invariants and isomorphic mappings with Prof. Longbing Cao's Non-IID theory, see Appendix A.3 and Appendix C.1.)
 
-### 3.2 Solution Schema and Dimension-Reduced Work of the Five-Dimensional Dual-Helix
+### 3.2 Solution Scheme and Dimension-Reduced Work of the Five-Dimensional Dual-Helix
 
-On physical battlefields of factorial complexity $\mathcal{O}(N!)$, dimension-reduced governance schemas manifest as interwoven work of five-dimensional dual helix:
+On physical battlefields of factorial complexity $\mathcal{O}(N!)$, dimension-reduced governance schemes manifest as interwoven work of five-dimensional dual helix:
 
 * **Holographic Data Model Helix**: Accurately mapping [Nodes, Topology, Constraints] into rigid manifold $\Pi_{\bot}$, loading [State Vector $X$] and [Historical Causality $\Delta X_{\text{hist}}$];
 * **Dynamic Evolution Algorithm Helix**: Evolution algorithm $\mathcal{A}$ solves optimal control vector $u^*$ and current [State Transitions with causal pointers and Residuals $\Delta X$], generating [Next Moment New State $X_{\text{plan}}$];
@@ -553,21 +553,21 @@ Five-dimensional dual helix solution equations are expressed as:
 >    $$X_{\text{plan}} = X + \text{CausalAnchor}(X)$$
 >    Without causal anchoring, state transitions with causal pointers $\Delta X$ are merely soulless statistical numbers; with causal anchoring, $\Delta X$ becomes a topological work flow driven by causal pointers!
 
-**Schema Governing Principle Established**: Locking ought-to-be boundaries through [Nodes, Topology, Constraint Clusters], solving reverse work through [State Vectors, State Transitions]. Core of schema lies in establishing **trinity fusion capability of "business ontology, system carrier, and evolution model"**. This schema is by no means a microscopic local supply chain tool, but a dimension-reduced engineering schema of open complex giant systems fusing physical business reality, software system carriers, and control algorithm models, forcibly eliminating mismatch angles between intent and laws, achieving dynamic computable closed loop of system engineering schemas.
+**Scheme Governing Principle Established**: Locking ought-to-be boundaries through [Nodes, Topology, Constraint Clusters], solving reverse work through [State Vectors, State Transitions]. Core of scheme lies in establishing **trinity fusion capability of "business ontology, system carrier, and evolution model"**. This scheme is by no means a microscopic local supply chain tool, but a dimension-reduced engineering scheme of open complex giant systems fusing physical business reality, software system carriers, and control algorithm models, forcibly eliminating mismatch angles between intent and laws, achieving dynamic computable closed loop of system engineering schemes.
 
 ### 3.3 Parallel Universe Simulation and Absorption Work of the Five-Dimensional Basis
 
-Before physical entities make real responses, five-dimensional dual helix schema expands "parallel universe" concurrent solutions in computation space.
+Before physical entities make real responses, five-dimensional dual helix scheme expands "parallel universe" concurrent solutions in computation space.
 
 Algorithm helix, inside solution space determined by [Topology] and [Constraint Clusters], conducts $N$ sets of concurrent simulations on future [State Transitions] of [State Vectors]:
 
 $$X_k' = \mathcal{F}(X, u_k), \quad k=1, 2, \ldots, N$$
 
-Schema automatically eliminates divergent transitions violating [Constraint Clusters], retaining only optimal dimension-reduced trajectories evolving along rigid manifold $\Pi_{\bot}$, and writing control vectors $u(t)$ back to microscopic [Nodes].
+Scheme automatically eliminates divergent transitions violating [Constraint Clusters], retaining only optimal dimension-reduced trajectories evolving along rigid manifold $\Pi_{\bot}$, and writing control vectors $u(t)$ back to microscopic [Nodes].
 
-**Five-Dimensional Schema Governing Principle Established**: Solving five-dimensional transitions in computation space, harvesting hard-core anti-entropy in physical space.
+**Five-Dimensional Scheme Governing Principle Established**: Solving five-dimensional transitions in computation space, harvesting hard-core anti-entropy in physical space.
 
-**Model Building Human-Machine Synergy Theorem Established**: Not only schema execution relies on silicon computation compensation, but starting point of building high-dimensional five-dimensional data models and evolution algorithms itself physically and sufficiently relies on human-machine synergy. Carbon-based brain power is limited by energy consumption and calculation bandwidth, unable to solve high-dimensional orthogonal bases independently; pure silicon computation power is limited by Gödel's incompleteness theorem, lacking second-order self-reflection operator $\Phi$ to set prior boundaries. Only "human second-order self-reflection $\Phi_{\text{Human}}$ establishing prior boundaries + silicon ultra-fast computation $\mathcal{A}_{\text{Silicon}}$ solving topological constraints" can build lossless five-dimensional dual helix models. "Human-out-of-the-loop, human-machine synergy" is necessary and sufficient physical condition for model building and algorithm evolution.
+**Model Building Human-Machine Synergy Theorem Established**: Not only scheme execution relies on silicon computation compensation, but starting point of building high-dimensional five-dimensional data models and evolution algorithms itself physically and sufficiently relies on human-machine synergy. Carbon-based brain power is limited by energy consumption and calculation bandwidth, unable to solve high-dimensional orthogonal bases independently; pure silicon computation power is limited by Gödel's incompleteness theorem, lacking second-order metacognitive constitutional amendment operator $\Phi$ to set prior boundaries. Only "human second-order metacognitive constitutional amendment $\Phi_{\text{Human}}$ establishing prior boundaries + silicon ultra-fast computation $\mathcal{A}_{\text{Silicon}}$ solving topological constraints" can build lossless five-dimensional dual helix models. "Human-out-of-the-loop, human-machine synergy" is necessary and sufficient physical condition for model building and algorithm evolution.
 
 ---
 
@@ -575,7 +575,7 @@ Schema automatically eliminates divergent transitions violating [Constraint Clus
 
 ### 4.1 Business Understanding Capacity: Orthogonal Abstraction Based on Data Models
 
-Vol I Capability and Second Law (Persistence Axiom) noted: without rigid constraints and rules, order inside boundary dissipates. Capability is physical carrier of system landing schemas.
+Vol I Capability and Second Law (Persistence Axiom) noted: without rigid constraints and rules, order inside boundary dissipates. Capability is physical carrier of system landing schemes.
 
 Primary capability in solving complex entity systems lies in business understanding capability based on data models.
 
@@ -633,27 +633,27 @@ When perceptual distortion or data fracture leads to observation domain shrinkag
 
 In complex giant system decision mechanisms, since chief designers cannot be omniscient, control systems must sufficiently guarantee that various nodes and functional departments can **freely input objective data, field status, and demands** (free input).
 
-However, **nodes cannot overstep authority to independently issue schemas**. According to social choice theory and cybernetics, if various nodes independently issue schemas and vote in committees, system inevitably falls into multi-head consultation deadlocks (Ashby, 1956) and governance paralysis.
+However, **nodes cannot overstep authority to independently issue schemes**. According to social choice theory and cybernetics, if various nodes independently issue schemes and vote in committees, system inevitably falls into multi-head consultation deadlocks (Ashby, 1956) and governance paralysis.
 
-Remedy of mechanism treatise lies in: **nodes freely input demands, Metasynthetic Engineering / Hall for Workshop centrally flattens conflicts and solves schemas**. Free input of nodes topologically represents holographic perception of actual reality residuals, while Metasynthetic Engineering central solving and write-back represents tensor work of silicon computation compensation and second-order amendment ($\Phi_{\text{Human}} \otimes \mathcal{A}_{\text{Silicon}}$). When external impacts cause system states to deviate from rigid trajectories, self-healing mechanism forcibly activates "human-out-of-the-loop" decision write-back channels; optimal control vectors $u^*$ solved by Metasynthetic Engineering reverse-anchor (Reverse Causal Anchoring) along causal pointers to inject into microscopic entity nodes in milliseconds, forcibly re-routing traffic and resource allocation vectors, completely unlocking multi-head consultation deadlocks, driving system to seamlessly restore steady state.
+Remedy of mechanism treatise lies in: **nodes freely input demands, Metasynthetic Engineering / Hall for Workshop centrally flattens conflicts and solves schemes**. Free input of nodes topologically represents holographic perception of actual reality residuals, while Metasynthetic Engineering central solving and write-back represents tensor work of silicon computation compensation and second-order amendment ($\Phi_{\text{Human}} \otimes \mathcal{A}_{\text{Silicon}}$). When external impacts cause system states to deviate from rigid trajectories, self-healing mechanism forcibly activates "human-out-of-the-loop" decision write-back channels; optimal control vectors $u^*$ solved by Metasynthetic Engineering reverse-anchor (Reverse Causal Anchoring) along causal pointers to inject into microscopic entity nodes in milliseconds, forcibly re-routing traffic and resource allocation vectors, completely unlocking multi-head consultation deadlocks, driving system to seamlessly restore steady state.
 
 **Self-Healing Mechanism Governing Principle Established**: Physical essence of mechanism work lies in completely eliminating multi-head consultation deadlocks through human-machine synergy tensor product topology of "node free input + central solving write-back", achieving millisecond self-healing re-routing of microscopic nodes based on reverse causal anchoring.
 
 ---
 
-## Chapter 6: Roadmap: Dimension-Reduced Work Roadmap from Microscopic Perception to Macroscopic Control
+## Chapter 6: Path: Dimension-Reduced Work Path from Microscopic Perception to Macroscopic Control
 
 ### 6.1 Microscopic Physical Perception Route (Filtering and Residual Extraction)
 
-Vol I Roadmap and three axioms noted: evolution of order must expand along deterministic logical roadmaps. Roadmap is spatiotemporal skeleton of dimension-reduced work.
+Vol I Path and three axioms noted: evolution of order must expand along deterministic logical paths. Path is spatiotemporal skeleton of dimension-reduced work.
 
-Physical essence of dimension-reduced work roadmap lies in holographic perception and filtering extraction of microscopic physical states.
+Physical essence of dimension-reduced work path lies in holographic perception and filtering extraction of microscopic physical states.
 
-On physical battlefields interwoven with sea of heterogeneous nodes, systems must never directly process disorderly raw noise. Primary link of roadmap lies in filtering mapping physical phase space through prior boundary creation operator $\Pi$, extracting high-fidelity perception residuals $\Delta(t)$:
+On physical battlefields interwoven with sea of heterogeneous nodes, systems must never directly process disorderly raw noise. Primary link of path lies in filtering mapping physical phase space through prior boundary creation operator $\Pi$, extracting high-fidelity perception residuals $\Delta(t)$:
 
 $$\Delta(t) = \Pi \cdot (x_{\text{real}}(t) - x_{\text{model}}(t))$$
 
-**Perception Roadmap Governing Principle Established**: Without accurate extraction of microscopic residuals, all subsequent deductions are water without source. Residual extraction completes key first step of converting physical gaps into logical algebraic scales.
+**Perception Path Governing Principle Established**: Without accurate extraction of microscopic residuals, all subsequent deductions are water without source. Residual extraction completes key first step of converting physical gaps into logical algebraic scales.
 
 > **[Reverse Backtracking Diagnosis Along Causal Topology Chain and Dual Alignment Verdict Theorem]**:
 > After perception residual $\Delta(t) = x_{\text{real}}(t) - x_{\text{plan}}(t)$ is born, control engine does not conduct uncritical mean square error statistics, but **hangs residual back onto causal topology chain (Causal Pointer Chain) that originally generated it, investigating and judging backward along clues**:
@@ -662,34 +662,34 @@ $$\Delta(t) = \Pi \cdot (x_{\text{real}}(t) - x_{\text{model}}(t))$$
 >    - *Control Action*: Axioms and models remain unchanged; algorithm converts residual into potential difference compensation for next clock cycle, pulling self-healing absorption inside boundary (first-order closed loop);
 > 2. **Verdict 2: World correct, model bankrupted (Second-order cognitive collapse / Gödel residual $\Delta > \theta_{\text{trigger}}$)**:
 >    - *Diagnosis*: Residual exceeds critical threshold, and backtracking along causal topology chain reveals physical path is topologically blocked or axioms fail;
->    - *Control Action*: Old causal rules and topological models completely bankrupt. Metasynthetic Engineering jumps outside loop to exercise constitutional amendment rights, activating second-order self-reflection operator $\Phi$: severing invalid causal pointers, reconstructing boundary axioms and network topology (second-order amendment).
+>    - *Control Action*: Old causal rules and topological models completely bankrupt. Metasynthetic Engineering jumps outside loop to exercise constitutional amendment rights, activating second-order metacognitive constitutional amendment operator $\Phi$: severing invalid causal pointers, reconstructing boundary axioms and network topology (second-order amendment).
 > **World shifted, adjust execution; model wrong, second-order amendment!**
 
 ### 6.2 Interwoven Route of Parallel Simulation in Computational Space (Parallel Universe Pruning)
 
-Hub link of roadmap lies in concurrent parallel simulation and pruning inside computation space.
+Hub link of path lies in concurrent parallel simulation and pruning inside computation space.
 
 After residual $\Delta(t)$ is extracted, control system inputs data into evolution algorithm helix, concurrently simulating $N$ sets of possible evolution trajectories (parallel universes) in computation space:
 
 $$X_k' = \mathcal{F}(X, u_k), \quad k=1, 2, \ldots, N$$
 
-**Pruning Roadmap Governing Principle Established**: Essence of algorithm roadmap is absorbing risks in computation space. Algorithms, through rigid trajectory manifold $\Pi_{\bot}$, strip divergent infeasible branches, retaining only optimal control vectors $u^*$ evolving along rigid manifold, completing dimension-reduction convergence from complex divergence to single orthogonal trajectory.
+**Pruning Path Governing Principle Established**: Essence of algorithm path is absorbing risks in computation space. Algorithms, through rigid trajectory manifold $\Pi_{\bot}$, strip divergent infeasible branches, retaining only optimal control vectors $u^*$ evolving along rigid manifold, completing dimension-reduction convergence from complex divergence to single orthogonal trajectory.
 
 ### 6.3 Write-Back Route of Macroscopic Physical Control (Human-Machine Dual Carriers and Uncontrollability Theorem)
 
-Terminal link of roadmap lies in write-back work and resource re-routing of macroscopic physical entity control.
+Terminal link of path lies in write-back work and resource re-routing of macroscopic physical entity control.
 
-Governance roadmaps must simultaneously establish dual translation models of **"ought-to-be software system carrier" and "ought-to-be human/organization carrier"**. Cybernetic iron law notes: **"Unobservable means uncontrollable; system control must be built and mastered from controlled end (physical write-back end)"**.
+Governance paths must simultaneously establish dual translation models of **"ought-to-be software system carrier" and "ought-to-be human/organization carrier"**. Cybernetic iron law notes: **"Unobservable means uncontrollable; system control must be built and mastered from controlled end (physical write-back end)"**.
 
 Solved optimal control vectors $u^*$ directly inject into physical entities along write-back channels, forcibly re-routing traffic and resource allocation vectors $f(t)$ of various nodes:
 
 $$\sum f_{\text{in}}(t) = \sum f_{\text{out}}(t)$$
 
-**Write-Back Roadmap Governing Principle Established**: Final completion of roadmap must take reverse work of controlled end and establishment of human-machine dual carriers as verdict criteria. Following mastery roadmap of building backward from controlled end, system engineering successfully converts governance will 100% into anti-entropy order of entity domains, completing ultimate leap from qualitative description to work science.
+**Write-Back Path Governing Principle Established**: Final completion of path must take reverse work of controlled end and establishment of human-machine dual carriers as verdict criteria. Following mastery path of building backward from controlled end, system engineering successfully converts governance will 100% into anti-entropy order of entity domains, completing ultimate leap from qualitative description to work science.
 
 ---
 
-## Chapter 7: Kinematics & Dynamics: Newtonian Vector Work, Phase Interference, and the "Dual-Commander" Supreme Work Contract
+## Chapter 7: Dynamics: Newtonian Vector Work, Phase Interference, and the "Dual-Chief System" Supreme Work Contract
 
 ### 7.1 Newtonian Vector Work and Phase Interference Equation
 
@@ -703,7 +703,7 @@ $$W_{\text{eff}} = W_{\text{total}} \cdot \cos\theta$$
 
 When mutual interference and friction exist among system sub-departments ($\theta > 0^\circ, \cos\theta < 1$), large amounts of effective work energy are physically "vector-cancelled", completely converting into internal friction waste heat of system:
 
-$$\Delta W_{\text{heat}} = \sum_{i=1}^{N} \Vert \mathbf{v}_i \Vert - \left\Vert\sum_{i=1}^{N} \Delta W_{\text{heat}} = \sum_{i=1}^{N} \|\mathbf{v}_i\| - \left\Vert\sum_{i=1}^{N} \mathbf{v}_i\\right\Vert\right\Vert$$
+$$\Delta W_{\text{heat}} = \sum_{i=1}^{N} \|\mathbf{v}_i\| - \left\Vert\sum_{i=1}^{N} \mathbf{v}_i\right\Vert \ge 0$$
 
 **Vector Work Governing Principle Established**: Without orthogonal boundary creation and all-domain governance, joint work force tends to zero ($\sum \mathbf{v}_i \to 0$). If management interventions trigger phase angle interference ($\theta > 90^\circ, \cos\theta < 0$), all system energy will completely dissipate into organizational friction and inventory sinking waste heat.
 
@@ -721,16 +721,16 @@ $$W_{\text{eff}} = W_{\text{total}} \cdot \cos\theta \longrightarrow W_{\text{to
 
 **Work Convergence Governing Principle Established**: Prior boundary creation and rigid potential barriers are not human hegemony, but necessary and sufficient physical and cybernetic conditions for complex systems to break internal friction deadlocks, eliminate vector cancellation waste heat, and achieve 100% conversion convergence of effective work.
 
-### 7.3 Qian Xuesen's "Dual-Commander" Supreme Work Contract and Organizational Damping Absorption
+### 7.3 Qian Xuesen's "Dual-Chief System" Supreme Work Contract and Organizational Damping Absorption
 
 To make a huge, heterogeneous open complex giant system with interest inertia work efficiently toward a unified goal, power endorsement must be physically introduced. Lacking supreme authorization endorsement, work vectors and management wills of subsystems will produce violent phase angle interference due to blurred power boundaries.
 
-"Dual-Commander" Metasynthetic Engineering contract proposed by Qian Xuesen established supreme physical mechanisms under Newtonian vector work perspective:
+"Dual-Chief System" Metasynthetic Engineering contract proposed by Qian Xuesen established supreme physical mechanisms under Newtonian vector work perspective:
 
-1. **Administrative Commander Line**: "Set direction, draw boundaries, give authorization", anchoring global scalar potential energy fields and ultimate attractors;
+1. **Administrative Chief Line**: "Set direction, draw boundaries, give authorization", anchoring global scalar potential energy fields and ultimate attractors;
 2. **Chief Designer Line**: "Build structure, obey physics, run closed-loop", responsible for solving five-dimensional dual helix and decision write-back.
 
-**Dual-Commander Contract Governing Principle Established**: Administrative driving forces accurately focus on maximum resistance bottlenecks of physical bottlenecks (i.e., heaviest physical bottleneck impedance), eliminating phase angle interference of administrative and technical cross-boundary overstepping ($\theta \to 0^\circ$), converting static friction damping of bureaucracy into co-directional work resonance, completing maximum efficiency convergence from organizational authority to physical work.
+**Dual-Chief Contract Governing Principle Established**: Administrative driving forces accurately focus on maximum resistance bottlenecks of physical bottlenecks (i.e., heaviest physical bottleneck impedance), eliminating phase angle interference of administrative and technical cross-boundary overstepping ($\theta \to 0^\circ$), converting static friction damping of bureaucracy into co-directional work resonance, completing maximum efficiency convergence from organizational authority to physical work.
 
 This physical reality demonstrates that classical laws of Newtonian mechanics on vector work and phase angle interference obtain rigorous causal continuation in complex system work governance, fully isomorphic and returned to positions in end-of-book star map.
 
@@ -756,9 +756,9 @@ In mathematical logic and physical control, this state is strictly expressed as 
 
 ### 8.3 Active Evolutionary Work of Second-Order Metacognitive Constitutional Amendment Operator $\Phi$
 
-Facing first-order Gödel deadlocks, systems can only seek survival by activating **Active State Second-Order Metacognitive Constitutional Amendment Operator $\Phi$**. After perception residual $\Delta(t) = x_{\text{real}}(t) - x_{\text{plan}}(t)$ is captured, system forms dual alignment verdict topology: when residual belongs to local deviation, activate first-order closed loop inside boundary to adjust execution pulling absorption; when residual exceeds critical threshold ($\Delta > \theta_{\text{trigger}}$) causing old axioms to bankrupt, system leaps to activate second-order self-reflection operator $\Phi$.
+Facing first-order Gödel deadlocks, systems can only seek survival by activating **Active State Second-Order Metacognitive Constitutional Amendment Operator $\Phi$**. After perception residual $\Delta(t) = x_{\text{real}}(t) - x_{\text{plan}}(t)$ is captured, system forms dual alignment verdict topology: when residual belongs to local deviation, activate first-order closed loop inside boundary to adjust execution pulling absorption; when residual exceeds critical threshold ($\Delta > \theta_{\text{trigger}}$) causing old axioms to bankrupt, system leaps to activate second-order metacognitive constitutional amendment operator $\Phi$.
 
-Operator $\Phi$ does not make local fine-tunings inside old frameworks, but observer (Chief Designer) jumps outside old boundaries, executing second-order self-reflection re-boundary creation work, executing constitutional amendment rewriting on underlying prior boundary creation operator $\Pi$ and rigid manifold $\Pi_\bot$:
+Operator $\Phi$ does not make local fine-tunings inside old frameworks, but observer (Chief Designer) jumps outside old boundaries, executing second-order metacognitive re-boundary creation work, executing constitutional amendment rewriting on underlying prior boundary creation operator $\Pi$ and rigid manifold $\Pi_\bot$:
 
 $$\Phi: \Pi_k \overset{\Delta X}{\longrightarrow} \Pi_{k+1}$$
 
@@ -770,7 +770,7 @@ Second-order amendment operator $\Phi$ (evolutionary kinetic energy breaking dea
 
 # Volume IV: Industrial Validation and Decisive Data Verification
 
-### —— Physical Verdict from the IPS Hundred-Billion-Scale Battlefield
+### — Physical Verdict from the IPS Hundred-Billion-Scale Battlefield
 
 ## Chapter 1: Phase Space Characteristics of the Verdict Battlefield
 
@@ -805,16 +805,16 @@ Validity of holographic anti-entropy theory and formal work operators obtained s
 
 ---
 
-# Volume V: Cross-Domain Validation and Silicon Civilization Evolution
+# Volume V: Cross-Domain Validation and Ultimate Evolution
 
-### —— Cross-Domain Verdicts and Axiomatic Inheritance of Open Complex Giant Systems
+### — Cross-Domain Verdicts and Axiomatic Inheritance of Open Complex Giant Systems
 
 ## Volume Prelude: Cross-Domain Verdict Criteria (Qualitative Eight Treatises vs. Quantitative Five Dimensions)
 
 After completing axiomatic construction, work operator deduction, and decisive validation of hundred-billion industrial battlefields, this volume aims to establish cross-domain applicable boundaries of system and complexity science in cosmic all-domain phase space:
 
 > **[Empirical Abstraction and Cross-Domain Verdict Logic Declaration]**:
-> 1. **Non-Quantitative Generalizability of Empirical Abstraction**: What hundred-billion industrial closed-loop empirical proof abstracted and established are **qualitative physical laws and cybernetic principles (i.e., "Qualitative Eight Treatises")** for self-consistent operation of open complex giant systems. This system does not attempt to directly provide unified microscopic quantitative algorithm schemas for heterogeneous cross-domain objects, because concrete quantitative computation physically and sufficiently relies on dimension-reduced modeling of five-dimensional models $\langle \mathcal{N}, \mathcal{T}, \mathcal{C}, X, \Delta X \rangle$ in specific entities of that domain.
+> 1. **Non-Quantitative Generalizability of Empirical Abstraction**: What hundred-billion industrial closed-loop empirical proof abstracted and established are **qualitative physical laws and cybernetic principles (i.e., "Qualitative Eight Treatises")** for self-consistent operation of open complex giant systems. This system does not attempt to directly provide unified microscopic quantitative algorithm schemes for heterogeneous cross-domain objects, because concrete quantitative computation physically and sufficiently relies on dimension-reduced modeling of five-dimensional models $\langle \mathcal{N}, \mathcal{T}, \mathcal{C}, X, \Delta X \rangle$ in specific entities of that domain.
 > 2. **"Obey / Violate" Logic of Cross-Domain Verdicts**: Scientific logic of cross-domain cases (such as computational biology AlphaFold 2, modern cosmology black hole holographic entropy, macro-financial systems, silicon AGI, etc.) lies in **testing which principle treatises of "Eight Treatises" specific systems physically and cybernetically obey, or which treatises were violated/degenerated triggering systemic collapses**.
 >    - E.g.: AlphaFold 2 obeyed [Teleology] (boundary creation establishing ought-to-be boundary) and [Ontology] (silicon computation compensation performing tangent space algebraic pruning in phase space), thus successfully solving conformations;
 >    - Financial crises and Goodhart collapse originated from violating [Capability/Mechanism] (indicator arbitrage triggering control domain collapse $\dim(C) = 0$ and residual heavy-tail divergence);
@@ -834,7 +834,7 @@ Protein folding domain faces search dilemma of $10^{30}$ potential conformations
 
 * **Verdict Conditions Satisfied**: Life molecules through boundary creation establish statistical barriers isolating internal/external perturbations (i.e. Markov blanket ought-to-be boundary, satisfying Generation Axiom), normally strip non-orthogonal thermal motion degrees of freedom along steepest descent trajectories (satisfying Persistence Axiom), extracting residuals to drive conformational leaps (satisfying Evolution Axiom).
 * **[Qualitative Eight Treatises & Physical Law Isomorphism Verdict]**:
-  - **Obeyed Treatises**: [Teleology] (boundary creation establishing ought-to-be conformation phase space), [Ontology] (silicon computation compensation executing tangent space algebraic pruning in phase space), [Schema] (five-dimensional topological data model and evolution algorithm dual helix);
+  - **Obeyed Treatises**: [Teleology] (boundary creation establishing ought-to-be conformation phase space), [Ontology] (silicon computation compensation executing tangent space algebraic pruning in phase space), [Scheme] (five-dimensional topological data model and evolution algorithm dual helix);
   - **Obeyed Laws**: Theorem 1.1 (Extreme uniqueness $\exists! S_k^*$), Work Waste Heat Stationary Value Minimization Principle.
 * **Axiomatic Inheritance**: Satisfying qualitative Eight Treatises, protein folding is automatically incorporated into this system, its conformation solution converging to unique minimal internal friction geodesic ($\exists! S_k^*$), proving essence of AlphaFold 2 is executing algebraic pruning of phase space $\mathcal{O}(N!)$ by prior boundary operator $\Pi$ in silicon computation space.
 
@@ -849,7 +849,7 @@ According to Bekenstein-Hawking formula, black hole entropy is strictly proporti
 3. **Extreme Uniqueness and Holographic Isomorphism**: Horizon statistics of black hole entropy verify epistemological physical lower bound of Vol I "partition boundaries, ought-to-be manifests", proving Holographic Principle is essentially an inevitably derived corollary of prior boundary creation operator $\Pi$ on curved extreme manifolds.
 
 * **[Qualitative Eight Treatises & Physical Law Isomorphism Verdict]**:
-  - **Obeyed Treatises**: [Teleology] (event horizon as boundary creation operator $\Pi_{\text{horizon}}$), [Roadmap] (partitioning boundary and reverse foundation from unobservable end);
+  - **Obeyed Treatises**: [Teleology] (event horizon as boundary creation operator $\Pi_{\text{horizon}}$), [Path] (partitioning boundary and reverse foundation from unobservable end);
   - **Obeyed Laws**: Physical Causal Finiteness Lemma 1.1 ($K < +\infty$), Variational Principle Action Stationary Value Minimization.
 
 ### 1.3 [Macro-Financial Systems] Goodhart Collapse and Physical Truncation of Financial Crises
@@ -857,26 +857,26 @@ According to Bekenstein-Hawking formula, black hole entropy is strictly proporti
 Financial systems, due to indicator arbitrage, trigger control domain collapse ($\dim(C) = 0$) and residual probability density $p(\Delta)$ heavy-tailed divergence (Goodhart collapse). Only by introducing moral risk compact support operator $E_{\text{supp}}$ to forcibly truncate support set (satisfying Persistence and Evolution Axioms) can hacker arbitrage channels be cut off and global collapse flattened.
 
 * **[Qualitative Eight Treatises & Physical Law Isomorphism Verdict]**:
-  - **Violated/Degenerated Treatises**: Violated [Capability/Mechanism] (indicator arbitrage triggering control domain dimension collapse $\dim(C) = 0$), violated [Kinematics & Dynamics] (phase angle interference causing internal vector cancellation, $\sum \mathbf{v}_i \to 0$);
+  - **Violated/Degenerated Treatises**: Violated [Capability/Mechanism] (indicator arbitrage triggering control domain dimension collapse $\dim(C) = 0$), violated [Dynamics] (phase angle interference causing internal vector cancellation, $\sum \mathbf{v}_i \to 0$);
   - **Deadlock Unlocking Operator**: Introduce embodied conscience compact support operator $E_{\text{supp}}$ truncating residual heavy-tailed distributions ($E_{\text{supp}} \cdot p(\Delta) \in \text{Sub-Gaussian}$).
 
 ---
 
-## Chapter 2: Silicon Evolution: Second-Order Self-Reflection Operator $\Phi$ and Human-Out-of-the-Loop AGI Governance
+## Chapter 2: Silicon Evolution: Second-Order Metacognitive Constitutional Amendment Operator $\Phi$ and Human-Out-of-the-Loop AGI Governance
 
-### 2.1 Second-Order Self-Reflection Operator $\Phi$ and AGI Paradigm Rewriting
+### 2.1 Second-Order Metacognitive Constitutional Amendment Operator $\Phi$ and AGI Paradigm Rewriting
 
 Current first-order AI architectures based on pure Transformer autoregressive language models and Scaling Law encounter severe dilemmas: facing out-of-distribution (OOD) complex environments, solely increasing parameter scale inevitably leads to phase space factorial explosion $\mathcal{O}(N!)$ and Goodhart collapse (such as alignment drift, hallucinations, and pseudo-self-consistency).
 
 This system proposes hard-core formal remedies for AGI governance and evolution:
 
 1. **First-Order Limitations and Residual Thresholds**: First-order AI systems are confined inside fixed prior boundaries $\Pi_k$. Facing out-of-distribution (OOD) environment impacts, when residual $\Delta > \theta_{\text{trigger}}$, first-order probabilistic models cannot reconstruct axioms independently;
-2. **Activation of Second-Order Self-Reflection Operator $\Phi$**: When residual exceeds trigger threshold, system must activate second-order self-reflection operator $\Phi: \text{Boundary}_k \overset{\Delta X}{\longrightarrow} \text{Boundary}_{k+1}$, rewriting underlying axiomatic bases and constraint clusters $\mathcal{C}$;
+2. **Activation of Second-Order Metacognitive Constitutional Amendment Operator $\Phi$**: When residual exceeds trigger threshold, system must activate second-order metacognitive constitutional amendment operator $\Phi: \text{Boundary}_k \overset{\Delta X}{\longrightarrow} \text{Boundary}_{k+1}$, rewriting underlying axiomatic bases and constraint clusters $\mathcal{C}$;
 3. **Human-Out-of-the-Loop Governance and Meta-Governing Constraints**: Genuine silicon intelligence and safety governance lies not in soft Prompt fine-tuning or manual RLHF patches, but in encoding conscience compact support operator $E_{\text{supp}}$ as an unbreakable "Second-Order Meta-Governing Principle" at AGI underlying layers. Systems during autonomous evolutionary leaps maintain vector work without phase angle cancellation ($\Delta W_{\text{heat}} \to 0$), achieving human-out-of-the-loop self-consistent safe operation.
 
 * **[Qualitative Eight Treatises & Physical Law Isomorphism Verdict]**:
   - **Violated/Degenerated Treatises**: Violated [Evolution] (closed first-order autoregressive code lacking second-order metacognitive amendment operator $\Phi$ covering OOD phase transitions), violated [Ontology] (continuous token probability covering zero-measure rigid constraints, $\mu(C_{\text{feasible}}) = 0$);
-  - **Deadlock Unlocking Operator**: Activate second-order self-reflection amendment operator $\Phi: \text{Boundary}_k \overset{\Delta X}{\longrightarrow} \text{Boundary}_{k+1}$.
+  - **Deadlock Unlocking Operator**: Activate second-order metacognitive constitutional amendment operator $\Phi: \text{Boundary}_k \overset{\Delta X}{\longrightarrow} \text{Boundary}_{k+1}$.
 
 ---
 
@@ -900,7 +900,7 @@ Having traversed hundred-billion industrial empirical validation, five-dimension
 
 * **Norbert Wiener's Cybernetics**: Core of cybernetics lies in reducing deviations through feedback; Wiener's deviation is prototype of residual norm difference $\Delta$.
 * **W. Ross Ashby's "Law of Requisite Variety"**: Only variety can absorb variety, isomorphic with rigid trajectory manifold $\Pi_\bot$ normally stripping redundant degrees of freedom and absorption capability.
-* **Qian Xuesen's "Open Complex Giant Systems" and "Metasynthetic Method"**: Qian demarcated full-plane topology from simple systems to open complex giant systems; proposed Metasynthetic Engineering / Hall for Workshop thought of "combining human and machine, with human as primary" is formally expressed as tensor product work of human second-order self-reflection operator $\Phi_{\text{Human}}$ and silicon first-order calculus algorithm $\mathcal{A}_{\text{Silicon}}$ ($\Phi_{\text{Human}} \otimes \mathcal{A}_{\text{Silicon}}$), landing as "Dual-Commander" supreme work contracts on physical battlefields.
+* **Qian Xuesen's "Open Complex Giant Systems" and "Metasynthetic Method"**: Qian demarcated full-plane topology from simple systems to open complex giant systems; proposed Metasynthetic Engineering / Hall for Workshop thought of "combining human and machine, with human as primary" is formally expressed as tensor product work of human second-order metacognitive constitutional amendment operator $\Phi_{\text{Human}}$ and silicon first-order calculus algorithm $\mathcal{A}_{\text{Silicon}}$ ($\Phi_{\text{Human}} \otimes \mathcal{A}_{\text{Silicon}}$), landing as "Dual-Chief System" supreme work contracts on physical battlefields.
 
 ### 3.4 Pansystems Theory and Behavior Intelligence: Wu Xuemou and Cao Longbing
 
@@ -943,7 +943,7 @@ When readers finish reading hundred-billion engineering empirical proofs, five-d
 
 In open complex giant systems lacking governance of prior boundary creation operator $\Pi$ and constraints of rigid manifold $\Pi_{\bot}$, independent nodes blindly performing work driven by local interests cause intent vectors to produce non-orthogonal interference and mutual cancellation:
 
-$$\left\Vert\sum_{i=1}^{N} \Delta W_{\text{heat}} = \sum_{i=1}^{N} \|\mathbf{v}_i\| - \left\Vert\sum_{i=1}^{N} \mathbf{v}_i\\right\Vert\right\Vert \le \sum_{i=1}^{N} \Vert \mathbf{v}_i \Vert$$
+$$\left\Vert\sum_{i=1}^{N} \mathbf{v}_i\right\Vert \le \sum_{i=1}^{N} \|\mathbf{v}_i\|$$
 
 Sum of intent vectors of various nodes approaches zero. In control physics, this state is vector cancellation deadlock. System internal friction waste heat is maximized, effective work conversion rate returns to zero, and system inevitably collapses due to internal dissipation.
 
@@ -971,7 +971,7 @@ Ought-to-be systems, during high-frequency information and energy exchanges with
 
 ### B.1 Operation Guide for Residual-Driven Parameter Numerical Modification of the Five-Dimensional Matrix
 
-When perception residual $\Delta$ breaks evolution threshold triggering second-order self-reflection operator $\Phi$, algorithms cannot directly modify objective physical actual reality, but can only modify concrete parameter values (Values) in ought-to-be five-dimensional manifold matrix to achieve system reconstruction:
+When perception residual $\Delta$ breaks evolution threshold triggering second-order metacognitive constitutional amendment operator $\Phi$, algorithms cannot directly modify objective physical actual reality, but can only modify concrete parameter values (Values) in ought-to-be five-dimensional manifold matrix to achieve system reconstruction:
 
 1. **Modify Node Parameters**: Update capacity upper limits, quota dead zones, open/close status, and operational attribute values of microscopic entities;
 2. **Modify Topology Weight Values**: Topology is rules. Update weight values, logical routing, and interference coefficients of inter-node connection matrices;
@@ -979,15 +979,15 @@ When perception residual $\Delta$ breaks evolution threshold triggering second-o
 4. **Modify State Vector Coordinate Values**: Update instantaneous measurement values of high-dimensional phase space coordinates of system;
 5. **Modify State Transition Probability Values**: Algorithms are transitions. Update phase transition probability matrices, transition function step sizes, and evolution parameter values.
 
-### B.2 Formal Deduction of the Subjective Exclusivity of Second-Order Self-Reflection Operator $\Phi$ and Human Metacognition Theorem
+### B.2 Formal Deduction of the Subjective Exclusivity of Second-Order Metacognitive Constitutional Amendment Operator $\Phi$ and Human Metacognition Theorem
 
 1. **Gödel Incompleteness Deadlock of First-Order Silicon Computation**: Let first-order algorithm system be $A$, under constraints of given prior boundary axiom $\Pi_k$, its state calculus set is $S(\Pi_k)$. According to Gödel incompleteness and Turing halting deadlock, if residual $\Delta > \theta_{\text{trigger}}$ exceeding tolerance of $\Pi_k$ exists, no provable and self-consistent mapping solution trajectory exists inside system $\Pi_k$, i.e., no $X \in S(\Pi_k)$ exists making residual $\Delta \to 0$.
    * **Conclusion 1**: Pure silicon first-order algorithms cannot complete self-rewriting of axiomatic basis $\Pi_k$ inside own system.
-2. **Physical Topology of Human Brain BA10 Area (Frontopolar Cortex) Metacognitive Evolution**: Evolutionary physics demonstrates human brain frontopolar cortex (BA10 area) expanded 4.7 times in relative volume compared to primates, evolving second-order self-referential awareness topology transcending first-order calculus. Second-order self-reflection operator $\Phi$ is formally defined as ultra-formal mapping acting on prior boundary space: $\Phi: \text{Map}(\Xi \to \Omega_k) \longrightarrow \text{Map}(\Xi \to \Omega_{k+1})$.
-   * **Conclusion 2**: In known physical reality, human brain BA10 area is sole subject possessing physical entity structure of second-order self-reflection operator $\Phi$.
+2. **Physical Topology of Human Brain BA10 Area (Frontopolar Cortex) Metacognitive Evolution**: Evolutionary physics demonstrates human brain frontopolar cortex (BA10 area) expanded 4.7 times in relative volume compared to primates, evolving second-order self-referential awareness topology transcending first-order calculus. Second-order metacognitive constitutional amendment operator $\Phi$ is formally defined as ultra-formal mapping acting on prior boundary space: $\Phi: \text{Map}(\Xi \to \Omega_k) \longrightarrow \text{Map}(\Xi \to \Omega_{k+1})$.
+   * **Conclusion 2**: In known physical reality, human brain BA10 area is sole subject possessing physical entity structure of second-order metacognitive constitutional amendment operator $\Phi$.
 3. **Necessary and Sufficient Physical Condition Theorem of Human-Machine Synergy and Tensor Product Meaning**: Combining Conclusion 1 and Conclusion 2, overall work operator of open complex giant system completing dimension-reduced self-healing is expressed as:
 
-   $$\text{System Work Operator} = \text{Human Second-Order Self-Reflection Operator } \Phi_{\text{Human}} \otimes \text{Silicon First-Order Evolution Algorithm } \mathcal{A}_{\text{Silicon}}$$
+   $$\text{System Work Operator} = \text{Human Second-Order Metacognitive Constitutional Amendment Operator } \Phi_{\text{Human}} \otimes \text{Silicon First-Order Evolution Algorithm } \mathcal{A}_{\text{Silicon}}$$
 
    Where $\otimes$ represents tensor product of unity of essence and function. Humans provide second-order amendment 'function' ($\Phi_{\text{Human}}$), silicon provides first-order computation 'essence' ($\mathcal{A}_{\text{Silicon}}$); both spaces are orthogonally decoupled and indivisible, constituting a holographic tensor work system.
    * **Theorem Established**: Human-machine synergy is necessary and sufficient physical condition for open complex giant systems to locally overcome computational irreducibility, achieving dimension-reduced self-healing and intra-boundary closed-loop computability.
@@ -1017,13 +1017,13 @@ When perception residual $\Delta$ breaks evolution threshold triggering second-o
 
 ---
 
-## Appendix D: Full Logic Flowchart and Phase Space Lookup Table
+## Appendix D: Full-System Keyword Master Cross-Reference Table ("One Table Linking the Whole Chain")
 
 | Cybernetic Work 5 Steps | Formal Work Operator (LaTeX) | Brain Mental Topology | Complex Giant System Physical 5D | Physical Work Essence & Logical Chain |
 |:---|:---|:---|:---|:---|
-| **1. Holographic Perception** | **Residual Norm Difference $\Delta$** | Hypersensitivity (AMY-LC) + Affect (SN) | Full Elements $\langle \mathbf{N}, \mathbf{T}, \mathbf{C}, \mathbf{x}(t), \Delta \mathbf{x}(t) \rangle$ | Holographically perceiving physical phase space full elements, filtering to extract high-fidelity perception residuals $\Delta(t)$, injecting evolutionary energy. |
+| **1. Holographic Perception** | **Residual Norm Difference $\Delta$** | Hypersensitivity (AMY-LC) + Affect (SN) | Full Elements $\langle \mathcal{N}, \mathcal{T}, \mathcal{C}, X, \Delta X \rangle$ | Holographically perceiving physical phase space full elements, filtering to extract high-fidelity perception residuals $\Delta(t)$, injecting evolutionary energy. |
 | **2. Analysis** | **Prior Boundary Creation Operator $\Pi$** | Cognition & Knowledge (Boundary Confirmation) | Topology Matrix $A$ | $\Pi^2 = \Pi, \dim(\Omega) \ll \dim(\Xi)$. Locking orthogonal bases in topological structure, stripping non-orthogonal redundant degrees of freedom. |
 | **3. Decision** | **Rigid Manifold $\Pi_{\bot}$** / **Evolution Algorithm $\mathcal{A}$** | Rigid Potential Barrier (Potential) / Fluid Intelligence FPN (Kinetic) | Constraint Clusters $\mathbf{C}$ / State Transitions with Causal Pointers $\Delta X$ | Inside limits of rigid manifold $\Pi_{\bot}$, using algorithm $\mathcal{A}$ to concurrently simulate $N$ sets of parallel universes in computation space, locking optimal dimension-reduced trajectories. |
 | **4. Execution** | **Governing Work (Decision Write-Back)** | Holographic Mind Governing | Nodes $N$ + State Vector $X_{\text{plan}}$ | $W_{\text{eff}} = W_{\text{total}} \cdot \cos\theta$. Decision automated write-back injected into microscopic nodes, eliminating vector cancellation internal friction, driving angle $\theta \to 0$. |
-| **5. Feedback** | **Second-Order Self-Reflection Operator $\Phi$** | Pain Perception & Threshold Trigger | State Transitions with Causal Pointers $\Delta X$ | Capturing residual $\Delta$. If $\Delta \le \theta_{\text{trigger}}$, maintain first-order calculus; if $\Delta > \theta_{\text{trigger}}$, activate self-reflection operator $\Phi$ to rewrite axiomatic bases. |
+| **5. Feedback** | **Second-Order Metacognitive Constitutional Amendment Operator $\Phi$** | Pain Perception & Threshold Trigger | State Transitions with Causal Pointers $\Delta X$ | Capturing residual $\Delta$. If $\Delta \le \theta_{\text{trigger}}$, maintain first-order calculus; if $\Delta > \theta_{\text{trigger}}$, activate metacognitive constitutional amendment operator $\Phi$ to rewrite axiomatic bases. |
 | **Top-Level Safety Valve** | **Conscience Compact Support Operator $E_{\text{supp}}$** | Conscience (Default Mode Network DMN) | Constraint Cluster Dead Zone $[-\theta_{\text{dead}}, \theta_{\text{dead}}]$ | $E_{\text{supp}} \cdot p(\Delta) \in \text{Sub-Gaussian}$. Forcibly truncating heavy-tailed distributions, preventing algorithms under limit optimization from diverging to negative infinity (Goodhart collapse). |

@@ -1,4 +1,4 @@
-# The Second Renaissance: Why System and Complexity Science Is the "Science of Sciences"
+# The Second Renaissance: Why Systems and Complexity Science Is the "Science of Sciences"
 
 ### From 100-Billion Industrial Closed-Loop Proofs to Formal Verification of "Living Expression" and "Self-Consistent Computability" in Open Complex Giant Systems
 
@@ -10,16 +10,16 @@ Creator of the Intelligent Planning & Control (IPC) Engine | Independent Scholar
 
 ### Abstract
 
-Modern science was established upon the "vertical specialization" of Cartesian and Newtonian reductionism, achieving immense local success in micro-isolated slices. However, when confronted with strongly coupled Open Complex Giant Systems (OCGS), reductionism universally traps itself in a systemic dissipation mire of micro-state combinatorial explosion and macro work "vector cancellation" ($\sum_{i=1}^N \mathbf{v}_i \to 0$). Starting from epistemological first principles, this paper establishes the academic status of System and Complexity Science as a "Science of Sciences": humans are physically incapable of directly accessing raw physical reality; all scientific research and engineering practice essentially operate through an observer-constructed "Ought-to-be System" to observe, simulate, and govern the real world. The Ought-to-be System is itself a complex system; lacking holistic governance, non-orthogonal conflicts inside the model trigger cognitive vector cancellation, causing macro simulation and micro governance to fail completely.
+Modern science was established upon the "vertical specialization" of Cartesian and Newtonian reductionism, achieving immense local success in micro-isolated slices. However, when confronted with strongly coupled Open Complex Giant Systems (OCGS), reductionism universally traps itself in a systemic dissipation mire of micro-state combinatorial explosion and macro work "vector cancellation" ($\sum_{i=1}^N \mathbf{v}_i \to 0$). Starting from epistemological first principles, this paper establishes the academic status of Systems and Complexity Science as a "Science of Sciences": humans are physically incapable of directly accessing raw physical reality; all scientific research and engineering practice essentially operate through an observer-constructed "Ought-to-be System" to observe, simulate, and govern the real world. The Ought-to-be System is itself a complex system; lacking holistic governance, non-orthogonal conflicts inside the model trigger cognitive vector cancellation, causing macro simulation and micro governance to fail completely.
 
 Taking an 18-year continuous operational field of large-scale high-frequency discrete entity work networks—achieving a Human-Out-Of-The-Loop (HOOTL) autonomous decision rate $> 95\%$—as its genetic origin, this paper demonstrates that the core physical fact lies in sustaining high-frequency closed loops of "planning—execution—feedback" and autonomous decision-making. This proves the closed-loop computability of Open Complex Giant Systems, enabling systems to maintain long-term "generation, survival, and evolution" (Closed-Loop Persistence). On this foundation, this paper establishes a strict decoupling between qualitative deduction and quantitative proof:
 
-1. **Qualitative Dimension**: Grounded in Professor Longbing Cao's first principle of Non-Independent and Identically Distributed (Non-IID) dynamics, the paper develops the "Qualitative Eight Treatises" (Teleology, Ontology, Schematics, Capability, Mechanism, Path, Dynamics, Evolution) as a causal deduction chain from micro-coupling to second-order constitutional amendments. While affirming the local value of current technical paradigms, the paper delineates the theoretical boundaries and cybernetic limitations of Multi-AI Agent free collaboration, classical solvers and statistical machine learning under IID assumptions, traditional IT linear division of labor, multi-head joint committees, decentralized free gaming, open-loop visualization dashboards, unauthorized multi-head tug-of-war, and fully unattended AI systems. Concurrently, it establishes a 1:1 isomorphic mapping between the Eight Treatises and Qian Xuesen's OCGS theory.
+1. **Qualitative Dimension**: Grounded in Professor Longbing Cao's first principle of Non-Independent and Identically Distributed (Non-IID) dynamics, the paper develops the "Qualitative Eight Treatises" (Teleology, Ontology, Scheme, Capability, Mechanism, Path, Dynamics, Evolution) as a causal deduction chain from micro-coupling to second-order constitutional amendments. While affirming the local value of current technical paradigms, the paper delineates the theoretical boundaries and cybernetic limitations of Multi-AI Agent free collaboration, classical solvers and statistical machine learning under IID assumptions, traditional IT linear division of labor, multi-head joint committees, decentralized free gaming, open-loop visualization dashboards, unauthorized multi-head tug-of-war, and fully unattended AI systems. Concurrently, it establishes a 1:1 isomorphic mapping between the Eight Treatises and Qian Xuesen's OCGS theory.
 2. **Quantitative Dimension**: Introducing the "Dual-Helix Architecture"—composed of a 5D physical topological data manifold (Form) and a minimal evolution algorithm (Function)—this paper proves **Causal Characteristic Line Decoupling & Polynomial Computability (Theorem 7.2)** under boundary conditions. Based on algorithmic orthogonal pruning, it establishes the tripartite physical equivalence: "Traversability $\equiv$ Zero Cancellation $\equiv$ In-Boundary Absolute Optimality" (Proposition 7.3, $\exists! S^*_k \in \Omega_{\text{feasible}}$). Coupled with the meta-cognitive constitutional amendment operator $\Phi$, it unifies a three-tier spatiotemporal closed loop of survival and evolution (Theorem 8.1).
 
 Finally, this paper demonstrates the cross-domain entity neutrality of the Dual-Helix Architecture and provides a rigorous Popperian Falsifiability Matrix. Continuing the scientific tradition of Qian Xuesen and Academician Lei Guo, this work supplies a dual foundation of qualitative deduction and quantitative computability for Metasynthetic Engineering in Open Complex Giant Systems.
 
-**Keywords**: Metascience; Ought-to-be System; Open Complex Giant Systems (OCGS); Non-Independent and Identically Distributed (Non-IID); Vector Cancellation; Dual-Helix Architecture; Finite-Step Strategy Generation; Closed-Loop Computability; Uniqueness of Extremum; Metasynthetic Wisdom
+**Keywords**: Metascience; Ought-to-be System; Open Complex Giant Systems (OCGS); Non-Independent and Identically Distributed (Non-IID); Vector Cancellation; Dual-Helix Architecture; Finite-Step Strategy Generation; Closed-Loop Computability; Uniqueness of Extremum; Metasynthesis
 
 ---
 
@@ -41,22 +41,24 @@ Confronted with knowledge fragmentation caused by hyper-specialization, Academic
 Academician Guo's verdict profoundly reveals the generational difference between systems science and vertical sciences:
 
 - Physics, chemistry, biology, economics, and other traditional disciplines study **specific physical objects** at specific material or phenomenal levels;
-- Only System and Complexity Science takes "the general laws of generation, persistence, evolution, and governance of systems themselves" as its core object of study.
+- Only Systems and Complexity Science takes "the general laws of generation, persistence, evolution, and governance of systems themselves" as its core object of study.
 
-In broader academic literature and discourse (Guo, 2016, 2020), Academician Guo further clarified that in this universal sense, Systems Science should be established as the "Science of Sciences" (Metascience). **Systems Science is established as the 'Science of Sciences' not by self-proclamation, but by the universality of its object of study: all specific sciences, when constructing cognition and governance models, must first construct and govern their own 'Ought-to-be System.' Systems Science studies the universal laws governing the generation, persistence, and evolution of this underlying medium. Therefore, it naturally sits at the foundational medium level shared by all specific sciences, rather than being a side branch or subordinate appendage.**
+In broader academic literature and discourse (Guo, 2016, 2020), Academician Guo further clarified that in this universal sense, Systems Science should be established as the "Science of Sciences" (Metascience). **Systems and Complexity Science is established as the 'Science of Sciences' not by self-proclamation, but by the universality of its object of study: all specific sciences, when constructing cognition and governance models, must first construct and govern their own 'Ought-to-be System.' Systems Science studies the universal laws governing the generation, persistence, and evolution of this underlying medium. Therefore, it naturally sits at the foundational medium level shared by all specific sciences, rather than being a side branch or subordinate appendage.**
+
+(Note: The term "Metascience" used in this paper means the "Science of Sciences"; the title adopts the latter, while the main text follows Academician Guo Lei's expression "Metascience." The two are synonymous.)
 
 ### 1.3 Qian Xuesen’s Academic Blueprint and Two Unanswered Questions
 
 More than a century into specialized evolution, facing the explosion of system complexity, Qian Xuesen—the father of Chinese aerospace and a giant of systems engineering—and his collaborators (Qian et al., 1990; Qian, 2001) reconstructed the "System of Modern Science and Technology" with a magnificent vision. Qian explicitly pointed out that systems science is by no means a subordinate appendage of engineering mathematics, but an independent major scientific category parallel to natural and social sciences, serving as the "transverse axis" running through the tree of human knowledge.
 
-In 1990, Qian Xuesen, Yu Jingyuan, and Dai Ruwei published the landmark paper *A New Discipline of Science—The Open Complex Giant System and Its Methodology*, formally defining the scientific category of Open Complex Giant Systems (OCGS), and pioneering the Hall of Workshop for Metasynthetic Engineering (HWME) and "Metasynthesis" (Metasynthetic Wisdom). This paradigm—initiated by Qian and further developed by Prigogine & Stengers (1984), Dai & Qian (2007), and other scholars—is widely regarded as the core pathway for breaking four centuries of specialized fragmentation and heading toward the "Second Renaissance" of human knowledge confluence.
+In 1990, Qian Xuesen, Yu Jingyuan, and Dai Ruwei published the landmark paper *A New Discipline of Science—The Open Complex Giant System and Its Methodology*, formally defining the scientific category of Open Complex Giant Systems (OCGS), and pioneering the Hall for Workshop of Metasynthetic Engineering (HWME) and "Metasynthesis" (Metasynthetic Wisdom). This paradigm—initiated by Qian and further developed by Prigogine & Stengers (1984), Dai & Qian (2007), and other scholars—is widely regarded as the core pathway for breaking four centuries of specialized fragmentation and heading toward the "Second Renaissance" of human knowledge confluence.
 
 Qian Xuesen established the strategic direction for governing complex systems, and Academician Guo Lei anchored its supreme status as "Metascience" from discipline ontology. Within this grand framework, constrained by computing power and industrial data conditions at the time, complex giant system governance left two unanswered questions in historical evolution:
 
 1. **Unanswered Question 1 (Qualitative Formal Deduction)**: How can we depart from pure empirical heuristics and case study inductions, starting from first principles recognized by modern science, to strictly and formally deduce under what physical and cybernetic conditions an open complex giant system converges or collapses, achieving qualitative logical self-consistency?
 2. **Unanswered Question 2 (Cross-Domain Engineering Computability)**: Facing the illusion of factorial combinatorial state explosion triggered by tens of thousands of nodes in discrete spatiotemporal phase spaces, how can we formally prove, via engineering algorithms and functional analysis, its "Closed-Loop Computability" and "Global Optimal Convergence" in polynomial time, enabling systems science to elevate from "post-hoc simulation" into a universal engine directly executing real-time work on physical entity battlefields?
 
-#### Epistemological Defense of the Scientific Nature of Qian Xuesen's Theory
+#### Epistemological Defense of the Scientific Nature of Qian Xuesen's Theory from the Perspective of Cognitive Genesis
 
 Before addressing the two unanswered questions, a fundamental misunderstanding must be clarified: some critics dismiss Qian's OCGS theory as philosophical speculation due to a "lack of formal proof." This assertion fails on cognitive genesis.
 
@@ -69,10 +71,10 @@ Formalization is the task of successors. Departing from Non-IID first principles
 To systematically address the two unanswered questions, this paper maintains a strict causal argumentation chain forced step-by-step by objective physical facts and epistemological boundaries:
 
 1. **Why does it exist? (Reason for Existence: Forced by the "Ought-to-be System Governance Crisis")**\
-   Humans cannot directly access raw physical reality. All science, engineering, and social governance operate by drawing boundaries to construct "Ought-to-be Systems" to observe, simulate, and govern the real world. However, **the Ought-to-be System is itself an Open Complex Giant System**. Lacking holistic governance, non-orthogonal conflicts inside the Ought-to-be model trigger severe "cognitive vector cancellation" ($\sum \mathbf{v}_i \to 0$), warping simulations and causing governance to fail. Therefore, a discipline must exist specifically to study "how Ought-to-be Systems themselves are constructed and governed"—Systems Science is not an academic self-proclamation, but an inevitable existence forced by cold physical and epistemological facts.
+   Humans cannot directly access raw physical reality. All science, engineering, and social governance operate by drawing boundaries to construct "Ought-to-be Systems" to observe, simulate, and govern the real world. However, **the Ought-to-be System is itself an Open Complex Giant System**. Lacking holistic governance, non-orthogonal conflicts inside the Ought-to-be model continually erupt as severe "cognitive vector cancellation" ($\sum \mathbf{v}_i \to 0$), warping simulations and causing governance to fail. Therefore, governing the Ought-to-be System is not a one-off act of constitution-making, but a continuous, dynamic process of work. A discipline must exist specifically to study "how Ought-to-be Systems themselves are constructed and governed"—Systems and Complexity Science is not an academic self-proclamation, but an inevitable existence forced by cold physical and epistemological facts.
 
 2. **What should it be? (Essence & Positioning: Metascience studying universal laws of the Ought-to-be medium)**\
-   Physics, biology, economics, and other vertical disciplines study **specific physical objects**. But when constructing cognition and governance models, they all pass through the medium of the "Ought-to-be System." Systems Science does not compete with vertical disciplines for specific objects; it studies the **universal structure and control laws that all specific sciences must obey when constructing and governing Ought-to-be Systems**. Therefore, it naturally sits at the foundational medium level shared by all specific sciences, establishing its strict essence and status as a "Science of Sciences."
+   Physics, biology, economics, and other vertical disciplines study **specific physical objects**. But when constructing cognition and governance models, they all pass through the medium of the "Ought-to-be System." Systems and Complexity Science does not compete with vertical disciplines for specific objects; it studies the **universal structure and control laws that all specific sciences must obey when constructing and governing Ought-to-be Systems**. Therefore, it naturally sits at the foundational medium level shared by all specific sciences, establishing its strict essence and status as a "Science of Sciences."
 
 3. **What hasn't it done yet? (Historical Limitations: Direction and status exist, but lacking qualitative logic and quantitative proof)**\
    Qian Xuesen outlined the grand direction of Metasynthetic Engineering and OCGS, while Academician Guo Lei anchored its metascience status. However, constrained by computing power and data foundations of their eras, two vacuums remained: qualitative lack of formal deduction from first principles to strictly state when a system converges or collapses; quantitative lack of polynomial-time closed-loop computability and dynamic optimal convergence proof when facing $O(N!)$ state explosion illusions.
@@ -87,7 +89,7 @@ To systematically address the two unanswered questions, this paper maintains a s
 | **What hasn't it done yet?** | Section 1.3 | Qian and Guo established direction and status, but limited by era, qualitative lacked formalization, quantitative lacked computability |
 | **What can it be now?** | Sections 4–8 | This paper completes qualitative logic and quantitative proofs via 8 Treatises + Dual Helix + Variational Uniqueness, upgrading to fully realized Metascience |
 
-![Figure 1: Four Foundational Causal Chains of System and Complexity Science as "Metascience" (Elevating to Fully Realized Metascience via Formal Proof of Tripartite Physical Equivalence)](media/rId16_en.png)
+![Figure 1: Four Foundational Causal Chains of Systems and Complexity Science as "Metascience" (Elevating to Fully Realized Metascience via Formal Proof of Tripartite Physical Equivalence)](media/rId16_en.png)
 
 ### 1.5 Three-Tier Methodological Decoupling
 
@@ -100,6 +102,8 @@ To ensure clarity regarding the methodological architecture, we establish three 
 ---
 
 ## 2. Epistemological Constitution: Inaccessibility of Physical Reality and "Ought-to-be System Governance"
+
+The causal argumentation chain above is now unfolded layer by layer. We begin from epistemological first principles to establish the concept of the "Ought-to-be System" and its endogenous governance crisis.
 
 ### 2.1 The Inaccessibility of Physical Reality and Universal Coupling Reality
 
@@ -118,9 +122,9 @@ We must strictly decouple external functions from internal purpose:
 1. **Three External Functions (Toward the Physical World)**:
    - **Observation**: Observers draw internal and external boundaries, converting unmeasurable continuous micro-disturbances into discrete macro state variables via sampling filters;
    - **Simulation**: Relying on causal logic and state evolution algorithms, pre-enacting future physical trajectories along the algebraic time axis;
-   - **Governance**: Executing physical work via control operators to continuously eliminate residuals between Ought-to-be model results and physical measurements, guiding physical entities toward pre-set orderly steady states. Functions can execute independently (e.g., pure simulation/prediction).
+   - **Governance**: Executing physical work via control operators to continuously eliminate residuals between Ought-to-be model results and physical measurements, guiding physical entities toward pre-set orderly steady states. In engineering triggering, the three functions can be decoupled and run independently (e.g., triggering only pure simulation / pure prediction).
 2. **Unique Internal Purpose (Toward the Ought-to-be System Itself)**:
-   - **Governance of Self**: For the Ought-to-be System itself, the observer's **sole purpose in constructing it is governance!** Namely, governing the Ought-to-be System itself to completely eliminate internal "cognitive vector cancellation."
+   - **Governance of Self**: For the Ought-to-be System itself, the observer's **sole purpose in constructing it is governance!** Namely, governing the Ought-to-be System itself to continuously eliminate internal "cognitive vector cancellation."
 
 ### 2.3 Core Epistemological Boundary Line: Physical Projection of Cognitive Vector Cancellation and Variational Truncation
 
@@ -132,17 +136,24 @@ $$\text{Failing to understand } \delta W_{\text{heat}} = 0 \implies \exists \lan
 
 2. **Physical Projection of Cognitive Cancellation**: When cognitive models with obtuse interference govern reality, physical systems are forced to execute distorted schedules, **hard-projecting cognitive cancellation into physical vector cancellation and kinetic decay**:
 
-$$\Delta W_{\text{heat}} = \sum_{i=1}^{N} \|\mathbf{v}_i\| - \left\Vert\sum_{i=1}^{N} \mathbf{v}_i\\right\Vert > 0$$
+$$\Delta W_{\text{heat}} = \sum_{i=1}^{N} \|\mathbf{v}_i\| - \left\Vert\sum_{i=1}^{N} \mathbf{v}_i\right\Vert > 0$$
+
+- **Vector Triangle Inequality**: When $\exists \langle \mathbf{v}_i, \mathbf{v}_j \rangle < 0$, the vector triangle inequality requires the sum of work-vector magnitudes to be strictly greater than the magnitude of the resultant work vector, $\sum_{i=1}^N \|\mathbf{v}_i\| > \|\sum_{i=1}^N \mathbf{v}_i\|$; the difference is converted into system friction heat;
 
 Departments roar at full capacity and staff labor exhaustively late into the night, but the net work vector approaches zero ($\sum \mathbf{v}_i^{\text{real}} \to 0$). Net displacement stalls, and energy degrades into organizational friction heat.
 
 3. **Variational Truncation in Dual-Helix Algorithm**: The 5D evolution algorithm $\mathcal{A}$ is the discrete execution of the variational law. Algorithm $\mathcal{A}$ permits only co-directional branches satisfying $\delta W_{\text{heat}}^{(k)} = 0$ to advance, executing algebraic truncation on non-orthogonal components at step one ($\Pi_{\text{cut}}(x_\bot) = 0$), blocking cognitive cancellation from entering physical execution. Humans step out of the loop for second-order constitutional amendments, while silicon provides first-order compensation inside the loop ("Carbon-Based 2nd-Order Amendment + Silicon-Based 1st-Order Compensation"), achieving optimal convergence within known boundaries:
 
-$$\Pi_{\text{cut}}(x_\bot) = 0 \implies W_{\text{heat}}[S^*] = 0 \implies S^* = \arg\min_{S \in \Omega_{\text{feasible}}} \mathcal{W}_{\text{heat}}[S]$$
+$$
+\begin{aligned}
+\Pi_{\text{cut}}(x_\bot) = 0 &\implies W_{\text{heat}}[S^*] = 0 \\[4pt]
+&\implies S^* = \arg\min_{S \in \Omega_{\text{feasible}}} \mathcal{W}_{\text{heat}}[S]
+\end{aligned}
+$$
 
 > **Epistemological Verdict & Variational Bridge**:
 > If humans fail to comprehend the variational law, they inevitably create cognitive cancellation, projecting it into operational cancellation. As the discrete execution operator of the variational law, the epistemological essence of the 5D algorithm lies in **truncating cognitive cancellation at the source before it projects into operational systems**.
-> **Therefore, the first principle of complex giant system governance is: The precondition for governing the real physical world is that we must first govern the Ought-to-be System itself ($\Delta W_{\text{heat}} = 0$)! Only by establishing orthogonal constitution over the Ought-to-be System and eliminating cognitive vector cancellation can humans utilize a self-consistent Ought-to-be System to accurately observe, simulate, and govern physical reality.**
+> **Therefore, the first principle of complex giant system governance is: The precondition for governing the real physical world is that we must first govern the Ought-to-be System itself ($\Delta W_{\text{heat}} = 0$)! The fundamental task of Metascience is not to eliminate vector cancellation once and for all, but to exercise continuous governance over the Ought-to-be System, constantly eliminating cognitive vector cancellation and driving the system to persist in a closed loop through "generation—survival—evolution." Only by establishing orthogonal constitution over the Ought-to-be System and continuously eliminating cognitive vector cancellation can humans utilize a self-consistent Ought-to-be System to accurately observe, simulate, and govern physical reality.**
 
 ---
 
@@ -158,11 +169,16 @@ From 2007 to 2025, across global multinational discrete entity work networks (in
 
 Across these empirical data, **the core physical fact is that the system sustained high-frequency rigid closed loops of "planning—execution—feedback":**
 
-$$\text{Full-Domain Targets} \rightarrow \text{Global Quotas} \rightarrow \text{Discrete Element Orchestration} \rightarrow \text{Atomic Instruction Write-Back} \rightarrow \text{Entity Closed-Loop Validation}$$
+$$
+\begin{aligned}
+\text{Full-Domain Targets} &\rightarrow \text{Global Quotas} \rightarrow \text{Discrete Element Orchestration} \\[4pt]
+&\rightarrow \text{Atomic Instruction Write-Back} \rightarrow \text{Entity Closed-Loop Validation}
+\end{aligned}
+$$
 
 The system maintained a **$> 95\%$ Human-Out-Of-The-Loop (HOOTL) autonomous decision state continuously for 18 years**, completely liberating human dispatchers from micro-calculations of tens of thousands of discrete variables; achieved "95% not late, 82% not early" dual-direction high-precision control; zeroed phase space sunk states (local transient transition states), doubled effective work flux, and drove physical instability rates near zero—allowing the system to completely escape kinetic friction decay in high-dimensional discrete phase spaces.
 
-### 3.2 Deep Genetic Essence: Sustaining Computability for Living Cycle of "Generation, Survival, and Evolution"
+### 3.2 Deep Genetic Essence: Sustaining Computability for the Living Cycle of "Generation, Survival, and Evolution"
 
 Empirical data establish an unshakeable physical fact: closed-loop computability of Open Complex Giant Systems is not a theoretical fantasy, but a physical fact verified by 18 years of 100-billion-level industrial operation.
 
@@ -196,29 +212,29 @@ On this Non-IID strongly coupled physical base, we unfold the qualitative Eight 
 
 ## 5. The Qualitative Eight-Treatise Deduction Chain: Causal Deduction from Non-IID to Second-Order Amendment
 
-We explicitly state our methodological declaration: "Eight Treatises" in our academic context refers to **"Eight Rigorous Systemic Deductions/Treatises"** (Teleology, Ontology, Schematics, Capability, Mechanism, Path, Dynamics, Evolution), rather than metaphysical scholastic concepts.
+We explicitly state our methodological declaration: "Eight Treatises" in our academic context refers to **"Eight Rigorous Systemic Deductions/Treatises"** (Teleology, Ontology, Scheme, Capability, Mechanism, Path, Dynamics, Evolution), rather than metaphysical scholastic concepts.
 
-The Eight Treatises are neither parallel empirical points nor linear mechanical progressions; they form a **Closed-Loop Ring Topology**: every subsequent proposition is a cybernetic antidote to secondary physical deadlocks in preceding propositions; simultaneously, **each treatise is both a prerequisite Cause for other treatises and an inevitable Result of system evolution**. For instance, Treatise 8 (Evolution) uses the meta-cognitive operator $\Phi$ to overwrite axioms and re-bound $\text{Boundary}_{k+1}$, re-closing and re-structuring Treatise 1 (Teleology) to eliminate vector cancellation and enforce $\theta \to 0^\circ$, driving perpetual evolution in the topological closed loop of "boundary establishment $\to$ in-boundary self-consistency $\to$ meta-cognitive re-bounding."
+The Eight Treatises are neither parallel empirical points nor linear mechanical progressions; they form a **Closed-Loop Causal Ring Topology**: every subsequent proposition is a cybernetic antidote to secondary physical deadlocks in preceding propositions; simultaneously, **each treatise is both a prerequisite Cause for other treatises and an inevitable Result of system evolution**. For instance, Treatise 8 (Evolution) uses the meta-cognitive operator $\Phi$ to overwrite axioms and re-bound $\text{Boundary}_{k+1}$, re-closing and re-structuring Treatise 1 (Teleology) to eliminate vector cancellation and enforce $\theta \to 0^\circ$, driving perpetual evolution in the topological closed loop of "boundary establishment $\to$ in-boundary self-consistency $\to$ meta-cognitive re-bounding."
 
 Current academia and industry face severe cognitive confusion in complex system governance (such as over-optimistic expectations for Multi-AI Agent free collaboration, improper generalization of classical solvers/statistical ML in global scheduling, committee negotiation deadlocks, etc.). In the Eight Treatises, we distill these issues into rigorous formal logic corollaries, affirming local probe value while defining cybernetic limits.
 
 ![Figure 2: Panoramic Causal Dynamics Deduction Chain of the "Eight Treatises" in Open Complex Giant Systems](media/rId30_en.png)
 
-### 5.1 Treatise 1 [Teleological]: Global Governance and Eliminating Vector Cancellation
+### 5.1 Treatise 1 [Teleology]: Global Governance and Eliminating Vector Cancellation
 
-- **Pathology & Premise**: In Non-IID strongly coupled systems, if sub-systems independently pursue local utility functions $u_{i}(x)$, work vectors $\vec{v}_{i}$ inevitably interfere and cancel each other out in global phase space.
-$$\Delta W_{\text{heat}} = \sum_{i=1}^{N} \|\mathbf{v}_i\| - \left\Vert\sum_{i=1}^{N} \mathbf{v}_i\\right\Vert > 0$$
+- **Pathology & Premise**: In Non-IID strongly coupled systems, if sub-systems independently pursue local utility functions $u_{i}(x)$, work vectors $\mathbf{v}_i$ inevitably interfere and cancel each other out in global phase space.
+- **Vector Triangle Inequality**: When $\exists \langle \mathbf{v}_i, \mathbf{v}_j \rangle < 0$, the vector triangle inequality requires the sum of work-vector magnitudes to be strictly greater than the magnitude of the resultant work vector, $\sum_{i=1}^N \|\mathbf{v}_i\| > \|\sum_{i=1}^N \mathbf{v}_i\|$; the difference is converted into system friction heat;
 
-$$\Delta W_{\text{heat}} = \sum_{i=1}^{N} \|\mathbf{v}_i\| - \left\Vert\sum_{i=1}^{N} \mathbf{v}_i\\right\Vert > 0$$
+$$\Delta W_{\text{heat}} = \sum_{i=1}^{N} \|\mathbf{v}_i\| - \left\Vert\sum_{i=1}^{N} \mathbf{v}_i\right\Vert > 0$$
 
 - Even if nodes unselfishly optimize locally, lacking global governance causes composite work to decay to zero ($\sum \mathbf{v}_i \to 0$), trapping the system in random noise and work paralysis.
 - **Theorem Derived**: The necessary and sufficient condition for effective work in an OCGS is eliminating vector cancellation in phase space, driving global composite force maximization ($\theta \to 0^\circ$).
 - **Mapping to Qian's Theory**: Strictly matches Qian Xuesen's core thesis: "Open Complex Giant Systems must adhere to holistic system synthesis and overall governance" (Qian et al., 1990).
 
 > **[Corollary 5.1.1 (Fallacy of Un-Governed Self-Organization & Multi-AI Agent Free Collaboration Vector Cancellation Deadlock)]**  
-> Self-organization theory reveals mechanisms of order generation under specific conditions. However, in Non-IID giant systems lacking global governance, relying on micro-subsystem spontaneous gaming cannot guarantee global convergence, sliding instead into local deadlocks. Current AI attempts to achieve complex scheduling via Multi-AI Agent networks relying on free communication possess clear cybernetic boundaries: **if each Agent optimizes locally based on its prompt, objective, or reward function, multi-agent gaming in strongly coupled phase spaces inevitably triggers vector conflicts ($\sum \vec{v}_{agent} \to 0$), converging to friction heat.** Agent clusters possess excellent micro-execution value inside orthogonal sub-spaces, but lacking global prior governance, free collaboration amplifies internal energy dissipation.
+> Self-organization theory reveals mechanisms of order generation under specific conditions. However, in Non-IID giant systems lacking global governance, relying on micro-subsystem spontaneous gaming cannot guarantee global convergence, sliding instead into local deadlocks. Current AI attempts to achieve complex scheduling via Multi-AI Agent networks relying on free communication possess clear cybernetic boundaries: **if each Agent optimizes locally based on its prompt, objective, or reward function, multi-agent gaming in strongly coupled phase spaces inevitably triggers vector conflicts ($\sum \mathbf{v}_{agent} \to 0$), converging to friction heat.** Agent clusters possess excellent micro-execution value inside orthogonal sub-spaces, but lacking global prior governance, free collaboration amplifies internal energy dissipation.
 
-### 5.2 Treatise 2 [Ontological]: $O(N!)$ Surface Illusion, Cognitive Irreducibility, and HOOTL Computational Compensation
+### 5.2 Treatise 2 [Ontology]: $O(N!)$ Surface Illusion, Cognitive Irreducibility, and HOOTL Computational Compensation
 
 - **Pathology & Premise**: Section 5.1 established global governance necessity. But to solve $N$ strongly coupled nodes, humans face dual limits of 5-stage cognitive genesis and phase space combinatorial explosion.
 - **5-Stage Cognitive Genesis & Cognitive Irreducibility**: Cognition follows **"Action $\to$ Experience $\to$ Cognition $\to$ Structure/Summary $\to$ Formalization."** Without action there is no experience; without experience there is no cognition; without cognition there is no structure; without structure formalization cannot attach. Complex algorithms require real trial-and-error. Pure human brain computation is too slow; pure silicon lacks physical pain/anchors. **Thus, cognitive genesis dictates human-machine co-evolution.**
@@ -230,19 +246,21 @@ $$\Delta W_{\text{heat}} = \sum_{i=1}^{N} \|\mathbf{v}_i\| - \left\Vert\sum_{i=1
 
 > **[Corollary 5.2.1 (Limitations of IID Worldview: Solvers, Machine Learning, and LLMs in Global OCGS Scheduling)]**  
 > Reductionism in computing assumes Independent and Identically Distributed (IID) manifolds. Classical OR Solvers rely on linear separability and convex constraints under weak interactions. Statistical ML assumes IID samples. In Non-IID strongly coupled discrete giant systems:
+>
 > 1. Entangled constraints shatter convex separability, causing solvers to experience branch-and-bound tree explosions, timeouts, or optimality gap divergence;
 > 2. Statistical ML encounters generalization limits due to non-stationary phase space measure drift;
-> 3. Large Language Models (LLMs) excel at semantic interaction, but when executing rigid 100% discrete physical constraints (non-negative space, physical conservation, hard deadlines, measure $\mu(C_{\text{feasible}}) = 0$), they suffer hallucinations due to probabilistic sampling.\
+> 3. Large Language Models (LLMs) excel at semantic interaction, but when executing rigid 100% discrete physical constraints (non-negative space, physical conservation, hard deadlines, measure $\mu(C_{\text{feasible}}) = 0$), they suffer hallucinations due to probabilistic sampling.
+>
 > **Conclusion**: Solvers, ML, and LLMs are valuable local computational probes, but cannot serve as primary global governance engines in Non-IID phase spaces.
 
-### 5.3 Treatise 3 [Schematic]: Model and Algorithm ($S = \mathcal{M}_{\text{model}} \otimes \mathcal{A}$) and Finite-Step Orthogonalization
+### 5.3 Treatise 3 [Scheme]: Model and Algorithm ($S = \mathcal{M}_{\text{model}} \otimes \mathcal{A}$) and Finite-Step Orthogonalization
 
 - **Pathology & Premise**: Section 5.2 established silicon high-frequency compensation. But severing "business requirements" from "IT implementation" across heterogeneous teams causes causal pointer fractures and physical deadlocks.
-- **Causal Deduction & Essence of Schematics**: Schematics establishes the unity of **[Model & Algorithm] (or [Model & Logic])**. The data model (Form, left helix $\mathcal{M}_{\text{model}}) defines phase space structure and constraint manifolds; the evolution algorithm (Function, right helix $\mathcal{A}$) defines finite-step orthogonal state advancement and pruning rules:
+- **Causal Deduction & Essence of Scheme**: Scheme establishes the unity of **[Model & Algorithm] (or [Model & Logic])**. The data model (Form, left helix $\mathcal{M}_{\text{model}}$) defines phase space structure and constraint manifolds; the evolution algorithm (Function, right helix $\mathcal{A}$) defines finite-step orthogonal state advancement and pruning rules:
 
-$$\text{Ought-to-be Schematic Entity } S \equiv \text{Model (Form } \mathcal{M}_{\text{model}} \text{)} \otimes \text{Algorithm (Function } \mathcal{A} \text{)}$$
+$$\text{Ought-to-be Scheme Entity } S \equiv \text{Model (Form } \mathcal{M}_{\text{model}} \text{)} \otimes \text{Algorithm (Function } \mathcal{A} \text{)}$$
 
-- **Orthogonal Decoupling & Polynomial Computability**: Expanding phase space into orthogonal tangent spaces decouples macro flow rates from micro scheduling at decoupling points, building a zero-redundancy execution base. Algorithms pure into finite-step execution and branching, ensuring polynomial computability.
+- **Orthogonal Decoupling & Polynomial Computability**: Expanding phase space into orthogonal tangent spaces decouples macro flow rates from micro scheduling at decoupling points, building a zero-redundancy execution base. Algorithms are reduced to finite-step execution and branching, ensuring polynomial computability.
 - **Mapping to Qian's Theory**: Matches Qian's metasynthetic method—metasynthesis must achieve isomorphic mapping between models/algorithms and physical entities (Qian, 2001).
 
 > **[Corollary 5.3.1 (Causal Fractures in Traditional "Business Defines Requirements, IT Code Implementation" Separation under Non-IID Conditions)]**  
@@ -250,65 +268,79 @@ $$\text{Ought-to-be Schematic Entity } S \equiv \text{Model (Form } \mathcal{M}_
 
 ### 5.4 Treatise 4 [Capability]: Tripartite Capability Fusion and Chief Architect Single-Brain Singularity
 
-- **Pathology & Premise**: Section 5.3 established the orthogonal base $S \equiv \mathcal{M}_{\text{model}} \otimes \mathcal{A}$. This schematic must map complex physical reality upward and connect to complex software/hardware systems downward. Applying Occam's razor, capability reduces to **three essential capabilities**.
+- **Pathology & Premise**: Section 5.3 established the orthogonal base $S \equiv \mathcal{M}_{\text{model}} \otimes \mathcal{A}$. This scheme must map complex physical reality upward and connect to complex software/hardware systems downward. Applying Occam's razor, capability reduces to **three essential capabilities**.
 - **Causal Deduction & Three Universal Fusion Capabilities**:
   1. **Domain Modeling Capability**: Ability to project high-dimensional non-convex physical reality into 5D topological data models and polynomial-time algorithms;
   2. **Business Mastery Capability**: Deep insight into physical operations, completely covering micro/macro business constraints;
   3. **Cross-System Integration & Orchestration Capability**: Deep mastery of distributed computing, high-throughput interfaces, and heterogeneous protocols for lossless state synchronization.
-- **Single-Brain Singularity Theorem**: In system genesis (0 to 1), **Domain Modeling $\leftrightarrow$ Business Mastery $\leftrightarrow$ System Integration fuse into a single "Universal Fusion Capability"!** Pipeline division (business writes specs, mathematicians model, programmers code) breaks quantum-like entangled topologies, causing causal fractures. Thus, during genesis, all three capabilities must be embodied within a single **Chief System Architect (CSA)** cognitive brain (or Metasynthetic Department core furnace), collapsing cross-brain coordination friction from $O(M^2)$ to constant $O(1)$.
-- **Mapping to Qian's Theory**: Cybernetically justifies Qian Xuesen's requirement for establishing a "Metasynthetic Department" led by a "Chief Architect" (Qian et al., 1990).
+- **Single-Brain Singularity Theorem**: In system genesis (0 to 1), **Domain Modeling $\leftrightarrow$ Business Mastery $\leftrightarrow$ System Integration fuse into a single "Universal Fusion Capability"!** Pipeline division (business writes specs, mathematicians model, programmers code) breaks quantum-like entangled topologies, causing causal fractures. Thus, during genesis, all three capabilities must be embodied within a single **Chief System Architect (CSA)** cognitive brain (or Overall Design Department core furnace), collapsing cross-brain coordination friction from $O(M^2)$ to constant $O(1)$.
+- **Mapping to Qian's Theory**: Cybernetically justifies Qian Xuesen's requirement for establishing a "Overall Design Department" led by a "Chief Architect" (Qian et al., 1990).
 
 > **[Corollary 5.4.1 (Entanglement Destruction in Pipeline Division of Labor During System Genesis)]**  
 > Separating business analysis, math modeling, and software engineering during genesis is fatal: modifying one business constraint directly alters data topologies and algorithm convergence. Pipeline handoffs destroy high-order causal pointers. Genesis-phase top-level design must rely on a Chief Architect's single-brain cognitive collapse.
 
-### 5.5 Treatise 5 [Mechanism]: Four Control Loops, "Free Input", and "Logical Dictatorship / Convergence"
+### 5.5 Treatise 5 [Mechanism]: Four-Step Closed-Loop Governance Mechanism, "Free Input", and "Logical Dictatorship / Convergence"
 
 - **Pathology & Premise**: Section 5.4 established single-brain cognitive collapse. But a Chief Architect is not omniscient and cannot foresee all micro edge conditions; yet allowing local nodes to modify rules triggers vector interference and cancellation.
 - **Four-Step Closed-Loop Governance Mechanism**: Mechanism constructs a four-step human-machine closed loop:
   1. **Free Input (Micro-Perception Completeness)**: Accepting non-omniscience, the system opens real-time operational status and demand inputs to all terminal nodes (free input completing requisite variety);
-  2. **Metasynthetic Department Logical Dictatorship / Convergence (Zero Rule-Change Permission)**: Architecture design and rule-making authority belong exclusively to the Chief Architect. Terminal nodes submit suggestions but **have ZERO authority to modify rules**. The Metasynthetic Department rejects multi-head political compromises, enforcing 【Logical Dictatorship / Convergence】 to guarantee global self-consistency;
+  2. **Overall Design Department Logical Dictatorship / Convergence (Zero Rule-Change Permission)**: Architecture design and rule-making authority belong exclusively to the Chief Architect. Terminal nodes submit suggestions but **have ZERO authority to modify rules**. The Overall Design Department rejects multi-head political compromises, enforcing 【Logical Dictatorship / Convergence】 to guarantee global self-consistency;
   3. **Task Breakdown & Local Autonomy Orchestration**: Once converged and broken down, local entities possess full execution autonomy within rigid guardrails;
   4. **High-Frequency Execution & Empirical Feedback**: Executing in real battlefields and feeding back residuals.
 - **Capability Restriction vs Political Prohibition**: Restricting rule modification is **not political privilege, but the physical result of terminal nodes lacking universal fusion capabilities!** Allowing terminals to alter rules breaks global self-consistency, causing vector cancellation and systemic paralysis.
 - **Mapping to Qian's Theory**: Re-creates Qian's HWME Metasynthetic Workshop soul ("Human-in-the-Loop, Human-Led")—guaranteeing micro requisite variety while shattering committee deadlocks and DAO rule-tampering frictions (Qian et al., 1990; Ashby, 1956).
 
 > **[Corollary 5.5.1 (Committee Negotiation Paralysis and DAO Rule-Modification Collapse)]**  
-> Equating terminal input freedom with authorizing committees/DAOs to design schematics or alter rules causes collapse:
+> Equating terminal input freedom with authorizing committees/DAOs to design schemes or alter rules causes collapse:
+>
 > 1. Multi-head committee negotiation triggers vector cancellation in strongly coupled spaces, trapping systems in deadlock;
-> 2. DAOs allowing crowd-voting on algebraic rules destroy global constraints, causing severe oscillation.  
+> 2. DAOs allowing crowd-voting on algebraic rules destroy global constraints, causing severe oscillation.
+>
 > **Conclusion**: Strict role boundary enforcement—"Chief Architect Constitutional Definition & Logical Dictatorship (Rule-Making)" vs "Terminal Free Input (Zero Rule-Change Permission)"—is the unique scientific mechanism for long-term structural self-consistency.
 
-### 5.6 Treatise 6 [Path/Pathology]: Wiener-Kalman Observability, Bottom-Up Capability Reverse Foundation, and "Growth System" Paradigm Shift
+### 5.6 Treatise 6 [Path]: Unobservable Implies Uncontrollable, Bottom-Up Capability Reverse Foundation, and the "Growth System" Paradigm
 
 - **Pathology & Premise**: Section 5.5 established logical convergence mechanisms. But Ought-to-be Systems do not emerge from thin air; they rely on builders. System construction must obey Wiener-Kalman observability and Ashby's requisite variety.
 - **First Iron Law of Path**:
 
-$$\dim(O) = 0 \Longrightarrow \dim(C) = 0 \Longrightarrow \text{Cannot Plan}$$
+$$
+\begin{aligned}
+\dim(O) = 0 &\Longrightarrow \dim(C) = 0 \\[4pt]
+&\Longrightarrow \text{Cannot Plan}
+\end{aligned}
+$$
 
 Effective control dimensions are bounded by atomic-level observability dimensions. Unobservable in algebra implies uncontrollable, rendering top-level planning castles in the sand.
+
 - **"Growth System" Paradigm & Bottom-Up Reverse Foundation**: Governance must shift from "Command Systems" to "Growth Systems." Acknowledging physical fields as dynamic dissipative networks, systems cannot be fabricated out of thin air but must follow genetic laws: **"Strategy Top-Down, System Capability Bottom-Up Reverse Foundation."** Builders must go deep into execution ends to build complete observability; systems must build upward from execution layers to establish single sources of truth.
 - **Mapping to Qian's Theory**: Matches Qian's principle that top-level design must tightly couple with empirical physical measurement (Qian, 2001).
 
 > **[Corollary 5.6.1 (Open-Loop Nature of Visual Control Towers Lacking Bottom-Up Observability)]**  
 > Dashboards and digital twins lacking bottom-up atomic observability represent open-loop visualization systems. Without bottom-up observability, precise dashboards merely help enterprises make major mistakes with extreme precision.
 
-### 5.7 Newtonian Mechanics Level Validation of Qian Xuesen's "Dual-Leader System" Overall Design Department
+### 5.7 Treatise 7 [Dynamics]: Newtonian Mechanics Level Validation of Qian Xuesen's "Dual-Chief System" Overall Design Department and Newtonian Vector Work
 
 - **Pathology & Premise**: Section 5.6 established bottom-up capability paths. Driving a massive system efficiently toward unified goals requires physical work power (organizational authority).
-- **Newtonian Verification of Qian Xuesen's "Dual-Chief System"**: The division of "strategy top-down" vs "capability/system bottom-up" achieved supreme physical verification in Qian Xuesen's "Dual-Chief System" (Administrative Chief Line vs Chief Architect Line / Metasynthetic Department) during aerospace programs:
-  1. **Administrative Chief Line (Top-Down: Strategy, Boundaries, Authority, Delivery)**: Sets direction vector $F_{\text{admin}}$, assigns resource/institutional boundaries, grants political authority to technical hubs, and rigidly enforces delivery milestones ("You set direction, boundaries, authority, and milestones");
-  2. **Chief Architect Line / Metasynthetic Department (Bottom-Up: Structure, Physics, Self-Consistency, Closed Loops)**: Obeys physical/mathematical laws, builds 5D topological models and algorithm closed loops, ensuring global self-consistency ("I build structure, obey physics, guarantee self-consistency, and deliver closed loops").
+- **Newtonian Verification of Qian Xuesen's "Dual-Chief System"**: The division of "strategy top-down" vs "capability/system bottom-up" achieved supreme physical verification in Qian Xuesen's "Dual-Chief System" (Administrative Chief Line vs Chief Architect Line / Overall Design Department) during aerospace programs:
+  1. **Administrative Chief Line (Top-Down: Strategy, Boundaries, Authority, Delivery)**: Sets direction vector $\mathbf{F}_{\text{admin}}$, assigns resource/institutional boundaries, grants political authority to technical hubs, and rigidly enforces delivery milestones ("You set direction, boundaries, authority, and milestones");
+  2. **Chief Architect Line / Overall Design Department (Bottom-Up: Structure, Physics, Self-Consistency, Closed Loops)**: Obeys physical/mathematical laws, builds 5D topological models and algorithm closed loops, ensuring global self-consistency ("I build structure, obey physics, guarantee self-consistency, and deliver results").
 - **Newtonian Vector Work First Principle**: Applying Occam's razor, we directly use Newtonian vector work:
 
-$$W_{\text{eff}} = \mathbf{F}_{\text{total}} \cdot \mathbf{d} = (\mathbf{F}_{\text{admin}} + \mathbf{F}_{\text{arch}}) \cdot \mathbf{d} = F \cdot d \cdot \cos\theta$$
+$$
+\begin{aligned}
+W_{\text{eff}} &= \mathbf{F}_{\text{total}} \cdot \mathbf{d} \\[4pt]
+&= (\mathbf{F}_{\text{admin}} + \mathbf{F}_{\text{arch}}) \cdot \mathbf{d} = F \cdot d \cdot \cos\theta
+\end{aligned}
+$$
 
 where $\theta$ is the vector interference angle between administrative line, technical line, and global displacement $d$. Only when Dual-Chief lines bite tightly together with zero friction ($\theta \to 0^\circ, \cos\theta \to 1$), converting bureaucratic damping into co-directional work resonance, can massive giant systems generate physical force to break through organizational damping!
-- **Mapping to Qian's Theory**: Formally reproduces Qian's principle that Metasynthetic Departments must obtain supreme administrative backing, execute Dual-Chief divisions, and combine political will with scientific logic (Qian, 2001; Dai & Qian, 2007).
+
+- **Mapping to Qian's Theory**: Formally reproduces Qian's principle that Overall Design Departments must obtain supreme administrative backing, execute Dual-Chief divisions, and combine political will with scientific logic (Qian, 2001; Dai & Qian, 2007).
 
 > **[Corollary 5.7.1 (Newtonian Vector Mechanics of Dual-Chief Zero-Friction Alignment)]**  
-> Implementing the Dual-Chief contract ("You set direction, I set path; You set boundaries, I build structure") forces $\theta \to 0^\circ, \cos\theta \to 1$, maximizing Newtonian effective work $W_{\text{eff}} = F \cdot d$ and overcoming organizational friction.
+> Implementing the Dual-Chief contract ("You set direction, I set path; You set boundaries, I build structure") forces $\theta \to 0^\circ, \cos\theta \to 1$, maximizing Newtonian effective work $W_{\text{eff}} = F \cdot d$ and breaking through bureaucratic damping and non-bottleneck resource waste.
 
-### 5.8 Treatise 8 [Evolutionary]: Gödel Incompleteness and Second-Order Meta-Cognitive Constitutional Amendments
+### 5.8 Treatise 8 [Evolution]: Gödel Incompleteness and Second-Order Meta-Cognitive Constitutional Amendments
 
 - **Pathology & Premise**: Section 5.7 established effective work mechanisms on bottlenecks. But when environmental phase transitions collapse 1st-order rule feasible sets into empty sets ($\text{Sol}(R^{(1)}) = \emptyset$), closed silicon systems hit Gödelian incompleteness and Turing halting deadlocks.
 - **Causal Deduction**: External phase shifts cause un-reconcilable logical deadlocks inside 1st-order rule sets ($\text{Sol}(R^{(1)}) = \emptyset$). By Gödel's First Incompleteness Theorem (Gödel, 1931) and Turing's Halting Problem, closed 1st-order code cannot self-reconstruct axioms internally.
@@ -316,20 +348,25 @@ where $\theta$ is the vector interference angle between administrative line, tec
 - **Mapping to Qian's Theory**: Formally proves Qian's thesis that Open Complex Giant Systems require continuous human-led evolutionary upgrading (Qian et al., 1990).
 
 > **[Corollary 5.8.1 (Logical Impossibility of Fully Unattended Closed AI Systems and Carbon-Based Constitutional Ecosystem)]**  
-> Building fully unattended closed silicon autonomous systems in OCGS is logically impossible under Gödelian bounds. Faced with out-of-distribution (OOD) black swan shifts, closed models deadlock or drift when feasible sets shrink to empty sets. Closed systems cannot generate external low-entropy constraints internally. **Thus, sustainable OCGS governance requires an asymmetric architecture: Carbon-Based 2nd-Order Constitutional Revision + Silicon-Based 1st-Order Computational Compensation. Carbon 2nd-order axiom reconstruction is the critical fulcrum for resilience during extreme phase transitions.**
+> Any attempt to build a fully unattended ("de-humanized") closed silicon autonomous system in an OCGS faces fundamental theoretical constraints from Gödel's incompleteness theorem in formal logic. Faced with out-of-distribution (OOD) black swan shifts, closed 1st-order rules and statistical learning models, lacking the ability to overwrite their own axioms, are prone to deadlock when feasible sets shrink to empty sets, or to systemic deviation under extreme single-metric optimization. Closed systems cannot generate external low-entropy constraints internally. **Thus, the long-term stable evolution of OCGS is better suited to an asymmetric collaborative architecture: Carbon-Based 2nd-Order Constitutional Revision + Silicon-Based 1st-Order Computational Compensation. Carbon 2nd-order axiom reconstruction is the critical fulcrum for resilience during extreme phase transitions.**
 
 ### 5.9 Topological Closed-Loop and Mutual Causality Theorem of the Eight Treatises
 
-In summary, the Eight Treatises do not form a linear chain, but an algebraically self-consistent **Closed-Loop Ring Topology**:
+In summary, the Eight Treatises do not form a linear chain, but an algebraically self-consistent **Closed-Loop Causal Ring Topology**:
 
-$$\forall i \in \{1,2,\dots,8\}, \quad \text{Treatise}_i = \text{Cause}(\{\text{Treatise}_{j}\}_{j \neq i}) \quad \wedge \quad \text{Treatise}_i = \text{Result}(\{\text{Treatise}_{k}\}_{k \neq i})$$
+$$
+\begin{aligned}
+\forall i \in \{1,2,\dots,8\}, \quad \text{Treatise}_i &= \text{Cause}(\{\text{Treatise}_{j}\}_{j \neq i}) \\[4pt]
+&\quad \wedge \text{Treatise}_i = \text{Result}(\{\text{Treatise}_{k}\}_{k \neq i})
+\end{aligned}
+$$
 
 - **Mutual Causality & Closed-Loop Phase Transitions**:
   - Treatise 1 (Teleology) establishes vector alignment ($\theta \to 0^\circ$, Cause), driving Treatise 2 (Ontology) silicon HOOTL compensation (Result);
-  - Treatise 2 (Ontology) silicon compensation (Cause) requires Treatise 3 (Schematics) ontology identity and Treatise 4 (Capability) single-brain singularity (Result);
+  - Treatise 2 (Ontology) silicon compensation (Cause) requires Treatise 3 (Scheme) ontology identity and Treatise 4 (Capability) single-brain singularity (Result);
   - Treatise 4 (Capability) single-brain constitution (Cause) derives Treatise 5 (Mechanism) role boundaries and Treatise 6 (Path) bottom-up foundation (Result);
   - Treatise 6 (Path) and Treatise 7 (Dynamics) Dual-Chief zero-friction work (Cause) drive system execution to Treatise 8 (Evolution) Gödelian bounds;
-  - Treatise 8 (Evolution) uses operator $\Phi: \text{Boundary}_k \xrightarrow{\Delta X} \text{Boundary}_{k+1}$ to re-bound (Cause), **re-closing and re-structuring Treatise 1 (Teleology) vector alignment and target vectors $F_{\text{admin}}$ (Result)**.
+  - Treatise 8 (Evolution) uses operator $\Phi: \text{Boundary}_k \xrightarrow{\Delta X} \text{Boundary}_{k+1}$ to re-bound (Cause), **re-closing and re-structuring Treatise 1 (Teleology) vector alignment and target vectors $\mathbf{F}_{\text{admin}}$ (Result)**.
 
 The Eight Treatises link end-to-end; each treatise is both a physical Cause for others and an emergent cybernetic Result.
 
@@ -343,11 +380,11 @@ The following table presents the 1:1 strict isomorphic mapping between our deriv
 | :--- | :--- | :--- |
 | **Treatise 1 (Teleology)** Global Governance Eliminating Vector Cancellation | Open Complex Giant System Holistic Synthesis & Overall Governance (Qian et al., 1990) | Establishing global governance, eliminating vector cancellation, driving global composite force maximization |
 | **Treatise 2 (Ontology)** $\mathcal{O}(N!)$ Combination Illusion & HOOTL | Massive Scale, High Dimensionality & Human-Machine Combination (Qian et al., 1990) | Breaking Cowan's $4 \pm 1$ limit and human cognitive limits; silicon executing high-frequency micro compensation |
-| **Treatise 3 (Schematics)** Data & Algorithm Ontology Identity | Qualitative-to-Quantitative Metasynthetic Method (Qian, 2001) | Business Ontology $\equiv$ Model + Algorithm; orthogonal tangent space expansion eliminating causal fractures |
-| **Treatise 4 (Capability)** Universal Fusion & Single-Brain Singularity | Metasynthetic Department & Chief Architect Responsibility (Qian et al., 1990) | Overcoming division causal fractures; single brain fusing physical reality, data models, and integration interfaces |
+| **Treatise 3 (Scheme)** Data & Algorithm Ontology Identity | Qualitative-to-Quantitative Metasynthetic Method (Qian, 2001) | Business Ontology $\equiv$ Model + Algorithm; orthogonal tangent space expansion eliminating causal fractures |
+| **Treatise 4 (Capability)** Universal Fusion & Single-Brain Singularity | Overall Design Department & Chief Architect Responsibility (Qian et al., 1990) | Overcoming division causal fractures; single brain fusing physical reality, data models, and integration interfaces |
 | **Treatise 5 (Mechanism)** Role Decoupling & Free Input (Zero Rule-Change Permission) | HWME Metasynthetic Workshop ("Human-in-the-Loop, Human-Led") (Qian et al., 1990) | Shattering local defense and committee negotiation deadlocks; strictly enforcing role boundaries to expose vector cancellation |
 | **Treatise 6 (Path)** Observability, Bottom-Up Foundation & Growth Systems | Top-Level Design & Bottom-Up Engineering Closed Loop (Qian, 2001) | Wiener-Kalman theorem ("unobservable = uncontrollable = unplannable"); shifting to Growth Systems, building upward from execution ends |
-| **Treatise 7 (Dynamics)** Qian Xuesen Dual-Chief Supreme Authority & Vector Work Contract | Systems Engineering Main Contradiction & Will-Logic Integration (Qian, 2001) | Dual-Chief System (Administrative vs Chief Architect) supreme backing; eliminating vector interference ($\theta \to 0^\circ$) to break through organizational damping |
+| **Treatise 7 (Dynamics)** Qian Xuesen Dual-Chief Supreme Authority & Vector Work Contract | Systems Engineering Main Contradiction & Will-Logic Integration (Qian, 2001) | Dual-Chief System (Administrative vs Chief Architect) supreme backing; eliminating vector interference ($\theta \to 0^\circ$) and achieving the supreme contract "You set direction, I set path; You set boundaries, I build structure" to break through organizational damping |
 | **Treatise 8 (Evolution)** 2nd-Order Meta-Cognitive Amendment | Living System Continuous Self-Evolution (Qian et al., 1990) | Stepping out of the loop under Gödelian bounds; operator $\Phi$ overwriting axioms to inject low-entropy constraints |
 
 ---
@@ -360,7 +397,7 @@ Qualitative Eight Treatises answered system establishment, persistence, and evol
 
 ---
 
-### 7.1 Systemic Examination of Phase Space Essence and Degrees of Freedom
+### 7.1 Epistemological First Principle: Boundary Medium and Truncation of Spurious Degrees of Freedom
 
 #### 1. Physical Phase Space Essence & Systems-Theoretic Judgment of Degrees of Freedom
 
@@ -410,11 +447,12 @@ $$\mathcal{M}_{\text{model}} = \langle \mathcal{N}, \mathcal{T}, \mathcal{C}, X,
 >
 > **[Master Equation & Causal-Residual Dual Transformation Law]**:  
 > The latter two dimensions dynamically close via differential algebraic master equation $X_{\text{plan}} = X \oplus \Delta X_{\text{causal}}$:
-> - **Forward Causal Generation**: Forward deduction $\Delta X$ carries instantiated causal chains to generate next-moment planned states $X_{\text{plan}}$;&#32;&#32;
-> - **Reverse Residual Manifestation**: After measured state $X_{\text{real}}$ manifests, comparison derives **[residual with causality]** $\Delta X_{\text{residual}} = X_{\text{real}} \ominus X_{\text{plan}}$;&#32;&#32;
+>
+> - **Forward Causal Generation**: Forward deduction $\Delta X$ carries instantiated causal chains to generate next-moment planned states $X_{\text{plan}}$;
+> - **Reverse Residual Manifestation**: After measured state $X_{\text{real}}$ manifests, comparison derives **[residual with causality]** $\Delta X_{\text{residual}} = X_{\text{real}} \ominus X_{\text{plan}}$;
 > - **Traceability Judgment along Causal Chain**: If physical entities are obstructed, judge "adjust execution"; if causal chains break, judge "second-order constitutional amendment!"
 >
-> **Completeness + Minimality $\implies \mathcal{M}_{\text{model}} is the minimal complete basis for Ought-to-be Systems.** Q.E.D.
+> **Completeness + Minimality $\implies \mathcal{M}_{\text{model}}$ is the minimal complete basis for Ought-to-be Systems.** Q.E.D.
 
 ---
 
@@ -437,7 +475,12 @@ $$K \le \frac{\tau_{\text{phy}}}{\Delta t_{\text{clock}}} < +\infty$$
 3. **Natural Polynomial Termination**:
    At causal tier $k \in \{1, \dots, K\}$, single-step state orthogonal matching and topological sorting complexity is $O(N \log N)$. Finite depth $K$ times single-step polynomial time ensures natural termination:
 
-$$T(N) = \sum_{k=1}^K O(N \log N) = O(K \cdot N \log N) \in \mathbf{P}, \quad \text{and } T(N) \le \tau_{\text{phy}}$$
+$$
+\begin{aligned}
+T(N) &= \sum_{k=1}^K O(N \log N) = O(K \cdot N \log N) \in \mathbf{P}, \\[4pt]
+&\quad \text{and } T(N) \le \tau_{\text{phy}}
+\end{aligned}
+$$
 
 > **Conclusion: Dual-Helix structures are inherently computable! Causal DAG depth is physically truncated by instability windows ($K < +\infty$), advancing unidirectionally without backtracking, naturally terminating in polynomial time to output results.** Q.E.D.
 
@@ -445,12 +488,19 @@ $$T(N) = \sum_{k=1}^K O(N \log N) = O(K \cdot N \log N) \in \mathbf{P}, \quad \t
 
 ### 7.4 Proposition 7.3 (Tripartite Definitional Equivalence Proposition: Traversability $\equiv$ Zero Cancellation $\equiv$ Global Absolute Optimality and Uniqueness)
 
-In Dual-Helix architectures, "feasibility," "zero cancellation," and "global optimality" are not quantitative hurdles requiring complex proofs, but **qualitative physical definitional equivalences**:
+> Note: Theorem 7.2 / Proposition 7.3 in this paper are consistent in conclusion with "Causal Finiteness Lemma 1.1" in the *Order* paper and Theorem 2.1 in the *Living Expression* paper; the numbering differences arise because each paper is written independently.
+
+In Dual-Helix architectures, "feasibility," "zero cancellation," and "global optimality" are not quantitative problems requiring cumbersome mathematical constructions to rule out alternative solutions, but **qualitative physical definitional equivalences** given directly by the variational first principle of physics:
 
 > **[Proposition 7.3 (Traversability $\equiv$ Zero Cancellation $\equiv$ Global Absolute Optimality and Uniqueness)]**  
 > In a given physical domain, constraint manifold $\mathcal{C} = \langle \mathcal{C}_{\text{core}}, \mathcal{C}_{\text{param}} \rangle$ encodes spatiotemporal exclusivity and flux conservation. Algorithm $\mathcal{A}$ permits only co-directional orthogonal steps ($\langle \mathbf{v}_i, \mathbf{v}_j \rangle \ge 0$), while pruning operator $\Pi_\bot$ rigidly prunes non-orthogonal conflicting branches. The trajectory satisfies:
 >
-> $$\text{Algorithm Traverses } S^* \iff \text{Zero Vector Cancellation } (\mathcal{W}_{\text{heat}}[S^*] = 0) \iff \text{Global Absolute Optimal Trajectory } (S^* = \arg\min \mathcal{W}_{\text{heat}})$$
+> $$
+\begin{aligned}
+\text{Algorithm Traverses } S^* &\iff \text{Zero Vector Cancellation } (\mathcal{W}_{\text{heat}}[S^*] = 0) \\[4pt]
+&\iff \text{Global Absolute Optimal Trajectory } (S^* = \arg\min \mathcal{W}_{\text{heat}})
+\end{aligned}
+$$
 
 **Physical and Logical Derivation**:
 
@@ -463,17 +513,23 @@ In Dual-Helix architectures, "feasibility," "zero cancellation," and "global opt
 ### 7.5 Three-Tier Methodological Division and Ultimate Minimalist Synthesis
 
 In Dual-Helix architectures, "completeness," "computability," and "optimality" achieve pristine division of labor:
+
 - **Structural Completeness Definition (Theorem 7.1)**: 5D basis $\mathcal{M}_{\text{model}} = \langle \mathcal{N}, \mathcal{T}, \mathcal{C}, X, \Delta X \rangle$ strips all spurious degrees of freedom;
 - **Closed-Loop Computability (Theorem 7.2)**: Instability windows and discrete clocks truncate depth to $K < +\infty$, guaranteeing polynomial time termination ($T \in \mathbf{P}$);
 - **Tripartite Physical Equivalence (Proposition 7.3)**: Friction heat lower bound is 0; encoding zero cancellation into constraints makes traversability equal zero friction, which equals in-boundary absolute optimality and uniqueness ($\exists! S^*$)!
 
 ---
 
-### 7.7 Finite-Step Strategy Space Expansion
+### 7.6 Finite-Step Strategy Space Expansion
 
 In Non-IID strongly coupled phase spaces, let an evolution pipeline contain $K$ decision stages ($K = 50$), each containing micro-decisions (branching factor $b \in \{2,3\}$). The potential strategy space capacity expanded in phase space is:
 
-$$|\Omega_{\text{potential}}| = b^K \Longrightarrow 2^{50} \approx 1.12 \times 10^{15} \quad \text{to} \quad 3^{50} \approx 7.17 \times 10^{23}$$
+$$
+\begin{aligned}
+|\Omega_{\text{potential}}| = b^K &\Longrightarrow 2^{50} \approx 1.12 \times 10^{15} \\[4pt]
+&\quad \text{to } 3^{50} \approx 7.17 \times 10^{23}
+\end{aligned}
+$$
 
 - **Orthogonal Duality**: Physical boundary drawing and orthogonal pruning compress computational complexity into polynomial bounds $O(K \cdot N \log N)$; while finite-step logic branching generates exponential $O(b^K)$ macro governance diversity, equipping the system with strategy adaptability covering full-domain disturbances!
 
@@ -483,7 +539,7 @@ $$|\Omega_{\text{potential}}| = b^K \Longrightarrow 2^{50} \approx 1.12 \times 1
 
 ## 8. Gödel Residuals, Meta-Cognitive Re-Bounding, and Three-Stage Spatiotemporal Unified Theorem of Residuals
 
-Polynomial computability proves systems can calculate; Proposition 7.3 establishes in-boundary optimality. In open systems, environmental disturbances produce residuals beyond existing boundaries. This section details meta-cognitive dynamic amendments.
+Polynomial computability proves systems can calculate; Proposition 7.3 establishes in-boundary optimality. In open systems, environmental disturbances produce residuals beyond existing boundaries. This section details meta-cognitive dynamic constitutional amendment and structural convergence.
 
 ### 8.1 Gödel Residuals and Meta-Cognitive Constitutional Operator $\Phi$
 
@@ -513,8 +569,10 @@ $$\mathbf{Generation} \text{ (Boundary Est.)} \longrightarrow \mathbf{Survival} 
 
 $$
 \begin{aligned}
-&\text{Inside Known Boundary } \text{Boundary}_k: \quad S_k^* = \arg\min_{S \in \Omega_{\text{feasible}}^{(k)}} \mathcal{W}_{\text{heat}}[S] \quad (\text{Algorithm } \mathcal{A} \text{ resolves vector cancellation; traversability = optimality}) \\[6pt]
-&\text{New Vector Cancellation / New Constraints: } \quad \text{Boundary}_{k+1} = \Phi(\text{Boundary}_k, \Delta X) \quad (\text{Meta-cognition re-bounds, traverses again, optimal again})
+&\text{Inside Known Boundary } \text{Boundary}_k: \\
+&\quad S_k^* = \arg\min_{S \in \Omega_{\text{feasible}}^{(k)}} \mathcal{W}_{\text{heat}}[S] \quad (\text{Algorithm } \mathcal{A} \text{ resolves vector cancellation; traversability = optimality}) \\[6pt]
+&\text{New Vector Cancellation / New Constraints: } \\
+&\quad \text{Boundary}_{k+1} = \Phi(\text{Boundary}_k, \Delta X) \quad (\text{Meta-cognition re-bounds, traverses again, optimal again})
 \end{aligned}
 $$
 
@@ -543,22 +601,22 @@ Following Karl Popper's (1959) philosophy of science, any theory claiming metasc
 | :--- | :--- | :--- | :--- |
 | **Corollary 5.1.1** | Global governance eliminates vector cancellation | Un-governed Multi-Agent free gaming converges to global optimum | Vector interference causes cancellation $\sum \mathbf{v}_i \to 0$, sliding into deadlock friction heat |
 | **Corollary 5.2.1** | Silicon HOOTL computational compensation | OR Solvers / LLMs directly solve global Non-IID OCGS scheduling | MIP branch trees explode to OOM; LLMs suffer factual hallucinations at rigid constraints |
-| **Corollary 5.3.1** | Business ontology identity $D \equiv A$ | Business-IT split handoffs maintain high-order causal self-consistency | Causal pointer loss across human handoffs; system falls into operational decoupling |
+| **Corollary 5.3.1** | Business ontology identity $D \equiv A$ | Business-IT split handoffs maintain high-order causal self-consistency | Causal pointer loss across human handoffs; system falls into operational decoupling (a "two-layer disconnect") and causal fractures |
 | **Corollary 5.4.1** | Tripartite capability fusion & single brain | Pipeline division maintains high-order causal self-consistency | Pipeline handoffs destroy strong-coupling entanglement, causing causal fractures |
-| **Corollary 5.5.1** | Role decoupling & free input (zero rule permission) | Authorizing committees/terminals to alter rules avoids deadlocks | Violating role boundaries causing multi-headed negotiation deadlock and rule-tampering internal friction |
-| **Corollary 5.6.1** | Observability & bottom-up foundation | Open-loop control towers lacking bottom-up observability govern effectively | Wiener-Kalman dual failure ($\dim C=0$), un-observability causing planning collapse |
-| **Corollary 5.7.1** | Supreme authority & Dual-Chief contract | Administrative-technical interference ($\theta > 0^\circ$) achieves maximum work | Vector interference generates friction heat; only Dual-Chief contracts achieve $W_{\text{eff}} = F \cdot d$ |
+| **Corollary 5.5.1** | Role decoupling & free input (zero rule permission) | Authorizing committees/terminals to design schemes or alter rules avoids deadlocks | Violating role boundaries causing multi-headed negotiation deadlock and rule-tampering internal friction |
+| **Corollary 5.6.1** | Observability & bottom-up foundation | Open-loop control towers lacking bottom-up observability govern effectively | Wiener-Kalman dual failure ($\dim C=0$), un-observability causing planning collapse and degenerating into a rear-view mirror |
+| **Corollary 5.7.1** | Supreme authority & Dual-Chief contract | Crude mobilization, or administrative-technical overreach and tug-of-war causing vector interference ($\theta > 0^\circ$), still achieves maximum work | Vector interference generates friction heat; only Dual-Chief contracts eliminate interference and achieve maximum work $W_{\text{eff}} = F \cdot d$ |
 | **Corollary 5.8.1** | 2nd-order meta-cognitive amendment $\Phi$ | Closed pure AI systems self-overcome Gödelian deadlocks and self-heal | Feasible sets shrink to empty sets $\text{Sol}=\emptyset$ during phase shifts, triggering Gödelian deadlocks |
 | **Theorem 7.1** | 5D manifold minimal completeness | Discovering a physical state transition requiring a 6th independent basis or linear dependence | Phase space measure collapses or causal breakdown; failing to construct Ought-to-be Systems |
 | **Theorem 7.2** | Polynomial closed-loop computability | Bounded DAG depth $K$ exhibits factorial $\mathcal{O}(N!)$ or exponential calculation times | Algorithms deadlock or explode in phase space, calculation lagging behind physical instability |
-| **Proposition 7.3** | Traversability $\equiv$ Zero Cancellation $\equiv$ Absolute Optimality | Finding a valid path $S^*$ containing non-zero vector cancellation while remaining optimal | Violating friction heat lower bound $W_{\text{heat}} \ge 0$; pruning failure causing vector cancellation |
-| **Theorem 8.1** | Three-Stage Spatiotemporal Unification | External unknown residuals exceed threshold $\theta$ long-term without re-bounding or collapsing | System violates thermodynamics and Gödelian incompleteness; theory declared invalid |
+| **Proposition 7.3** | Traversability $\equiv$ Zero Cancellation $\equiv$ Global Absolute Optimality and Uniqueness | Under orthogonal pruning conditions, there exists another valid physical execution trajectory with lower internal friction | Violating friction heat lower bound $W_{\text{heat}} \ge 0$; pruning failure causing vector cancellation or logical deadlock |
+| **Theorem 8.1** | Three-Stage Spatiotemporal Unification | External unknown residuals exceed threshold $\theta$ long-term, yet the system neither re-bounds nor collapses and persists permanently | System violates thermodynamics and Gödelian incompleteness; theory declared invalid |
 
 ---
 
 ## 10. Conclusion and the "Second Renaissance" Prospect
 
-Starting from epistemological first principles, this research establishes the academic status of System and Complexity Science as a "Science of Sciences." By introducing the "Ought-to-be System," it reveals that the essence of governing the real world lies in first governing the Ought-to-be System itself, eliminating internal "cognitive vector cancellation."
+Starting from epistemological first principles, this research establishes the academic status of Systems and Complexity Science as a "Science of Sciences." By introducing the "Ought-to-be System," it reveals that the essence of governing the real world lies in first governing the Ought-to-be System itself, continuously eliminating internal "cognitive vector cancellation."
 
 Taking an 18-year continuous operational field of 100-billion-level industrial networks achieving $> 95\%$ HOOTL autonomous decisions as its genetic origin, this paper decouples qualitative logic from quantitative proof:
 
