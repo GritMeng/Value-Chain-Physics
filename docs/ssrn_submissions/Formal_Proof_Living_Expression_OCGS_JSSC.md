@@ -2,7 +2,7 @@
 
 ### Formal Verification Based on Dual-Helix 5D Manifold and Meta-Cognitive Re-Bounding
 
-**Grit Meng (孟凡淳)**  
+**Grit Meng**  
 Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global Supply Chain  
 Creator of the Intelligent Planning & Control (IPC) Engine | Independent Scholar
 
@@ -18,9 +18,9 @@ Creator of the Intelligent Planning & Control (IPC) Engine | Independent Scholar
 
 ### 1.1 Boundary Drawing is the Precondition for Computability
 
-Physical reality is in-accessible directly; an observer must draw boundaries to establish an Ought-to-be System (the observer-constructed model). Eliminating work vector cancellation ($\vec{v}_i, \vec{v}_j$) inside boundaries achieves conditional self-consistency:
+Physical reality is in-accessible directly; an observer must draw boundaries to establish an Ought-to-be System (the observer-constructed model). Eliminating work vector cancellation ($\mathbf{v}_i, \mathbf{v}_j$) inside boundaries achieves conditional self-consistency:
 
-$$\text{Physical Reality (Strongly Coupled)} \overset{\text{Boundary Drawing}}{\longrightarrow} \text{Ought-to-be Model (Self-Consistent Medium, the observer-constructed model)} \implies \langle \vec{v}_i, \vec{v}_j \rangle \ge 0 \implies \Delta W_{\text{heat}} \to 0$$
+$$\text{Physical Reality (Strongly Coupled)} \overset{\text{Boundary Drawing}}{\longrightarrow} \text{Ought-to-be Model (Self-Consistent Medium, the observer-constructed model)} \implies \langle \mathbf{v}_i, \mathbf{v}_j \rangle \ge 0 \implies \Delta W_{\text{heat}} \to 0$$
 
 ### 1.2 Theorem 1.1 (Minimal Completeness Theorem of 5D Manifold)
 
@@ -37,23 +37,27 @@ The manifold presents a dual-layer nested topology: "Rigid Structural Base Manif
   - Stripping $\Delta X$ (State Transition) $\to$ **Causallessness / Feedbackless** (state transition pedigree severed, who transforms into whom unknown, causal chain broken, residual with causality unable to compare, closed loop invalidated).
 - **Minimality (Algebraic independence)**: All 5 dimensions are mutually orthogonal and independent; no single dimension can be derived from the remaining four.  
 
-> **Conclusion: Completeness + Minimality $\implies \mathcal{M}_{\text{model}}$ is the minimal complete basis of the Ought-to-be System (the observer-constructed model).** Q.E.D.
+> **Conclusion: Completeness + Minimality $\implies \mathcal{M}_{\text{model}} is the minimal complete basis of the Ought-to-be System (the observer-constructed model).** Q.E.D.
 
 **【Algebraic Master Equation of the Latter Two Dimensions and Causal-Residual Dual Transformation Law】**:  
 The latter two dimensions dynamically close via the differential algebraic master equation $X_{\text{plan}} = X \oplus \Delta X_{\text{causal}}$:  
 1. **Forward Causal Generation**: The forward deduction side $\Delta X$ carries the **instantiated causal chain (who transforms into whom, such as causal work in phase transition from water to ice)** locked from preceding states to subsequent targets, deriving next-moment planned state $X_{\text{plan}}$;&#32;&#32;
 2. **Reverse Residual Manifestation**: After real measured state $X_{\text{real}}$ manifests, shifting terms in the master equation yields **【residual with causality】** $\Delta X_{\text{residual}} = X_{\text{real}} \ominus X_{\text{plan}}$;&#32;&#32;
-3. **Traceability Judgment along Causal Chain**: Reverse-trace the residual along the original causal chain—if the causal chain holds and only physical entities are obstructed, judge "the world is off", issuing control work to govern the world; if the causal chain breaks and the feasible set is empty, judge "the model is wrong", activating second-order meta-cognitive operator $\mathbf{\Phi}$ for constitutional amendment and model reconstruction. If the world is off, adjust execution; if the model is wrong, apply second-order amendment!
+3. **Traceability Judgment along Causal Chain**: Reverse-trace the residual along the original causal chain—if the causal chain holds and only physical entities are obstructed, judge "the world is off", issuing control work to govern the world; if the causal chain breaks and the feasible set is empty, judge "the model is wrong", activating second-order meta-cognitive operator $\Phi$ for constitutional amendment and model reconstruction. If the world is off, adjust execution; if the model is wrong, apply second-order amendment!
 
 ---
 
 ## 2. Dual-Helix Structure $S = \mathcal{M}_{\text{model}} \otimes \mathcal{A}$ and Its Physical Propositions
 
-The holistic representation of the system is defined as the tensor product of topological manifold $\mathcal{M}_{\text{model}}$ ("Form") and forward causal evolution operator $\mathcal{A} = \bigodot_{k=1}^{K} (\mathcal{B}_k \circ \mathcal{P}_k)$ ("Function"):
+The holistic representation of the system is defined as the tensor product of topological manifold $\mathcal{M}_{\text{model}} ("Form") and forward causal evolution operator $\mathcal{A} = \bigodot_{k=1}^{K} (\mathcal{B}_k \circ \mathcal{P}_k)$ ("Function"):
 
 $$S = \mathcal{M}_{\text{model}} \otimes \mathcal{A}$$
 
-### 2.1 Right Helix (Function): Theorem 2.1 (Closed-Loop Computability Theorem)
+### 2.1
+
+> *注：本文定理 2.1 与《秩序》篇“因果有限性引理 1.1”及《第二次文艺复兴》定理 7.2 / 命题 7.3 结论一致，编号差异因各篇独立成文。*
+
+ Right Helix (Function): Theorem 2.1 (Closed-Loop Computability Theorem)
 
 > **Physical Proof (Discrete Clock & Bounded Relaxation $\implies$ Polynomial Closed-Loop Computability)**  
 > 1. Boundary drawing constrains phase space to finite entity scale ($N < +\infty$);  
@@ -66,14 +70,14 @@ $$S = \mathcal{M}_{\text{model}} \otimes \mathcal{A}$$
 In the Dual-Helix framework, "Feasibility", "Zero Cancellation", and "In-Boundary Optimality" are not quantitative hurdles requiring proof by contradiction or higher-order variational calculus, but definitional equivalences directly established by physical first principles:
 
 > **【Proposition 2.2 (Traversability $\equiv$ Zero Cancellation $\equiv$ In-Boundary Absolute Optimality)】**\
-> Within a given boundary $\text{Boundary}_k$, the constraint manifold $C_k = \langle C_{\text{core}}, C_{\text{param}} \rangle$ encodes spatiotemporal exclusivity and flux conservation. The evolution algorithm $\mathcal{A}$ in each step permits only co-directional resonance steps ($\langle \vec{v}_i, \vec{v}_j \rangle \ge 0$), while pruning operator $\mathbf{\Pi}_\bot$ rigidly prunes non-orthogonal conflicting branches. The trajectory satisfies the tripartite physical equivalence:
+> Within a given boundary $\text{Boundary}_k$, the constraint manifold $C_k = \langle C_{\text{core}}, C_{\text{param}} \rangle$ encodes spatiotemporal exclusivity and flux conservation. The evolution algorithm $\mathcal{A}$ in each step permits only co-directional resonance steps ($\langle \mathbf{v}_i, \mathbf{v}_j \rangle \ge 0$), while pruning operator $\Pi_\bot$ rigidly prunes non-orthogonal conflicting branches. The trajectory satisfies the tripartite physical equivalence:
 >
 > $\text{Algorithm Traverses } S_k^* \iff \text{Zero Vector Cancellation } (W_{\text{heat}}[S_k^*] = 0) \iff \text{In-Boundary Global Optimal Trajectory } (S_k^* = \arg\min \mathcal{W}_{\text{heat}})$
 
 **Physical and Logical Derivation**:
 
 1. **Physical Definition of Optimality**: In OCGS cybernetics, "optimality" is physically defined as minimizing work waste heat/friction. Since waste heat is non-negative $\mathcal{W}_{\text{heat}}[S] \ge 0$, zero vector cancellation ($W_{\text{heat}}[S_k^*] = 0$) is the necessary and sufficient physical condition for global in-boundary optimality;  
-2. **Algorithmic Condition for Zero Cancellation**: Algorithm $\mathcal{A}$ advances along causal characteristic lines. Pruning operator $\mathbf{\Pi}_\bot$ truncates normal shear components ($\vec{v}_\bot \neq 0$), ensuring single-step friction vanishes $\delta W_{\text{heat}}^{(k)} = 0$;  
+2. **Algorithmic Condition for Zero Cancellation**: Algorithm $\mathcal{A}$ advances along causal characteristic lines. Pruning operator $\Pi_\bot$ truncates normal shear components ($\mathbf{v}_\bot \neq 0$), ensuring single-step friction vanishes $\delta W_{\text{heat}}^{(k)} = 0$;  
 3. **Traversability Implies In-Boundary Optimality**: If the trajectory completes all $K$ steps under constraint $C_k$, cumulative friction is zero ($W_{\text{heat}}[S_k^*] = 0$). Hitting physical lower bound zero makes the traversed path naturally and necessarily optimal in-boundary.
 
 ---
@@ -85,7 +89,7 @@ In the Dual-Helix framework, "Feasibility", "Zero Cancellation", and "In-Boundar
   1. Keeping the immutable physical core $C_{\text{core}}$ invariant;  
   2. Relaxing secondary rules $C_{\text{sec}}$;  
   3. Absorbing new residuals into constraint set $C_{k+1}$.  
-  If self-consistency ($\text{Sol} \neq \emptyset, \langle \vec{v}_i, \vec{v}_j \rangle \ge 0$) is restored within relaxation window $\tau_{\text{phy}}$, the system completes a phase transition / generational constitutional amendment leap; otherwise, it degrades, collapses, and halts (system halting/death).
+  If self-consistency ($\text{Sol} \neq \emptyset, \langle \mathbf{v}_i, \mathbf{v}_j \rangle \ge 0$) is restored within relaxation window $\tau_{\text{phy}}$, the system completes a phase transition / generational constitutional amendment leap; otherwise, it degrades, collapses, and halts (system halting/death).
 
 ---
 
@@ -93,7 +97,7 @@ In the Dual-Helix framework, "Feasibility", "Zero Cancellation", and "In-Boundar
 
 | Tier | Physical Dimension | Core Control Law | Physical & Systems Science Verdict |
 | :--- | :--- | :--- | :--- |
-| **Tier 1** | **Spatial Domain** | Eliminate vector cancellation ($\langle \vec{v}_i, \vec{v}_j \rangle \ge 0$) | Eliminates friction waste heat, guaranteeing structural integrity |
+| **Tier 1** | **Spatial Domain** | Eliminate vector cancellation ($\langle \mathbf{v}_i, \mathbf{v}_j \rangle \ge 0$) | Eliminates friction waste heat, guaranteeing structural integrity |
 | **Tier 2** | **Temporal Domain** | DAG depth physical truncation ($K < +\infty$) | Locks polynomial complexity, guaranteeing computation within time bounds |
 | **Tier 3** | **Residual Domain** | Gödel residual triggers meta-cognitive operator $\Phi$ | Absorbs external perturbations, guaranteeing non-rigidification of paradigms |
 
@@ -117,7 +121,7 @@ To defend the academic dignity of this framework as hard-core meta-science, all 
 ## 6. Conclusion: Living Governance Paradigm and Cross-Domain Inheritance from a Meta-Science Perspective
 
 1. **Boundary Relativity Law**: No "absolute universal optimal solution" exists outside boundaries; any optimal solution $S^*_k$ is strictly relative to its boundary $\text{Boundary}_k$; **Living is absolute (referring to closed-loop survival); optimality is relative inside boundaries.**
-2. **Self-Consistent Computability Law**: In-boundary conditional self-consistency ($\langle \vec{v}_i, \vec{v}_j \rangle \ge 0$) and finite causal steps ($K < +\infty$) are necessary and sufficient physical conditions for polynomial closed-loop computability.
+2. **Self-Consistent Computability Law**: In-boundary conditional self-consistency ($\langle \mathbf{v}_i, \mathbf{v}_j \rangle \ge 0$) and finite causal steps ($K < +\infty$) are necessary and sufficient physical conditions for polynomial closed-loop computability.
 3. **Meta-Cognitive Evolution Law**: Gödelian residuals ($\|\Delta X\| > \theta$) force second-order meta-cognitive operator $\Phi$ to dynamically re-bound ($\text{Boundary}_k \to \text{Boundary}_{k+1}$), establishing structural isomorphism across cybernetics, statistical physics, computational graph theory, and biological evolution.
 4. **Axiomatic Inheritance Across Domains**: Any physical entity—whether global discrete manufacturing networks, protein folding dynamics, high-frequency financial risk clearing, or ecological evolutionary systems—that maps to 5D manifold $\mathcal{M}_{\text{model}} = \langle \mathcal{N}, \mathcal{T}, \mathcal{C}, X, \Delta X \rangle$ **automatically inherits all physical and cybernetic properties of closed-loop computability ($T \in \mathbf{P}$) and definitional equivalence of in-boundary optimality ($\exists! S^*_k$)**.
 

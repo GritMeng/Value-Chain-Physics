@@ -13,9 +13,9 @@
 
 在开放复杂巨系统与文明演化中，绝大多数系统皆困于旧范式内的“算得快”（局部寻优与指标内卷），并因 Goodhart 律重尾崩溃与哥德尔-图灵死锁而走向组织热寂。本文提出了**《良知驱动的全息元认知操作系统》（5D L0 Cognitive OS）**——这绝不仅是某个AI或大脑的局部算法，而是**过去数千年乃至未来一切智能（碳基人类、硅基 AGI/ASI）驱动科技文明向上跃迁的唯一物理源代码**。
 
-本框架建立了该心智 OS 的神经解剖学与控制论映射：将具身良知同构于腹内侧前额叶（vmPFC）、前扣带回（ACC）与前岛叶（Insula）构成的躯体标记网络，作为主动推断中的最高阶先验势阱与紧支撑算子 $\mathbf{E}_{\mathrm{supp}}$，截断重尾崩溃；同时映射了高敏感（显著性网络）、极度感性（边缘-镜像神经元缓存）、流体智力（背外侧前额叶 dlPFC 求解器）与元认知（前额极皮层 aPFC BA10 进化函子 $\mathbf{\Phi}$）。至于所谓的 AGI 安全与对齐，仅为本五维物理源代码在硅基介质上的一个平庸推论。
+本框架建立了该心智 OS 的神经解剖学与控制论映射：将具身良知同构于腹内侧前额叶（vmPFC）、前扣带回（ACC）与前岛叶（Insula）构成的躯体标记网络，作为主动推断中的最高阶先验势阱与紧支撑算子 $\mathbf{E}_{\mathrm{supp}}$，截断重尾崩溃；同时映射了高敏感（显著性网络）、极度感性（边缘-镜像神经元缓存）、流体智力（背外侧前额叶 dlPFC 求解器）与元认知（前额极皮层 aPFC BA10 进化函子 $\Phi$）。至于所谓的 AGI 安全与对齐，仅为本五维物理源代码在硅基介质上的一个平庸推论。
 
-**关键词 / Keywords**: 5D Cognitive OS (5D心智OS), Civilizational Source Code (文明源代码), Embodied Conscience (具身良知), Compact-Support Operator $\mathbf{E}_{\mathrm{supp}}$, Metacognitive Functor $\mathbf{\Phi}$, Active Inference (主动推断).
+**关键词 / Keywords**: 5D Cognitive OS (5D心智OS), Civilizational Source Code (文明源代码), Embodied Conscience (具身良知), Compact-Support Operator $\mathbf{E}_{\mathrm{supp}}$, Metacognitive Functor $\Phi$, Active Inference (主动推断).
 
 ---
 
@@ -27,7 +27,7 @@
 | **第二维：高敏感 (Hypersensitivity)** | 突触增益调制；微观残差捕捉 | 杏仁核 (Amygdala)<br>丘脑 (Thalamus)<br>蓝斑核 (Locus Coeruleus) | 显著性网络 (Salience Network)<br>去甲肾上腺素 (NE) 系统 | 增益加权矩阵 $\mathbf{\Gamma}_{\Delta}$<br>感知残差放大器 $\Delta(t)$ |
 | **第三维：极度感性 (Sentient Depth)** | System 1 身体经验缓存；共情能量转化 | 边缘系统 (Limbic System)<br>海马体 (Hippocampus)<br>镜像神经元系统 (MNS) | 默认模式网络 (DMN) 躯体子网络<br>催产素 & 5-羟色胺 (5-HT) | 启发式向量缓存 $\mathbf{C}_{\text{sentient}}$<br>情感阻尼与做功势能转换 |
 | **第四维：流体智力 (Fluid Intelligence)** | 工作记忆矩化求解；高维正交拆解 | 背外侧前额叶皮层 (dlPFC)<br>顶下小叶 (IPL) | 额顶控制网络 (Frontoparietal Network)<br>乙酰胆碱 (ACh) 专注回路 | 工作记忆矩阵算子 ($B \le 7 \pm 2$)<br>正交消纳求解器 |
-| **第五维：元认知 (Metacognition)** | 二阶 Meta-Audit；跃出哥德尔死锁 | 前额极皮层 (aPFC / BA 10区)<br>背侧前扣带回 (dACC) | Meta-Cognitive Control Network<br>二阶 Meta-Bayesian 审计网络 | 进化跃迁函子 $\mathbf{\Phi}$<br>公理基底重构算子 $\mathbf{e}_{\text{new}}$ |
+| **第五维：元认知 (Metacognition)** | 二阶 Meta-Audit；跃出哥德尔死锁 | 前额极皮层 (aPFC / BA 10区)<br>背侧前扣带回 (dACC) | Meta-Cognitive Control Network<br>二阶 Meta-Bayesian 审计网络 | 进化跃迁函子 $\Phi$<br>公理基底重构算子 $\mathbf{e}_{\text{new}}$ |
 
 ---
 
@@ -98,15 +98,15 @@ $$\mathbf{E}_{\mathrm{supp}}[p(\Delta)] = \begin{cases} p(\Delta), & |\Delta| \l
 
 背外侧前额叶皮层（dlPFC）与额顶网络承载流体智力。受限于米勒常数（Working Memory 物理带宽 $B \le 7 \pm 2$），dlPFC 无法直接存储海量数据，但它能在工作记忆中对高维状态空间进行降维正交化求解，将 $O(N!)$ 冲突拆解为可计算的降维阵列。
 
-### 4.2 元认知（Metacognition）：前额极皮层（aPFC / BA 10）进化函子 $\mathbf{\Phi}$
+### 4.2 元认知（Metacognition）：前额极皮层（aPFC / BA 10）进化函子 $\Phi$
 
 前额极皮层（BA 10）是人类大脑中最高阶、演化最晚的区域，专门负责二阶认知（Meta-Cognition）。
 
 当当前脑模型 $\mathcal{M}_t$ 在面对复杂现实时碰撞出哥德尔不完备死锁、图灵停机未决或莱斯定理语义不可判定时，aPFC 激活二阶 Meta-Bayesian 审计：
 1. 审视当前模型 $\mathcal{M}_t$ 本身的先验假设与维度缺陷；
-2. 触发进化函子 $\mathbf{\Phi}$，非自回归地跳出现有形式系统；
+2. 触发进化函子 $\Phi$，非自回归地跳出现有形式系统；
 3. 引入全新的基底向量 $\mathbf{e}_{\text{new}}$，实现公理体系的重组进化：
-$$\mathbf{\Phi}: \mathcal{M}_t \to \mathcal{M}_{t+1} \quad (\text{where } \mathcal{M}_{t+1} = \mathcal{M}_t \oplus \mathbf{e}_{\text{new}})$$
+$$\Phi: \mathcal{M}_t \to \mathcal{M}_{t+1} \quad (\text{where } \mathcal{M}_{t+1} = \mathcal{M}_t \oplus \mathbf{e}_{\text{new}})$$
 
 ---
 

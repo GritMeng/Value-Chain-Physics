@@ -129,15 +129,15 @@ $$h: \Omega \longrightarrow D \quad (\text{调节器必须是受控系统的同�
 #### 物理学与数学严格化推导
 
 1. **范畴同态模型映射**：
-   统御算符 $\Pi = \langle D, A \rangle$ 内部的 $D$ 容器作为物理同态模型。设物理实体运行的真实轨线范畴为 $\mathcal{C}_{\text{real}}$，内部建模空间范畴为 $\mathcal{C}_{\text{model}}$。同态映射要求对于任意的状态转移算符满足：
+   统御算符 $\Pi = \langle D, A \rangle$ 内部的 $D$ 容器作为物理同态模型。设物理实体运行的真实轨线范畴为 $\mathcal{C}_{\text{real}}$，内部建模空间范畴为 $\mathcal{C}_$\mathcal{M}_{\text{model}}$。同态映射要求对于任意的状态转移算符满足：
    $$h(A \circ B) = h(A) \circ h(B)$$
 
 2. **结构性模型偏差的致命溢出**：
-   若 $h$ 发生破缺（例如忽略了硬性物理产能约束，或良率非线性相变），则投影算符 $\Pi$ 将引入无法被算法 $A$ 消除的**结构性偏差 $\epsilon_{\text{model}}$**。大一统方程退化为：
+   若 $h$ 发生破缺（例如忽略了硬性物理产能约束，或良率非线性相变），则投影算符 $\Pi$ 将引入无法被算法 $A$ 消除的**结构性偏差 $\epsilon_$\mathcal{M}_{\text{model}}$**。大一统方程退化为：
    $$V_{\Omega}(t+1) = M \cdot (\Pi_{\text{ideal}} + \epsilon_{\text{model}}) \left[ \sum_{i=1}^n (m_i^* \cdot \pi_i^* \cdot S_i) + \Delta(t) \right]$$
    即使算法 A 的求解算力是无限的，系统长尾残差的渐进下界依然被结构偏差锁死：
    $$\lim_{t\to\infty} \|\Delta(t)\| \ge \frac{\|\epsilon_{\text{model}}\|}{1 - \|\Pi\|} > 0$$
-   这从数学上证明了：任何脱离了“物理同态模型 $D$”而试图用纯概率学习（如黑盒大模型）进行复杂物理系统控制的调节器，必然因结构性偏差 $\epsilon_{\text{model}}$ 产生系统性失调。
+   这从数学上证明了：任何脱离了“物理同态模型 $D$”而试图用纯概率学习（如黑盒大模型）进行复杂物理系统控制的调节器，必然因结构性偏差 $\epsilon_$\mathcal{M}_{\text{model}}$ 产生系统性失调。
 
 ---
 

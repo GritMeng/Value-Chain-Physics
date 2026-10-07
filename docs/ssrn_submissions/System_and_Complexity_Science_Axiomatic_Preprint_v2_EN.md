@@ -2860,7 +2860,7 @@ where the human subject provides the second-order metacognitive operator $\mathb
 
 #### A.1 Vector Cancellation Equation and Waste Heat Theorem
 In unpartitioned and unconstrained open complex giant systems, multi-agent games result in vector opposition:
-$$\mathbf{V}_{\mathrm{sys}} = \sum_{i=1}^N \mathbf{V}_i, \quad Q_{\mathrm{waste}} = \sum_{i=1}^N \Vert\mathbf{V}_i\Vert - \left\Vert \sum_{i=1}^N \mathbf{V}_i \right\Vert$$
+$$\mathbf{V}_{\mathrm{sys}} = \sum_{i=1}^N \mathbf{V}_i, \quad Q_{\mathrm{waste}} = \sum_{i=1}^N \Vert\mathbf{V}_i\Vert - \left\Vert \sum_{i=1}^N \mathbf{V}_i \\right\Vert$$
 When subsystem intention vectors are non-orthogonal, work canceled out by vector opposition is physically converted entirely into internal dissipative waste heat $Q_{\mathrm{waste}}$, driving the system towards thermal collapse ($\Delta S \to \infty$).
 
 #### A.2 Goodhart Inequality and Tight-Support Operator Clipping Proof
