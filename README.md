@@ -4,7 +4,7 @@
 
 **作者 / Author：** 孟凡淳 (Grit Meng / Fanchun Meng)  
 **履历 / Profile：** 前联想集团全球供应链集成计划方案（IPS）系统负责人兼总设计师
-*Former Head & Chief Architect of Global Supply Chain Integrated Planning (IPS), Lenovo Group*  
+*Former Head & Chief Architect of Global Supply Chain Integrated Planning Solution (IPS), Lenovo Group*  
 **官方 GitHub 主页：** [gritmeng.github.io/Value-Chain-Physics](https://gritmeng.github.io/Value-Chain-Physics/)  
 **联系邮箱 / Email：** gritmeng@outlook.com 
 
