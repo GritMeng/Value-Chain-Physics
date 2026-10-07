@@ -1,12 +1,12 @@
 # 系统与复杂性科学 & 价值链物理学：秩序的生成、存续与进化
 ## System & Complexity Science & Physics of Value Chain Management
-### —— 开放复杂巨系统的物理学宪法与治理法则 (The Physical Constitution for Open Complex Giant Systems)
+### —— 开放复杂巨系统的统御原理 (The Physical Constitution for Open Complex Giant Systems)
 
 **作者 / Author：** 孟凡淳 (Grit Meng / Fanchun Meng)  
-**履历 / Profile：** 前联想集团全球供应链集成计划体系（IPS）方案系统负责人 & 首席架构师  
+**履历 / Profile：** 前联想集团全球供应链集成计划方案（IPS）系统负责人兼总设计师
 *Former Head & Chief Architect of Global Supply Chain Integrated Planning (IPS), Lenovo Group*  
 **官方 GitHub 主页：** [gritmeng.github.io/Value-Chain-Physics](https://gritmeng.github.io/Value-Chain-Physics/)  
-**联系邮箱 / Email：** gritmeng@outlook.com  
+**联系邮箱 / Email：** gritmeng@outlook.com 
 
 ---
 
