@@ -64,14 +64,14 @@ $$\mathcal{M}_{\text{model}} = \langle \mathcal{N}, \mathcal{T}, \mathcal{C}, X,
 - **$\mathcal{N}$（节点, Nodes）**：界内所有物理机台、物料与控制单元的微观实体集合；
 - **$\mathcal{T}$（拓扑, Topology）**：节点相互作用的非线性连接矩阵 $\mathbf{A}$ 及有向无环图（Directed Acyclic Graph, DAG）；
 - **$\mathcal{C}$（约束簇, Constraints）**：刚性轨道流形 $\Pi_\bot$ 施加的自由度限制数 $C$（设备产能上限、物料到货提前期、刚性交期）；
-- **$X(t)$（状态矢量, State Vectors）**：系统在状态空间 $\Omega$ 中的瞬时状态坐标向量 $X(t)$；
-- **$\Delta X(t)$（状态跃迁, State Transitions）**：残差 $\Delta = X_{\text{real}}(t) - X_{\text{target}}(t)$ 被动触发的相变与演化跃迁路径。
+- **$X$（状态矢量, State Vectors）**：系统在状态空间 $\Omega$ 中的瞬时状态坐标向量 $X$（时变写为 $X(t)$）；
+- **$\Delta X$（状态跃迁, State Transitions）**：残差 $\Delta = X_{\text{real}}(t) - X_{\text{target}}(t)$ 被动触发的相变与演化跃迁路径。
 
 根据全息抗熵理论体系，描述系统物理相空间状态的底层五维基元——节点、拓扑、约束簇、状态矢量、状态跃迁——构成系统性完备且不可约化（SCI）的拓扑不变量。若上述五个维度中缺失任一维度，系统状态流形发生退化，系统丧失与外部环境进行抗熵做功的能力。在原始相空间中，五个维度之间存在显著的非线性耦合（非正交），其非正交干涉正是矢量对消的物理根源；经先验划界算符 $\Pi$ 降维与刚性流形 $\Pi_\bot$ 裁剪后，在有限可行空间 $\Omega_{\mathrm{feasible}}$ 内对可控自由度进行正交化投影，剩余可控子空间呈现正交结构。
 
 > **【因果钉扎（Causal Anchoring）与双重对偶判决实战】**
 >
-> 1. **第四维与第五维实相**：第四维状态矢量 $\mathbf{X}$ 为全息生产数据行（包含初始基线计划、上一次计划状态、最新实际在库在制执行状态）；第五维状态跃迁 $\Delta\mathbf{X}$ 为因果钉扎（Causal Anchoring）链与带着因果的残差；
+> 1. **第四维与第五维实相**：第四维状态矢量 $X$ 为全息生产数据行（包含初始基线计划、上一次计划状态、最新实际在库在制执行状态）；第五维状态跃迁 $\Delta X$ 为因果钉扎（Causal Anchoring）链与带着因果的残差；
 > 2. **PO / IC / WIP / FG 因果钉扎**：采购单（PO）、在库库存（IC）、机台在制品（WIP）通过具体生产与物流做功，被刚性钉扎到客户销售订单（SO）和成品（FG）上；
 > 3. **顺着因果钉扎链条逆向回溯判决**：
 >    - **世界偏了**：卡车在高速上堵了 2 小时、供应商交期拖延，一阶调排产拉动自愈；
@@ -89,8 +89,8 @@ $$\mathcal{M}_{\text{model}} = \langle \mathcal{N}, \mathcal{T}, \mathcal{C}, X,
 - **原则三 方案论（五维双螺旋原则）**：降维治理必须依托“全息数据模型（左螺旋） + 动态演化算法（右螺旋）”的五维双螺旋，在刚性流形 $\Pi_\bot$ 上实现代数剪枝。
 - **原则四 能力论（三位一体融合原则）**：业务本体不可分割，能力建设必须形成“业务解码（穿透耦合）、系统建模（固化耦合）、闭环协同（驾驭耦合）”三位一体。
 - **原则五 机制论（配额自治与集中协调原则）**：集中式先验划界与刚性势垒统御优于纯分散协商，通过调整全局配额向量 $\mathbf{r} \in \mathcal{C}$ 引导子域自治。
-- **原则六 路径论（可观测与决策反写原则）**：控制域维度受限于观测域维度（$\dim\mathcal{C} \le \dim\mathcal{O}$），控制机制必须实现“人在环外、决策自动化反写（Write-Back）”物理节点。
-- **原则七 动力论（物理支点与杠杆原则）**：控制能量必须精准作用于紧约束瓶颈支点 $\mathbf{x}_{\mathrm{fulcrum}} \in \mathcal{C}_{\mathrm{active}}$，使错配夹角收敛（$\theta \rightarrow 0 \Longrightarrow \cos\theta \rightarrow 1$），实现有效做功最大化。
+- **原则六 路径论（可观测与决策反写原则）**：控制域维度受限于观测域维度（$\dim(C) \le \dim(O)$），控制机制必须实现“人在环外、决策自动化反写（Write-Back）”物理节点。
+- **原则七 动力论（物理支点与杠杆原则）**：控制能量必须精准作用于紧约束瓶颈支点 $X_{\text{fulcrum}} \in \mathcal{C}_{\text{active}}$，使错配夹角收敛（$\theta \to 0 \implies \cos\theta \to 1$），实现有效做功最大化。
 - **原则八 进化论（二阶自省原则）**：常态由硅基在环外自主自愈；当残差超阈值 $\Delta > \theta_{\mathrm{trigger}}$ 发生相变死锁时，人类引入二阶元认知修宪算子 $\Phi_{\mathrm{Human}}$（Higher-order Meta-heuristic Operator，在认知科学中对应人类前额叶高级自省决策功能）重写公理基底（$\Phi: \Pi_k \rightarrow \Pi_{k+1}$）。
 
 ---
@@ -107,9 +107,9 @@ $$\left\| \sum_{i=1}^{N} \mathbf{v}_i \right\| \le \sum_{i=1}^{N} \| \mathbf{v}_
 
 系统由于物理干涉被对消掉的做功能量定义为内部耗散废热（Coordinated Dissipative Heat）：
 
-$$\Delta W_{\mathrm{heat}} \triangleq \sum_{i=1}^{N} \| \mathbf{v}_i \| - \left\| \sum_{i=1}^{N} \mathbf{v}_i \right\| \ge 0$$
+$$\Delta W_{\text{heat}} \triangleq \sum_{i=1}^{N} \| \mathbf{v}_i \| - \left\| \sum_{i=1}^{N} \mathbf{v}_i \right\| \ge 0$$
 
-在物理上，$\Delta W_{\mathrm{heat}}$ 主要表现为部门间控制矢量的非正交干涉；在微观运营上，该矢量差额直接转化为在制品堆积周期（WIP Duration）的延长与停工待料工时（Idle Man-hours）的增加；在财务映射上，这必然导致制造营业成本（COGS）上升与营运资本（NWC）被动占压，从而降低 NOPAT 并膨胀 Invested Capital，最终造成 ROIC 的持续下行。当错配夹角 $\theta \rightarrow 0$ 时，$\cos\theta \rightarrow 1$，系统有效做功转化率达到物理极限 $W_{\mathrm{eff}} = W_{\mathrm{total}} \cdot \cos\theta \rightarrow W_{\mathrm{total}}$。
+在物理上，$\Delta W_{\text{heat}}$ 主要表现为部门间控制矢量的非正交干涉；在微观运营上，该矢量差额直接转化为在制品堆积周期（WIP Duration）的延长与停工待料工时（Idle Man-hours）的增加；在财务映射上，这必然导致制造营业成本（COGS）上升与营运资本（NWC）被动占压，从而降低 NOPAT 并膨胀 Invested Capital，最终造成 ROIC 的持续下行。当错配夹角 $\theta \to 0$ 时，$\cos\theta \to 1$，系统有效做功转化率达到物理极限 $W_{\text{eff}} = W_{\text{total}} \cdot \cos\theta \to W_{\text{total}}$。
 
 ### 4.2 定理 2：五维双螺旋代数剪枝与复杂度收敛
 
@@ -135,18 +135,18 @@ X(t+1) = X(t) + \Delta X(t) & \text{（算后递推新态：推进下一时刻�
 
 $$T(N) = O(K \cdot N \log N) \in \mathbf{P}, \quad \text{且 } T(N) \le \tau_{\text{phy}} < +\infty$$
 
-由于内耗废热满足非负下界 $\Delta W_{\text{heat}} \ge 0$，且约束流形编码了零矢量对消条件（$\langle \mathbf{v}_i, \mathbf{v}_j \rangle \ge 0$），在有限步内成功走通意味着累积废热恒等于零（$\Delta W_{\text{heat}} = 0$）。达到物理底线 0 即在定义上等价于界内绝对最优；在刚性排他约束下，物理执行轨迹别无选择只能收敛于唯一绝对最优稳态 $\mathbf{x}_k^*$（“走通 $\equiv$ 零对消 $\equiv$ 界内绝对最优且唯一”）。
+由于内耗废热满足非负下界 $\Delta W_{\text{heat}} \ge 0$，且约束流形编码了零矢量对消条件（$\langle \mathbf{v}_i, \mathbf{v}_j \rangle \ge 0$），在有限步内成功走通意味着累积废热恒等于零（$\Delta W_{\text{heat}} = 0$）。达到物理底线 0 即在定义上等价于界内绝对最优；在刚性排他约束下，物理执行轨迹别无选择只能收敛于唯一绝对最优稳态 $S_k^*$（“走通 $\equiv$ 零对消 $\equiv$ 界内绝对最优且唯一”）。
 
-为了防止极限优化压强下的 Goodhart 崩溃（即当一个指标被选为考核目标时，它便不再是一个好指标而引发极端套利，表现为 $\lim_{\mathrm{optimization} \rightarrow \infty} \mathbb{E}(r^*) = -\infty$），本文引入悬挂在目标与残差分布上的合规域紧支撑投影算子 $E_{\text{supp}}$（良知算子）。算子 $E_{\text{supp}}$ 作用于残差概率密度 $p(\Delta)$ 上，通过投影截断将残差支撑集限制至紧凑死区区间 $[-\theta_{\text{dead}}, \theta_{\text{dead}}]$。当残差企图突破边界时被物理截断，严格封顶残差方差：
+为了防止极限优化压强下的 Goodhart 崩溃（即当一个指标被选为考核目标时，它便不再是一个好指标而引发极端套利，表现为 $\lim_{\text{optimization} \to \infty} \mathbb{E}(r^*) = -\infty$），本文引入悬挂在目标与残差分布上的合规域紧支撑投影算子 $E_{\text{supp}}$（良知算子）。算子 $E_{\text{supp}}$ 作用于残差概率密度 $p(\Delta)$ 上，通过投影截断将残差支撑集限制至紧凑死区区间 $[-\theta_{\text{dead}}, \theta_{\text{dead}}]$。当残差企图突破边界时被物理截断，严格封顶残差方差：
 
-$$\mathrm{Var}(\Delta\mathbf{x}) \le K_{\mathrm{supp}} < \infty$$
+$$\operatorname{Var}(\Delta X) \le K_{\text{supp}} < \infty$$
 
 阻断了由指标异化（Goodhart’s Law）引起的系统状态发散风险。
 
 ### 4.4 核心定理：钱学森开放复杂巨系统（OCGS）三大原则的形式化证明定理
 
 > [!IMPORTANT]
-> **前置条件**：在观察者通过先验算符 $\Pi$ 划界、刚性流形 $\Pi_\bot$ 约束、耗散机制与 $\Phi$ 自省共同构造 $K \le \frac{\tau_{\text{phy}}}{\Delta t_{\text{clock}}} < +\infty$ 的前提下。
+> **前置条件**：在观察者通过先验划界算符 $\Pi$ 划界、刚性流形 $\Pi_\bot$ 约束、耗散机制与 $\Phi$ 自省共同构造 $K \le \frac{\tau_{\text{phy}}}{\Delta t_{\text{clock}}} < +\infty$ 的前提下。
 
 本文针对具备有向无环图因果结构特征的实体离散制造价值网络类开放复杂巨系统，正式提出并证明钱学森 OCGS 三大核心原则的形式化证明定理：
 
@@ -157,18 +157,18 @@ $$\mathrm{Var}(\Delta\mathbf{x}) \le K_{\mathrm{supp}} < \infty$$
    证明在 Non-IID 相空间中，若缺乏统一的先验划界算符 $\Pi$ 与集中式配额/轨道统御，独立子域寻优必受矢量三角不等式约束，产生全局矢量对消废热 $\Delta W_{\mathrm{heat}} = \sum \| \mathbf{v}_i \| - \| \sum \mathbf{v}_i \| > 0$，系统必被锁死于非合作纳什均衡死锁与布朗运动内耗。因此，在本文 Non-IID 矢量对消框架下，钱学森先生提出的“总体设计部”为复杂巨系统打破纳什死锁、消除废热的必要条件（Necessity）；在其配合刚性势垒 $\Pi_\bot$ 施加的线性轨道约束下构成立体协同的充分条件（Sufficiency）。
 
 2. **“综合集成研讨厅（HWDS）”的闭环可计算性证明**：  
-   证明五维双螺旋（左螺旋全息数据模型 + 右螺旋动态演化算法）通过先验算符 $\Pi$ 将相空间剪枝至 $\Omega_{\mathrm{feasible}}$，并在刚性流形 $\Pi_\bot$ 上执行法向自由度剥离（$x_\bot(t) \rightarrow 0$），基于拓扑排序与约束传播将阶乘级搜索空间 $\mathcal{O}(N!)$ 代数剪枝压缩为经验多项式复杂度 $\mathcal{O}(N \log N)$（或通用分支定界上界 $\mathcal{O}(b^L)$）。在观察者通过 $\Pi$ 划界、$\Pi_\bot$ 约束、物理失稳窗口截断（$K < +\infty$）的前提下，由因果解耦多项式闭环可计算定理解析保证唯一最优稳态 $\mathbf{x}_k^*$ 的存在性与闭环收敛性（且其做功量严格优于任一开环 Nash 均衡）。此即钱学森综合集成研讨厅攻克计算不可约性的数学机制，构成闭环可计算性（Closed-Loop Computability）的充分机制；其必要性由计算复杂性下界界定：在无额外结构假设下，一般 Non-IID 调度网络（含 Job-Shop Scheduling 作为其特例）属 NP-hard，故不存在对所有实例皆多项式时间的通用算法；本框架基于物理失稳窗口对因果 DAG 深度的有限截断（$K < \infty$），保证了多项式闭环可计算性。
+   证明五维双螺旋（左螺旋全息数据模型 + 右螺旋动态演化算法）通过先验划界算符 $\Pi$ 将相空间剪枝至 $\Omega_{\text{feasible}}$，并在刚性流形 $\Pi_\bot$ 上执行法向自由度剥离（$x_\bot(t) \to 0$），基于拓扑排序与约束传播将阶乘级搜索空间 $\mathcal{O}(N!)$ 代数剪枝压缩为经验多项式复杂度 $\mathcal{O}(N \log N)$（或通用分支定界上界 $\mathcal{O}(b^L)$）。在观察者通过 $\Pi$ 划界、$\Pi_\bot$ 约束、物理失稳窗口截断（$K < +\infty$）的前提下，由因果解耦多项式闭环可计算定理解析保证唯一最优稳态 $S_k^*$ 的存在性与闭环收敛性（且其做功量严格优于任一开环 Nash 均衡）。此即钱学森综合集成研讨厅攻克计算不可约性的数学机制，构成闭环可计算性（Closed-Loop Computability）的充分机制；其必要性由计算复杂性下界界定：在无额外结构假设下，一般 Non-IID 调度网络（含 Job-Shop Scheduling 作为其特例）属 NP-hard，故不存在对所有实例皆多项式时间的通用算法；本框架基于物理失稳窗口对因果 DAG 深度的有限截断（$K < \infty$），保证了多项式闭环可计算性。
 
 3. **“人机结合 / 以人为主”的必要性与充分性证明**：  
-   纯硅基一阶演化算法 $\mathcal{A}_{\mathrm{Silicon}}$ 在给定先验划界 $\Pi_k$ 与固定公理/约束集内部是确定性闭环，根据形式系统内界闭锁性与非自举定理（System Non-Self-Bootstrapping），算法无法在其形式语言内部自发证明并替换自身公理；当残差 $\Delta > \theta_{\mathrm{trigger}}$ 且问题超出 $\Pi_k$ 表达范围时，仅靠 $\mathcal{A}$ 在 $\Pi_k$ 内部无解或陷入重构失效。人类二阶元认知修宪算子 $\Phi_{\mathrm{Human}}: \Pi_k \rightarrow \Pi_{k+1}$（在认知科学中对应人类前额叶高级自省决策功能）提供跨框架公理重写能力。系统的全局做功算子必表达为：
+   纯硅基一阶演化算法 $\mathcal{A}_{\text{Silicon}}$ 在给定先验划界 $\Pi_k$ 与固定公理/约束集内部是确定性闭环，根据形式系统内界闭锁性与非自举定理（System Non-Self-Bootstrapping），算法无法在其形式语言内部自发证明并替换自身公理；当残差 $\Delta > \theta_{\text{trigger}}$ 且问题超出 $\Pi_k$ 表达范围时，仅靠 $\mathcal{A}$ 在 $\Pi_k$ 内部无解或陷入重构失效。人类二阶元认知修宪算子 $\Phi_{\text{Human}}: \Pi_k \to \Pi_{k+1}$（在认知科学中对应人类前额叶高级自省决策功能）提供跨框架公理重写能力。系统的全局做功算子必表达为：
 
-$$\text{全局做功算子} = \Phi_{\mathrm{Human}} \otimes \mathcal{A}_{\mathrm{Silicon}}$$
+$$\text{全局做功算子} = \Phi_{\text{Human}} \otimes \mathcal{A}_{\text{Silicon}}$$
 
-在本文算子分解框架内，人类二阶元认知修宪算子 $\Phi_{\mathrm{Human}}$ 是打破硅基形式系统内界闭锁性的必要条件（Necessity）；做功算子 $\Phi_{\mathrm{Human}} \otimes \mathcal{A}_{\mathrm{Silicon}}$ 为实现复杂巨系统代际进化的充分条件。若 $\Phi \equiv 0$（纯硅基闭环），当残差超出临界阈值时系统在给定公理集内无解析自愈轨线。其推广至通用 OCGS 需重建 $\Phi$ 的物理载体与观测域。
+在本文算子分解框架内，人类二阶元认知修宪算子 $\Phi_{\text{Human}}$ 是打破硅基形式系统内界闭锁性的必要条件（Necessity）；做功算子 $\Phi_{\text{Human}} \otimes \mathcal{A}_{\text{Silicon}}$ 为实现复杂巨系统代际进化的充分条件。若 $\Phi \equiv 0$（纯硅基闭环），当残差超出临界阈值时系统在给定公理集内无解析自愈轨线。其推广至通用 OCGS 需重建 $\Phi$ 的物理载体与观测域。
 
 **证明（概要）**：  
-1. **总体设计部必要性与充分性**：在 Non-IID 连接矩阵 $\mathbf{A}$ 作用下，各子节点独立求极值导致各矢量夹角内积为负（$\langle \mathbf{v}_i, \mathbf{v}_j \rangle < 0$）。由矢量三角不等式，合矢量模长满足 $\left\| \sum \mathbf{v}_i \right\| < \sum \| \mathbf{v}_i \|$，必然产生 $\Delta W_{\mathrm{heat}} > 0$。在本文线性矢量对消框架下，总体设计部为打破纳什死锁之必要条件；配合 $\Pi_\bot$ 线性轨道约束，构成立体协同之充分条件。
-2. **综合集成可计算性**：经 $\Pi$ 划界与拓扑排序，系统节点全排列 $N!$ 约束收敛为 DAG 图上的因果拓扑序，求精复杂度降至 $\mathcal{O}(N \log N)$；刚性流形 $\Pi_\bot$ 剥离法向分量后，由内部摩擦耗散与残差触发 $\Phi$ 重写共同驱动系统拓扑连接矩阵 $\mathbf{A}$ 的因果网络截断深度 $K$满足 $K \le \frac{\tau_{\text{phy}}}{\Delta t_{\text{clock}}} < +\infty$。按物理失稳时间有限截断多项式闭环可计算定理，在结构固定阶段，迭代序列构成因果 DAG 单向无回溯前向推演，保证收敛至唯一稳态 $\mathbf{x}_k^*$（其做功量严格优于任一开环 Nash 均衡）。在划界与耗散构造前提下，闭环可计算性成立。
+1. **总体设计部必要性与充分性**：在 Non-IID 连接矩阵 $\mathbf{A}$ 作用下，各子节点独立求极值导致各矢量夹角内积为负（$\langle \mathbf{v}_i, \mathbf{v}_j \rangle < 0$）。由矢量三角不等式，合矢量模长满足 $\left\| \sum \mathbf{v}_i \right\| < \sum \| \mathbf{v}_i \|$，必然产生 $\Delta W_{\text{heat}} > 0$。在本文线性矢量对消框架下，总体设计部为打破纳什死锁之必要条件；配合 $\Pi_\bot$ 线性轨道约束，构成立体协同之充分条件。
+2. **综合集成可计算性**：经 $\Pi$ 划界与拓扑排序，系统节点全排列 $N!$ 约束收敛为 DAG 图上的因果拓扑序，求精复杂度降至 $\mathcal{O}(N \log N)$；刚性流形 $\Pi_\bot$ 剥离法向分量后，由内部摩擦耗散与残差触发 $\Phi$ 重写共同驱动系统拓扑连接矩阵 $\mathbf{A}$ 的因果网络截断深度 $K$满足 $K \le \frac{\tau_{\text{phy}}}{\Delta t_{\text{clock}}} < +\infty$。按物理失稳时间有限截断多项式闭环可计算定理，在结构固定阶段，迭代序列构成因果 DAG 单向无回溯前向推演，保证收敛至唯一稳态 $S_k^*$（其做功量严格优于任一开环 Nash 均衡）。在划界与耗散构造前提下，闭环可计算性成立。
 3. **人机协同算子必要性与充分性**：设一阶算法系统为 $\mathcal{A}$，其状态空间受限于有限公理集 $\Pi_k$。根据形式系统非自举定理，对任意 $\Delta > \theta_{\mathrm{trigger}}$，在 $\Pi_k$ 内部不存在解析自愈轨线（一阶算法无法自发证明或改写其自身公理）。人类二阶元认知修宪算子具备二阶超形式映射 $\Phi: \mathrm{Map}(\Xi \rightarrow \Omega_k) \rightarrow \mathrm{Map}(\Xi \rightarrow \Omega_{k+1})$。因此，人类二阶元认知修宪算子 $\Phi_{\mathrm{Human}}$ 是打破闭锁的必要条件，与硅基算力 $\mathcal{A}_{\mathrm{Silicon}}$ 的张量积构成实现系统代际自愈进化的充分条件。
 
 **证毕。**
