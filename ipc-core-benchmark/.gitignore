@@ -1,0 +1,11 @@
+# Build artifacts
+build/
+bin/
+*.obj
+*.exe
+*.log
+*.tmp
+
+# Python cache
+__pycache__/
+*.pyc

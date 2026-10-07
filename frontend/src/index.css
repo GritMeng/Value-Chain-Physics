@@ -1,0 +1,273 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-primary-bg: var(--color-primary-bg);
+  --color-success: var(--color-success);
+  --color-success-hover: var(--color-success-hover);
+  --color-success-bg: var(--color-success-bg);
+  --color-warning: var(--color-warning);
+  --color-warning-hover: var(--color-warning-hover);
+  --color-warning-bg: var(--color-warning-bg);
+  --color-danger: var(--color-danger);
+  --color-danger-hover: var(--color-danger-hover);
+  --color-danger-bg: var(--color-danger-bg);
+  --color-purple: var(--color-purple);
+  --color-purple-hover: var(--color-purple-hover);
+  --color-purple-bg: var(--color-purple-bg);
+  --color-chart-bg: var(--color-chart-bg);
+  --bg-input: var(--bg-input);
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'Roboto Mono', 'SF Mono', Menlo, Monaco, Consolas, monospace;
+}
+
+@layer base {
+  :root {
+    /* 默认深空雅灰曜黑主题 (Slate Charcoal IBP Dark Mode) - SAP IBP & Palantir style */
+    --bg-main: #0b0e14;
+    --bg-card: #121620;
+    --bg-header: #121620;
+    --border-color: #1e2538;
+    --border-table: #161c28;
+    --bg-table-header: #161c28;
+    --bg-table-hover: #1c2335;
+    --text-main: #94a3b8;
+    --text-heading: #f8fafc;
+    --text-muted: #475569;
+    
+    --color-primary: #4f46e5;
+    --color-primary-hover: #6366f1;
+    --color-primary-bg: rgba(79, 70, 229, 0.08);
+    --color-success: #10b981;
+    --color-success-hover: #34d399;
+    --color-success-bg: rgba(16, 185, 129, 0.08);
+    --color-warning: #d97706;
+    --color-warning-hover: #fbbf24;
+    --color-warning-bg: rgba(217, 119, 6, 0.08);
+    --color-danger: #ef4444;
+    --color-danger-hover: #f87171;
+    --color-danger-bg: rgba(239, 68, 68, 0.08);
+    --color-purple: #8b5cf6;
+    --color-purple-hover: #a78bfa;
+    --color-purple-bg: rgba(139, 92, 246, 0.08);
+    --color-chart-bg: #090b10;
+    --bg-input: #090b10;
+  }
+
+  body.theme-light {
+    /* 变色方案：高档工业级钢灰曜白主题 (Premium Corporate Steel Gray Light Mode) - Kinaxis Maestro & Anaplan style */
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-header: #ffffff;
+    --border-color: #cbd5e1;
+    --border-table: #e2e8f0;
+    --bg-table-header: #f1f5f9;
+    --bg-table-hover: #f8fafc;
+    --text-main: #475569;
+    --text-heading: #0f172a;
+    --text-muted: #64748b;
+    
+    --color-primary: #2563eb;
+    --color-primary-hover: #1d4ed8;
+    --color-primary-bg: #eff6ff;
+    --color-success: #10b981;
+    --color-success-hover: #059669;
+    --color-success-bg: #ecfdf5;
+    --color-warning: #d97706;
+    --color-warning-hover: #b45309;
+    --color-warning-bg: #fffbeb;
+    --color-danger: #dc2626;
+    --color-danger-hover: #b91c1c;
+    --color-danger-bg: #fef2f2;
+    --color-purple: #7c3aed;
+    --color-purple-hover: #6d28d9;
+    --color-purple-bg: #f5f3ff;
+    --color-chart-bg: #ffffff;
+    --bg-input: #ffffff;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    overflow: hidden;
+    letter-spacing: -0.01em;
+    font-size: 11px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+}
+
+/* 🌟 o9 / Kinaxis 工业级高密度紧凑卡片 */
+.workbench-card {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+body.theme-light .workbench-card {
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.03), 0 1px 2px 0 rgba(15, 23, 42, 0.02);
+}
+
+/* Custom fine scrollbar */
+*::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+*::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 2px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* 🌟 Enterprise grid cell dirty markers */
+.cell-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dirty-marker {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 0;
+  height: 0;
+  border-top: 5px solid var(--color-primary);
+  border-left: 5px solid transparent;
+  pointer-events: none;
+  z-index: 10;
+}
+.cell-dirty {
+  background-color: var(--color-primary-bg) !important;
+  border: 1px solid var(--color-primary) !important;
+  color: var(--color-primary) !important;
+}
+.dirty-marker-sandbox {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 0;
+  height: 0;
+  border-top: 5px solid var(--color-warning);
+  border-left: 5px solid transparent;
+  pointer-events: none;
+  z-index: 10;
+}
+.cell-dirty-sandbox {
+  background-color: rgba(210, 153, 34, 0.08) !important;
+  border: 1px solid var(--color-warning) !important;
+  color: var(--color-warning) !important;
+}
+
+/* EKG Flow Animations */
+@keyframes flowParticles {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+.ekg-flow-line {
+  stroke: var(--border-color);
+  stroke-width: 1.5;
+  fill: none;
+  transition: all 0.3s ease;
+}
+.ekg-flow-active {
+  stroke: var(--color-primary);
+  stroke-width: 1.5;
+  stroke-dasharray: 5, 5;
+  animation: flowParticles 1.5s linear infinite;
+}
+.ekg-flow-decouple {
+  stroke: var(--color-warning);
+  stroke-width: 1.5;
+  stroke-dasharray: 5, 5;
+  animation: flowParticles 1.5s linear infinite;
+}
+.ekg-flow-vvip {
+  stroke: var(--color-success);
+  stroke-width: 1.5;
+  stroke-dasharray: 5, 5;
+  animation: flowParticles 1.5s linear infinite;
+}
+.ekg-flow-boundary {
+  stroke: var(--color-danger);
+  stroke-width: 1.5;
+  stroke-dasharray: 4, 4;
+  animation: flowParticles 2.2s linear infinite;
+}
+
+.ekg-node {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.ekg-node:hover {
+  transform: scale(1.04);
+  filter: brightness(1.2);
+}
+
+/* ag-Grid Balham Dark and Light Overrides */
+.ag-theme-balham, .ag-theme-balham-dark {
+  --ag-background-color: var(--bg-card);
+  --ag-header-background-color: var(--bg-table-header);
+  --ag-border-color: var(--border-color);
+  --ag-row-hover-color: var(--bg-table-hover);
+  --ag-selected-row-background-color: var(--color-primary-bg);
+  --ag-font-size: 10.5px;
+  --ag-font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --ag-header-foreground-color: var(--text-muted);
+  --ag-data-color: var(--text-main);
+  --ag-header-cell-hover-background-color: var(--bg-table-hover);
+  --ag-odd-row-background-color: var(--bg-card);
+}
+
+.ag-theme-balham-dark {
+  --ag-border-color: #1e2538;
+}
+
+/* Custom styling for dirty grids */
+.ag-cell.grid-cell-dirty {
+  background-color: var(--color-primary-bg) !important;
+  font-weight: bold;
+}
+
+/* 🌟 Premium solver progress animation & fade-in */
+@keyframes progressMove {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-progress {
+  animation: progressMove 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
