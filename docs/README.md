@@ -111,32 +111,53 @@ h:/IPC/
 ---
 
 
+
 ## 📚 官方学术专著与同行评议论文全集 (Official Academic Monograph Suites)
 
-本仓库收录了开放复杂巨系统（OCGS）治理、五维心智模型、价值链物理学与 IPC 统御引擎的完整理论与工程实现。全套作品提供本地纯文本 Markdown (SSOT)、Word (`.docx`) 与高精 PDF (`.pdf`) 三种离线编译格式：
+本仓库收录了开放复杂巨系统（OCGS）治理、五维心智模型、价值链物理学与 IPC 统御引擎的完整理论与工程实现。全套作品提供本地纯文本 Markdown (SSOT)、Word (`.docx`) 与高精 PDF (`.pdf`) 三种离线编译格式，并在 SSRN 预印本平台取得全球分布式确权：
 
-### 1. 《良知驱动的全息元认知：五维心智模型》 (The 5D Mind Model Suite)
+### 1. 《良知驱动的全息元认知：五维心智模型》 (The 5D Mind Model Suite — SSRN 7451920)
 * **同行评议精简版**：[五维心智模型_总设计师心智画像_精简版.md](docs/五维心智模型_总设计师心智画像_精简版.md) | [DOCX](docs/五维心智模型_总设计师心智画像_精简版.docx) | [PDF](docs/五维心智模型_总设计师心智画像_精简版.pdf)
 * **专著全文版**：[良知驱动的全息元认知_五维心智模型_专著正文.md](docs/良知驱动的全息元认知_五维心智模型_专著正文.md)
 * **大众传播版**：[为什么最聪明的人反而最容易把系统搞死_五维心智模型大众版.md](docs/为什么最聪明的人反而最容易把系统搞死_五维心智模型大众版.md)
 * **全息纲领**：[五维引擎全息架构纲领_四大专著统一视界.md](docs/五维引擎全息架构纲领_四大专著统一视界.md)
+* **SSRN 预印本**：[SSRN Abstract 7451920](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7451920)
 
-### 2. 《系统与复杂性科学：秩序的生成、存续与进化》 (System & Complexity Science Suite)
+### 2. 《系统与复杂性科学：秩序的生成、存续与进化》 (System & Complexity Science Suite — SSRN 7251098)
 * **中文专著全本**：[系统与复杂性科学：秩序的生成、存续与进化 —— 开放复杂巨系统的统御原理.md](docs/系统与复杂性科学：秩序的生成、存续与进化%20——%20开放复杂巨系统的统御原理.md) | [DOCX](docs/系统与复杂性科学：秩序的生成、存续与进化%20——%20开放复杂巨系统的统御原理.docx) | [PDF](docs/系统与复杂性科学：秩序的生成、存续与进化%20——%20开放复杂巨系统的统御原理.pdf)
 * **英文学术全本**：[System_and_Complexity_Science_Full_English_Monograph.md](docs/System_and_Complexity_Science_Full_English_Monograph.md) | [DOCX](docs/System_and_Complexity_Science_Full_English_Monograph.docx) | [PDF](docs/System_and_Complexity_Science_Full_English_Monograph.pdf)
+* **SSRN 预印本**：[SSRN Abstract 7251098](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7251098)
 
-### 3. 《第二次文艺复兴：系统与复杂性科学》 (The Second Renaissance Suite)
+### 3. 《第二次文艺复兴：系统与复杂性科学》 (The Second Renaissance Suite — SSRN 7557899)
 * **中文排版正本**：[第二次文艺复兴_系统与复杂性科学_排版正本.md](docs/第二次文艺复兴_系统与复杂性科学_排版正本.md) | [DOCX](docs/第二次文艺复兴_系统与复杂性科学_排版正本.docx) | [PDF](docs/第二次文艺复兴_系统与复杂性科学_排版正本.pdf)
 * **英文 JSSC 论文**：[The_Second_Renaissance_System_Complexity_Science_JSSC.md](docs/The_Second_Renaissance_System_Complexity_Science_JSSC.md) | [DOCX](docs/The_Second_Renaissance_System_Complexity_Science_JSSC.docx) | [PDF](docs/The_Second_Renaissance_System_Complexity_Science_JSSC.pdf)
+* **SSRN 预印本**：[SSRN Abstract 7557899](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7557899)
 
-### 4. 《价值链物理学：基于非独立同分布（Non-IID）的形式化证明与全域可计算性》 (Value Chain Physics Suite)
+### 4. 《价值链物理学：基于非独立同分布（Non-IID）的形式化证明与全域可计算性》 (Value Chain Physics Suite — SSRN 7442100 / 7496118)
 * **中文形式化证明**：[价值链物理学：基于非独立同分布（Non-IID）的开放复杂巨系统形式化证明与全域可计算性研究.md](docs/价值链物理学：基于非独立同分布（Non-IID）的开放复杂巨系统形式化证明与全域可计算性研究.md) | [DOCX](docs/价值链物理学：基于非独立同分布（Non-IID）的开放复杂巨系统形式化证明与全域可计算性研究.docx) | [PDF](docs/价值链物理学：基于非独立同分布（Non-IID）的开放复杂巨系统形式化证明与全域可计算性研究.pdf)
 * **英文 JSSC 论文**：[Value_Chain_Physics_Non_IID_OCGS_JSSC.md](docs/Value_Chain_Physics_Non_IID_OCGS_JSSC.md) | [DOCX](docs/Value_Chain_Physics_Non_IID_OCGS_JSSC.docx) | [PDF](docs/Value_Chain_Physics_Non_IID_OCGS_JSSC.pdf)
+* **SSRN 预印本**：[SSRN Abstract 7442100](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7442100) | [SSRN Abstract 7496118](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7496118)
 
-### 5. 《开放复杂巨系统的活体表达与自洽可计算性》 (Living Expression of OCGS Suite)
+### 5. 《开放复杂巨系统的活体表达与自洽可计算性》 (Living Expression of OCGS Suite — SSRN 7557878)
 * **中文形式化证明**：[开放复杂巨系统的活体表达与自洽可计算性.md](docs/开放复杂巨系统的活体表达与自洽可计算性.md) | [DOCX](docs/开放复杂巨系统的活体表达与自洽可计算性.docx) | [PDF](docs/开放复杂巨系统的活体表达与自洽可计算性.pdf)
 * **英文 JSSC 论文**：[Formal_Proof_Living_Expression_OCGS_JSSC.md](docs/Formal_Proof_Living_Expression_OCGS_JSSC.md) | [DOCX](docs/Formal_Proof_Living_Expression_OCGS_JSSC.docx) | [PDF](docs/Formal_Proof_Living_Expression_OCGS_JSSC.pdf)
+* **SSRN 预印本**：[SSRN Abstract 7557878](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7557878)
 * **元科学纲领**：[元科学体系三部曲全息架构纲领_公理_活体_投影.md](docs/元科学体系三部曲全息架构纲领_公理_活体_投影.md)
+
+
+### 🏛️ SSRN 预印本平台与官方确权 (SSRN Author Dashboard & Distribution)
+
+作者在 Elsevier SSRN 预印本平台已获批并公开分布 (DISTRIBUTED) 6 篇核心学术论文，提供全球可追溯的预印本确权与时间戳：
+
+| SSRN Abstract ID | 论文英文标题 (Scholarly Paper Title) | 发布状态 (Status) | SSRN 官方链接 (Direct Preprint Link) |
+| :--- | :--- | :--- | :--- |
+| **SSRN 7251098** | *System and Complexity Science: The Generation, Persistence, and Evolution of Order* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7251098) |
+| **SSRN 7451920** | *Conscience-Driven Holographic Metacognition: The 5D Mind Model* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7451920) |
+| **SSRN 7442100** | *Value Chain Physics: Formal Proof of Open Complex Giant Systems and Full-Domain Computability* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7442100) |
+| **SSRN 7557878** | *Formal Proof of "Living Expression" and "Self-Consistent Computability" in Open Complex Giant Systems* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7557878) |
+| **SSRN 7557899** | *The Second Renaissance: Why System and Complexity Science Is the "Science of Sciences"* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7557899) |
+| **SSRN 7496118** | *Generation, Survival, and Evolution of Open Complex Giant Systems: Non-IID Isomorphic Proof* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7496118) |
+
 
 ## 📜 引用与学术元数据 (Citation & Metadata)
 
@@ -160,16 +181,5 @@ h:/IPC/
 }
 ```
 
-
----
-
-## 📚 《良知驱动的全息元认知：五维心智模型》学术专著 (5D Mind Model Monographs)
-
-- **中文版学术专著 (Full Chinese Monograph)**:
-  - Markdown 正文: [良知驱动的全息元认知_五维心智模型_专著正文.md](良知驱动的全息元认知_五维心智模型_专著正文.md)
-  - Word 排版: [良知驱动的全息元认知_五维心智模型_专著正文.docx](良知驱动的全息元认知_五维心智模型_专著正文.docx)
-- **英文版学术专著 (Full English Monograph)**:
-  - Markdown Text: [The_5D_Conscience_Holographic_Metacognition_OS_Full_Monograph.md](The_5D_Conscience_Holographic_Metacognition_OS_Full_Monograph.md)
-  - Word (.docx): [The_5D_Conscience_Holographic_Metacognition_OS_Full_Monograph.docx](The_5D_Conscience_Holographic_Metacognition_OS_Full_Monograph.docx)
 
 ---
