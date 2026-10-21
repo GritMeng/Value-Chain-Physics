@@ -284,7 +284,7 @@ $$\text{Ought-to-be Scheme Entity } S \equiv \text{Model (Form } \mathcal{M}_{\t
 - **Pathology & Premise**: Section 5.4 established single-brain cognitive collapse. But a Chief Architect is not omniscient and cannot foresee all micro edge conditions; yet allowing local nodes to modify rules triggers vector interference and cancellation.
 - **Four-Step Closed-Loop Governance Mechanism**: Mechanism constructs a four-step human-machine closed loop:
   1. **Free Input (Micro-Perception Completeness)**: Accepting non-omniscience, the system opens real-time operational status and demand inputs to all terminal nodes (free input completing requisite variety);
-  2. **Overall Design Department Logical Dictatorship / Convergence (Zero Rule-Change Permission)**: Architecture design and rule-making authority belong exclusively to the Chief Architect. Terminal nodes submit suggestions but **have ZERO authority to modify rules**. The Overall Design Department rejects multi-head political compromises, enforcing 【Logical Dictatorship / Convergence】 to guarantee global self-consistency;
+  2. **Overall Design Department Logical Dictatorship / Convergence (Zero Rule-Change Permission)**: Architecture design and rule-making authority belong exclusively to the Chief Architect. Terminal nodes submit suggestions but **have ZERO authority to modify rules**. The Overall Design Department rejects multi-head political compromises, enforcing "Logical Dictatorship / Convergence" to guarantee global self-consistency;
   3. **Task Breakdown & Local Autonomy Orchestration**: Once converged and broken down, local entities possess full execution autonomy within rigid guardrails;
   4. **High-Frequency Execution & Empirical Feedback**: Executing in real battlefields and feeding back residuals.
 - **Capability Restriction vs Political Prohibition**: Restricting rule modification is **not political privilege, but the physical result of terminal nodes lacking universal fusion capabilities!** Allowing terminals to alter rules breaks global self-consistency, causing vector cancellation and systemic paralysis.
@@ -300,7 +300,7 @@ $$\text{Ought-to-be Scheme Entity } S \equiv \text{Model (Form } \mathcal{M}_{\t
 
 ### 5.6 Treatise 6 [Path]: Unobservable Implies Uncontrollable, Bottom-Up Capability Reverse Foundation, and the "Growth System" Paradigm
 
-- **Pathology & Premise**: Section 5.5 established logical convergence mechanisms. But Ought-to-be Systems do not emerge from thin air; they rely on builders. System construction must obey Wiener-Kalman observability and Ashby's requisite variety.
+- **Pathology & Premise**: Section 5.5 established logical convergence mechanisms. But Ought-to-be Systems do not emerge from thin air; they rely on builders. System construction must obey Wiener-Kalman observability (Wiener, 1948; Kalman, 1960) and Ashby's requisite variety (Ashby, 1956).
 - **First Iron Law of Path**:
 
 $$
@@ -343,7 +343,7 @@ where $\theta$ is the vector interference angle between administrative line, tec
 ### 5.8 Treatise 8 [Evolution]: Gödel Incompleteness and Second-Order Meta-Cognitive Constitutional Amendments
 
 - **Pathology & Premise**: Section 5.7 established effective work mechanisms on bottlenecks. But when environmental phase transitions collapse 1st-order rule feasible sets into empty sets ($\text{Sol}(R^{(1)}) = \emptyset$), closed silicon systems hit Gödelian incompleteness and Turing halting deadlocks.
-- **Causal Deduction**: External phase shifts cause un-reconcilable logical deadlocks inside 1st-order rule sets ($\text{Sol}(R^{(1)}) = \emptyset$). By Gödel's First Incompleteness Theorem (Gödel, 1931) and Turing's Halting Problem, closed 1st-order code cannot self-reconstruct axioms internally.
+- **Causal Deduction**: External phase shifts cause un-reconcilable logical deadlocks inside 1st-order rule sets ($\text{Sol}(R^{(1)}) = \emptyset$). By Gödel's First Incompleteness Theorem (Gödel, 1931) and Turing's Halting Problem (Turing, 1936), closed 1st-order code cannot self-reconstruct axioms internally.
 - **Theorem Derived**: Systems must introduce a **2nd-order meta-cognitive operator $\Phi$ (or $\Omega_{\text{meta}}$) stepping beyond 1st-order code**. Carbon experts step out of the loop to exercise constitutional authority, abolishing invalid axioms and rewriting boundaries ($\Pi^{(1)} \mapsto \Pi^{(2)}$), injecting low-entropy constraints to drive dissipative structure phase transitions.
 - **Mapping to Qian's Theory**: Formally proves Qian's thesis that Open Complex Giant Systems require continuous human-led evolutionary upgrading (Qian et al., 1990).
 
@@ -496,11 +496,12 @@ In Dual-Helix architectures, "feasibility," "zero cancellation," and "global opt
 > In a given physical domain, constraint manifold $\mathcal{C} = \langle \mathcal{C}_{\text{core}}, \mathcal{C}_{\text{param}} \rangle$ encodes spatiotemporal exclusivity and flux conservation. Algorithm $\mathcal{A}$ permits only co-directional orthogonal steps ($\langle \mathbf{v}_i, \mathbf{v}_j \rangle \ge 0$), while pruning operator $\Pi_\bot$ rigidly prunes non-orthogonal conflicting branches. The trajectory satisfies:
 >
 > $$
-\begin{aligned}
-\text{Algorithm Traverses } S^* &\iff \text{Zero Vector Cancellation } (\mathcal{W}_{\text{heat}}[S^*] = 0) \\[4pt]
-&\iff \text{Global Absolute Optimal Trajectory } (S^* = \arg\min \mathcal{W}_{\text{heat}})
-\end{aligned}
-$$
+> \begin{aligned}
+> &\text{Algorithm Traverses } S^* \\
+> &\quad \iff \text{Zero Vector Cancellation } (\mathcal{W}_{\text{heat}}[S^*] = 0) \\[4pt]
+> &\quad \iff \text{Global Absolute Optimal Trajectory } (S^* = \arg\min \mathcal{W}_{\text{heat}})
+> \end{aligned}
+> $$
 
 **Physical and Logical Derivation**:
 
@@ -570,9 +571,11 @@ $$\mathbf{Generation} \text{ (Boundary Est.)} \longrightarrow \mathbf{Survival} 
 $$
 \begin{aligned}
 &\text{Inside Known Boundary } \text{Boundary}_k: \\
-&\quad S_k^* = \arg\min_{S \in \Omega_{\text{feasible}}^{(k)}} \mathcal{W}_{\text{heat}}[S] \quad (\text{Algorithm } \mathcal{A} \text{ resolves vector cancellation; traversability = optimality}) \\[6pt]
+&\quad S_k^* = \arg\min_{S \in \Omega_{\text{feasible}}^{(k)}} \mathcal{W}_{\text{heat}}[S] \\
+&\quad\quad (\text{Algorithm } \mathcal{A} \text{ resolves vector cancellation; traversability = optimality}) \\[6pt]
 &\text{New Vector Cancellation / New Constraints: } \\
-&\quad \text{Boundary}_{k+1} = \Phi(\text{Boundary}_k, \Delta X) \quad (\text{Meta-cognition re-bounds, traverses again, optimal again})
+&\quad \text{Boundary}_{k+1} = \Phi(\text{Boundary}_k, \Delta X) \\
+&\quad\quad (\text{Meta-cognition re-bounds, traverses again, optimal again})
 \end{aligned}
 $$
 
@@ -601,7 +604,7 @@ Following Karl Popper's (1959) philosophy of science, any theory claiming metasc
 | :--- | :--- | :--- | :--- |
 | **Corollary 5.1.1** | Global governance eliminates vector cancellation | Un-governed Multi-Agent free gaming converges to global optimum | Vector interference causes cancellation $\sum \mathbf{v}_i \to 0$, sliding into deadlock friction heat |
 | **Corollary 5.2.1** | Silicon HOOTL computational compensation | OR Solvers / LLMs directly solve global Non-IID OCGS scheduling | MIP branch trees explode to OOM; LLMs suffer factual hallucinations at rigid constraints |
-| **Corollary 5.3.1** | Business ontology identity $D \equiv A$ | Business-IT split handoffs maintain high-order causal self-consistency | Causal pointer loss across human handoffs; system falls into operational decoupling (a "two-layer disconnect") and causal fractures |
+| **Corollary 5.3.1** | Scheme ontology $S \equiv \mathcal{M}_{\text{model}} \otimes \mathcal{A}$ | Business-IT split handoffs maintain high-order causal self-consistency | Causal pointer loss across human handoffs; system falls into operational decoupling (a "two-layer disconnect") and causal fractures |
 | **Corollary 5.4.1** | Tripartite capability fusion & single brain | Pipeline division maintains high-order causal self-consistency | Pipeline handoffs destroy strong-coupling entanglement, causing causal fractures |
 | **Corollary 5.5.1** | Role decoupling & free input (zero rule permission) | Authorizing committees/terminals to design schemes or alter rules avoids deadlocks | Violating role boundaries causing multi-headed negotiation deadlock and rule-tampering internal friction |
 | **Corollary 5.6.1** | Observability & bottom-up foundation | Open-loop control towers lacking bottom-up observability govern effectively | Wiener-Kalman dual failure ($\dim C=0$), un-observability causing planning collapse and degenerating into a rear-view mirror |
@@ -640,9 +643,11 @@ The boundary-drawing of this paper stops at "Science of Sciences (Metascience)".
 6. Dai, R., & Qian, X. (2007). Metasynthetic wisdom and the Second Renaissance. *Engineering Science*, 9(10), 1-8. (戴汝为, 钱学敏. 大成智慧学与第二次文艺复兴[J]. 中国工程科学, 2007, 9(10): 1-8.)
 7. Guo, L. (2016). What is systems science? *Journal of Systems Science and Mathematical Sciences*, 36(3), 291-301. (郭雷. 系统学是什么[J]. 系统科学与数学, 2016, 36(3): 291-301.)
 8. Guo, L. (2020). On the basic characteristics and future development of systems science. *Bulletin of Chinese Academy of Sciences*, 35(12), 1475-1481. (郭雷. 论系统科学的基本特征与未来发展[J]. 中国科学院院刊, 2020, 35(12): 1475-1481.)
-9. Popper, K. R. (1959). *The Logic of Scientific Discovery*. Hutchinson.
-10. Prigogine, I., & Stengers, I. (1984). *Order Out of Chaos: Man's New Dialogue with Nature*. Bantam Books. (普里戈金, 斯滕热斯. 从混沌到有序——人与自然的新对话[M]. 杭州: 浙江科学技术出版社, 1987.)
-11. Qian, X., Yu, J., & Dai, R. (1990). A new discipline of science—The open complex giant system and its methodology. *Nature Journal*, 13(1), 3-10. (钱学森, 于景元, 戴汝为. 一个科学新领域——开放的复杂巨系统及其方法论[J]. 自然杂志, 1990, 13(1): 3-10.)
-12. Qian, X. (2001). *Creating Systems Science*. Shanxi Science and Technology Press. (钱学森. 创建系统学[M]. 太原: 山西科学技术出版社, 2001.)
-13. Spencer-Brown, G. (1969). *Laws of Form*. Allen & Unwin.
-14. Wiener, N. (1948). *Cybernetics: Or Control and Communication in the Animal and the Machine*. Technology Press.
+9. Kalman, R. E. (1960). On the general theory of control systems. *Proceedings of the 1st IFAC Congress*, Moscow, 1(1), 481-492.
+10. Popper, K. R. (1959). *The Logic of Scientific Discovery*. Hutchinson.
+11. Prigogine, I., & Stengers, I. (1984). *Order Out of Chaos: Man's New Dialogue with Nature*. Bantam Books. (普里戈金, 斯滕热斯. 从混沌到有序——人与自然的新对话[M]. 杭州: 浙江科学技术出版社, 1987.)
+12. Qian, X., Yu, J., & Dai, R. (1990). A new discipline of science—The open complex giant system and its methodology. *Nature Journal*, 13(1), 3-10. (钱学森, 于景元, 戴汝为. 一个科学新领域——开放的复杂巨系统及其方法论[J]. 自然杂志, 1990, 13(1): 3-10.)
+13. Qian, X. (2001). *Creating Systems Science*. Shanxi Science and Technology Press. (钱学森. 创建系统学[M]. 太原: 山西科学技术出版社, 2001.)
+14. Spencer-Brown, G. (1969). *Laws of Form*. Allen & Unwin.
+15. Turing, A. M. (1936). On computable numbers, with an application to the Entscheidungsproblem. *Proceedings of the London Mathematical Society*, Series 2, 42(1), 230-265.
+16. Wiener, N. (1948). *Cybernetics: Or Control and Communication in the Animal and the Machine*. Technology Press.

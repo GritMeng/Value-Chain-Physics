@@ -20,7 +20,12 @@ Creator of the Intelligent Planning & Control (IPC) Engine | Independent Scholar
 
 Physical reality is in-accessible directly; an observer must draw boundaries to establish an Ought-to-be System (the observer-constructed model). Eliminating work vector cancellation ($\mathbf{v}_i, \mathbf{v}_j$) inside boundaries achieves conditional self-consistency:
 
-$$\text{Physical Reality (Strongly Coupled)} \overset{\text{Boundary Drawing}}{\longrightarrow} \text{Ought-to-be Model (Self-Consistent Medium, the observer-constructed model)} \implies \langle \mathbf{v}_i, \mathbf{v}_j \rangle \ge 0 \implies \Delta W_{\text{heat}} \to 0$$
+$$
+\begin{aligned}
+\text{Physical Reality (Strongly Coupled)} &\overset{\text{Boundary Drawing}}{\longrightarrow} \text{Ought-to-be Model (Self-Consistent Medium, } \mathcal{M}_{\text{model}} \text{)} \\[4pt]
+&\implies \langle \mathbf{v}_i, \mathbf{v}_j \rangle \ge 0 \implies \Delta W_{\text{heat}} \to 0
+\end{aligned}
+$$
 
 ### 1.2 Theorem 1.1 (Minimal Completeness Theorem of 5D Manifold)
 
@@ -37,27 +42,26 @@ The manifold presents a dual-layer nested topology: "Rigid Structural Base Manif
   - Stripping $\Delta X$ (State Transition) $\to$ **Causallessness / Feedbackless** (state transition pedigree severed, who transforms into whom unknown, causal chain broken, residual with causality unable to compare, closed loop invalidated).
 - **Minimality (Algebraic independence)**: All 5 dimensions are mutually orthogonal and independent; no single dimension can be derived from the remaining four.  
 
-> **Conclusion: Completeness + Minimality $\implies \mathcal{M}_{\text{model}} is the minimal complete basis of the Ought-to-be System (the observer-constructed model).** Q.E.D.
+> **Conclusion: Completeness + Minimality $\implies \mathcal{M}_{\text{model}}$ is the minimal complete basis of the Ought-to-be System (the observer-constructed model).** Q.E.D.
 
-**【Algebraic Master Equation of the Latter Two Dimensions and Causal-Residual Dual Transformation Law】**:  
-The latter two dimensions dynamically close via the differential algebraic master equation $X_{\text{plan}} = X \oplus \Delta X_{\text{causal}}$:  
+**[Algebraic Master Equation of the Latter Two Dimensions and Causal-Residual Dual Transformation Law]**:  
+The latter two dimensions dynamically close via the differential algebraic master equation $X_{\text{plan}} = X \oplus \Delta X_{\text{causal}}$:
+
 1. **Forward Causal Generation**: The forward deduction side $\Delta X$ carries the **instantiated causal chain (who transforms into whom, such as causal work in phase transition from water to ice)** locked from preceding states to subsequent targets, deriving next-moment planned state $X_{\text{plan}}$;&#32;&#32;
-2. **Reverse Residual Manifestation**: After real measured state $X_{\text{real}}$ manifests, shifting terms in the master equation yields **【residual with causality】** $\Delta X_{\text{residual}} = X_{\text{real}} \ominus X_{\text{plan}}$;&#32;&#32;
+2. **Reverse Residual Manifestation**: After real measured state $X_{\text{real}}$ manifests, shifting terms in the master equation yields **[residual with causality]** $\Delta X_{\text{residual}} = X_{\text{real}} \ominus X_{\text{plan}}$;&#32;&#32;
 3. **Traceability Judgment along Causal Chain**: Reverse-trace the residual along the original causal chain—if the causal chain holds and only physical entities are obstructed, judge "the world is off", issuing control work to govern the world; if the causal chain breaks and the feasible set is empty, judge "the model is wrong", activating second-order meta-cognitive operator $\Phi$ for constitutional amendment and model reconstruction. If the world is off, adjust execution; if the model is wrong, apply second-order amendment!
 
 ---
 
 ## 2. Dual-Helix Structure $S = \mathcal{M}_{\text{model}} \otimes \mathcal{A}$ and Its Physical Propositions
 
-The holistic representation of the system is defined as the tensor product of topological manifold $\mathcal{M}_{\text{model}} ("Form") and forward causal evolution operator $\mathcal{A} = \bigodot_{k=1}^{K} (\mathcal{B}_k \circ \mathcal{P}_k)$ ("Function"):
+The holistic representation of the system is defined as the tensor product of topological manifold $\mathcal{M}_{\text{model}}$ ("Form") and forward causal evolution operator $\mathcal{A} = \bigodot_{k=1}^{K} (\mathcal{B}_k \circ \mathcal{P}_k)$ ("Function"):
 
 $$S = \mathcal{M}_{\text{model}} \otimes \mathcal{A}$$
 
-### 2.1
+### 2.1 Right Helix (Function): Theorem 2.1 (Closed-Loop Computability Theorem)
 
-> *注：本文定理 2.1 与《秩序》篇“因果有限性引理 1.1”及《第二次文艺复兴》定理 7.2 / 命题 7.3 结论一致，编号差异因各篇独立成文。*
-
- Right Helix (Function): Theorem 2.1 (Closed-Loop Computability Theorem)
+> *Note: Theorem 2.1 / Proposition 2.2 in this paper are consistent in conclusion with "Causal Finiteness Lemma 1.1" in the Order monograph and Theorem 7.2 / Proposition 7.3 in The Second Renaissance; the numbering differences arise because each paper is written independently.*
 
 > **Physical Proof (Discrete Clock & Bounded Relaxation $\implies$ Polynomial Closed-Loop Computability)**  
 > 1. Boundary drawing constrains phase space to finite entity scale ($N < +\infty$);  
@@ -69,7 +73,7 @@ $$S = \mathcal{M}_{\text{model}} \otimes \mathcal{A}$$
 
 In the Dual-Helix framework, "Feasibility", "Zero Cancellation", and "In-Boundary Optimality" are not quantitative hurdles requiring proof by contradiction or higher-order variational calculus, but definitional equivalences directly established by physical first principles:
 
-> **【Proposition 2.2 (Traversability $\equiv$ Zero Cancellation $\equiv$ In-Boundary Absolute Optimality)】**\
+> **[Proposition 2.2 (Traversability $\equiv$ Zero Cancellation $\equiv$ In-Boundary Absolute Optimality)]**\
 > Within a given boundary $\text{Boundary}_k$, the constraint manifold $C_k = \langle C_{\text{core}}, C_{\text{param}} \rangle$ encodes spatiotemporal exclusivity and flux conservation. The evolution algorithm $\mathcal{A}$ in each step permits only co-directional resonance steps ($\langle \mathbf{v}_i, \mathbf{v}_j \rangle \ge 0$), while pruning operator $\Pi_\bot$ rigidly prunes non-orthogonal conflicting branches. The trajectory satisfies the tripartite physical equivalence:
 >
 > $\text{Algorithm Traverses } S_k^* \iff \text{Zero Vector Cancellation } (W_{\text{heat}}[S_k^*] = 0) \iff \text{In-Boundary Global Optimal Trajectory } (S_k^* = \arg\min \mathcal{W}_{\text{heat}})$
@@ -101,7 +105,8 @@ In the Dual-Helix framework, "Feasibility", "Zero Cancellation", and "In-Boundar
 | **Tier 2** | **Temporal Domain** | DAG depth physical truncation ($K < +\infty$) | Locks polynomial complexity, guaranteeing computation within time bounds |
 | **Tier 3** | **Residual Domain** | Gödel residual triggers meta-cognitive operator $\Phi$ | Absorbs external perturbations, guaranteeing non-rigidification of paradigms |
 
-$$\mathbf{\text{Living Governance Three-State Loop: Generation (Boundary Est.)} \longrightarrow \text{Survival (Self-Consistent Computing)} \longrightarrow \text{Evolution (Meta-Cognitive Re-bounding)}}$$
+**Living Governance Three-State Loop:**  
+$$\text{Generation (Boundary Est.)} \longrightarrow \text{Survival (Self-Consistent Computing)} \longrightarrow \text{Evolution (Meta-Cognitive Re-bounding)}$$
 
 ---
 

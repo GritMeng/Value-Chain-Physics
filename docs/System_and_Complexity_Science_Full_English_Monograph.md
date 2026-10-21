@@ -40,7 +40,7 @@ Practice precedes theory, and empirical proof precedes axioms.
 
 The mission of this book is not only to establish universal physical and logical specifications for data structures and algorithms in complex systems, but also, with the greatest respect, to carry forward the spark of exploration of Eastern and Western sages and scientists over thousands of years.
 
-Explain predecessors using axioms, rather than proving oneself using predecessors. From Laozi and Zhuangzi's boundary partitioning, Wang Yangming's conscience, Kant's legislation, to Qian Xuesen's open complex giant systems, Wu Xuemou's Pansystems Theory, and Cao Longbing's Non-IID theory—the formal closed loop established by this system does not abandon predecessors, but rather allows every fragment of wisdom from ancient sages to find its ultimate position in the complete physical puzzle.
+Explain predecessors using axioms, rather than proving oneself using predecessors. From Spencer-Brown's distinction, Kant's legislation, and Popper's falsifiability, to Qian Xuesen's open complex giant systems, Wu Xuemou's Pansystems Theory, and Cao Longbing's Non-IID theory—the formal closed loop established by this system does not abandon predecessors, but rather allows every fragment of wisdom from ancient sages to find its ultimate position in the complete physical puzzle.
 
 Purifying the source and bridging past and future. We will start from the most primitive plain axioms, seamlessly penetrating to hard-core formal mathematics and engineering codes, attempting to continue and answer the unfinished ultimate questions of ancient sages in formal and engineering dimensions.
 
@@ -56,7 +56,7 @@ Empiricism is the ought-to-be established through intuitive trial and error; phi
 
 However, facing open complex giant systems with factorial complexity, humanity encounters the most difficult challenge of ought-to-be governance. A single microscopic disassembly or open-loop description cannot accomplish computable dimension-reduced governance. This book, *Systems and Complexity Science: The Generation, Persistence, and Evolution of Order*, steps back to the most primitive logical starting point, uses Occam's razor to shave off all intermediate redundancies, and establishes the **first principles of order generation, persistence, and evolution** at the dimension of the **underlying meta-algorithm**. This meta-algorithm is essentially a self-consistent closed loop where an observer sets ought-to-be by boundary creation, sets rigid rules by ought-to-be, inspects residuals by rules, and drives metacognitive re-boundary creation by residuals. It governs concrete calculation rules inside the system, constituting the living mechanism of the system.
 
-Once the order of the most difficult open complex giant systems is established and closed-loop computability is achieved, empirical trial and error, philosophical self-reflection, religious precepts, and reductionist models all transform into their boundary-creation dimension reduction and degenerate fallbacks in local phase space. It seamlessly fuses the intuition of empiricism, the self-reflection of philosophy, the constraints of physics, and the topology of systems into a formal closed loop of "generation by boundary creation, persistence by rigid constraints, and evolution by residual feedback." Far from discarding predecessors, it provides universal executable physical and mathematical source codes for governing open complex giant systems.
+Once the order of the most difficult open complex giant systems is established and closed-loop computability is achieved, empirical trial and error, philosophical self-reflection, institutional norms, and reductionist models all transform into their boundary-creation dimension reduction and degenerate fallbacks in local phase space. It seamlessly fuses the intuition of empiricism, the self-reflection of philosophy, the constraints of physics, and the topology of systems into a formal closed loop of "generation by boundary creation, persistence by rigid constraints, and evolution by residual feedback." Far from discarding predecessors, it provides universal executable physical and mathematical source codes for governing open complex giant systems.
 
 ---
 
@@ -68,14 +68,14 @@ Once the order of the most difficult open complex giant systems is established a
 
 ### 1.1 Observer and Boundary Creation (Definition 1)
 
-**Without an observer, there is no world. Once disorder is observed, it immediately manifests as the world. Above physics, the world is order.**
+**Without an observer's boundary creation, there is no ought-to-be representational world ($\Omega$). Once disorder is observed, it immediately manifests as the world. Above physics, the world is order.**
 
 * **Definition 1 (Disorder)**: The whole unpartitioned by an observer is called disorder. Disorder is not nothingness, but the original nature of all that has not been partitioned.
 * **Definition 2 (Observer, Cognition, Knowledge)**: In disorder, whatever can distinguish inside from outside is an observer. Cognition (Zhi) is the clarity of observation, the source of boundary creation; Knowledge (Shi) is the power of construction, the boundary of order establishment. Cognition and Knowledge are co-existent and co-emergent.
-* **Axiom 0 (Axiom Zero · Observer Emergence Law)**: The observer is not an a priori preset starting point, but a self-sustaining steady state naturally reached within disorder. Without an observer, there is no world.
+* **Axiom 0 (Axiom Zero · Observer Emergence Law)**: The observer is not an a priori preset starting point, but a self-sustaining steady state naturally reached within disorder. Without an observer's boundary creation, there is no ought-to-be representational world ($\Omega$).
   * **Deduction**: If there is no self-sustaining steady state inside disorder, all physical structures and observation activities collapse into dissolution. But disorder itself is not nothingness; local self-sustaining steady states must form in its spontaneous fluctuations and phase transitions. This self-sustaining steady state is the ontogenetic starting point for observer and boundary creation.
 * **Definition 3 (Boundary Creation and Order Establishment)**: The action of an observer partitioning limits using cognition is called boundary creation; the action of establishing rules inside the boundary using knowledge is called order establishment. Inside the boundary is the ought-to-be world (the world is the general term for the ought-to-be inside the boundary), and outside is the disorder background. Rules established by knowledge that cannot be violated are called hard rules.
-* **Proposition 1 (Manifestation of the World)**: Without the presence and awareness of an observer, order has nowhere to attach; without boundary creation and order establishment, the world cannot be established.
+* **Proposition 1 (Manifestation of the World)**: Without the boundary-creating presence and awareness of an observer, order has nowhere to attach; without boundary creation and order establishment, the ought-to-be representational world ($\Omega$) cannot be established.
   * **Deduction**: According to Definition 1, disorder is the unpartitioned whole. According to Definition 3, the world is the manifestation of the bounded orderly scope after boundary creation. The instant the observer performs boundary creation to cut inside from outside, it not only establishes the ought-to-be boundary, but also simultaneously establishes the all-domain scalar potential energy field and negative entropy attractor pointing to the self-sustaining steady state inside the boundary. If no observer performs boundary creation, the distinction between inside and outside ceases to exist, and states return to unpartitioned disorder. Therefore, observer presence and execution of boundary creation are the prerequisite necessary and sufficient conditions for the manifestation of the world, potential energy fields, and order.
 
 ### 1.2 Actual Reality, Ought-to-be Reality, and Residuals (Definition 2)
@@ -106,7 +106,7 @@ All formal and cybernetic terms in this system are not borrowed from external so
 
 #### [Terminology Native Growth Chain II: Survival Baseline, Prior, Compact Support, and Sub-Gaussian]
 
-4. **Survival Baseline $\implies$ Top-Level Prior (Bayesian Prior) $\implies$ Compact Support Operator ($E_{\text{supp}}$) and Sub-Gaussian Truncation**: Observer constructs ought-to-be system primarily to preserve own survival, thus inevitably pre-setting above all specific rules an absolute baseline "rather shatter all local indicators than cross", called in cognitive science [Top-Level Prior / Conscience]. **[Plain Explanation]**: Figuratively speaking, no matter how much a person pursues commercial profit, there is always a red line in the heart "rather give up business than violate law and conscience"; before conducting specific indicator optimization, this uncrossable ultimate anchor stone pre-set in the heart of the system is called [Top-Level Prior (Bayesian Prior)] in probabilistic cognitive science. Bayesian refers to the reasoning method where observers update judgment based on existing beliefs when encountering new evidence. Top-level prior is the unshakeable highest anchor point in this reasoning. When local optimization expands infinitely causing residual violent divergence, this baseline **forcibly locks the active territory of residuals inside a safe dead zone** at the physical critical point, called in mathematics [Compact Support ($E_{\text{supp}}$)]; risk probability states whose infinitely divergent tails are cut off by compact support converge statistically to [Sub-Gaussian] distributions. Qualitatively speaking, the essence of sub-Gaussian truncation is for the observer, relying on uncrossable baseline conscience, to forcibly sever heavy-tailed infinite divergence of blind profit-seeking at physical critical points, firmly anchoring the system inside a compact territory of safe survival.
+1. **Survival Baseline $\implies$ Top-Level Prior (Bayesian Prior) $\implies$ Compact Support Operator ($E_{\text{supp}}$) and Sub-Gaussian Truncation**: Observer constructs ought-to-be system primarily to preserve own survival, thus inevitably pre-setting above all specific rules an absolute baseline "rather shatter all local indicators than cross", called in cognitive science [Top-Level Prior / Conscience]. **[Plain Explanation]**: Figuratively speaking, no matter how much a person pursues commercial profit, there is always a red line in the heart "rather give up business than violate law and conscience"; before conducting specific indicator optimization, this uncrossable ultimate anchor stone pre-set in the heart of the system is called [Top-Level Prior (Bayesian Prior)] in probabilistic cognitive science. Bayesian refers to the reasoning method where observers update judgment based on existing beliefs when encountering new evidence. Top-level prior is the unshakeable highest anchor point in this reasoning. When local optimization expands infinitely causing residual violent divergence, this baseline **forcibly locks the active territory of residuals inside a safe dead zone** at the physical critical point, called in mathematics [Compact Support ($E_{\text{supp}}$)]; risk probability states whose infinitely divergent tails are cut off by compact support converge statistically to [Sub-Gaussian] distributions. Qualitatively speaking, the essence of sub-Gaussian truncation is for the observer, relying on uncrossable baseline conscience, to forcibly sever heavy-tailed infinite divergence of blind profit-seeking at physical critical points, firmly anchoring the system inside a compact territory of safe survival.
 
 ---
 
@@ -126,7 +126,7 @@ Order is never a static objective entity.
 
 The physical and philosophical essence of order: the dynamic closed-loop process where the observer creates boundary to give birth to order, formulates rules and constraints to persist order, and identifies residuals to evolve order.
 
-This closed loop is the ontogenetic starting point of all human constructs. Whatever humans construct—whether intuitive common sense of empiricism, hypotheses of scientific paradigms, precepts of religious doctrines, or rhythms of artistic forms—without exception obeys boundary creation establishing ought-to-be, rigid rules establishing constraints, and residual-driven evolution. Apart from these three, no order in human civilization can be born or sustained (**Boundary Creation Relativity Law**: living is absolute, optimality is relative inside boundary creation).
+This closed loop is the ontogenetic starting point of all human constructs. Whatever humans construct—whether intuitive common sense of empiricism, hypotheses of scientific paradigms, institutional norms, or rhythms of artistic forms—without exception obeys boundary creation establishing ought-to-be, rigid rules establishing constraints, and residual-driven evolution. Apart from these three, no order in human civilization can be born or sustained (**Boundary Creation Relativity Law**: living is absolute, optimality is relative inside boundary creation).
 
 ### 2.3 Natural Birth of Logic, Models, and Algorithms
 
@@ -140,9 +140,9 @@ Once the ought-to-be framework is established, the observer, to maintain interna
 
 #### [Terminology Native Growth Chain III: First-Order Calculus, Gödel Deadlock, Metacognitive Constitutional Amendment Operator, and Tensor Product]
 
-5. **First-Order Calculus $\implies$ Self-Referential Exhaustion and Gödel Deadlock / Turing Halting**: Step evolution where observers mechanically execute preset rules inside established boundaries is called [First-Order Calculus]. When system encounters major external impact not mapped into original framework, if it refuses to re-partition boundaries and foolishly attempts to prove or eliminate this residual within old rules, old rules inevitably fall into infinite loops of "explaining itself using own definition". This physical halting state of **"unable to self-prove or self-heal relying on intra-boundary rules"** is mathematically equivalent to [Gödel Incompleteness and Turing Halting Deadlock] (Gödel incompleteness and Turing halting are actually two statements of the same physical halting state in two disciplines: former says "system cannot self-prove inside old rules", latter says "algorithm cannot halt inside old rules". The two are isomorphic, both referring to first-order calculus failing to self-heal inside old boundaries).
-6. **Re-boundary Creation $\implies$ Second-Order Metacognitive Constitutional Amendment Operator $\Phi$**: Facing first-order deadlock, all first-order calculus fails. The system's only way out is jumping out of current rules, re-examining, breaking old boundaries, and drawing new boundaries containing new dimensions, an action called [Re-boundary Creation]. The formal work formula describing leap rewriting from "old boundary" to "new boundary" is the [Second-Order Metacognitive Constitutional Amendment Operator $\Phi: \Pi_k \to \Pi_{k+1}$].
-7. **Unity of Essence and Function & Orthogonal Fusion $\implies$ Tensor Product ($\otimes$)**: Governance of open complex giant systems requires two forces of work: human brain responsible for "jumping out of deadlock, re-drawing big boundary" (second-order function), and machine responsible for "extremely fast concurrent computation inside set big boundary" (first-order essence). These two forces expand in independent directions and can never replace each other (orthogonal), but in every genuine system work, they must be tightly interlocked and completely entangled together (unity). This mathematical relationship of "expanding independently yet indivisibly fusing into one to perform work" is the [Tensor Product $\otimes$].
+1. **First-Order Calculus $\implies$ Self-Referential Exhaustion and Gödel Deadlock / Turing Halting**: Step evolution where observers mechanically execute preset rules inside established boundaries is called [First-Order Calculus]. When system encounters major external impact not mapped into original framework, if it refuses to re-partition boundaries and foolishly attempts to prove or eliminate this residual within old rules, old rules inevitably fall into infinite loops of "explaining itself using own definition". This physical halting state of **"unable to self-prove or self-heal relying on intra-boundary rules"** is mathematically equivalent to [Gödel Incompleteness and Turing Halting Deadlock] (Gödel incompleteness and Turing halting are actually two statements of the same physical halting state in two disciplines: former says "system cannot self-prove inside old rules", latter says "algorithm cannot halt inside old rules". The two are isomorphic, both referring to first-order calculus failing to self-heal inside old boundaries).
+2. **Re-boundary Creation $\implies$ Second-Order Metacognitive Constitutional Amendment Operator $\Phi$**: Facing first-order deadlock, all first-order calculus fails. The system's only way out is jumping out of current rules, re-examining, breaking old boundaries, and drawing new boundaries containing new dimensions, an action called [Re-boundary Creation]. The formal work formula describing leap rewriting from "old boundary" to "new boundary" is the [Second-Order Metacognitive Constitutional Amendment Operator $\Phi: \Pi_k \to \Pi_{k+1}$].
+3. **Unity of Essence and Function & Orthogonal Fusion $\implies$ Tensor Product ($\otimes$)**: Governance of open complex giant systems requires two forces of work: human brain responsible for "jumping out of deadlock, re-drawing big boundary" (second-order function), and machine responsible for "extremely fast concurrent computation inside set big boundary" (first-order essence). These two forces expand in independent directions and can never replace each other (orthogonal), but in every genuine system work, they must be tightly interlocked and completely entangled together (unity). This mathematical relationship of "expanding independently yet indivisibly fusing into one to perform work" is the [Tensor Product $\otimes$].
 
 ---
 
@@ -197,37 +197,21 @@ Thus, "system", "complexity", and full sets of dynamical concepts are not borrow
 
 ## Chapter 5: End-of-Volume Isomorphism: Continuing the Original Inquiries of Ancient Sages
 
-The boundary creation, ought-to-be, and residual closed loop established by this system is not an isolated armchair conception, but the unfinished inquiry pointed to by Eastern and Western sages of human civilization over two thousand years in pure epistemological dimensions.
+The boundary creation, ought-to-be, and residual closed loop established by this system is not an isolated armchair conception, but the unfinished inquiry pointed to by scientific philosophy and mathematical logic pioneers of human civilization in pure epistemological dimensions.
 
-#### I. Daoism — "Dao" and "Boundary Creation"
+#### I. Immanuel Kant — "Human Mind Legislates Nature" and Subject A Priori Categorical Boundary Creation
 
-Laozi said "The nameless is the beginning of heaven and earth", which is unpartitioned disorder; "The named is the mother of all things", which is observer boundary creation establishing ought-to-be framework; "Dao gives birth to One", which is the instant of boundary establishment. Zhuangzi said in *On Equalizing All Things* "Nothing is not that, nothing is not this", pointing out all things originate from observer partitioning and boundary setting. Axioms of this system are isomorphic with this inquiry.
+Kant explicitly proposed in the *Critique of Pure Reason* that "the human mind legislates for nature," deeply realizing that human cognition is not a passive mirror of the external world, but that the observer subject takes the initiative to delineate boundaries with a priori cognitive categories (the a priori boundary creation operator $\Pi$). The "residual-driven second-order evolution" revealed by the third axiom of this system provides Kant's epistemology with a cybernetic dynamical self-healing and model rewriting mechanism.
 
-#### II. Buddhism — "Mind-Only" and "Observer Cognition"
+#### II. George Spencer-Brown — *Laws of Form* and Primitive Boundary
 
-"The three realms are mind-only, all phenomena are consciousness-only" is isomorphic with "without observer there is no world"; "parikalpita" (imagined nature) is boundary creation establishing ought-to-be, "transforming consciousness into wisdom" is observer self-reflecting and reconstructing ought-to-be framework. Both are isomorphic with axioms of this system.
+George Spencer-Brown resolutely declared as the first axiom in his foundational work of formal logic, *Laws of Form* (1969): "Draw a distinction," mathematically proving that all formal axiomatic systems are born from this first boundary-creating kinetic energy. Axiom 0 (Observer Emergence Law) and Axiom 1 (Generation Axiom) of this system are strictly dual and isomorphic to this classic in formal algebra and topological manifolds.
 
-#### III. Confucian Mind Philosophy — "No Object Outside Mind" and "Unity of Knowledge and Action"
+#### III. Karl Popper — "Falsifiability" and Residual-Driven Paradigm Rewriting
 
-"Before viewing this flower, it returns to silence; when viewing this flower, its colors become clear at once" is observer boundary creation confirming rights; "unity of knowledge and action" is closed-loop work of cognitive and active states. The concept of "conscience" is an a priori meta-rule preventing framework collapse.
+Karl Popper dispelled positivist inductivism and established the trial-and-error evolutionism driven by counterexamples and residuals in scientific revolutions. The third axiom of this system, "without residuals, order stagnates; with self-healing residuals, order sustains," strictly formalizes Popper's counterexample falsifiability drive into the anti-entropy transition dynamics of differential residual functional norm difference $\Delta = \|X_{\text{real}} - X_{\text{target}}\|$.
 
-#### IV. Immanuel Kant — "Human Mind Legislates Nature"
-
-Kant proposed "human mind legislates nature", advocating subjects carrying a priori categories to perform boundary creation. "Residual-driven evolution" revealed by the third axiom can be viewed as a supplement to his paradigm rewriting mechanism.
-
-#### V. Christian Theology — "In the Beginning Was the Word"
-
-Gospel of John says "In the beginning was the Word (Logos)". God drew order using Logos. Logos and formal axioms are isomorphic here.
-
-#### VI. George Spencer-Brown — *Laws of Form* and Primitive Boundary
-
-Spencer-Brown wrote in *Laws of Form* as first axiom "Draw a distinction", proving all formal systems are born from this first boundary creation. Axioms of this system are isomorphic with this.
-
-#### VII. Karl Popper — "Falsifiability" and "Residual-Driven"
-
-Popper proposed counterexample-driven scientific revolutions. Third law of this system "stagnation without residuals" is thoroughly isomorphic with Popper's counterexample falsifiability drive.
-
-> **Cross-Dimensional Isomorphism Continuation Declaration**: All seven above are original inquiries and isomorphisms of human civilization in pure epistemological and philosophical thinking dimensions on "boundary creation and order". Modern scientific and cybernetic isomorphisms (such as Wheeler, Schrödinger, Wiener, Ashby, Qian Xuesen, Wu Xuemou, Cao Longbing, etc.) await completion after formal operators, five-dimensional dual helix, and industrial verdict data are presented in the final volume (Volume V, Chapter 3).
+> **Epistemological Isomorphism Declaration**: The three pioneers above completed the original inquiries into "boundary creation and self-sustaining order" from the dimensions of epistemology and mathematical logic. Modern scientific and cybernetic isomorphisms (such as Newton, Wheeler, Schrödinger, Shannon, Wiener, Ashby, Qian Xuesen, Wu Xuemou, Cao Longbing, etc.) await completion after formal operators, five-dimensional dual helix, and industrial verdict data are presented in the final volume (Volume V, Chapter 3).
 
 ---
 
@@ -915,11 +899,7 @@ When readers finish reading hundred-billion engineering empirical proofs, five-d
 
 | Sage / Scientist | Core Insight | Corresponding Axiom / Operator in This System | Returned Volume & Chapter |
 |:---|:---|:---|:---|
-| Laozi / Zhuangzi | Nameless & Named | Disorder $\to$ Partitioning | Volume I, Chapter 5 |
-| Buddhism | Mind-Only | Observer Emergence Law (Axiom 0) | Volume I, Chapter 5 |
-| Wang Yangming | No Object Outside Mind | Boundary Creation Rights Confirmation | Volume I, Chapter 5 |
 | Immanuel Kant | Human Mind Legislates Nature | Prior Boundary Creation Operator $\Pi$ | Volume I, Chapter 5 |
-| Gospel of John / Theology | In the Beginning Was Logos | Logos & Formal Axioms | Volume I, Chapter 5 |
 | George Spencer-Brown | Draw a Distinction | Axiom 0 | Volume I, Chapter 5 |
 | Karl Popper | Falsifiability | Residual Norm Difference $\Delta$ Driving Evolution | Volume I, Chapter 5 |
 | Isaac Newton | Vector Work | Vector Work Equation & Phase Angle Interference | Volume III, Chapter 7 |
@@ -987,9 +967,10 @@ When perception residual $\Delta$ breaks evolution threshold triggering second-o
    * **Conclusion 2**: In known physical reality, human brain BA10 area is sole subject possessing physical entity structure of second-order metacognitive constitutional amendment operator $\Phi$.
 3. **Necessary and Sufficient Physical Condition Theorem of Human-Machine Synergy and Tensor Product Meaning**: Combining Conclusion 1 and Conclusion 2, overall work operator of open complex giant system completing dimension-reduced self-healing is expressed as:
 
-   $$\text{System Work Operator} = \text{Human Second-Order Metacognitive Constitutional Amendment Operator } \Phi_{\text{Human}} \otimes \text{Silicon First-Order Evolution Algorithm } \mathcal{A}_{\text{Silicon}}$$
+$$\text{System Work Operator} = \text{Human Second-Order Metacognitive Constitutional Amendment Operator } \Phi_{\text{Human}} \otimes \text{Silicon First-Order Evolution Algorithm } \mathcal{A}_{\text{Silicon}}$$
 
    Where $\otimes$ represents tensor product of unity of essence and function. Humans provide second-order amendment 'function' ($\Phi_{\text{Human}}$), silicon provides first-order computation 'essence' ($\mathcal{A}_{\text{Silicon}}$); both spaces are orthogonally decoupled and indivisible, constituting a holographic tensor work system.
+
    * **Theorem Established**: Human-machine synergy is necessary and sufficient physical condition for open complex giant systems to locally overcome computational irreducibility, achieving dimension-reduced self-healing and intra-boundary closed-loop computability.
 
 ---
@@ -1027,3 +1008,29 @@ When perception residual $\Delta$ breaks evolution threshold triggering second-o
 | **4. Execution** | **Governing Work (Decision Write-Back)** | Holographic Mind Governing | Nodes $N$ + State Vector $X_{\text{plan}}$ | $W_{\text{eff}} = W_{\text{total}} \cdot \cos\theta$. Decision automated write-back injected into microscopic nodes, eliminating vector cancellation internal friction, driving angle $\theta \to 0$. |
 | **5. Feedback** | **Second-Order Metacognitive Constitutional Amendment Operator $\Phi$** | Pain Perception & Threshold Trigger | State Transitions with Causal Pointers $\Delta X$ | Capturing residual $\Delta$. If $\Delta \le \theta_{\text{trigger}}$, maintain first-order calculus; if $\Delta > \theta_{\text{trigger}}$, activate metacognitive constitutional amendment operator $\Phi$ to rewrite axiomatic bases. |
 | **Top-Level Safety Valve** | **Conscience Compact Support Operator $E_{\text{supp}}$** | Conscience (Default Mode Network DMN) | Constraint Cluster Dead Zone $[-\theta_{\text{dead}}, \theta_{\text{dead}}]$ | $E_{\text{supp}} \cdot p(\Delta) \in \text{Sub-Gaussian}$. Forcibly truncating heavy-tailed distributions, preventing algorithms under limit optimization from diverging to negative infinity (Goodhart collapse). |
+
+---
+
+## Appendix E: Core References
+
+1. **Qian, X., Yu, J., & Dai, R. (1990)**. A new discipline of science—The open complex giant system and its methodology. *Nature Journal*, 13(1), 3-10. (钱学森, 于景元, 戴汝为. 一个科学新领域——开放的复杂巨系统及其方法论[J]. 自然杂志, 1990, 13(1): 3-10.)
+2. **Qian, X. (2001)**. *Creating Systems Science*. Shanxi Science and Technology Press. (钱学森. 创建系统学[M]. 太原: 山西科学技术出版社, 2001.)
+3. **Dai, R., & Qian, X. (2007)**. Metasynthetic wisdom and the Second Renaissance. *Engineering Science*, 9(10), 1-8. (戴汝为, 钱学敏. 大成智慧学与第二次文艺复兴[J]. 中国工程科学, 2007, 9(10): 1-8.)
+4. **Guo, L. (2016)**. What is systems science? *Journal of Systems Science and Mathematical Sciences*, 36(3), 291-301. (郭雷. 系统学是什么[J]. 系统科学与数学, 2016, 36(3): 291-301.)
+5. **Guo, L. (2020)**. On the basic characteristics and future development of systems science. *Bulletin of Chinese Academy of Sciences*, 35(12), 1475-1481. (郭雷. 论系统科学的基本特征与未来发展[J]. 中国科学院院刊, 2020, 35(12): 1475-1481.)
+6. **Cao, L. (2014)**. Non-IID learning: Cases, taxonomy and trends. *IEEE Transactions on Knowledge and Data Engineering*, 26(11), 2783-2801.
+7. **Wu, X. (1990)**. *Looking at the World from Pansystems*. Beijing: Renmin University of China Press. (吴学谋. 从泛系看世界[M]. 北京: 中国人民大学出版社, 1990.)
+8. **Ashby, W. R. (1956)**. *An Introduction to Cybernetics*. London: Chapman & Hall.
+9. **Wiener, N. (1948)**. *Cybernetics: Or Control and Communication in the Animal and the Machine*. Cambridge, MA: Technology Press.
+10. **Shannon, C. E. (1948)**. A mathematical theory of communication. *Bell System Technical Journal*, 27(3), 379-423.
+11. **Prigogine, I., & Stengers, I. (1984)**. *Order Out of Chaos: Man's New Dialogue with Nature*. New York: Bantam Books.
+12. **Schrödinger, E. (1944)**. *What is Life? The Physical Aspect of the Living Cell*. Cambridge: Cambridge University Press.
+13. **Gödel, K. (1931)**. Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I. *Monatshefte für Mathematik und Physik*, 38(1), 173-198.
+14. **Turing, A. M. (1936)**. On computable numbers, with an application to the Entscheidungsproblem. *Proceedings of the London Mathematical Society*, Series 2, 42(1), 230-265.
+15. **Spencer-Brown, G. (1969)**. *Laws of Form*. London: Allen & Unwin.
+16. **Popper, K. R. (1959)**. *The Logic of Scientific Discovery*. London: Hutchinson.
+17. **Wheeler, J. A. (1990)**. Information, physics, quantum: The search for links. In *Complexity, Entropy, and the Physics of Information* (pp. 3-28). Redwood City: Addison-Wesley.
+18. **Goodhart, C. A. E. (1984)**. *Monetary Theory and Practice: The UK Experience*. London: Macmillan.
+19. **Kalman, R. E. (1960)**. On the general theory of control systems. *Proceedings of the 1st IFAC Congress*, Moscow, 1(1), 481-492.
+20. **Wolfram, S. (2002)**. *A New Kind of Science*. Champaign, IL: Wolfram Media.
+

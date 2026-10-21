@@ -8,6 +8,14 @@ Creator of the Intelligent Planning & Control (IPC) Engine | Independent Scholar
 
 ---
 
+### Abstract
+
+Discrete manufacturing enterprises worldwide have encountered a pronounced "IT Productivity Paradox" during digital transformation: despite sustained increases in digital capital expenditures, the average Return on Invested Capital (ROIC) has deteriorated, with pervasive projects mired in localized sub-optimization and systemic instability. This paper demonstrates that the root cause lies in the long-standing reliance of conventional management and software architectures on Independent and Identically Distributed (IID) reductionist assumptions that artificially decouple procurement, manufacturing, sales, and finance. In physical value networks, material kitting, machine capacity, order commitments, and cash flows exhibit strong non-linear topological entanglement, fundamentally constituting Non-Independent and Identically Distributed (Non-IID) Open Complex Giant Systems (OCGS) as defined by Qian Xuesen. This paper establishes the analytical framework of "Value Chain Physics" grounded in Non-IID physical reality: First, it proves the Vector Cancellation Law, revealing that isolated departmental optimization inevitably triggers non-orthogonal control vector interference, dissipating energy into internal friction heat ($\Delta W_{\mathrm{heat}} \ge 0$) and trapping the enterprise in a suboptimal Nash equilibrium. Second, it proposes a "5D Dual-Helix" architecture comprising a holographic data model and a dynamic evolution algorithm, leveraging a prior boundary operator $\Pi$ and a rigid manifold $\Pi_\bot$ to strip normal friction degrees of freedom, algebraically pruning factorial phase space search complexity from $\mathcal{O}(N!)$ to an empirical polynomial bound $\mathcal{O}(N \log N)$. Third, it introduces a compliance compact support projection operator $E_{\mathrm{supp}}$ (Conscience Operator) to cap residual variance against Goodhart breakdown, proving polynomial closed-loop computability ($T(N) \le \tau_{\mathrm{phy}} < +\infty$) and convergence to a unique absolute optimal steady state under physical instability window truncation. On this foundation, the paper provides rigorous mathematical formal proofs for Qian Xuesen's three foundational OCGS principles: proving the Necessity of the Overall Design Department for breaking Nash deadlocks and its Sufficiency when coupled with rigid barriers; the Sufficiency of the Hall for Workshop of Metasynthetic Engineering (HWME) for closed-loop computability under causal orthogonal pruning; and the Necessity of the Second-Order Meta-Cognitive Constitutional Rewriting Operator $\Phi_{\mathrm{Human}}$ for breaking silicon internal closure alongside the Sufficiency of the work operator tensor product $\Phi_{\mathrm{Human}} \otimes \mathcal{A}_{\mathrm{Silicon}}$ in human-machine combination. This work supplies mathematical and cybernetic foundations for autonomous self-healing closed-loop control and ROIC elevation in physical enterprise value networks.
+
+**Keywords**: Value Chain Physics; Non-Independent and Identically Distributed (Non-IID); Open Complex Giant Systems (OCGS); Vector Cancellation; 5D Dual-Helix; Closed-Loop Computability; Overall Design Department; Hall for Workshop of Metasynthetic Engineering (HWME); Meta-Cognitive Constitutional Rewriting Operator; Return on Invested Capital (ROIC)
+
+---
+
 ## 1. Introduction: From Non-IID Physical Reality to Value Chain Physics
 
 In modern enterprise management and industrial engineering, Return on Invested Capital (ROIC) serves as the core physical metric for evaluating enterprise operational efficiency and capital allocation capability:
@@ -42,6 +50,7 @@ However, Qian Xuesen's theory has long remained at macro-qualitative and methodo
 Professor Longbing Cao (2014, 2022)—a disciple of Academician Ruwei Dai at CAS, who in turn studied under Qian Xuesen—systematically pioneered Non-IID Learning theory, proving that real-world systems universally feature intra-entity coupling, inter-entity interaction coupling, and spatiotemporal heterogeneity. Professor Cao proved a core mathematical theorem: "If a system is fundamentally Non-IID, modeling and solving it under IID assumptions produces results that are mathematically biased and incorrect."
 
 According to the Holographic Anti-Entropy Theoretical System (Meng, 2026), a strict fourfold topological isomorphism exists between Holographic Anti-Entropy theory and Professor Longbing Cao's Non-IID theory:
+
 1. **Diagnosis Isomorphism**: Non-IID strong coupling $\Leftrightarrow$ Non-orthogonal topological interference across nodes triggering factorial complexity $\mathcal{O}(N!)$;
 2. **Solution Path Isomorphism**: High-dimensional coupling feature extraction $\Leftrightarrow$ Prior boundary operator $\Pi$ dimensional reduction and rigid manifold $\Pi_\bot$ normal clipping, collectively named 5D Dual-Helix algebraic pruning ($\mathcal{O}(N!) \rightarrow \mathcal{O}(N \log N)$);
 3. **Safety Defense Isomorphism**: Hacker attacks and model bias $\Leftrightarrow$ Compliance domain compact support projection operator $E_{\text{supp}}$ clipping heavy-tailed residual distributions;
@@ -49,7 +58,7 @@ According to the Holographic Anti-Entropy Theoretical System (Meng, 2026), a str
 
 ### 2.3 Cybernetics and Information Theory Bounds
 
-Ashby's (1956) Law of Requisite Variety requires the controller's variety $V_c$ to be no less than the controlled system's variety $V_s$; meanwhile, Miller's (1956) Law constrains human carbon-based working memory bandwidth ($7 \pm 2$ chunks). When $V_s \gg V_c$, traditional open-loop manual coordination inevitably breaks down. Kalman's (1960) Controllability-Observability Duality Theorem further demonstrates that if underlying physical states are unobservable, top-level intent is uncontrollable.
+Ashby's (1956) Law of Requisite Variety requires the controller's variety $V_c$ to be no less than the controlled system's variety $V_s$; meanwhile, Miller's (1956) Law constrains human carbon-based working memory bandwidth ($7 \pm 2$ chunks). When system variety greatly exceeds controller capacity ($V_s > V_c$), traditional open-loop manual coordination inevitably breaks down. Kalman's (1960) Controllability-Observability Duality Theorem further demonstrates that if underlying physical states are unobservable, top-level intent is uncontrollable.
 
 ---
 
@@ -114,6 +123,7 @@ Physically, $\Delta W_{\mathrm{heat}}$ manifests as non-orthogonal control vecto
 ### 4.2 Theorem 2: 5D Dual-Helix Algebraic Pruning and Complexity Convergence
 
 Dimensional reduction governance operates through the Dual-Helix structure:
+
 - **Left Helix (Holographic Data Model Helix)**: Maps physical 5D into rigid manifold $\Pi_\bot = (\mathcal{N}, \mathcal{T}, \mathcal{C})$, loading $X(t)$ and historical causality $\Delta X(t-1)$;
 - **Right Helix (Dynamic Evolution Algorithm Helix)**: Algorithm $\mathcal{A}$ executes a recursive loop of "concurrent pre-computation $\rightarrow$ manifold evaluation $\rightarrow$ redundant degree-of-freedom algebraic pruning."
 
@@ -140,7 +150,7 @@ $$T(N) = O(K \cdot N \log N) \in \mathbf{P}, \quad \text{and } T(N) \le \tau_{\t
 
 Because friction waste heat has a non-negative lower bound $\Delta W_{\text{heat}} \ge 0$, and constraint manifolds encode zero vector cancellation ($\langle \mathbf{v}_i, \mathbf{v}_j \rangle \ge 0$), successful traversal in finite steps implies cumulative waste heat is identically zero ($\Delta W_{\text{heat}} = 0$). Hitting physical lower bound 0 is definitional equivalent to in-boundary absolute optimality; under rigid exclusivity, physical execution trajectories have no choice but to converge to a unique absolute optimal steady state $S_k^*$ ('Traversability $\equiv$ Zero Cancellation $\equiv$ In-Boundary Absolute Optimality and Uniqueness').
 
-To prevent Goodhart's Law breakdown under extreme optimization pressure (when an indicator is chosen as a performance target, it ceases to be a good indicator and induces extreme arbitrage, $\lim_{\mathrm{optimization} \rightarrow \infty} \mathbb{E}(r^*) = -\infty$), we introduce the compliance domain compact support projection operator $E_{\text{supp}}$ (Conscience Operator), suspended on target and residual distributions. Operator $E_{\text{supp}}$ acts upon residual probability density $p(\Delta)$, truncating residual support to a compact deadband $[-\theta_{\text{dead}}, \theta_{\text{dead}}]$. When residuals attempt to breach boundaries, they are physically truncated, strictly capping residual variance:
+To prevent Goodhart's Law breakdown under extreme optimization pressure (when an indicator is chosen as a performance target, it ceases to be a good indicator and induces extreme arbitrage, Goodhart, 1984; $\lim_{\mathrm{optimization} \rightarrow \infty} \mathbb{E}(r^*) = -\infty$), we introduce the compliance domain compact support projection operator $E_{\text{supp}}$ (Conscience Operator), suspended on target and residual distributions. Operator $E_{\text{supp}}$ acts upon residual probability density $p(\Delta)$, truncating residual support to a compact deadband $[-\theta_{\text{dead}}, \theta_{\text{dead}}]$. When residuals attempt to breach boundaries, they are physically truncated, strictly capping residual variance:
 
 $$\operatorname{Var}(\Delta X) \le K_{\mathrm{supp}} < \infty$$
 
@@ -148,7 +158,6 @@ blocking system state divergence risks caused by target distortion.
 
 ### 4.4 Core Theorem: Formal Proof Theorem of Qian Xuesen's OCGS Three Principles
 
-> [!IMPORTANT]
 > **Prerequisite**: Under observer prior operator $\Pi$ boundary drawing, rigid manifold $\Pi_\bot$ constraint, dissipation mechanisms, and $\Phi$ self-reflection constructing $K \le \frac{\tau_{\text{phy}}}{\Delta t_{\text{clock}}} < +\infty$.
 
 This paper formally proposes and proves the formal proof theorem for Qian Xuesen's three core OCGS principles in entity discrete manufacturing value networks as a class of OCGS featuring causal DAG structures:
@@ -170,8 +179,11 @@ $$\text{Global Work Operator} = \Phi_{\mathrm{Human}} \otimes \mathcal{A}_{\math
 Within our operator decomposition framework, Second-Order Meta-Cognitive Constitutional Rewriting Operator $\Phi_{\mathrm{Human}}$ is the Necessary condition for breaking silicon formal system internal closure; work operator $\Phi_{\mathrm{Human}} \otimes \mathcal{A}_{\mathrm{Silicon}}$ is the Sufficient condition for achieving generational system evolution. If $\Phi \equiv 0$ (pure silicon closed loop), when residuals breach critical thresholds, no analytical self-healing trajectory exists within given axiom sets. Generalization to general OCGS requires reconstructing the physical carrier of $\Phi$ and observation domains.
 
 **Proof Summary**:  
+
 1. **Overall Design Department Necessity & Sufficiency**: Under Non-IID connectivity matrix $\mathbf{A}$, independent sub-node optimization yields negative vector dot products ($\langle \mathbf{v}_i, \mathbf{v}_j \rangle < 0$). By vector triangle inequalities, composite vector magnitude satisfies $\left\| \sum \mathbf{v}_i \right\| < \sum \| \mathbf{v}_i \|$, inevitably generating $\Delta W_{\text{heat}} > 0$. In our linear vector cancellation framework, an Overall Design Department is Necessary for breaking Nash deadlocks; coupled with $\Pi_\bot$ linear manifold constraints, it is Sufficient for multi-dimensional coordination.
+
 2. **HWME Closed-Loop Computability**: Via $\Pi$ boundary drawing and topological sorting, permutation space $N!$ converges to causal topological order on DAGs, reducing refinement complexity to $\mathcal{O}(N \log N)$; after rigid manifold $\Pi_\bot$ strips normal components, internal friction dissipation and residual-triggered $\Phi$ rewriting jointly drive network truncation depth $K \le \frac{\tau_{\text{phy}}}{\Delta t_{\text{clock}}} < +\infty$. By polynomial closed-loop computability under instability time truncation, iterative sequences form unidirectional forward deductions without backtracking during fixed-structure stages, guaranteeing convergence to a unique steady state $S_k^*$ (strictly superior to any open-loop Nash equilibrium). Under boundary and dissipation constructs, closed-loop computability holds.
+
 3. **Human-Machine Operator Necessity & Sufficiency**: Let first-order algorithm system be $\mathcal{A}$ with state space bounded by finite axiom set $\Pi_k$. By formal system non-self-bootstrapping, for any $\Delta > \theta_{\mathrm{trigger}}$, no analytical self-healing trajectory exists inside $\Pi_k$ (first-order algorithms cannot self-rewrite their own axioms). Second-Order Meta-Cognitive Constitutional Rewriting Operator $\Phi_{\mathrm{Human}}$ possesses second-order hyper-formal mapping $\Phi: \mathrm{Map}(\Xi \rightarrow \Omega_k) \rightarrow \mathrm{Map}(\Xi \rightarrow \Omega_{k+1})$. Thus, Second-Order Meta-Cognitive Constitutional Rewriting Operator $\Phi_{\mathrm{Human}}$ is Necessary for breaking closure, while its tensor product with silicon computing power $\mathcal{A}_{\mathrm{Silicon}}$ is Sufficient for generational self-healing evolution.
 
 **Q.E.D.**
@@ -183,6 +195,7 @@ Under our framework ($\Pi$ boundary drawing, $\Pi_\bot$ constraint, dissipation 
 ## 5. Architecture Governance: "Tripartite" Capabilities and Medical School Delivery Model
 
 Addressing Non-IID physical reality and OCGS characteristics, this paper proposes three essential architectural governance pillars:
+
 - **"Human-out-of-the-loop, Human-machine collaboration" Division**: Humans manage Second-Order Meta-Cognitive Constitutional Rewriting Operator $\Phi_{\mathrm{Human}}$ and compliance redlines (compliance support operator / Conscience Operator $E_{\text{supp}}$); silicon engines execute high-speed first-order algebraic pruning and automated decision write-back inside rigid manifold $\Pi_\bot$.
 - **"Tripartite" Fusion Architecture Capabilities**:
   - **Business Decoding Capability**: Penetrating organizational silos to parse fine-grained strongly coupled causal topologies of physical entities;
@@ -205,13 +218,10 @@ The core theoretical breakthrough of this paper lies in supplying formal mathema
 - Qian, X., Yu, J., & Dai, R. (1990). A new discipline of science—The open complex giant system and its methodology. *Nature Journal*, 13(1), 3-10. (钱学森, 于景元, 戴汝为. 一个科学新领域——开放的复杂巨系统及其方法论[J]. 自然杂志, 1990, 13(1): 3-10.)
 - Meng, F. (2026). *System and Complexity Science: Generation, Persistence, and Evolution of Order (Complete Monograph and Supporting Papers)* (Version 2.0). Zenodo. DOI: 10.5281/zenodo.22033928.
 - Ashby, W. R. (1956). *An Introduction to Cybernetics*. London: Chapman & Hall.
-- Baron, R. M., & Kenny, D. A. (1986). The moderator–mediator variable distinction in social psychological research: Conceptual, strategic, and statistical considerations. *Journal of Personality and Social Psychology*, 51(6), 1173-1182. DOI: 10.1037/0022-3514.51.6.1173
 - Brynjolfsson, E. (1993). The productivity paradox of information technology. *Communications of the ACM*, 36(12), 66-77. DOI: 10.1145/163298.163309
-- Callaway, B., & Sant’Anna, P. H. (2021). Difference-in-differences with multiple time periods. *Journal of Econometrics*, 225(2), 200-230. DOI: 10.1016/j.jeconom.2020.12.001
 - Cao, L. (2014). Non-IIDness learning in behavioral and social data. *The Computer Journal*, 57(9), 1358-1370. DOI: 10.1093/comjnl/bxt084
 - Cao, L. (2022). Beyond i.i.d.: Non-IID thinking, informatics, and learning. *IEEE Intelligent Systems*, 37(4), 5-17. DOI: 10.1109/MIS.2022.3194618
-- Cengiz, D., Dube, A., Lindner, A., & Zipperer, B. (2019). The effect of minimum wages on low-wage jobs. *The Quarterly Journal of Economics*, 134(3), 1405-1454. DOI: 10.1093/qje/qjz010
-- Hevner, A. R., March, S. T., Park, J., & Ram, S. (2004). Design science in information systems research. *MIS Quarterly*, 28(1), 75-105. DOI: 10.2307/25148625
+- Goodhart, C. A. E. (1984). *Monetary Theory and Practice: The UK Experience*. London: Macmillan.
 - Kalman, R. E. (1960). On the general theory of control systems. *Proceedings of the 1st IFAC Congress*, Moscow, 1(1), 481-492.
 - Miller, G. A. (1956). The magical number seven, plus or minus two: Some limits on our capacity for processing information. *Psychological Review*, 63(2), 81-97. DOI: 10.1037/h0043158
 - Wolfram, S. (2002). *A New Kind of Science*. Champaign, IL: Wolfram Media.
