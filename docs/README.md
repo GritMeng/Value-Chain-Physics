@@ -1,0 +1,193 @@
+# 系统与复杂性科学 & 价值链物理学：秩序的生成、存续与进化
+## System & Complexity Science & Physics of Value Chain Management
+### —— 开放复杂巨系统的物理学宪法与治理法则 (The Physical Constitution for Open Complex Giant Systems)
+
+**作者 / Author：** 孟凡淳 (Grit Meng / Fanchun Meng)  
+**履历 / Profile：** 前联想集团全球供应链集成计划体系（IPS）方案系统负责人 & 首席架构师  
+*Former Head & Chief Architect of Global Supply Chain Integrated Planning (IPS), Lenovo Group*  
+**官方 GitHub 主页：** [gritmeng.github.io/Value-Chain-Physics](https://gritmeng.github.io/Value-Chain-Physics/)  
+**联系邮箱 / Email：** gritmeng@outlook.com  
+
+---
+
+> [!IMPORTANT]
+> 📢 关于 IPC 系统覆盖范围、专利保护与开源目的的官方声明 (Official System Declaration)
+> 
+> 1. 全链路覆盖范围 (End-to-End Governance Coverage)：
+>    IPC (Intelligent Planning & Control) 系统完整覆盖从 IBP (Integrated Business Planning 业务共识与需求分解) 到 ITP (Intelligent Tactical Planning 战术主计划防波堤)、IOP (Intelligent Operational Planning 执行计划配额阻断)，直至 车间级详细调度与排程 (Shop-Floor Dispatching & Scheduling) 的端到端供应链协同闭环。
+> 
+> 2. 为什么暂未 100% 全量开源？(Active Patent Filing Protection)：
+>    由于 IPC 统御引擎中大量突破性的求解架构、多沙箱推演与并发水位算子目前正处于专利正式申报与法律审查流程中 (Patents Pending)。为保护核心商业资产与知识产权，系统暂无法将生产环境下的全量商业代码库（包含 DuckDB 物理适配层、大模型预测中枢及完整商业控制塔）100% 无保留公开。
+> 
+> 3. 开源 `ipc-core-benchmark` 的真正目的 (Proving Physical & Mathematical Feasibility)：
+>    我们之所以开放本开源微内核基准测试集，是为了向全球开发者、架构师与工业同行证明“百万级规模毫秒级求解”与“交付准且快”在物理与数学上是完全真实可达的 (Physically & Mathematically Achievable)。本仓库开放脱敏后的 C++17 核心算法算子与 50万需求 / 200万 SKU 基准压测套件，供全球专家直接下载、本地一键运行并物理对账。
+
+---
+
+## 🚀 开源可审计算子与自测套件 (IPC Core Open Benchmark)
+
+针对工业供应链中的关键核心痛点，开源微内核 [`ipc-core-benchmark/`](ipc-core-benchmark/) 提供了全套脱敏代码、测试用例与数学白皮书，供外部开发者与专家进行**物理确权与本地自测**：
+
+| 核心亮点 (Key Highlight) | 算法机制与代码映射 | 审计与自测支持 |
+| :--- | :--- | :--- |
+| **1. 交付又准又快 (Real-Time ATP/CTP)** | 递归 ATP/CTP 预留与 **零堆内存回滚 (Zero-Heap Rollback)**，支持多层 BOM 实时交期计算（[`atp_ctp_engine.cpp`](ipc-core-benchmark/src/atp_ctp_engine.cpp)） | `bin/test_delivery_precision.exe` |
+| **2. 主计划与执行计划协同 (ITP/IOP Alignment)** | ITP 战术防波堤（软约束）与 IOP 车间刚性配额阻断（硬拦截），解决计划漂移与越权抢料（[`itp_iop_alignment.cpp`](ipc-core-benchmark/src/itp_iop_alignment.cpp)） | `bin/test_itp_iop_alignment.exe` |
+| **3. 三级动态替代料规则 (Substitution Rules)** | 一类平摊配额平衡、二类组内优先级选优、三类跨组动态归一化与安全库存保护（[`substitution_engine.cpp`](ipc-core-benchmark/src/substitution_engine.cpp)） | `bin/test_substitution_rules.exe` |
+| **4. 50万需求/200万SKU 极速求解 (Extreme Performance)** | CPU 裸金属 SoA 连续内存调度，50万需求协同求解仅需 **~240ms**，吞吐量 **>2,000,000 需求/秒**（[`stress_benchmark_2m.cpp`](ipc-core-benchmark/benchmarks/stress_benchmark_2m.cpp)） | `bin/stress_benchmark_2m.exe` |
+
+### 🛠️ 本地一键运行自测 (Quick Self-Test Guide)
+
+切换到 `ipc-core-benchmark` 目录下，直接运行一键脚本：
+
+```cmd
+cd ipc-core-benchmark
+.\compile_and_run.bat
+```
+
+或使用 Python 运行双发对账交叉校验器：
+```bash
+python ipc-core-benchmark/verifier/cross_validator.py
+```
+
+---
+
+## 📂 整体工作区文件夹架构 (Workspace Directory Layout)
+
+```text
+h:/IPC/
+├── ipc-core-benchmark/        # 【核心开源标杆】脱敏可审计算子、数学白皮书与本地自测套件
+│   ├── include/ipc_core/      # 核心引擎脱敏头文件 (atp_ctp_engine.h, itp_iop_alignment.h, substitution_engine.h)
+│   ├── src/                   # 核心算法 C++17 实现文件 (Zero-Heap Rollback, Allotment Blocking)
+│   ├── benchmarks/            # 50万需求/200万SKU 极限性能压测与交付精度测试集
+│   ├── verifier/              # Python 独立参考引擎与双发自动化交叉校验器 (cross_validator.py)
+│   ├── docs/                  # MATHEMATICAL_SPEC.md 算法公式推导与数学规范白皮书
+│   ├── compile_and_run.bat    # Windows 环境一键编译与自测运行脚本
+│   └── CMakeLists.txt         # 跨平台 CMake 构建文件
+├── backups/                   # 历史备份目录
+├── bin/                       # 编译二进制分发目标目录
+│   ├── holo_stress.exe        # 46项全息单元测试执行文件
+│   └── itp_iop_stress.exe     # 200万级超大型压力测试执行文件
+├── build/                     # 临时编译对象目录（由 cl.exe 自动输出）
+├── data/                      # 静态数据与压力测试数据中心
+├── docs/                      # 全面设计文档与系统规范说明书
+│   ├── architecture_explanation.md            # IPC 顶层全景架构说明书
+│   ├── ipc_engine_evolution_and_specification.md# 【核心】细化进化白皮书与 API/数学规范
+│   └── DEPLOYMENT.md                          # 开发者与服务器部署手册
+├── include/                   # 生产级别 C++ 头文件目录
+├── src/                       # 生产级别 C++ 核心统御引擎源文件目录 (namespace ipc)
+├── scripts/                   # 开发与运行期自动化工具脚本
+├── tests/                     # 回归测试套件源码目录
+├── frontend/                  # React 19 + TypeScript 现代控制塔前端项目
+├── templates/                 # 仪表盘模板与静态 HTML 资源
+├── main_mem3.exe              # 【根目录组件】IPC统御引擎内核程序（由 python server 动态调用）
+├── test_runner_validation.exe # 【根目录组件】验证大盘重算主程序
+├── ipc.db                     # 【根目录组件】运行期 DuckDB 主数据库
+├── app_cockpit.py             # 【根目录组件】Streamlit AI 控制塔副驾驶
+├── server.py                  # 【根目录组件】FastAPI 后台集成服务器
+└── run_all.bat                # 前端编译与控制塔服务一键启动批处理
+```
+
+
+## 🚀 核心开源算法算子与性能基准测试集 (IPC Core Open Benchmarks)
+
+为向全球开发者、架构师与工业同行**证明“百万级规模毫秒级求解”与“交付准且快”在物理与数学上是完全真实可达的 (Physically & Mathematically Achievable)**，作者开放了脱敏后的 C++17 核心算法算子与压测集：
+
+* 📦 **开源基准仓库入口**：[`ipc-core-benchmark`](https://github.com/GritMeng/ipc-core-benchmark)
+* ⚡ **核心算子实现**：
+  1. **实时 ATP/CTP 交付承诺算子** (`atp_ctp_engine.cpp`)：微秒级多层 BOM 展开与零堆内存（Zero-Heap）防过扣回滚。
+  2. **ITP/IOP 主计划与执行计划协同算子** (`itp_iop_alignment.cpp`)：ITP 软防波堤缓冲 + IOP 车间刚性配额阻断。
+  3. **三级动态替代料分配算子** (`substitution_engine.cpp`)：跨组归一化选优与安全库存防穿透。
+* 📊 **2,000,000 SKU / 500,000 并发需求压测看板**：
+
+| 测试项目 (Benchmark Test) | 数据规模 (Dataset Size) | 全量耗时 (Latency) | 吞吐量 (Throughput) |
+| :--- | :--- | :--- | :--- |
+| **ITP 防波堤主计划生成** | 500,000 Demands | **~18 ms** | ~27,700,000 / 秒 |
+| **IOP 车间协同刚性阻断** | 500,000 Demands | **~24 ms** | ~20,800,000 / 秒 |
+| **全链路协同总响应** | **2,000,000 SKUs** | **< 45 ms** | **> 11,000,000 / 秒** |
+
+*(注：单台个人电脑 296 秒消纳 50 万笔离散需求与 15 万不等式约束。无 GPU 依赖，纯 C++17 CPU 裸金属调度。可直接一键 Clone 本地编译运行与数学对账。生产环境全量商业引擎含 DuckDB 物理层、多沙箱推演与控制塔受 Patents Pending 专利保护。)*
+
+
+---
+
+
+
+## 📚 官方学术论文全集 (Official Academic Paper Suites - Bilingual PDFs)
+
+本仓库收录了开放复杂巨系统（OCGS）治理、五维心智模型、价值链物理学与系统复杂性科学的完整学术论文。每篇论文均提供经过同行评议排版与原生矢量公式编译的**中文版 PDF 与英文版 PDF**（两套权威发布版本），并在 SSRN 预印本平台取得全球分布式确权：
+
+### 1. 《良知驱动的五维心智模型：重新定义问题与认知外推》 (5D Mind Model Suite — SSRN 7451920)
+* 🇨🇳 **中文版 PDF**：[良知驱动的五维心智模型：重新定义问题与认知外推 —— 兼论复杂巨系统总设计师的心智画像与破局机制.pdf](docs/良知驱动的五维心智模型：重新定义问题与认知外推%20——%20兼论复杂巨系统总设计师的心智画像与破局机制.pdf)
+* 🇬🇧 **英文版 PDF**：[Conscience-Driven Five-Dimensional Mind Model —— Problem Redefinition and Cognitive Extrapolation in Open Complex Giant Systems.pdf](docs/Conscience-Driven%20Five-Dimensional%20Mind%20Model%20——%20Problem%20Redefinition%20and%20Cognitive%20Extrapolation%20in%20Open%20Complex%20Giant%20Systems.pdf)
+* 🔗 **SSRN 预印本**：[SSRN Abstract 7451920](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7451920)
+
+### 2. 《系统与复杂性科学：秩序的生成、存续与进化》 (System & Complexity Science Suite — SSRN 7251098)
+* 🇨🇳 **中文版 PDF**：[系统与复杂性科学：秩序的生成、存续与进化 —— 开放复杂巨系统的统御原理.pdf](docs/系统与复杂性科学：秩序的生成、存续与进化%20——%20开放复杂巨系统的统御原理.pdf)
+* 🇬🇧 **英文版 PDF**：[Systems and Complexity Science —— The Generation, Persistence, and Evolution of Order — The Governing Principles of Open Complex Giant Systems.pdf](docs/Systems%20and%20Complexity%20Science%20——%20The%20Generation,%20Persistence,%20and%20Evolution%20of%20Order%20—%20The%20Governing%20Principles%20of%20Open%20Complex%20Giant%20Systems.pdf)
+* 🔗 **SSRN 预印本**：[SSRN Abstract 7251098](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7251098)
+
+### 3. 《第二次文艺复兴：为什么系统与复杂性科学是“科学的科学”》 (The Second Renaissance Suite — SSRN 7557899)
+* 🇨🇳 **中文版 PDF**：[第二次文艺复兴：为什么系统与复杂性科学是“科学的科学”.pdf](docs/第二次文艺复兴：为什么系统与复杂性科学是“科学的科学”.pdf)
+* 🇬🇧 **英文版 PDF**：[The Second Renaissance —— Why Systems and Complexity Science Is the 'Science of Sciences'.pdf](docs/The%20Second%20Renaissance%20——%20Why%20Systems%20and%20Complexity%20Science%20Is%20the%20'Science%20of%20Sciences'.pdf)
+* 🔗 **SSRN 预印本**：[SSRN Abstract 7557899](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7557899)
+
+### 4. 《价值链物理学：基于非独立同分布（Non-IID）的形式化证明与全域可计算性》 (Value Chain Physics Suite — SSRN 7442100)
+* 🇨🇳 **中文版 PDF**：[价值链物理学：基于非独立同分布（Non-IID）的开放复杂巨系统形式化证明与全域可计算性研究.pdf](docs/价值链物理学：基于非独立同分布（Non-IID）的开放复杂巨系统形式化证明与全域可计算性研究.pdf)
+* 🇬🇧 **英文版 PDF**：[Value Chain Physics —— Formal Proof of Open Complex Giant Systems and Full-Domain Computability Based on Non-IID Dynamics.pdf](docs/Value%20Chain%20Physics%20——%20Formal%20Proof%20of%20Open%20Complex%20Giant%20Systems%20and%20Full-Domain%20Computability%20Based%20on%20Non-IID%20Dynamics.pdf)
+* 🔗 **SSRN 预印本**：[SSRN Abstract 7442100](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7442100)
+
+### 5. 《开放复杂巨系统的活体表达与自洽可计算性》 (Living Expression of OCGS Suite — SSRN 7557878)
+* 🇨🇳 **中文版 PDF**：[开放复杂巨系统的“活体表达”与“闭环可计算性”.pdf](docs/开放复杂巨系统的“活体表达”与“闭环可计算性”.pdf)
+* 🇬🇧 **英文版 PDF**：[Formal Proof of 'Living Expression' and 'Self-Consistent Computability' in Open Complex Giant Systems.pdf](docs/Formal%20Proof%20of%20'Living%20Expression'%20and%20'Self-Consistent%20Computability'%20in%20Open%20Complex%20Giant%20Systems.pdf)
+* 🔗 **SSRN 预印本**：[SSRN Abstract 7557878](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7557878)
+
+### 6. 《开放复杂巨系统的生成、存续与进化 —— 基于 Non-IID 第一性原理的推论推演与 OCGS 同构证明》 (OCGS Generation, Survival & Evolution Suite — SSRN 7496118)
+* 🇨🇳 **中文版 PDF**：[开放复杂巨系统的生成、存续与进化 —— 基于 Non-IID 第一性原理的推论推演与 OCGS 同构证明.pdf](docs/开放复杂巨系统的生成、存续与进化%20——%20基于%20Non-IID%20第一性原理的推论推演与%20OCGS%20同构证明.pdf)
+* 🇬🇧 **英文版 PDF**：[Generation, Survival, and Evolution of Open Complex Giant Systems —— Inference Deductions and Isomorphic Proof of OCGS Based on the Non-IID First Principle.pdf](docs/Generation,%20Survival,%20and%20Evolution%20of%20Open%20Complex%20Giant%20Systems%20——%20Inference%20Deductions%20and%20Isomorphic%20Proof%20of%20OCGS%20Based%20on%20the%20Non-IID%20First%20Principle.pdf)
+* 🔗 **SSRN 预印本**：[SSRN Abstract 7496118](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7496118)
+
+### 7. 《排序耦合定律：产销协同中KPI冲突的生成机制与正交治理》 (The Law of Sequencing Coupling Suite)
+* 🇨🇳 **中文版 PDF**：[排序耦合定律：产销协同中KPI冲突的生成机制与正交治理.pdf](docs/排序耦合定律：产销协同中KPI冲突的生成机制与正交治理.pdf)
+* 🇬🇧 **英文版 PDF**：[The Law of Sequencing Coupling —— Genesis Mechanism and Orthogonal Governance of KPI Conflicts in S&OP.pdf](docs/The%20Law%20of%20Sequencing%20Coupling%20——%20Genesis%20Mechanism%20and%20Orthogonal%20Governance%20of%20KPI%20Conflicts%20in%20S&OP.pdf)
+* 📄 **盲审版 PDF**：[The_Law_of_Sequencing_Coupling_Manuscript_Anonymous.pdf](docs/The_Law_of_Sequencing_Coupling_Manuscript_Anonymous.pdf)
+* 📄 **投稿扉页 PDF**：[Title_Page_JSSSE.pdf](docs/Title_Page_JSSSE.pdf)
+
+
+### 🏛️ SSRN 预印本平台与官方确权 (SSRN Author Dashboard & Distribution)
+
+作者在 Elsevier SSRN 预印本平台已获批并公开分布 (DISTRIBUTED) 6 篇核心学术论文，提供全球可追溯的预印本确权与时间戳：
+
+| SSRN Abstract ID | 论文英文标题 (Scholarly Paper Title) | 发布状态 (Status) | SSRN 官方链接 (Direct Preprint Link) |
+| :--- | :--- | :--- | :--- |
+| **SSRN 7251098** | *System and Complexity Science: The Generation, Persistence, and Evolution of Order* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7251098) |
+| **SSRN 7451920** | *Conscience-Driven Holographic Metacognition: The 5D Mind Model* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7451920) |
+| **SSRN 7442100** | *Value Chain Physics: Formal Proof of Open Complex Giant Systems and Full-Domain Computability* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7442100) |
+| **SSRN 7557878** | *Formal Proof of "Living Expression" and "Self-Consistent Computability" in Open Complex Giant Systems* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7557878) |
+| **SSRN 7557899** | *The Second Renaissance: Why System and Complexity Science Is the "Science of Sciences"* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7557899) |
+| **SSRN 7496118** | *Generation, Survival, and Evolution of Open Complex Giant Systems: Non-IID Isomorphic Proof* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7496118) |
+
+
+## 📜 引用与学术元数据 (Citation & Metadata)
+
+```bibtex
+@article{Meng2026SystemComplexity,
+  author    = {Fanchun Meng (Grit Meng)},
+  title     = {System and Complexity Science: Generation, Persistence, and Evolution of Order --- The Physical Constitution for Open Complex Giant Systems},
+  title_zh  = {系统与复杂性科学：秩序的生成、存续和进化——开放复杂巨系统的物理学宪法},
+  journal   = {SSRN Electronic Journal, SSRN ID: 7251098},
+  year      = {2026},
+  url       = {https://ssrn.com/abstract=7251098}
+}
+
+@article{Meng2026ValueChainPhysics,
+  author    = {Fanchun Meng (Grit Meng)},
+  title     = {Value Chain Physics: Governance Laws of Open Complex Giant Systems -- A Paradigm Shift in Digitalization and AI Autonomous Decision-Making},
+  title_zh  = {价值链物理学：开放复杂巨系统的治理法则},
+  journal   = {Zenodo Repository},
+  year      = {2026},
+  url       = {https://gritmeng.github.io/Value-Chain-Physics/}
+}
+```
+
+
+---
