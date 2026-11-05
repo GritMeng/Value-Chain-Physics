@@ -2,9 +2,15 @@
 ## System & Complexity Science & Physics of Value Chain Management
 ### —— 开放复杂巨系统的物理学宪法与治理法则 (The Physical Constitution for Open Complex Giant Systems)
 
-**作者 / Author：** 孟凡淳 (Grit Meng / Fanchun Meng)  
-**履历 / Profile：** 前联想集团全球供应链集成计划体系（IPS）方案系统负责人 & 首席架构师  
-*Former Head & Chief Architect of Global Supply Chain Integrated Planning (IPS), Lenovo Group*  
+**作者 / Author：**  
+**孟凡淳 (Grit Meng)**  
+前联想全球供应链集成计划方案（IPS）系统负责人兼总设计师  
+IPC 智能计划与控制引擎缔造者 | 独立学者  
+
+**Grit Meng**  
+Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global Supply Chain  
+Creator of the Intelligent Planning & Control (IPC) Engine | Independent Scholar  
+
 **官方 GitHub 主页：** [gritmeng.github.io/Value-Chain-Physics](https://gritmeng.github.io/Value-Chain-Physics/)  
 **联系邮箱 / Email：** gritmeng@outlook.com  
 
@@ -112,80 +118,95 @@ h:/IPC/
 
 
 
-## 📚 官方学术论文全集 (Official Academic Paper Suites - Bilingual PDFs)
+## 📚 官方学术论文全集与三阶导读漏斗 (Official Academic Paper Suites - Bilingual PDFs & SSRN)
 
-本仓库收录了开放复杂巨系统（OCGS）治理、五维心智模型、价值链物理学与系统复杂性科学的完整学术论文。每篇论文均提供经过同行评议排版与原生矢量公式编译的**中文版 PDF 与英文版 PDF**（两套权威发布版本），并在 SSRN 预印本平台取得全球分布式确权：
+本仓库收录了价值链物理学、排序耦合定律、开放复杂巨系统（OCGS）形式化证明、五维心智模型与系统复杂性科学的完整学术论文。每篇论文均提供经过同行评议排版与原生矢量公式编译的**中文版 PDF 与英文版 PDF**（两套权威发布版本），并在 Elsevier SSRN 预印本平台取得全球分布式确权（全部 7 篇均已获批 `DISTRIBUTED`）：
 
-### 1. 《良知驱动的五维心智模型：重新定义问题与认知外推》 (5D Mind Model Suite — SSRN 7451920)
-* 🇨🇳 **中文版 PDF**：[良知驱动的五维心智模型：重新定义问题与认知外推 —— 兼论复杂巨系统总设计师的心智画像与破局机制.pdf](docs/良知驱动的五维心智模型：重新定义问题与认知外推%20——%20兼论复杂巨系统总设计师的心智画像与破局机制.pdf)
-* 🇬🇧 **英文版 PDF**：[Conscience-Driven Five-Dimensional Mind Model —— Problem Redefinition and Cognitive Extrapolation in Open Complex Giant Systems.pdf](docs/Conscience-Driven%20Five-Dimensional%20Mind%20Model%20——%20Problem%20Redefinition%20and%20Cognitive%20Extrapolation%20in%20Open%20Complex%20Giant%20Systems.pdf)
-* 🔗 **SSRN 预印本**：[SSRN Abstract 7451920](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7451920)
+> [!TIP]
+> 🧭 **推荐阅读次序（由浅入深“三阶认知漏斗”）：**
+> * **第一阶（工业破局 · 3分钟顿悟入口）**：强烈建议所有企业高管、供应链从业者与管理学者从 **第 1 篇《排序耦合定律》** 读起——全文无需高深数学背景，仅用一张“2个需求、3颗物料”四期推演表，100% 确定性地证明**“企业运营 KPI 并非天然冲突（Not Trade-offs），而是同一物理耦合态的不同切面”**；随后阅读 **第 2 篇《价值链物理学》**，看联想全球供应链如何在 200 万时空节点上连续 18 年跑通 99% 人在环外闭环。
+> * **第二阶（动力学与同构基石 · 形式化证明）**：接续阅读 **第 3 篇《活体表达与闭环可计算性》** 与 **第 4 篇《OCGS 生成、存续与进化（Non-IID 同构证明）》**，掌握从 $O(N!)$ 组合爆炸降维至 $O(K \cdot N \log N)$ 多项式闭环的代数与控制论证明。
+> * **第三阶（元科学总纲与心智底座 · 科学的科学）**：最后精读 **第 5 篇《秩序的生成、存续与进化》**、**第 6 篇《第二次文艺复兴》** 与 **第 7 篇《良知驱动的五维心智模型》**，理解“划界—应然—约束—残差—修宪”的统御母算法与总设计师心智画像。
 
-### 2. 《系统与复杂性科学：秩序的生成、存续与进化》 (System & Complexity Science Suite — SSRN 7251098)
-* 🇨🇳 **中文版 PDF**：[系统与复杂性科学：秩序的生成、存续与进化 —— 开放复杂巨系统的统御原理.pdf](docs/系统与复杂性科学：秩序的生成、存续与进化%20——%20开放复杂巨系统的统御原理.pdf)
-* 🇬🇧 **英文版 PDF**：[Systems and Complexity Science —— The Generation, Persistence, and Evolution of Order — The Governing Principles of Open Complex Giant Systems.pdf](docs/Systems%20and%20Complexity%20Science%20——%20The%20Generation,%20Persistence,%20and%20Evolution%20of%20Order%20—%20The%20Governing%20Principles%20of%20Open%20Complex%20Giant%20Systems.pdf)
-* 🔗 **SSRN 预印本**：[SSRN Abstract 7251098](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7251098)
+### 1. ⭐ [首选破局入口] 《排序耦合定律：产销协同中KPI冲突的生成机制与正交治理》 (The Law of Sequencing Coupling Suite — SSRN 7640758)
+* 🇨🇳 **中文版 PDF**：[排序耦合定律：产销协同中KPI冲突的生成机制与正交治理.pdf](docs/排序耦合定律：产销协同中KPI冲突的生成机制与正交治理.pdf)
+* 🇬🇧 **英文版 PDF**：[The Law of Sequencing Coupling —— Genesis Mechanism and Orthogonal Governance of KPI Conflicts in S&OP.pdf](docs/The%20Law%20of%20Sequencing%20Coupling%20——%20Genesis%20Mechanism%20and%20Orthogonal%20Governance%20of%20KPI%20Conflicts%20in%20S&OP.pdf)
+* 🔗 **SSRN 预印本**：[SSRN Abstract 7640758](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7640758)
 
-### 3. 《第二次文艺复兴：为什么系统与复杂性科学是“科学的科学”》 (The Second Renaissance Suite — SSRN 7557899)
-* 🇨🇳 **中文版 PDF**：[第二次文艺复兴：为什么系统与复杂性科学是“科学的科学”.pdf](docs/第二次文艺复兴：为什么系统与复杂性科学是“科学的科学”.pdf)
-* 🇬🇧 **英文版 PDF**：[The Second Renaissance —— Why Systems and Complexity Science Is the 'Science of Sciences'.pdf](docs/The%20Second%20Renaissance%20——%20Why%20Systems%20and%20Complexity%20Science%20Is%20the%20'Science%20of%20Sciences'.pdf)
-* 🔗 **SSRN 预印本**：[SSRN Abstract 7557899](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7557899)
-
-### 4. 《价值链物理学：基于非独立同分布（Non-IID）的形式化证明与全域可计算性》 (Value Chain Physics Suite — SSRN 7442100)
+### 2. ⭐ [工业实证总纲] 《价值链物理学：基于非独立同分布（Non-IID）的形式化证明与全域可计算性》 (Value Chain Physics Suite — SSRN 7442100)
 * 🇨🇳 **中文版 PDF**：[价值链物理学：基于非独立同分布（Non-IID）的开放复杂巨系统形式化证明与全域可计算性研究.pdf](docs/价值链物理学：基于非独立同分布（Non-IID）的开放复杂巨系统形式化证明与全域可计算性研究.pdf)
 * 🇬🇧 **英文版 PDF**：[Value Chain Physics —— Formal Proof of Open Complex Giant Systems and Full-Domain Computability Based on Non-IID Dynamics.pdf](docs/Value%20Chain%20Physics%20——%20Formal%20Proof%20of%20Open%20Complex%20Giant%20Systems%20and%20Full-Domain%20Computability%20Based%20on%20Non-IID%20Dynamics.pdf)
 * 🔗 **SSRN 预印本**：[SSRN Abstract 7442100](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7442100)
 
-### 5. 《开放复杂巨系统的活体表达与自洽可计算性》 (Living Expression of OCGS Suite — SSRN 7557878)
+### 3. 《开放复杂巨系统的活体表达与闭环可计算性》 (Living Expression of OCGS Suite — SSRN 7557878)
 * 🇨🇳 **中文版 PDF**：[开放复杂巨系统的“活体表达”与“闭环可计算性”.pdf](docs/开放复杂巨系统的“活体表达”与“闭环可计算性”.pdf)
 * 🇬🇧 **英文版 PDF**：[Formal Proof of 'Living Expression' and 'Self-Consistent Computability' in Open Complex Giant Systems.pdf](docs/Formal%20Proof%20of%20'Living%20Expression'%20and%20'Self-Consistent%20Computability'%20in%20Open%20Complex%20Giant%20Systems.pdf)
 * 🔗 **SSRN 预印本**：[SSRN Abstract 7557878](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7557878)
 
-### 6. 《开放复杂巨系统的生成、存续与进化 —— 基于 Non-IID 第一性原理的推论推演与 OCGS 同构证明》 (OCGS Generation, Survival & Evolution Suite — SSRN 7496118)
+### 4. 《开放复杂巨系统的生成、存续与进化 —— 基于 Non-IID 第一性原理的推论推演与 OCGS 同构证明》 (OCGS Generation, Survival & Evolution Suite — SSRN 7496118)
 * 🇨🇳 **中文版 PDF**：[开放复杂巨系统的生成、存续与进化 —— 基于 Non-IID 第一性原理的推论推演与 OCGS 同构证明.pdf](docs/开放复杂巨系统的生成、存续与进化%20——%20基于%20Non-IID%20第一性原理的推论推演与%20OCGS%20同构证明.pdf)
 * 🇬🇧 **英文版 PDF**：[Generation, Survival, and Evolution of Open Complex Giant Systems —— Inference Deductions and Isomorphic Proof of OCGS Based on the Non-IID First Principle.pdf](docs/Generation,%20Survival,%20and%20Evolution%20of%20Open%20Complex%20Giant%20Systems%20——%20Inference%20Deductions%20and%20Isomorphic%20Proof%20of%20OCGS%20Based%20on%20the%20Non-IID%20First%20Principle.pdf)
 * 🔗 **SSRN 预印本**：[SSRN Abstract 7496118](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7496118)
 
-### 7. 《排序耦合定律：产销协同中KPI冲突的生成机制与正交治理》 (The Law of Sequencing Coupling Suite)
-* 🇨🇳 **中文版 PDF**：[排序耦合定律：产销协同中KPI冲突的生成机制与正交治理.pdf](docs/排序耦合定律：产销协同中KPI冲突的生成机制与正交治理.pdf)
-* 🇬🇧 **英文版 PDF**：[The Law of Sequencing Coupling —— Genesis Mechanism and Orthogonal Governance of KPI Conflicts in S&OP.pdf](docs/The%20Law%20of%20Sequencing%20Coupling%20——%20Genesis%20Mechanism%20and%20Orthogonal%20Governance%20of%20KPI%20Conflicts%20in%20S&OP.pdf)
-* 📄 **盲审版 PDF**：[The_Law_of_Sequencing_Coupling_Manuscript_Anonymous.pdf](docs/The_Law_of_Sequencing_Coupling_Manuscript_Anonymous.pdf)
-* 📄 **投稿扉页 PDF**：[Title_Page_JSSSE.pdf](docs/Title_Page_JSSSE.pdf)
+### 5. 《系统与复杂性科学：秩序的生成、存续与进化》 (System & Complexity Science Suite — SSRN 7251098)
+* 🇨🇳 **中文版 PDF**：[系统与复杂性科学：秩序的生成、存续与进化 —— 开放复杂巨系统的统御原理.pdf](docs/系统与复杂性科学：秩序的生成、存续与进化%20——%20开放复杂巨系统的统御原理.pdf)
+* 🇬🇧 **英文版 PDF**：[Systems and Complexity Science —— The Generation, Persistence, and Evolution of Order — The Governing Principles of Open Complex Giant Systems.pdf](docs/Systems%20and%20Complexity%20Science%20——%20The%20Generation,%20Persistence,%20and%20Evolution%20of%20Order%20—%20The%20Governing%20Principles%20of%20Open%20Complex%20Giant%20Systems.pdf)
+* 🔗 **SSRN 预印本**：[SSRN Abstract 7251098](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7251098)
+
+### 6. 《第二次文艺复兴：为什么系统与复杂性科学是“科学的科学”》 (The Second Renaissance Suite — SSRN 7557899)
+* 🇨🇳 **中文版 PDF**：[第二次文艺复兴：为什么系统与复杂性科学是“科学的科学”.pdf](docs/第二次文艺复兴：为什么系统与复杂性科学是“科学的科学”.pdf)
+* 🇬🇧 **英文版 PDF**：[The Second Renaissance —— Why Systems and Complexity Science Is the 'Science of Sciences'.pdf](docs/The%20Second%20Renaissance%20——%20Why%20Systems%20and%20Complexity%20Science%20Is%20the%20'Science%20of%20Sciences'.pdf)
+* 🔗 **SSRN 预印本**：[SSRN Abstract 7557899](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7557899)
+
+### 7. 《良知驱动的五维心智模型：重新定义问题与认知外推》 (5D Mind Model Suite — SSRN 7451920)
+* 🇨🇳 **中文版 PDF**：[良知驱动的五维心智模型：重新定义问题与认知外推 —— 兼论复杂巨系统总设计师的心智画像与破局机制.pdf](docs/良知驱动的五维心智模型：重新定义问题与认知外推%20——%20兼论复杂巨系统总设计师的心智画像与破局机制.pdf)
+* 🇬🇧 **英文版 PDF**：[Conscience-Driven Five-Dimensional Mind Model —— Problem Redefinition and Cognitive Extrapolation in Open Complex Giant Systems.pdf](docs/Conscience-Driven%20Five-Dimensional%20Mind%20Model%20——%20Problem%20Redefinition%20and%20Cognitive%20Extrapolation%20in%20Open%20Complex%20Giant%20Systems.pdf)
+* 🔗 **SSRN 预印本**：[SSRN Abstract 7451920](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7451920)
 
 
 ### 🏛️ SSRN 预印本平台与官方确权 (SSRN Author Dashboard & Distribution)
 
-作者在 Elsevier SSRN 预印本平台已获批并公开分布 (DISTRIBUTED) 6 篇核心学术论文，提供全球可追溯的预印本确权与时间戳：
+作者在 Elsevier SSRN 预印本平台已获批并公开分布 (**DISTRIBUTED**) **7 篇**核心学术论文，提供全球可追溯的预印本确权与时间戳：
 
-| SSRN Abstract ID | 论文英文标题 (Scholarly Paper Title) | 发布状态 (Status) | SSRN 官方链接 (Direct Preprint Link) |
-| :--- | :--- | :--- | :--- |
-| **SSRN 7251098** | *System and Complexity Science: The Generation, Persistence, and Evolution of Order* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7251098) |
-| **SSRN 7451920** | *Conscience-Driven Holographic Metacognition: The 5D Mind Model* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7451920) |
-| **SSRN 7442100** | *Value Chain Physics: Formal Proof of Open Complex Giant Systems and Full-Domain Computability* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7442100) |
-| **SSRN 7557878** | *Formal Proof of "Living Expression" and "Self-Consistent Computability" in Open Complex Giant Systems* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7557878) |
-| **SSRN 7557899** | *The Second Renaissance: Why System and Complexity Science Is the "Science of Sciences"* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7557899) |
-| **SSRN 7496118** | *Generation, Survival, and Evolution of Open Complex Giant Systems: Non-IID Isomorphic Proof* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7496118) |
+| 阅读阶梯 | SSRN Abstract ID | 论文英文标题 (Scholarly Paper Title) | 发布状态 (Status) | SSRN 官方链接 (Direct Preprint Link) |
+| :--- | :--- | :--- | :--- | :--- |
+| **第一阶：3分钟破局入口** | **SSRN 7640758** | *The Law of Sequencing Coupling: Genesis Mechanism and Orthogonal Governance of KPI Conflicts in S&OP* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7640758) |
+| **第一阶：工业实证总纲** | **SSRN 7442100** | *Value Chain Physics: Formal Proof of Open Complex Giant Systems and Full-Domain Computability Based on Non-IID Dynamics* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7442100) |
+| **第二阶：闭环可计算证明** | **SSRN 7557878** | *Formal Proof of 'Living Expression' and 'Self-Consistent Computability' in Open Complex Giant Systems* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7557878) |
+| **第二阶：Non-IID 同构证明** | **SSRN 7496118** | *Generation, Survival, and Evolution of Open Complex Giant Systems: Inference Deductions and Isomorphic Proof of OCGS Based on the Non-IID First Principle* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7496118) |
+| **第三阶：元科学公理母本** | **SSRN 7251098** | *System and Complexity Science: The Generation, Persistence, and Evolution of Order —— The Governing Principles of Open Complex Giant Systems* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7251098) |
+| **第三阶：科学的科学宣言** | **SSRN 7557899** | *The Second Renaissance: Why System and Complexity Science Is the "Science of Sciences"* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7557899) |
+| **第三阶：五维心智模型** | **SSRN 7451920** | *Conscience-Driven Five-Dimensional Mind Model: Problem Redefinition and Cognitive Extrapolation* | **DISTRIBUTED** | [View on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7451920) |
 
 
 ## 📜 引用与学术元数据 (Citation & Metadata)
 
 ```bibtex
-@article{Meng2026SystemComplexity,
-  author    = {Fanchun Meng (Grit Meng)},
-  title     = {System and Complexity Science: Generation, Persistence, and Evolution of Order --- The Physical Constitution for Open Complex Giant Systems},
-  title_zh  = {系统与复杂性科学：秩序的生成、存续和进化——开放复杂巨系统的物理学宪法},
-  journal   = {SSRN Electronic Journal, SSRN ID: 7251098},
+@article{Meng2026SequencingCoupling,
+  author    = {Grit Meng},
+  title     = {The Law of Sequencing Coupling: Genesis Mechanism and Orthogonal Governance of KPI Conflicts in S\&OP},
+  title_zh  = {排序耦合定律：产销协同中KPI冲突的生成机制与正交治理},
+  journal   = {SSRN Electronic Journal, SSRN ID: 7640758},
   year      = {2026},
-  url       = {https://ssrn.com/abstract=7251098}
+  url       = {https://ssrn.com/abstract=7640758}
 }
 
 @article{Meng2026ValueChainPhysics,
-  author    = {Fanchun Meng (Grit Meng)},
-  title     = {Value Chain Physics: Governance Laws of Open Complex Giant Systems -- A Paradigm Shift in Digitalization and AI Autonomous Decision-Making},
-  title_zh  = {价值链物理学：开放复杂巨系统的治理法则},
-  journal   = {Zenodo Repository},
+  author    = {Grit Meng},
+  title     = {Value Chain Physics: Formal Proof of Open Complex Giant Systems and Full-Domain Computability Based on Non-IID Dynamics},
+  title_zh  = {价值链物理学：基于非独立同分布（Non-IID）的开放复杂巨系统形式化证明与全域可计算性研究},
+  journal   = {SSRN Electronic Journal, SSRN ID: 7442100},
   year      = {2026},
-  url       = {https://gritmeng.github.io/Value-Chain-Physics/}
+  url       = {https://ssrn.com/abstract=7442100}
+}
+
+@article{Meng2026SystemComplexity,
+  author    = {Grit Meng},
+  title     = {System and Complexity Science: The Generation, Persistence, and Evolution of Order --- The Governing Principles of Open Complex Giant Systems},
+  title_zh  = {系统与复杂性科学：秩序的生成、存续与进化——开放复杂巨系统的统御原理},
+  journal   = {SSRN Electronic Journal, SSRN ID: 7251098},
+  year      = {2026},
+  url       = {https://ssrn.com/abstract=7251098}
 }
 ```
 
