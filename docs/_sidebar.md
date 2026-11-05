@@ -1,53 +1,41 @@
-* [🏠 首页与全景概览](README.md)
+* [🏠 首页与双通道导读](README.md)
 * <a href="flipbook_reader.html" target="_blank" style="color: #d29922; font-weight: bold;"><i class="fa-solid fa-book-open"></i> 📖 3D 交互翻页典藏电子书</a>
-* <a href="flipbook_reader.html" target="_blank" style="color: #58a6ff; font-weight: bold;"><i class="fa-solid fa-award"></i> 🎁 CRC Press 出版大礼包与成果展示</a>
 
-* **核心论文与 SSRN 预印本 (Bilingual Papers PDF & SSRN)**
-  * [⭐ 1. 排序耦合定律 (中文 PDF · 首选入口)](docs/排序耦合定律：产销协同中KPI冲突的生成机制与正交治理.pdf)
+* **🔥 一、工业破局与价值链物理学 (Industrial Breakthrough)**
+  * [⭐ 1. 排序耦合定律 (中文 PDF · 3分钟破局入口)](docs/排序耦合定律：产销协同中KPI冲突的生成机制与正交治理.pdf)
   * [⭐ 1. The Law of Sequencing Coupling (EN PDF · SSRN 7640758)](docs/The%20Law%20of%20Sequencing%20Coupling%20——%20Genesis%20Mechanism%20and%20Orthogonal%20Governance%20of%20KPI%20Conflicts%20in%20S&OP.pdf)
   * [⭐ 2. 价值链物理学 (中文 PDF · 联想18年实证)](docs/价值链物理学：基于非独立同分布（Non-IID）的开放复杂巨系统形式化证明与全域可计算性研究.pdf)
   * [⭐ 2. Value Chain Physics (EN PDF · SSRN 7442100)](docs/Value%20Chain%20Physics%20——%20Formal%20Proof%20of%20Open%20Complex%20Giant%20Systems%20and%20Full-Domain%20Computability%20Based%20on%20Non-IID%20Dynamics.pdf)
-  * [3. 开放复杂巨系统的活体表达 (中文 PDF)](docs/开放复杂巨系统的“活体表达”与“闭环可计算性”.pdf)
-  * [3. Living Expression of OCGS (EN PDF · SSRN 7557878)](docs/Formal%20Proof%20of%20'Living%20Expression'%20and%20'Self-Consistent%20Computability'%20in%20Open%20Complex%20Giant%20Systems.pdf)
-  * [4. 开放复杂巨系统的生成、存续与进化 (中文 PDF)](docs/开放复杂巨系统的生成、存续与进化%20——%20基于%20Non-IID%20第一性原理的推论推演与%20OCGS%20同构证明.pdf)
-  * [4. OCGS Generation, Survival & Evolution (EN PDF · SSRN 7496118)](docs/Generation,%20Survival,%20and%20Evolution%20of%20Open%20Complex%20Giant%20Systems%20——%20Inference%20Deductions%20and%20Isomorphic%20Proof%20of%20OCGS%20Based%20on%20the%20Non-IID%20First%20Principle.pdf)
-  * [5. 系统与复杂性科学：秩序 (中文 PDF)](docs/系统与复杂性科学：秩序的生成、存续与进化%20——%20开放复杂巨系统的统御原理.pdf)
-  * [5. Systems and Complexity Science (EN PDF · SSRN 7251098)](docs/Systems%20and%20Complexity%20Science%20——%20The%20Generation,%20Persistence,%20and%20Evolution%20of%20Order%20—%20The%20Governing%20Principles%20of%20Open%20Complex%20Giant%20Systems.pdf)
-  * [6. 第二次文艺复兴 (中文 PDF)](docs/第二次文艺复兴：为什么系统与复杂性科学是“科学的科学”.pdf)
-  * [6. The Second Renaissance (EN PDF · SSRN 7557899)](docs/The%20Second%20Renaissance%20——%20Why%20Systems%20and%20Complexity%20Science%20Is%20the%20'Science%20of%20Sciences'.pdf)
-  * [7. 五维心智模型 (中文 PDF)](docs/良知驱动的五维心智模型：重新定义问题与认知外推%20——%20兼论复杂巨系统总设计师的心智画像与破局机制.pdf)
-  * [7. 5D Mind Model (EN PDF · SSRN 7451920)](docs/Conscience-Driven%20Five-Dimensional%20Mind%20Model%20——%20Problem%20Redefinition%20and%20Cognitive%20Extrapolation%20in%20Open%20Complex%20Giant%20Systems.pdf)
-  * [创新：认知折叠与文明跃迁 (SSRN 7216903)](physics_of_innovation_master.md)
-  * [良知驱动五维心智 OS (SSRN 7216862)](the_5d_conscience_holographic_metacognition_os.md)
-  * [企业治理的物理宪法长文](The_Physics_Constitution_of_Enterprise_Governance.md)
-  * [破局篇：400年还原论惯性剖析](Article_1_400Year_Reductionism_Breakthrough.md)
-  * [立宪篇：秩序的诞生](Article_2_The_Origin_of_Order_Manifesto.md)
-  * [实施篇：离散制造转型的迷途与破局](Article_3_Discrete_Manufacturing_Breakthrough.md)
 
-* **🏛️ 形式化理论与数学证明 (Formal Theories & Proofs)**
+* **🏛️ 二、系统与复杂性科学元科学体系 (Meta-Science Suites)**
+  * [3. 第二次文艺复兴：科学的科学 (中文 PDF)](docs/第二次文艺复兴：为什么系统与复杂性科学是“科学的科学”.pdf)
+  * [3. The Second Renaissance (EN PDF · SSRN 7557899)](docs/The%20Second%20Renaissance%20——%20Why%20Systems%20and%20Complexity%20Science%20Is%20the%20'Science%20of%20Sciences'.pdf)
+  * [4. 系统与复杂性科学：秩序统御原理 (中文 PDF)](docs/系统与复杂性科学：秩序的生成、存续与进化%20——%20开放复杂巨系统的统御原理.pdf)
+  * [4. Systems and Complexity Science (EN PDF · SSRN 7251098)](docs/Systems%20and%20Complexity%20Science%20——%20The%20Generation,%20Persistence,%20and%20Evolution%20of%20Order%20—%20The%20Governing%20Principles%20of%20Open%20Complex%20Giant%20Systems.pdf)
+  * [5. 开放复杂巨系统的活体表达与闭环可计算性 (中文 PDF)](docs/开放复杂巨系统的“活体表达”与“闭环可计算性”.pdf)
+  * [5. Living Expression of OCGS (EN PDF · SSRN 7557878)](docs/Formal%20Proof%20of%20'Living%20Expression'%20and%20'Self-Consistent%20Computability'%20in%20Open%20Complex%20Giant%20Systems.pdf)
+  * [6. 开放复杂巨系统的生成、存续与进化 (中文 PDF)](docs/开放复杂巨系统的生成、存续与进化%20——%20基于%20Non-IID%20第一性原理的推论推演与%20OCGS%20同构证明.pdf)
+  * [6. OCGS Generation, Survival & Evolution (EN PDF · SSRN 7496118)](docs/Generation,%20Survival,%20and%20Evolution%20of%20Open%20Complex%20Giant%20Systems%20——%20Inference%20Deductions%20and%20Isomorphic%20Proof%20of%20OCGS%20Based%20on%20the%20Non-IID%20First%20Principle.pdf)
+  * [7. 良知驱动的五维心智模型 (中文 PDF)](docs/良知驱动的五维心智模型：重新定义问题与认知外推%20——%20兼论复杂巨系统总设计师的心智画像与破局机制.pdf)
+  * [7. 5D Mind Model (EN PDF · SSRN 7451920)](docs/Conscience-Driven%20Five-Dimensional%20Mind%20Model%20——%20Problem%20Redefinition%20and%20Cognitive%20Extrapolation%20in%20Open%20Complex%20Giant%20Systems.pdf)
+
+* **💻 三、IPC 普适引擎与交互审计 (Interactive Demos)**
+  * <a href="IPC_Governance_Showcase.html" target="_blank">3D 全息拓扑交互演示</a>
+  * <a href="ipc_scheme_audit_agent.html" target="_blank">IPC 架构技术审计</a>
+  * <a href="value_chain_audit_agent.html" target="_blank">价值链智能体物理审计</a>
+  * <a href="IPC_Video_Lectures.html" target="_blank">IPC 视频讲堂</a>
+
+* **📜 四、在线专著与专题文献 (Online Monographs)**
+  * [价值链物理学全本](value-chain-physics-book.md)
   * [系统与复杂性科学全本 (中文)](systems-and-complexity-science.md)
   * [System & Complexity Science (English)](docs/ssrn_submissions/System_and_Complexity_Science_Full_English_Monograph.md)
   * [形式化数学证明附录](Formal_Mathematical_Proofs_Appendix.md)
-  * [秩序之元：第一性原理](Origin_of_Order.md)
-  * [全息抗熵：形式化宪理](the_holographic_anti_entropy_system_science_paper.md)
-
-* **📜 破局长文与工业批判**
+  * [价值链管理科学化宣言](One_Plan_Manifesto.md)
+  * [企业治理的物理宪法](The_Physics_Constitution_of_Enterprise_Governance.md)
   * [400 年还原论惯性突破](Article_1_400Year_Reductionism_Breakthrough.md)
   * [离散制造转型的迷途与破局](Article_3_Discrete_Manufacturing_Breakthrough.md)
-  * [企业治理的物理宪法](The_Physics_Constitution_of_Enterprise_Governance.md)
-  * [价值链管理科学化宣言](One_Plan_Manifesto.md)
 
-* **⚡ 价值链物理学 (Value Chain Physics)**
-  * [价值链物理学全本](value-chain-physics-book.md)
-  * [全息抗熵基础正本](holographic-anti-entropy-book.md)
-  * <a href="value_chain_audit_agent.html" target="_blank">价值链智能体物理审计</a>
-
-* **💻 IPC 普适产品与工程审计**
-  * <a href="ipc_scheme_audit_agent.html" target="_blank">IPC 架构技术审计</a>
-  * <a href="IPC_Governance_Showcase.html" target="_blank">3D 全息拓扑交互演示</a>
-  * <a href="IPC_Video_Lectures.html" target="_blank">IPC 视频讲堂</a>
-
-* **📂 学科大纲与精选章节**
+* **📂 五、学科大纲与精选章节**
   * **01. 系统科学与时空定律**
     * [05. 时空物流量守恒控制方程](01_系统科学与时空定律/05_时空物流量守恒控制方程.md)
     * [06. 提前期时移阻尼定律](01_系统科学与时空定律/06_提前期时移阻尼定律.md)
