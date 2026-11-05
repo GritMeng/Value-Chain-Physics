@@ -1,0 +1,2339 @@
+@startuml
+skinparam backgroundColor #1E1E1E
+skinparam class {
+    BackgroundColor #2D2D2D
+    BorderColor #3F3F3F
+    FontColor #E0E0E0
+    HeaderBackgroundColor #0288D1
+    HeaderFontColor #FFFFFF
+}
+skinparam ArrowColor #757575
+
+title IPC Intelligent Planning & Control - Full Enterprise Data Model (All Tables)
+
+package "1_Core_Planning" {
+    class "ipc_bom_item" as bom_item {
+        bomid : VARCHAR(10)
+        🔑 site : VARCHAR(8)
+        component : VARCHAR(40)
+        eff_start_date : DATE
+        eff_end_date : DATE
+        ratio : DECIMAL(18,2)
+        perqty : DECIMAL(18,2)
+        scrap : DECIMAL(18,2)
+        alt_grp : VARCHAR(10)
+        priority : INTEGER
+        alt_todate_qty : DECIMAL(18,2)
+        target : DECIMAL(18,2)
+        item : INTEGER
+        operation : VARCHAR(10)
+        alt_bom : VARCHAR(10)
+        alt_group : VARCHAR(10)
+    }
+
+    class "ipc_bom_route" as part_routing_bom {
+        🔑 site : VARCHAR(8)
+        🔑 part : VARCHAR(40)
+        🔑 bomid : VARCHAR(40)
+        routing : VARCHAR(10)
+        dim_grp : VARCHAR(10)
+        eff_start_date : DATE
+        eff_end_date : DATE
+        yield : DECIMAL(18,2)
+        max_qty : DECIMAL(18,2)
+        priority : INTEGER
+        bom_type : VARCHAR(10)
+    }
+
+    class "ipc_onhand" as oh_inventory {
+        🔑 location : VARCHAR(10)
+        🔑 part : VARCHAR(40)
+        🔑 site : VARCHAR(8)
+        🔑 available_date : DATE
+        qty : DECIMAL(18,2)
+        inventory_type : VARCHAR(10)
+    }
+
+    class "ipc_planned_order" as planned_order {
+        🔑 planned_order : VARCHAR(18)
+        request_start_date : DATE
+        due_date : DATE
+        eff_qty : DECIMAL(18,2)
+        dimension_grp : VARCHAR(10)
+        is_planned : VARCHAR(10)
+        🔑 part : VARCHAR(40)
+        source : VARCHAR(10)
+        qty : DECIMAL(18,2)
+        ship_date : DATE
+        build_date : DATE
+        base_unit : VARCHAR(10)
+        planned_unit : VARCHAR(10)
+        🔑 site : VARCHAR(8)
+    }
+
+    class "ipc_planned_supply_assignment" as planned_supply_assignment {
+        🔑 assigned_qty : DECIMAL(18,2)
+        assigned_parent_qty : DECIMAL(18,2)
+        request_qty : DECIMAL(18,2)
+        required_parent_qty : DECIMAL(18,2)
+        🔑 demand : VARCHAR(18)
+        🔑 item : DOUBLE
+        location : VARCHAR(10)
+        🔑 part : VARCHAR(40)
+        🔑 site : VARCHAR(8)
+        due_date : DATE
+        supply : VARCHAR(18)
+        supply_item : DOUBLE
+        supply_schedule_line : DOUBLE
+        request_constraint_start_date : DATE
+        available_date : DATE
+        planned_order : VARCHAR(18)
+        Reservation : VARCHAR(18)
+        pla_site : VARCHAR(8)
+        request_part : VARCHAR(40)
+        assigned_part : VARCHAR(40)
+        dimension_grp : VARCHAR(10)
+        supply_type : VARCHAR(10)
+        request_parent : VARCHAR(40)
+        ECS : DATE
+        part_ready_date : DATE
+    }
+
+    class "ipc_routing" as routing {
+        🔑 routing : VARCHAR(10)
+        description : VARCHAR
+        🔑 site : VARCHAR(8)
+    }
+
+    class "ipc_scheduled_receipt" as scheduled_reciept {
+        sr_id : VARCHAR(18)
+        item : DOUBLE
+        sup_sr_id : VARCHAR(18)
+        to_part : VARCHAR(40)
+        from_part : VARCHAR(40)
+        from_site : VARCHAR(8)
+        to_site : VARCHAR(8)
+        transfer_order : VARCHAR(18)
+        pur_to_part : VARCHAR(40)
+        pur_from_part : VARCHAR(40)
+        pur_from_site : VARCHAR(8)
+        pur_to_site : VARCHAR(8)
+        pur_Item : DOUBLE
+        qty : DECIMAL(18,2)
+        shipped_qty : DECIMAL(18,2)
+        request_qty : DECIMAL(18,2)
+        recieved_qty : DECIMAL(18,2)
+        request_stock_date : DATE
+        request_dock_date : DATE
+        request_ship_date : DATE
+        request_due_date : DATE
+        request_built_date : DATE
+        request_order_start_date : DATE
+        ship_to : VARCHAR(8)
+        to_location : VARCHAR(10)
+        unit : VARCHAR(10)
+        confirmed_date_by_supplier : DATE
+        confirmed_date_by_buyer : DATE
+        confirmed_by_supplier : BOOLEAN
+        supply_status : VARCHAR(10)
+        sche_stock_date : DATE
+        sche_dock_date : DATE
+        state : VARCHAR(10)
+    }
+
+    class "ipc_supply_assignment" as supply_assignment {
+        🔑 assigned_qty : DECIMAL(18,2)
+        assigned_parent_qty : DECIMAL(18,2)
+        request_qty : DECIMAL(18,2)
+        required_parent_qty : DECIMAL(18,2)
+        🔑 demand : VARCHAR(18)
+        🔑 item : DOUBLE
+        ind_part : VARCHAR(40)
+        location : VARCHAR(10)
+        🔑 part : VARCHAR(40)
+        🔑 site : VARCHAR(8)
+        due_date : DATE
+        supply : VARCHAR(18)
+        supply_item : DOUBLE
+        supply_schedule_line : DOUBLE
+        request_constraint_start_date : DATE
+        available_date : DATE
+        request_part : VARCHAR(40)
+        assigned_part : VARCHAR(40)
+        dimension_grp : VARCHAR(10)
+        supply_type : VARCHAR(10)
+        request_parent : VARCHAR(40)
+        ECS : DATE
+        part_ready_date : DATE
+        demand_source : VARCHAR
+    }
+
+}
+
+package "3_ETO_Project" {
+    class "ipc_project" as project {
+        baseline : VARCHAR
+        bonus_date : VARCHAR
+        bonus_plan : VARCHAR
+        customer : VARCHAR
+        🔑 project : VARCHAR
+        descriotion : VARCHAR
+        finish_date : VARCHAR
+        grp : VARCHAR
+        hours_per_day : VARCHAR
+        manager : VARCHAR
+        penalty_date : VARCHAR
+        penalty_plan : VARCHAR
+        rate_adjustment : VARCHAR
+    }
+
+    class "ipc_project_group" as project_group {
+        🔑 grp : VARCHAR
+        descriotion : VARCHAR
+    }
+
+    class "ipc_project_manager" as project_manager {
+        🔑 manager : VARCHAR
+    }
+
+    class "ipc_project_status" as project_status {
+        🔑 status : VARCHAR
+        descriotion : VARCHAR
+    }
+
+    class "ipc_project_type" as project_type {
+        add_duration : VARCHAR
+        allow_non_working_days : VARCHAR
+    }
+
+    class "ipc_project_wbs" as ETO项目WBS元素任务表 {
+        🔑 wbs_code : VARCHAR(100)
+        🔑 project_code : VARCHAR(100)
+        parent_wbs_code : VARCHAR(100)
+        wbs_level : INTEGER
+        wbs_status : VARCHAR(50)
+        description : VARCHAR(200)
+    }
+
+}
+
+package "4_IBP_Consolidated" {
+    class "ipc_commercial_bonus_plan" as bonus_plan {
+        🔑 bonus_plan : VARCHAR
+        descriotion : VARCHAR
+        🔑 site : VARCHAR
+    }
+
+    class "ipc_commercial_bonus_plan_by_date" as bonus_plan_by_date {
+        🔑 plan : VARCHAR
+        eff_start_date : VARCHAR
+        🔑 id : VARCHAR
+        on_time_bonus : DOUBLE
+        interval_bonus : VARCHAR(40)
+    }
+
+    class "ipc_commercial_bonus_plan_by_interval" as bonus_plan_by_interval {
+        🔑 plan : VARCHAR
+        interval : VARCHAR
+        🔑 id : VARCHAR
+        on_time_bonus : DOUBLE
+        interval_bonus : VARCHAR(40)
+    }
+
+    class "ipc_consensus_forecast" as consensus_forecast {
+        cal_qty : DECIMAL(18,2)
+        date : DECIMAL(18,2)
+        unit_price : DECIMAL(18,2)
+        override_qty : DECIMAL(18,2)
+        customer : VARCHAR(10)
+        reba_adjustment_qty : DECIMAL(18,2)
+        reba_override_qty : DECIMAL(18,2)
+        🔑 part : VARCHAR(40)
+        region : VARCHAR(10)
+        qty : DECIMAL(18,2)
+        allocation_level : VARCHAR(10)
+        order_priority : VARCHAR
+        🔑 consensus_forecast : VARCHAR
+    }
+
+    class "ipc_consensus_forecast_detail" as consensus_forecast_detail {
+        consensus_forecast : VARCHAR
+        eff_qty : VARCHAR
+        forecast_detail : VARCHAR
+        🔑 part : VARCHAR
+    }
+
+    class "ipc_consensus_forecast_rolling_horizon" as consensus_forecast_rolling_horizon {
+        🔑 sequence : INTEGER
+        🔑 duration : INTEGER
+    }
+
+    class "ipc_consensus_forecast_rolling_horizon_weight" as consensus_forecast_rolling_horizon_weight {
+        🔑 source : VARCHAR
+        🔑 header : VARCHAR
+        weight : VARCHAR
+        horization : VARCHAR
+    }
+
+    class "ipc_consensus_forecast_weight_by_header" as consensus_forecast_weight_by_header {
+        🔑 date : VARCHAR
+        🔑 header : VARCHAR
+        weight : VARCHAR
+    }
+
+    class "ipc_customer_price" as customer_price {
+        🔑 material_num : VARCHAR(40)
+        🔑 Customer : VARCHAR(10)
+        eff_start_date : DATE
+        unit_price : DECIMAL(18,2)
+        unit : VARCHAR(10)
+    }
+
+    class "ipc_event_consensus_forecast_detail" as event_consensus_forecast_detail {
+        average_unit_price : DOUBLE
+        average_unit_price_adjustment : DOUBLE
+        consensus_forecast : VARCHAR
+        D : DATE
+        eff_qty : VARCHAR
+        eff_ad_qty : VARCHAR
+        event_forecast_detail_ad : VARCHAR
+        header : VARCHAR
+        🔑 material : VARCHAR
+    }
+
+    class "ipc_event_forecast_detail_adjustment" as event_forecast_detail_adjustment {
+        average_unit_price : DOUBLE
+        average_unit_price_adjustment : DOUBLE
+        consensus_forecast : VARCHAR
+        D : DATE
+        eff_qty : VARCHAR
+        eff_ad_qty : VARCHAR
+        original_qty : VARCHAR
+        header : VARCHAR
+        🔑 material : VARCHAR
+        qty_adjustment : VARCHAR
+    }
+
+    class "ipc_event_statistical_forecast_detail" as event_statistical_forecast_detail {
+        D : DATE
+        header : VARCHAR
+        🔑 item_parameters : VARCHAR
+        quantity : VARCHAR
+    }
+
+    class "ipc_event_statistical_forecast_detail_adjustment" as event_statistical_forecast_detail_adjustment {
+        D : DATE
+        eff_ad_qty : VARCHAR
+        header : VARCHAR
+        qty_adjustment : VARCHAR
+    }
+
+    class "ipc_financial_ledger" as IBP集成财务分类账表 {
+        🔑 scenario_code : VARCHAR(100)
+        🔑 period_code : VARCHAR(50)
+        total_revenue : DOUBLE
+        inventory_carrying_cost : DOUBLE
+        purchasing_cost : DOUBLE
+    }
+
+    class "ipc_forecast" as forecast {
+        consensus_forecast : VARCHAR
+        consumed_qty : VARCHAR
+        date : VARCHAR
+        eff_demand_qty : VARCHAR
+        eff_unit_price : VARCHAR
+        forecast_source : VARCHAR
+        independent_demand : VARCHAR
+        material : VARCHAR
+        material_customer : VARCHAR
+        qty : VARCHAR
+    }
+
+    class "ipc_forecastitem" as forecastitem {
+        🔑 forecast_item : VARCHAR(10)
+        usage : VARCHAR(1)
+        level : VARCHAR
+    }
+
+    class "ipc_forecastitem_map" as forecastitem_map {
+        🔑 item : VARCHAR(10)
+        🔑 to_item : VARCHAR(10)
+        mutiplier : DOUBLE
+    }
+
+    class "ipc_forecast_actual_parameters" as actual_parameters {
+        date : DATE
+        🔑 prediction_parameters : VARCHAR
+        outlier_qty : VARCHAR
+        qty : VARCHAR
+        self_outlier_qty : VARCHAR
+        self_qty : VARCHAR
+    }
+
+    class "ipc_forecast_causal_factor" as causal_factor {
+        🔑 category : VARCHAR
+        descriotion : VARCHAR
+    }
+
+    class "ipc_forecast_causal_factor_category" as causal_factor_category {
+        🔑 category : VARCHAR(10)
+        descriotion : VARCHAR
+        operation_rule : VARCHAR
+    }
+
+    class "ipc_forecast_causal_factor_detail" as causal_factor_details {
+        operation_rule : VARCHAR
+        date : DATE
+        🔑 id : VARCHAR
+        qty : VARCHAR
+        unit_price : VARCHAR
+    }
+
+    class "ipc_forecast_consumption" as forecast_consumption {
+        consensus_forecast : VARCHAR
+        consumed_qty : VARCHAR
+        🔑 material : VARCHAR
+        qty : VARCHAR
+        actual_due_date : VARCHAR
+        actual_qty : VARCHAR
+        source : VARCHAR
+        forecast : VARCHAR
+    }
+
+    class "ipc_forecast_detail" as forecast_detail {
+        🔑 forecast : VARCHAR(10)
+        🔑 category : VARCHAR(1)
+        qty : DECIMAL(18,2)
+        value : DOUBLE
+        unit_price : DOUBLE
+        eff_unit_price : DOUBLE
+        date : VARCHAR
+    }
+
+    class "ipc_forecast_header" as forecast_header {
+        🔑 id : VARCHAR(18)
+        🔑 type : VARCHAR(10)
+    }
+
+    class "ipc_forecast_prediction_actuals" as prediction_actuals {
+        actual_qty : VARCHAR
+        forecast_qty : VARCHAR
+        date : VARCHAR
+        prediction_patameters : VARCHAR
+    }
+
+    class "ipc_forecast_predict_parameters" as predict_parameters {
+        actual_category : VARCHAR(1)
+        constant : VARCHAR(1)
+        confidence : DECIMAL(18,2)
+        ar : INTEGER
+        🔑 forecast_category : VARCHAR
+        predict_interval_counts : DECIMAL(18,2)
+        his_interval_counts : DECIMAL(18,2)
+        🔑 forecast_item : VARCHAR
+        ma : INTEGER
+        prediction_type : VARCHAR(10)
+        outlier_threshold : INTEGER
+        outlier_type : VARCHAR(10)
+        eff_start_date : DATE
+        eff_end_date : DATE
+    }
+
+    class "ipc_forecast_predict_type" as predict_type {
+        🔑 prediction_type : VARCHAR(10)
+        prediction_model : VARCHAR(1)
+        descriotion : VARCHAR
+        interval_calendar : VARCHAR
+    }
+
+    class "ipc_forecast_statistical" as statistical_forecast {
+        🔑 prediction_parameters : VARCHAR
+        date : VARCHAR
+        quantity : VARCHAR
+    }
+
+    class "ipc_forecast_statistical_fit" as statistical_forecast_fit {
+        prediction_mole : VARCHAR
+        forecast_item : VARCHAR
+        prediction_parameters : VARCHAR
+    }
+
+    class "ipc_forecast_statistical_outlier" as statistical_forecast_outlier {
+        date : DATE
+        existing_outlier_qty : DECIMAL(18,2)
+        forecast : DECIMAL(18,2)
+        outlier : VARCHAR
+        prediction_parameters : VARCHAR
+        low_threshold : DECIMAL(18,2)
+        upper_thresholdmn : DECIMAL(18,2)
+        adjustment : DECIMAL(18,2)
+        qty : DECIMAL(18,2)
+        suggested_qty : VARCHAR
+    }
+
+}
+
+package "5_IO_Safety_Stock" {
+    class "ipc_io_dos_policy" as dos_policy {
+        🔑 control_class : VARCHAR(10)
+        🔑 dos_policy : VARCHAR(10)
+        description : VARCHAR
+        short_term_dos_rule : VARCHAR(10)
+        long_term_dos_rule : VARCHAR(10)
+        st_intervals : DECIMAL(18,2)
+        lt_intervals : DECIMAL(18,2)
+        fence : DECIMAL(18,2)
+        fengce_time_unit : VARCHAR(10)
+        st_time_unit : DATE
+        lt_time_unit : DATE
+        lt_date_rule : VARCHAR(10)
+        st_date_rule : VARCHAR(10)
+        st_dos : DECIMAL(18,2)
+        lt_dos : DECIMAL(18,2)
+    }
+
+    class "ipc_io_safetystock_item_type" as safetystock_item_type {
+        as_of_date_calendar : VARCHAR
+        average_demand_rule : VARCHAR
+        bounds_rule : VARCHAR
+        cycle_calendar : VARCHAR
+        demand_outlier_rule : VARCHAR
+        descriotion : VARCHAR
+        forecast_outlier_rule : VARCHAR
+        interval_calendar : VARCHAR
+        interval_per_period : DECIMAL(18,2)
+        lead_time_calendar : VARCHAR
+        lead_time_per_period : VARCHAR
+        non_stationary_demand_rule : VARCHAR
+        period_calendar : VARCHAR
+        period_per_cycle : VARCHAR
+        service_level_rule : VARCHAR
+        standard_deviation_demand_rule : VARCHAR
+        supply_variability : VARCHAR
+        time_phased_operation_rule : VARCHAR
+        rolling_lead_time_demand : VARCHAR
+        🔑 safety_stock_item_type : VARCHAR
+    }
+
+    class "ipc_io_safety_stock_average_demand_profile" as safety_stock_average_demand_profile {
+        🔑 id : VARCHAR
+        descriotion : VARCHAR
+        extend : VARCHAR
+        multiplier : VARCHAR
+        offset : VARCHAR
+    }
+
+    class "ipc_io_safety_stock_item" as safety_stock_item {
+        average_demand : DECIMAL(18,2)
+        outlier_mawindow : VARCHAR
+        outlier_threshold : VARCHAR
+        outlier_type : VARCHAR
+        safter_interval : VARCHAR
+        sbefore_interval : VARCHAR
+        descriotion : VARCHAR
+        lag : VARCHAR
+        future_average_demand_profile : VARCHAR
+        future_interval_count : VARCHAR
+        his_average_demand_profile : VARCHAR
+        his_demand_category : VARCHAR
+        his_end_date : VARCHAR
+        his_forecast_category : VARCHAR
+        his_leading_zero : VARCHAR
+        his_start_date : DATE
+        his_supply_category : DECIMAL(18,2)
+        lead_time : DECIMAL(18,2)
+        lead_time_outlier_moving_average_window : DECIMAL(18,2)
+        lead_time_outlier_threshold : VARCHAR
+        lead_time_outlier_type : VARCHAR
+        lead_time_safter_interval_count : VARCHAR
+        lead_time_sbefore_interval_count : VARCHAR
+        order_qty : VARCHAR
+        material : VARCHAR
+        operation_rule : VARCHAR
+        remove_demand_outlier : VARCHAR
+        service_level : VARCHAR
+        service_time : VARCHAR
+        standard_deviation_demand : VARCHAR
+        standard_deviation_lead_time : VARCHAR
+        safetystock_item_type : VARCHAR
+    }
+
+    class "ipc_io_safety_stock_item_mapping" as safety_stock_item_mapping {
+        🔑 id : VARCHAR
+        🔑 safety_stock_item : VARCHAR
+        include_future_demand : VARCHAR
+        multiplier : VARCHAR
+        source_material : VARCHAR
+    }
+
+    class "ipc_io_safety_stock_item_outlier" as safety_stock_item_outlier {
+        adjustment : DECIMAL(18,2)
+        date : VARCHAR
+        🔑 operation_rule : VARCHAR
+        🔑 safety_stock_item : VARCHAR
+        usage : VARCHAR
+    }
+
+    class "ipc_io_safety_stock_range_of_coverage" as safety_stock_range_of_coverage {
+        count : INTEGER
+        offset : INTEGER
+        🔑 material : VARCHAR
+    }
+
+    class "ipc_io_safety_stock_result" as safety_stock_result {
+        average_demand : DECIMAL(18,2)
+        average_future_demand : DECIMAL(18,2)
+        caculated_service_level : DECIMAL(18,2)
+        calendar_conversion_rate : DECIMAL(18,2)
+        early_arrival_stock : DECIMAL(18,2)
+        incoming_service_time : DECIMAL(18,2)
+        interval_counts_of_supply : DECIMAL(18,2)
+        lead_time : DECIMAL(18,2)
+        maximum_days_of_supply : DECIMAL(18,2)
+        minimum_days_of_supply : DECIMAL(18,2)
+        maximum_safety_stock : DECIMAL(18,2)
+        meiofamily : DECIMAL(18,2)
+        minimum_safety_stock : DECIMAL(18,2)
+        outgoing_service_time : DECIMAL(18,2)
+        material : VARCHAR
+        material_source : VARCHAR
+        report_calendar : DECIMAL(18,2)
+        safety_stock : DECIMAL(18,2)
+        service_level : DECIMAL(18,2)
+        standard_deviation_demand : VARCHAR
+        standard_deviation_lead_time : VARCHAR
+        unbounded_ss : VARCHAR
+    }
+
+    class "ipc_io_safety_stock_time_phased_bounds" as safety_stock_time_phased_bounds {
+        🔑 date : VARCHAR
+        maximum_days_of_supply : DECIMAL(18,2)
+        minimum_days_of_supply : DECIMAL(18,2)
+        maximum_qty : DECIMAL(18,2)
+        minimum_qty : DECIMAL(18,2)
+        🔑 material : VARCHAR
+    }
+
+    class "ipc_io_safety_stock_time_phased_result" as safety_stock_time_phased_result {
+        average_demand : DECIMAL(18,2)
+        future_demand : DECIMAL(18,2)
+        caculated_service_level : DECIMAL(18,2)
+        maximum_days_of_supply : DECIMAL(18,2)
+        minimum_days_of_supply : DECIMAL(18,2)
+        maximum_safety_stock : DECIMAL(18,2)
+        minimum_safety_stock : DECIMAL(18,2)
+        🔑 material : VARCHAR
+        safety_stock : DECIMAL(18,2)
+        service_level : DECIMAL(18,2)
+        standard_deviation_demand : VARCHAR
+        unbounded_ss : VARCHAR
+        current_ss : VARCHAR
+        date : VARCHAR
+        future_reorder_point : VARCHAR
+        his_reorder_point : VARCHAR
+        safety_stock_result : VARCHAR
+    }
+
+    class "ipc_io_ss_rule" as ss_rule {
+        operation_rule : VARCHAR(10)
+        date_rule : VARCHAR(10)
+        ss_qty_rule : DECIMAL(18,2)
+        ss_calendar : VARCHAR(10)
+        percent_calendar : VARCHAR(10)
+        🔑 control_class : VARCHAR(10)
+        🔑 Policy : VARCHAR(10)
+        ss_level : DECIMAL(18,2)
+        percen_intervals : DECIMAL(18,2)
+        range_of_coverage : VARCHAR(10)
+    }
+
+    class "ipc_service_level_target" as IO库存优化服务水平目标策略表 {
+        🔑 part_code : VARCHAR(100)
+        🔑 site_code : VARCHAR(100)
+        customer_segment : VARCHAR(100)
+        service_level_target : DOUBLE
+        lead_time_variance : DOUBLE
+    }
+
+}
+
+package "6_Object_Data_Model_ODM" {
+    class "ipc_abc_class" as abc_class {
+        🔑 abc : BOOLEAN
+        description : VARCHAR
+        🔑 site : VARCHAR(8)
+    }
+
+    class "ipc_aggregate_material_customer_type" as aggregate_material_customer_type {
+        operation_rule : VARCHAR(1)
+        descriotion : VARCHAR
+        🔑 type : VARCHAR(10)
+    }
+
+    class "ipc_alternate_part" as alternate_part {
+        🔑 part : VARCHAR(40)
+        eff_start_date : DATE
+        eff_end_date : DATE
+        priority : INTEGER
+        🔑 alt_grp : VARCHAR(10)
+        target : DECIMAL(18,2)
+    }
+
+    class "ipc_alt_bom" as alt_bom {
+        🔑 alt_bom : INTEGER
+        description : VARCHAR
+    }
+
+    class "ipc_alt_grp" as alt_grp {
+        🔑 alt_grp : VARCHAR(10)
+        🔑 control_class : VARCHAR(10)
+        description : VARCHAR
+        🔑 site : VARCHAR(8)
+        alt_grp_type : VARCHAR(10)
+    }
+
+    class "ipc_ans_tnode" as ans_tnode {
+        🔑 ans_material_source : VARCHAR
+        material_source : VARCHAR
+    }
+
+    class "ipc_buyer" as buyer {
+        🔑 buyer : VARCHAR(10)
+        name : VARCHAR(10)
+        🔑 site : VARCHAR(8)
+    }
+
+    class "ipc_carrier" as carrie {
+        🔑 carrier : VARCHAR(10)
+        description : VARCHAR
+        defual_transportation_mode : VARCHAR(10)
+        transit_calendar : VARCHAR(10)
+        location : VARCHAR(10)
+        default_transit_lt : DECIMAL(18,2)
+    }
+
+    class "ipc_collab_audit_log" as 计划协同与数据重载审计表 {
+        🔑 log_id : INTEGER
+        🔑 scenario_code : VARCHAR(100)
+        table_name : VARCHAR(100)
+        record_key : VARCHAR(200)
+        field_name : VARCHAR(100)
+        old_value : VARCHAR(1000)
+        new_value : VARCHAR(1000)
+        modified_by : VARCHAR(100)
+        modified_at : TIMESTAMP
+    }
+
+    class "ipc_collab_scenario" as 沙盘模拟场景记录表 {
+        🔑 scenario_code : VARCHAR(100)
+        scenario_name : VARCHAR(200)
+        created_by : VARCHAR(100)
+        created_at : TIMESTAMP
+        status : VARCHAR(50)
+    }
+
+    class "ipc_constraint" as constraint {
+        🔑 constraint : VARCHAR(10)
+        🔑 site : VARCHAR(8)
+        description : VARCHAR
+        constraint_type : VARCHAR(10)
+        cumulative_max : DECIMAL(18,2)
+        calendar : VARCHAR(10)
+    }
+
+    class "ipc_constraint_assignment" as constraint_assignment {
+        🔑 constraint : VARCHAR(10)
+        🔑 supply_order : VARCHAR(18)
+        souce : VARCHAR(10)
+        request_date : DATE
+        material : VARCHAR(40)
+        assigned_load : DECIMAL(18,2)
+        supply_type : VARCHAR(10)
+        auto_or_manual : VARCHAR(10)
+        assigned_date : DATE
+        overload : BOOLEAN
+        type : VARCHAR(10)
+        production_wheel : VARCHAR(10)
+        cycle_number : DECIMAL(18,2)
+    }
+
+    class "ipc_constraint_available" as constraint_available {
+        🔑 constraint : VARCHAR(10)
+        eff_start_date : DATE
+        rate : DECIMAL(18,2)
+        🔑 site : VARCHAR(8)
+        eff_end_date : VARCHAR
+        ot_rate : DECIMAL(18,2)
+    }
+
+    class "ipc_constraint_grp" as constraint_grp {
+        🔑 constraint_group : VARCHAR(10)
+        description : VARCHAR
+        🔑 constraint : VARCHAR(10)
+        priority : DECIMAL(18,2)
+    }
+
+    class "ipc_constraint_load" as constraint_load {
+        🔑 constraint : VARCHAR(10)
+        🔑 con_part : VARCHAR
+        🔑 site : VARCHAR
+        🔑 supply_order : VARCHAR(18)
+        planned_order : VARCHAR(18)
+        SupplySouce : VARCHAR(10)
+        request_date : DATE
+        🔑 part : VARCHAR(40)
+        load : DECIMAL(18,2)
+        supply_type : VARCHAR(10)
+        auto_or_manual : VARCHAR(10)
+        source_type : VARCHAR(10)
+        demand_source : VARCHAR
+    }
+
+    class "ipc_constraint_source" as constraint_source {
+        description : VARCHAR
+        🔑 constraint : VARCHAR(10)
+        factor : DECIMAL(18,2)
+        eff_start_date : DATE
+        fixed_factor : DECIMAL(18,2)
+        🔑 part : INTEGER
+        🔑 site : VARCHAR
+        🔑 source : VARCHAR
+    }
+
+    class "ipc_constraint_type" as constraint_type {
+        🔑 constraint_type : VARCHAR(10)
+        description : VARCHAR
+        🔑 control_class : VARCHAR(10)
+        eff_rule : VARCHAR(10)
+        operation_rule : VARCHAR(10)
+        fill_sche : BOOLEAN
+        ScheduleRule : VARCHAR(10)
+    }
+
+    class "ipc_country" as country {
+        🔑 Country : VARCHAR(10)
+        descriotion : VARCHAR
+    }
+
+    class "ipc_critical_path" as critical_path {
+        is_critical : VARCHAR
+        gating_demand : VARCHAR
+        gating_supply : VARCHAR
+        gating_task : VARCHAR
+        🔑 project : VARCHAR
+        task : VARCHAR
+        source : VARCHAR
+    }
+
+    class "ipc_currency" as currency {
+        🔑 currency : DECIMAL(18,2)
+        descriotion : VARCHAR
+        default : VARCHAR(10)
+    }
+
+    class "ipc_customer" as customer {
+        🔑 customer : VARCHAR(10)
+        region : VARCHAR(10)
+        🔑 site : VARCHAR(8)
+        early_ship : DECIMAL(18,2)
+        block_code : VARCHAR(10)
+        name : VARCHAR(10)
+    }
+
+    class "ipc_deminsion" as deminsion {
+        demision : VARCHAR(10)
+        descriotion : VARCHAR
+        value : INTEGER
+        value_description : VARCHAR
+    }
+
+    class "ipc_demision_grp" as demision_grp {
+        demision_grp : VARCHAR(10)
+        demision : VARCHAR(10)
+        value : INTEGER
+        relation_ship : VARCHAR(10)
+        value2 : INTEGER
+        relation_ship2 : VARCHAR(10)
+    }
+
+    class "ipc_department" as department {
+        🔑 department : VARCHAR(10)
+        descriotion : VARCHAR
+    }
+
+    class "ipc_dm_line" as dm_line {
+        🔑 sr_id : VARCHAR(10)
+        🔑 item : DOUBLE
+        🔑 part : VARCHAR(40)
+        🔑 demand : VARCHAR(10)
+        request_delivery_date : DATE
+        request_due_date : DATE
+        p_delivery_date : DATE
+        p_due_date : DATE
+        open_qty : DECIMAL(18,2)
+        shipped_qty : DECIMAL(18,2)
+        request_qty : DECIMAL(18,2)
+        status : VARCHAR(10)
+        shipment_rule : VARCHAR(10)
+        shipment_group : VARCHAR(10)
+        commited_date : DATE
+        actual_ship_date : DATE
+        actual_delivery_date : DATE
+        line : INTEGER
+        sche_delivery_date : DATE
+        sche_due_date : DATE
+    }
+
+    class "ipc_event_disaggregation_rate" as event_disaggregation_rate {
+        date : VARCHAR
+        🔑 event_phase : VARCHAR
+        event_phase_header : VARCHAR
+        qty : VARCHAR
+        weight : VARCHAR
+    }
+
+    class "ipc_event_statistical_disaggregation_rate" as event_statistical_disaggregation_rate {
+        date : VARCHAR
+        🔑 event_phase : VARCHAR
+        event_phase_header : VARCHAR
+        qty : VARCHAR
+        weight : VARCHAR
+    }
+
+    class "ipc_hierarchy_customer" as customer_hierarchy {
+        customer : VARCHAR(10)
+        description : VARCHAR
+        address : VARCHAR
+        parent_customer : VARCHAR(10)
+        parent_description : VARCHAR
+    }
+
+    class "ipc_hierarchy_customer_comb" as customer_comb_hierarchy {
+        parent_region : VARCHAR(40)
+        🔑 part : VARCHAR(40)
+        root : DATE
+        level : VARCHAR(10)
+        region : VARCHAR(10)
+        per_qty : VARCHAR
+        ratio : VARCHAR
+        ratio_override : VARCHAR
+        allocation_level : VARCHAR
+        order_priority : VARCHAR
+        parent_product : VARCHAR(40)
+        parent_customer : VARCHAR
+        customer : VARCHAR
+    }
+
+    class "ipc_hierarchy_product" as product_hierarchy {
+        product : VARCHAR(40)
+        part_desc : VARCHAR
+        parent_product : VARCHAR(40)
+        parent_desc : VARCHAR
+        ratio : VARCHAR
+        per_qty : VARCHAR
+        hierarchy_type : VARCHAR
+    }
+
+    class "ipc_hierarchy_product_family" as product_family {
+        family_num : VARCHAR(10)
+        descriotion : VARCHAR
+        material : VARCHAR(40)
+    }
+
+    class "ipc_hierarchy_region" as region_hierarchy {
+        🔑 region : VARCHAR(10)
+        region_desc : VARCHAR
+        parent : VARCHAR(10)
+        parent_desc : VARCHAR
+        ratio : DECIMAL(18,2)
+        hierarchy_type : VARCHAR(10)
+    }
+
+    class "ipc_his_demand_actual" as his_demand_actual {
+        reciept_date : DATE
+        ship_date : DATE
+        commit_date : DATE
+        request_date : DATE
+        🔑 category : VARCHAR(1)
+        item : DOUBLE
+        qty : DECIMAL(18,2)
+        order : VARCHAR(10)
+        ship_group : VARCHAR(1)
+    }
+
+    class "ipc_his_demand_category" as his_demand_category {
+        weight : INTEGER
+        🔑 category : VARCHAR(1)
+        threshold : INTEGER
+        desired : VARCHAR(1)
+        type : VARCHAR(1)
+    }
+
+    class "ipc_his_demand_category_rolling_weight" as his_demand_category_rolling_weight {
+        🔑 category : VARCHAR
+        horizon : VARCHAR
+        consensus_forecast_weight : VARCHAR
+    }
+
+    class "ipc_his_demand_header" as his_demand_header {
+        🔑 category : VARCHAR(1)
+        customer : VARCHAR(1)
+        🔑 part : VARCHAR(40)
+        🔑 site : VARCHAR(8)
+        weight : INTEGER
+    }
+
+    class "ipc_his_demand_header_rolling_weight" as his_demand_header_rolling_weight {
+        🔑 header : VARCHAR
+        🔑 horizon : VARCHAR
+        consensus_forecast_weight : VARCHAR
+    }
+
+    class "ipc_his_demand_header_time_phase" as his_demand_header_time_phase {
+        🔑 category : VARCHAR(1)
+        weight : INTEGER
+        eff_unit_price : DATE
+        eff_end_date : DATE
+    }
+
+    class "ipc_his_demand_series" as his_demand_series {
+        series : DOUBLE
+        creation_date : VARCHAR
+        header : VARCHAR
+        sequence : VARCHAR
+    }
+
+    class "ipc_his_demand_series_detail" as his_demand_series_detail {
+        eff_start_date : DATE
+        eff_end_date : DATE
+        qty : DECIMAL(18,2)
+        series : VARCHAR
+        unit_price : DOUBLE
+        value : DOUBLE
+    }
+
+    class "ipc_his_supply_actual" as his_supply_actual {
+        actual_dock_date : DATE
+        actual_ship_date : DATE
+        date : DATE
+        handing_cost : DOUBLE
+        🔑 his_supply_header : VARCHAR
+        lead_time : VARCHAR
+        line_due_date : VARCHAR
+        order : VARCHAR
+        order_date : VARCHAR
+        order_due_date : VARCHAR
+        qty : VARCHAR
+        receipt_qty : VARCHAR
+        shipment : VARCHAR
+        shipping_cost : DOUBLE
+        source : VARCHAR
+        unit_price : DOUBLE
+    }
+
+    class "ipc_his_supply_header" as his_supply_header {
+        🔑 category : VARCHAR
+        🔑 material_supplier : VARCHAR
+        lead_time_calendar : VARCHAR
+    }
+
+    class "ipc_independent_demand" as independent_demand {
+        🔑 demand : VARCHAR(10)
+        🔑 item : DOUBLE
+        🔑 part : VARCHAR(40)
+        par_site : VARCHAR
+        customer : VARCHAR(10)
+        request_delivery_date : DATE
+        request_due_date : DATE
+        standard_delivery_date : DATE
+        standard_due_date : DATE
+        delivery_route : VARCHAR(10)
+        open_qty : DECIMAL(18,2)
+        shipped_qty : DECIMAL(18,2)
+        request_qty : DECIMAL(18,2)
+        status : VARCHAR(10)
+        shipment_rule : VARCHAR(10)
+        shipment_group : VARCHAR(10)
+        configuration : DOUBLE
+        commited_date : DATE
+        actual_ship_date : DATE
+        actual_delivery_date : DATE
+        block_code : VARCHAR(10)
+        OrderCreateDateTime : DATE
+        release_date : DATE
+        dimension_grp : VARCHAR(10)
+        order_priority : INTEGER
+        🔑 site : VARCHAR(10)
+        par_customer : VARCHAR(10)
+    }
+
+    class "ipc_load_ctpplanned" as load_ctpplanned {
+        end_date : VARCHAR
+        🔑 work_center : VARCHAR
+        operation : VARCHAR
+        end_offset : DECIMAL(18,2)
+        idle : VARCHAR
+        next_work_center : VARCHAR
+        pre_work_center : VARCHAR
+        queue_date : VARCHAR
+        queue_offset : VARCHAR
+        🔑 routing : VARCHAR
+        run : VARCHAR
+        run_date : VARCHAR
+        run_offset : VARCHAR
+        ctp_planned_order : VARCHAR
+        setup : VARCHAR
+        setup_date : VARCHAR
+        setup_offset : VARCHAR
+        start_date : VARCHAR
+        start_offset : VARCHAR
+        start_unit : VARCHAR
+        wait_date : VARCHAR
+        wait_offset : VARCHAR
+    }
+
+    class "ipc_load_planned_date" as load_planned_date {
+        date : VARCHAR
+        avlabor_capacity : VARCHAR
+        avmachine_capacity : VARCHAR
+        labor_capacity : VARCHAR
+        labor_idle : VARCHAR
+        labor_run : VARCHAR
+        labor_setup : VARCHAR
+        machine_capacity : VARCHAR
+        machine_idle : VARCHAR
+        machine_run : VARCHAR
+        max_labor_capacity : VARCHAR
+        max_machine_capacity : VARCHAR
+        number_of_workers : VARCHAR
+        number_of_mahines : VARCHAR
+        setup : VARCHAR
+        srlabor_idle : VARCHAR
+        srlabor_run : VARCHAR
+        srlabor_setup : VARCHAR
+        srmachine_idle : VARCHAR
+        srmachine_run : VARCHAR
+        srmachine_setup : VARCHAR
+        🔑 work_center : VARCHAR
+    }
+
+    class "ipc_load_srcurrent" as load_srcurrent {
+        end_date : VARCHAR
+        🔑 work_center : VARCHAR
+        operation : VARCHAR
+        end_offset : DECIMAL(18,2)
+        idle : VARCHAR
+        next_work_center : VARCHAR
+        pre_work_center : VARCHAR
+        queue_date : VARCHAR
+        queue_offset : VARCHAR
+        🔑 routing : VARCHAR
+        run : VARCHAR
+        run_date : VARCHAR
+        run_offset : VARCHAR
+        sr : VARCHAR
+        setup : VARCHAR
+        setup_date : VARCHAR
+        setup_offset : VARCHAR
+        start_date : VARCHAR
+        start_offset : VARCHAR
+        start_unit : VARCHAR
+        wait_date : VARCHAR
+        wait_offset : VARCHAR
+    }
+
+    class "ipc_load_srdate" as load_srdate {
+        date : VARCHAR
+        labor_capacity : VARCHAR
+        labor_idle : VARCHAR
+        labor_run : VARCHAR
+        labor_setup : VARCHAR
+        machine_capacity : VARCHAR
+        machine_idle : VARCHAR
+        machine_run : VARCHAR
+        max_labor_capacity : VARCHAR
+        max_machine_capacity : VARCHAR
+        number_of_workers : VARCHAR
+        number_of_mahines : VARCHAR
+        setup : VARCHAR
+        srlabor_idle : VARCHAR
+        srlabor_run : VARCHAR
+        srlabor_setup : VARCHAR
+        srmachine_idle : VARCHAR
+        srmachine_run : VARCHAR
+        srmachine_setup : VARCHAR
+        🔑 work_center : VARCHAR
+    }
+
+    class "ipc_load_srplanned" as load_srplanned {
+        end_date : VARCHAR
+        🔑 work_center : VARCHAR
+        operation : VARCHAR
+        end_offset : DECIMAL(18,2)
+        idle : VARCHAR
+        next_work_center : VARCHAR
+        pre_work_center : VARCHAR
+        queue_date : VARCHAR
+        queue_offset : VARCHAR
+        🔑 routing : VARCHAR
+        run : VARCHAR
+        run_date : VARCHAR
+        run_offset : VARCHAR
+        sr : VARCHAR
+        setup : VARCHAR
+        setup_date : VARCHAR
+        setup_offset : VARCHAR
+        start_date : VARCHAR
+        start_offset : VARCHAR
+        start_unit : VARCHAR
+        wait_date : VARCHAR
+        wait_offset : VARCHAR
+    }
+
+    class "ipc_location" as location {
+        🔑 location_id : VARCHAR(10)
+        storage_type : VARCHAR(10)
+        whare_house : VARCHAR(10)
+        address : VARCHAR
+        🔑 site : VARCHAR(8)
+    }
+
+    class "ipc_logistics_customer_destination" as cusomer_destination {
+        🔑 customer : VARCHAR(10)
+        🔑 site : VARCHAR(8)
+        🔑 distination : VARCHAR
+        description : VARCHAR
+        address : VARCHAR
+        contact_name : VARCHAR(10)
+        phone : VARCHAR(10)
+        email : VARCHAR(10)
+        we_chart : VARCHAR(10)
+        delivery_route : VARCHAR(10)
+        acception_calendar : VARCHAR(10)
+        dock_to_stock_lt : DECIMAL(18,2)
+    }
+
+    class "ipc_logistics_delivery_route" as delivery_route {
+        🔑 delivery_route : VARCHAR(10)
+        carrier : VARCHAR(10)
+        transformation_mode : VARCHAR(10)
+        shipment_calendar : VARCHAR(10)
+        description : VARCHAR
+        destination : VARCHAR(8)
+        ship_from : VARCHAR(8)
+        pick_calendar : VARCHAR(10)
+    }
+
+    class "ipc_logistics_shipment" as shipment {
+        supplier : VARCHAR(40)
+        carrier : VARCHAR(10)
+        shipment : VARCHAR(10)
+        ship_date : DATE
+        airport : VARCHAR
+        port : VARCHAR(10)
+        location : VARCHAR(10)
+        delivery_date : DATE
+    }
+
+    class "ipc_logistics_ship_group" as ship_grp {
+        ship_group_number : VARCHAR(10)
+        descriotion : VARCHAR
+        demand_line_item : VARCHAR(10)
+    }
+
+    class "ipc_logistics_stock_transfer_order" as stock_transfer_order {
+        🔑 id : VARCHAR(10)
+        🔑 item : DOUBLE
+        🔑 material : VARCHAR(40)
+        customer : VARCHAR(10)
+        request_delivery_date : DATE
+        request_due_date : DATE
+        standard_due_date : DATE
+        standard_ship_date : DATE
+        due_date : DATE
+        promised_delivery_date : DATE
+        available_date : DATE
+        promised_ship_date : DATE
+        promised_due_date : DATE
+        available_delivery_date : DATE
+        available_ship_date : DATE
+        delivery_route : VARCHAR(10)
+        qty : DECIMAL(18,2)
+        shipped_qty : DECIMAL(18,2)
+        request_qty : DECIMAL(18,2)
+        priority : INTEGER
+        status : VARCHAR(10)
+        shipment_rule : VARCHAR(10)
+        ship_group : VARCHAR(10)
+        configuration : DOUBLE
+        pool : VARCHAR(10)
+        confirmed_date : DATE
+        actual_ship_date : DATE
+        actual_delivery_date : DATE
+        block_code : VARCHAR(10)
+        order_create_date : DATE
+        order_release_date : DATE
+        standard_release_date : DATE
+        dimension_grp : VARCHAR(10)
+        demand_source_type : VARCHAR(10)
+        planning_priority : INTEGER
+    }
+
+    class "ipc_logistics_transfer_mapping" as transfer_mapping {
+        🔑 transfer_order : VARCHAR(18)
+        lead_time : DECIMAL(18,2)
+        transfer_cost : DECIMAL(18,2)
+        source_material : VARCHAR(40)
+        to_part : VARCHAR(40)
+        souce : VARCHAR(10)
+    }
+
+    class "ipc_logistics_transfer_order" as transfer_order {
+        🔑 transfer_order : VARCHAR(18)
+        🔑 to_part : VARCHAR(40)
+        request_qty : DECIMAL(18,2)
+        ship_date : DATE
+        dock_to_stock_lt : DECIMAL(18,2)
+        🔑 from_part : VARCHAR(40)
+        demision_grp : VARCHAR(10)
+        🔑 from_site : VARCHAR(8)
+        dock_date : DATE
+        TransitCanlendar : VARCHAR(10)
+        unit : VARCHAR(10)
+        🔑 to_site : VARCHAR(8)
+        to_location : VARCHAR(10)
+        🔑 Item : DOUBLE
+        shipped_qty : DECIMAL(18,2)
+        recievend_qty : DECIMAL(18,2)
+        supply_type : VARCHAR(10)
+    }
+
+    class "ipc_logistic_location" as logistic_location {
+        location : VARCHAR(10)
+        type : VARCHAR(10)
+        address : VARCHAR
+        descriotion : VARCHAR
+    }
+
+    class "ipc_ltrnetwork" as ltrnetwork {
+        dis_material_source : VARCHAR
+        material_source : VARCHAR
+        driver_part_source : VARCHAR
+        level : VARCHAR
+        driver_per_qty : VARCHAR
+        driver_lt : VARCHAR
+        per_qty : VARCHAR
+        lt : VARCHAR
+        eff_start_date : VARCHAR
+        eff_end_date : VARCHAR
+        dimension_grp : VARCHAR
+        bomid : VARCHAR
+        leaf_material_source : VARCHAR
+    }
+
+    class "ipc_ltr_sc" as ltr_sc {
+        dis_part : VARCHAR(40)
+        source_part : VARCHAR(40)
+        driver_part : VARCHAR(40)
+        level : DECIMAL(18,2)
+        driver_per_qty : DECIMAL(18,2)
+        driver_lt : DECIMAL(18,2)
+        per_qty : DECIMAL(18,2)
+        lt : DECIMAL(18,2)
+        eff_unit_price : DOUBLE
+        eff_end_date : DATE
+        dimension_grp : VARCHAR(10)
+        bom_id : VARCHAR(10)
+        driver_site : VARCHAR(8)
+        dis_site : VARCHAR(8)
+        alt_grp : VARCHAR(10)
+        leaf_part : VARCHAR(40)
+        leaf_site : VARCHAR(8)
+    }
+
+    class "ipc_material_uom_relation" as part_uom {
+        🔑 part : VARCHAR(40)
+        🔑 site : VARCHAR(8)
+        factor : DECIMAL(18,2)
+        🔑 uom : VARCHAR(10)
+    }
+
+    class "ipc_node_tans" as node_tans {
+        ans_material_source : VARCHAR
+        🔑 material_source : VARCHAR
+    }
+
+    class "ipc_operation" as operation {
+        🔑 operation : VARCHAR(10)
+        descriotion : VARCHAR
+        sequence : INTEGER
+        work_center : VARCHAR(10)
+        operation_type : VARCHAR(10)
+        wait_time : DECIMAL(18,2)
+        transit_time : DECIMAL(18,2)
+        teardown_time : DECIMAL(18,2)
+        setup_time : DECIMAL(18,2)
+        run_time : DECIMAL(18,2)
+        queue_time : DECIMAL(18,2)
+        dimen_grp : VARCHAR(10)
+        batch_qty : DECIMAL(18,2)
+        eff_start_date : DATE
+        eff_end_date : DATE
+        max_resources : DECIMAL(18,2)
+        queue_time_override : DECIMAL(18,2)
+        wait_time_override : DECIMAL(18,2)
+        🔑 routing : VARCHAR(10)
+        🔑 site : VARCHAR(8)
+    }
+
+    class "ipc_operation_sequence" as operation_sequence {
+        🔑 operation_sequence : INTEGER
+        description : VARCHAR
+        routing : VARCHAR(10)
+        operation_type : VARCHAR(10)
+        branch : VARCHAR(10)
+        return : INTEGER
+        eff_branch : VARCHAR(10)
+        eff_return : VARCHAR(10)
+        🔑 site : VARCHAR(8)
+        os_type : VARCHAR
+    }
+
+    class "ipc_operation_states" as operation_states {
+        complete_qty : DECIMAL(18,2)
+        actual_finish_date : DATE
+        actual_finish_offset : VARCHAR
+        actual_start_date : DATE
+        actual_start_offset : VARCHAR
+        actual_setup_date : DATE
+        actual_setup_offset : VARCHAR
+        actual_run_date : DATE
+        actual_run_offset : VARCHAR
+        actual_tear_down_date : DATE
+        actual_tear_down_offset : VARCHAR
+    }
+
+    class "ipc_order_priority" as order_priority {
+        assignment_rule : VARCHAR
+        descriotion : VARCHAR
+        is_commited : VARCHAR
+        planning_priority : VARCHAR
+        🔑 value : VARCHAR
+    }
+
+    class "ipc_part_customer" as part_customer {
+        forecast_item : VARCHAR(1)
+        demand_type : VARCHAR
+        🔑 customer : VARCHAR(10)
+        cus_site : VARCHAR(8)
+        🔑 part : VARCHAR(40)
+        order_priority : VARCHAR
+        🔑 site : VARCHAR
+    }
+
+    class "ipc_part_sequence" as part_sequence {
+        🔑 part : VARCHAR
+        🔑 wheel : VARCHAR
+        sequence : VARCHAR
+    }
+
+    class "ipc_part_source" as part_source {
+        🔑 part : VARCHAR(40)
+        🔑 source : VARCHAR(10)
+        eff_start_date : DATE
+        eff_end_date : DATE
+        max_qty : DECIMAL(18,2)
+        min_qty : DECIMAL(18,2)
+        mul_qty : DECIMAL(18,2)
+        dim_grp : VARCHAR(10)
+        ptf_intervals : DECIMAL(18,2)
+        ptf_units : VARCHAR(10)
+        source_type : VARCHAR(10)
+        source_uom : VARCHAR(10)
+        dock_to_stock_lt : DECIMAL(18,2)
+        var_lt : DECIMAL(18,2)
+        🔑 site : VARCHAR(8)
+        priority : INTEGER
+        allotment : VARCHAR
+        alt_bom : INTEGER
+        coproduct_yield : DECIMAL(18,2)
+        fixed_lt : DECIMAL(18,2)
+        order_policy : VARCHAR(10)
+        par_site : VARCHAR(8)
+        par_part : VARCHAR(40)
+        bomid : VARCHAR(40)
+        mrp_rule : VARCHAR(10)
+        ptf : DECIMAL(18,2)
+        labor_cost : DOUBLE
+        part_cost : DOUBLE
+        oh_cost : DOUBLE
+        alt_assignment_intervals : INTEGER
+        due_lt : DECIMAL(18,2)
+        shipping_cost : DOUBLE
+        pre_plan : DECIMAL(18,2)
+        after_final_operation : DECIMAL(18,2)
+        before_first_operation : DECIMAL(18,2)
+        safety_lt : DECIMAL(18,2)
+        takt_time : DECIMAL(18,2)
+        target : DECIMAL(18,2)
+    }
+
+    class "ipc_penalty_plan" as penalty_plan {
+        🔑 plan : VARCHAR
+        descriotion : VARCHAR
+        🔑 site : VARCHAR
+    }
+
+    class "ipc_penalty_plan_by_date" as penalty_plan_by_date {
+        🔑 plan : VARCHAR
+        eff_start_date : VARCHAR
+        🔑 id : VARCHAR
+        on_time_cost : DOUBLE
+        interval_cost : VARCHAR(40)
+    }
+
+    class "ipc_planned_reservation" as planned_reservation {
+        🔑 planned_order : VARCHAR(18)
+        🔑 Reservation : VARCHAR(18)
+        🔑 Material : VARCHAR(40)
+        description : VARCHAR
+        due_date : DATE
+        dimension_grp : VARCHAR(10)
+        request_qty : DECIMAL(18,2)
+        issued_qty : DECIMAL(18,2)
+        eff_qty : DECIMAL(18,2)
+        🔑 site : VARCHAR(8)
+        item : DOUBLE
+        bom_id : VARCHAR(10)
+        alt_grp : VARCHAR(10)
+    }
+
+    class "ipc_procurement_schedule_line" as procurement_schedule_line {
+        id : VARCHAR(18)
+        item : DOUBLE
+        quantity : DECIMAL(18,2)
+        shipped_qty : DECIMAL(18,2)
+        needed_qty : DECIMAL(18,2)
+        recieved_qty : DECIMAL(18,2)
+        request_stock_date : DATE
+        request_dock_date : DATE
+        request_ship_date : DATE
+        request_due_date : DATE
+        request_built_date : DATE
+        request_order_start_date : DATE
+        request_ship_to_site : VARCHAR(8)
+        request_ship_to_location : VARCHAR(10)
+        unit : VARCHAR(10)
+        🔑 schedule_line : DOUBLE
+        processed : BOOLEAN
+        confirmed_date_by_supplier : DATE
+        confirmed_date_by_buyer : DATE
+        confirmed_by_supplier : BOOLEAN
+        supply_status : VARCHAR(10)
+        confirmend_qty : DECIMAL(18,2)
+        resch_stock_date : DATE
+        resch_dock_date : DATE
+        resch_ship_date : DATE
+        resch_due_date : DATE
+        resch_built_date : DATE
+        resch_order_start_date : DATE
+        resch_quantity : DECIMAL(18,2)
+        state : VARCHAR(10)
+        actual_ship_date : DATE
+        actual_stock_date : DATE
+    }
+
+    class "ipc_produciton_grp" as produciton_grp {
+        🔑 production_group : VARCHAR(10)
+        description : VARCHAR
+        🔑 major_cleanup : DECIMAL(18,2)
+        major_setup : DECIMAL(18,2)
+        max_consumption : DECIMAL(18,2)
+        minor_change_over : DECIMAL(18,2)
+        priority : VARCHAR
+        🔑 site : VARCHAR
+    }
+
+    class "ipc_production_cycle" as production_cycle {
+        con_constraint : VARCHAR(10)
+        🔑 site : VARCHAR
+        con_constraint2 : VARCHAR(10)
+        🔑 part : INTEGER
+        con_site : VARCHAR
+        source : VARCHAR
+        constraint : VARCHAR
+        constraint_available : DECIMAL(18,2)
+        constraint_used : DECIMAL(18,2)
+        end_date : VARCHAR
+        start_date : VARCHAR
+        cycle_number : VARCHAR
+        wheel : VARCHAR
+    }
+
+    class "ipc_production_frequency" as production_frequency {
+        🔑 frequency : VARCHAR
+        cycle : VARCHAR
+        offset : VARCHAR
+        descriotion : VARCHAR
+    }
+
+    class "ipc_purchase_order" as purchase_order {
+        🔑 transfer_order : VARCHAR(18)
+        🔑 to_part : VARCHAR(40)
+        request_qty : DECIMAL(18,2)
+        ship_date : DATE
+        dock_to_stock_lt : DECIMAL(18,2)
+        🔑 from_part : VARCHAR(40)
+        demision_grp : VARCHAR(10)
+        🔑 from_site : VARCHAR(8)
+        dock_date : DATE
+        TransitCanlendar : VARCHAR(10)
+        unit : VARCHAR(10)
+        🔑 to_site : VARCHAR(8)
+        to_location : VARCHAR(10)
+        🔑 Item : DOUBLE
+        sr_id : VARCHAR(18)
+        shipped_qty : DECIMAL(18,2)
+        recievend_qty : DECIMAL(18,2)
+        supply_type : VARCHAR(10)
+    }
+
+    class "ipc_reservation" as reservation {
+        🔑 mo_id : VARCHAR(18)
+        🔑 Reservation : VARCHAR(18)
+        🔑 Material : VARCHAR(40)
+        description : VARCHAR
+        due_date : DATE
+        dimension_grp : VARCHAR(10)
+        request_qty : DECIMAL(18,2)
+        issued_qty : DECIMAL(18,2)
+        eff_qty : DECIMAL(18,2)
+        🔑 site : VARCHAR(8)
+        item : DOUBLE
+        bom_id : VARCHAR(10)
+        alg : VARCHAR(10)
+    }
+
+    class "ipc_resource_capacity" as capacity {
+        work_center : VARCHAR(10)
+        std_labor : DECIMAL(18,2)
+        std_mechine : DECIMAL(18,2)
+        eff_start_date : DATE
+        day_hour : DECIMAL(18,2)
+        labor_run_ratio : DECIMAL(18,2)
+        labor_setup_ratio : DECIMAL(18,2)
+        machine_run_ratio : DECIMAL(18,2)
+        machine_setup_ratio : DECIMAL(18,2)
+        queue_time : DECIMAL(18,2)
+        wait_time : DECIMAL(18,2)
+        efficiency : DECIMAL(18,2)
+        hours_per_day : DECIMAL(18,2)
+        max_machine_capacity : DECIMAL(18,2)
+        max_labor_capacity : DECIMAL(18,2)
+        number_of_resources : DECIMAL(18,2)
+        utilization : DECIMAL(18,2)
+    }
+
+    class "ipc_resource_uom_relation" as constraint_uom {
+        base_conversion : DECIMAL(18,2)
+        🔑 control_class : VARCHAR
+        description : VARCHAR
+        🔑 constraint_uom : VARCHAR(10)
+        uom : VARCHAR
+        🔑 constraint : VARCHAR(10)
+    }
+
+    class "ipc_rtl_sc" as rtl_sc {
+        dis_part : VARCHAR(40)
+        source_part : VARCHAR(40)
+        driver_part : VARCHAR(40)
+        level : DECIMAL(18,2)
+        driver_per_qty : DECIMAL(18,2)
+        driver_lt : DECIMAL(18,2)
+        per_qty : DECIMAL(18,2)
+        lt : DECIMAL(18,2)
+        eff_unit_price : DOUBLE
+        eff_end_date : DATE
+        dimension_grp : VARCHAR(10)
+        bom_id : VARCHAR(10)
+        driver_site : VARCHAR(8)
+        dis_site : VARCHAR(8)
+        alt_grp : VARCHAR(10)
+        if_leaf : BOOLEAN
+        is_phantom : BOOLEAN
+    }
+
+    class "ipc_sales_order_line" as sales_order_line {
+        🔑 id : VARCHAR(10)
+        🔑 item : DOUBLE
+        🔑 material : VARCHAR(40)
+        request_delivery_date : DATE
+        request_due_date : DATE
+        standard_due_date : DATE
+        standard_ship_date : DATE
+        due_date : DATE
+        promised_ship_date : DATE
+        promised_due_date : DATE
+        delivery_route : VARCHAR(10)
+        qty : DECIMAL(18,2)
+        shipped_qty : DECIMAL(18,2)
+        request_qty : DECIMAL(18,2)
+        priority : INTEGER
+        status : VARCHAR(10)
+        shipment_rule : VARCHAR(10)
+        ship_group : VARCHAR(10)
+        configuration : DOUBLE
+        pool : VARCHAR(10)
+        confirmed_date : DATE
+        actual_ship_date : DATE
+        actual_delivery_date : DATE
+        block_code : VARCHAR(10)
+        order_create_date : DATE
+        order_release_date : DATE
+        standard_release_date : DATE
+        dimension_grp : VARCHAR(10)
+        demand_source_type : VARCHAR(10)
+        🔑 site : VARCHAR(8)
+        eff_qty : DECIMAL(18,2)
+        planning_priority : INTEGER
+    }
+
+    class "ipc_site" as site {
+        🔑 control_class : VARCHAR(10)
+        calendar : VARCHAR(10)
+        address : VARCHAR
+        🔑 site : VARCHAR(8)
+        Country : VARCHAR(10)
+        descriotion : VARCHAR
+        currency : DECIMAL(18,2)
+        site_type : VARCHAR(10)
+        time_zone : VARCHAR(10)
+    }
+
+    class "ipc_source" as source {
+        🔑 source : VARCHAR(10)
+        description : VARCHAR
+        region : VARCHAR(10)
+        address : VARCHAR
+        source_site : VARCHAR(8)
+        carrier : VARCHAR(10)
+        contact_name : VARCHAR(10)
+        email : VARCHAR(10)
+        lt_units : VARCHAR(10)
+        phone : VARCHAR(10)
+        transit_calendar : VARCHAR(10)
+        ship_calendar : VARCHAR(10)
+        transportation_model : VARCHAR(10)
+        source_calendar : VARCHAR(10)
+        pre_ship_lt : DECIMAL(18,2)
+        transit_lt : DECIMAL(18,2)
+    }
+
+    class "ipc_sr_line" as sr_line {
+        🔑 sr_id : VARCHAR(10)
+        🔑 item : DOUBLE
+        request_delivery_date : DATE
+        request_due_date : DATE
+        p_delivery_date : DATE
+        p_due_date : DATE
+        open_qty : DECIMAL(18,2)
+        shipped_qty : DECIMAL(18,2)
+        request_qty : DECIMAL(18,2)
+        status : VARCHAR(10)
+        shipment_rule : VARCHAR(10)
+        shipment_group : VARCHAR(10)
+        commited_date : DATE
+        actual_ship_date : DATE
+        actual_delivery_date : DATE
+        line : INTEGER
+        sche_delivery_date : DATE
+        sche_due_date : DATE
+    }
+
+    class "ipc_supply_order" as supply_order {
+        🔑 sr_id : VARCHAR(18)
+        to_site : VARCHAR(8)
+        supply_type : VARCHAR(10)
+    }
+
+    class "ipc_system_uom" as uom {
+        base_conversion : DECIMAL(18,2)
+        uom_grp : VARCHAR(10)
+        description : VARCHAR
+        rouding_down : INTEGER
+        🔑 uom : VARCHAR(10)
+    }
+
+    class "ipc_system_uom_group" as uom_grp {
+        🔑 uom_grp : VARCHAR
+        descriotion : VARCHAR
+    }
+
+    class "ipc_wheel" as wheel {
+        calendar : VARCHAR
+        interval : DECIMAL(18,2)
+        eff_start_date : VARCHAR
+        eff_end_date : VARCHAR
+        first_start_date : VARCHAR
+        last_end_date : VARCHAR
+        🔑 wheel : VARCHAR
+        priority : VARCHAR
+        wheel_type : VARCHAR
+        🔑 site : VARCHAR
+        description : VARCHAR
+    }
+
+    class "ipc_wheel_constraints" as wheel_constraints {
+        🔑 part : INTEGER
+        🔑 site : VARCHAR
+        🔑 source : VARCHAR
+        🔑 constraint : VARCHAR
+        min_factor : VARCHAR
+        wheel : VARCHAR
+    }
+
+    class "ipc_work_center" as work_center {
+        🔑 work_center : VARCHAR(10)
+        descriotion : VARCHAR
+        🔑 site : VARCHAR(8)
+        calendar : VARCHAR(10)
+        type : VARCHAR(10)
+        department : VARCHAR(10)
+        std_labor_run_cost : DOUBLE
+        std_labor_set_up_cost : DOUBLE
+        std_machine_run_cost : DOUBLE
+        std_machine_set_up_cost : DOUBLE
+    }
+
+    class "ipc_work_center_capacity" as work_center_capacity {
+        work_center : VARCHAR(10)
+        date : DATE
+        working_hour : DECIMAL(18,2)
+        efficiency : DECIMAL(18,2)
+        number_of_resources : DECIMAL(18,2)
+        utilization : DECIMAL(18,2)
+        capacity : VARCHAR
+        capacity_override : VARCHAR
+        source : VARCHAR
+    }
+
+    class "ipc_work_center_type" as work_center_type {
+        🔑 control_class : VARCHAR(10)
+        🔑 work_center_type : VARCHAR(10)
+        capacity_method : VARCHAR
+        operation_rule : VARCHAR
+        descriotion : VARCHAR
+        work_day_start_time : VARCHAR
+        wait_time : DECIMAL(18,2)
+        queue_time : DECIMAL(18,2)
+        number_of_resources : DECIMAL(18,2)
+        machine_setup_ratio : DECIMAL(18,2)
+        machine_run_ratio : DECIMAL(18,2)
+        labor_setup_ratio : DECIMAL(18,2)
+        labor_run_ratio : DECIMAL(18,2)
+        hours_per_day : DECIMAL(18,2)
+        report_limit : VARCHAR
+    }
+
+}
+
+package "7_Control_Data_Model_CDM" {
+    class "ipc_allocation_level" as allocation_level {
+        🔑 allocation_level : VARCHAR(10)
+        level : VARCHAR(10)
+        allocation_rule : VARCHAR(10)
+        allocation_calendar : VARCHAR(10)
+        allocation_intervals : DECIMAL(18,2)
+        allocaiton_window : DECIMAL(18,2)
+    }
+
+    class "ipc_alt_grp_type" as alt_grp_type {
+        🔑 control_class : VARCHAR(10)
+        🔑 alt_grp_type : VARCHAR(10)
+        description : VARCHAR
+        mix_rule : VARCHAR(10)
+        source_rule : VARCHAR(10)
+        operation_rule : VARCHAR(10)
+        pre_rule : VARCHAR(10)
+    }
+
+    class "ipc_assignment_policy" as assignment_policy {
+        assignment_policy_num : VARCHAR(10)
+        descriotion : VARCHAR
+        sub_assemble_alternate : VARCHAR(10)
+        final_assemble_alternate : VARCHAR(10)
+        components : VARCHAR(40)
+        🔑 control_class : VARCHAR(10)
+        soft_assignment_rule : VARCHAR(10)
+        demand_type : VARCHAR(10)
+        demand_line_item : VARCHAR(10)
+        re_assignment_rule : VARCHAR(10)
+        splitting_rule : VARCHAR(10)
+    }
+
+    class "ipc_block_code" as block_code {
+        🔑 BlockCode : VARCHAR(10)
+        description : VARCHAR
+        allow_ctp : BOOLEAN
+        allow_shipment : BOOLEAN
+        allow_mrp : VARCHAR
+    }
+
+    class "ipc_control_class" as control_class {
+        🔑 control_class : VARCHAR(10)
+        description : VARCHAR
+    }
+
+    class "ipc_ctprule" as ctprule {
+        🔑 control_class : VARCHAR(10)
+        🔑 id : VARCHAR(10)
+        operation_rule : VARCHAR(10)
+    }
+
+    class "ipc_curve_parameters" as curve_parameters {
+        exponential_rate : VARCHAR
+        🔑 curve_parameters : VARCHAR
+        imitation_rate : VARCHAR
+        initial_value : VARCHAR
+        innovation_rate : VARCHAR
+        linear_rate : VARCHAR
+        maximum_value : VARCHAR
+        type : VARCHAR
+    }
+
+    class "ipc_demand_header" as demand_header {
+        customer : VARCHAR
+        🔑 demand : VARCHAR
+        🔑 demand_type : VARCHAR
+        🔑 site : VARCHAR
+    }
+
+    class "ipc_demand_sort_policy" as demand_sort_policy {
+        demand_policy_num : VARCHAR(10)
+        descriotion : VARCHAR
+        sequence_num : INTEGER
+        material : VARCHAR(40)
+        material_type : VARCHAR(10)
+        🔑 control_class : VARCHAR(10)
+    }
+
+    class "ipc_demand_status" as demand_status {
+        🔑 control_class : VARCHAR(10)
+        descriotion : VARCHAR
+        forecast_against_date_rule : VARCHAR(10)
+        consumption : VARCHAR(10)
+        model : VARCHAR(10)
+        netting_rule : VARCHAR(10)
+        demand_line_item : VARCHAR(10)
+    }
+
+    class "ipc_demand_type" as demand_type {
+        🔑 control_class : VARCHAR(10)
+        🔑 demand_type : VARCHAR(10)
+        description : VARCHAR
+        operation_rule : VARCHAR(10)
+        speard_setting : VARCHAR(10)
+        spread : VARCHAR(10)
+        safety_stock_usage : BOOLEAN
+        supply_type : VARCHAR(10)
+        due_date_rule : VARCHAR(10)
+    }
+
+    class "ipc_disaggregation_parameters_by_material_customer" as disaggregation_parameters_by_material_customer {
+        actual_category : VARCHAR
+        🔑 header : VARCHAR
+        his_interval_count : VARCHAR
+        inner_calendar : VARCHAR
+        outer_calendar : VARCHAR
+        🔑 category : VARCHAR
+    }
+
+    class "ipc_event" as event {
+        creation_date : VARCHAR
+        descriotion : VARCHAR
+        event : VARCHAR
+        type : VARCHAR
+    }
+
+    class "ipc_event_phase" as event_phase {
+        🔑 adjustment_type : VARCHAR
+        operation_rule : VARCHAR
+        calendar : VARCHAR
+        category : VARCHAR
+        multi_calendar : VARCHAR
+        multi_interval_count : VARCHAR
+        creation_date : VARCHAR
+        curve_parameters : VARCHAR
+        Description : VARCHAR
+        start_date : VARCHAR
+        🔑 event : VARCHAR
+        🔑 event_phase : VARCHAR
+        percent : VARCHAR
+        qty : VARCHAR
+        usage : VARCHAR
+    }
+
+    class "ipc_event_phase_header" as event_phase_header {
+        🔑 event_phase : VARCHAR
+        🔑 Header : VARCHAR
+        🔑 ID : VARCHAR
+    }
+
+    class "ipc_event_type" as event_type {
+        🔑 type : VARCHAR
+        descriotion : VARCHAR
+    }
+
+    class "ipc_hierarchy_type" as hierarchy_type {
+        🔑 hierarchy_type : VARCHAR(10)
+        ratio_rule : VARCHAR(10)
+    }
+
+    class "ipc_his_demand_category_type" as his_demand_category_type {
+        🔑 type : VARCHAR(1)
+        descriotion : VARCHAR
+        operation_rule : VARCHAR(0)
+        disaggregation_rule : VARCHAR(1)
+        unit_type : VARCHAR(10)
+    }
+
+    class "ipc_his_supply_category" as his_supply_category {
+        🔑 category : VARCHAR
+        descriotion : VARCHAR
+    }
+
+    class "ipc_inventory_type" as inventory_type {
+        🔑 control_class : VARCHAR(10)
+        🔑 inventory_type : VARCHAR(10)
+        operation_rule : VARCHAR(10)
+        description : VARCHAR
+        specical_type : VARCHAR(10)
+    }
+
+    class "ipc_logistics_transit_status" as transit_status {
+        🔑 control_class : VARCHAR(10)
+        🔑 id : VARCHAR(10)
+        operation_rule : VARCHAR(10)
+        🔑 status : VARCHAR(10)
+        descriotion : VARCHAR
+    }
+
+    class "ipc_logistics_transportation_mode" as transportation_mode {
+        🔑 transportation_mode : VARCHAR(10)
+        description : VARCHAR
+    }
+
+    class "ipc_major_change_over_override" as major_change_over_override {
+        production_group : VARCHAR
+        from_grp : VARCHAR
+        to_grp : VARCHAR
+        set_up : DECIMAL(18,2)
+        clean_up : DECIMAL(18,2)
+    }
+
+    class "ipc_mrp_rule" as mrp_rule {
+        🔑 mrp_rule : VARCHAR(10)
+        description : VARCHAR
+        operation_rule : BOOLEAN
+    }
+
+    class "ipc_operation_sequence_type" as operation_sequence_type {
+        🔑 control_class : VARCHAR(10)
+        🔑 os_type : VARCHAR(10)
+        description : VARCHAR
+        operation_rule : VARCHAR(10)
+        alignment_rule : VARCHAR
+    }
+
+    class "ipc_operation_type" as operation_type {
+        🔑 control_class : VARCHAR(10)
+        transit_time_sequence : VARCHAR(10)
+        🔑 operation_type : VARCHAR(10)
+        ransit_time_rule : VARCHAR(10)
+        eff_rule : VARCHAR(10)
+        description : VARCHAR
+        date_rule : VARCHAR(10)
+        batch_rule : VARCHAR(10)
+    }
+
+    class "ipc_order_rule" as order_rule {
+        last_lot_size : BOOLEAN
+        max_usage : VARCHAR(10)
+        description : VARCHAR
+        min_usage : VARCHAR(10)
+        multi_usage : VARCHAR(10)
+        order_gen_rule : VARCHAR(10)
+        ptf_rule : VARCHAR(10)
+        ptf_unit : VARCHAR(10)
+        🔑 order_rule : VARCHAR(10)
+        yield_usage : VARCHAR(10)
+    }
+
+    class "ipc_outlier_type" as outlier_type {
+        threshold_rule : VARCHAR(10)
+        data_rule : VARCHAR(10)
+        descriotion : VARCHAR
+        detection_rule : VARCHAR
+        🔑 type : VARCHAR(10)
+    }
+
+    class "ipc_part_bom_routing_type" as part_bom_routing_type {
+        control_class : VARCHAR(10)
+        🔑 bom_type : VARCHAR(10)
+        date_rule : VARCHAR(10)
+        eff_rule : VARCHAR(10)
+        assembly_yield : BOOLEAN
+        rouding_rule : VARCHAR(10)
+        scrap_rule : VARCHAR(10)
+        phantom : BOOLEAN
+        explore_negative : BOOLEAN
+        assembly_type : VARCHAR(10)
+        ratio_rule : VARCHAR(10)
+        use_lt_offset : BOOLEAN
+    }
+
+    class "ipc_part_type" as part_type {
+        part_type : VARCHAR(10)
+        description : VARCHAR
+        fc_calendar : VARCHAR(10)
+        fc_alt : VARCHAR(10)
+        fc_date : DATE
+        netting_alt : VARCHAR(10)
+        ctp_date_rule : VARCHAR(10)
+        fc_window_rule : VARCHAR(10)
+        🔑 ControlGroup : VARCHAR(10)
+        ss_rule : VARCHAR(10)
+        priority : VARCHAR
+        allocation_level : DATE
+        excess : VARCHAR
+        preference : VARCHAR(10)
+    }
+
+    class "ipc_penalty_plan_by_interval" as penalty_plan_by_interval {
+        🔑 plan : VARCHAR
+        interval : VARCHAR
+        🔑 id : VARCHAR
+        on_time_cost : DOUBLE
+        interval_cost : VARCHAR(40)
+    }
+
+    class "ipc_predict_outlier_parameters" as predict_outlier_parameters {
+        date : DATE
+        forecast_item : VARCHAR(10)
+        🔑 value : VARCHAR
+        operation_rule : VARCHAR
+        qty : VARCHAR
+    }
+
+    class "ipc_resource_capacity_override" as capacity_override {
+        🔑 work_center : VARCHAR(10)
+        eff_start_date : DATE
+        efficiency : DECIMAL(18,2)
+        hours_per_day : DECIMAL(18,2)
+        number_of_resources : DECIMAL(18,2)
+        utilization : DECIMAL(18,2)
+        day_of_week : VARCHAR
+        index : VARCHAR
+        working_hour : VARCHAR
+        🔑 descriotion : VARCHAR
+    }
+
+    class "ipc_sopconfigurations" as sopconfigurations {
+        cal_forecast_start_date : VARCHAR
+        calendar : VARCHAR
+        disaggregation_actual_category : VARCHAR
+        disaggregation_calendar : VARCHAR
+        cal_forecast_end_date : VARCHAR
+        cal_historical_end_date : VARCHAR
+        cycle_calendar : VARCHAR
+        disaggregation_historical_interval_count : VARCHAR
+        rundate : VARCHAR
+        forecast_end_offset : VARCHAR
+        forecast_start_offset : VARCHAR
+        disaggregation_override_category : VARCHAR
+        disaggregation_inner_calendar : VARCHAR
+        disaggregation_outer_calendar : VARCHAR
+    }
+
+    class "ipc_sop_calendar" as calendar {
+        description : VARCHAR
+        first_date : DATE
+        last_date : DATE
+        planning_or_reporting : VARCHAR(10)
+        🔑 calendar : VARCHAR(10)
+    }
+
+    class "ipc_sop_calendar_date" as calendar_date {
+        🔑 date : DATE
+        display : VARCHAR(10)
+        🔑 calendar : VARCHAR(10)
+    }
+
+    class "ipc_sop_disaggregation_parameters" as disaggregation_parameters {
+        actual_category : VARCHAR
+        🔑 header : VARCHAR
+        his_interval_count : VARCHAR
+        🔑 id : VARCHAR
+        inner_calendar : VARCHAR
+        outer_calendar : VARCHAR
+    }
+
+    class "ipc_sop_disaggregation_rate" as disaggregation_rate {
+        category : VARCHAR
+        date : VARCHAR
+        eff_unit_price : VARCHAR
+        header : VARCHAR
+        🔑 material_customer : VARCHAR
+        qty : VARCHAR
+        override_qty : VARCHAR
+        inner_calendar : VARCHAR
+        outer_calendar : VARCHAR
+        override_category : VARCHAR
+    }
+
+    class "ipc_sop_disaggregation_rate_override" as disaggregation_rate_override {
+        date : VARCHAR
+        🔑 header : VARCHAR
+        override_qty : VARCHAR
+        🔑 id : VARCHAR
+        unit_price : VARCHAR
+    }
+
+    class "ipc_sop_planning_calendar" as planning_canlendar {
+        date : DATE
+        calendar : VARCHAR(10)
+        🔑 control_class : VARCHAR(10)
+        🔑 part : VARCHAR(40)
+        work_centers : VARCHAR(10)
+        spread_canlendar : VARCHAR(10)
+        run_date : DATE
+        assignment_calendar : VARCHAR(10)
+        co_by_product_calendar : VARCHAR(10)
+        planning_interval : DECIMAL(18,2)
+        expiry_calendar : VARCHAR(10)
+        forecast_calendar : VARCHAR(10)
+        order_point_calendar : VARCHAR(10)
+        percent_safety_calendar : VARCHAR(10)
+        bucket : VARCHAR(10)
+        supply_calendar : VARCHAR(10)
+        customer_acception_calendar : VARCHAR(10)
+        due_date_rule : VARCHAR(10)
+        intermedia_calendar : VARCHAR
+        🔑 planning_calendar : VARCHAR(10)
+        time_unit : VARCHAR(10)
+    }
+
+    class "ipc_source_rule" as source_rule {
+        allocation_rule : VARCHAR(10)
+        🔑 source_rule : VARCHAR(10)
+        description : VARCHAR
+    }
+
+    class "ipc_source_type" as source_type {
+        🔑 control_class : VARCHAR(10)
+        cost_rule : VARCHAR(10)
+        supply_type : VARCHAR(10)
+        🔑 source_type : VARCHAR(10)
+    }
+
+    class "ipc_speard_profile" as speard_profile {
+        🔑 control_class : VARCHAR(10)
+        id : VARCHAR(10)
+        descriotion : VARCHAR
+        numbers_of_weight : DECIMAL(18,2)
+        weight : DECIMAL(18,2)
+        demand_type : VARCHAR(10)
+    }
+
+    class "ipc_supply_sort_policy" as supply_sort_policy {
+        supply_policy_num : VARCHAR(10)
+        descriotion : VARCHAR
+        sequence : INTEGER
+        material : VARCHAR(40)
+        material_type : VARCHAR(10)
+        🔑 control_class : VARCHAR(10)
+    }
+
+    class "ipc_supply_status" as supply_status {
+        reschedule_condition : VARCHAR(10)
+        rechedule_rule : VARCHAR(10)
+    }
+
+    class "ipc_supply_type" as supply_type {
+        description : VARCHAR
+        source_class : VARCHAR(10)
+        🔑 ControlGroup : VARCHAR(10)
+        assignment_demand_type : VARCHAR(10)
+        assignment_forecast_consumption : BOOLEAN
+        operation_rule : VARCHAR(10)
+        sort_policy : VARCHAR(10)
+        🔑 supply_type : VARCHAR(10)
+    }
+
+    class "ipc_time_phased_demand_parameter" as time_phased_demand_parameter {
+        average : DECIMAL(18,2)
+        🔑 id : VARCHAR
+        index : VARCHAR
+        🔑 safety_stock_item : VARCHAR
+        standard_deviation : DECIMAL(18,2)
+    }
+
+    class "ipc_wheel_type" as wheel_type {
+        description : VARCHAR
+        demand_rule : VARCHAR
+        supply_rule : VARCHAR
+        🔑 wheel_type : VARCHAR
+    }
+
+}
+
+package "2_Detailed_Scheduling_And_Call_off" {
+    class "ipc_setup_matrix" as setup_matrix {
+        🔑 work_center : VARCHAR(10)
+        🔑 from_part : VARCHAR(40)
+        🔑 to_part : VARCHAR(40)
+        setup_time : DOUBLE
+    }
+
+    class "ipc_detailed_schedule_ledger" as detailed_schedule_ledger {
+        🔑 sr_id : VARCHAR(18)
+        🔑 work_center : VARCHAR(10)
+        sequence : INTEGER
+        scheduled_start_day : INTEGER
+        scheduled_finish_day : INTEGER
+        run_time : DOUBLE
+        setup_time : DOUBLE
+        qty : DOUBLE
+        delay_days : INTEGER
+        delay_penalty : DOUBLE
+    }
+
+    class "ipc_line_call_request" as line_call_request {
+        🔑 call_id : VARCHAR(18)
+        🔑 parent_sr_id : VARCHAR(18)
+        🔑 component_part : VARCHAR(40)
+        🔑 site : VARCHAR(8)
+        required_qty : DOUBLE
+        allocated_qty : DOUBLE
+        call_day : INTEGER
+        status : VARCHAR(20)
+    }
+
+    class "ipc_bom_kitting_status" as bom_kitting_status {
+        🔑 parent_sr_id : VARCHAR(18)
+        part_code : VARCHAR(40)
+        required_date : DATE
+        total_components : INTEGER
+        fulfilled_components : INTEGER
+        kitting_rate : DOUBLE
+        kitting_status : VARCHAR(20)
+    }
+
+    setup_matrix --> operation : "defines setup times for WC"
+    detailed_schedule_ledger --> scheduled_reciept : "schedules"
+    line_call_request --> scheduled_reciept : "originates from"
+    line_call_request --> oh_inventory : "allocates from"
+    bom_kitting_status --> scheduled_reciept : "checks kitting for"
+}
+
+@enduml

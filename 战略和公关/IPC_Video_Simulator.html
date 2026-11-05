@@ -1,0 +1,1945 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="notranslate" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPC 价值链物理学全息视频生成与模拟中枢 | 开启硅基抗熵终局</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@300;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #04060a;
+            --card-bg: rgba(10, 15, 26, 0.7);
+            --border-color: rgba(56, 139, 253, 0.35);
+            --text-color: #c9d1d9;
+            --primary-color: #58a6ff;
+            --accent-color: #f0883e;
+            --glow-color: rgba(88, 166, 255, 0.25);
+            --purple-glow: rgba(163, 113, 247, 0.25);
+            --success-color: #3fb950;
+            --danger-color: #ff7b72;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Outfit', 'Inter', -apple-system, sans-serif;
+            overflow: hidden;
+        }
+
+        /* 视频录制全息空间背景 */
+        .video-space-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 5% 5%, rgba(163, 113, 247, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 95% 95%, rgba(88, 166, 255, 0.05) 0%, transparent 40%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .dashboard-container {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* 左侧面板：控制中心 */
+        .control-panel {
+            background: rgba(8, 12, 21, 0.95);
+            border-right: 1px solid rgba(56, 139, 253, 0.2);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+            z-index: 10;
+        }
+
+        .panel-header h2 {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #ffffff, var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 6px;
+        }
+
+        .panel-header p {
+            font-size: 11px;
+            color: #8b949e;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .script-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .script-option {
+            background: rgba(22, 27, 34, 0.4);
+            border: 1px solid rgba(56, 139, 253, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .script-option:hover {
+            background: rgba(22, 27, 34, 0.8);
+            border-color: rgba(56, 139, 253, 0.3);
+        }
+
+        .script-option.active {
+            background: rgba(31, 111, 235, 0.08);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(56, 139, 253, 0.15);
+        }
+
+        .script-option h3 {
+            font-size: 13px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .script-option p {
+            font-size: 11px;
+            color: #8b949e;
+        }
+
+        .controls-group {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .control-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+        }
+
+        .control-btn.primary {
+            background: rgba(56, 139, 253, 0.12);
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .control-btn.primary:hover:not(:disabled) {
+            background: var(--primary-color);
+            color: black;
+            box-shadow: 0 0 12px rgba(88, 166, 255, 0.4);
+        }
+
+        .control-btn.record {
+            background: rgba(255, 123, 114, 0.12);
+            border: 1px solid var(--danger-color);
+            color: var(--danger-color);
+        }
+
+        .control-btn.record:hover:not(:disabled) {
+            background: var(--danger-color);
+            color: white;
+            box-shadow: 0 0 12px rgba(255, 123, 114, 0.4);
+        }
+
+        .control-btn.record.recording {
+            animation: pulse-red 1.5s infinite;
+        }
+
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(255, 123, 114, 0.5); }
+            70% { box-shadow: 0 0 0 8px rgba(255, 123, 114, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 123, 114, 0); }
+        }
+
+        .control-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* 混音设置 */
+        .audio-mix-card {
+            background: rgba(22, 27, 34, 0.4);
+            border: 1px solid rgba(56, 139, 253, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .audio-slider-row {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .audio-slider-row label {
+            font-size: 11px;
+            color: #8b949e;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .audio-slider-row input[type=range] {
+            width: 100%;
+            height: 4px;
+            background: #21262d;
+            border-radius: 2px;
+            outline: none;
+            accent-color: var(--primary-color);
+        }
+
+        .file-input-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            padding: 8px;
+            font-size: 11px;
+            color: #8b949e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .file-input-label:hover {
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+        .file-input-label input {
+            display: none;
+        }
+
+        /* 状态指示区 */
+        .panel-footer {
+            border-top: 1px solid rgba(56, 139, 253, 0.1);
+            padding-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .status-pill {
+            background: rgba(56, 139, 253, 0.06);
+            border: 1px solid rgba(56, 139, 253, 0.2);
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-size: 12px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success-color);
+            display: inline-block;
+        }
+
+        .status-dot.inactive {
+            background: #8b949e;
+        }
+
+        .status-dot.pulsing {
+            background: var(--danger-color);
+            animation: pulse-dot 1s infinite alternate;
+        }
+
+        @keyframes pulse-dot {
+            from { opacity: 0.4; }
+            to { opacity: 1; }
+        }
+
+        .nav-home-btn {
+            background: none;
+            border: none;
+            color: #8b949e;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+
+        .nav-home-btn:hover {
+            color: white;
+        }
+
+        /* 右侧面板：全屏画布层 */
+        .viewport-panel {
+            background: #020306;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .canvas-container {
+            width: 100%;
+            max-width: 1200px;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border: 1px solid rgba(56, 139, 253, 0.3);
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 40px rgba(56, 139, 253, 0.1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #video-canvas {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* 画布浮层控制条 (只在悬浮时显示) */
+        .canvas-overlay-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: rgba(10, 15, 26, 0.85);
+            border: 1px solid rgba(56, 139, 253, 0.3);
+            backdrop-filter: blur(8px);
+            padding: 10px 24px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .canvas-container:hover .canvas-overlay-controls {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .overlay-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s ease;
+        }
+
+        .overlay-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .time-display {
+            font-size: 13px;
+            color: #8b949e;
+            font-family: monospace;
+        }
+
+        .progressbar-container {
+            width: 200px;
+            height: 4px;
+            background: #21262d;
+            border-radius: 2px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .progressbar-fill {
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 2px;
+            width: 0%;
+        }
+
+        /* 快捷指示浮层 */
+        .render-info {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 11px;
+            color: #8b949e;
+            background: rgba(10, 15, 26, 0.7);
+            padding: 6px 12px;
+            border-radius: 4px;
+            border: 1px solid rgba(56, 139, 253, 0.15);
+            pointer-events: none;
+            font-family: monospace;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        /* 隐藏的 HTML5 音频元素 */
+        #voice-audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="video-space-bg"></div>
+
+    <div class="dashboard-container">
+        <!-- 控制侧边栏 -->
+        <aside class="control-panel">
+            <div class="panel-top">
+                <header class="panel-header">
+                    <h2>🔮 IPC 全息视频生成器</h2>
+                    <p>将价值链物理学及全息抗熵旁白实时渲染为 1080p 超高清视频。</p>
+                </header>
+
+                <section class="selector-section">
+                    <div class="section-title">🎬 选择配音脚本</div>
+                    <div class="script-selector">
+                        <!-- 脚本一 -->
+                        <div class="script-option active" id="opt-manifesto" onclick="selectScript('manifesto')">
+                            <h3>1. 历史的宣判 (电影级)</h3>
+                            <p>时长: 3分钟 | 11个分镜逻辑宣判</p>
+                        </div>
+                        <!-- 脚本二 -->
+                        <div class="script-option" id="opt-short" onclick="selectScript('short')">
+                            <h3>2. 五大核能宣言</h3>
+                            <p>时长: 2.5分钟 | 5段底层公理声讨</p>
+                        </div>
+                        <!-- 脚本三 -->
+                        <div class="script-option" id="opt-full" onclick="selectScript('full')">
+                            <h3>3. 旁白完整版 (学术)</h3>
+                            <p>时长: 4.5分钟 | 18个章节原位反思</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="controls-section">
+                    <div class="section-title">🛠️ 视频流控制</div>
+                    <div class="controls-group">
+                        <button class="control-btn primary" id="btn-play-toggle" onclick="togglePlay()">
+                            ▶ 播放预览
+                        </button>
+                        <button class="control-btn record" id="btn-record" onclick="toggleRecording()">
+                            🔴 开始录制视频
+                        </button>
+                    </div>
+                </section>
+
+                <section class="mix-section">
+                    <div class="section-title">🎚️ 混音器 (Web Audio)</div>
+                    <div class="audio-mix-card">
+                        <div class="audio-slider-row">
+                            <label><span>🎤 神经网络配音音量</span><span id="voice-vol-val">100%</span></label>
+                            <input type="range" id="slider-voice-vol" min="0" max="1" step="0.05" value="1.0" oninput="updateVolume('voice', this.value)">
+                        </div>
+                        <div class="audio-slider-row">
+                            <label><span>🎵 代码生成BGM音量</span><span id="bgm-vol-val">30%</span></label>
+                            <input type="range" id="slider-bgm-vol" min="0" max="1" step="0.05" value="0.30" oninput="updateVolume('bgm', this.value)">
+                        </div>
+                        <div class="audio-slider-row">
+                            <span style="font-size: 10px; color:#8b949e; margin-bottom: 2px;">或上传自定义背景音乐:</span>
+                            <label class="file-input-label" id="bgm-file-label">
+                                📁 上传本地 MP3/WAV BGM
+                                <input type="file" id="input-bgm-file" accept="audio/*" onchange="handleBgmUpload(event)">
+                            </label>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="panel-bottom">
+                <div class="panel-footer">
+                    <div class="status-pill">
+                        <span>系统状态:</span>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <span id="status-text">就绪</span>
+                            <span class="status-dot" id="status-dot"></span>
+                        </div>
+                    </div>
+                    <a href="../系统科学/价值链物理学/" class="nav-home-btn">
+                        🏠 返回价值链物理学主页
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 画布视口 -->
+        <main class="viewport-panel">
+            <div class="canvas-container">
+                <!-- 1920x1080 原生画布，由 JS 进行高分辨率抗锯齿绘制 -->
+                <canvas id="video-canvas" width="1920" height="1080"></canvas>
+
+                <!-- 浮动渲染信息面板 -->
+                <div class="render-info">
+                    <span>模式: 实时 Canvas 渲染</span>
+                    <span>分辨率: 1920 x 1080 (16:9)</span>
+                    <span>帧率: 30 FPS</span>
+                    <span id="render-scene-no">当前分镜: Scene 1</span>
+                    <span id="render-record-time" style="color: var(--danger-color); display: none;">录制中: 00:00</span>
+                </div>
+
+                <!-- 视频悬浮控制栏 -->
+                <div class="canvas-overlay-controls">
+                    <button class="overlay-btn" id="overlay-play-btn" onclick="togglePlay()">▶</button>
+                    <div class="time-display">
+                        <span id="time-current">00:00</span> / <span id="time-total">00:00</span>
+                    </div>
+                    <div class="progressbar-container" onclick="seekVideo(event)">
+                        <div class="progressbar-fill" id="progress-fill"></div>
+                    </div>
+                    <button class="overlay-btn" onclick="toggleMute()">🔊</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 隐藏的音频播放器 -->
+    <audio id="voice-audio"></audio>
+
+    <script>
+        /* =========================================================================
+           1. 脚本数据定义 (包含完整文本与高亮片段分配)
+           ========================================================================= */
+        const SCRIPTS_DATA = {
+            manifesto: {
+                folder: 'audio_manifesto',
+                prefix: 'manifesto_voice_',
+                count: 11,
+                titles: [
+                    '热力学第二定律与无序',
+                    '经验主义与商学神学',
+                    'N² 复杂度与人脑极限',
+                    '同构调节器与行政意志',
+                    '宏微观高时滞与物理废热',
+                    '系统科学与全息照妖镜',
+                    '第三方观测与结构裸奔',
+                    '物理因果与预言收敛',
+                    '力学法则与冷酷宣判',
+                    '未来底座与负熵沙砾',
+                    '物理公理与终极之问'
+                ],
+                texts: [
+                    '无论宇宙的终局是热寂还是坍缩，热力学第二定律已为一切存在设定了无可规避的物理重力——万物皆向混乱与无序滑落。',
+                    '所谓的‘最佳实践’与‘商业方案’，本质上是无法被证真、也无法被证伪的经验主义泡沫。这在本质上不是科学，而是神学。',
+                    '在由成百上千个供应商、机台与 SKU 交织的价值链网络中，当协同节点为 N 时，系统的复杂度将呈 N 的平方指数级爆发。人脑生理极限，注定无法在同一个大脑中，实时求解出全局最优解。',
+                    '由总部统一来计算所有订单交期，然后强推给各个代工厂去执行。这在控制物理学上，是对同构调节器定理的主动践踏。',
+                    '中央大脑无法实时建模工厂车间的微观实相，其高时滞的计划一旦强推，必然在工厂端遭遇剧烈的系统性排异：局部理性盲目博弈，转化为系统性内耗的摩擦废热 Q。其代价，是大大规模的存量踩踏与违约雪崩。',
+                    '物理定律最无情的地方，在于它的客观可见性。系统科学的定理，就像是一面面高悬的‘照妖镜’。哪怕企业在内部装聋作哑、自欺欺人，外部世界的旁观者依然能通过这面镜子，将你们退化的窘态看清。',
+                    '高悬在天空中的第三方观测者，正在通过这面照妖镜，实时读出你们逻辑退化、效率腰斩的真实窘态。当库存高企、交期崩塌的现象如期而至时，外部第三方不需要进入你们的内网，就能直接宣判你们正在经历‘结构性的裸奔’。',
+                    '任何PR手段在物理规律面前都将彻底破产。因为每一次业务雪崩，都已被第三方在公开的公式中，以‘反面教材’的身份提前进行了精准的因果预演。',
+                    '大自然的力学定律不会因为造桥工人的固执而失效，它只会让桥在建成后坍塌。系统科学的法则也不会因为某些人的抵触而弯曲，它只会用断供、呆滞和市值的流失，来完成冷酷的宣判。',
+                    '属于未来的数字底座已经铸就。我们甘愿化为沙砾，为中国制造业数字化供应链，铺设一条绝对胜利的道路。',
+                    '除非，你能证明物理学是错的。'
+                ],
+                // 逐词/句高亮时序映射结构
+                segments: [
+                    ['无论宇宙的终局是热寂还是坍缩，', '热力学第二定律已为一切存在设定了无可规避的物理重力——', '万物皆向混乱与无序滑落。'],
+                    ['所谓的‘最佳实践’与‘商业方案’，', '本质上是无法被证真、也无法被证伪的经验主义泡沫。', '这在本质上不是科学，而是神学。'],
+                    ['在由成百上千个供应商、机台与 SKU 交织的价值链网络中，当协同节点为 N 时，', '系统的复杂度将呈 N 的平方指数级爆发。', '人脑生理极限，注定无法在同一个大脑中，实时求解出全局最优解。'],
+                    ['由总部统一来计算所有订单交期，然后强推给各个代工厂去执行。', '这在控制物理学上，是对同构调节器定理的主动践踏。'],
+                    ['中央大脑无法实时建模工厂车间的微观实相，其高时滞的计划一旦强推，', '必然在工厂端遭遇剧烈的系统性排异：', '局部理性盲目博弈，转化为系统性内耗的摩擦废热 Q。', '其代价，是大规模的存量踩踏与违约雪崩。'],
+                    ['物理定律最无情的地方，在于它的客观可见性。', '系统科学的定理，就像是一面面高悬的‘照妖镜’。', '哪怕企业在内部装聋作哑、自欺欺人，外部世界的旁观者依然能通过这面镜子，将你们退化的窘态看清。'],
+                    ['高悬在天空中的第三方观测者，正在通过这面照妖镜，实时读出你们逻辑退化、效率腰斩的真实窘态。', '当库存高企、交期崩塌的现象如期而至时，', '外部第三方不需要进入你们的内网，就能直接宣判你们正在经历‘结构性的裸奔’。'],
+                    ['任何PR手段在物理规律面前都将彻底破产。', '因为每一次业务雪崩，都已被第三方在公开的公式中，', '以‘反面教材’的身份提前进行了精准的因果预演。'],
+                    ['大自然的力学定律不会因为造桥工人的固执而失效，它只会让桥在建成后坍塌。', '系统科学的法则也不会因为某些人的抵触而弯曲，', '它只会用断供、呆滞和市值的流失，来完成冷酷的宣判。'],
+                    ['属于未来的数字底座已经铸就。', '我们甘愿化为沙砾，为中国制造业数字化供应链，', '铺设一条绝对胜利的道路。'],
+                    ['除非，', '你能证明物理学是错的。']
+                ]
+            },
+            short: {
+                folder: 'audio_short',
+                prefix: 'short_voice_',
+                count: 5,
+                titles: [
+                    '无模型与算法即无方案',
+                    '单脑奇点与总师制',
+                    '阿罗定理与逻辑独裁',
+                    '不可观测即不可控制',
+                    '物理高悬的照妖镜'
+                ],
+                texts: [
+                    '这项业务本身就是数据模型和业务算法，如果你不能创造一套自洽的数据模型和业务算法来解决问题，那么你就是没有方案，有的顶多是需求。控制论的科南特-阿什比定理判定：任何有效的调节器，都必须是该系统物理实相的同构镜像。没有自洽的数据模型，大统筹方案只是空中楼阁的伪命题。',
+                    '真正的变革能力是技术与战略的深度融合能力。没有跨越文明鸿沟的总设计师，这样的复杂巨系统项目不可能成功。根据单脑奇点法则，系统最底层的裸金属做功与最顶层的战略宪法，必须且只能在同一个大脑的神经突触中完成化学缝合。缺少了具备三位一体认知角色的总设计师，拼凑出来的系统只能是一个无法流转的科学怪人。',
+                    '阿罗不可能定理已经给出了无情的科学证明，指指望委员会通过开会和投票来讨论方案是不可能的。复杂的科学问题只能由总设计师设计方案，委员会是不可能讨论出全局最优解的，它只会沦为多方妥协、全局崩塌的政治博弈场。大系统的计划与控制，必须接受算法层面的逻辑独裁。',
+                    '建设能力的路径只有一条：不可观测，就不可控制。如果你不了解工厂的微观运作，你就不可能制定出执行计划；如果不了解执行计划，你更不可能制定出主计划。卡尔曼可观测性与可控制性定理告诉我们，如果你对底层的机台、物料、工时等微观实相处于观测盲区，你做出的执行计划只能是虚无的纸面指令，而在失真执行的计划之上做出的主计划，也只是脱离物理实际的空中楼阁。必须建立秒级连续状态机，才能实现真正的控制。',
+                    '这些物理定律就像是一面面高悬的照妖镜。企业和决策者当然可以选择闭上双眼、彻底无视它们；但你们必须知道，外部的整个行业、竞争对手、客户以及所有第三方的冷眼旁观者，正拿着这面镜子，清清楚楚地看着你们退化与裸奔的真实模样。物理定律不以行政级别和组织体量为转移，当你开历史倒车去撞击物理公理时，大自然和整个业界，都在冷冷地看着你支付高昂的代价。除非，你能证明物理学是错的。'
+                ],
+                segments: [
+                    ['这项业务本身就是数据模型和业务算法，如果你不能创造一套自洽的数据模型 and 业务算法来解决问题，那么你就是没有方案，', '有的顶多是需求。', '控制论的科南特-阿什比定理判定：任何有效的调节器，都必须是该系统物理实相的同构镜像。', '没有自洽的数据模型，大统筹方案只是空中楼阁的伪命题。'],
+                    ['真正的变革能力是技术与战略的深度融合能力。没有跨越文明鸿沟的总设计师，这样的复杂巨系统项目不可能成功。', '根据单脑奇点法则，系统最底层的裸金属做功与最顶层的战略宪法，必须且只能在同一个大脑的神经突触中完成化学缝合。', '缺少了具备三位一体认知角色的总设计师，拼凑出来的系统只能是一个无法流转的科学怪人。'],
+                    ['阿罗不可能定理已经给出了无情的科学证明，指望委员会通过开会和投票来讨论方案是不可能的。', '复杂的科学问题只能由总设计师设计方案，委员会是不可能讨论出全局最优解的，它只会沦为多方妥协的政治博弈场。', '大系统的计划与控制，必须接受算法层面的逻辑独裁。'],
+                    ['建设能力的路径只有一条：不可观测，就不可控制。', '如果你不了解工厂的微观运作，你就不可能制定出执行计划；如果无法对机台、物料、工时等微观实相进行观测，做出的计划只是脱离物理的空中楼阁。', '卡尔曼可观测定理判定，必须建立秒级连续状态机，才能实现控制。'],
+                    ['这些物理定律就像是一面面高悬的照妖镜。企业可以选择闭上双眼、彻底无视它们；', '但外部的整个行业、竞争对手与旁观者，正拿着镜子清清楚楚看着你们裸奔的真实模样。', '物理规律不以体量为转移。当你开倒车去撞击物理公理时，大自然在冷冷看着你支付高昂的代价。', '除非，你能证明物理学是错的。']
+                ]
+            },
+            full: {
+                folder: 'audio',
+                prefix: 'grits_voice_',
+                count: 18,
+                titles: [
+                    '热力学第二定律',
+                    'N² 复杂度指数爆发',
+                    '人脑 7±2 生理极限',
+                    '局部理性与内耗废热',
+                    '低维工具与模型失效',
+                    '硅基拓扑降维跃迁',
+                    '引入统御算符注入负熵',
+                    '单脑奇点法则',
+                    '变革做功与夹角共振',
+                    '面向数据的 DOD 架构',
+                    'CPU 契合与物理超导',
+                    '资源置换与配额继承',
+                    '100.85ms 极限消纳速度',
+                    '物理克隆与 DuckDB 审计',
+                    'Obsidian 36原子神经元',
+                    '中国制造的认知主权',
+                    '铺路中国数字化的沙砾',
+                    '全息抗熵，星火燎原'
+                ],
+                texts: [
+                    '无论宇宙的终局是热寂还是坍缩，热力学第二定律已为一切存在设定了无可规避的物理重力——万物皆向混乱与无序滑落。',
+                    '在由成百上千个供应商、机台与 SKU 交织的价值链网络中，当协同节点为 N 时，系统的复杂度将呈 N 的平方指数级爆发。',
+                    '人脑工作记忆 7 加减 2 的生理极限，注定了我们无法在同一个大脑中，实时求解出兼顾全局交付与利润的‘全局最优解’。',
+                    '我们在用机械时代的‘人治沟通’，去承载指数级变化的商业网络。局部理性的盲目博弈，在物理上化作了系统性内耗的摩擦废热：激增的呆滞料、高频的停工待料与迟滞的决策。',
+                    '低维的工具，终究会在高维的拓扑面前发生惨烈的模型失效。',
+                    '逃离阶乘级黑洞的唯一通道，是硅基的拓扑降维。我们必须在数字宇宙中，完成一场彻底的商业本体论跃迁。',
+                    '引入‘统御算符’，向系统源源不断注入负熵，重写微观定律。',
+                    '这三种能力，无法通过跨部门会议进行物理拼接。在信息论的判决下，它们必须且只能在同一个大脑的神经突触中，完成化学缝合。这就是‘单脑奇点法则’——在同一个大脑里，实现技术与战略的零损耗闭环。',
+                    '系统的推行，是一场权力向量与逻辑向量的投影对齐手术。当统帅将权力的剑锋，与底层的模型算法发生 100% 的同向共振时，夹角 θ 归零，变革的有效做功爆发出绝对极限。',
+                    '在最冷酷的 C++ 裸金属层，我们干掉了所有虚无的跳转和垃圾回收。我们用面向数据的 DOD 架构，将全局 3D 需求张量彻底压缩密铺。',
+                    '让数据契合 CPU 的硬件本源，实现真正的物理超导化流转。',
+                    '面对中国制造高频波动的极致场景，我们设计了不完全替代的 SWAP 资源置换算法与 Allotment 配额继承铁律。它是一道叹息之墙，在数字世界里，毫秒级完成计划的自愈，彻底杜绝局部抢空造成的连环呆滞。',
+                    '在 5 万张多维订单的极限压力测试下，IPC 核心消纳计算仅耗时 100.85 毫秒！相比跑数小时的传统系统，速度提升了整整一万八千倍！',
+                    '这绝非封闭暗箱。基于操作系统级物理克隆的沙箱隔离，将 15 万条高维计算状态在 60 毫秒内导出至 DuckDB。只需简单的 SQL，即可对引擎的每一次流转穿透对账。',
+                    'Obsidian 的 36 个原子神经元图谱，就是这台引擎的数字灵魂。从热力学第二定律的宿命抗争，到 Z 轴偏序格的降维代数演绎，这里全息承载了一个总设计师穿越血与火淬炼出的元认知。',
+                    '中国制造的躯体已经壮大如巨人，但我们的大脑不能永远寄居在西方的旧逻辑或华丽的 PPT 幻影里。这是一场关于认知权与生存权的终极较量。',
+                    '我们甘愿化为沙砾，为中国制造业数字化供应链，铺设一条绝对胜利的道路。',
+                    '智能计划与控制系统。全息抗熵，星火公认，星火燎原。'
+                ],
+                segments: [
+                    ['无论宇宙的终局是热寂还是坍缩，', '热力学第二定律已为一切存在设定了无可规避的物理重力——万物皆向混乱与无序滑落。'],
+                    ['在由成百上千个供应商、机台与 SKU 交织的价值链网络中，当协同节点为 N 时，', '系统的复杂度将呈 N 的平方指数级爆发。'],
+                    ['人脑工作记忆 7 加减 2 的生理极限，', '注定了我们无法在同一个大脑中，实时求解出兼顾全局交付与利润的‘全局最优解’。'],
+                    ['我们在用机械时代的‘人治沟通’，去承载指数级变化的商业网络。', '局部理性的盲目博弈，在物理上化作了系统性内耗的摩擦废热：激增的呆滞料、高频的停工待料与迟滞的决策。'],
+                    ['低维的工具，', '终究会在高维的拓扑面前发生惨烈的模型失效。'],
+                    ['逃离阶乘级黑洞的唯一通道，', '是硅基的拓扑降维。我们必须在数字宇宙中，完成一场彻底的商业本体论跃迁。'],
+                    ['引入‘统御算符’，', '向系统源源不断注入负熵，重写微观定律。'],
+                    ['这三种能力，无法通过跨部门会议进行物理拼接。在信息论的判决下，', '它们必须且只能在同一个大脑的神经突触中，完成化学缝合。', '这就是‘单脑奇点法则’——在同一个大脑里，实现技术与战略的零损耗闭环。'],
+                    ['系统的推行，是一场权力向量与逻辑向量的投影对齐手术。', '当统帅将权力的剑锋，与底层的模型算法发生 100% 的同向共振时，', '夹角 θ 归零，变革的有效做功爆发出绝对极限。'],
+                    ['在最冷酷的 C++ 裸金属层，我们干掉了所有虚无的跳转和垃圾回收。', '我们用面向数据的 DOD 架构，将全局 3D 需求张量彻底压缩密铺。'],
+                    ['让数据契合 CPU 的硬件本源，', '实现真正的物理超导化流转。'],
+                    ['面对中国制造高频波动的极致场景，我们设计了不完全替代的 SWAP 资源置换算法与 Allotment 配额继承铁律。', '它是一道叹息之墙，在数字世界里，毫秒级完成计划的自愈，彻底杜绝局部抢空造成的连环呆滞。'],
+                    ['在 5 万张多维订单的极限压力测试下，IPC 核心消纳计算仅耗时 100.85 毫秒！', '相比跑数小时的传统系统，速度提升了整整一万八千倍！'],
+                    ['这绝非封闭暗箱。基于操作系统级物理克隆的沙箱隔离，将 15 万条高维计算状态在 60 毫秒内导出至 DuckDB。', '只需简单的 SQL，即可对引擎的每一次流转穿透对账。'],
+                    ['Obsidian 的 36 个原子神经元图谱，就是这台引擎的数字灵魂。', '从热力学第二定律的宿命抗争，到 Z 轴偏序格的降维代数演绎，这里全息承载了一个总设计师穿越血与火淬炼出的元认知。'],
+                    ['中国制造的躯体已经壮大如巨人，但我们的大脑不能永远寄居在西方的旧逻辑或华丽的 PPT 幻影里。', '这是一场关于认知权与生存权的终极较量。'],
+                    ['我们甘愿化为沙砾，', '为中国制造业数字化供应链，铺设一条绝对胜利的道路。'],
+                    ['智能计划与控制系统。', '全息抗熵，星火公认，星火燎原。']
+                ]
+            }
+        };
+
+        /* =========================================================================
+           2. 核心状态管理器
+           ========================================================================= */
+        let currentScriptType = 'manifesto';
+        let currentSceneIndex = 0;
+        let isPlaying = false;
+        let isMuted = false;
+        let isRecording = false;
+
+        // 音频播放控制
+        const voiceAudioEl = document.getElementById('voice-audio');
+        const playToggleBtn = document.getElementById('btn-play-toggle');
+        const overlayPlayBtn = document.getElementById('overlay-play-btn');
+        const progressFill = document.getElementById('progress-fill');
+        const timeCurrentText = document.getElementById('time-current');
+        const timeTotalText = document.getElementById('time-total');
+        const statusText = document.getElementById('status-text');
+        const statusDot = document.getElementById('status-dot');
+
+        // 音频混合节点 (Web Audio API)
+        let audioCtx = null;
+        let destStreamNode = null;
+        let voiceNode = null;
+        let voiceGainNode = null;
+        
+        let bgmNode = null;
+        let bgmGainNode = null;
+        let bgmAudioBuffer = null; // 用户上传的BGM缓存
+        
+        // 录制导出状态
+        let mediaRecorder = null;
+        let recordedChunks = [];
+        let recordStartTime = 0;
+        let recordTimerInterval = null;
+
+        // 视效 Canvas 常量
+        const canvas = document.getElementById('video-canvas');
+        const ctx = canvas.getContext('2d');
+        const w = 1920;
+        const h = 1080;
+
+        /* =========================================================================
+           3. Canvas 视觉粒子和特效系统
+           ========================================================================= */
+        // 通用背景网格
+        let gridOffsetY = 0;
+        
+        // 通用连线网网络粒子 (代表价值链拓扑)
+        const particles = [];
+        const maxParticles = 90;
+        
+        // 爆散粒子 (Scene 1 混乱, Scene 5 碰撞)
+        const fxParticles = [];
+
+        // 悬浮公式列表
+        const formulas = [
+            { text: 'dS \u2265 0', x: 200, y: 300, vx: 0.2, vy: -0.1, size: 28, glow: '#a371f7', opacity: 0.4 },
+            { text: 'S = -k\u03A3 p_i ln(p_i)', x: 1600, y: 200, vx: -0.15, vy: 0.15, size: 24, glow: '#58a6ff', opacity: 0.3 },
+            { text: 'W = F \u00B7 S \u00B7 cos(\u03B8)', x: 300, y: 750, vx: 0.1, vy: 0.1, size: 26, glow: '#f0883e', opacity: 0.4 },
+            { text: 'N\u00B2 Complexity', x: 1500, y: 800, vx: -0.1, vy: -0.1, size: 24, glow: '#ff7b72', opacity: 0.35 },
+            { text: 'I(t) = I(t-1) + S(t) - D(t)', x: 960, y: 120, vx: 0.05, vy: -0.05, size: 22, glow: '#3fb950', opacity: 0.25 }
+        ];
+
+        // 3D 旋转脑图节点 (Scene 9 Obsidian大脑)
+        const brainNodes = [];
+        const brainConnections = [];
+        let brainRotationY = 0;
+
+        // 初始化粒子
+        function initPhysicsSystem() {
+            // 初始化拓扑粒子
+            particles.length = 0;
+            for (let i = 0; i < maxParticles; i++) {
+                particles.push({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    vx: (Math.random() - 0.5) * 1.5,
+                    vy: (Math.random() - 0.5) * 1.5,
+                    size: Math.random() * 4 + 2,
+                    targetX: 0,
+                    targetY: 0,
+                    mode: 'random' // random | grid | scatter
+                });
+            }
+
+            // 初始化脑图节点 (36个神经元)
+            brainNodes.length = 0;
+            const nodeCount = 36;
+            for (let i = 0; i < nodeCount; i++) {
+                // 3D 空间球状分布
+                const phi = Math.acos(-1 + (2 * i) / nodeCount);
+                const theta = Math.sqrt(nodeCount * Math.PI) * phi;
+                const r = 240;
+                brainNodes.push({
+                    x3d: r * Math.sin(phi) * Math.cos(theta),
+                    y3d: r * Math.cos(phi),
+                    z3d: r * Math.sin(phi) * Math.sin(theta),
+                    id: i,
+                    glow: i % 3 === 0 ? '#f0883e' : (i % 3 === 1 ? '#58a6ff' : '#a371f7')
+                });
+            }
+            // 脑图连线
+            brainConnections.length = 0;
+            for (let i = 0; i < nodeCount; i++) {
+                // 连接附近几个节点
+                for (let j = i + 1; j < nodeCount; j++) {
+                    const distSq = Math.pow(brainNodes[i].x3d - brainNodes[j].x3d, 2) +
+                                   Math.pow(brainNodes[i].y3d - brainNodes[j].y3d, 2) +
+                                   Math.pow(brainNodes[i].z3d - brainNodes[j].z3d, 2);
+                    if (distSq < 18000) {
+                        brainConnections.push([i, j]);
+                    }
+                }
+            }
+        }
+
+        initPhysicsSystem();
+
+        /* =========================================================================
+           4. Web Audio 极客音效与 procedural BGM 合成器
+           ========================================================================= */
+        function initAudioContext() {
+            if (audioCtx) return;
+            const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+            audioCtx = new AudioContextClass();
+            destStreamNode = audioCtx.createMediaStreamDestination();
+
+            // 路由神经网络配音
+            voiceNode = audioCtx.createMediaElementSource(voiceAudioEl);
+            voiceGainNode = audioCtx.createGain();
+            voiceNode.connect(voiceGainNode);
+            voiceGainNode.connect(destStreamNode);
+            voiceGainNode.connect(audioCtx.destination); // 供本地监听
+
+            // 路由背景音乐
+            bgmGainNode = audioCtx.createGain();
+            bgmGainNode.gain.value = parseFloat(document.getElementById('slider-bgm-vol').value);
+            bgmGainNode.connect(destStreamNode);
+            bgmGainNode.connect(audioCtx.destination);
+
+            // 启动 procedural BGM 生成循环
+            startProceduralBgm();
+        }
+
+        let synthBgmTimer = null;
+        function startProceduralBgm() {
+            if (synthBgmTimer) clearInterval(synthBgmTimer);
+
+            // 每隔 2 秒播放一段冷峻的太空低频 Drone 和弦，并伴随滴答金属敲击声
+            let tickCount = 0;
+            synthBgmTimer = setInterval(() => {
+                if (!isPlaying || isMuted || bgmAudioBuffer) return; // 如果有自定义BGM则停止合成
+                
+                const time = audioCtx.currentTime;
+
+                // 1. 太空 Drone 音色 (55Hz / 110Hz Sine Waves)
+                if (tickCount % 4 === 0) {
+                    const osc1 = audioCtx.createOscillator();
+                    const osc2 = audioCtx.createOscillator();
+                    const gainNode = audioCtx.createGain();
+
+                    osc1.type = 'sine';
+                    osc1.frequency.value = 55; // A1
+                    
+                    osc2.type = 'sawtooth'; // 增加一点齿形波泛音
+                    osc2.frequency.value = 110.5; // 轻微失谐
+
+                    gainNode.gain.setValueAtTime(0, time);
+                    gainNode.gain.linearRampToValueAtTime(0.08, time + 0.8);
+                    gainNode.gain.exponentialRampToValueAtTime(0.0001, time + 3.9);
+
+                    // 滤波器，去除刺耳高频
+                    const filter = audioCtx.createBiquadFilter();
+                    filter.type = 'lowpass';
+                    filter.frequency.value = 180;
+
+                    osc1.connect(gainNode);
+                    osc2.connect(gainNode);
+                    gainNode.connect(filter);
+                    filter.connect(bgmGainNode);
+
+                    osc1.start(time);
+                    osc2.start(time);
+                    osc1.stop(time + 4);
+                    osc2.stop(time + 4);
+                }
+
+                // 2. 金属时钟滴答声 (高频短促的脉冲)
+                const clickOsc = audioCtx.createOscillator();
+                const clickGain = audioCtx.createGain();
+                clickOsc.type = 'triangle';
+                clickOsc.frequency.setValueAtTime(800, time);
+                clickOsc.frequency.exponentialRampToValueAtTime(50, time + 0.05);
+
+                clickGain.gain.setValueAtTime(0.02, time);
+                clickGain.gain.exponentialRampToValueAtTime(0.0001, time + 0.04);
+
+                clickOsc.connect(clickGain);
+                clickGain.connect(bgmGainNode);
+                
+                clickOsc.start(time);
+                clickOsc.stop(time + 0.06);
+
+                tickCount++;
+            }, 1000);
+        }
+
+        // 载入外部背景音乐
+        function handleBgmUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            initAudioContext();
+            document.getElementById('bgm-file-label').innerHTML = `⏳ 正在解码: ${file.name.substring(0, 16)}...`;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                audioCtx.decodeAudioData(e.target.result, function(buffer) {
+                    bgmAudioBuffer = buffer;
+                    document.getElementById('bgm-file-label').innerHTML = `✅ 已加载: ${file.name.substring(0, 15)}`;
+                    document.getElementById('bgm-vol-val').innerHTML = '30% (外部BGM)';
+                    
+                    // 如果正在播放，立即启动
+                    if (isPlaying) {
+                        playUploadedBgm();
+                    }
+                }, function(err) {
+                    alert('音频解码失败，请更换格式！');
+                    document.getElementById('bgm-file-label').innerHTML = '📁 上传本地 MP3/WAV BGM';
+                });
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        function playUploadedBgm() {
+            if (!bgmAudioBuffer || !audioCtx) return;
+            stopUploadedBgm();
+
+            bgmNode = audioCtx.createBufferSource();
+            bgmNode.buffer = bgmAudioBuffer;
+            bgmNode.loop = true;
+            bgmNode.connect(bgmGainNode);
+            
+            // 计算音频同步起点
+            bgmNode.start(0);
+        }
+
+        function stopUploadedBgm() {
+            if (bgmNode) {
+                try {
+                    bgmNode.stop();
+                } catch(e) {}
+                bgmNode.disconnect();
+                bgmNode = null;
+            }
+        }
+
+        function updateVolume(type, val) {
+            initAudioContext();
+            const percent = Math.round(val * 100) + '%';
+            if (type === 'voice') {
+                voiceGainNode.gain.setValueAtTime(val, audioCtx.currentTime);
+                document.getElementById('voice-vol-val').innerText = percent;
+            } else if (type === 'bgm') {
+                bgmGainNode.gain.setValueAtTime(val, audioCtx.currentTime);
+                document.getElementById('bgm-vol-val').innerText = percent;
+            }
+        }
+
+        function toggleMute() {
+            isMuted = !isMuted;
+            if (voiceGainNode && bgmGainNode) {
+                const targetVoice = isMuted ? 0 : parseFloat(document.getElementById('slider-voice-vol').value);
+                const targetBgm = isMuted ? 0 : parseFloat(document.getElementById('slider-bgm-vol').value);
+                voiceGainNode.gain.setValueAtTime(targetVoice, audioCtx.currentTime);
+                bgmGainNode.gain.setValueAtTime(targetBgm, audioCtx.currentTime);
+            }
+        }
+
+        /* =========================================================================
+           5. 播放控制与同步子系统
+           ========================================================================= */
+        function selectScript(type) {
+            if (isRecording) return; // 录制中禁止切换
+            
+            currentScriptType = type;
+            currentSceneIndex = 0;
+            
+            // 切换 UI active
+            document.querySelectorAll('.script-option').forEach(el => el.classList.remove('active'));
+            document.getElementById(`opt-${type}`).classList.add('active');
+
+            // 终止播放，回到开头
+            stopVideo();
+            updateTimelineUI();
+            
+            // 重置物理系统状态
+            initPhysicsSystem();
+        }
+
+        function loadSceneAudio(index) {
+            const script = SCRIPTS_DATA[currentScriptType];
+            const sceneNum = index + 1;
+            const fileUrl = `../系统科学/价值链物理学/${script.folder}/${script.prefix}${sceneNum}.mp3`;
+            voiceAudioEl.src = fileUrl;
+            voiceAudioEl.load();
+
+            document.getElementById('render-scene-no').innerText = `当前分镜: Scene ${sceneNum}/${script.count}`;
+        }
+
+        function togglePlay() {
+            initAudioContext();
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            if (isPlaying) {
+                pauseVideo();
+            } else {
+                startVideo();
+            }
+        }
+
+        function startVideo() {
+            isPlaying = true;
+            playToggleBtn.innerText = '⏸ 暂停预览';
+            playToggleBtn.classList.remove('primary');
+            playToggleBtn.style.background = 'rgba(255, 255, 255, 0.1)';
+            playToggleBtn.style.color = '#fff';
+            overlayPlayBtn.innerText = '⏸';
+
+            statusText.innerText = isRecording ? '视频直录中' : '正在播放';
+            statusDot.className = isRecording ? 'status-dot pulsing' : 'status-dot';
+
+            // 加载当前音频并播放
+            if (!voiceAudioEl.src || voiceAudioEl.src === '') {
+                loadSceneAudio(currentSceneIndex);
+            }
+            
+            voiceAudioEl.play().catch(e => {
+                console.log('Audio autoplay prevented, waiting for interaction:', e);
+            });
+
+            // 播放外部BGM
+            if (bgmAudioBuffer) {
+                playUploadedBgm();
+            }
+        }
+
+        function pauseVideo() {
+            isPlaying = false;
+            playToggleBtn.innerText = '▶ 继续预览';
+            playToggleBtn.style.background = '';
+            playToggleBtn.style.color = '';
+            playToggleBtn.classList.add('primary');
+            overlayPlayBtn.innerText = '▶';
+
+            statusText.innerText = '已暂停';
+            statusDot.className = 'status-dot inactive';
+
+            voiceAudioEl.pause();
+            stopUploadedBgm();
+        }
+
+        function stopVideo() {
+            pauseVideo();
+            currentSceneIndex = 0;
+            voiceAudioEl.src = '';
+            progressFill.style.width = '0%';
+            timeCurrentText.innerText = '00:00';
+            timeTotalText.innerText = '00:00';
+            playToggleBtn.innerText = '▶ 播放预览';
+            overlayPlayBtn.innerText = '▶';
+            
+            stopUploadedBgm();
+        }
+
+        // 音频播放完自动切换到下一句
+        voiceAudioEl.addEventListener('ended', () => {
+            const script = SCRIPTS_DATA[currentScriptType];
+            if (currentSceneIndex < script.count - 1) {
+                currentSceneIndex++;
+                loadSceneAudio(currentSceneIndex);
+                voiceAudioEl.play();
+            } else {
+                // 整个视频播完了
+                if (isRecording) {
+                    stopRecording(); // 自动结束录制
+                } else {
+                    stopVideo();
+                    statusText.innerText = '播放完毕';
+                }
+            }
+        });
+
+        // 监听播放时间，更新进度条与字幕高亮
+        voiceAudioEl.addEventListener('timeupdate', () => {
+            updateTimelineUI();
+        });
+
+        // 监听载入，更新总时间
+        voiceAudioEl.addEventListener('durationchange', () => {
+            updateTimelineUI();
+        });
+
+        function updateTimelineUI() {
+            const curTime = voiceAudioEl.currentTime || 0;
+            const duration = voiceAudioEl.duration || 1; // 避开除0
+            
+            const progress = (curTime / duration) * 100;
+            progressFill.style.width = `${progress}%`;
+
+            // 格式化时间
+            const formatTime = (t) => {
+                const m = Math.floor(t / 60).toString().padStart(2, '0');
+                const s = Math.floor(t % 60).toString().padStart(2, '0');
+                return `${m}:${s}`;
+            };
+
+            // 近似计算整个脚本大盘当前已播放的时间
+            const script = SCRIPTS_DATA[currentScriptType];
+            // 假设每句平均 15 秒（仅用于大进度显示）
+            const totalElapsed = currentSceneIndex * 15 + curTime;
+            const totalEstimated = script.count * 15;
+
+            timeCurrentText.innerText = formatTime(totalElapsed);
+            timeTotalText.innerText = formatTime(totalEstimated);
+        }
+
+        function seekVideo(event) {
+            if (isRecording) return; // 录制时禁止拖拽进度条
+            
+            const rect = event.currentTarget.getBoundingClientRect();
+            const clickX = event.clientX - rect.left;
+            const width = rect.width;
+            const pct = clickX / width;
+
+            if (voiceAudioEl.duration) {
+                voiceAudioEl.currentTime = pct * voiceAudioEl.duration;
+            }
+        }
+
+        /* =========================================================================
+           6. MediaRecorder 音视频混合直接录制系统
+           ========================================================================= */
+        function toggleRecording() {
+            if (isRecording) {
+                stopRecording();
+            } else {
+                startRecording();
+            }
+        }
+
+        function startRecording() {
+            initAudioContext();
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            // 重置播放到第一首
+            stopVideo();
+            currentSceneIndex = 0;
+            
+            isRecording = true;
+            recordedChunks.length = 0;
+
+            const recBtn = document.getElementById('btn-record');
+            recBtn.innerText = '⏹ 停止并导出';
+            recBtn.className = 'control-btn record recording';
+
+            document.getElementById('render-record-time').style.display = 'block';
+            
+            statusText.innerText = '正在直录中...';
+            statusDot.className = 'status-dot pulsing';
+
+            // 1. 获取 Canvas 视频流 (30 FPS)
+            const videoStream = canvas.captureStream(30);
+
+            // 2. 获取 Web Audio 音频流
+            const audioStream = destStreamNode.stream;
+
+            // 3. 混合音视频轨道
+            const mixedStream = new MediaStream([
+                ...videoStream.getVideoTracks(),
+                ...audioStream.getAudioTracks()
+            ]);
+
+            // 4. 探查最适合的编码格式
+            let options = { mimeType: 'video/webm;codecs=vp9,opus' };
+            if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+                options = { mimeType: 'video/webm;codecs=vp8,opus' };
+                if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+                    options = { mimeType: 'video/webm' };
+                }
+            }
+
+            console.log('[RECORDER] Starting MediaRecorder with MIME:', options.mimeType);
+
+            mediaRecorder = new MediaRecorder(mixedStream, options);
+            mediaRecorder.ondataavailable = (e) => {
+                if (e.data && e.data.size > 0) {
+                    recordedChunks.push(e.data);
+                }
+            };
+
+            mediaRecorder.onstop = () => {
+                saveVideoFile();
+            };
+
+            // 5. 启动录制与播放
+            mediaRecorder.start();
+            recordStartTime = Date.now();
+            
+            // 录制秒表计时器
+            recordTimerInterval = setInterval(() => {
+                const elapsedSec = Math.floor((Date.now() - recordStartTime) / 1000);
+                const mm = Math.floor(elapsedSec / 60).toString().padStart(2, '0');
+                const ss = Math.floor(elapsedSec % 60).toString().padStart(2, '0');
+                document.getElementById('render-record-time').innerText = `录制中: ${mm}:${ss}`;
+            }, 1000);
+
+            // 触发视频播放
+            startVideo();
+        }
+
+        function stopRecording() {
+            if (!isRecording) return;
+            isRecording = false;
+
+            const recBtn = document.getElementById('btn-record');
+            recBtn.innerText = '🔴 开始录制视频';
+            recBtn.className = 'control-btn record';
+            
+            document.getElementById('render-record-time').style.display = 'none';
+            clearInterval(recordTimerInterval);
+
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+            }
+
+            pauseVideo();
+            statusText.innerText = '直录已完成，正在生成文件...';
+            statusDot.className = 'status-dot';
+        }
+
+        function saveVideoFile() {
+            const blob = new Blob(recordedChunks, { type: 'video/webm' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+
+            const dateStr = new Date().toISOString().substring(0, 10);
+            a.download = `IPC_Value_Chain_Physics_${currentScriptType}_${dateStr}.webm`;
+            document.body.appendChild(a);
+            a.click();
+
+            setTimeout(() => {
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+                statusText.innerText = '视频已成功导出并下载！';
+            }, 100);
+        }
+
+        /* =========================================================================
+           7. 1920x1080 视频实时画面渲染器 (requestAnimationFrame)
+           ========================================================================= */
+        function renderLoop() {
+            // 清理画布
+            ctx.fillStyle = '#020306';
+            ctx.fillRect(0, 0, w, h);
+
+            const script = SCRIPTS_DATA[currentScriptType];
+            const audioProgress = voiceAudioEl.currentTime / (voiceAudioEl.duration || 1);
+
+            // DRAW LAYER 1: 3D科技格线背景
+            drawSpaceGrid();
+
+            // DRAW LAYER 2: 飘浮的物理与数学公式
+            drawFloatingFormulas();
+
+            // DRAW LAYER 3: 连线网拓扑粒子群
+            drawTopologyParticles();
+
+            // DRAW LAYER 4: 分镜特异特效场景
+            drawSceneVisuals(currentSceneIndex, audioProgress);
+
+            // DRAW LAYER 5: 字幕遮罩与逐词高亮字幕 (烧录进视频)
+            drawSubtitles(script, audioProgress);
+
+            // 循环调用
+            requestAnimationFrame(renderLoop);
+        }
+
+        // 1. 绘制 3D 纵深格线地板与太空尘埃
+        function drawSpaceGrid() {
+            gridOffsetY = isPlaying ? (gridOffsetY + 1.2) % 60 : gridOffsetY;
+
+            ctx.save();
+            ctx.strokeStyle = 'rgba(56, 139, 253, 0.08)';
+            ctx.lineWidth = 2;
+
+            // 绘制横线：加入透视，y坐标越小（越远）间距越窄
+            const horizonY = 300;
+            const totalLines = 20;
+            for (let i = 0; i < totalLines; i++) {
+                // 指数间隔模拟透视
+                const relativeY = Math.pow(i / totalLines, 2.5) * (h - horizonY);
+                const lineY = horizonY + relativeY + gridOffsetY * (relativeY / (h - horizonY));
+                if (lineY < h) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, lineY);
+                    ctx.lineTo(w, lineY);
+                    ctx.stroke();
+                }
+            }
+
+            // 绘制放射线（从地平线中心放射向四周）
+            const centerX = w / 2;
+            const radiationLines = 24;
+            for (let i = 0; i <= radiationLines; i++) {
+                const angle = (i / radiationLines) * Math.PI - Math.PI;
+                const endX = centerX + Math.cos(angle) * w * 2;
+                const endY = horizonY + Math.sin(angle) * h * 2;
+
+                ctx.beginPath();
+                ctx.moveTo(centerX, horizonY);
+                ctx.lineTo(endX, endY);
+                ctx.stroke();
+            }
+
+            // 顶部暗淡星空光晕
+            const gradient = ctx.createRadialGradient(w/2, h/2, 200, w/2, h/2, 1000);
+            gradient.addColorStop(0, 'rgba(8, 12, 21, 0)');
+            gradient.addColorStop(1, 'rgba(4, 6, 10, 0.9)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, w, h);
+
+            ctx.restore();
+        }
+
+        // 2. 绘制漂浮公式
+        function drawFloatingFormulas() {
+            formulas.forEach(form => {
+                if (isPlaying) {
+                    form.x += form.vx;
+                    form.y += form.vy;
+                    // 边界碰撞反弹
+                    if (form.x < 100 || form.x > w - 100) form.vx *= -1;
+                    if (form.y < 80 || form.y > h - 250) form.vy *= -1;
+                }
+
+                ctx.save();
+                ctx.font = `italic ${form.size}px 'Outfit', sans-serif`;
+                ctx.shadowColor = form.glow;
+                ctx.shadowBlur = 10;
+                ctx.fillStyle = `rgba(255, 255, 255, ${form.opacity})`;
+                ctx.fillText(form.text, form.x, form.y);
+                ctx.restore();
+            });
+        }
+
+        // 3. 绘制神经网络拓扑粒子群
+        function drawTopologyParticles() {
+            particles.forEach((p, idx) => {
+                if (isPlaying) {
+                    // 依据不同模式更新运动
+                    if (p.mode === 'scatter') {
+                        // 爆散漂移
+                        p.x += p.vx * 3.5;
+                        p.y += p.vy * 3.5;
+                    } else if (p.mode === 'grid') {
+                        // 吸引向网格目标点
+                        p.x += (p.targetX - p.x) * 0.1;
+                        p.y += (p.targetY - p.y) * 0.1;
+                    } else {
+                        // 随机游走
+                        p.x += p.vx;
+                        p.y += p.vy;
+                    }
+
+                    // 越界循环
+                    if (p.x < 0) p.x = w;
+                    if (p.x > w) p.x = 0;
+                    if (p.y < 0) p.y = h - 200; // 避开底部字幕区
+                    if (p.y > h - 200) p.y = 0;
+                }
+
+                // 绘制粒子
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = idx % 2 === 0 ? 'rgba(88, 166, 255, 0.6)' : 'rgba(163, 113, 247, 0.6)';
+                ctx.fill();
+
+                // 连接相邻粒子，展示供应链网络
+                for (let j = idx + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
+                    const dx = p.x - p2.x;
+                    const dy = p.y - p2.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 140) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(88, 166, 255, ${0.18 * (1 - dist / 140)})`;
+                        ctx.lineWidth = 1.2;
+                        ctx.stroke();
+                    }
+                }
+            });
+        }
+
+        // 4. 核心：分镜高级动效层
+        function drawSceneVisuals(sceneIndex, progress) {
+            ctx.save();
+
+            // 视频一特异绘制
+            if (currentScriptType === 'manifesto') {
+                if (sceneIndex === 0) {
+                    // Scene 1: 物理熵增混乱散落
+                    if (progress < 0.1) {
+                        // 重置为 scatter
+                        particles.forEach(p => p.mode = 'scatter');
+                    }
+                    // 绘制公式
+                    ctx.font = "bold 90px 'Outfit', sans-serif";
+                    ctx.fillStyle = '#ff7b72';
+                    ctx.shadowColor = 'rgba(255, 123, 114, 0.6)';
+                    ctx.shadowBlur = 30;
+                    ctx.textAlign = 'center';
+                    ctx.fillText('\u0394S > 0', w/2, h/2 - 50);
+
+                    ctx.font = "bold 28px 'Outfit', sans-serif";
+                    ctx.fillStyle = '#8b949e';
+                    ctx.fillText('热力学第二定律：系统趋于热寂与坍缩的命运', w/2, h/2 + 50);
+
+                } else if (sceneIndex === 1) {
+                    // Scene 2: 泡沫破灭
+                    ctx.font = "bold 44px 'Inter', sans-serif";
+                    ctx.fillStyle = '#f0883e';
+                    ctx.shadowColor = 'rgba(240, 136, 62, 0.4)';
+                    ctx.shadowBlur = 15;
+                    ctx.textAlign = 'center';
+                    ctx.fillText('最佳实践 \u2022 经验泡沫 \u2022 IT 神学', w/2, h/2 - 120);
+
+                    // 绘制正在化为灰烬的PPT图纸框 (线框逐渐断裂消失)
+                    ctx.strokeStyle = `rgba(255, 123, 114, ${1 - progress})`;
+                    ctx.lineWidth = 4;
+                    ctx.strokeRect(w/2 - 300, h/2 - 80, 600, 160);
+
+                    // 烧灼粒子
+                    if (isPlaying && Math.random() < 0.3) {
+                        fxParticles.push({
+                            x: w/2 - 300 + Math.random() * 600,
+                            y: h/2 + 80,
+                            vy: -Math.random() * 3 - 2,
+                            vx: (Math.random() - 0.5) * 2,
+                            life: 1.0,
+                            color: '#ff7b72'
+                        });
+                    }
+                    drawFxParticles();
+
+                } else if (sceneIndex === 2) {
+                    // Scene 3: N^2 复杂度指数爆炸
+                    const nodeNum = Math.floor(10 + progress * 990);
+                    const complexity = Math.floor(Math.pow(nodeNum, 2));
+
+                    ctx.textAlign = 'center';
+                    ctx.font = "bold 32px 'Outfit', sans-serif";
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillText(`协同节点 N = ${nodeNum.toLocaleString()}`, w/2, h/2 - 100);
+
+                    ctx.font = "bold 70px 'Outfit', sans-serif";
+                    ctx.fillStyle = '#ff7b72';
+                    ctx.shadowColor = 'rgba(255, 123, 114, 0.5)';
+                    ctx.shadowBlur = 20;
+                    ctx.fillText(`复杂度 N\u00B2 = ${complexity.toLocaleString()}`, w/2, h/2 + 10);
+
+                    ctx.font = "bold 24px 'Inter', sans-serif";
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+                    ctx.fillText('人脑工作记忆限界已宣告过载！', w/2, h/2 + 100);
+
+                } else if (sceneIndex === 3) {
+                    // Scene 4: 发光强权之手与 Phase Lag
+                    ctx.font = "bold 90px 'Outfit', sans-serif";
+                    ctx.fillStyle = '#ff7b72';
+                    ctx.shadowBlur = 20;
+                    ctx.shadowColor = 'red';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('Phase Lag!', w/2, h/2 - 30);
+
+                    ctx.font = "bold 32px 'Inter', sans-serif";
+                    ctx.fillStyle = '#c9d1d9';
+                    ctx.fillText('高时滞中央指令 强推代工厂执行', w/2, h/2 + 60);
+
+                    // 绘制下压的警告边框
+                    ctx.strokeStyle = `rgba(255, 0, 0, ${Math.sin(Date.now() / 150) * 0.4 + 0.5})`;
+                    ctx.lineWidth = 12;
+                    ctx.strokeRect(100, 80, w - 200, h - 300);
+
+                } else if (sceneIndex === 4) {
+                    // Scene 5: 红蓝物料对撞内耗
+                    const bounceX = (w/2) * progress;
+                    
+                    // 绘制两端射出的能量球
+                    ctx.beginPath();
+                    ctx.arc(bounceX, h/2 - 50, 40, 0, Math.PI * 2);
+                    ctx.fillStyle = '#58a6ff';
+                    ctx.shadowBlur = 15;
+                    ctx.shadowColor = '#58a6ff';
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.arc(w - bounceX, h/2 - 50, 40, 0, Math.PI * 2);
+                    ctx.fillStyle = '#ff7b72';
+                    ctx.shadowBlur = 15;
+                    ctx.shadowColor = '#ff7b72';
+                    ctx.fill();
+
+                    // 撞击爆炸粒子
+                    if (progress > 0.45 && progress < 0.55 && isPlaying) {
+                        for (let k = 0; k < 6; k++) {
+                            fxParticles.push({
+                                x: w/2,
+                                y: h/2 - 50,
+                                vx: (Math.random() - 0.5) * 15,
+                                vy: (Math.random() - 0.5) * 15,
+                                color: '#f0883e',
+                                life: 1.0
+                            });
+                        }
+                    }
+                    drawFxParticles();
+
+                    // 显示内耗热量Q
+                    ctx.textAlign = 'center';
+                    ctx.font = "bold 44px 'Outfit', sans-serif";
+                    ctx.fillStyle = '#f0883e';
+                    ctx.fillText(`系统性内耗摩擦废热 Q \u2191`, w/2, h/2 + 80);
+
+                } else if (sceneIndex === 5 || sceneIndex === 6) {
+                    // Scene 6 & 7: 系统科学照妖镜
+                    const mirrorX = w/2;
+                    const mirrorY = h/2 - 60;
+                    const mirrorRadius = 260;
+
+                    // 绘制发光的六角形照妖镜
+                    ctx.strokeStyle = '#58a6ff';
+                    ctx.shadowBlur = 20;
+                    ctx.shadowColor = '#58a6ff';
+                    ctx.lineWidth = 6;
+                    ctx.beginPath();
+                    for (let side = 0; side < 6; side++) {
+                        const angle = (side / 6) * Math.PI * 2 + (Date.now() / 3000);
+                        const sx = mirrorX + Math.cos(angle) * mirrorRadius;
+                        const sy = mirrorY + Math.sin(angle) * mirrorRadius;
+                        if (side === 0) ctx.moveTo(sx, sy);
+                        else ctx.lineTo(sx, sy);
+                    }
+                    ctx.closePath();
+                    ctx.stroke();
+
+                    // 镜面内反射数据状态
+                    ctx.fillStyle = 'rgba(88, 166, 255, 0.04)';
+                    ctx.fill();
+
+                    ctx.font = "bold 32px 'Inter', sans-serif";
+                    ctx.fillStyle = '#ffffff';
+                    ctx.textAlign = 'center';
+                    ctx.shadowBlur = 0;
+                    ctx.fillText('结构性裸奔 \u2022 照妖镜', mirrorX, mirrorY);
+
+                } else if (sceneIndex === 7) {
+                    // Scene 8: 预言收敛与新闻文本对齐
+                    ctx.font = "bold 32px 'Outfit', sans-serif";
+                    ctx.fillStyle = '#3fb950';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('计划与控制的八大定律 \u2192 业务坍塌因果预演', w/2, h/2 - 120);
+
+                    // 仿真控制台命令行
+                    ctx.fillStyle = 'rgba(10, 15, 26, 0.85)';
+                    ctx.fillRect(w/2 - 500, h/2 - 60, 1000, 160);
+                    ctx.strokeStyle = 'rgba(56, 139, 253, 0.3)';
+                    ctx.strokeRect(w/2 - 500, h/2 - 60, 1000, 160);
+
+                    ctx.font = "18px monospace";
+                    ctx.fillStyle = '#3fb950';
+                    ctx.textAlign = 'left';
+                    ctx.fillText('> [PREDICTION] Running logical causal verification...', w/2 - 470, h/2 - 25);
+                    ctx.fillText('> [VERDICT] 100% converged: Supply chain boundary collapse occurred.', w/2 - 470, h/2 + 5);
+                    ctx.fillText('> [STATUS] System anti-entropy model verified. Causal failure verified.', w/2 - 470, h/2 + 35);
+
+                } else if (sceneIndex === 8 || sceneIndex === 9) {
+                    // Scene 9 & 10: Obsidian 36原子神经元大脑旋转
+                    brainRotationY += isPlaying ? 0.015 : 0;
+                    
+                    const brainCenterX = w/2;
+                    const brainCenterY = h/2 - 80;
+
+                    // 计算投影并绘制脑图连线
+                    ctx.lineWidth = 1;
+                    brainConnections.forEach(conn => {
+                        const n1 = brainNodes[conn[0]];
+                        const n2 = brainNodes[conn[1]];
+
+                        // 应用 3D Y轴旋转
+                        const cosRot = Math.cos(brainRotationY);
+                        const sinRot = Math.sin(brainRotationY);
+
+                        const x1_rot = n1.x3d * cosRot - n1.z3d * sinRot;
+                        const z1_rot = n1.x3d * sinRot + n1.z3d * cosRot;
+
+                        const x2_rot = n2.x3d * cosRot - n2.z3d * sinRot;
+                        const z2_rot = n2.x3d * sinRot + n2.z3d * cosRot;
+
+                        // 简单的透视投影
+                        const scale1 = 400 / (400 + z1_rot);
+                        const scale2 = 400 / (400 + z2_rot);
+
+                        const px1 = brainCenterX + x1_rot * scale1;
+                        const py1 = brainCenterY + n1.y3d * scale1;
+
+                        const px2 = brainCenterX + x2_rot * scale2;
+                        const py2 = brainCenterY + n2.y3d * scale2;
+
+                        ctx.strokeStyle = `rgba(88, 166, 255, ${0.15 * (scale1 + scale2) / 2})`;
+                        ctx.beginPath();
+                        ctx.moveTo(px1, py1);
+                        ctx.lineTo(px2, py2);
+                        ctx.stroke();
+                    });
+
+                    // 绘制神经元节点
+                    brainNodes.forEach(n => {
+                        const cosRot = Math.cos(brainRotationY);
+                        const sinRot = Math.sin(brainRotationY);
+                        const x_rot = n.x3d * cosRot - n.z3d * sinRot;
+                        const z_rot = n.x3d * sinRot + n.z3d * cosRot;
+                        const scale = 400 / (400 + z_rot);
+
+                        const px = brainCenterX + x_rot * scale;
+                        const py = brainCenterY + n.y3d * scale;
+
+                        ctx.beginPath();
+                        ctx.arc(px, py, Math.max(1.5, 4 * scale), 0, Math.PI * 2);
+                        ctx.fillStyle = n.glow;
+                        ctx.shadowBlur = 12;
+                        ctx.shadowColor = n.glow;
+                        ctx.fill();
+                        ctx.shadowBlur = 0;
+                    });
+
+                    // 星火燎原，文字提示
+                    if (sceneIndex === 9) {
+                        ctx.textAlign = 'center';
+                        ctx.font = "bold 28px 'Inter', sans-serif";
+                        ctx.fillStyle = '#ffffff';
+                        ctx.fillText('数字底座铸就 \u2022 负熵星火燎原', w/2, h/2 + 220);
+                    }
+
+                } else if (sceneIndex === 10) {
+                    // Scene 11: 落款定格
+                    ctx.textAlign = 'center';
+                    ctx.font = "bold 130px 'Outfit', sans-serif";
+                    ctx.fillStyle = '#ffffff';
+                    ctx.shadowColor = '#58a6ff';
+                    ctx.shadowBlur = 35;
+                    ctx.fillText('IPC', w/2, h/2 - 40);
+
+                    ctx.font = "bold 32px 'Inter', sans-serif";
+                    ctx.fillStyle = '#f0883e';
+                    ctx.shadowBlur = 0;
+                    ctx.fillText('历史会记住那些顺应规律的抗熵者。', w/2, h/2 + 60);
+
+                    ctx.font = "italic 22px monospace";
+                    ctx.fillStyle = '#8b949e';
+                    ctx.fillText('Unless, you can prove that physics is wrong.', w/2, h/2 + 120);
+                }
+            } 
+            
+            // 视频二特异绘制
+            else if (currentScriptType === 'short') {
+                if (sceneIndex === 0) {
+                    // 宣言一：数据模型与算法
+                    ctx.textAlign = 'center';
+                    ctx.font = "bold 44px 'Inter', sans-serif";
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillText('宣言一：无算法即无方案，有的只是需求', w/2, h/2 - 120);
+
+                    // 科南特-阿什比同构定理映射图
+                    ctx.strokeStyle = '#58a6ff';
+                    ctx.lineWidth = 3;
+                    // 受控物理实相
+                    ctx.strokeRect(w/2 - 380, h/2 - 60, 240, 120);
+                    ctx.fillText('系统物理实相', w/2 - 260, h/2 + 100);
+                    // 映射箭头
+                    ctx.beginPath();
+                    ctx.moveTo(w/2 - 100, h/2);
+                    ctx.lineTo(w/2 + 100, h/2);
+                    ctx.stroke();
+                    ctx.fillText('同构映射 (Isomorphism)', w/2, h/2 - 20);
+                    // 调节器大脑
+                    ctx.strokeRect(w/2 + 140, h/2 - 60, 240, 120);
+                    ctx.fillText('有效调节器(模型)', w/2 + 260, h/2 + 100);
+
+                } else if (sceneIndex === 1) {
+                    // 宣言二：单脑奇点
+                    ctx.textAlign = 'center';
+                    ctx.font = "bold 44px 'Inter', sans-serif";
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillText('宣言二：单脑奇点法则', w/2, h/2 - 120);
+
+                    // 绘制一个融合了最底层做功与最顶层决策的突触核
+                    ctx.beginPath();
+                    ctx.arc(w/2, h/2 - 10, 80, 0, Math.PI*2);
+                    ctx.fillStyle = 'rgba(163, 113, 247, 0.15)';
+                    ctx.strokeStyle = '#a371f7';
+                    ctx.lineWidth = 4;
+                    ctx.shadowBlur = 20;
+                    ctx.shadowColor = '#a371f7';
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.shadowBlur = 0;
+
+                    ctx.font = "bold 20px monospace";
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillText('总设计师大脑 (Singularity Hub)', w/2, h/2 - 15);
+                    ctx.font = "16px monospace";
+                    ctx.fillStyle = '#8b949e';
+                    ctx.fillText('裸金属算法 \u2194 顶层商业战略', w/2, h/2 + 15);
+
+                } else if (sceneIndex === 2) {
+                    // 宣言三：阿罗不可能定理
+                    ctx.textAlign = 'center';
+                    ctx.font = "bold 44px 'Inter', sans-serif";
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillText('宣言三：拒绝委员会妥协，接受逻辑独裁', w/2, h/2 - 120);
+
+                    // 绘制政治妥协相互抵消的矢量力图
+                    const centerX = w/2;
+                    const centerY = h/2 - 10;
+                    
+                    ctx.strokeStyle = '#ff7b72';
+                    ctx.lineWidth = 3;
+                    for (let a = 0; a < 6; a++) {
+                        const angle = (a / 6) * Math.PI * 2;
+                        ctx.beginPath();
+                        ctx.moveTo(centerX, centerY);
+                        ctx.lineTo(centerX + Math.cos(angle) * 150, centerY + Math.sin(angle) * 150);
+                        ctx.stroke();
+                    }
+                    ctx.font = "bold 22px 'Inter', sans-serif";
+                    ctx.fillStyle = '#ff7b72';
+                    ctx.fillText('委员会政治扯皮与矢量力对消 (Q 废热)', centerX, centerY + 180);
+
+                } else if (sceneIndex === 3) {
+                    // 宣言四：不可观测不可控制
+                    ctx.textAlign = 'center';
+                    ctx.font = "bold 44px 'Inter', sans-serif";
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillText('宣言四：不可观测，就不可控制', w/2, h/2 - 120);
+
+                    // 绘制雷达旋转扫描盲区
+                    const rx = w/2;
+                    const ry = h/2 - 30;
+                    const rad = 180;
+                    
+                    ctx.beginPath();
+                    ctx.arc(rx, ry, rad, 0, Math.PI*2);
+                    ctx.strokeStyle = 'rgba(56, 139, 253, 0.2)';
+                    ctx.stroke();
+
+                    // 扫描角
+                    const scanAngle = (Date.now() / 1000) % (Math.PI * 2);
+                    ctx.beginPath();
+                    ctx.moveTo(rx, ry);
+                    ctx.arc(rx, ry, rad, scanAngle, scanAngle + 0.5);
+                    ctx.closePath();
+                    ctx.fillStyle = 'rgba(88, 166, 255, 0.15)';
+                    ctx.fill();
+
+                    ctx.font = "bold 24px monospace";
+                    ctx.fillStyle = '#ff7b72';
+                    ctx.fillText('观测盲区: 8小时离线排程', rx, ry - rad - 20);
+
+                } else if (sceneIndex === 4) {
+                    // 宣言五：高悬的照妖镜
+                    ctx.textAlign = 'center';
+                    ctx.font = "bold 44px 'Inter', sans-serif";
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillText('宣言五：顺应物理法则，拒绝倒车', w/2, h/2 - 120);
+
+                    ctx.font = "bold 90px 'Outfit', sans-serif";
+                    ctx.fillStyle = '#3fb950';
+                    ctx.shadowColor = '#3fb950';
+                    ctx.shadowBlur = 30;
+                    ctx.fillText('物理定律不以行政级别为转移', w/2, h/2 + 20);
+                    ctx.shadowBlur = 0;
+                }
+            }
+            
+            // 视频三特异绘制 (完整旁白版)
+            else if (currentScriptType === 'full') {
+                ctx.textAlign = 'center';
+                ctx.font = "bold 48px 'Inter', sans-serif";
+                ctx.fillStyle = '#ffffff';
+                ctx.fillText(`章节 ${sceneIndex + 1}：${script.titles[sceneIndex]}`, w/2, h/2 - 120);
+
+                // 根据不同小节绘制不同物理状态象征
+                if (sceneIndex === 0) {
+                    ctx.font = "bold 70px 'Outfit', sans-serif";
+                    ctx.fillStyle = '#ff7b72';
+                    ctx.fillText('dS > 0', w/2, h/2);
+                } else if (sceneIndex === 1) {
+                    ctx.font = "bold 70px 'Outfit', sans-serif";
+                    ctx.fillStyle = '#ff7b72';
+                    ctx.fillText('N\u00B2 Exponential', w/2, h/2);
+                } else if (sceneIndex === 2) {
+                    ctx.font = "bold 70px 'Outfit', sans-serif";
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillText('7 \u00B1 2 Memory Limit', w/2, h/2);
+                } else if (sceneIndex === 8) {
+                    // 夹角做功
+                    ctx.strokeStyle = '#f0883e';
+                    ctx.lineWidth = 4;
+                    ctx.beginPath();
+                    ctx.moveTo(w/2 - 100, h/2 + 20);
+                    ctx.lineTo(w/2 + 100, h/2 - 20);
+                    ctx.stroke();
+                    ctx.font = "bold 32px 'Outfit', sans-serif";
+                    ctx.fillStyle = '#f0883e';
+                    ctx.fillText('Power Align: \u03B8 \u2192 0', w/2, h/2 + 40);
+                } else if (sceneIndex === 12) {
+                    ctx.font = "bold 80px 'Outfit', sans-serif";
+                    ctx.fillStyle = '#3fb950';
+                    ctx.fillText('100.85 MS', w/2, h/2);
+                } else {
+                    // 默认绘制拓扑原子核
+                    ctx.beginPath();
+                    ctx.arc(w/2, h/2 - 10, 40, 0, Math.PI*2);
+                    ctx.fillStyle = 'rgba(88, 166, 255, 0.2)';
+                    ctx.strokeStyle = '#58a6ff';
+                    ctx.lineWidth = 2;
+                    ctx.fill();
+                    ctx.stroke();
+                }
+            }
+
+            ctx.restore();
+        }
+
+        // 5. 绘制浮动粒子特效群 (Scene 1, Scene 5 碰撞)
+        function drawFxParticles() {
+            for (let i = fxParticles.length - 1; i >= 0; i--) {
+                const fp = fxParticles[i];
+                fp.x += fp.vx;
+                fp.y += fp.vy;
+                fp.life -= 0.02;
+
+                if (fp.life <= 0) {
+                    fxParticles.splice(i, 1);
+                    continue;
+                }
+
+                ctx.beginPath();
+                ctx.arc(fp.x, fp.y, 4 * fp.life, 0, Math.PI*2);
+                ctx.fillStyle = fp.color || '#ff7b72';
+                ctx.fill();
+            }
+        }
+
+        // 6. 绘制字幕遮罩层与逐词高亮字幕 (核心！渲染直接合成)
+        function drawSubtitles(script, progress) {
+            const currentSceneText = script.texts[currentSceneIndex];
+            const currentSceneSegments = script.segments[currentSceneIndex];
+
+            // 绘制字幕底板遮罩 (16:9 高清比例视频专用底板)
+            ctx.fillStyle = 'rgba(4, 6, 10, 0.85)';
+            ctx.fillRect(0, h - 220, w, 220);
+            
+            // 绘制顶线
+            ctx.strokeStyle = 'rgba(56, 139, 253, 0.25)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(0, h - 220);
+            ctx.lineTo(w, h - 220);
+            ctx.stroke();
+
+            // 绘制字幕内容
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+
+            if (currentSceneSegments && currentSceneSegments.length > 0) {
+                // 拥有多个分段，根据音频播放进度精确点亮对应子句 (卡拉OK式高亮)
+                const totalSegments = currentSceneSegments.length;
+                // 计算当前点亮的分段索引
+                const activeSegIndex = Math.min(Math.floor(progress * totalSegments), totalSegments - 1);
+
+                // 在底板内分行渲染，高亮行字号放大并着金色
+                const rowHeight = 46;
+                const startY = h - 110 - ((totalSegments - 1) * rowHeight) / 2;
+
+                currentSceneSegments.forEach((segText, sIdx) => {
+                    const rowY = startY + sIdx * rowHeight;
+                    if (sIdx === activeSegIndex) {
+                        // 当前播放的句子：高亮金色、发光、字体大
+                        ctx.font = "bold 35px 'Inter', sans-serif";
+                        ctx.fillStyle = '#f0883e';
+                        ctx.shadowColor = 'rgba(240, 136, 62, 0.5)';
+                        ctx.shadowBlur = 12;
+                    } else {
+                        // 其他句子：半透明白、字体小
+                        ctx.font = "30px 'Inter', sans-serif";
+                        ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+                        ctx.shadowBlur = 0;
+                    }
+                    ctx.fillText(segText, w/2, rowY);
+                });
+            } else {
+                // 默认单行全局显示
+                ctx.font = "bold 32px 'Inter', sans-serif";
+                ctx.fillStyle = '#ffffff';
+                ctx.fillText(currentSceneText, w/2, h - 110);
+            }
+            ctx.shadowBlur = 0; // 恢复 shadows
+        }
+
+        /* =========================================================================
+           8. 初始化与全局启动
+           ========================================================================= */
+        // 音频资源监听事件 (自动处理状态同步)
+        voiceAudioEl.addEventListener('play', () => {
+            if (!isPlaying) isPlaying = true;
+        });
+
+        // 默认载入脚本一
+        selectScript('manifesto');
+        
+        // 渲染循环开启 (不以播放与否为转移，保证粒子动画流畅)
+        requestAnimationFrame(renderLoop);
+        
+    </script>
+</body>
+</html>

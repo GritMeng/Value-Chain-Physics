@@ -1,0 +1,61 @@
+# Build and binary outputs
+build/
+bin/
+*.obj
+*.exe
+*.exp
+*.lib
+*.dll
+*.so
+*.dylib
+*.tar.gz
+*.zip
+
+# Engine stdout/stderr logs & databases
+*.log
+*.txt
+*.db
+*.db.tmp
+*.wal
+*.template
+ipc_cpp_results.json
+ipc_validation_report.json
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE & OS temporary files
+.vscode/
+.idea/
+.obsidian/
+.DS_Store
+Thumbs.db
+~$*.docx
+~$*.md
+
+# Local Backups & Scratch
+backups/
+scratch/
+old_draft_backups/
+*.bak
+*.orig
+
+# Data and Build outputs
+*.csv
+*.db
+*.db.tmp
+*.tmp
+ipc.db.tmp/
+dist/
+data/
+IPC/x64/
+IPC/Debug/
+IPC/Release/
+x64/
+Debug/
+Release/
+
+
+

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="notranslate" translate="no">
+<head>
+  <meta name="description" content="价值链物理学与全息抗熵理论官方网站。系统性阐述复杂巨系统（如千亿级装配制造与供应链）如何通过全息观测、动态模拟、降维治理实现抗熵与最小化变分自由能，确立工业智能决策脑的底层宪理。" />
+  <meta name="keywords" content="价值链物理学, 全息抗熵, 智能立宪, 供应链物理学, 工业智能, 复杂系统科学, 变分自由能, 主动推理, 孟凡淳, GritMeng" />
+  <meta charset="UTF-8">
+  <link rel="canonical" href="https://gritmeng.github.io/Value-Chain-Physics/" />
+  <title>系统与复杂性科学 · 价值链物理学</title>
+  
+  <!-- Open Graph / FaceBook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="系统与复杂性科学 · 价值链物理学 - 官方网站" />
+  <meta property="og:description" content="系统性阐述开放复杂巨系统如何通过物理立宪、全息观测与 DOD 内存镜像实现自主决策闭环与抗熵治理。" />
+  <meta property="og:url" content="https://gritmeng.github.io/Value-Chain-Physics/" />
+  <meta property="og:image" content="https://gritmeng.github.io/Value-Chain-Physics/carbon_silicon_symbiosis.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="系统与复杂性科学 · 价值链物理学 - 官方网站" />
+  <meta property="twitter:description" content="系统性阐述开放复杂巨系统如何通过物理立宪、全息观测与 DOD 内存镜像实现自主决策闭环与抗熵治理。" />
+  <meta property="twitter:image" content="https://gritmeng.github.io/Value-Chain-Physics/carbon_silicon_symbiosis.png" />
+
+  <!-- JSON-LD Structured Data for Search Engine Optimization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "系统与复杂性科学 · 价值链物理学",
+    "alternateName": "System and Complexity Science: Value Chain Physics",
+    "url": "https://gritmeng.github.io/Value-Chain-Physics/",
+    "description": "系统与复杂性科学与价值链物理学官方研究站点。专注于开放复杂巨系统治理、形式化证明与千亿级工业自主决策实证。",
+    "author": {
+      "@type": "Person",
+      "name": "孟凡淳",
+      "alternateName": "GritMeng"
+    }
+  }
+  </script>
+
+  <meta name="google" content="notranslate">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/dark.css">
+  
+  <!-- KaTeX CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  
+  <style>
+    :root {
+      --theme-color: #d29922;
+      --background: #06090e;
+      --sidebar-background: #0d1117;
+      --sidebar-border-color: rgba(48, 54, 61, 0.7);
+      --text-color: #c9d1d9;
+      --heading-color: #ffffff;
+      --link-color: #58a6ff;
+    }
+    
+    /* Force dark theme on all core wrappers to prevent white leaks */
+    body, main, .content, .markdown-section, .sidebar {
+      background-color: var(--background) !important;
+      color: var(--text-color) !important;
+      font-family: 'Outfit', 'Inter', -apple-system, sans-serif;
+    }
+    
+    body {
+      background-color: var(--background) !important;
+    }
+    
+    .content {
+      background-color: var(--background) !important;
+    }
+
+    .sidebar {
+      background-color: var(--sidebar-background) !important;
+      border-right: 1px solid var(--sidebar-border-color) !important;
+    }
+    
+    .sidebar-nav li a {
+      color: #8b949e !important;
+      font-size: 14px;
+    }
+    
+    .sidebar-nav li.active > a {
+      color: var(--theme-color) !important;
+      font-weight: 600;
+      border-right: 2px solid var(--theme-color) !important;
+    }
+    
+    .markdown-section {
+      background-color: var(--background) !important;
+      max-width: 900px !important;
+      padding: 30px 45px 40px 45px !important;
+    }
+    
+    .markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4 {
+      color: var(--heading-color) !important;
+      font-weight: 700;
+    }
+    
+    .markdown-section h1 {
+      border-bottom: 1px solid var(--sidebar-border-color);
+      padding-bottom: 10px;
+    }
+    
+    .markdown-section a {
+      color: var(--link-color) !important;
+      text-decoration: none;
+    }
+    
+    .markdown-section a:hover {
+      text-decoration: underline;
+    }
+    
+    .markdown-section code {
+      background-color: rgba(110, 118, 129, 0.2) !important;
+      color: #ff7b72 !important;
+      font-family: monospace;
+      padding: 3px 6px !important;
+      border-radius: 6px;
+    }
+    
+    .markdown-section pre {
+      background-color: rgba(22, 27, 34, 0.8) !important;
+      border: 1px solid var(--sidebar-border-color) !important;
+      border-radius: 8px;
+    }
+    
+    .markdown-section pre code {
+      color: #c9d1d9 !important;
+      background: none !important;
+      padding: 0 !important;
+    }
+    
+    .markdown-section blockquote {
+      border-left: 4px solid var(--theme-color) !important;
+      background-color: rgba(210, 153, 34, 0.05) !important;
+      color: #8b949e !important;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    /* Tables styling */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      margin: 20px 0;
+      border: 1px solid var(--sidebar-border-color);
+      border-radius: 8px;
+      background-color: rgba(22, 27, 34, 0.2);
+    }
+    
+    .markdown-section table {
+      border-collapse: collapse;
+      width: 100% !important;
+      margin: 0 !important;
+      display: table !important;
+      table-layout: auto;
+    }
+    
+    .markdown-section th, .markdown-section td {
+      border: 1px solid var(--sidebar-border-color) !important;
+      padding: 12px;
+      text-align: left;
+      color: var(--text-color) !important;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      min-width: 120px;
+    }
+    
+    .markdown-section th {
+      background-color: rgba(22, 27, 34, 0.8) !important;
+      color: white !important;
+    }
+    
+    .markdown-section tr:nth-child(even) {
+      background-color: rgba(22, 27, 34, 0.3) !important;
+    }
+
+    .markdown-section td:first-child, .markdown-section th:first-child {
+      min-width: 50px !important;
+      text-align: center;
+    }
+
+    
+    /* Search Box Widget Styling */
+    .search input {
+      background-color: #0d1117 !important;
+      border: 1px solid var(--sidebar-border-color) !important;
+      color: var(--text-color) !important;
+    }
+    
+    .search input:focus {
+      border-color: var(--theme-color) !important;
+      box-shadow: 0 0 10px rgba(210, 153, 34, 0.2) !important;
+    }
+    
+    .search-results-panel {
+      background-color: var(--background) !important;
+    }
+    
+    .search em {
+      background-color: rgba(210, 153, 34, 0.3) !important;
+      color: #ffffff !important;
+    }
+  </style>
+</head>
+<body class="notranslate" translate="no">
+  <div id="app" class="notranslate" translate="no">
+    <div style="padding: 20px; font-family: sans-serif;">
+      <h1>系统与复杂性科学 · 价值链物理学 - GritMeng 官方网站</h1>
+      <p>欢迎访问系统与复杂性科学（System & Complexity Science）与价值链物理学（Value Chain Physics）官方研究站点。本站致力于探索开放复杂巨系统的物理学宪法，推动千亿级工业生态与复杂系统从经验走向物理科学。</p>
+      
+      <h2>核心研究大纲与章节链接</h2>
+      <ul>
+        <li><a href="#/systems-and-complexity-science">01. 系统与复杂性科学正本</a></li>
+        <li><a href="#/Article_1_400Year_Reductionism_Breakthrough">02. 破局篇：400年还原论惯性剖析</a></li>
+        <li><a href="#/Article_2_The_Origin_of_Order_Manifesto">03. 立宪篇：秩序的诞生</a></li>
+        <li><a href="#/Article_3_Discrete_Manufacturing_Breakthrough">04. 实施篇：离散制造转型的迷途与破局</a></li>
+        <li><a href="#/The_Physics_Constitution_of_Enterprise_Governance">05. 企业治理的物理宪法长文</a></li>
+      </ul>
+      
+      <h2>关于作者（GritMeng 孟凡淳）</h2>
+      <p>孟凡淳（GritMeng），前联想集团全球供应链集成计划体系负责人 & 体系架构师，深耕离散制造与超大规模网状装配系统一线二十二年的系统工程专家，专注于探索用物理公理（热力学第二定律、香农信息论与阿什比控制律）为开放复杂巨系统“物理立宪”，打造基于 DOD（Data-Oriented Design）内存物理镜像的自主决策与抗熵治理引擎。</p>
+      
+      <p>正在努力加载数据页面，请稍候...</p>
+    </div>
+  </div>
+  <script>
+    window.$docsify = {
+      name: '系统与复杂性科学 · 价值链物理学',
+      repo: 'GritMeng/Value-Chain-Physics',
+      routerMode: 'hash',    // 修复 404：启用 GitHub Pages 标准 Hash 路由模式
+      loadSidebar: true,     // 强行开启侧边栏
+      auto2top: true,        // 路由切换时自动回到顶部
+      maxLevel: 4,
+      subMaxLevel: 3,
+      requestHeaders: {      // 刚性破除浏览器一切历史死缓存
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      },
+      latex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$']]
+      },
+      plugins: [
+        function(hook, vm) {
+          hook.beforeEach(function(content) {
+            // Transform [[path/to/file|display text]]
+            content = content.replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, function(match, path, text) {
+              return '[' + text.trim() + '](' + path.trim() + '.md)';
+            });
+            
+            // Transform [[path/to/file]]
+            content = content.replace(/\[\[([^\]]+)\]\]/g, function(match, path) {
+              if (path.startsWith('#')) {
+                return '[' + path + '](' + path + ')';
+              }
+              // Extract filename
+              var parts = path.split('/');
+              var filename = parts[parts.length - 1];
+              filename = filename.replace(/\.md$/, '');
+              
+              // Strip leading numbering (e.g. 01_ or 09a_)
+              var cleanText = filename.replace(/^\d+[a-z]?_/, '');
+              
+              return '[' + cleanText.trim() + '](' + path.trim() + '.md)';
+            });
+            
+            return content;
+          });
+
+          hook.afterEach(function(html) {
+            // Wrap all <table> elements in a responsive container and force notranslate
+            return html.replace(/<table>/g, '<div class="table-container notranslate" translate="no"><table>')
+                       .replace(/<\/table>/g, '</table></div>');
+          });
+
+          hook.doneEach(function() {
+            // Force notranslate on all elements that might contain math or code
+            document.querySelectorAll('.katex, .katex-display, .katex-html, code, pre, .markdown-section pre, tex, script[type="math/tex"]').forEach(function(el) {
+              el.classList.add('notranslate');
+              el.setAttribute('translate', 'no');
+            });
+          });
+        }
+      ]
+    }
+  </script>
+  
+  <!-- Docsify v4 -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
+  
+  <!-- KaTeX (LaTeX engine) -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  
+  <!-- docsify-latex 核心集成插件 -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-latex@0"></script>
+  
+  <!-- Docsify 搜索插件 -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+
+</body>
+</html>
