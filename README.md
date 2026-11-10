@@ -16,6 +16,7 @@ Creator of the Intelligent Planning & Control (IPC) Engine | Independent Scholar
 [![Complexity Proof](https://img.shields.io/badge/Time_Complexity-O(K%20%C2%B7%20N%20log%20N)%20%E2%88%88%20P-2ea043?style=flat-square)](docs/Formal%20Proof%20of%20%27Living%20Expression%27%20and%20%27Self-Consistent%20Computability%27%20in%20Open%20Complex%20Giant%20Systems.pdf)
 [![Empirical Baseline](https://img.shields.io/badge/Longitudinal_Baseline-Lenovo_IPS_(2008--2026)-d29922?style=flat-square)](docs/Value%20Chain%20Physics%20——%20Formal%20Proof%20of%20Open%20Complex%20Giant%20Systems%20and%20Full-Domain%20Computability%20Based%20on%20Non-IID%20Dynamics.pdf)
 [![Industrial Scale](https://img.shields.io/badge/Industrial_Scale-500K_Orders_%C2%B7_20--Level_BOM_%C2%B7_2M_Items_%C2%B7_99%25_Closed--Loop-8957e5?style=flat-square)](https://github.com/GritMeng/Value-Chain-Physics/tree/main/ipc-core-benchmark)
+[![Invention Patents](https://img.shields.io/badge/Invention_Patents-20_Coupled_Patents_(5_Granted_%C2%B7_15_in_Exam%2FPub)-0969da?style=flat-square)](https://github.com/GritMeng/Value-Chain-Physics/tree/main/ipc-core-benchmark)
 [![Open Benchmark](https://img.shields.io/badge/Code_Verification-C%2B%2B17_Bare--Metal_Benchmark-f78166?style=flat-square)](https://github.com/GritMeng/Value-Chain-Physics/tree/main/ipc-core-benchmark)
 
 **官方门户 / Official Portal：** [https://gritmeng.github.io/Value-Chain-Physics/](https://gritmeng.github.io/Value-Chain-Physics/)  
@@ -32,7 +33,7 @@ Creator of the Intelligent Planning & Control (IPC) Engine | Independent Scholar
 | **I. 元科学公理层**<br>*(Axiomatic Foundations)* | 强相干非独立同分布（Non-IID）开放复杂巨系统为何不可还原、如何生成并存续秩序？ | 确立划界相对律与五维双螺旋流形（$S = \mathcal{M}_{\text{model}} \otimes \mathcal{A}$），严格证明五维最小完备性（$D_{\min}=5$）、先验保序引理（$K < +\infty$）与时空残差三阶统一定理 | SSRN [`7251098`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7251098) · [`7557878`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7557878) · [`7496118`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7496118) · [`7557899`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7557899) · [`7451920`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7451920) |
 | **II. 定律与机理层**<br>*(Mechanism & Proof)* | 为何在预测 100% 准确、主数据 100% 完备的确定性条件下，传统 S&OP 与 MRP/APS 仍必然产生交付延期与库存积压？ | **《排序耦合定律》**：证明共享资源网络中按静态优先级排他锁库必然导致晚齐套高优单霸占早期通用现货，100% 触发时空交叉死锁与矢量对消废热（$\Delta W_{\text{heat}} > 0$）；给出两阶段 $O(N) + O(N \log N)$ 正交解耦定理 | SSRN [`7640758`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7640758) · [中文 PDF](docs/排序耦合定律：产销协同中KPI冲突的生成机制与正交治理.pdf) · [EN PDF](docs/The%20Law%20of%20Sequencing%20Coupling%20——%20Genesis%20Mechanism%20and%20Orthogonal%20Governance%20of%20KPI%20Conflicts%20in%20S&OP.pdf) |
 | **III. 工业实证层**<br>*(Longitudinal Validation)* | 多项式闭环可计算定理（$T(N) = O(K \cdot N \log N) \in \mathbf{P}$）能否在超大规模真实离散制造网络中长期自治运行？ | **联想集团全球供应链（2008–2026）18 年四代演进实证**与跨行业 **IPC 引擎**：覆盖 **500,000 需求订单、20 层 BOM、2,000,000 物料节点**，实现 **99% 人在环外（Human-on-the-Loop）闭环运行** | SSRN [`7442100`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7442100) · [中文 PDF](docs/价值链物理学：基于非独立同分布（Non-IID）的开放复杂巨系统形式化证明与全域可计算性研究.pdf) · [EN PDF](docs/Value%20Chain%20Physics%20——%20Formal%20Proof%20of%20Open%20Complex%20Giant%20Systems%20and%20Full-Domain%20Computability%20Based%20on%20Non-IID%20Dynamics.pdf) |
-| **IV. 算子与代码层**<br>*(Reproducible Benchmark)* | 如何在单台标准无 GPU 服务器上消除多阶 BOM 与替代料组合爆炸，实现毫秒/分钟级全域重算？ | 基于 ODM-CDM-DDM 三层数据本体、CPU 裸金属 SoA（Structure-of-Arrays）连续内存布局与零堆内存回滚（Zero-Heap Rollback）：50 万并发需求 ITP/IOP 协同耗时 **< 45 ms** | [`ipc-core-benchmark/`](https://github.com/GritMeng/Value-Chain-Physics/tree/main/ipc-core-benchmark)（C++17 核心算子源码 + Python 双发交叉验证器） |
+| **IV. 算子与代码层**<br>*(Reproducible Benchmark)* | 如何在单台标准无 GPU 服务器上消除多阶 BOM 与替代料组合爆炸，实现毫秒/分钟级全域重算？ | 基于 ODM-CDM-DDM 三层数据本体、CPU 裸金属 SoA（Structure-of-Arrays）连续内存布局与零堆内存回滚（Zero-Heap Rollback）：50 万并发需求 ITP/IOP 协同耗时 **< 45 ms** | [`ipc-core-benchmark/`](https://github.com/GritMeng/Value-Chain-Physics/tree/main/ipc-core-benchmark)（C++17 源码 + Python 双发验证器）+ **20 项强耦合发明专利矩阵（5 项已获授权 · 15 项实审与公开）** |
 
 ---
 
@@ -165,8 +166,8 @@ Creator of the Intelligent Planning & Control (IPC) Engine | Independent Scholar
 | **4. 50万需求 / 200万物料压测** | CPU 裸金属 SoA 连续内存调度，双阶段 $O(N) + O(N \log N)$ 正交剪枝（[`stress_benchmark_2m.cpp`](https://github.com/GritMeng/Value-Chain-Physics/blob/main/ipc-core-benchmark/benchmarks/stress_benchmark_2m.cpp)） | 单机无 GPU 消纳 **500,000 需求 / 2,000,000 物料** | `bin/stress_benchmark_2m.exe` |
 
 > [!NOTE]
-> **🛠️ 本地一键验证与知识产权说明**：  
-> 克隆仓库后执行 `cd ipc-core-benchmark && .\compile_and_run.bat`（或运行 `python ipc-core-benchmark/verifier/cross_validator.py`）即可完成双发交叉对账。IPC 系统完整覆盖 IBP $\to$ ITP $\to$ IOP $\to$ 车间级排程端到端闭环；因多项核心并发水位算子与多沙箱推演架构正处于专利审查期（Patents Pending），生产环境全量商业代码库暂不公开。
+> **🛠️ 本地一键验证与知识产权说明（20 项强耦合发明专利矩阵）**：  
+> 克隆仓库后执行 `cd ipc-core-benchmark && .\compile_and_run.bat`（或运行 `python ipc-core-benchmark/verifier/cross_validator.py`）即可完成双发交叉对账。IPC 系统完整覆盖 IBP $\to$ ITP $\to$ IOP $\to$ 车间级排程端到端闭环；围绕该引擎的 ODM-CDM-DDM 双螺旋数据本体与五维正交消纳算子，已提交 **20 项强耦合国家发明专利（其中 5 项已获发明专利授权，15 项处于公开及实质审查阶段）**，生产环境全量商业代码库暂不公开。
 
 ---
 
