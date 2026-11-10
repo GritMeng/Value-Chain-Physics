@@ -247,7 +247,8 @@
           hook.beforeEach(function(content) {
             // Transform [[path/to/file|display text]]
             content = content.replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, function(match, path, text) {
-              return '[' + text.trim() + '](' + path.trim() + '.md)';
+              var cleanPath = '/' + path.trim().replace(/^\//, '').replace(/\.md$/i, '') + '.md';
+              return '[' + text.trim() + '](' + cleanPath + ')';
             });
             
             // Transform [[path/to/file]]
@@ -255,21 +256,20 @@
               if (path.startsWith('#')) {
                 return '[' + path + '](' + path + ')';
               }
-              // Extract filename
               var parts = path.split('/');
-              var filename = parts[parts.length - 1];
-              filename = filename.replace(/\.md$/, '');
-              
-              // Strip leading numbering (e.g. 01_ or 09a_)
+              var filename = parts[parts.length - 1].replace(/\.md$/i, '');
               var cleanText = filename.replace(/^\d+[a-z]?_/, '');
-              
-              return '[' + cleanText.trim() + '](' + path.trim() + '.md)';
+              var cleanPath = '/' + path.trim().replace(/^\//, '').replace(/\.md$/i, '') + '.md';
+              return '[' + cleanText.trim() + '](' + cleanPath + ')';
             });
             
             return content;
           });
 
           hook.afterEach(function(html) {
+            // Bypass Docsify .md router for static PDF/HTML/DOCX files and C++ benchmark sources
+            html = html.replace(/href="#\/?([^"]*ipc-core-benchmark\/[^"]+)"/gi, 'href="https://github.com/GritMeng/Value-Chain-Physics/blob/main/$1" target="_blank" rel="noopener"');
+            html = html.replace(/href="#\/?([^"]+\.(?:pdf|docx|html|mp4|mp3))"/gi, 'href="$1" target="_blank" rel="noopener"');
             // Wrap all <table> elements in a responsive container and force notranslate
             return html.replace(/<table>/g, '<div class="table-container notranslate" translate="no"><table>')
                        .replace(/<\/table>/g, '</table></div>');

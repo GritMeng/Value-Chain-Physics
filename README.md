@@ -53,7 +53,7 @@ Creator of the Intelligent Planning & Control (IPC) Engine | Independent Scholar
 #### 3. [范式总宣言] 《第二次文艺复兴：为什么系统与复杂性科学是“科学的科学”》 (SSRN 7557899)
 * **核心洞见**：系统审视 400 年笛卡尔-牛顿还原论的适用边界，阐明为什么在万物强耦合（Non-IID）时代，系统与复杂性科学必然从分支学科跃升为统摄自然科学与社会科学的“科学的科学（Science of Sciences）”。
 * 🇨🇳 **中文版 PDF**：[第二次文艺复兴：为什么系统与复杂性科学是“科学的科学”.pdf](docs/第二次文艺复兴：为什么系统与复杂性科学是“科学的科学”.pdf)
-* 🇬🇧 **英文版 PDF**：[The Second Renaissance —— Why Systems and Complexity Science Is the 'Science of Sciences'.pdf](docs/The%20Second%20Renaissance%20——%20Why%20Systems%20and%20Complexity%20Science%20Is%20the%20'Science%20of%20Sciences'.pdf)
+* 🇬🇧 **英文版 PDF**：[The Second Renaissance —— Why Systems and Complexity Science Is the 'Science of Sciences'.pdf](docs/The%20Second%20Renaissance%20——%20Why%20Systems%20and%20Complexity%20Science%20Is%20the%20%27Science%20of%20Sciences%27.pdf)
 * 🔗 **SSRN 官方预印本**：[SSRN Abstract 7557899](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7557899)
 
 #### 4. [公理篇 · 母算法] 《系统与复杂性科学：秩序的生成、存续与进化 —— 开放复杂巨系统的统御原理》 (SSRN 7251098)
@@ -65,7 +65,7 @@ Creator of the Intelligent Planning & Control (IPC) Engine | Independent Scholar
 #### 5. [活体篇 · 动力学证明] 《开放复杂巨系统的“活体表达”与“闭环可计算性”》 (SSRN 7557878)
 * **核心洞见**：将母算法凝练为“划界相对律 + 闭环可计算 + 元认知再划界”的活体闭环；严格证明五维流形最小完备性（定理 1.1）、多项式闭环可计算性 $T(N) = O(K \cdot N \log N) \in \mathbf{P}$（定理 2.1）、“走通 $\equiv$ 零对消 $\equiv$ 界内绝对最优”三位一体等价（命题 2.2）与时空残差三阶统一定理。
 * 🇨🇳 **中文版 PDF**：[开放复杂巨系统的“活体表达”与“闭环可计算性”.pdf](docs/开放复杂巨系统的“活体表达”与“闭环可计算性”.pdf)
-* 🇬🇧 **英文版 PDF**：[Formal Proof of 'Living Expression' and 'Self-Consistent Computability' in Open Complex Giant Systems.pdf](docs/Formal%20Proof%20of%20'Living%20Expression'%20and%20'Self-Consistent%20Computability'%20in%20Open%20Complex%20Giant%20Systems.pdf)
+* 🇬🇧 **英文版 PDF**：[Formal Proof of 'Living Expression' and 'Self-Consistent Computability' in Open Complex Giant Systems.pdf](docs/Formal%20Proof%20of%20%27Living%20Expression%27%20and%20%27Self-Consistent%20Computability%27%20in%20Open%20Complex%20Giant%20Systems.pdf)
 * 🔗 **SSRN 官方预印本**：[SSRN Abstract 7557878](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7557878)
 
 #### 6. [同构篇 · Non-IID 推演] 《开放复杂巨系统的生成、存续与进化 —— 基于 Non-IID 第一性原理的推论推演与 OCGS 同构证明》 (SSRN 7496118)
@@ -100,7 +100,7 @@ Creator of the Intelligent Planning & Control (IPC) Engine | Independent Scholar
 
 ## 🚀 工程实锤：IPC 开源可审计算子与 200 万 SKU 极速求解基准 (IPC Core Open Benchmark)
 
-为向全球开发者、架构师与工业同行证明**“50 万笔需求订单、20 层 BOM、200 多万物料的毫秒/分钟级正交求解”与“99% 人在环外闭环”在物理与数学上完全真实可达**，本仓库开放了脱敏后的 C++17 核心算法算子与基准压测套件 [`ipc-core-benchmark/`](https://github.com/GritMeng/ipc-core-benchmark)，供全球专家直接下载、本地一键运行并物理对账：
+为向全球开发者、架构师与工业同行证明**“50 万笔需求订单、20 层 BOM、200 多万物料的毫秒/分钟级正交求解”与“99% 人在环外闭环”在物理与数学上完全真实可达**，本仓库开放了脱敏后的 C++17 核心算法算子与基准压测套件 [`ipc-core-benchmark/`](https://github.com/GritMeng/Value-Chain-Physics/tree/main/ipc-core-benchmark)，供全球专家直接下载、本地一键运行并物理对账：
 
 | 核心算子与亮点 | 算法机制与代码映射 | 实测规模与性能指标 | 本地审计执行程序 |
 | :--- | :--- | :--- | :--- |
