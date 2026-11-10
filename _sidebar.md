@@ -20,10 +20,10 @@
   * <a href="docs/Conscience-Driven%20Five-Dimensional%20Mind%20Model%20——%20Problem%20Redefinition%20and%20Cognitive%20Extrapolation%20in%20Open%20Complex%20Giant%20Systems.pdf" target="_blank" rel="noopener">7. 5D Mind Model (EN PDF · SSRN 7451920)</a>
 
 * **💻 三、IPC 普适引擎与交互审计 (Interactive Demos)**
-  * <a href="IPC_Governance_Showcase.html" target="_blank" rel="noopener">3D 全息拓扑交互演示</a>
-  * <a href="ipc_scheme_audit_agent.html" target="_blank" rel="noopener">IPC 架构技术审计</a>
-  * <a href="value_chain_audit_agent.html" target="_blank" rel="noopener">价值链智能体物理审计</a>
-  * <a href="IPC_Video_Lectures.html" target="_blank" rel="noopener">IPC 视频讲堂</a>
+  * <a href="docs/IPC_Governance_Showcase.html" target="_blank" rel="noopener">3D 全息拓扑交互演示</a>
+  * <a href="docs/ipc_scheme_audit_agent.html" target="_blank" rel="noopener">IPC 架构技术审计</a>
+  * <a href="docs/value_chain_audit_agent.html" target="_blank" rel="noopener">价值链智能体物理审计</a>
+  * <a href="docs/IPC_Video_Lectures.html" target="_blank" rel="noopener">IPC 视频讲堂</a>
 
 * **📜 四、在线专著与专题文献 (Online Monographs)**
   * [价值链物理学全本](/docs/value-chain-physics-book.md)
