@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全息抗熵：用价值链物理学统御制造网络 | IPC 电影级全息演示</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@300;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #080b10;
+            --card-bg: rgba(13, 17, 23, 0.7);
+            --border-color: rgba(48, 54, 61, 0.6);
+            --text-color: #c9d1d9;
+            --primary-color: #58a6ff;
+            --accent-color: #d29922;
+            --glow-color: rgba(88, 166, 255, 0.35);
+            --danger-color: #ff7b72;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Outfit', 'Inter', -apple-system, sans-serif;
+        }
+
+        /* 宇宙暗底网格 */
+        .space-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(20, 30, 48, 0.4) 0%, rgba(8, 11, 16, 1) 100%),
+                linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 100% 100%, 50px 50px, 50px 50px;
+            z-index: 1;
+        }
+
+        /* 主舞台 */
+        #stage {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px;
+        }
+
+        /* 顶部导航标题 */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0.8;
+        }
+
+        header .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--primary-color), #a371f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(163, 113, 247, 0.3);
+        }
+
+        header .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(88, 166, 255, 0.1);
+            border: 1px solid var(--primary-color);
+            font-size: 12px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* 核心展示区 */
+        .viewport {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin: 20px 0;
+        }
+
+        /* 各种动画容器 */
+        .animation-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .animation-container.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* Scene 1: Chaos Grid */
+        #canvas-chaos {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Scene 2: Operator Pi */
+        #canvas-operator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Scene 3: Console Code */
+        .console-box {
+            width: 80%;
+            max-width: 800px;
+            height: 400px;
+            background: rgba(10, 12, 16, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            overflow-y: auto;
+            text-align: left;
+        }
+
+        .console-line {
+            line-height: 1.5;
+            margin-bottom: 6px;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: consoleFadeIn 0.3s forwards;
+            font-size: 14px;
+        }
+
+        .console-prompt {
+            color: #58a6ff;
+        }
+
+        .console-success {
+            color: #3fb950;
+            font-weight: bold;
+        }
+
+        .console-warning {
+            color: #d29922;
+        }
+
+        @keyframes consoleFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scene 4: Obsidian Constellation */
+        #canvas-obsidian {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 底部字幕面板 */
+        .subtitle-panel {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px 40px;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+            position: relative;
+        }
+
+        .subtitle-text {
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.6;
+            letter-spacing: 1px;
+            background: linear-gradient(180deg, #ffffff 0%, #a8b2c1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .scene-indicator {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1f2937;
+            border: 1px solid var(--border-color);
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #8b949e;
+        }
+
+        /* 控制浮层 - 开屏点火 */
+        #launcher {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(8, 11, 16, 0.95);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        #launcher.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .play-btn {
+            background: linear-gradient(135deg, #1f6feb 0%, #8b5cf6 100%);
+            border: none;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 24px;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 50px rgba(139, 92, 246, 0.9);
+        }
+
+        .play-btn svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+            margin-left: 6px;
+        }
+
+        .play-btn::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            border: 2px dashed rgba(139, 92, 246, 0.4);
+            animation: rotateDashed 20s linear infinite;
+        }
+
+        @keyframes rotateDashed {
+            to { transform: rotate(360deg); }
+        }
+
+        .launcher-title {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            color: white;
+            text-align: center;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, #ffffff 0%, #8b949e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .launcher-desc {
+            font-size: 14px;
+            color: #8b949e;
+            max-width: 500px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* 录屏辅助提示 - 本地录屏时可手动把 display:none 改为 flex */
+        .record-hint {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 123, 114, 0.1);
+            border: 1px solid var(--danger-color);
+            color: var(--danger-color);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 11px;
+            z-index: 5;
+            display: none; /* 对外发布时隐藏，本地录屏时改为 flex */
+            align-items: center;
+            gap: 8px;
+            animation: flashRed 2s infinite;
+        }
+
+        @keyframes flashRed {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.4; }
+        }
+
+        /* 配乐提示板 - 对外发布时隐藏 */
+        .audio-track-card {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(22, 27, 34, 0.8);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 11px;
+            color: #8b949e;
+            z-index: 5;
+            display: none; /* 对外发布时隐藏 */
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .eq-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 12px;
+        }
+        .eq-bar {
+            width: 2px;
+            background-color: var(--primary-color);
+            animation: bounceBar 1s ease infinite alternate;
+        }
+        .eq-bar:nth-child(2) { animation-delay: 0.2s; }
+        .eq-bar:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes bounceBar {
+            from { height: 2px; }
+            to { height: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="space-grid"></div>
+
+    <!-- 录屏提示与音轨 -->
+    <div class="record-hint">
+        <span style="display:inline-block; width:8px; height:8px; background:var(--danger-color); border-radius:50%;"></span>
+        <span>提示: 可按下 [Win + G] 或使用 OBS 开启录屏与录音进行高保真视频保存</span>
+    </div>
+    <div class="audio-track-card">
+        <div class="eq-bars">
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+        </div>
+        <span id="bgm-indicator">配乐状态: 无源伴奏模式</span>
+    </div>
+
+    <!-- 启动点火遮罩 -->
+    <div id="launcher">
+        <button class="play-btn" id="start-btn" onclick="startShowcase()">
+            <svg viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+            </svg>
+        </button>
+        <h1 class="launcher-title">全息抗熵：用价值链物理学统御制造网络</h1>
+        <p class="launcher-desc">点击上方按钮，拉起 C++ DOD 大脑全息拓扑，启动电影级自动放映与语音讲述。请确保您的系统扬声器已开启。</p>
+    </div>
+
+    <div id="stage">
+        <!-- 头部 -->
+        <header>
+            <div class="logo">IPC DEEPMIND ENGINE</div>
+            <div class="badge" id="scene-badge">Scene 01: Chaos</div>
+        </header>
+
+        <!-- 视觉展示区 -->
+        <div class="viewport">
+            <!-- 场景 1：无序熵增 -->
+            <div class="animation-container active" id="scene-1">
+                <canvas id="canvas-chaos"></canvas>
+            </div>
+
+            <!-- 场景 2：Pi算符重整 -->
+            <div class="animation-container" id="scene-2">
+                <canvas id="canvas-operator"></canvas>
+            </div>
+
+            <!-- 场景 3：C++ 裸金属压测 -->
+            <div class="animation-container" id="scene-3">
+                <div class="console-box" id="console-output"></div>
+            </div>
+
+            <!-- 场景 4：Obsidian 星云 -->
+            <div class="animation-container" id="scene-4">
+                <canvas id="canvas-obsidian"></canvas>
+            </div>
+        </div>
+
+        <!-- 字幕栏 -->
+        <div class="subtitle-panel">
+            <div class="scene-indicator" id="indicator-text">Thermodynamic Core</div>
+            <div class="subtitle-text" id="subtitle-content">点火就绪，等待统御指令...</div>
+        </div>
+    </div>
+
+    <script>
+        // 脚本数据定义：旁白与场景绑定
+        const videoScript = [
+            // 第一幕：混沌的重力与低维布朗运动 (0s - 40s)
+            {
+                scene: 1,
+                badge: "Scene 01: Chaos Grid",
+                indicator: "Thermodynamic Core",
+                text: "无论宇宙的终局是热寂还是坍缩，热力学第二定律已为一切存在设定了无可规避的物理重力——万物皆向混乱与无序滑落。"
+            },
+            {
+                scene: 1,
+                badge: "Scene 01: Chaos Grid",
+                indicator: "Complexity Trap",
+                text: "在由成百上千个供应商、机台与 SKU 交织的价值链网络中，当协同节点为 N 时，系统的复杂度将呈 N 的平方指数级爆发。"
+            },
+            {
+                scene: 1,
+                badge: "Scene 01: Chaos Grid",
+                indicator: "Axiom of Variety",
+                text: "人脑工作记忆 7 加减 2 的生理极限，注定了我们无法在同一个大脑中，实时求解出兼顾全局交付与利润的‘全局最优解’。"
+            },
+            {
+                scene: 1,
+                badge: "Scene 01: Chaos Grid",
+                indicator: "Babel Tower",
+                text: "我们在用机械时代的‘人治沟通’，去承载指数级变化的商业网络。局部理性的盲目博弈，在物理上化作了系统性内耗的摩擦废热：激增的呆滞料、高频的停工待料与迟滞的决策。"
+            },
+            {
+                scene: 1,
+                badge: "Scene 01: Chaos Grid",
+                indicator: "Whitney Failure",
+                text: "低维的工具，终究会在高维的拓扑面前发生惨烈的模型失效。"
+            },
+
+            // 第二幕：系统物理学宪法与硅基代偿 (40s - 75s)
+            {
+                scene: 2,
+                badge: "Scene 02: Operator Pi",
+                indicator: "Governance Operator",
+                text: "逃离阶乘级黑洞的唯一通道，是硅基的拓扑降维。我们必须在数字宇宙中，完成一场彻底的商业本体论跃迁。"
+            },
+            {
+                scene: 2,
+                badge: "Scene 02: Operator Pi",
+                indicator: "Axiomatic Base",
+                text: "引入‘统御算符’，向系统源源不断注入负熵，重写微观定律。"
+            },
+            {
+                scene: 2,
+                badge: "Scene 02: Operator Pi",
+                indicator: "Single Brain Singularity",
+                text: "这三种能力，无法通过跨部门会议进行物理拼接。在信息论的判决下，它们必须且只能在同一个大脑的神经突触中，完成化学缝合。这就是‘单脑奇点法则’——在同一个大脑里，实现技术与战略的零损耗闭环。"
+            },
+            {
+                scene: 2,
+                badge: "Scene 02: Operator Pi",
+                indicator: "Will-Logic Resonance",
+                text: "系统的推行，是一场权力向量与逻辑向量的投影对齐手术。当统帅将权力的剑锋，与底层的模型算法发生 100% 的同向共振时，夹角 θ 归零，变革的有效做功爆发出绝对极限。"
+            },
+
+            // 第三幕：裸金属做功与百毫秒奇迹 (75s - 130s)
+            {
+                scene: 3,
+                badge: "Scene 03: Bare-metal execution",
+                indicator: "Data-Oriented Design",
+                text: "在最冷酷的 C++ 裸金属层，我们干掉了所有虚无的跳转和垃圾回收。我们用面向数据的 DOD 架构，将全局 3D 需求张量彻底压缩密铺。"
+            },
+            {
+                scene: 3,
+                badge: "Scene 03: Bare-metal execution",
+                indicator: "Hardware Homomorphic",
+                text: "让数据契合 CPU 的硬件本源，实现真正的物理超导化流转。"
+            },
+            {
+                scene: 3,
+                badge: "Scene 03: Bare-metal execution",
+                indicator: "Self-Healing Solver",
+                text: "面对中国制造高频波动的极致场景，我们设计了不完全替代的 SWAP 资源置换算法与 Allotment 配额继承铁律。它是一道叹息之墙，在数字世界里，毫秒级完成计划的自愈，彻底杜绝局部抢空造成的连环呆滞。"
+            },
+            {
+                scene: 3,
+                badge: "Scene 03: Bare-metal execution",
+                indicator: "100ms Benchmark",
+                text: "在 5 万张多维订单的极限压力测试下，IPC 核心消纳计算仅耗时 100.85 毫秒！相比跑数小时的传统系统，速度提升了整整一万八千倍！"
+            },
+            {
+                scene: 3,
+                badge: "Scene 03: Bare-metal execution",
+                indicator: "DuckDB Auditor",
+                text: "这绝非封闭暗箱。基于操作系统级物理克隆的沙箱隔离，将 15 万条高维计算状态在 60 毫秒内导出至 DuckDB。只需简单的 SQL，即可对引擎的每一次流转穿透对账。"
+            },
+
+            // 第四幕：思想的数字孪生体与星火物种进化 (130s - 180s)
+            {
+                scene: 4,
+                badge: "Scene 04: Obsidian constellation",
+                indicator: "Digital Twin of Mind",
+                text: "Obsidian 的 36 个原子神经元图谱，就是这台引擎的数字灵魂。从热力学第二定律的宿命抗争，到 Z 轴偏序格的降维代数演绎，这里全息承载了一个总设计师穿越血与火淬炼出的元认知。"
+            },
+            {
+                scene: 4,
+                badge: "Scene 04: Obsidian constellation",
+                indicator: "Made in Reality",
+                text: "中国制造的躯体已经壮大如巨人，但我们的大脑不能永远寄居在西方的旧逻辑或华丽的 PPT 幻影里。这是一场关于认知权与生存权的终极较量。"
+            },
+            {
+                scene: 4,
+                badge: "Scene 04: Obsidian constellation",
+                indicator: "Grit",
+                text: "我们甘愿化为沙砾，为中国制造业数字化供应链，铺设一条绝对胜利的道路。"
+            },
+            {
+                scene: 4,
+                badge: "Scene 04: Sentinel of Order",
+                indicator: "Holographic Anti-Entropy",
+                text: "智能计划与控制系统。全息抗熵，星火公认，星火燎原。"
+            }
+        ];
+
+        let currentScriptIndex = 0;
+        let isPlaying = false;
+        let synthesis = window.speechSynthesis;
+        let currentUtterance = null;
+
+        // 初始化所有画布
+        const canvasChaos = document.getElementById("canvas-chaos");
+        const ctxChaos = canvasChaos.getContext("2d");
+        const canvasOperator = document.getElementById("canvas-operator");
+        const ctxOperator = canvasOperator.getContext("2d");
+        const canvasObsidian = document.getElementById("canvas-obsidian");
+        const ctxObsidian = canvasObsidian.getContext("2d");
+
+        function resizeCanvas() {
+            [canvasChaos, canvasOperator, canvasObsidian].forEach(c => {
+                c.width = c.parentElement.clientWidth;
+                c.height = c.parentElement.clientHeight;
+            });
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // ==========================================
+        // 场景 1 动画：无序粒子网络 (Chaos)
+        // ==========================================
+        let particlesChaos = [];
+        function initChaos() {
+            particlesChaos = [];
+            for (let i = 0; i < 80; i++) {
+                particlesChaos.push({
+                    x: Math.random() * canvasChaos.width,
+                    y: Math.random() * canvasChaos.height,
+                    vx: (Math.random() - 0.5) * 2,
+                    vy: (Math.random() - 0.5) * 2,
+                    radius: Math.random() * 3 + 1
+                });
+            }
+        }
+        
+        function animateChaos() {
+            if (!isPlaying || videoScript[currentScriptIndex].scene !== 1) return;
+            ctxChaos.clearRect(0, 0, canvasChaos.width, canvasChaos.height);
+            
+            // 绘制粒子连线
+            ctxChaos.strokeStyle = 'rgba(255, 123, 114, 0.15)'; // 混乱红
+            ctxChaos.lineWidth = 0.5;
+            for (let i = 0; i < particlesChaos.length; i++) {
+                for (let j = i + 1; j < particlesChaos.length; j++) {
+                    let dist = Math.hypot(particlesChaos[i].x - particlesChaos[j].x, particlesChaos[i].y - particlesChaos[j].y);
+                    if (dist < 100) {
+                        ctxChaos.beginPath();
+                        ctxChaos.moveTo(particlesChaos[i].x, particlesChaos[i].y);
+                        ctxChaos.lineTo(particlesChaos[j].x, particlesChaos[j].y);
+                        ctxChaos.stroke();
+                    }
+                }
+            }
+
+            // 绘制粒子
+            particlesChaos.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > canvasChaos.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvasChaos.height) p.vy *= -1;
+
+                ctxChaos.fillStyle = 'rgba(255, 123, 114, 0.7)';
+                ctxChaos.beginPath();
+                ctxChaos.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctxChaos.fill();
+            });
+
+            requestAnimationFrame(animateChaos);
+        }
+
+        // ==========================================
+        // 场景 2 动画：麦克斯韦妖 Pi 过滤 (Operator)
+        // ==========================================
+        let particlesOp = [];
+        const piCenter = { x: 0, y: 0 };
+        function initOperator() {
+            particlesOp = [];
+            piCenter.x = canvasOperator.width / 2;
+            piCenter.y = canvasOperator.height / 2;
+            for (let i = 0; i < 150; i++) {
+                particlesOp.push({
+                    x: Math.random() * (piCenter.x - 200),
+                    y: Math.random() * canvasOperator.height,
+                    vx: Math.random() * 2 + 2,
+                    vy: (Math.random() - 0.5) * 1,
+                    radius: 2,
+                    state: 'raw' // raw, filtering, sorted
+                });
+            }
+        }
+
+        function animateOperator() {
+            if (!isPlaying || videoScript[currentScriptIndex].scene !== 2) return;
+            ctxOperator.clearRect(0, 0, canvasOperator.width, canvasOperator.height);
+
+            // 绘制 Pi 算符中心界限
+            ctxOperator.strokeStyle = 'rgba(88, 166, 255, 0.4)';
+            ctxOperator.lineWidth = 2;
+            ctxOperator.beginPath();
+            ctxOperator.arc(piCenter.x, piCenter.y, 80, 0, Math.PI * 2);
+            ctxOperator.stroke();
+            
+            // 算符发光
+            ctxOperator.shadowBlur = 20;
+            ctxOperator.shadowColor = 'rgba(88, 166, 255, 0.5)';
+            ctxOperator.fillStyle = 'rgba(88, 166, 255, 0.15)';
+            ctxOperator.beginPath();
+            ctxOperator.arc(piCenter.x, piCenter.y, 75, 0, Math.PI * 2);
+            ctxOperator.fill();
+            ctxOperator.shadowBlur = 0; // 重置
+
+            // 绘制中心文字 Π
+            ctxOperator.fillStyle = '#58a6ff';
+            ctxOperator.font = 'bold 36px Outfit';
+            ctxOperator.textAlign = 'center';
+            ctxOperator.textBaseline = 'middle';
+            ctxOperator.fillText('Π', piCenter.x, piCenter.y);
+
+            // 运动粒子
+            particlesOp.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // 逼近算符，执行拓扑重整
+                let distToPi = Math.hypot(p.x - piCenter.x, p.y - piCenter.y);
+                if (p.state === 'raw' && p.x >= piCenter.x - 100 && p.x <= piCenter.x + 100) {
+                    p.state = 'filtering';
+                    p.vx = 4;
+                    // 拉向中心路径
+                    p.vy = (piCenter.y - p.y) * 0.05;
+                }
+
+                // 穿过算符，流出正交流
+                if (p.state === 'filtering' && p.x > piCenter.x + 80) {
+                    p.state = 'sorted';
+                    // 随机分流到三条正交平移线上 (物、契、价)
+                    let paths = [piCenter.y - 60, piCenter.y, piCenter.y + 60];
+                    let chosenPath = paths[Math.floor(Math.random() * 3)];
+                    p.targetY = chosenPath;
+                    p.vx = 6;
+                }
+
+                if (p.state === 'sorted') {
+                    p.y += (p.targetY - p.y) * 0.1;
+                    ctxOperator.fillStyle = '#3fb950'; // 秩序绿
+                } else if (p.state === 'filtering') {
+                    ctxOperator.fillStyle = '#d29922'; // 重整黄
+                } else {
+                    ctxOperator.fillStyle = '#ff7b72'; // 混沌红
+                }
+
+                ctxOperator.beginPath();
+                ctxOperator.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctxOperator.fill();
+
+                // 循环复位
+                if (p.x > canvasOperator.width) {
+                    p.x = 0;
+                    p.y = Math.random() * canvasOperator.height;
+                    p.state = 'raw';
+                    p.vx = Math.random() * 2 + 2;
+                    p.vy = (Math.random() - 0.5) * 1;
+                }
+            });
+
+            requestAnimationFrame(animateOperator);
+        }
+
+        // ==========================================
+        // 场景 3 动画：C++ 控制台输出 (Console)
+        // ==========================================
+        const consoleBox = document.getElementById("console-output");
+        const consoleLines = [
+            { text: "$ deploy_ipc_engine.bat", type: "prompt" },
+            { text: "[1/4] Loaded physical inventory mapping (1,000 PartSites)...", type: "info" },
+            { text: "[2/4] Initializing active 4D Manufacturing Hypergraph...", type: "info" },
+            { text: "      Building LLC low-level code layers... DFS cyclicity: Clean.", type: "info" },
+            { text: "[3/4] Parallel Blelloch prefix-scan Netting initiated (OpenMP 16-cores)...", type: "info" },
+            { text: "      Executing SWAP resource displacement solver...", type: "info" },
+            { text: "      Enforcing Allotment dynamic safe quotas boundary...", type: "info" },
+            { text: "[4/4] Writing back T1 dynamic snapshot parameters to DuckDB...", type: "info" },
+            { text: "[SUCCESS] IPC Netting complete. 50,000 orders parsed. Elapsed time: 100.85 ms", type: "success" },
+            { text: "$ dbeaver -connect grits_ipc.db -query 'SELECT * FROM planned_orders_result'", type: "prompt" },
+            { text: "CONNECTED. Extracting 150,000 calculated states to local sandbox...", type: "info" },
+            { text: "| PART | SITE | DEMAND_QTY | NET_QTY | ALLOTMENT | STATUS |", type: "info" },
+            { text: "| Wafer_512MB_Die | SITE_01 | 2000 | 2000 | 60 | CONFIRMED |", type: "success" },
+            { text: "| Wafer_256MB_Die | SITE_01 | 1500 | 1200 | 40 | CONFIRMED |", type: "success" }
+        ];
+
+        let consoleLineIndex = 0;
+        let consoleInterval = null;
+        function startConsoleSimulation() {
+            consoleBox.innerHTML = "";
+            consoleLineIndex = 0;
+            if (consoleInterval) clearInterval(consoleInterval);
+
+            consoleInterval = setInterval(() => {
+                if (consoleLineIndex >= consoleLines.length) {
+                    clearInterval(consoleInterval);
+                    return;
+                }
+                const line = consoleLines[consoleLineIndex];
+                const div = document.createElement("div");
+                div.className = "console-line";
+                if (line.type === "prompt") {
+                    div.innerHTML = `<span class="console-prompt">${line.text}</span>`;
+                } else if (line.type === "success") {
+                    div.innerHTML = `<span class="console-success">${line.text}</span>`;
+                } else {
+                    div.innerHTML = `<span>${line.text}</span>`;
+                }
+                consoleBox.appendChild(div);
+                consoleBox.scrollTop = consoleBox.scrollHeight;
+                consoleLineIndex++;
+            }, 600);
+        }
+
+        // ==========================================
+        // 场景 4 动画：Obsidian 星云 (Obsidian Graph)
+        // ==========================================
+        let nodesObsidian = [];
+        let edgesObsidian = [];
+        const nodeLabels = [
+            "Thermodynamic Core", "Entropy Resistance", "Ashby Law", "Conant-Ashby Regulator",
+            "Single Brain Singularity", "逆康威定律", "TIO Chemical Fusion", "Vector Work W",
+            "错配夹角 θ", "cosθ = 1", "DOD Contiguous Layout", "Cache Line Friendly",
+            "L3 Cache Occupy", "DAG Ultra-graph", "LLC Compile", "SWAP Displacement",
+            "Allotment Barrier", "100.85ms Miracle", "DuckDB Sandbox", "DBeaver Auditor",
+            "Operational Ontology", "Site SitePart", "CODP Probability", "Decoupling Point",
+            "Netting Solver", "Forward/Backward Scheduling", "Godel Boundary", "Meta-cognition",
+            "S&OP Consensus", "S&OE Execution", "OTD Guarantee", "DIO Reduction",
+            "Procurement Cost", "L0 Base Design", "Grit Sand", "星火燎原"
+        ];
+
+        function initObsidian() {
+            nodesObsidian = [];
+            edgesObsidian = [];
+            const cx = canvasObsidian.width / 2;
+            const cy = canvasObsidian.height / 2;
+
+            // 创建 36 个粒子节点
+            for (let i = 0; i < 36; i++) {
+                let angle = (i / 36) * Math.PI * 2;
+                let radius = Math.random() * 150 + 50;
+                nodesObsidian.push({
+                    x: cx + Math.cos(angle) * radius,
+                    y: cy + Math.sin(angle) * radius,
+                    label: nodeLabels[i],
+                    angle: angle,
+                    radius: radius,
+                    angularSpeed: (Math.random() * 0.002 + 0.001) * (Math.random() > 0.5 ? 1 : -1),
+                    pulseSize: Math.random() * 2 + 2
+                });
+            }
+
+            // 建立高密度双链边
+            for (let i = 0; i < nodesObsidian.length; i++) {
+                // 每个节点强行连接 2-3 个邻近或随机节点
+                let connections = Math.floor(Math.random() * 2) + 2;
+                for (let c = 0; c < connections; c++) {
+                    let target = (i + Math.floor(Math.random() * 10) + 1) % nodesObsidian.length;
+                    edgesObsidian.push({ from: i, to: target });
+                }
+            }
+        }
+
+        function animateObsidian() {
+            if (!isPlaying || videoScript[currentScriptIndex].scene !== 4) return;
+            ctxObsidian.clearRect(0, 0, canvasObsidian.width, canvasObsidian.height);
+
+            const cx = canvasObsidian.width / 2;
+            const cy = canvasObsidian.height / 2;
+
+            // 旋转更新位置
+            nodesObsidian.forEach(n => {
+                n.angle += n.angularSpeed;
+                n.x = cx + Math.cos(n.angle) * n.radius;
+                n.y = cy + Math.sin(n.angle) * n.radius;
+            });
+
+            // 绘制突触连接
+            ctxObsidian.strokeStyle = 'rgba(163, 113, 247, 0.2)'; // 脑图紫
+            ctxObsidian.lineWidth = 0.5;
+            edgesObsidian.forEach(e => {
+                ctxObsidian.beginPath();
+                ctxObsidian.moveTo(nodesObsidian[e.from].x, nodesObsidian[e.from].y);
+                ctxObsidian.lineTo(nodesObsidian[e.to].x, nodesObsidian[e.to].y);
+                ctxObsidian.stroke();
+            });
+
+            // 绘制神经元节点与文字
+            nodesObsidian.forEach(n => {
+                ctxObsidian.fillStyle = 'rgba(163, 113, 247, 0.8)';
+                ctxObsidian.shadowBlur = 10;
+                ctxObsidian.shadowColor = 'rgba(163, 113, 247, 0.6)';
+                ctxObsidian.beginPath();
+                ctxObsidian.arc(n.x, n.y, n.pulseSize, 0, Math.PI * 2);
+                ctxObsidian.fill();
+                ctxObsidian.shadowBlur = 0;
+
+                // 绘制精致标签文字
+                ctxObsidian.fillStyle = '#8b949e';
+                ctxObsidian.font = '10px Inter';
+                ctxObsidian.textAlign = 'left';
+                ctxObsidian.fillText(n.label, n.x + 8, n.y + 3);
+            });
+
+            requestAnimationFrame(animateObsidian);
+        }
+
+        // ==========================================
+        // 核心放映控制逻辑
+        // ==========================================
+        function startShowcase() {
+            document.getElementById("launcher").classList.add("hidden");
+            isPlaying = true;
+            currentScriptIndex = 0;
+            playNextLine();
+        }
+
+        let currentAudio = null;
+
+        function playNextLine() {
+            if (!isPlaying) return;
+
+            if (currentScriptIndex >= videoScript.length) {
+                // 放映结束复位
+                document.getElementById("subtitle-content").innerText = "🎬 全息抗熵统御演示放映完毕。";
+                isPlaying = false;
+                document.getElementById("launcher").classList.remove("hidden");
+                return;
+            }
+
+            const current = videoScript[currentScriptIndex];
+            
+            // 更新字幕与状态指标
+            document.getElementById("scene-badge").innerText = current.badge;
+            document.getElementById("indicator-text").innerText = current.indicator;
+            document.getElementById("subtitle-content").innerText = current.text;
+
+            // 触发场景切换
+            switchScene(current.scene);
+
+            // 停止当前所有正在播放的语音/音频
+            if (currentUtterance) {
+                synthesis.cancel();
+            }
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+
+            // 优先尝试加载本地配音 (grits_voice_{1..18}.mp3)
+            const audioPath = `audio/grits_voice_${currentScriptIndex + 1}.mp3`;
+            const audio = new Audio(audioPath);
+            currentAudio = audio;
+
+            let fallbackExecuted = false;
+            
+            function executeTTSFallback() {
+                if (fallbackExecuted) return;
+                fallbackExecuted = true;
+                
+                document.getElementById("bgm-indicator").innerText = "配乐状态: 无源伴奏 (合成语音播报)";
+                
+                currentUtterance = new SpeechSynthesisUtterance(current.text);
+                currentUtterance.lang = "zh-CN";
+                // 设定稳健、低沉的科技播报语速与音调
+                currentUtterance.rate = 0.95; 
+                currentUtterance.pitch = 0.85;
+
+                currentUtterance.onend = function() {
+                    setTimeout(() => {
+                        currentScriptIndex++;
+                        playNextLine();
+                    }, 1000);
+                };
+
+                currentUtterance.onerror = function() {
+                    setTimeout(() => {
+                        currentScriptIndex++;
+                        playNextLine();
+                    }, 6000);
+                };
+
+                synthesis.speak(currentUtterance);
+            }
+
+            audio.addEventListener('canplaythrough', () => {
+                if (fallbackExecuted) return; // 已经执行了降级，不再播放
+                document.getElementById("bgm-indicator").innerText = `配乐状态: 原声模式 (grits_voice_${currentScriptIndex + 1}.mp3)`;
+                audio.play().catch(err => {
+                    console.warn("播放本地音频失败，降级为合成语音:", err);
+                    executeTTSFallback();
+                });
+            });
+
+            audio.addEventListener('ended', () => {
+                setTimeout(() => {
+                    currentScriptIndex++;
+                    playNextLine();
+                }, 1000);
+            });
+
+            audio.addEventListener('error', (err) => {
+                // 如果本地文件加载失败（比如不存在），降级为 Web Speech API (TTS)
+                executeTTSFallback();
+            });
+
+            // 2秒内如果由于找不到文件没有触发 canplaythrough，也强制降级，避免死锁
+            setTimeout(() => {
+                if (!fallbackExecuted && audio.readyState < 3) {
+                    executeTTSFallback();
+                }
+            }, 2000);
+        }
+
+        function switchScene(sceneNum) {
+            // 隐藏所有容器
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`scene-${i}`).classList.remove("active");
+            }
+            // 激活当前容器
+            document.getElementById(`scene-${sceneNum}`).classList.add("active");
+
+            // 激活特定场景的 Canvas 动画或控制台
+            if (sceneNum === 1) {
+                initChaos();
+                animateChaos();
+            } else if (sceneNum === 2) {
+                initOperator();
+                animateOperator();
+            } else if (sceneNum === 3) {
+                startConsoleSimulation();
+            } else if (sceneNum === 4) {
+                initObsidian();
+                animateObsidian();
+            }
+        }
+    </script>
+</body>
+</html>

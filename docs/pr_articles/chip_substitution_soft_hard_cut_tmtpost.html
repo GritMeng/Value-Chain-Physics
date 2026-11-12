@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>钛媒体/微信公众号排版专用 - 破解替换料与芯片切换的物理死锁</title>
+<style>
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    line-height: 1.75;
+    color: #2c3e50;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 20px 30px;
+    background-color: #ffffff;
+}
+p { margin-bottom: 14px; font-size: 15px; letter-spacing: 0.2px; }
+ul, ol { padding-left: 20px; margin-bottom: 14px; font-size: 15px; }
+li { margin-bottom: 6px; }
+table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+th { background-color: #003366; color: #ffffff; padding: 10px 12px; text-align: left; font-weight: bold; }
+td { border: 1px solid #e0e0e0; padding: 8px 12px; }
+tr:nth-child(even) { background-color: #f8f9fa; }
+</style>
+</head>
+<body>
+<h1 style="color:#8b0000; font-size:22px; font-weight:bold; border-bottom:2px solid #8b0000; padding-bottom:8px; margin-top:25px; margin-bottom:15px; font-family:微软雅黑, sans-serif;">破解替换料与芯片切换的物理死锁：软切硬切、不完全替代与主/组替代的硅基治理法则</h1>
+
+<blockquote style="border-left:4px solid #003366; background:#f4f6f9; color:#555; padding:10px 15px; margin:15px 0; font-size:14px; line-height:1.6; border-radius:0 4px 4px 0;"><strong style="color:#003366; font-weight:bold;">作者</strong>：Grit Meng（孟凡淳）</blockquote>
+<blockquote style="border-left:4px solid #003366; background:#f4f6f9; color:#555; padding:10px 15px; margin:15px 0; font-size:14px; line-height:1.6; border-radius:0 4px 4px 0;"><strong style="color:#003366; font-weight:bold;">归档仓库</strong>：[GritMeng/Value-Chain-Physics](https://github.com/GritMeng/Value-Chain-Physics)</blockquote>
+<blockquote style="border-left:4px solid #003366; background:#f4f6f9; color:#555; padding:10px 15px; margin:15px 0; font-size:14px; line-height:1.6; border-radius:0 4px 4px 0;"><strong style="color:#003366; font-weight:bold;">所属专栏</strong>：价值链物理学 · 定量八关数字手术刀与工业实证</blockquote>
+
+<hr style="border:none; border-top:1px solid #e0e0e0; margin:25px 0;" />
+
+<h2 style="color:#003366; font-size:18px; font-weight:bold; border-left:4px solid #003366; padding-left:10px; margin-top:25px; margin-bottom:15px; font-family:微软雅黑, sans-serif;">🏛️ 卷首导读：为什么复杂替换料与芯片切换是全球 APS 的算力黑洞？</h2>
+
+在高端离散制造（如半导体、高端电子、汽车电子、工业自动化）的实际生产中，<strong style="color:#003366; font-weight:bold;">芯片与关键零部件的工程变更（ECN/ECO）与替换料管理</strong>，是造成工厂“一方面仓库堆满数千万呆滞材料，另一方面产线因一颗关键芯片缺料而全线停工”的根本元凶。
+
+传统 MRP/APS 软件（包括 SAP, Oracle, JDA, Kinaxis 等）在面对替换料时，底层往往依赖静态的“一对一替换”或固定比例冲销。然而，真实物理世界的零部件替代关系呈极度非线性的网状纠缠：
+1. <strong style="color:#003366; font-weight:bold;">老料新料生命周期交替</strong>：新老物料在特定时间与库存节点上的平滑过渡（软切）与刚性截断（硬切）；
+2. <strong style="color:#003366; font-weight:bold;">多产品共用替代料</strong>：不同产品争夺同一组替代芯片时的非完全互换博弈（不完全替代）；
+3. <strong style="color:#003366; font-weight:bold;">拓扑成套绑定</strong>：更换主芯片时必须同步更换外围阻容与电源管理 IC（组替代/成套替代）。
+
+当这些动态约束在 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">\mathcal{O}(N!)</code> 阶乘级的需求震荡中交织时，传统软件要么陷入<strong style="color:#003366; font-weight:bold;">拓扑计算死锁</strong>（算出一半老料一半新料的机械错配），要么引发<strong style="color:#003366; font-weight:bold;">存量踩踏</strong>（低优先级常规订单吸干珍贵替代料，战略大单反而因缺料无限停滞）。
+
+《价值链物理学》定量第六关<strong style="color:#003366; font-weight:bold;">“替代与切换”</strong>，正是为了打破这一算力黑洞而设计的物理解算引擎。本文将深度拆解 IPC（Intelligent Planning & Control）统御引擎在软切硬切、不完全替代、主/组替代上的第一性原理法则与硅基治理方案。
+
+<hr style="border:none; border-top:1px solid #e0e0e0; margin:25px 0;" />
+
+<h2 style="color:#003366; font-size:18px; font-weight:bold; border-left:4px solid #003366; padding-left:10px; margin-top:25px; margin-bottom:15px; font-family:微软雅黑, sans-serif;">📌 一、 软切（Soft Cut）与硬切（Hard Cut）的物理划界与单向生成法则</h2>
+
+<h3 style="color:#222; font-size:16px; font-weight:bold; margin-top:20px; margin-bottom:10px; font-family:微软雅黑, sans-serif;">1.1 传统 ERP/APS 处理 ECN 切换的两大极端陷阱</h3>
+
+在研发下达 ECN（工程变更）要求以新芯片 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_2</code> 替换老芯片 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_1</code> 时，传统系统常因缺乏时空连续状态机而滑向两个灾难性极值：
+
+- <strong style="color:#003366; font-weight:bold;">硬切（Hard Cut / 时间锚点驱动）的相变耗散</strong>：
+  系统机械规定在某一确切日期（如 6 月 1 日），老料 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_1</code> 刚性失效，<code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_2</code> 强制生效。但在高频需求震荡下，僵硬的时间墙会瞬间切断老料 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_1</code> 的消耗路径，导致仓库中尚未用完的 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_1</code> 存货瞬间发生“固态呆滞相变”，在财务账面上形成巨额资产减值黑洞。
+- <strong style="color:#003366; font-weight:bold;">软切（Soft Cut / 在库用尽驱动）的时空断层</strong>：
+  系统初衷是优先榨干老料 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_1</code> 的在手与在途供应，消耗完后再无缝接入新料 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_2</code>。然而，传统系统缺乏高精度的时序探底，极易在“<code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_1</code> 库存耗尽”与“<code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_2</code> 采购到货”的交接节点产生物理断层，导致产线因这颗料产生数天的停工待料。
+
+<hr style="border:none; border-top:1px solid #e0e0e0; margin:25px 0;" />
+
+<h3 style="color:#222; font-size:16px; font-weight:bold; margin-top:20px; margin-bottom:10px; font-family:微软雅黑, sans-serif;">1.2 IPC 软切硬切的第一性原理“单向生成法则”</h3>
+
+为了破解这一难题，IPC 统御引擎在 BOM 关联与算子消纳上确立了刚性的<strong style="color:#003366; font-weight:bold;">“主辅料单向生成法则”</strong>：
+
+``<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;">text
+               ┌─────────────────────────────────────────┐
+               │         客户需求 / 订单 (Demand)         │
+               └────────────────────┬────────────────────┘
+                                    │
+                                    ▼
+               ┌─────────────────────────────────────────┐
+               │    BOM 展开 (主料/新料 A2 作为唯一主件)   │
+               └────────────────────┬────────────────────┘
+                                    │
+             ┌──────────────────────┴──────────────────────┐
+             │ 扣减冲销 (Deduction Phase)                   │ 产生新需求 (Supply Phase)
+             ▼                                             ▼
+┌───────────────────────────┐                 ┌───────────────────────────┐
+│ 强优先扣减辅料 (老料 A1)   │                 │ 仅为主料 (新料 A2)        │
+│ 现有在手 (On-Hand) 与在途 │                 │ 产生新的 Planned Order    │
+└───────────────────────────┘                 └───────────────────────────┘
+</code>`<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;">
+
+<h4 style="color:#444; font-size:15px; font-weight:bold; margin-top:15px; margin-bottom:8px; font-family:微软雅黑, sans-serif;">铁律明细：</h4>
+
+1. <strong style="color:#003366; font-weight:bold;">硬切（Hard Cut）</strong>：
+   - 设定刚性生效区间 </code>eff_start_day<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;"> 与 </code>eff_end_day<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;">。在截止日期后，系统在内存中直接阻断老料 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_1</code> 的任何分配，完全由新料 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_2</code> 承接。
+2. <strong style="color:#003366; font-weight:bold;">软切（Soft Cut）与单向生成法则</strong>：
+   - 在 BOM 中将新料 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_2</code> 设定为主料（Primary Component），老料 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_1</code> 设定为辅料/替代料（Alternate Component），互换关系定义为单向/双向。
+   - <strong style="color:#003366; font-weight:bold;">单向生成铁律</strong>：虽然 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_1</code> 与 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_2</code> 均可满足需求，但系统在运行 LBL/DBD 产生新的计划单据（Planned Order）时，<strong style="color:#003366; font-weight:bold;">永远只会为主料（新料 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_2</code>）产生！绝对禁止对老料 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_1</code> 下发新的采购或生产计划！</strong>
+   - <strong style="color:#003366; font-weight:bold;">优先扣减铁律</strong>：在冲销需求时，引擎强制优先扣减辅料（老料 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_1</code>）的现有在手（On-Hand）与在途（Scheduled Receipt）库存。只有当老料 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_1</code> 的存量被 100% 榨干后，剩余的净需求才自动坍缩到主料 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_2</code> 上，触发新料 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">A_2</code> 的采购。
+
+这一法则在物理上彻底熔断了“错买老料”与“老料提前报废”的双重风险，实现了真正的零呆滞平滑切换。
+
+<hr style="border:none; border-top:1px solid #e0e0e0; margin:25px 0;" />
+
+<h2 style="color:#003366; font-size:18px; font-weight:bold; border-left:4px solid #003366; padding-left:10px; margin-top:25px; margin-bottom:15px; font-family:微软雅黑, sans-serif;">📌 二、 不完全替代（Incomplete Substitution）与 Allotment 配额确权防波堤</h2>
+
+<h3 style="color:#222; font-size:16px; font-weight:bold; margin-top:20px; margin-bottom:10px; font-family:微软雅黑, sans-serif;">2.1 不完全替代的博弈困局</h3>
+
+当多个不同产品（例如成品 </code>FG_1<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;"> 与成品 </code>FG_2<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;">）共用同一组替代芯片 </code>CHIP_ALT<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;"> 时，系统进入了危险的<strong style="color:#003366; font-weight:bold;">非完全互换博弈态</strong>。
+
+传统 MRP 采用串行“先到先得”计算逻辑：先被计算的需求（例如常规产品 </code>FG_1<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;">）像黑洞一样无节制吸干所有可用的 </code>CHIP_ALT<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;"> 库存。导致随后计算的、战略优先级极高的战略产品 </code>FG_2<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;"> 遭遇被动剥夺，无料可用。
+
+<hr style="border:none; border-top:1px solid #e0e0e0; margin:25px 0;" />
+
+<h3 style="color:#222; font-size:16px; font-weight:bold; margin-top:20px; margin-bottom:10px; font-family:微软雅黑, sans-serif;">2.2 IPC 两阶段/三阶段 Allotment 配额确权防波堤</h3>
+
+为了终结共用料的“先到先得存量踩踏”，IPC 引擎设计了精妙的<strong style="color:#003366; font-weight:bold;">迭代运算与配额确权防波堤机制</strong>：
+
+</code>`<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;">text
+【阶段一：全局探底 (Global Discovery)】
+  引擎运行全网 SWAP 探底，摸清全局现有在手 (On-Hand) 与在途 (SR)，
+  按战略优先级算出各产品线合理应得的替代料份额 Allocation。
+                      │
+                      ▼
+【阶段二：刚性确权 (Allotment Hardening)】
+  系统将 Allocation 分配量刚性锁死为配额结界 Allotment。
+  ipc_allotment_constraint 写入物理数据库。
+                      │
+                      ▼
+【阶段三：滚动约束 (Rolling Protection)】
+  在后续高频滚动推演中，立下铁律：
+  任何需求对该共用料的占用，绝对不得超越上一轮生成的 Allotment 配额上限！
+</code>`<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;">
+
+通过 Allotment 配额防波堤，哪怕低优先级的 </code>FG_1<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;"> 订单冲得再猛，一旦触及其 Allotment 上限，系统立刻切断其分配阀门，刚性保护高优先级 </code>FG_2<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;"> 的份额，彻底吞噬存量踩踏。
+
+<hr style="border:none; border-top:1px solid #e0e0e0; margin:25px 0;" />
+
+<h2 style="color:#003366; font-size:18px; font-weight:bold; border-left:4px solid #003366; padding-left:10px; margin-top:25px; margin-bottom:15px; font-family:微软雅黑, sans-serif;">📌 三、 主替代与组替代（Set / Group Substitution）的五维寻优法则</h2>
+
+<h3 style="color:#222; font-size:16px; font-weight:bold; margin-top:20px; margin-bottom:10px; font-family:微软雅黑, sans-serif;">3.1 组替代的拓扑绑定死结</h3>
+
+在复杂板卡与芯片装配中，替代常具备强烈的<strong style="color:#003366; font-weight:bold;">“成套拓扑绑定”</strong>属性（Group Substitution / Set Substitution）。
+例如：主芯片由 </code>MCU_v1<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;"> 升级为 </code>MCU_v2<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;"> 时，由于引脚与电压变化，必须同步将外围电源 IC </code>PMIC_v1<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;"> 替换为 </code>PMIC_v2<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;">。即替代规则为：<strong style="color:#003366; font-weight:bold;">必须由 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">\{MCU\_v2 + PMIC\_v2\}</code> 成套替代 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">\{MCU\_v1 + PMIC\_v1\}</code></strong>。
+
+传统 MRP 的线性拆解算法无法识别这种“成套绑定”，常算出现场根本无法组装的拼凑指令（例如采购半套 </code>MCU_v2<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;"> 和半套 </code>PMIC_v1<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;">），导致物料双重呆滞，产线依旧停工。
+
+<hr style="border:none; border-top:1px solid #e0e0e0; margin:25px 0;" />
+
+<h3 style="color:#222; font-size:16px; font-weight:bold; margin-top:20px; margin-bottom:10px; font-family:微软雅黑, sans-serif;">3.2 IPC 组替代的多准则五维寻优法则（MCDM Strategy）</h3>
+
+当面对多种成套替代路径（如组 1: <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">\{A_1, B_1\}</code> 与 组 2: <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">\{A_2, B_2\}</code>）时，IPC 引擎拒绝人工盲探，而是在 C++ 内存内核中强行执行五个维度的<strong style="color:#003366; font-weight:bold;">“经济学与物理学交叉寻优”</strong>：
+
+<div style="background:#f8f9fa; border-left:4px solid #8b0000; padding:10px 15px; margin:15px 0; font-family:Consolas, monospace; color:#8b0000; font-weight:bold; font-size:14px; border-radius:4px;">\text{Score}(\text{Group}_k) = f\Big( \text{Delivery}_{\text{due}}, \; \text{Priority}_{\text{supply}}, \; \text{Level}_{\text{bom}}, \; \text{Cost}_{\text{incremental}}, \; \text{Cost}_{\text{sunk}} \Big)</div>
+
+</code>`<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;">text
+┌────────────────────────────────────────────────────────────────────────┐
+│                        组替代五维评估算子 (MCDM)                         │
+├────────────────────────────────────────────────────────────────────────┤
+│ 1. 及时交付 (On-time Delivery)  │ 评估该组合下延迟 (Late) 最少甚至 0 延迟  │
+│ 2. 供应优先级 (Supply Priority) │ 遵循替代组定义的 Priority 权重偏好        │
+│ 3. 供应层级 (BOM Level Depth)   │ 优先选择低层码更浅、级联风险更低路径      │
+│ 4. 新增采购成本 (Incremental Cost)│ 精算为了齐套需要新采购增量物料的财务支出  │
+│ 5. 现有沉没成本 (Sunk Cost)     │ 评估现有呆滞库存与在途物料的消纳与资金占用│
+└────────────────────────────────────────────────────────────────────────┘
+</code>`<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;">
+
+通过五维寻优，引擎在 0.1 秒内自动剔除那些产生高昂增量采购成本或无法成套齐套的冗余组合，精确锁定全局综合成本最低且 100% 齐套的工程路径。
+
+<hr style="border:none; border-top:1px solid #e0e0e0; margin:25px 0;" />
+
+<h2 style="color:#003366; font-size:18px; font-weight:bold; border-left:4px solid #003366; padding-left:10px; margin-top:25px; margin-bottom:15px; font-family:微软雅黑, sans-serif;">📌 四、 实证沙盘：物理计算做功与 SQL 确权断言</h2>
+
+在 IPC 统御引擎的前台沙盘中，上述算法被封装为可重复校验的物理数据库测试套件（DuckDB）：
+
+<h3 style="color:#222; font-size:16px; font-weight:bold; margin-top:20px; margin-bottom:10px; font-family:微软雅黑, sans-serif;">4.1 组替代 MCDM 多准则决策沙盘（DuckDB 真实数据播种）</h3>
+
+</code>`<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;">sql
+-- 1. 物料主数据播种
+INSERT INTO ipc_material_node (part, part_type, mrp_rule, site, is_phantom, lead_time, selling_ave_price) VALUES
+('PART_MAIN', 'FINISHED', 'MPS', 'SITE_001', false, 1.0, 10.0),
+('PART_G1_A', 'RAW', 'MRP', 'SITE_001', false, 1.0, 10.0),  -- 组1 Component A (无库存)
+('PART_G1_B', 'RAW', 'MRP', 'SITE_001', false, 1.0, 10.0),  -- 组1 Component B (无库存)
+('PART_G2_A', 'RAW', 'MRP', 'SITE_001', false, 1.0, 50.0),  -- 组2 Component A (有呆滞)
+('PART_G2_B', 'RAW', 'MRP', 'SITE_001', false, 1.0, 50.0);  -- 组2 Component B (有呆滞)
+
+-- 2. BOM 组件成套绑定 (组1: ALT_GRP_1 vs 组2: ALT_GRP_2)
+INSERT INTO ipc_bom_item (bomid, site, component, perqty, scrap, alt_grp, priority, target, relationship_type) VALUES
+('BOM_MAIN', 'SITE_001', 'PART_G1_A', 1.0, 0.0, 'ALT_GRP_1', 1, 1.0, 'alt'),
+('BOM_MAIN', 'SITE_001', 'PART_G1_B', 1.0, 0.0, 'ALT_GRP_1', 1, 1.0, 'alt'),
+('BOM_MAIN', 'SITE_001', 'PART_G2_A', 1.0, 0.0, 'ALT_GRP_2', 1, 1.0, 'alt'),
+('BOM_MAIN', 'SITE_001', 'PART_G2_B', 1.0, 0.0, 'ALT_GRP_2', 1, 1.0, 'alt');
+
+-- 3. 在手库存 (组 2 具备 5 套在手呆滞库存，新增采购成本为 0)
+INSERT INTO ipc_onhand (location, part, site, available_date, qty, inventory_type) VALUES
+('WH_G2_A', 'PART_G2_A', 'SITE_001', '2026-05-29', 5.0, 'Standard'),
+('WH_G2_B', 'PART_G2_B', 'SITE_001', '2026-05-29', 5.0, 'Standard');
+
+-- 4. 需求下达: 需求量 = 5
+INSERT INTO ipc_independent_demand (demand, item, part, par_site, customer, request_delivery_date, request_due_date, open_qty, request_qty, status, order_priority, site) VALUES
+('DEMAND_1', 1.0, 'PART_MAIN', 'SITE_001', 'CUST_A', '2026-06-08', '2026-06-08', 5.0, 5.0, 'OPEN', 1, 'SITE_001');
+</code>`<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;">
+
+<hr style="border:none; border-top:1px solid #e0e0e0; margin:25px 0;" />
+
+<h3 style="color:#222; font-size:16px; font-weight:bold; margin-top:20px; margin-bottom:10px; font-family:微软雅黑, sans-serif;">4.2 引擎求解与断言验证</h3>
+
+运行单体 C++ 裸金属内核求解器：
+
+</code>`<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;">powershell
+.\main_mem3.exe --db ipc.db
+</code>`<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;">
+
+物理校验输出表 </code>ipc_alternate_allocation<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;">：
+
+</code>`<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;">sql
+SELECT alt_part, SUM(allocated_qty) AS allocated_qty 
+FROM ipc_alternate_allocation 
+GROUP BY alt_part 
+ORDER BY alt_part;
+</code>`<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;">
+
+<h4 style="color:#444; font-size:15px; font-weight:bold; margin-top:15px; margin-bottom:8px; font-family:微软雅黑, sans-serif;">预期判决输出：</h4>
+
+| alt_part | allocated_qty | 物理说明 |
+| :--- | :---: | :--- |
+| </code>PART_G2_A<code style="background:#f4f6f9; color:#0056b3; font-family:Consolas, monospace; padding:2px 5px; border-radius:3px; font-size:13px;"> | <strong style="color:#003366; font-weight:bold;">5.0</strong> | 引擎精准识别组 2 具备 5 套在手存量（沉没成本已被消纳），无需新增采购 |
+| </code>PART_G2_B` | <strong style="color:#003366; font-weight:bold;">5.0</strong> | 完美成套齐套分配，组 1 零错购，新增采购成本被削减至 0 |
+
+<hr style="border:none; border-top:1px solid #e0e0e0; margin:25px 0;" />
+
+<h2 style="color:#003366; font-size:18px; font-weight:bold; border-left:4px solid #003366; padding-left:10px; margin-top:25px; margin-bottom:15px; font-family:微软雅黑, sans-serif;">🎯 结语：从经验盲探走向物理确定性</h2>
+
+替换料与芯片切换，从来不是靠计划员在 Excel 里按住 Ctrl+F 逐行核对所能治理的。当离散制造的物料节点跨越 <code style="color:#8b0000; font-family:Consolas, monospace; background:#f0f4f8; padding:2px 6px; border-radius:3px; font-weight:bold;">N!</code> 算力奇点，唯有依靠：
+1. <strong style="color:#003366; font-weight:bold;">主辅料单向生成法则</strong>，规避软切与硬切的时空断层与老料错买；
+2. <strong style="color:#003366; font-weight:bold;">Allotment 配额确权防波堤</strong>，封死不完全替代中共用料的存量踩踏；
+3. <strong style="color:#003366; font-weight:bold;">MCDM 五维寻优算子</strong>，击穿组替代的成套拓扑死锁。
+
+IPC 统御引擎通过将这三大硅基治理法则硬编码进 C++ 裸金属内核，让多级物料替代与工程变更的齐套性成为<strong style="color:#003366; font-weight:bold;">可微、可回溯、可秒级求解的精确物理计算</strong>，在离散制造的泥沼中砸下了最坚实的物理确定性。
+
+<hr style="border:none; border-top:1px solid #e0e0e0; margin:25px 0;" />
+*本文归档于 GritMeng《价值链物理学》专栏。更多算法内核与 Demo 场景参见 [IPC 场景全息索引](IPC_Architecture_Scenarios_Master.md)。*
+
+</body>
+</html>
