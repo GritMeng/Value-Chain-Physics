@@ -1,5 +1,8 @@
-Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
-& MIT Dual License
+Creative Commons Attribution 4.0 International (CC BY 4.0) — Public Papers & Documentation
+& Non-Commercial Academic Reproducibility and Internal Evaluation License — Public Benchmark Scripts
+(With Explicit Patent Rights Reservation — NO PATENT LICENSE)
+
+Copyright (c) 2026 Grit Meng (孟凡淳). All rights reserved.
 
 ========================================================================================
 AUTHOR TITLE LOCK (作者身份与标准头衔锁)
@@ -7,30 +10,44 @@ AUTHOR TITLE LOCK (作者身份与标准头衔锁)
 
 中文版（分两行正体输出）：
 孟凡淳 (Grit Meng)
+价值链物理学、系统与复杂性科学独立学者 | IPC 智能计划与控制引擎缔造者
 前联想全球供应链集成计划方案（IPS）系统负责人兼总设计师
-IPC 智能计划与控制引擎缔造者 | 独立学者
 
 英文版（分两行输出）：
 Grit Meng
+Independent Scholar in Value Chain Physics and Systems & Complexity Science | Creator of the Intelligent Planning & Control (IPC) Engine
 Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global Supply Chain
-Creator of the Intelligent Planning & Control (IPC) Engine | Independent Scholar
 
 ========================================================================================
 TERMS AND CONDITIONS
 ========================================================================================
 
-1. MONOGRAPHS & RESEARCH PAPERS (所有专著、论文与理论文档):
-   Licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
-   To view a copy of this license, visit: http://creativecommons.org/licenses/by-nc-sa/4.0/
+1. PUBLIC RESEARCH PAPERS, MONOGRAPH OUTLINES & TECHNICAL DOCUMENTATION
+   (公网公开单篇学术论文预印本、专著目录/摘要与公开技术说明):
+   Repository Scope & Publisher Boundary: This public repository retains ONLY standalone academic paper preprints, monograph tables of contents/abstracts, and public technical documentation. Full-text unpublished or pending-publication monograph manuscripts (including works under exclusive publishing consideration or agreements with Science Press and Taylor & Francis / CRC Press) are excluded from this public repository and remain governed exclusively by their respective publishing contracts.
 
-   Under this license, you are free to:
-   - Share: Copy and redistribute the material in any medium or format.
-   - Adapt: Remix, transform, and build upon the material.
-   
-   Under the following terms:
-   - Attribution: You must give appropriate credit to the Author (Grit Meng / 孟凡淳) using the standard title above.
-   - NonCommercial: You may not use the material for commercial purposes without prior written permission.
-   - ShareAlike: If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
+   License Grant (CC BY 4.0): All public papers, outlines, abstracts, and textual documentation in this repository are licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0).
+   To view a copy of this license, visit: https://creativecommons.org/licenses/by/4.0/
 
-2. CODE & BENCHMARK ENGINES (所有引擎代码、C++ 核心与标杆工具):
-   Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, subject to retaining the Author Attribution notice above.
+   Mandatory Attribution Condition: Any sharing, citation, translation, or adaptation of the documentation MUST retain proper attribution to the Author (Grit Meng / 孟凡淳) using the exact AUTHOR TITLE LOCK standard attribution above, provide a link to the license, and indicate if changes were made.
+
+   Explicit Patent Exclusion under CC BY 4.0 Section 2(b)(2): Pursuant to Section 2(b)(2) of the CC BY 4.0 International Public License ("Patent and trademark rights are not licensed under this Public License"), this copyright license grants ZERO patent rights of any kind.
+
+2. PUBLIC BENCHMARK & AUDIT SCRIPTS (本仓库公开的 C++ 压测代码与审计脚本):
+   Scope: This Section 2 applies strictly and exclusively to the public benchmark, verification, and audit source scripts explicitly published in this repository (e.g., `ipc-core-benchmark/`). It does NOT cover, include, or grant any rights to the full commercial-grade Intelligent Planning & Control (IPC) Engine, its production data ontology, bare-metal memory operators, or enterprise deployment systems, all of which remain proprietary and external to this repository.
+
+   Non-Commercial Academic Reproducibility & Enterprise Internal Evaluation Grant:
+   Permission is hereby granted, free of charge, to universities, academic reviewers, researchers, and enterprise technical teams to download, compile, execute, and inspect the public benchmark and audit scripts in this repository SOLELY in non-production environments for academic reproducibility, scholarly research, peer review, and internal technical evaluation/benchmarking.
+
+   Strict Production & Commercial Prohibition: You may NOT, without a separate prior written commercial and patent license signed by the Author:
+   - Deploy, operate, or integrate the scripts, algorithms, or derived implementations into any production environment, enterprise planning/scheduling workflow, commercial software product, SaaS platform, or paid consulting delivery;
+   - Sell, sublicense, rent, lease, or commercially redistribute copies or derivatives of the code.
+
+   Disclaimer of Warranty ("AS IS"): THE PUBLIC BENCHMARK AND AUDIT SCRIPTS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHOR OR COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SCRIPTS OR THE USE OR OTHER DEALINGS IN THE SCRIPTS.
+
+3. NO PATENT LICENSE (专利权完全保留声明):
+   All 20 granted, published, and pending invention patents (and any domestic or international family members, continuations, or utility models) owned or controlled by Grit Meng (孟凡淳) — underpinning the IPC architecture, data ontology, and value chain planning algorithms — are 100% RESERVED.
+
+   Nothing in this License, this repository, or any associated paper, documentation, or public benchmark script shall be construed as granting, by implication, estoppel, exhaustion, or otherwise, any express or implied license or right under any patent or patent application. Any commercial implementation, software productization, or enterprise production deployment requires a separate formal written commercial and patent license executed with the Author.
+
+   Commercial & Patent Licensing Inquiries: gritmeng@outlook.com

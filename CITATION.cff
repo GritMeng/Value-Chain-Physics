@@ -7,9 +7,10 @@ authors:
     given-names: "Fanchun (Grit)"
     email: "gritmeng@outlook.com"
     orcid: "https://orcid.org/0009-0003-8603-119X"
-    affiliation: "Former Chief Architect of Global Supply Chain Planning Systems (IPS), Lenovo Group"
+    affiliation: "Independent Scholar in Value Chain Physics and Systems & Complexity Science | Creator of the Intelligent Planning & Control (IPC) Engine | Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global Supply Chain"
 year: 2026
-date-released: 2026-07-27
+date-released: 2026-11-19
+license-url: "https://github.com/GritMeng/Value-Chain-Physics/blob/main/LICENSE"
 identifiers:
   - type: url
     value: "https://ssrn.com/abstract=7251098"

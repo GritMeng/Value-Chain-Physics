@@ -1,5 +1,5 @@
 * [🏠 首页与双通道导读](/README.md)
-* <a href="flipbook_reader.html" target="_blank" rel="noopener" style="color: #d29922; font-weight: bold;"><i class="fa-solid fa-book-open"></i> 📖 3D 交互翻页典藏电子书</a>
+* [📄 许可协议与专利权保留声明 (LICENSE)](/LICENSE)
 
 * **🔥 一、工业破局与价值链物理学 (Industrial Breakthrough)**
   * <a href="排序耦合定律：产销协同中KPI冲突的生成机制与正交治理.pdf" target="_blank" rel="noopener">⭐ 1. 排序耦合定律 (中文 PDF · 3分钟破局入口)</a>
@@ -25,10 +25,8 @@
   * <a href="value_chain_audit_agent.html" target="_blank" rel="noopener">价值链智能体物理审计</a>
   * <a href="IPC_Video_Lectures.html" target="_blank" rel="noopener">IPC 视频讲堂</a>
 
-* **📜 四、在线专著与专题文献 (Online Monographs)**
-  * [价值链物理学全本](/value-chain-physics-book.md)
-  * [系统与复杂性科学全本 (中文)](/systems-and-complexity-science.md)
-  * [System & Complexity Science (English)](/ssrn_submissions/System_and_Complexity_Science_Full_English_Monograph.md)
+* **📜 四、专著纲领与公开专题文献 (Monograph Outlines & Technical Notes)**
+  * [四大专著统一视界纲领（目录与摘要）](/五维引擎全息架构纲领_四大专著统一视界.md)
   * [形式化数学证明附录](/Formal_Mathematical_Proofs_Appendix.md)
   * [价值链管理科学化宣言](/One_Plan_Manifesto.md)
   * [企业治理的物理宪法](/The_Physics_Constitution_of_Enterprise_Governance.md)

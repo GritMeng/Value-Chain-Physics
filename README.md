@@ -5,13 +5,14 @@
 **作者 / Author：**  
 
 **孟凡淳 (Grit Meng)**  
+价值链物理学、系统与复杂性科学独立学者 | IPC 智能计划与控制引擎缔造者  
 前联想全球供应链集成计划方案（IPS）系统负责人兼总设计师  
-IPC 智能计划与控制引擎缔造者 | 价值链物理学、系统与复杂性科学独立学者  
 
 **Grit Meng**  
+Independent Scholar in Value Chain Physics and Systems & Complexity Science | Creator of the Intelligent Planning & Control (IPC) Engine  
 Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global Supply Chain  
-Creator of the Intelligent Planning & Control (IPC) Engine | Independent Scholar in Value Chain Physics and Systems & Complexity Science  
 
+[![License](https://img.shields.io/badge/License-CC_BY_4.0_(Docs)_%7C_Non--Commercial_Eval_(Code)_%7C_No_Patent_Grant-b03a2e?style=flat-square)](LICENSE)
 [![SSRN Preprints](https://img.shields.io/badge/Elsevier_SSRN-7_Distributed_Papers-1f6feb?style=flat-square)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7640758)
 [![Complexity Proof](https://img.shields.io/badge/Time_Complexity-O(K%20%C2%B7%20N%20log%20N)%20%E2%88%88%20P-2ea043?style=flat-square)](docs/Formal%20Proof%20of%20%27Living%20Expression%27%20and%20%27Self-Consistent%20Computability%27%20in%20Open%20Complex%20Giant%20Systems.pdf)
 [![Empirical Baseline](https://img.shields.io/badge/Longitudinal_Baseline-Lenovo_IPS_(2008--2026)-d29922?style=flat-square)](docs/Value%20Chain%20Physics%20——%20Formal%20Proof%20of%20Open%20Complex%20Giant%20Systems%20and%20Full-Domain%20Computability%20Based%20on%20Non-IID%20Dynamics.pdf)
@@ -65,10 +66,9 @@ Creator of the Intelligent Planning & Control (IPC) Engine | Independent Scholar
 | 视图名称 | 展示内容与工程对应关系 | 在线访问入口 |
 | :--- | :--- | :--- |
 | **1. 3D 全息拓扑交互演示** | 五维双螺旋流形（$S = \mathcal{M}_{\text{model}} \otimes \mathcal{A}$）与百万节点抗熵动力学三维交互视图 | [打开 3D 拓扑视图 (`IPC_Governance_Showcase.html`)](https://gritmeng.github.io/Value-Chain-Physics/docs/IPC_Governance_Showcase.html) |
-| **2. 3D 交互翻页典藏电子书** | 《价值链物理学》典藏版在线翻页阅读器（支持 LaTeX 公式渲染、目录跳转与护眼模式） | [打开 3D 典藏电子书 (`flipbook_reader.html`)](https://gritmeng.github.io/Value-Chain-Physics/flipbook_reader.html) |
-| **3. IPC 架构技术审计视图** | ODM-CDM-DDM 三层数据本体、IBP-ITP-IOP-Scheduling 全链路闭环架构交互式拆解 | [打开架构审计视图 (`ipc_scheme_audit_agent.html`)](https://gritmeng.github.io/Value-Chain-Physics/docs/ipc_scheme_audit_agent.html) |
-| **4. 价值链物理审计视图** | 基于价值链物理学控制方程的企业产销死锁、时移阻尼与矢量对消废热诊断沙盘 | [打开物理审计视图 (`value_chain_audit_agent.html`)](https://gritmeng.github.io/Value-Chain-Physics/docs/value_chain_audit_agent.html) |
-| **5. 全息视频讲堂与 36 神经元脑图** | 核心公理与专利算法专题讲堂 + 36 原子神经元交互式知识图谱（点击节点直接调阅数学推导） | [打开视频讲堂与脑图 (`IPC_Video_Lectures.html`)](https://gritmeng.github.io/Value-Chain-Physics/docs/IPC_Video_Lectures.html) |
+| **2. IPC 架构技术审计视图** | ODM-CDM-DDM 三层数据本体、IBP-ITP-IOP-Scheduling 全链路闭环架构交互式拆解 | [打开架构审计视图 (`ipc_scheme_audit_agent.html`)](https://gritmeng.github.io/Value-Chain-Physics/docs/ipc_scheme_audit_agent.html) |
+| **3. 价值链物理审计视图** | 基于价值链物理学控制方程的企业产销死锁、时移阻尼与矢量对消废热诊断沙盘 | [打开物理审计视图 (`value_chain_audit_agent.html`)](https://gritmeng.github.io/Value-Chain-Physics/docs/value_chain_audit_agent.html) |
+| **4. 全息视频讲堂与 36 神经元脑图** | 核心公理与专利算法专题讲堂 + 36 原子神经元交互式知识图谱（点击节点直接调阅数学推导） | [打开视频讲堂与脑图 (`IPC_Video_Lectures.html`)](https://gritmeng.github.io/Value-Chain-Physics/docs/IPC_Video_Lectures.html) |
 
 ---
 
@@ -244,3 +244,13 @@ Creator of the Intelligent Planning & Control (IPC) Engine | Independent Scholar
   url      = {https://ssrn.com/abstract=7451920}
 }
 ```
+
+---
+
+## 📄 许可协议与专利权保留声明 (License & Patent Rights Reservation)
+
+本公网仓库严格遵循 [**LICENSE**](LICENSE) 三段式条款：
+
+1. **公网公开文档与单篇论文预印本（CC BY 4.0）**：本仓仅保留单篇学术论文预印本、专著目录/摘要及公开技术说明（待出版专著全本正文已移出公网仓，严守出版社专有出版权边界）；全仓公开文档统一采用 **CC BY 4.0** 协议，强制保留 `AUTHOR TITLE LOCK` 标准署名头衔，并依 **CC BY 4.0 Section 2(b)(2)** 明确不授予任何专利许可。
+2. **公开 C++ 压测与审计脚本（非商业学术复现与企业内部评估专用许可）**：允许高校、学者及企业技术团队在**非生产环境**下自由下载、编译、跑数验证与基准复现；严禁任何形式的生产环境部署、商业集成与转售；代码按原样（`AS IS`）提供且不含任何担保；完整商用级 IPC 引擎本体位于本仓之外。
+3. **专利权完全保留（NO PATENT LICENSE）**：作者名下 **20 项已授权及在审发明专利 100% 保留**；任何商业实施及企业生产落地均须另行签署正式书面授权协议（联系 `gritmeng@outlook.com`）。

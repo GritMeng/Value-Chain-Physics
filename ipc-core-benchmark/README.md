@@ -2,7 +2,7 @@
 
 > **轻量级、可审计、零依赖的 C++17 供应链决策微内核与百万级性能测试集**
 
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-Non--Commercial_Reproducibility_%7C_No_Patent_Grant-red.svg)](../LICENSE)
 [![C++ Standard](https://img.shields.io/badge/C%2B%2B-17-green.svg)](https://en.cppreference.com/w/cpp/17)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-orange.svg)]()
 
@@ -129,6 +129,9 @@ python verifier/cross_validator.py
 
 ---
 
-## 📄 开源协议 (License)
+## 📄 许可协议与专利权保留声明 (License & Patent Notice)
 
-本项目采用 [Apache 2.0 License](LICENSE) 协议开源。
+本目录公开的 C++ 压测与审计脚本适用仓库根目录 [**LICENSE**](../LICENSE) 第 2 条与第 3 条：
+
+- **非商业学术复现与企业内部评估专用许可**：允许高校、学者及企业技术团队在**非生产环境**下自由下载、编译、跑数验证与基准复现；严禁任何形式的生产环境部署、商业软件/SaaS 集成、付费咨询交付、转售或再授权（代码按“原样 AS IS”提供，不含任何明示或默示担保）；
+- **专利权完全保留（NO PATENT LICENSE）**：作者名下 **20 项已授权及在审发明专利 100% 保留**，本仓库任何公开脚本与文档的著作权许可均不构成任何明示或默示专利许可。商业实施及企业生产落地须另行签署正式书面授权（联系 `gritmeng@outlook.com`）。
