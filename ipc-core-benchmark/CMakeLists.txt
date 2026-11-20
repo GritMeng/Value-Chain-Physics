@@ -6,25 +6,27 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(include)
 
-# 核心统御引擎源文件库
 add_library(ipc_core_static STATIC
     src/substitution_engine.cpp
     src/atp_ctp_engine.cpp
     src/itp_iop_alignment.cpp
+    src/sandbox_operators.cpp
 )
 
-# 基准测试 1: 交付准确性
 add_executable(test_delivery_precision benchmarks/test_delivery_precision.cpp)
 target_link_libraries(test_delivery_precision PRIVATE ipc_core_static)
 
-# 基准测试 2: ITP / IOP 协同阻断
-add_executable(test_itp_iop_alignment benchmarks/test_itp_iop_alignment.cpp)
-target_link_libraries(test_itp_iop_alignment PRIVATE ipc_core_static)
-
-# 基准测试 3: 替代料分配
 add_executable(test_substitution_rules benchmarks/test_substitution_rules.cpp)
 target_link_libraries(test_substitution_rules PRIVATE ipc_core_static)
 
-# 极限性能压力测试 (200万级)
+add_executable(test_codp_positioning benchmarks/test_codp_positioning.cpp)
+target_link_libraries(test_codp_positioning PRIVATE ipc_core_static)
+
+add_executable(test_push_pull_router benchmarks/test_push_pull_router.cpp)
+target_link_libraries(test_push_pull_router PRIVATE ipc_core_static)
+
+add_executable(test_itp_iop_alignment benchmarks/test_itp_iop_alignment.cpp)
+target_link_libraries(test_itp_iop_alignment PRIVATE ipc_core_static)
+
 add_executable(stress_benchmark_2m benchmarks/stress_benchmark_2m.cpp)
 target_link_libraries(stress_benchmark_2m PRIVATE ipc_core_static)

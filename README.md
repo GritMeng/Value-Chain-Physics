@@ -18,7 +18,8 @@ Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global
 [![Empirical Baseline](https://img.shields.io/badge/Longitudinal_Baseline-Lenovo_IPS_(2008--2026)-d29922?style=flat-square)](docs/Value%20Chain%20Physics%20——%20Formal%20Proof%20of%20Open%20Complex%20Giant%20Systems%20and%20Full-Domain%20Computability%20Based%20on%20Non-IID%20Dynamics.pdf)
 [![Industrial Scale](https://img.shields.io/badge/Industrial_Scale-500K_Orders_%C2%B7_20--Level_BOM_%C2%B7_2M_Nodes_%C2%B7_%3E95%25_Closed--Loop-8957e5?style=flat-square)](https://github.com/GritMeng/Value-Chain-Physics/tree/main/ipc-core-benchmark)
 [![Invention Patents](https://img.shields.io/badge/Invention_Patents-20_Coupled_Patents_(5_Granted_%C2%B7_15_in_Exam%2FPub)-0969da?style=flat-square)](https://github.com/GritMeng/Value-Chain-Physics/tree/main/ipc-core-benchmark)
-[![Open Benchmark](https://img.shields.io/badge/Code_Verification-C%2B%2B17_Bare--Metal_Benchmark-f78166?style=flat-square)](https://github.com/GritMeng/Value-Chain-Physics/tree/main/ipc-core-benchmark)
+[![Open Benchmark](https://img.shields.io/badge/Code_Verification-C%2B%2B17_6--Suite_Benchmark-f78166?style=flat-square)](https://github.com/GritMeng/Value-Chain-Physics/tree/main/ipc-core-benchmark)
+[![Interactive Sandbox](https://img.shields.io/badge/Try_Live-Zero--Install_Web_Sandbox-b03a2e?style=flat-square)](https://gritmeng.github.io/Value-Chain-Physics/demo/)
 
 **官方门户 / Official Portal：** [https://gritmeng.github.io/Value-Chain-Physics/](https://gritmeng.github.io/Value-Chain-Physics/)  
 **联系邮箱 / Email：** gritmeng@outlook.com  
@@ -65,6 +66,7 @@ Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global
 
 | 视图名称 | 展示内容与工程对应关系 | 在线访问入口 |
 | :--- | :--- | :--- |
+| **0. IPC 无菌交互验证沙盘（免安装实测）** | 5 大可调参数无菌沙盘（排序耦合 2×3、组替代 11,000 vs 1,000、CODP 两层定位与 Φ 影子收益、零预测冲减三态路由、三类配额圆整重归一化），实时对比传统 ERP/APS vs IPC | [**打开免安装交互验证沙盘 (`demo/index.html`)**](https://gritmeng.github.io/Value-Chain-Physics/demo/) |
 | **1. 3D 全息拓扑交互演示** | 五维双螺旋流形（$S = \mathcal{M}_{\text{model}} \otimes \mathcal{A}$）与百万节点抗熵动力学三维交互视图 | [打开 3D 拓扑视图 (`IPC_Governance_Showcase.html`)](https://gritmeng.github.io/Value-Chain-Physics/docs/IPC_Governance_Showcase.html) |
 | **2. IPC 架构技术审计视图** | ODM-CDM-DDM 三层数据本体、IBP-ITP-IOP-Scheduling 全链路闭环架构交互式拆解 | [打开架构审计视图 (`ipc_scheme_audit_agent.html`)](https://gritmeng.github.io/Value-Chain-Physics/docs/ipc_scheme_audit_agent.html) |
 | **3. 价值链物理审计视图** | 基于价值链物理学控制方程的企业产销死锁、时移阻尼与矢量对消废热诊断沙盘 | [打开物理审计视图 (`value_chain_audit_agent.html`)](https://gritmeng.github.io/Value-Chain-Physics/docs/value_chain_audit_agent.html) |

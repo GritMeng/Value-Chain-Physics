@@ -20,4 +20,26 @@ jobs:
       - name: Run markdown lint
         run: markdownlint "README.md" "Overview.md" --ignore node_modules || true
       - name: Run HTML lint
-        run: htmlhint "index.html" "showcase.html" --config '{"tag-pair":true,"id-unique":true,"attr-lowercase":true}' || true
+        run: htmlhint "index.html" "demo/index.html" --config '{"tag-pair":true,"id-unique":true,"attr-lowercase":true}' || true
+
+  cpp-benchmark-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build C++17 IPC Core Open Benchmarks
+        working-directory: ipc-core-benchmark
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --parallel
+      - name: Run all 6 C++17 Verification Suites
+        working-directory: ipc-core-benchmark
+        run: |
+          ./build/test_delivery_precision
+          ./build/test_substitution_rules
+          ./build/test_codp_positioning
+          ./build/test_push_pull_router
+          ./build/test_itp_iop_alignment
+          ./build/stress_benchmark_2m
+      - name: Run Python Independent Mathematical Cross-Validator
+        working-directory: ipc-core-benchmark
+        run: python3 verifier/cross_validator.py

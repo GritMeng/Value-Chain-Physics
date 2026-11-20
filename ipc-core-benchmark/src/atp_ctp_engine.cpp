@@ -1,6 +1,5 @@
 #include "ipc_core/atp_ctp_engine.h"
 #include <algorithm>
-#include <iostream>
 
 namespace ipc_core {
 
@@ -11,8 +10,8 @@ bool reserve_atp_and_capacity_recursive(
     uint64_t priority,
     std::vector<std::vector<ATPSupplyNode>>& atp_supplies,
     std::vector<CapacityRecord>& capacity_records,
-    const std::vector<PartSiteRecord>& parts,
-    const std::vector<FlatBomItem>& boms,
+    const std::vector<SkuNodeRecord>& parts,
+    const std::vector<BomEdgeRecord>& boms,
     std::vector<ATPSupplyNode*>& temp_allocations,
     std::vector<double>& temp_alloc_qty,
     std::vector<std::pair<size_t, double>>& temp_capacity_allocations
@@ -22,7 +21,7 @@ bool reserve_atp_and_capacity_recursive(
 
     double needed = qty;
 
-    // 1. 尝试从现有库存/计划产出 (On-Hand & Scheduled Receipts) 消纳
+    // 1. 从当前及更早到货的在手/在途供应节点扣减
     if (part_id < atp_supplies.size()) {
         for (auto& node : atp_supplies[part_id]) {
             if (node.available_day <= due_day) {
@@ -41,7 +40,7 @@ bool reserve_atp_and_capacity_recursive(
         }
     }
 
-    // 2. 若库存不足，且无下级 BOM 依赖，说明无法全量满足
+    // 2. 无下级 BOM 边则说明底层叶节点缺料
     bool has_children = false;
     for (const auto& bom : boms) {
         if (bom.parent_id == part_id) {
@@ -54,16 +53,15 @@ bool reserve_atp_and_capacity_recursive(
         return needed <= 0.0;
     }
 
-    // 3. 递归向下扣减子件 BOM 与产能
+    // 3. 记录事务水位游标，递归向下预留产能与子件，失败时全树零残留回滚
     size_t saved_alloc_size = temp_allocations.size();
     size_t saved_cap_size = temp_capacity_allocations.size();
 
     const auto& part_info = parts[part_id];
     int start_day = due_day - part_info.lead_time;
-    if (start_day < 0) return false; // 超出时域
+    if (start_day < 0) return false;
 
-    // 扣减本级产能
-    double hours_needed = needed * 0.1; // 示例：单件 0.1 工时
+    double hours_needed = needed * 0.1;
     bool cap_reserved = false;
     for (size_t i = 0; i < capacity_records.size(); ++i) {
         if (capacity_records[i].day == start_day) {
@@ -79,10 +77,9 @@ bool reserve_atp_and_capacity_recursive(
 
     if (!cap_reserved) return false;
 
-    // 递归扣减子件物料
     for (const auto& bom : boms) {
         if (bom.parent_id == part_id) {
-            double child_needed = needed * bom.usage_qty;
+            double child_needed = needed * bom.unit_usage;
             bool ok = reserve_atp_and_capacity_recursive(
                 bom.child_id, start_day, child_needed, priority,
                 atp_supplies, capacity_records, parts, boms,
@@ -90,7 +87,7 @@ bool reserve_atp_and_capacity_recursive(
             );
 
             if (!ok) {
-                // 零堆内存回滚 (Zero-Heap Rollback)
+                // 全树零残留原子回滚
                 while (temp_allocations.size() > saved_alloc_size) {
                     temp_allocations.back()->allocated_qty -= temp_alloc_qty.back();
                     temp_allocations.pop_back();
@@ -116,12 +113,11 @@ ATPQueryResult promise_delivery_date(
     uint64_t priority,
     std::vector<std::vector<ATPSupplyNode>>& atp_supplies,
     std::vector<CapacityRecord>& capacity_records,
-    const std::vector<PartSiteRecord>& parts,
-    const std::vector<FlatBomItem>& boms
+    const std::vector<SkuNodeRecord>& parts,
+    const std::vector<BomEdgeRecord>& boms
 ) {
     ATPQueryResult result;
-    
-    // 尝试在请求交期 (requested_due_day) 及其后 10 天内计算最快交期
+
     for (int day = requested_due_day; day <= requested_due_day + 10; ++day) {
         std::vector<ATPSupplyNode*> temp_allocs;
         std::vector<double> temp_qtys;
@@ -142,6 +138,13 @@ ATPQueryResult promise_delivery_date(
             }
             return result;
         } else {
+            // 若部分根层库存已预留但在子层失败，确保此处无泄漏
+            for (size_t i = 0; i < temp_allocs.size(); ++i) {
+                temp_allocs[i]->allocated_qty -= temp_qtys[i];
+            }
+            for (const auto& cap_pair : temp_caps) {
+                capacity_records[cap_pair.first].allocated_hours -= cap_pair.second;
+            }
             result.rollback_steps_count++;
         }
     }

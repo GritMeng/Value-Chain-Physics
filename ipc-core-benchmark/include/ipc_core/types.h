@@ -6,74 +6,77 @@
 
 namespace ipc_core {
 
-// 物料主数据与水文基础信息
-struct PartSiteRecord {
-    uint32_t part_id;
-    std::string part_code;
-    std::string site;
+// 物料-站点广义节点 (ODM: odm_sku_node)
+struct SkuNodeRecord {
+    uint32_t part_id = 0;
+    std::string sku_code;
+    std::string site_code;
     double safety_stock = 0.0;
     double initial_on_hand = 0.0;
     double lot_size = 1.0;
     int lead_time = 0;
+    double cum_unit_cost = 0.0;
+    bool physically_storable = true;
+    bool untagged_generic = true;
 };
 
-// 单层扁平 BOM 展开结构体（用于替代料与需求向下传导）
-struct FlatBomItem {
-    uint32_t parent_id;
-    uint32_t child_id;
-    double usage_qty = 1.0;
-    uint8_t alt_class = 0;       // 0: 主料, 1: 一类替代料(按比例平摊), 2: 二类替代料(组内优先级), 3: 三类替代料(跨组动态消纳)
-    uint32_t alt_group = 0;      // 替代料组 ID
-    double target_ratio = 1.0;   // 目标配额比例
-    double historical_qty = 0.0; // 历史已累计分配量
-    double lot_size = 1.0;       // 批量倍数
+// 有向 BOM 拓扑边与替代规则 (ODM: odm_bom_edge)
+struct BomEdgeRecord {
+    uint32_t parent_id = 0;
+    uint32_t child_id = 0;
+    double unit_usage = 1.0;
+    uint8_t alt_class = 0;          // 0: 主料, 1: 一类历史比例平衡, 2: 二类稳定评级, 3: 三类跨组动态归一化
+    uint32_t sub_group_code = 0;    // 替代组编码
+    double target_ratio = 1.0;      // 目标配额份额
+    double cum_dispatched_qty = 0.0;// 历史累计已分配量
+    double lot_size = 1.0;          // 最小包装倍数 (MPQ)
 };
 
-// 独立需求 (客户订单/预测需求)
-struct IndependentDemand {
-    uint32_t demand_id;
-    uint32_t part_id;
-    int due_day;
-    double qty;
-    uint64_t priority;           // 位域编码优先级
-    std::string customer_group;  // 客户组
-    std::string region;          // 销售大区
+// 独立需求单 (ODM: odm_demand_order)
+struct DemandOrderRecord {
+    uint32_t demand_id = 0;
+    uint32_t part_id = 0;
+    int due_day = 0;
+    double qty = 0.0;
+    uint64_t priority = 1;          // 数值越小优先级越高
+    std::string customer_group;
+    std::string region;
 };
 
-// 资源/工作中心能力约束记录
+// 工作中心日产能记录 (ODM: odm_workcenter_capacity)
 struct CapacityRecord {
     std::string work_center;
-    int day;
-    double capacity_hours;
+    int day = 0;
+    double capacity_hours = 0.0;
     double allocated_hours = 0.0;
 };
 
-// 可承诺量 (ATP) 节点
+// 供给水位节点 (ODM: odm_stock_onhand / odm_intransit_supply)
 struct ATPSupplyNode {
     std::string supply_code;
-    std::string supply_type;     // "On-Hand", "SR", "Planned-Order"
-    uint32_t part_id;
-    int available_day;
-    double qty;
+    std::string supply_type;        // "On-Hand", "Intransit_PO", "Planned_Order"
+    uint32_t part_id = 0;
+    int available_day = 0;
+    double qty = 0.0;
     double allocated_qty = 0.0;
     uint64_t priority = 99999ULL;
 };
 
-// 主计划配额键 (用于 ITP 防波堤 vs IOP 刚性阻断)
-struct AllotmentConstraintKey {
-    int day;
-    uint32_t family_id;
-    uint32_t cust_group_id;
-    uint32_t region_id;
+// 配额防波堤键 (CDM: cdm_quota_firewall)
+struct QuotaFirewallKey {
+    int day = 0;
+    uint32_t family_id = 0;
+    uint32_t cust_group_id = 0;
+    uint32_t region_id = 0;
 
-    bool operator==(const AllotmentConstraintKey& o) const {
+    bool operator==(const QuotaFirewallKey& o) const {
         return day == o.day && family_id == o.family_id &&
                cust_group_id == o.cust_group_id && region_id == o.region_id;
     }
 };
 
-struct AllotmentConstraintKeyHash {
-    size_t operator()(const AllotmentConstraintKey& k) const {
+struct QuotaFirewallKeyHash {
+    size_t operator()(const QuotaFirewallKey& k) const {
         size_t h1 = std::hash<int>()(k.day);
         size_t h2 = std::hash<uint32_t>()(k.family_id);
         size_t h3 = std::hash<uint32_t>()(k.cust_group_id);
@@ -82,29 +85,29 @@ struct AllotmentConstraintKeyHash {
     }
 };
 
-// 配额状态（ITP 分配下沉至 IOP 执行）
-struct AllotmentState {
-    double total_quota = 0.0;    // ITP 主计划给出的最大防波堤配额
-    double consumed_qty = 0.0;   // IOP 执行计划已消耗配额
+// 配额防波堤状态 (DDM: ddm_quota_valve_ledger)
+struct QuotaFirewallState {
+    double total_quota = 0.0;
+    double consumed_qty = 0.0;
 };
 
-// 替代料分配结果记录
-struct AlternateAllocationRecord {
-    uint32_t day;
-    uint32_t parent_part_id;
-    uint32_t alt_part_id;
-    double allocated_qty;
-    int day_allocated;
-    uint8_t alt_class;
+// 替代分派账本记录 (DDM: ddm_sub_dispatch_ledger)
+struct SubDispatchRecord {
+    uint32_t day = 0;
+    uint32_t parent_part_id = 0;
+    uint32_t alt_part_id = 0;
+    double allocated_qty = 0.0;
+    int day_allocated = 0;
+    uint8_t alt_class = 0;
 };
 
-// 计划订单
-struct PlannedOrder {
-    uint32_t order_id;
-    uint32_t part_id;
-    int start_day;
-    int due_day;
-    double qty;
+// 计划补货单 (DDM: ddm_replenish_plan)
+struct ReplenishPlanRecord {
+    uint32_t order_id = 0;
+    uint32_t part_id = 0;
+    int start_day = 0;
+    int due_day = 0;
+    double qty = 0.0;
     bool is_scheduled = false;
     double allocated_capacity = 0.0;
 };

@@ -1,95 +1,56 @@
-# IPC Core Engine 决策质量数学规范白皮书 (Mathematical Specification)
+# IPC Core Open Benchmarks v2.0 数学规范 (Mathematical Specification)
 
-本规范阐述开源统御引擎在交付承诺 (ATP/CTP)、主计划与执行计划协同 (ITP/IOP Alignment) 及替代料动态决策 (Material Substitution) 中的数学推导与边界法则。
-
----
-
-## 1. 交付可承诺 (ATP / CTP) 与零堆栈回滚算法
-
-### 1.1 可承诺交付日计算模型
-
-对于独立需求 \(D(p, t_{due}, Q)\)（其中 \(p\) 为目标物料，\(t_{due}\) 为期望交期，\(Q\) 为数量），IPC 引擎寻找满足约束的最小交期 \(t^* \ge t_{due}\)：
-
-\[
-t^* = \min \left\{ t \;\middle|\; S_{avail}(p, t) + C_{avail}(p, t - L_p) \ge Q \right\}
-\]
-
-其中：
-- \(S_{avail}(p, t)\) 为 \(t\) 日及之前可用的现存量与已计划产出。
-- \(L_p\) 为物料 \(p\) 的生产/采购提前期 (Lead Time)。
-- \(C_{avail}\) 为对应瓶颈工作中心的剩余可用工时能力。
-
-### 1.2 零堆内存回滚机制 (Zero-Heap Rollback)
-
-在递归遍历多层 BOM 深度优先搜索（DFS）时，若第 \(k\) 层子件预留失败，引擎必须在 \(\mathcal{O}(1)\) 时间复杂度内复原先前的资源预留，避免在堆内存中动态分配/释放临时对象（Zero-Heap Allocation）。
-
-回滚操作定义为：
-\[
-\text{AllocatedQty}(Node) \leftarrow \text{AllocatedQty}(Node) - \Delta Q_{temp}
-\]
-\[
-\text{CapacityHours}(Wc) \leftarrow \text{CapacityHours}(Wc) - \Delta H_{temp}
-\]
+本规范给出公开无菌验证套件（`ipc-core-benchmark` v2.0）所覆盖的六大供应链决策机理的形式化定义与对账方程。所有算子均采用洁净室原生三态命名（`SkuNodeRecord` / `BomEdgeRecord` / `DemandOrderRecord` / `QuotaFirewallKey`），不含任何商业引擎底层内存实现细节。
 
 ---
 
-## 2. 主计划 (ITP) 与执行计划 (IOP) 协同阻断模型
+## 1. 《排序耦合定律》最小完备反例与两阶段正交解耦
 
-### 2.1 战术防波堤配额生成 (ITP Buffer Generation)
-
-ITP 主计划根据软约束缓冲区系数 \(\gamma \ge 1.0\) 生成宏观配额防波堤：
-
-\[
-\mathcal{A}(Key) = \gamma \cdot \sum_{i \in \text{MasterDemands}(Key)} Q_i
-\]
-
-其中约束键包含四维空间与时序标记：
-\[
-Key = \langle t, \text{FamilyID}, \text{CustGroupID}, \text{RegionID} \rangle
-\]
-
-### 2.2 执行计划刚性阻断校验 (IOP Rigid Quota Enforcement)
-
-车间执行计划在微观排产时，必须严格受限于主计划下发的授权配额：
-
-\[
-\sum_{j \le k} Q_j^{IOP} \le \mathcal{A}(Key)
-\]
-
-当第 \(k\) 条执行需求突破配额上限（\(\sum > \mathcal{A}(Key)\)）时，引擎执行**强行拦截阻断 (Hard Blocking)**，防止车间越权抢料导致整体战略目标漂移。
+在 100% 预测准确、100% 主数据完备条件下，高优订单 $D_1$（需 $M_1(t=4) + M_2$）与常规订单 $D_2$（需 $M_2 + M_3(t=2)$）共享通用件 $M_2$（在手现货 $t=1$，在途 $t=3$）：
+- **传统静态优先级排他锁库**：$D_1$ 锁走 $M_2(t=1)$ 闲置等待 $M_1(t=4)$，导致 $D_2$ 被迫延期至 $t=3$（无故延期 1 天、现货闲置锁死 3 天）；
+- **两阶段正交解耦**：先计算物理齐套下界 $T_{\min}(D_2) = 2 < T_{\min}(D_1) = 4$，在不损伤 $D_1$ 交期的前提下执行逆拉晚绑定，使 $D_2$ 于 $t=2$、$D_1$ 于 $t=4$ 双双准时交付。
+- **全树零残留原子回滚**：多阶 BOM 深度优先预留遇叶节点缺料时，按水位游标复原所有暂态物料与产能占用，确保失败查询零残留。
 
 ---
 
-## 3. 替代料三级决策与动态归一化模型
+## 2. 成套组替代沉没长板激活（11,000 vs. 1,000）
 
-### 3.1 一类替代料：历史配额比例平衡 (Quota Balance)
+设主替代组 $G_1$ 持有高价值长板沉没库存 $V_{\text{sunk}} = 11{,}000$、缺短板小料（定向拉快成本 $C_{\text{exp}} = 1{,}000$），新替代组 $G_2$ 整套新购成本 $C_{\text{new}} = 12{,}000$：
+- 传统 MRP 跳过短板组直采 $G_2$，现金流出 $12{,}000$ 且报废长板 $11{,}000$（总经济成本 $23{,}000$）；
+- IPC 按增量新购现金流裁决：因 $C_{\text{exp}} < C_{\text{new}}$，定向拉快短板激活长板，仅支出 $1{,}000$ 且报废为 $0$，单套净节省 $22{,}000$。
 
-针对替代料集合 \(\{i \in Group\}\)，目标为最小化历史分配量与目标比例的偏差：
+---
 
-\[
-i^* = \arg\max_{i} \left| Q_i^{hist} - \left( \sum Q^{hist} + Q_{net} \right) \cdot \theta_i \right|
-\]
-其中 \(\theta_i\) 为目标配额比例。
+## 3. 多源配额平衡与最小包装倍数（MPQ）动态重归一化
 
-### 3.2 二类替代料：组内固定优先级 (Priority Hierarchy)
+对目标比例为 $\theta_i$、最小包装倍数为 $L_i$ 的候选供应商集合，按当前剩余净需求 $R$ 逐轮选出应分配量 $Q_i^{\text{due}} = \theta_i^{\text{cur}} \cdot R$ 最大者执行向上圆整 $Q_i^{\text{act}} = \lceil Q_i^{\text{due}} / L_i \rceil \cdot L_i$ 并受限于可用现货与剩余净需求；每轮结束后对剩余候选人按未分配应分份额重归一化：
 
-\[
-i^* = \arg\min_{i} \left( \frac{Q_i^{hist}}{\max(\theta_i, \epsilon)} \right)
-\]
+$$\theta_j^{\text{next}} = \frac{Q_j^{\text{due}}}{\sum_{k \in \text{Active}} Q_k^{\text{due}}}$$
 
-### 3.3 三类替代料：跨组动态归一化与水位消纳 (Dynamic Bucket Consumption)
+在 `1,000` 颗需求、比例 `50%:30%:20%`、包装倍数 `300` 下精确守恒收敛为 `600 + 300 + 100 = 1,000`。
 
-当主物料存在净需求 \(Q_{net}\) 时，剩余替代料按当前剩余应分配量进行归一化计算：
+---
 
-\[
-\theta_i^{current} = \frac{Q_i^{due}}{\sum_{j \in Active} Q_j^{due}}
-\]
+## 4. 推拉解耦点（CODP）两层非补偿定位与二阶修宪 $\Phi$ 影子收益
 
-每次选优扣减量受限于实际批量倍数 \(\text{Lot}_i\) 与安全库存保护带 \(\text{SS}_i\)：
+1. **一阶界内定位（三道非补偿硬门控）**：
+   - **门控一（时间因果硬界）**：$L_{\text{down}}(v) \le D_{\text{tol}}$（违背者一票淘汰，统一收敛 ETO/MTO/ATO/CTO/MTS）；
+   - **门控二（物理可存与未固化差异）**：须具备存储条件且未打上不可逆客户/国别标签；
+   - **门控三（沙漏腰部减熵割集）**：同等交付承诺 $S_{\text{FG}}$ 下，向高扇出度 $K$ 沙漏腰部收敛时，汇聚标准差按 $\sigma_{\text{pool}} = \sqrt{K}\sigma$ 收缩（变异系数降为 $1/\sqrt{K}$）、累计单件成本与跨国 E&O 同步下降。
+2. **二阶修宪（$\Phi$ 移点影子收益）**：当旧工艺提前固化国别差异迫使 CODP 退化至成品层时，量化输出移点释放的常态安全库存资金 $\Lambda_{\text{CODP}} = J^*(\mathcal{C}_k) - J^*(\mathcal{C}_{k+1})$（3 层 6 节点标准算例中为 `¥512,000 - ¥192,000 = ¥320,000`），驱动研发 DFSC 延迟差异化。
 
-\[
-Q_i^{actual} = \left\lceil \frac{Q_i^{current} \cdot Q_{net}}{\text{Lot}_i} \right\rceil \cdot \text{Lot}_i
-\]
-\[
-Q_i^{consumed} = \min \left( Q_i^{actual}, \;\max(0, \text{OnHand}_i - \text{SS}_i), \; Q_{net} \right)
-\]
+---
+
+## 5. 零预测冲减：推式防独占日切割与拉式超额三态路由
+
+- **推式段（零预测冲减）**：周度需求在供应上限下按比例切分有效配额（欠账自动顺延至下周首日），再按各工作日有效产能比例切割到天，杜绝单一渠道在首日独吞全天产能；
+- **拉式段（越界窗口三态路由）**：实单在当周配额桶内静默兑现（新增 `MRP = 0`）；产生超额 $\Delta O > 0$ 时按月包络线 $E_{\text{month}}$ 与采购提前期 $L_{\text{proc}}$ 自动分流：
+  - `Mode A`（月累计 $\le E_{\text{month}}$）：节奏前移，扣减下周配额 $\Delta O$，新增 `MRP = 0`；
+  - `Mode B`（月累计 $> E_{\text{month}}$ 且剩余交期 $\ge L_{\text{proc}}$）：锁死下周配额，直发增量 `MRP = +\Delta O`；
+  - `Mode C`（月累计 $> E_{\text{month}}$ 且剩余交期 $< L_{\text{proc}}$）：从下周配额现货借调 $\Delta O$ 救急并同步注入回填 `MRP = +\Delta O`。
+
+---
+
+## 6. ITP / IOP 刚性配额防波堤协同
+
+ITP 主计划按四维键 $K = \langle t, \text{Family}, \text{CustGroup}, \text{Region} \rangle$ 生成防波堤上限 $\mathcal{A}(K) = \gamma \sum Q^{\text{ITP}}$；IOP 执行层按优先级逐单核验并刚性拦截越界抢料订单，彻底防止车间执行漂移。

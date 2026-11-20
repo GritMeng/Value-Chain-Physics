@@ -5,27 +5,27 @@
 
 namespace ipc_core {
 
-// 一类替代料：按历史配额比例平摊分配 (Quota Balance)
+// Class 1: 历史累计配额比例追平
 uint32_t allocate_class1(
     double net_demand,
-    std::vector<FlatBomItem*>& group_items,
+    std::vector<BomEdgeRecord*>& group_items,
     std::vector<double>& current_on_hand
 );
 
-// 二类替代料：组内固定优先级选优 (Priority Hierarchy)
+// Class 2: 稳定评级选优
 uint32_t allocate_class2(
-    std::vector<FlatBomItem*>& group_items
+    std::vector<BomEdgeRecord*>& group_items
 );
 
-// 三类替代料：跨组动态归一化与水位消纳 (Dynamic Normalization & Bucket Consumption)
+// Class 3: 跨组动态配额重归一化、最小包装倍数圆整与安全库存保护
 void allocate_class3(
     double net_demand,
-    std::vector<FlatBomItem*>& group_items,
+    std::vector<BomEdgeRecord*>& group_items,
     std::vector<double>& current_on_hand,
     int day,
     uint32_t part_id,
-    std::vector<AlternateAllocationRecord>& out_alt_records,
-    const std::vector<PartSiteRecord>& parts
+    std::vector<SubDispatchRecord>& out_alt_records,
+    const std::vector<SkuNodeRecord>& parts
 );
 
 } // namespace ipc_core

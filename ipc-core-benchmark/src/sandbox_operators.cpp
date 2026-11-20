@@ -1,0 +1,197 @@
+#include "ipc_core/sandbox_operators.h"
+#include <algorithm>
+#include <cmath>
+
+namespace ipc_core {
+
+// =========================================================================
+// 1. 排序耦合定律最小完备反例 (2 Demands x 3 Materials x 4 Periods)
+// =========================================================================
+SequencingCouplingResult
+evaluate_sequencing_coupling_2x3(const SequencingCouplingInput &in) {
+  SequencingCouplingResult r;
+
+  // 传统静态优先级排他锁库：D1 (高优) 先锁走最早通用件 M2@oh_day，却必须干等到
+  // M1 到货
+  int trad_d1_m2 = std::min(in.m2_oh_day, in.m2_po_day);
+  int trad_d2_m2 = std::max(in.m2_oh_day, in.m2_po_day);
+  r.trad_d1_finish_day = std::max(in.m1_avail_day, trad_d1_m2);
+  r.trad_d2_finish_day = std::max(in.m3_avail_day, trad_d2_m2);
+  r.trad_d2_delay_days = std::max(0, r.trad_d2_finish_day - in.d2_req_day);
+  r.trad_m2_idle_lock_days = std::max(0, r.trad_d1_finish_day - trad_d1_m2);
+
+  // IPC 两阶段正交解耦：
+  // Stage 1: 计算各单物理齐套下界 T_min(D1)=max(m1, m2_oh), T_min(D2)=max(m3,
+  // m2_oh) Stage 2: 按物理齐套下界/晚绑定分配，不损害 D1
+  // 交期的前提下优先把早期现货给早齐套单
+  int d1_earliest = std::max(in.m1_avail_day, trad_d1_m2);
+  int d2_earliest = std::max(in.m3_avail_day, trad_d1_m2);
+
+  if (d2_earliest < d1_earliest && trad_d2_m2 <= d1_earliest) {
+    // D2 绑定早期现货 M2@oh_day，D1 晚绑定在途 M2@po_day（D1 完工日完全不受损）
+    r.ipc_d2_finish_day = std::max(in.m3_avail_day, trad_d1_m2);
+    r.ipc_d1_finish_day = std::max(in.m1_avail_day, trad_d2_m2);
+    r.ipc_m2_idle_lock_days = std::max(0, r.ipc_d2_finish_day - trad_d1_m2);
+  } else {
+    r.ipc_d1_finish_day = r.trad_d1_finish_day;
+    r.ipc_d2_finish_day = r.trad_d2_finish_day;
+    r.ipc_m2_idle_lock_days = r.trad_m2_idle_lock_days;
+  }
+  r.ipc_d2_delay_days = std::max(0, r.ipc_d2_finish_day - in.d2_req_day);
+  return r;
+}
+
+// =========================================================================
+// 2. 成套组替代沉没长板激活模型 (11,000 vs 1,000)
+// =========================================================================
+GroupSubResult evaluate_group_substitution_sunk_cost(const GroupSubInput &in) {
+  GroupSubResult r;
+  // 传统按静态单件齐套跳过短板组 G1，直接采购全新替代组 G2，并将 G1
+  // 长板闲置报废
+  r.trad_new_cash_out = in.g2_full_new_cost;
+  r.trad_scrap_loss = in.g1_main_sunk_value;
+  r.trad_total_economic_cost = r.trad_new_cash_out + r.trad_scrap_loss;
+
+  // IPC 增量新购现金流裁决（Incremental New Cost）：比较定向拉快短板成本 vs
+  // 重买新组成本
+  if (in.g1_minor_expedite_cost < in.g2_full_new_cost) {
+    r.ipc_new_cash_out = in.g1_minor_expedite_cost;
+    r.ipc_scrap_loss = 0.0;
+    r.decision_code = "ACTIVATE_SUNK_G1_BY_EXPEDITING_MINOR_PART";
+  } else {
+    r.ipc_new_cash_out = in.g2_full_new_cost;
+    r.ipc_scrap_loss = in.g1_main_sunk_value;
+    r.decision_code = "SWITCH_TO_G2_NEW_SET";
+  }
+  r.ipc_total_economic_cost = r.ipc_new_cash_out + r.ipc_scrap_loss;
+  r.net_economic_savings =
+      r.trad_total_economic_cost - r.ipc_total_economic_cost;
+  return r;
+}
+
+// =========================================================================
+// 3. 推拉解耦点 (CODP) 两层非补偿定位与二阶 Φ 影子收益模型
+// =========================================================================
+CodpPositioningResult
+evaluate_codp_two_layer_positioning(const CodpPositioningInput &in) {
+  CodpPositioningResult r;
+
+  // 门控一（时间因果硬界）：L_down(v) <= D_tol
+  int l_down_chip = in.bare_mfg_lt + in.pack_lt;
+  int l_down_bare = in.pack_lt;
+  r.chip_passes_gate1 = (l_down_chip <= in.customer_dtol);
+  r.bare_passes_gate1 = (l_down_bare <= in.customer_dtol);
+
+  // 门控二（物理可存与未固化不可逆差异化）
+  r.bare_passes_gate2 = r.bare_passes_gate1 && (!in.legacy_early_engraving);
+
+  // 门控三（同交付 SLA 下，升级版 GSM 净补货期安全库存对比）
+  double tau_fg_plan_a = static_cast<double>(
+      std::max(0, in.bare_mfg_lt + in.pack_lt - in.committed_sla));
+  double single_fg_ss =
+      in.z_score * in.country_daily_sigma * std::sqrt(tau_fg_plan_a);
+  r.plan_a_fg_ss_units = in.num_countries * single_fg_ss;
+  r.plan_a_fg_capital = r.plan_a_fg_ss_units * in.fg_unit_cost;
+
+  double tau_bare_plan_b = static_cast<double>(std::max(0, in.bare_mfg_lt));
+  double pooled_sigma =
+      std::sqrt(static_cast<double>(in.num_countries)) * in.country_daily_sigma;
+  r.plan_b_bare_ss_units =
+      in.z_score * pooled_sigma * std::sqrt(tau_bare_plan_b);
+  r.plan_b_bare_capital = r.plan_b_bare_ss_units * in.bare_unit_cost;
+
+  r.unit_reduction_pct = r.plan_a_fg_ss_units > 0.0
+                             ? (r.plan_a_fg_ss_units - r.plan_b_bare_ss_units) /
+                                   r.plan_a_fg_ss_units * 100.0
+                             : 0.0;
+  r.capital_reduction_pct =
+      r.plan_a_fg_capital > 0.0
+          ? (r.plan_a_fg_capital - r.plan_b_bare_capital) /
+                r.plan_a_fg_capital * 100.0
+          : 0.0;
+
+  // 二阶修宪 Φ：移点影子收益
+  r.phi_shadow_value_capital =
+      std::max(0.0, r.plan_a_fg_capital - r.plan_b_bare_capital);
+
+  if (r.bare_passes_gate2 && r.plan_b_bare_capital < r.plan_a_fg_capital) {
+    r.chosen_codp_node = "SEMI_BARE (Sandglass Waist · codp_decoupling_flag=1)";
+  } else {
+    r.chosen_codp_node =
+        "FG_COUNTRY_POOL (MTS Fallback · Trigger Phi Amendment #122)";
+  }
+  return r;
+}
+
+// =========================================================================
+// 4. 零预测冲减：推式防独占日切割 + 拉式超额 Mode A/B/C 三态路由
+// =========================================================================
+PushSliceResult
+evaluate_push_anti_monopoly_slice(double w1_demand_a, double w1_demand_b,
+                                  double w1_supply_cap,
+                                  const std::vector<double> &daily_caps) {
+  PushSliceResult r;
+  double total_dem = w1_demand_a + w1_demand_b;
+  double share_a = total_dem > 0.0 ? (w1_demand_a / total_dem) : 0.5;
+  double share_b = 1.0 - share_a;
+
+  double w1_effective = std::min(total_dem, w1_supply_cap);
+  r.w1_alloc_a = w1_effective * share_a;
+  r.w1_alloc_b = w1_effective * share_b;
+  r.w1_rollover_a = std::max(0.0, w1_demand_a - r.w1_alloc_a);
+  r.w1_rollover_b = std::max(0.0, w1_demand_b - r.w1_alloc_b);
+
+  double total_daily_cap = 0.0;
+  for (double c : daily_caps)
+    total_daily_cap += c;
+
+  for (double c : daily_caps) {
+    double weight = total_daily_cap > 0.0
+                        ? (c / total_daily_cap)
+                        : (1.0 / std::max<size_t>(1, daily_caps.size()));
+    r.daily_a.push_back(r.w1_alloc_a * weight);
+    r.daily_b.push_back(r.w1_alloc_b * weight);
+  }
+  return r;
+}
+
+PullRouterResult evaluate_pull_overflow_router(
+    double w1_actual_order, double w1_alloc_bucket, double monthly_cum_orders,
+    double monthly_envelope_cap, int days_to_due, int procure_lt_days) {
+  PullRouterResult r;
+  r.overflow_qty = std::max(0.0, w1_actual_order - w1_alloc_bucket);
+
+  if (r.overflow_qty <= 1e-9) {
+    r.mode = PullOverflowMode::IN_BUCKET_SILENT;
+    r.mode_name = "IN_BUCKET_SILENT_CONSUME";
+    r.w2_quota_deducted = 0.0;
+    r.incremental_mrp_qty = 0.0;
+    return r;
+  }
+
+  // 规则 1：全月累计实单仍在月度包络线内 -> 节奏前移 (Mode
+  // A)，吃下周配额，零新增 MRP
+  if (monthly_cum_orders <= monthly_envelope_cap + 1e-9) {
+    r.mode = PullOverflowMode::MODE_A_ADVANCE_PULL_ZERO_MRP;
+    r.mode_name = "MODE_A_CONSUME_NEXT_BUCKET_ONLY";
+    r.w2_quota_deducted = r.overflow_qty;
+    r.incremental_mrp_qty = 0.0;
+    return r;
+  }
+
+  // 规则 2：突破月度总包络线 -> 真需求增量，对比剩余交期与采购提前期
+  if (days_to_due >= procure_lt_days) {
+    r.mode = PullOverflowMode::MODE_B_TRUE_INCREMENT_DIRECT_MRP;
+    r.mode_name = "MODE_B_TRIGGER_MRP_DIRECT";
+    r.w2_quota_deducted = 0.0;
+    r.incremental_mrp_qty = r.overflow_qty;
+  } else {
+    r.mode = PullOverflowMode::MODE_C_URGENT_BORROW_AND_BACKFILL;
+    r.mode_name = "MODE_C_BORROW_W2_AND_MRP_BACKFILL";
+    r.w2_quota_deducted = r.overflow_qty;
+    r.incremental_mrp_qty = r.overflow_qty;
+  }
+  return r;
+}
+
+} // namespace ipc_core

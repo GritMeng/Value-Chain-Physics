@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IPC 无菌交互验证沙盘 | Value Chain Physics &amp; One Plan Interactive Sandbox</title>
+  <style>
+    :root {
+      --paper: #F4F1EA;
+      --card: #FFFFFF;
+      --tint: #FAF8F4;
+      --border: #D8D3C8;
+      --ink: #111111;
+      --muted: #555555;
+      --slate: #2C3E50;
+      --red: #B03A2E;
+      --red-tint: #FDF2F0;
+      --green: #1E6B47;
+      --green-tint: #EFF8F3;
+      --amber: #9A5B13;
+      --amber-tint: #FEF8EE;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Microsoft YaHei", "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 20px 56px;
+    }
+    .top-rule {
+      width: 72px;
+      height: 4px;
+      background: var(--red);
+      border-radius: 2px;
+      margin-bottom: 14px;
+    }
+    header {
+      border-bottom: 1.5px solid var(--border);
+      padding-bottom: 18px;
+      margin-bottom: 22px;
+    }
+    .header-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .subtitle {
+      margin: 0;
+      font-size: 14.5px;
+      color: var(--muted);
+    }
+    .badge-link {
+      display: inline-block;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1.4px solid var(--red);
+      background: var(--red-tint);
+      color: var(--red);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .badge-link:hover { background: var(--red); color: #FFFFFF; }
+    .notice {
+      background: var(--tint);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--slate);
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-size: 13.5px;
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+    .notice strong { color: var(--ink); }
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .tab-btn {
+      border: 1.4px solid var(--border);
+      background: var(--card);
+      color: var(--ink);
+      padding: 10px 16px;
+      border-radius: 7px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .tab-btn:hover { border-color: var(--slate); }
+    .tab-btn.active {
+      background: var(--slate);
+      color: #FFFFFF;
+      border-color: var(--slate);
+    }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .card {
+      background: var(--card);
+      border: 1.2px solid var(--border);
+      border-radius: 9px;
+      padding: 20px 22px;
+      margin-bottom: 18px;
+    }
+    .card-red {
+      border-color: var(--red);
+      background: var(--red-tint);
+    }
+    .card-green {
+      border-color: #9CCCB2;
+      background: var(--green-tint);
+    }
+    .panel-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .panel-head h2 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--ink);
+    }
+    .btn-sm {
+      border: 1px solid var(--border);
+      background: var(--tint);
+      color: var(--ink);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-sm:hover { border-color: var(--red); color: var(--red); }
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+      padding: 14px 16px;
+      background: var(--tint);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .ctrl label {
+      display: block;
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+    .ctrl input[type="number"], .ctrl select {
+      width: 100%;
+      padding: 7px 10px;
+      border: 1.2px solid var(--border);
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      background: #FFFFFF;
+      color: var(--ink);
+    }
+    .ctrl-check {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-top: 20px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--red);
+      cursor: pointer;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .kpi-box {
+      border: 1.2px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 18px;
+      background: #FFFFFF;
+    }
+    .kpi-box.bad { border-left: 5px solid var(--red); background: var(--red-tint); }
+    .kpi-box.good { border-left: 5px solid var(--green); background: var(--green-tint); }
+    .kpi-box h3 {
+      margin: 0 0 10px;
+      font-size: 15.5px;
+    }
+    .kpi-box.bad h3 { color: var(--red); }
+    .kpi-box.good h3 { color: var(--green); }
+    .metric {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.12);
+      padding: 6px 0;
+      font-size: 14px;
+    }
+    .metric:last-child { border-bottom: none; }
+    .metric strong { font-size: 15px; }
+    .pill {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-right: 6px;
+    }
+    .pill-pass { background: var(--green-tint); color: var(--green); border: 1px solid #9CCCB2; }
+    .pill-fail { background: var(--red-tint); color: var(--red); border: 1px solid #E5A9A2; }
+    .pill-info { background: var(--amber-tint); color: var(--amber); border: 1px solid #E7C996; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      margin-top: 8px;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      text-align: center;
+    }
+    th {
+      background: var(--slate);
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+    tr:nth-child(even) td { background: var(--tint); }
+    .svg-box {
+      width: 100%;
+      overflow-x: auto;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+    }
+    .verdict-bar {
+      padding: 13px 16px;
+      border-radius: 7px;
+      background: var(--slate);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 12px;
+    }
+    .preset-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    footer {
+      margin-top: 34px;
+      padding-top: 18px;
+      border-top: 1.5px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    footer strong { color: var(--ink); }
+    footer a { color: var(--red); text-decoration: none; font-weight: 600; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="top-rule"></div>
+      <div class="header-row">
+        <div>
+          <h1>IPC 决策机理无菌交互验证沙盘</h1>
+          <p class="subtitle">零安装 · 纯静态脱敏计算 · 与本仓 C++17 开源微内核及 Python 审计脚本 100% 数学同构</p>
+        </div>
+        <div>
+          <a class="badge-link" href="../ipc-core-benchmark/">下载 C++17 开源压测源码 ➔</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="notice">
+      <strong>如何使用：</strong>在下方 5 个无菌沙盘中任意修改库存、交期、成本、配额或工艺参数，页面将实时对比<strong>传统 ERP/APS 规则</strong>与<strong>IPC 正交解耦算法</strong>的精确数值差异。本页仅展示公开论文与无菌最小模型的数学机理，不含任何商业级引擎源码或企业隐私数据。
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" onclick="switchTab(0)">1. 排序耦合定律 (2单×3料)</button>
+      <button class="tab-btn" onclick="switchTab(1)">2. 组替代盘活 (11,000 vs 1,000)</button>
+      <button class="tab-btn" onclick="switchTab(2)">3. CODP 两层定位与 Φ 影子收益</button>
+      <button class="tab-btn" onclick="switchTab(3)">4. 零预测冲减推拉三态路由</button>
+      <button class="tab-btn" onclick="switchTab(4)">5. 多源配额与包装圆整重归一化</button>
+    </div>
+
+    <!-- ================= TAB 1: SEQUENCING COUPLING ================= -->
+    <section id="tab-0" class="panel active">
+      <div class="card">
+        <div class="panel-head">
+          <h2>沙盘 1：《排序耦合定律》最小完备反例（2 需求 × 3 物料 × 4 周期）</h2>
+          <button class="btn-sm" onclick="resetT1()">恢复论文标准算例 (SSRN 7640758)</button>
+        </div>
+        <p class="subtitle" style="margin-bottom:14px;">假设预测 100% 准确、主数据 100% 干净：高优订单 D1 需专用件 M1 + 通用件 M2；普通订单 D2 需通用件 M2 + 专用件 M3。调整各物料到达时间，观察静态优先级锁库如何必然造出“双输死锁”。</p>
+        <div class="controls">
+          <div class="ctrl"><label>D1 (高优) 客户要求日</label><input id="t1_d1req" type="number" min="1" max="10" value="4" oninput="calcT1()" /></div>
+          <div class="ctrl"><label>D2 (常规) 客户要求日</label><input id="t1_d2req" type="number" min="1" max="10" value="2" oninput="calcT1()" /></div>
+          <div class="ctrl"><label>M1 (D1 专用件) 到货日</label><input id="t1_m1" type="number" min="1" max="10" value="4" oninput="calcT1()" /></div>
+          <div class="ctrl"><label>M3 (D2 专用件) 到货日</label><input id="t1_m3" type="number" min="1" max="10" value="2" oninput="calcT1()" /></div>
+          <div class="ctrl"><label>M2 (通用件) 现货可用日</label><input id="t1_m2oh" type="number" min="1" max="10" value="1" oninput="calcT1()" /></div>
+          <div class="ctrl"><label>M2 (通用件) 在途到货日</label><input id="t1_m2po" type="number" min="1" max="10" value="3" oninput="calcT1()" /></div>
+        </div>
+        <div class="grid-2" id="t1_cards"></div>
+        <div class="svg-box" id="t1_svg"></div>
+        <div class="verdict-bar" id="t1_verdict"></div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 2: GROUP SUBSTITUTION ================= -->
+    <section id="tab-1" class="panel">
+      <div class="card">
+        <div class="panel-head">
+          <h2>沙盘 2：成套组替代沉没长板激活（11,000 元长板 vs. 1,000 元短板拉快）</h2>
+          <button class="btn-sm" onclick="resetT2()">恢复标准算例</button>
+        </div>
+        <p class="subtitle" style="margin-bottom:14px;">替代组 G1 已持有高价值长板主芯片 A1（在手沉没库存），仅缺配套小料 B1（在途可定向拉快）；新替代组 G2 无现货需整套新购。对比传统单件齐套与 IPC 增量新购现金流裁决。</p>
+        <div class="controls">
+          <div class="ctrl"><label>G1 长板主件 A1 沉没价值 (¥)</label><input id="t2_sunk" type="number" min="0" step="500" value="11000" oninput="calcT2()" /></div>
+          <div class="ctrl"><label>G1 短板小料 B1 拉快/补购费 (¥)</label><input id="t2_exp" type="number" min="0" step="200" value="1000" oninput="calcT2()" /></div>
+          <div class="ctrl"><label>G2 全新替代组整套采购价 (¥)</label><input id="t2_new" type="number" min="0" step="500" value="12000" oninput="calcT2()" /></div>
+          <div class="ctrl"><label>需求成套数量 (套)</label><input id="t2_qty" type="number" min="1" step="10" value="100" oninput="calcT2()" /></div>
+        </div>
+        <div class="grid-2" id="t2_cards"></div>
+        <div class="svg-box" id="t2_svg"></div>
+        <div class="verdict-bar" id="t2_verdict"></div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 3: CODP POSITIONING ================= -->
+    <section id="tab-2" class="panel">
+      <div class="card">
+        <div class="panel-head">
+          <h2>沙盘 3：推拉解耦点（CODP）两层非补偿定位与二阶修宪 Φ 影子收益</h2>
+          <button class="btn-sm" onclick="resetT3()">恢复 3 层 6 节点标准算例</button>
+        </div>
+        <p class="subtitle" style="margin-bottom:14px;">先通过三道非补偿硬门控定位最小割集（门控一时间因果界 L_down ≤ D_tol ➔ 门控二物理可存未固化差异 ➔ 门控三沙漏腰部减熵），若旧工艺迫使解耦点塌缩至成品层，自动量化二阶修宪 Φ 移点影子收益。</p>
+        <div class="controls">
+          <div class="ctrl"><label>客户交期容忍期 D_tol (天)</label><input id="t3_dtol" type="number" min="0" max="15" value="3" oninput="calcT3()" /></div>
+          <div class="ctrl"><label>统一对外承诺 SLA (天)</label><input id="t3_sla" type="number" min="0" max="5" value="1" oninput="calcT3()" /></div>
+          <div class="ctrl"><label>裸机组装周期 L_mfg (天)</label><input id="t3_lmfg" type="number" min="1" max="14" value="4" oninput="calcT3()" /></div>
+          <div class="ctrl"><label>国别贴标包装周期 L_pack (天)</label><input id="t3_lpack" type="number" min="0" max="6" value="1" oninput="calcT3()" /></div>
+          <div class="ctrl"><label>下游定制国别扇出数 K</label><input id="t3_k" type="number" min="2" max="16" value="4" oninput="calcT3()" /></div>
+          <div class="ctrl"><label>单国日需求标准差 σ (台/天)</label><input id="t3_sigma" type="number" min="5" max="200" value="40" oninput="calcT3()" /></div>
+          <div class="ctrl"><label>通用裸机累计成本 (¥/台)</label><input id="t3_cbare" type="number" min="100" step="50" value="600" oninput="calcT3()" /></div>
+          <div class="ctrl"><label>定制成品累计成本 (¥/台)</label><input id="t3_cfg" type="number" min="100" step="50" value="800" oninput="calcT3()" /></div>
+          <div class="ctrl">
+            <label>安全系数 Z 值</label>
+            <select id="t3_z" onchange="calcT3()">
+              <option value="1.65">1.65 (95.0%)</option>
+              <option value="2.0" selected>2.00 (97.7% · 标准算例)</option>
+              <option value="2.33">2.33 (99.0%)</option>
+            </select>
+          </div>
+          <label class="ctrl-check">
+            <input id="t3_legacy" type="checkbox" onchange="calcT3()" />
+            模拟旧工艺：SMT 首道即前置国别镭雕（测试二阶 Φ 影子收益）
+          </label>
+        </div>
+        <div id="t3_gates" style="margin-bottom:14px;"></div>
+        <div class="grid-2" id="t3_cards"></div>
+        <div class="verdict-bar" id="t3_verdict"></div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 4: ZERO FORECAST CONSUMPTION PUSH/PULL ROUTER ================= -->
+    <section id="tab-3" class="panel">
+      <div class="card">
+        <div class="panel-head">
+          <h2>沙盘 4：彻底废除孤立预测冲减 — 推式防独占日切割 + 拉式超额三态路由</h2>
+          <button class="btn-sm" onclick="resetT4()">恢复标准算例</button>
+        </div>
+        <p class="subtitle" style="margin-bottom:14px;">推式段按周度受限 Allocation 跨周结转并按日产能平准切分（杜绝大渠道首日独吞产能）；拉式段客户实单直接消费配额桶，仅在超额 ΔO &gt; 0 时联立月包络线与采购提前期自动判定 Mode A / B / C。</p>
+        <div class="preset-row">
+          <button class="btn-sm" onclick="presetT4('A')">一键载入 Mode A（节奏前移 · 零新增 MRP）</button>
+          <button class="btn-sm" onclick="presetT4('B')">一键载入 Mode B（真增量交期够 · 锁 W2 直采）</button>
+          <button class="btn-sm" onclick="presetT4('C')">一键载入 Mode C（真增量急单 · 借 W2 + 回填 MRP）</button>
+        </div>
+        <div class="controls">
+          <div class="ctrl"><label>渠道 A W1 预测需求 (k)</label><input id="t4_da" type="number" min="100" step="50" value="600" oninput="calcT4()" /></div>
+          <div class="ctrl"><label>渠道 B W1 预测需求 (k)</label><input id="t4_db" type="number" min="100" step="50" value="400" oninput="calcT4()" /></div>
+          <div class="ctrl"><label>W1 可用总供应上限 (k)</label><input id="t4_sup" type="number" min="100" step="50" value="800" oninput="calcT4()" /></div>
+          <div class="ctrl"><label>渠道 A 当周实单量 (k)</label><input id="t4_ord" type="number" min="0" step="20" value="600" oninput="calcT4()" /></div>
+          <div class="ctrl"><label>渠道 A 全月累计订单 (k)</label><input id="t4_mcum" type="number" min="0" step="20" value="1420" oninput="calcT4()" /></div>
+          <div class="ctrl"><label>渠道 A 月度总包络线 (k)</label><input id="t4_mcap" type="number" min="100" step="50" value="1500" oninput="calcT4()" /></div>
+          <div class="ctrl"><label>超额实单剩余交期 (天)</label><input id="t4_dtd" type="number" min="1" max="30" value="5" oninput="calcT4()" /></div>
+          <div class="ctrl"><label>关键料采购提前期 LT (天)</label><input id="t4_lt" type="number" min="1" max="60" value="10" oninput="calcT4()" /></div>
+        </div>
+        <div class="grid-2" id="t4_cards"></div>
+        <div id="t4_table"></div>
+        <div class="verdict-bar" id="t4_verdict"></div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 5: CLASS 3 LOT SIZE RENORMALIZATION ================= -->
+    <section id="tab-4" class="panel">
+      <div class="card">
+        <div class="panel-head">
+          <h2>沙盘 5：多源三类配额 + 最小包装倍数（MPQ）动态重归一化</h2>
+          <button class="btn-sm" onclick="resetT5()">恢复标准算例 (1,000 颗 · MPQ=300)</button>
+        </div>
+        <p class="subtitle" style="margin-bottom:14px;">传统简单按比例乘积再统一向上圆整，会导致采购总量虚胖或末端小供方被饿死。IPC 逐轮按最大应分额执行 MPQ 向上取整后，立即对剩余候选供方重归一化分配，实现全盘严格守恒。</p>
+        <div class="controls">
+          <div class="ctrl"><label>本次净需求总量 (颗)</label><input id="t5_net" type="number" min="100" step="100" value="1000" oninput="calcT5()" /></div>
+          <div class="ctrl"><label>最小包装倍数 MPQ (颗/盘)</label><input id="t5_mpq" type="number" min="1" step="50" value="300" oninput="calcT5()" /></div>
+          <div class="ctrl"><label>供应商 S1 目标份额 (%)</label><input id="t5_r1" type="number" min="1" max="98" value="50" oninput="calcT5()" /></div>
+          <div class="ctrl"><label>供应商 S2 目标份额 (%)</label><input id="t5_r2" type="number" min="1" max="98" value="30" oninput="calcT5()" /></div>
+          <div class="ctrl"><label>供应商 S3 目标份额 (%)</label><input id="t5_r3" type="number" min="1" max="98" value="20" oninput="calcT5()" /></div>
+        </div>
+        <div id="t5_table"></div>
+        <div class="verdict-bar" id="t5_verdict"></div>
+      </div>
+    </section>
+
+    <footer>
+      <div><strong>作者 / Author：</strong>孟凡淳 (Grit Meng) ｜ 价值链物理学、系统与复杂性科学独立学者 ｜ IPC 智能计划与控制引擎缔造者 ｜ 前联想全球供应链集成计划方案（IPS）系统负责人兼总设计师</div>
+      <div><strong>许可与专利声明：</strong>本公开交互沙盘适用本仓 <a href="../LICENSE">LICENSE</a>（文档 CC BY 4.0 + 非商业学术复现与内部评估许可 + <strong>NO PATENT LICENSE</strong>）。作者名下 20 项已授权及在审发明专利 100% 保留，商业实施及企业生产部署须另行签署书面授权（联系：<code>gritmeng@outlook.com</code>）。 ｜ <a href="../">返回学术门户主页</a></div>
+    </footer>
+  </div>
+
+  <script>
+    function switchTab(idx) {
+      document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
+      document.querySelectorAll('.panel').forEach((p, i) => p.classList.toggle('active', i === idx));
+    }
+
+    function fmtMoney(v) {
+      return '¥' + Math.round(v).toLocaleString('zh-CN');
+    }
+
+    // ==================== TAB 1 ====================
+    function resetT1() {
+      document.getElementById('t1_d1req').value = 4;
+      document.getElementById('t1_d2req').value = 2;
+      document.getElementById('t1_m1').value = 4;
+      document.getElementById('t1_m3').value = 2;
+      document.getElementById('t1_m2oh').value = 1;
+      document.getElementById('t1_m2po').value = 3;
+      calcT1();
+    }
+    function calcT1() {
+      const d1Req = +document.getElementById('t1_d1req').value || 1;
+      const d2Req = +document.getElementById('t1_d2req').value || 1;
+      const m1 = +document.getElementById('t1_m1').value || 1;
+      const m3 = +document.getElementById('t1_m3').value || 1;
+      const m2a = Math.min(+document.getElementById('t1_m2oh').value || 1, +document.getElementById('t1_m2po').value || 1);
+      const m2b = Math.max(+document.getElementById('t1_m2oh').value || 1, +document.getElementById('t1_m2po').value || 1);
+
+      // Traditional static priority pegging
+      const tradD1 = Math.max(m1, m2a);
+      const tradD2 = Math.max(m3, m2b);
+      const tradD2Delay = Math.max(0, tradD2 - d2Req);
+      const tradIdle = Math.max(0, tradD1 - m2a);
+
+      // IPC two-stage orthogonal decoupling
+      const d1Early = Math.max(m1, m2a);
+      const d2Early = Math.max(m3, m2a);
+      let ipcD1 = tradD1, ipcD2 = tradD2, ipcIdle = tradIdle, swapped = false;
+      if (d2Early < d1Early && m2b <= d1Early) {
+        ipcD2 = Math.max(m3, m2a);
+        ipcD1 = Math.max(m1, m2b);
+        ipcIdle = Math.max(0, ipcD2 - m2a);
+        swapped = true;
+      }
+      const ipcD2Delay = Math.max(0, ipcD2 - d2Req);
+
+      document.getElementById('t1_cards').innerHTML = `
+        <div class="kpi-box bad">
+          <h3>传统静态优先级排他锁库（ERP/APS）</h3>
+          <div class="metric"><span>高优订单 D1 齐套完工日</span><strong>t = ${tradD1} (要求 t=${d1Req})</strong></div>
+          <div class="metric"><span>普通订单 D2 齐套完工日</span><strong>t = ${tradD2} (延期 ${tradD2Delay} 天)</strong></div>
+          <div class="metric"><span>通用件 M2 现货闲置锁死时长</span><strong>${tradIdle} 周期</strong></div>
+        </div>
+        <div class="kpi-box good">
+          <h3>IPC 两阶段正交解耦治理</h3>
+          <div class="metric"><span>高优订单 D1 齐套完工日</span><strong>t = ${ipcD1} (零损伤)</strong></div>
+          <div class="metric"><span>普通订单 D2 齐套完工日</span><strong>t = ${ipcD2} (延期 ${ipcD2Delay} 天)</strong></div>
+          <div class="metric"><span>通用件 M2 现货闲置锁死时长</span><strong>${ipcIdle} 周期</strong></div>
+        </div>`;
+
+      const maxT = Math.max(6, tradD1, tradD2, ipcD1, ipcD2, d1Req, d2Req) + 1;
+      const sx = (t) => 150 + ((t - 1) / (maxT - 1)) * 740;
+      let ticks = '';
+      for (let t = 1; t <= maxT; t++) {
+        const x = sx(t);
+        ticks += `<line x1="${x}" y1="28" x2="${x}" y2="174" stroke="#E5E0D5" stroke-dasharray="3,3"/>` +
+                 `<text x="${x}" y="20" text-anchor="middle" font-size="12" fill="#555555" font-weight="600">t=${t}</text>`;
+      }
+      document.getElementById('t1_svg').innerHTML = `
+        <svg viewBox="0 0 940 190" width="100%" style="max-width:940px;display:block;margin:0 auto;">
+          ${ticks}
+          <text x="14" y="64" font-size="13" font-weight="700" fill="#B03A2E">传统静态锁库</text>
+          <rect x="${sx(m2a)}" y="44" width="${Math.max(18, sx(tradD1)-sx(m2a))}" height="22" rx="4" fill="#F5D5D0" stroke="#B03A2E"/>
+          <text x="${(sx(m2a)+sx(tradD1))/2}" y="59" text-anchor="middle" font-size="11.5" fill="#922B21" font-weight="700">D1 霸占 M2(t=${m2a}) 干等至 t=${tradD1}</text>
+          <rect x="${sx(m2b)}" y="72" width="${Math.max(54, sx(tradD2)-sx(m2b)+54)}" height="22" rx="4" fill="#B03A2E"/>
+          <text x="${sx(m2b)+27}" y="87" text-anchor="middle" font-size="11.5" fill="#FFFFFF" font-weight="700">D2 延至 t=${tradD2}</text>
+
+          <line x1="14" y1="108" x2="920" y2="108" stroke="#D8D3C8" stroke-width="1.2"/>
+
+          <text x="14" y="144" font-size="13" font-weight="700" fill="#1E6B47">IPC 正交解耦</text>
+          <rect x="${sx(m2a)}" y="122" width="${Math.max(66, sx(ipcD2)-sx(m2a))}" height="22" rx="4" fill="#1E6B47"/>
+          <text x="${sx(m2a)+Math.max(33, (sx(ipcD2)-sx(m2a))/2)}" y="137" text-anchor="middle" font-size="11.5" fill="#FFFFFF" font-weight="700">D2 准时 t=${ipcD2}</text>
+          <rect x="${sx(m2b)}" y="150" width="${Math.max(66, sx(ipcD1)-sx(m2b))}" height="22" rx="4" fill="#2C3E50"/>
+          <text x="${sx(m2b)+Math.max(33, (sx(ipcD1)-sx(m2b))/2)}" y="165" text-anchor="middle" font-size="11.5" fill="#FFFFFF" font-weight="700">D1 晚绑定 t=${ipcD1}</text>
+        </svg>`;
+
+      document.getElementById('t1_verdict').textContent = swapped
+        ? `物理判决：在不损伤高优单 D1（仍于 t=${ipcD1} 准时交付）的前提下，IPC 正交解耦释放早期 M2 给 D2，使 D2 提前 ${tradD2 - ipcD2} 天准时完工，并将现货闲置锁死由 ${tradIdle} 周期降至 ${ipcIdle} 周期。`
+        : `当前参数下未形成交叉错配死锁（两方案完工日相同），可将 M1 设晚于 M3 且 M2 在途早于 M1 观察死锁复现。`;
+    }
+
+    // ==================== TAB 2 ====================
+    function resetT2() {
+      document.getElementById('t2_sunk').value = 11000;
+      document.getElementById('t2_exp').value = 1000;
+      document.getElementById('t2_new').value = 12000;
+      document.getElementById('t2_qty').value = 100;
+      calcT2();
+    }
+    function calcT2() {
+      const sunk = +document.getElementById('t2_sunk').value || 0;
+      const exp = +document.getElementById('t2_exp').value || 0;
+      const newSet = +document.getElementById('t2_new').value || 0;
+      const qty = Math.max(1, +document.getElementById('t2_qty').value || 1);
+
+      const tradCash = newSet * qty;
+      const tradScrap = sunk * qty;
+      const tradTot = tradCash + tradScrap;
+
+      const activate = exp < newSet;
+      const ipcCash = (activate ? exp : newSet) * qty;
+      const ipcScrap = (activate ? 0 : sunk) * qty;
+      const ipcTot = ipcCash + ipcScrap;
+      const save = tradTot - ipcTot;
+
+      document.getElementById('t2_cards').innerHTML = `
+        <div class="kpi-box bad">
+          <h3>传统 MRP（跳过短板组重买整套 G2）</h3>
+          <div class="metric"><span>新增采购现金流出</span><strong>${fmtMoney(tradCash)}</strong></div>
+          <div class="metric"><span>G1 长板主芯片呆滞报废</span><strong>${fmtMoney(tradScrap)}</strong></div>
+          <div class="metric"><span>合计综合经济损失</span><strong>${fmtMoney(tradTot)}</strong></div>
+        </div>
+        <div class="kpi-box good">
+          <h3>IPC 增量新购裁决（${activate ? '定向拉快短板 B1 盘活 G1' : '切至 G2 更划算'}）</h3>
+          <div class="metric"><span>新增采购/拉快现金流出</span><strong>${fmtMoney(ipcCash)}</strong></div>
+          <div class="metric"><span>G1 长板呆滞报废损失</span><strong>${fmtMoney(ipcScrap)}</strong></div>
+          <div class="metric"><span>合计经济成本</span><strong>${fmtMoney(ipcTot)}</strong></div>
+        </div>`;
+
+      const maxVal = Math.max(1, tradTot, ipcTot);
+      const wTradCash = (tradCash / maxVal) * 560;
+      const wTradScrap = (tradScrap / maxVal) * 560;
+      const wIpcCash = (ipcCash / maxVal) * 560;
+      const wIpcScrap = (ipcScrap / maxVal) * 560;
+
+      document.getElementById('t2_svg').innerHTML = `
+        <svg viewBox="0 0 840 120" width="100%" style="max-width:840px;display:block;margin:0 auto;">
+          <text x="10" y="38" font-size="13" font-weight="700" fill="#B03A2E">传统重买整套 G2</text>
+          <rect x="148" y="20" width="${wTradCash}" height="28" rx="4" fill="#C0392B"/>
+          <rect x="${148 + wTradCash}" y="20" width="${wTradScrap}" height="28" rx="4" fill="#E6B0AA"/>
+          <text x="${158 + wTradCash + wTradScrap}" y="39" font-size="12.5" font-weight="700" fill="#B03A2E">${fmtMoney(tradTot)}</text>
+
+          <text x="10" y="88" font-size="13" font-weight="700" fill="#1E6B47">IPC 盘活长板 G1</text>
+          <rect x="148" y="70" width="${Math.max(8, wIpcCash)}" height="28" rx="4" fill="#1E6B47"/>
+          <rect x="${148 + wIpcCash}" y="70" width="${wIpcScrap}" height="28" rx="4" fill="#E6B0AA"/>
+          <text x="${158 + Math.max(8, wIpcCash) + wIpcScrap}" y="89" font-size="12.5" font-weight="700" fill="#1E6B47">${fmtMoney(ipcTot)}</text>
+        </svg>`;
+
+      document.getElementById('t2_verdict').textContent = activate
+        ? `物理判决：定向投入 ${fmtMoney(ipcCash)} 拉快短板小料 B1，直接盘活 ${fmtMoney(tradScrap)} 沉没长板并免买整套 G2，综合净节省 ${fmtMoney(save)}（${qty} 套）。`
+        : `当前参数下拉快短板成本不低于整套新购，IPC 自动切换为采购 G2。`;
+    }
+
+    // ==================== TAB 3 ====================
+    function resetT3() {
+      document.getElementById('t3_dtol').value = 3;
+      document.getElementById('t3_sla').value = 1;
+      document.getElementById('t3_lmfg').value = 4;
+      document.getElementById('t3_lpack').value = 1;
+      document.getElementById('t3_k').value = 4;
+      document.getElementById('t3_sigma').value = 40;
+      document.getElementById('t3_cbare').value = 600;
+      document.getElementById('t3_cfg').value = 800;
+      document.getElementById('t3_z').value = '2.0';
+      document.getElementById('t3_legacy').checked = false;
+      calcT3();
+    }
+    function calcT3() {
+      const dtol = +document.getElementById('t3_dtol').value || 0;
+      const sla = +document.getElementById('t3_sla').value || 0;
+      const lmfg = +document.getElementById('t3_lmfg').value || 1;
+      const lpack = +document.getElementById('t3_lpack').value || 0;
+      const K = Math.max(1, +document.getElementById('t3_k').value || 1);
+      const sigma = +document.getElementById('t3_sigma').value || 1;
+      const cBare = +document.getElementById('t3_cbare').value || 1;
+      const cFg = +document.getElementById('t3_cfg').value || 1;
+      const z = parseFloat(document.getElementById('t3_z').value) || 2.0;
+      const legacy = document.getElementById('t3_legacy').checked;
+
+      const lDownChip = lmfg + lpack;
+      const chipG1 = lDownChip <= dtol;
+      const bareG1 = lpack <= dtol;
+      const bareG2 = bareG1 && !legacy;
+
+      const tauA = Math.max(0, lmfg + lpack - sla);
+      const unitsA = K * z * sigma * Math.sqrt(tauA);
+      const capA = unitsA * cFg;
+
+      const tauB = Math.max(0, lmfg);
+      const pooledSigma = Math.sqrt(K) * sigma;
+      const unitsB = z * pooledSigma * Math.sqrt(tauB);
+      const capB = unitsB * cBare;
+
+      const unitRed = unitsA > 0 ? ((unitsA - unitsB) / unitsA * 100) : 0;
+      const capRed = capA > 0 ? ((capA - capB) / capA * 100) : 0;
+      const phiShadow = Math.max(0, capA - capB);
+
+      document.getElementById('t3_gates').innerHTML = `
+        <span class="pill ${chipG1 ? 'pill-pass' : 'pill-fail'}">Gate 1 · 芯片层 L_down=${lDownChip}d ${chipG1 ? '≤' : '>'} D_tol=${dtol}d (${chipG1 ? '通过' : '一票淘汰'})</span>
+        <span class="pill ${bareG1 ? 'pill-pass' : 'pill-fail'}">Gate 1 · 裸机层 L_down=${lpack}d ${bareG1 ? '≤' : '>'} D_tol=${dtol}d (${bareG1 ? '通过' : '淘汰'})</span>
+        <span class="pill ${bareG2 ? 'pill-pass' : 'pill-fail'}">Gate 2 · 裸机未固化差异 (${legacy ? '旧工艺早镭雕 · 拦截退化' : '通用无标 · 通过'})</span>`;
+
+      document.getElementById('t3_cards').innerHTML = `
+        <div class="kpi-box bad">
+          <h3>方案 A：CODP 下沉至 ${K} 国成品层（MTS）</h3>
+          <div class="metric"><span>单国净暴露期 τ_FG</span><strong>${tauA} 天</strong></div>
+          <div class="metric"><span>${K} 国成品合计安全库存</span><strong>${unitsA.toFixed(1)} 台</strong></div>
+          <div class="metric"><span>常态安全库存资金占用</span><strong>${fmtMoney(capA)}</strong></div>
+          <div class="metric"><span>跨国贴标 E&amp;O 专属呆滞</span><strong>高风险（不可跨国互济）</strong></div>
+        </div>
+        <div class="kpi-box good">
+          <h3>方案 B：CODP 锚定沙漏腰部通用裸机（${bareG2 ? '当前选中' : '二阶修宪 Φ 目标态'}）</h3>
+          <div class="metric"><span>腰部汇聚波动标准差 σ_pool</span><strong>${pooledSigma.toFixed(1)} 台/天 (相对 CV 降 ${(100*(1-1/Math.sqrt(K))).toFixed(1)}%)</strong></div>
+          <div class="metric"><span>共享裸机池安全库存</span><strong>${unitsB.toFixed(1)} 台 (直降 ${unitRed.toFixed(1)}%)</strong></div>
+          <div class="metric"><span>常态安全库存资金占用</span><strong>${fmtMoney(capB)} (直降 ${capRed.toFixed(1)}%)</strong></div>
+          <div class="metric"><span>跨国贴标 E&amp;O 专属呆滞</span><strong>归零（无标共池实时互济）</strong></div>
+        </div>`;
+
+      document.getElementById('t3_verdict').textContent = bareG2
+        ? `一阶裁决：选定沙漏腰部 SEMI_BARE 为推拉解耦点（codp_decoupling_flag = 1）。在完全等价的 ${sla} 天交付 SLA 下，安全库存台数直降 ${unitRed.toFixed(1)}%，资金占用直降 ${capRed.toFixed(1)}%（节省 ${fmtMoney(phiShadow)}），且跨国专属呆滞归零。`
+        : `触发二阶修宪 Φ：受制于${legacy ? '旧工艺过早植入国别镭雕' : '包装提前期突破 D_tol'}，解耦点被迫退化至 MTS 成品层。引擎自动输出 CODP 上移影子收益 = ${fmtMoney(phiShadow)}（不含跨国呆滞减损），精准量化驱动研发 DFSC 后移差异化工步！`;
+    }
+
+    // ==================== TAB 4 ====================
+    function resetT4() { presetT4('A'); }
+    function presetT4(mode) {
+      document.getElementById('t4_da').value = 600;
+      document.getElementById('t4_db').value = 400;
+      document.getElementById('t4_sup').value = 800;
+      document.getElementById('t4_mcap').value = 1500;
+      document.getElementById('t4_lt').value = 10;
+      if (mode === 'A') {
+        document.getElementById('t4_ord').value = 600;
+        document.getElementById('t4_mcum').value = 1420;
+        document.getElementById('t4_dtd').value = 5;
+      } else if (mode === 'B') {
+        document.getElementById('t4_ord').value = 680;
+        document.getElementById('t4_mcum').value = 1700;
+        document.getElementById('t4_dtd').value = 12;
+      } else {
+        document.getElementById('t4_ord').value = 680;
+        document.getElementById('t4_mcum').value = 1700;
+        document.getElementById('t4_dtd').value = 3;
+      }
+      calcT4();
+    }
+    function calcT4() {
+      const da = +document.getElementById('t4_da').value || 0;
+      const db = +document.getElementById('t4_db').value || 0;
+      const sup = +document.getElementById('t4_sup').value || 0;
+      const ord = +document.getElementById('t4_ord').value || 0;
+      const mcum = +document.getElementById('t4_mcum').value || 0;
+      const mcap = +document.getElementById('t4_mcap').value || 0;
+      const dtd = +document.getElementById('t4_dtd').value || 0;
+      const lt = +document.getElementById('t4_lt').value || 0;
+
+      const totDem = da + db;
+      const eff = Math.min(totDem, sup);
+      const sA = totDem > 0 ? da / totDem : 0.5;
+      const allocA = eff * sA;
+      const allocB = eff * (1 - sA);
+      const rollA = Math.max(0, da - allocA);
+      const rollB = Math.max(0, db - allocB);
+
+      const weights = [140, 140, 140, 140, 140, 100];
+      const wSum = 800;
+      const ov = Math.max(0, ord - allocA);
+      let modeTitle = '桶内静默兑现（IN_BUCKET）', w2Ded = 0, mrpAdd = 0, desc = '实单未突破当周配额桶，推端零扰动。';
+      if (ov > 1e-6) {
+        if (mcum <= mcap) {
+          modeTitle = 'Mode A · 节奏前移（零新增 MRP）';
+          w2Ded = ov; mrpAdd = 0;
+          desc = '全月累计未超月包络，定性为提前拉货，直接扣减 W2 配额，彻底杜绝重复采购牛鞭效应。';
+        } else if (dtd >= lt) {
+          modeTitle = 'Mode B · 真增量直采（保护 W2 配额）';
+          w2Ded = 0; mrpAdd = ov;
+          desc = '突破月包络且交期充裕（≥ 采购 LT），100% 锁死 W2 配额不动，超额直发 MRP 净补货。';
+        } else {
+          modeTitle = 'Mode C · 急单借调 + 同步回填';
+          w2Ded = ov; mrpAdd = ov;
+          desc = '突破月包络且交期短于 LT，先从 W2 现货借调救急发货，同步向 MRP 注入等量回填净需求。';
+        }
+      }
+
+      document.getElementById('t4_cards').innerHTML = `
+        <div class="kpi-box good">
+          <h3>推式段（零预测冲减 · 周受限配额与顺延）</h3>
+          <div class="metric"><span>W1 有效配额分配 (A : B)</span><strong>${allocA.toFixed(1)}k : ${allocB.toFixed(1)}k</strong></div>
+          <div class="metric"><span>自动滚入 W2 首日顺延欠账</span><strong>A 欠 ${rollA.toFixed(1)}k / B 欠 ${rollB.toFixed(1)}k</strong></div>
+          <div class="metric"><span>传统孤立预测冲减账本</span><strong>已彻底废除（0 抖动）</strong></div>
+        </div>
+        <div class="kpi-box ${ov > 0 ? 'bad' : 'good'}">
+          <h3>拉式段（超配额三态动态路由裁决）</h3>
+          <div class="metric"><span>渠道 A 当周超配额 ΔO</span><strong>${ov.toFixed(1)}k</strong></div>
+          <div class="metric"><span>自动触发路由模式</span><strong>${modeTitle}</strong></div>
+          <div class="metric"><span>扣减/借调 W2 配额 | 触发增量 MRP</span><strong>${w2Ded.toFixed(1)}k | +${mrpAdd.toFixed(1)}k</strong></div>
+        </div>`;
+
+      let rows = '';
+      let sumA = 0, sumB = 0;
+      weights.forEach((w, i) => {
+        const qa = allocA * (w / wSum);
+        const qb = allocB * (w / wSum);
+        sumA += qa; sumB += qb;
+        rows += `<tr><td><strong>D${i+1}</strong></td><td>${(eff*w/wSum).toFixed(1)}k</td><td>${qa.toFixed(1)}k</td><td>${qb.toFixed(1)}k</td><td>${(qa+qb).toFixed(1)}k</td></tr>`;
+      });
+      rows += `<tr><td><strong>W1 合计</strong></td><td><strong>${eff.toFixed(1)}k</strong></td><td><strong>${sumA.toFixed(1)}k</strong></td><td><strong>${sumB.toFixed(1)}k</strong></td><td><strong>${(sumA+sumB).toFixed(1)}k (守恒)</strong></td></tr>`;
+
+      document.getElementById('t4_table').innerHTML = `
+        <table>
+          <thead><tr><th>工作日</th><th>当日有效供应</th><th>渠道 A 防独占日配额</th><th>渠道 B 防独占日配额</th><th>日合计守恒</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>`;
+      document.getElementById('t4_verdict').textContent = `路由判词：${modeTitle} —— ${desc}`;
+    }
+
+    // ==================== TAB 5 ====================
+    function resetT5() {
+      document.getElementById('t5_net').value = 1000;
+      document.getElementById('t5_mpq').value = 300;
+      document.getElementById('t5_r1').value = 50;
+      document.getElementById('t5_r2').value = 30;
+      document.getElementById('t5_r3').value = 20;
+      calcT5();
+    }
+    function calcT5() {
+      const net = Math.max(1, +document.getElementById('t5_net').value || 1000);
+      const mpq = Math.max(1, +document.getElementById('t5_mpq').value || 1);
+      const r1 = Math.max(0.01, +document.getElementById('t5_r1').value || 50);
+      const r2 = Math.max(0.01, +document.getElementById('t5_r2').value || 30);
+      const r3 = Math.max(0.01, +document.getElementById('t5_r3').value || 20);
+      const rSum = r1 + r2 + r3;
+
+      let active = [
+        { name: '供应商 S1', orig: r1 / rSum, cur: r1 / rSum },
+        { name: '供应商 S2', orig: r2 / rSum, cur: r2 / rSum },
+        { name: '供应商 S3', orig: r3 / rSum, cur: r3 / rSum },
+      ];
+      let rem = net;
+      let rows = '';
+      let step = 1, totalAllocated = 0;
+
+      while (rem > 1e-6 && active.length > 0) {
+        active.forEach(c => c.due = c.cur * rem);
+        active.sort((a, b) => (b.due - a.due) || (b.orig - a.orig));
+        const chosen = active.shift();
+        const rounded = Math.ceil(chosen.due / mpq) * mpq;
+        const actual = Math.min(rounded, rem);
+        const remAfter = rem - actual;
+        totalAllocated += actual;
+        rows += `<tr>
+          <td>第 ${step} 轮</td>
+          <td><strong>${chosen.name}</strong></td>
+          <td>${(chosen.cur * 100).toFixed(1)}%</td>
+          <td>${rem.toFixed(1)}</td>
+          <td>${chosen.due.toFixed(1)}</td>
+          <td>${rounded.toFixed(1)}</td>
+          <td><strong>${actual.toFixed(1)}</strong></td>
+          <td>${remAfter.toFixed(1)}</td>
+        </tr>`;
+        rem = remAfter;
+        const sumDue = active.reduce((acc, c) => acc + c.due, 0);
+        if (sumDue > 0) active.forEach(c => c.cur = c.due / sumDue);
+        step++;
+      }
+      const naiveTotal = Math.ceil(net * (r1 / rSum) / mpq) * mpq +
+                         Math.ceil(net * (r2 / rSum) / mpq) * mpq +
+                         Math.ceil(net * (r3 / rSum) / mpq) * mpq;
+
+      document.getElementById('t5_table').innerHTML = `
+        <table>
+          <thead><tr><th>轮次</th><th>本轮选中供方</th><th>当前归一化份额</th><th>期初剩余需求</th><th>理论应分额</th><th>MPQ 向上圆整</th><th>实际精准分配</th><th>期末剩余需求</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>`;
+      document.getElementById('t5_verdict').textContent =
+        `守恒对账：传统各自独立按 MPQ=${mpq} 向上圆整会多买出 ${(naiveTotal - net).toFixed(0)} 颗虚胖呆滞（总采购 ${naiveTotal.toFixed(0)} 颗）；IPC 逐轮动态重归一化精准收敛至 ${totalAllocated.toFixed(0)} 颗（0 超买、0 漏单）。`;
+    }
+
+    // Initial render of all 5 sandboxes
+    calcT1(); calcT2(); calcT3(); calcT4(); calcT5();
+  </script>
+</body>
+</html>
+

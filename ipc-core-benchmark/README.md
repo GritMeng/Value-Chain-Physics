@@ -1,137 +1,66 @@
-# IPC Core Engine - 决策质量与极速性能基准开源库 (IPC Core Open Benchmarks)
+# IPC Core Open Benchmarks v2.0 — 无菌决策质量与极速算力开源验证套件
 
-> **轻量级、可审计、零依赖的 C++17 供应链决策微内核与百万级性能测试集**
+> **零依赖、可审计、洁净室原生的 C++17 核心算法微内核与六大无菌验证沙盘（附 Python 独立交叉对账与免安装网页体验）**
 
-[![License](https://img.shields.io/badge/License-Non--Commercial_Reproducibility_%7C_No_Patent_Grant-red.svg)](../LICENSE)
-[![C++ Standard](https://img.shields.io/badge/C%2B%2B-17-green.svg)](https://en.cppreference.com/w/cpp/17)
-[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-orange.svg)]()
+[![License](https://img.shields.io/badge/License-Non--Commercial_Reproducibility_%7C_No_Patent_Grant-b03a2e.svg)](../LICENSE)
+[![C++ Standard](https://img.shields.io/badge/C%2B%2B-17-2ea043.svg)](https://en.cppreference.com/w/cpp/17)
+[![Interactive Demo](https://img.shields.io/badge/Online_Sandbox-Try_in_Browser-0969da.svg)](https://gritmeng.github.io/Value-Chain-Physics/demo/)
 
 ---
 
 > [!IMPORTANT]
-> **📢 关于 IPC 系统覆盖范围、专利保护与开源目的的官方声明 (Official System Declaration)**
-> 
-> 1. **全链路覆盖范围 (End-to-End Governance Coverage)**：
->    IPC (Intelligent Planning & Control) 系统完整覆盖从 **IBP (Integrated Business Planning 业务共识与需求分解)** 到 **ITP (Intelligent Tactical Planning 战术主计划防波堤)**、**IOP (Intelligent Operational Planning 执行计划配额阻断)**，直至 **车间级详细调度与排程 (Shop-Floor Dispatching & Scheduling)** 的端到端供应链协同闭环。
-> 
-> 2. **为什么暂未 100% 全量开源？(Active Patent Filing Protection)**：
->    由于 IPC 统御引擎中大量突破性的求解架构、多沙箱推演与并发水位算子目前**正处于专利正式申报与法律审查流程中 (Patents Pending)**。为保护核心商业资产与知识产权，系统暂无法将生产环境下的全量商业代码库（包含 DuckDB 物理适配层、大模型预测中枢及完整商业控制塔）100% 无保留公开。
-> 
-> 3. **开源 `ipc-core-benchmark` 的真正目的 (Proving Physical & Mathematical Feasibility)**：
->    我们之所以开放本开源微内核基准测试集，是为了向全球开发者、架构师与工业同行**证明“百万级规模毫秒级求解”与“交付准且快”在物理与数学上是完全真实可达的 (Physically & Mathematically Achievable)**。本仓库开放脱敏后的 C++17 核心算法算子与 50万需求 / 200万 SKU 基准压测套件，供全球专家直接下载、本地一键运行并物理对账。
+> **关于开源边界、知识产权保护与验证目的的正式声明**
+> 1. **无需安装也可在线测**：不熟悉 C++ 编译的管理者、学者与同行，可直接打开 [**免安装浏览器交互沙盘 (`demo/index.html`)**](https://gritmeng.github.io/Value-Chain-Physics/demo/)，自由拖动库存、交期、配额与成本参数，实时对比传统 ERP/APS 死锁与 IPC 正交求解结果。
+> 2. **严格的商业机密与专利隔离边界**：本目录仅公开脱敏后的最小完备数学模型与 C++17 可审计微内核，**不包含**生产级 IPC 商业引擎底层内存数据结构、完整企业数据本体、并发沙箱源码或企业部署平台。作者名下 **20 项发明专利（5 项已获授权，15 项在审/公开）100% 保留**（详见仓库根目录 [`LICENSE`](../LICENSE)）。
+> 3. **开源验证目的**：向全球学者、审稿人、架构师与制造业同行证明——IPC 的核心决策质量（排序耦合解耦、组替代盘活、CODP 两层定位、零预测冲减三态路由、配额防波堤）与大规模线性/准线性算力响应在数学与工程上 100% 可复现、可审计。
 
 ---
 
-## 📌 项目定位 (Project Overview)
+## 六大可复现验证套件总览 (6 Auditable C++17 & Python Verification Suites)
 
-本仓库是 **IPC 智能计划控制塔 (Intelligent Planning & Control Workspace)** 的开源核心算子与基准测试集。
-
-外部开发者可以**直接 Clone/下载本代码，并在本地一键编译运行**，直观验证 IPC 统御引擎在**决策质量**与**计算速度**上的突破：
-
-```text
-               ┌────────────────────────────────────────────────────────┐
-               │              IPC Core Engine Architecture              │
-               └───────────────────────────┬────────────────────────────┘
-                                           │
-         ┌─────────────────────────────────┴─────────────────────────────────┐
-         ▼                                                                   ▼
-┌─────────────────────────────────┐                         ┌─────────────────────────────────┐
-│     1. 决策质量 (Quality)       │                         │       2. 决策速度 (Speed)       │
-├─────────────────────────────────┤                         ├─────────────────────────────────┤
-│ • 交付准且快 (Real-time ATP/CTP)│                         │ • 200万 SKU 级别毫秒级响应      │
-│ • 主计划与执行计划协同 (ITP/IOP) │                         │ • SoA 裸金属连续内存调度        │
-│ • 三级动态替代料分配法则        │                         │ • 零堆内存分配 (Zero-Heap)      │
-└─────────────────────────────────┘                         └─────────────────────────────────┘
-```
+| 序号 | 可执行测试目标 | 验证的核心原创机理 | 关键确定性断言结果 |
+| :---: | :--- | :--- | :--- |
+| **1** | `test_delivery_precision` | **《排序耦合定律》（2 单 × 3 料 × 4 周期）+ 多阶 ATP 全树零残留原子回滚** | 传统静态锁库致 $D_2$ 延期 1 天、现货闲置 3 天；IPC 两阶段解耦双双准时（0 延期）；缺料查询全树零残留回滚 |
+| **2** | `test_substitution_rules` | **成套组替代（`¥11,000` 长板 vs `¥1,000` 短板拉快）+ Class 1/2/3 配额包装圆整重归一化** | 定向拉快短板净省 `¥22,000`（0 长板报废）；`1,000` 颗需求在 `50%:30%:20%` 与 `MPQ=300` 下精准守恒收敛为 `600 + 300 + 100` |
+| **3** | `test_codp_positioning` | **推拉解耦点（CODP）两层非补偿定位 + 二阶修宪 $\Phi$ 移点影子收益（3 层 6 节点）** | Gate 1 一票淘汰 42d 芯片；沙漏腰部裸机池使安全库存台数直降 `50.0%`（`640 → 320`）、资金直降 `62.5%`（`¥51.2万 → ¥19.2万`）；旧工艺早镭雕自动弹出 `¥32.0万` 影子收益 |
+| **4** | `test_push_pull_router` | **彻底废除孤立预测冲减：推式防首日独占日切割 + 拉式超额 `Mode A / B / C` 三态路由** | `W1 800k` 精确平准切割至 `D1..D6`（`480k + 320k` 守恒）；节奏前移 `Mode A` 零虚买、真增量 `Mode B/C` 精准分流 |
+| **5** | `test_itp_iop_alignment` | **ITP 宏观配额防波堤（`QuotaFirewallKey`）与 IOP 执行层刚性越界阻断** | 4 笔并发执行单在刚性防波堤内精准放行 3 单、阻断 1 笔越权抢料单 |
+| **6** | `stress_benchmark_2m` | **2,000,000 SKU 节点 × 500,000 并发需求洁净室微内核吞吐压测** | 零数据库与外部依赖，纯内存直接复现 50 万需求毫秒级配额协同吞吐 |
 
 ---
 
-## 🌟 核心开源算子 (Auditable Micro-Kernel Operators)
+## 一键本地编译与双发对账 (Quick Start — Zero External Dependencies)
 
-### 1. 交付又准又快 (Real-Time ATP/CTP Delivery Promising)
-- **算子位置**：`include/ipc_core/atp_ctp_engine.h` & `src/atp_ctp_engine.cpp`
-- **解法亮点**：支持多层 BOM 深度优先展开与瓶颈工时预留；在能力或物料不足时，触发 **零堆内存回滚 (Zero-Heap Rollback)**，确保微秒级求得精准承诺交期且不占用非法资源。
+只需标准 C++17 编译器（MSVC / GCC / Clang）与 Python 3，**无需安装任何数据库或第三方库**。
 
-### 2. 主计划与执行计划协同 (Master Plan vs. Execution Plan Alignment)
-- **算子位置**：`include/ipc_core/itp_iop_alignment.h` & `src/itp_iop_alignment.cpp`
-- **解法亮点**：ITP 战术主计划生成宏观产能防波堤（Soft Capacity Buffer），IOP 执行计划在车间排产时进行刚性配额阻断（Hard Quota Blocking），彻底解决“计划下发到车间后发生漂移与抢料”的行业难题。
+### Windows 一键编译并运行全部 6 组套件 + Python 交叉对账
 
-### 3. 三级动态替代料分配 (Material Substitution Engine)
-- **算子位置**：`include/ipc_core/substitution_engine.h` & `src/substitution_engine.cpp`
-- **解法亮点**：支持一类（按历史配额比例平衡）、二类（组内优先级选优）、三类（跨组动态归一化、批量倍数与安全库存保护）替代料分配决策。
-
----
-
-## 📊 性能基准看板 (Benchmark Performance)
-
-在 2,000,000 SKU 规模及 500,000 条并发需求下，运行 `bin/stress_benchmark_2m.exe` 的实测数据如下：
-
-| 测试项目 (Benchmark Test) | 数据规模 (Dataset Size) | 全量耗时 (Latency) | 吞吐量 (Throughput) |
-| :--- | :--- | :--- | :--- |
-| **ITP 防波堤主计划生成** | 500,000 Demands | **~18 ms** | ~27,700,000 / 秒 |
-| **IOP 车间协同刚性阻断** | 500,000 Demands | **~24 ms** | ~20,800,000 / 秒 |
-| **全链路协同总响应** | **2,000,000 SKUs** | **< 45 ms** | **> 11,000,000 / 秒** |
-
-> 注：测试环境为 AMD Ryzen 9 7950X / 64GB DDR5 / Windows 11，无 GPU 依赖，纯 CPU 裸金属调度。
-
-## 💾 运行时环境与数据来源说明 (Environment & Data Source)
-
-> [!NOTE]
-> **问：运行基准测试是否需要安装或连接数据库 (DuckDB / MySQL / PostgreSQL)？**
-> 
-> **答：完全不需要！** 
-> 1. **零数据库与零 IO 依赖**：本开源基准套件将数据库/磁盘 IO 与求解算子彻底解耦。开箱即用，无需配置任何数据库驱动、SQL 引擎或网络连接，开发者拥有 C++17 编译器或 Python 3 即可直接运行。
-> 2. **数据生成与加载机制**：
->    - **微观规则测试数据**：在 `benchmarks/test_*.cpp` 中内置脱敏的标准业务用例（包含 ATP 零堆回滚、ITP/IOP 配额阻断、三级替代料分配）。
->    - **200万级压测数据**：由 `benchmarks/stress_benchmark_2m.cpp` 的 `[Phase 1]` 在内存中高效合成 (In-Memory SoA Arrays)，瞬间构建 2,000,000 个 SKU 主数据与 500,000 条并发独立需求，专为测试裸金属 CPU 算法瓶颈而设计。
-> 3. **生产环境与开源基准的区别**：在企业生产部署中，IPC 系统通过 DuckDB 接口与企业 ERP/MES/WMS 数据库对接；而本 `ipc-core-benchmark` 仓库专门提供脱敏的离线微内核，方便全球架构师与开发者免去复杂数据库搭建成本，直接审计求解质量与速度。
-
----
-
-## 🛠️ 快速开始：本地编译与运行 (Quick Start)
-
-仓库完全零外部第三方库依赖，只需具备标准 C++17 编译器（MSVC / GCC / Clang）或 Python 3。
-
-### 方式 1：Windows 环境一键编译运行 (One-Click Windows Build)
-
-直接双击运行根目录下的批处理脚本：
 ```cmd
 .\compile_and_run.bat
 ```
 
-### 方式 2：使用 CMake 跨平台编译 (Linux / macOS / Windows)
+### Linux / macOS / 跨平台 CMake 编译与验证
 
 ```bash
-mkdir build && cd build
-cmake ..
-cmake --build . --config Release
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build --config Release
 
-# 运行四个基准测试套件
-./bin/test_delivery_precision
-./bin/test_itp_iop_alignment
-./bin/test_substitution_rules
-./bin/stress_benchmark_2m
+./build/test_delivery_precision
+./build/test_substitution_rules
+./build/test_codp_positioning
+./build/test_push_pull_router
+./build/test_itp_iop_alignment
+./build/stress_benchmark_2m
+
+python3 verifier/cross_validator.py
 ```
+
+详细数学方程与算例推导见 [`docs/MATHEMATICAL_SPEC.md`](docs/MATHEMATICAL_SPEC.md)。
 
 ---
 
-## 🔍 数学正确性审计与交叉校验 (Cross Validation)
+## 许可协议与专利权保留声明 (License & Patent Notice)
 
-为了证明引擎逻辑不仅快，而且**数学上 100% 精确与可被审计**，本仓库提供了 Python 独立数学参考引擎与自动化交叉校验脚本：
-
-```bash
-python verifier/cross_validator.py
-```
-
-校验器会自动对比 Python 参考数学解法与 C++ 极速统御引擎的输出 JSON，验证替代料配额与 ITP/IOP 配额拦截的 100% 结果一致性。
-
-关于完整数学公式与推导白皮书，请参阅 [docs/MATHEMATICAL_SPEC.md](docs/MATHEMATICAL_SPEC.md)。
-
----
-
-## 📄 许可协议与专利权保留声明 (License & Patent Notice)
-
-本目录公开的 C++ 压测与审计脚本适用仓库根目录 [**LICENSE**](../LICENSE) 第 2 条与第 3 条：
-
-- **非商业学术复现与企业内部评估专用许可**：允许高校、学者及企业技术团队在**非生产环境**下自由下载、编译、跑数验证与基准复现；严禁任何形式的生产环境部署、商业软件/SaaS 集成、付费咨询交付、转售或再授权（代码按“原样 AS IS”提供，不含任何明示或默示担保）；
-- **专利权完全保留（NO PATENT LICENSE）**：作者名下 **20 项已授权及在审发明专利 100% 保留**，本仓库任何公开脚本与文档的著作权许可均不构成任何明示或默示专利许可。商业实施及企业生产落地须另行签署正式书面授权（联系 `gritmeng@outlook.com`）。
+本目录公开代码适用仓库根目录 [**LICENSE**](../LICENSE) 第 2 条与第 3 条：
+- **非商业学术复现与企业内部评估专用许可**：允许高校、审稿人、研究者及企业技术团队在**非生产环境**下自由下载、编译、跑数验证与基准复现；严禁任何形式的生产环境部署、商业集成、付费咨询交付、转售或再授权（代码按“原样 AS IS”提供）；
+- **专利权完全保留（NO PATENT LICENSE）**：作者名下 **20 项已授权及在审发明专利 100% 保留**，不因本公开测试包授予任何明示或默示专利许可。商业授权联系：`gritmeng@outlook.com`。
