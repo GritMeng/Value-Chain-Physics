@@ -26,6 +26,14 @@ Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global
 
 ---
 
+## 一图看懂：为什么传统计划框图“施不了工”，而 IPC 能闭环？
+
+![为什么传统计划框图“施不了工”，而 IPC 能闭环？](images/ipc_vs_apics_blueprint.png)
+
+> **多终端高清直取**：[横屏完整施工对比版（16:9 高清 PNG）](images/ipc_vs_apics_blueprint.png) · [横屏矢量源图（SVG）](images/ipc_vs_apics_blueprint.svg) · [手机竖屏大字适配版（免放大直读 PNG）](images/ipc_vs_apics_mobile.png) ｜ [**打开免安装在线交互沙盘亲手试算 (`demo/`)**](https://gritmeng.github.io/Value-Chain-Physics/demo/)
+
+---
+
 ## 🏛️ 从第一性原理到超大规模工业闭环的四层研究架构 (Four-Layer Research & Engineering Architecture)
 
 本门户完整呈现开放复杂巨系统（Open Complex Giant Systems, OCGS）从**元科学公理形式化**、**微观死锁机理证明**、**千亿级跨国制造网络 18 年纵向实证**到 **C++17 裸金属开源算子基准**的端到端研究与工程闭环：
@@ -66,7 +74,7 @@ Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global
 
 | 视图名称 | 展示内容与工程对应关系 | 在线访问入口 |
 | :--- | :--- | :--- |
-| **0. IPC 无菌交互验证沙盘（免安装实测）** | 5 大可调参数无菌沙盘（排序耦合 2×3、组替代 11,000 vs 1,000、CODP 两层定位与 Φ 影子收益、零预测冲减三态路由、三类配额圆整重归一化），实时对比传统 ERP/APS vs IPC | [**打开免安装交互验证沙盘 (`demo/index.html`)**](https://gritmeng.github.io/Value-Chain-Physics/demo/) |
+| **0. IPC 交互验证沙盘（免安装实测）** | 5 大可调参数无菌沙盘（两单抢一料死锁 2×3、缺一小件拉快盘活整套 1.1 万 vs 1 千、推拉解耦点选址与库存省钱、不做预测冲减按额度平准与超额分流、多供方按比例分单与包装凑整），实时对比传统 ERP/APS vs IPC | [**打开免安装交互验证沙盘 (`demo/index.html`)**](https://gritmeng.github.io/Value-Chain-Physics/demo/) |
 | **1. 3D 全息拓扑交互演示** | 五维双螺旋流形（$S = \mathcal{M}_{\text{model}} \otimes \mathcal{A}$）与百万节点抗熵动力学三维交互视图 | [打开 3D 拓扑视图 (`IPC_Governance_Showcase.html`)](https://gritmeng.github.io/Value-Chain-Physics/docs/IPC_Governance_Showcase.html) |
 | **2. IPC 架构技术审计视图** | ODM-CDM-DDM 三层数据本体、IBP-ITP-IOP-Scheduling 全链路闭环架构交互式拆解 | [打开架构审计视图 (`ipc_scheme_audit_agent.html`)](https://gritmeng.github.io/Value-Chain-Physics/docs/ipc_scheme_audit_agent.html) |
 | **3. 价值链物理审计视图** | 基于价值链物理学控制方程的企业产销死锁、时移阻尼与矢量对消废热诊断沙盘 | [打开物理审计视图 (`value_chain_audit_agent.html`)](https://gritmeng.github.io/Value-Chain-Physics/docs/value_chain_audit_agent.html) |

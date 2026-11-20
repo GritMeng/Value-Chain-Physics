@@ -287,8 +287,8 @@
       <div class="top-rule"></div>
       <div class="header-row">
         <div>
-          <h1>IPC 决策机理无菌交互验证沙盘</h1>
-          <p class="subtitle">零安装 · 纯静态脱敏计算 · 与本仓 C++17 开源微内核及 Python 审计脚本 100% 数学同构</p>
+          <h1>IPC 交互验证沙盘：动手试，一眼看出和传统 ERP/APS 的区别</h1>
+          <p class="subtitle">打开浏览器就能试 · 不装软件 · 背后与本仓开源 C++17 / Python 验算代码完全同一套算法</p>
         </div>
         <div>
           <a class="badge-link" href="../ipc-core-benchmark/">下载 C++17 开源压测源码 ➔</a>
@@ -296,33 +296,51 @@
       </div>
     </header>
 
+    <details class="card" open style="padding:16px 20px;">
+      <summary style="cursor:pointer;font-size:16px;font-weight:700;color:#111111;">
+        一图先看清结构区别：为什么传统计划框图“施不了工”，而 IPC 能闭环？（点击可折叠）
+      </summary>
+      <div style="margin-top:12px;">
+        <a href="../images/ipc_vs_apics_blueprint.png" target="_blank" rel="noopener">
+          <img src="../images/ipc_vs_apics_blueprint.png" alt="为什么传统计划框图施不了工，而 IPC 能闭环？" style="width:100%;height:auto;border-radius:6px;border:1px solid #D8D3C8;display:block;" />
+        </a>
+        <div style="margin-top:8px;font-size:13px;color:#555555;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;">
+          <span>看不清小字？点击图片直接看 4K 原图，或在手机端打开大字竖屏版。</span>
+          <span>
+            <a href="../images/ipc_vs_apics_blueprint.png" target="_blank" rel="noopener" style="color:#B03A2E;font-weight:600;text-decoration:none;">打开横屏 4K 原图</a> ｜
+            <a href="../images/ipc_vs_apics_mobile.png" target="_blank" rel="noopener" style="color:#B03A2E;font-weight:600;text-decoration:none;">打开手机竖屏大字版</a>
+          </span>
+        </div>
+      </div>
+    </details>
+
     <div class="notice">
-      <strong>如何使用：</strong>在下方 5 个无菌沙盘中任意修改库存、交期、成本、配额或工艺参数，页面将实时对比<strong>传统 ERP/APS 规则</strong>与<strong>IPC 正交解耦算法</strong>的精确数值差异。本页仅展示公开论文与无菌最小模型的数学机理，不含任何商业级引擎源码或企业隐私数据。
+      <strong>怎么玩：</strong>在下面 5 个工厂常见场景里随便改数字（库存、交期、成本、份额、最小包装），页面会立刻对照算出<strong>传统 ERP/APS 做法</strong>和<strong>IPC 闭环算法</strong>的结果差别。全部算例均为公开无菌最小模型，不含任何商业级引擎源码或企业隐私数据。
     </div>
 
     <div class="tabs" role="tablist">
-      <button class="tab-btn active" onclick="switchTab(0)">1. 排序耦合定律 (2单×3料)</button>
-      <button class="tab-btn" onclick="switchTab(1)">2. 组替代盘活 (11,000 vs 1,000)</button>
-      <button class="tab-btn" onclick="switchTab(2)">3. CODP 两层定位与 Φ 影子收益</button>
-      <button class="tab-btn" onclick="switchTab(3)">4. 零预测冲减推拉三态路由</button>
-      <button class="tab-btn" onclick="switchTab(4)">5. 多源配额与包装圆整重归一化</button>
+      <button class="tab-btn active" onclick="switchTab(0)">1. 两单抢一料死锁 (2单×3料)</button>
+      <button class="tab-btn" onclick="switchTab(1)">2. 缺一小件拉快盘活整套 (1.1万 vs 1千)</button>
+      <button class="tab-btn" onclick="switchTab(2)">3. 推拉解耦点设哪层 &amp; 库存省钱</button>
+      <button class="tab-btn" onclick="switchTab(3)">4. 不做预测冲减：平准切额度与超额分流</button>
+      <button class="tab-btn" onclick="switchTab(4)">5. 多供方按比例分单与包装凑整</button>
     </div>
 
     <!-- ================= TAB 1: SEQUENCING COUPLING ================= -->
     <section id="tab-0" class="panel active">
       <div class="card">
         <div class="panel-head">
-          <h2>沙盘 1：《排序耦合定律》最小完备反例（2 需求 × 3 物料 × 4 周期）</h2>
-          <button class="btn-sm" onclick="resetT1()">恢复论文标准算例 (SSRN 7640758)</button>
+          <h2>场景 1：两单抢一料为什么会卡死现货？（2 笔订单 × 3 颗物料 × 4 天）</h2>
+          <button class="btn-sm" onclick="resetT1()">恢复标准算例 (SSRN 7640758)</button>
         </div>
-        <p class="subtitle" style="margin-bottom:14px;">假设预测 100% 准确、主数据 100% 干净：高优订单 D1 需专用件 M1 + 通用件 M2；普通订单 D2 需通用件 M2 + 专用件 M3。调整各物料到达时间，观察静态优先级锁库如何必然造出“双输死锁”。</p>
+        <p class="subtitle" style="margin-bottom:14px;">哪怕预测 100% 准、库存数据 100% 干净：高优单 D1 需要专用件 M1 + 共用件 M2；普通单 D2 需要共用件 M2 + 专用件 M3。随便改下面到货天数，看看传统“按优先级顺手锁死现货”是怎么自己把自己卡死的。</p>
         <div class="controls">
           <div class="ctrl"><label>D1 (高优) 客户要求日</label><input id="t1_d1req" type="number" min="1" max="10" value="4" oninput="calcT1()" /></div>
           <div class="ctrl"><label>D2 (常规) 客户要求日</label><input id="t1_d2req" type="number" min="1" max="10" value="2" oninput="calcT1()" /></div>
           <div class="ctrl"><label>M1 (D1 专用件) 到货日</label><input id="t1_m1" type="number" min="1" max="10" value="4" oninput="calcT1()" /></div>
           <div class="ctrl"><label>M3 (D2 专用件) 到货日</label><input id="t1_m3" type="number" min="1" max="10" value="2" oninput="calcT1()" /></div>
-          <div class="ctrl"><label>M2 (通用件) 现货可用日</label><input id="t1_m2oh" type="number" min="1" max="10" value="1" oninput="calcT1()" /></div>
-          <div class="ctrl"><label>M2 (通用件) 在途到货日</label><input id="t1_m2po" type="number" min="1" max="10" value="3" oninput="calcT1()" /></div>
+          <div class="ctrl"><label>M2 (共用件) 现货可用日</label><input id="t1_m2oh" type="number" min="1" max="10" value="1" oninput="calcT1()" /></div>
+          <div class="ctrl"><label>M2 (共用件) 在途到货日</label><input id="t1_m2po" type="number" min="1" max="10" value="3" oninput="calcT1()" /></div>
         </div>
         <div class="grid-2" id="t1_cards"></div>
         <div class="svg-box" id="t1_svg"></div>
@@ -334,15 +352,15 @@
     <section id="tab-1" class="panel">
       <div class="card">
         <div class="panel-head">
-          <h2>沙盘 2：成套组替代沉没长板激活（11,000 元长板 vs. 1,000 元短板拉快）</h2>
+          <h2>场景 2：长板缺一小件，拉快还是重买整套？（11,000 元长板 vs. 1,000 元小料）</h2>
           <button class="btn-sm" onclick="resetT2()">恢复标准算例</button>
         </div>
-        <p class="subtitle" style="margin-bottom:14px;">替代组 G1 已持有高价值长板主芯片 A1（在手沉没库存），仅缺配套小料 B1（在途可定向拉快）；新替代组 G2 无现货需整套新购。对比传统单件齐套与 IPC 增量新购现金流裁决。</p>
+        <p class="subtitle" style="margin-bottom:14px;">替代组 G1 库里已经躺着高价主芯片 A1，只差配套小料 B1（在途花钱可拉快）；新替代组 G2 没现货，要整套重买。对比传统 MRP 跳过缺件组重买整套，和 IPC 算清实际新增现金流的做法。</p>
         <div class="controls">
-          <div class="ctrl"><label>G1 长板主件 A1 沉没价值 (¥)</label><input id="t2_sunk" type="number" min="0" step="500" value="11000" oninput="calcT2()" /></div>
-          <div class="ctrl"><label>G1 短板小料 B1 拉快/补购费 (¥)</label><input id="t2_exp" type="number" min="0" step="200" value="1000" oninput="calcT2()" /></div>
-          <div class="ctrl"><label>G2 全新替代组整套采购价 (¥)</label><input id="t2_new" type="number" min="0" step="500" value="12000" oninput="calcT2()" /></div>
-          <div class="ctrl"><label>需求成套数量 (套)</label><input id="t2_qty" type="number" min="1" step="10" value="100" oninput="calcT2()" /></div>
+          <div class="ctrl"><label>G1 库里已有主件 A1 成本 (¥)</label><input id="t2_sunk" type="number" min="0" step="500" value="11000" oninput="calcT2()" /></div>
+          <div class="ctrl"><label>G1 缺的那颗小料 B1 拉快/补买费 (¥)</label><input id="t2_exp" type="number" min="0" step="200" value="1000" oninput="calcT2()" /></div>
+          <div class="ctrl"><label>G2 重买全新替代组整套价格 (¥)</label><input id="t2_new" type="number" min="0" step="500" value="12000" oninput="calcT2()" /></div>
+          <div class="ctrl"><label>需要成套数量 (套)</label><input id="t2_qty" type="number" min="1" step="10" value="100" oninput="calcT2()" /></div>
         </div>
         <div class="grid-2" id="t2_cards"></div>
         <div class="svg-box" id="t2_svg"></div>
@@ -354,21 +372,21 @@
     <section id="tab-2" class="panel">
       <div class="card">
         <div class="panel-head">
-          <h2>沙盘 3：推拉解耦点（CODP）两层非补偿定位与二阶修宪 Φ 影子收益</h2>
+          <h2>场景 3：推拉解耦点（CODP）该设在哪一层？改工艺能省多少钱？</h2>
           <button class="btn-sm" onclick="resetT3()">恢复 3 层 6 节点标准算例</button>
         </div>
-        <p class="subtitle" style="margin-bottom:14px;">先通过三道非补偿硬门控定位最小割集（门控一时间因果界 L_down ≤ D_tol ➔ 门控二物理可存未固化差异 ➔ 门控三沙漏腰部减熵），若旧工艺迫使解耦点塌缩至成品层，自动量化二阶修宪 Φ 移点影子收益。</p>
+        <p class="subtitle" style="margin-bottom:14px;">先过两道硬门槛筛出合格层（第一关：后道加工期不能超过客户最多肯等的天数；第二关：不能提前把国别或客户标签做死），再看把通用半成品收口成共池能省多少安全库存。勾选下方“旧工艺早镭雕”，还能直接算出改工艺后移差异化工步到底值多少钱。</p>
         <div class="controls">
-          <div class="ctrl"><label>客户交期容忍期 D_tol (天)</label><input id="t3_dtol" type="number" min="0" max="15" value="3" oninput="calcT3()" /></div>
-          <div class="ctrl"><label>统一对外承诺 SLA (天)</label><input id="t3_sla" type="number" min="0" max="5" value="1" oninput="calcT3()" /></div>
-          <div class="ctrl"><label>裸机组装周期 L_mfg (天)</label><input id="t3_lmfg" type="number" min="1" max="14" value="4" oninput="calcT3()" /></div>
-          <div class="ctrl"><label>国别贴标包装周期 L_pack (天)</label><input id="t3_lpack" type="number" min="0" max="6" value="1" oninput="calcT3()" /></div>
-          <div class="ctrl"><label>下游定制国别扇出数 K</label><input id="t3_k" type="number" min="2" max="16" value="4" oninput="calcT3()" /></div>
-          <div class="ctrl"><label>单国日需求标准差 σ (台/天)</label><input id="t3_sigma" type="number" min="5" max="200" value="40" oninput="calcT3()" /></div>
-          <div class="ctrl"><label>通用裸机累计成本 (¥/台)</label><input id="t3_cbare" type="number" min="100" step="50" value="600" oninput="calcT3()" /></div>
-          <div class="ctrl"><label>定制成品累计成本 (¥/台)</label><input id="t3_cfg" type="number" min="100" step="50" value="800" oninput="calcT3()" /></div>
+          <div class="ctrl"><label>客户最多肯等几天 D_tol (天)</label><input id="t3_dtol" type="number" min="0" max="15" value="3" oninput="calcT3()" /></div>
+          <div class="ctrl"><label>对外统一承诺交期 (天)</label><input id="t3_sla" type="number" min="0" max="5" value="1" oninput="calcT3()" /></div>
+          <div class="ctrl"><label>通用裸机组装周期 (天)</label><input id="t3_lmfg" type="number" min="1" max="14" value="4" oninput="calcT3()" /></div>
+          <div class="ctrl"><label>国别贴标包装周期 (天)</label><input id="t3_lpack" type="number" min="0" max="6" value="1" oninput="calcT3()" /></div>
+          <div class="ctrl"><label>下游出口国别/定制数 K</label><input id="t3_k" type="number" min="2" max="16" value="4" oninput="calcT3()" /></div>
+          <div class="ctrl"><label>单国日销量波动 σ (台/天)</label><input id="t3_sigma" type="number" min="5" max="200" value="40" oninput="calcT3()" /></div>
+          <div class="ctrl"><label>通用裸机成本 (¥/台)</label><input id="t3_cbare" type="number" min="100" step="50" value="600" oninput="calcT3()" /></div>
+          <div class="ctrl"><label>贴标后成品成本 (¥/台)</label><input id="t3_cfg" type="number" min="100" step="50" value="800" oninput="calcT3()" /></div>
           <div class="ctrl">
-            <label>安全系数 Z 值</label>
+            <label>供货保障系数 Z 值</label>
             <select id="t3_z" onchange="calcT3()">
               <option value="1.65">1.65 (95.0%)</option>
               <option value="2.0" selected>2.00 (97.7% · 标准算例)</option>
@@ -377,7 +395,7 @@
           </div>
           <label class="ctrl-check">
             <input id="t3_legacy" type="checkbox" onchange="calcT3()" />
-            模拟旧工艺：SMT 首道即前置国别镭雕（测试二阶 Φ 影子收益）
+            模拟旧工艺：前道就把国别标签/镭雕做死（测改工艺能省多少钱）
           </label>
         </div>
         <div id="t3_gates" style="margin-bottom:14px;"></div>
@@ -390,24 +408,24 @@
     <section id="tab-3" class="panel">
       <div class="card">
         <div class="panel-head">
-          <h2>沙盘 4：彻底废除孤立预测冲减 — 推式防独占日切割 + 拉式超额三态路由</h2>
+          <h2>场景 4：不做预测冲减 —— 按日平准切额度 + 超额自动决定借下周还是新补采</h2>
           <button class="btn-sm" onclick="resetT4()">恢复标准算例</button>
         </div>
-        <p class="subtitle" style="margin-bottom:14px;">推式段按周度受限 Allocation 跨周结转并按日产能平准切分（杜绝大渠道首日独吞产能）；拉式段客户实单直接消费配额桶，仅在超额 ΔO &gt; 0 时联立月包络线与采购提前期自动判定 Mode A / B / C。</p>
+        <p class="subtitle" style="margin-bottom:14px;">前半环按每周真实能供底盘切保护额度，再按每天产线能力平准切到每一天（防大渠道第一天把产线吃光）；后半环客户实单直接吃自己的额度，只有超了额度才结合全月总上限和采购提前期，自动决定借下周额度还是新下采购单。</p>
         <div class="preset-row">
-          <button class="btn-sm" onclick="presetT4('A')">一键载入 Mode A（节奏前移 · 零新增 MRP）</button>
-          <button class="btn-sm" onclick="presetT4('B')">一键载入 Mode B（真增量交期够 · 锁 W2 直采）</button>
-          <button class="btn-sm" onclick="presetT4('C')">一键载入 Mode C（真增量急单 · 借 W2 + 回填 MRP）</button>
+          <button class="btn-sm" onclick="presetT4('A')">一键试 Mode A（提前提货 · 只扣下周额度、零新买料）</button>
+          <button class="btn-sm" onclick="presetT4('B')">一键试 Mode B（真增量交期够 · 保护下周、直接补采）</button>
+          <button class="btn-sm" onclick="presetT4('C')">一键试 Mode C（真增量急单 · 借下周现货 + 同步补采回填）</button>
         </div>
         <div class="controls">
-          <div class="ctrl"><label>渠道 A W1 预测需求 (k)</label><input id="t4_da" type="number" min="100" step="50" value="600" oninput="calcT4()" /></div>
-          <div class="ctrl"><label>渠道 B W1 预测需求 (k)</label><input id="t4_db" type="number" min="100" step="50" value="400" oninput="calcT4()" /></div>
-          <div class="ctrl"><label>W1 可用总供应上限 (k)</label><input id="t4_sup" type="number" min="100" step="50" value="800" oninput="calcT4()" /></div>
-          <div class="ctrl"><label>渠道 A 当周实单量 (k)</label><input id="t4_ord" type="number" min="0" step="20" value="600" oninput="calcT4()" /></div>
+          <div class="ctrl"><label>渠道 A 本周预测需求 (k)</label><input id="t4_da" type="number" min="100" step="50" value="600" oninput="calcT4()" /></div>
+          <div class="ctrl"><label>渠道 B 本周预测需求 (k)</label><input id="t4_db" type="number" min="100" step="50" value="400" oninput="calcT4()" /></div>
+          <div class="ctrl"><label>本周工厂真实能供上限 (k)</label><input id="t4_sup" type="number" min="100" step="50" value="800" oninput="calcT4()" /></div>
+          <div class="ctrl"><label>渠道 A 本周客户实单 (k)</label><input id="t4_ord" type="number" min="0" step="20" value="600" oninput="calcT4()" /></div>
           <div class="ctrl"><label>渠道 A 全月累计订单 (k)</label><input id="t4_mcum" type="number" min="0" step="20" value="1420" oninput="calcT4()" /></div>
-          <div class="ctrl"><label>渠道 A 月度总包络线 (k)</label><input id="t4_mcap" type="number" min="100" step="50" value="1500" oninput="calcT4()" /></div>
-          <div class="ctrl"><label>超额实单剩余交期 (天)</label><input id="t4_dtd" type="number" min="1" max="30" value="5" oninput="calcT4()" /></div>
-          <div class="ctrl"><label>关键料采购提前期 LT (天)</label><input id="t4_lt" type="number" min="1" max="60" value="10" oninput="calcT4()" /></div>
+          <div class="ctrl"><label>渠道 A 全月总预算上限 (k)</label><input id="t4_mcap" type="number" min="100" step="50" value="1500" oninput="calcT4()" /></div>
+          <div class="ctrl"><label>超额急单剩余交期 (天)</label><input id="t4_dtd" type="number" min="1" max="30" value="5" oninput="calcT4()" /></div>
+          <div class="ctrl"><label>关键料采购提前期 (天)</label><input id="t4_lt" type="number" min="1" max="60" value="10" oninput="calcT4()" /></div>
         </div>
         <div class="grid-2" id="t4_cards"></div>
         <div id="t4_table"></div>
@@ -419,12 +437,12 @@
     <section id="tab-4" class="panel">
       <div class="card">
         <div class="panel-head">
-          <h2>沙盘 5：多源三类配额 + 最小包装倍数（MPQ）动态重归一化</h2>
-          <button class="btn-sm" onclick="resetT5()">恢复标准算例 (1,000 颗 · MPQ=300)</button>
+          <h2>场景 5：多家供应商按比例分单 + 最小包装（MPQ）向上凑整不超买</h2>
+          <button class="btn-sm" onclick="resetT5()">恢复标准算例 (1,000 颗 · 每盘 300 颗)</button>
         </div>
-        <p class="subtitle" style="margin-bottom:14px;">传统简单按比例乘积再统一向上圆整，会导致采购总量虚胖或末端小供方被饿死。IPC 逐轮按最大应分额执行 MPQ 向上取整后，立即对剩余候选供方重归一化分配，实现全盘严格守恒。</p>
+        <p class="subtitle" style="margin-bottom:14px;">传统 ERP 按比例乘完之后各自向上凑整，结果每家多凑半盘，最后买回一大堆呆滞料。IPC 逐家按最小包装凑整后，立刻把剩下的量按比例重新分给后面几家，总量不多不少刚好守恒。</p>
         <div class="controls">
-          <div class="ctrl"><label>本次净需求总量 (颗)</label><input id="t5_net" type="number" min="100" step="100" value="1000" oninput="calcT5()" /></div>
+          <div class="ctrl"><label>本次净采购总量 (颗)</label><input id="t5_net" type="number" min="100" step="100" value="1000" oninput="calcT5()" /></div>
           <div class="ctrl"><label>最小包装倍数 MPQ (颗/盘)</label><input id="t5_mpq" type="number" min="1" step="50" value="300" oninput="calcT5()" /></div>
           <div class="ctrl"><label>供应商 S1 目标份额 (%)</label><input id="t5_r1" type="number" min="1" max="98" value="50" oninput="calcT5()" /></div>
           <div class="ctrl"><label>供应商 S2 目标份额 (%)</label><input id="t5_r2" type="number" min="1" max="98" value="30" oninput="calcT5()" /></div>
@@ -489,16 +507,16 @@
 
       document.getElementById('t1_cards').innerHTML = `
         <div class="kpi-box bad">
-          <h3>传统静态优先级排他锁库（ERP/APS）</h3>
-          <div class="metric"><span>高优订单 D1 齐套完工日</span><strong>t = ${tradD1} (要求 t=${d1Req})</strong></div>
-          <div class="metric"><span>普通订单 D2 齐套完工日</span><strong>t = ${tradD2} (延期 ${tradD2Delay} 天)</strong></div>
-          <div class="metric"><span>通用件 M2 现货闲置锁死时长</span><strong>${tradIdle} 周期</strong></div>
+          <h3>传统按优先级顺手锁料（ERP/APS）</h3>
+          <div class="metric"><span>高优单 D1 齐套完工日</span><strong>t = ${tradD1} (要求 t=${d1Req})</strong></div>
+          <div class="metric"><span>普通单 D2 齐套完工日</span><strong>t = ${tradD2} (延期 ${tradD2Delay} 天)</strong></div>
+          <div class="metric"><span>共用件 M2 现货闲置卡死天数</span><strong>${tradIdle} 天</strong></div>
         </div>
         <div class="kpi-box good">
-          <h3>IPC 两阶段正交解耦治理</h3>
-          <div class="metric"><span>高优订单 D1 齐套完工日</span><strong>t = ${ipcD1} (零损伤)</strong></div>
-          <div class="metric"><span>普通订单 D2 齐套完工日</span><strong>t = ${ipcD2} (延期 ${ipcD2Delay} 天)</strong></div>
-          <div class="metric"><span>通用件 M2 现货闲置锁死时长</span><strong>${ipcIdle} 周期</strong></div>
+          <h3>IPC 先算齐套再错开锁料</h3>
+          <div class="metric"><span>高优单 D1 齐套完工日</span><strong>t = ${ipcD1} (零损伤)</strong></div>
+          <div class="metric"><span>普通单 D2 齐套完工日</span><strong>t = ${ipcD2} (延期 ${ipcD2Delay} 天)</strong></div>
+          <div class="metric"><span>共用件 M2 现货闲置卡死天数</span><strong>${ipcIdle} 天</strong></div>
         </div>`;
 
       const maxT = Math.max(6, tradD1, tradD2, ipcD1, ipcD2, d1Req, d2Req) + 1;
@@ -512,7 +530,7 @@
       document.getElementById('t1_svg').innerHTML = `
         <svg viewBox="0 0 940 190" width="100%" style="max-width:940px;display:block;margin:0 auto;">
           ${ticks}
-          <text x="14" y="64" font-size="13" font-weight="700" fill="#B03A2E">传统静态锁库</text>
+          <text x="14" y="64" font-size="13" font-weight="700" fill="#B03A2E">传统顺手锁料</text>
           <rect x="${sx(m2a)}" y="44" width="${Math.max(18, sx(tradD1)-sx(m2a))}" height="22" rx="4" fill="#F5D5D0" stroke="#B03A2E"/>
           <text x="${(sx(m2a)+sx(tradD1))/2}" y="59" text-anchor="middle" font-size="11.5" fill="#922B21" font-weight="700">D1 霸占 M2(t=${m2a}) 干等至 t=${tradD1}</text>
           <rect x="${sx(m2b)}" y="72" width="${Math.max(54, sx(tradD2)-sx(m2b)+54)}" height="22" rx="4" fill="#B03A2E"/>
@@ -520,16 +538,16 @@
 
           <line x1="14" y1="108" x2="920" y2="108" stroke="#D8D3C8" stroke-width="1.2"/>
 
-          <text x="14" y="144" font-size="13" font-weight="700" fill="#1E6B47">IPC 正交解耦</text>
+          <text x="14" y="144" font-size="13" font-weight="700" fill="#1E6B47">IPC 错开锁料</text>
           <rect x="${sx(m2a)}" y="122" width="${Math.max(66, sx(ipcD2)-sx(m2a))}" height="22" rx="4" fill="#1E6B47"/>
           <text x="${sx(m2a)+Math.max(33, (sx(ipcD2)-sx(m2a))/2)}" y="137" text-anchor="middle" font-size="11.5" fill="#FFFFFF" font-weight="700">D2 准时 t=${ipcD2}</text>
           <rect x="${sx(m2b)}" y="150" width="${Math.max(66, sx(ipcD1)-sx(m2b))}" height="22" rx="4" fill="#2C3E50"/>
-          <text x="${sx(m2b)+Math.max(33, (sx(ipcD1)-sx(m2b))/2)}" y="165" text-anchor="middle" font-size="11.5" fill="#FFFFFF" font-weight="700">D1 晚绑定 t=${ipcD1}</text>
+          <text x="${sx(m2b)+Math.max(33, (sx(ipcD1)-sx(m2b))/2)}" y="165" text-anchor="middle" font-size="11.5" fill="#FFFFFF" font-weight="700">D1 改配在途 t=${ipcD1}</text>
         </svg>`;
 
       document.getElementById('t1_verdict').textContent = swapped
-        ? `物理判决：在不损伤高优单 D1（仍于 t=${ipcD1} 准时交付）的前提下，IPC 正交解耦释放早期 M2 给 D2，使 D2 提前 ${tradD2 - ipcD2} 天准时完工，并将现货闲置锁死由 ${tradIdle} 周期降至 ${ipcIdle} 周期。`
-        : `当前参数下未形成交叉错配死锁（两方案完工日相同），可将 M1 设晚于 M3 且 M2 在途早于 M1 观察死锁复现。`;
+        ? `实测结论：高优单 D1 照样在 t=${ipcD1} 准时交货（一天不晚），IPC 自动把早期现货 M2 让给已齐套的 D2，使 D2 提前 ${tradD2 - ipcD2} 天准时完工，现货白等卡死时长从 ${tradIdle} 天降到 ${ipcIdle} 天。`
+        : `当前参数下两单没撞车（两种做法完工日一样），可把 M1 设晚于 M3 且让 M2 在途早于 M1 就能看到死锁复现。`;
     }
 
     // ==================== TAB 2 ====================
@@ -558,14 +576,14 @@
 
       document.getElementById('t2_cards').innerHTML = `
         <div class="kpi-box bad">
-          <h3>传统 MRP（跳过短板组重买整套 G2）</h3>
-          <div class="metric"><span>新增采购现金流出</span><strong>${fmtMoney(tradCash)}</strong></div>
-          <div class="metric"><span>G1 长板主芯片呆滞报废</span><strong>${fmtMoney(tradScrap)}</strong></div>
+          <h3>传统 MRP（跳过缺件组，直接重买整套 G2）</h3>
+          <div class="metric"><span>新掏采购现金流出</span><strong>${fmtMoney(tradCash)}</strong></div>
+          <div class="metric"><span>G1 库里长板主芯片干放报废</span><strong>${fmtMoney(tradScrap)}</strong></div>
           <div class="metric"><span>合计综合经济损失</span><strong>${fmtMoney(tradTot)}</strong></div>
         </div>
         <div class="kpi-box good">
-          <h3>IPC 增量新购裁决（${activate ? '定向拉快短板 B1 盘活 G1' : '切至 G2 更划算'}）</h3>
-          <div class="metric"><span>新增采购/拉快现金流出</span><strong>${fmtMoney(ipcCash)}</strong></div>
+          <h3>IPC 按实际新增现金流裁决（${activate ? '拉快小料 B1 盘活 G1' : '切至 G2 更划算'}）</h3>
+          <div class="metric"><span>新掏拉快/补买现金流出</span><strong>${fmtMoney(ipcCash)}</strong></div>
           <div class="metric"><span>G1 长板呆滞报废损失</span><strong>${fmtMoney(ipcScrap)}</strong></div>
           <div class="metric"><span>合计经济成本</span><strong>${fmtMoney(ipcTot)}</strong></div>
         </div>`;
@@ -590,8 +608,8 @@
         </svg>`;
 
       document.getElementById('t2_verdict').textContent = activate
-        ? `物理判决：定向投入 ${fmtMoney(ipcCash)} 拉快短板小料 B1，直接盘活 ${fmtMoney(tradScrap)} 沉没长板并免买整套 G2，综合净节省 ${fmtMoney(save)}（${qty} 套）。`
-        : `当前参数下拉快短板成本不低于整套新购，IPC 自动切换为采购 G2。`;
+        ? `实测结论：花 ${fmtMoney(ipcCash)} 拉快短板小料 B1，就能把库里躺着的 ${fmtMoney(tradScrap)} 主芯片全部盘活且免买整套 G2，合计净省 ${fmtMoney(save)}（${qty} 套）。`
+        : `当前参数下拉快小料的费用不低于整套重买，IPC 自动切换为采购 G2。`;
     }
 
     // ==================== TAB 3 ====================
@@ -639,29 +657,29 @@
       const phiShadow = Math.max(0, capA - capB);
 
       document.getElementById('t3_gates').innerHTML = `
-        <span class="pill ${chipG1 ? 'pill-pass' : 'pill-fail'}">Gate 1 · 芯片层 L_down=${lDownChip}d ${chipG1 ? '≤' : '>'} D_tol=${dtol}d (${chipG1 ? '通过' : '一票淘汰'})</span>
-        <span class="pill ${bareG1 ? 'pill-pass' : 'pill-fail'}">Gate 1 · 裸机层 L_down=${lpack}d ${bareG1 ? '≤' : '>'} D_tol=${dtol}d (${bareG1 ? '通过' : '淘汰'})</span>
-        <span class="pill ${bareG2 ? 'pill-pass' : 'pill-fail'}">Gate 2 · 裸机未固化差异 (${legacy ? '旧工艺早镭雕 · 拦截退化' : '通用无标 · 通过'})</span>`;
+        <span class="pill ${chipG1 ? 'pill-pass' : 'pill-fail'}">第一关 · 芯片层后道 ${lDownChip}天 ${chipG1 ? '≤' : '>'} 客户等待期 ${dtol}天 (${chipG1 ? '合格' : '一票淘汰'})</span>
+        <span class="pill ${bareG1 ? 'pill-pass' : 'pill-fail'}">第一关 · 裸机层后道 ${lpack}天 ${bareG1 ? '≤' : '>'} 客户等待期 ${dtol}天 (${bareG1 ? '合格' : '淘汰'})</span>
+        <span class="pill ${bareG2 ? 'pill-pass' : 'pill-fail'}">第二关 · 裸机是否通用无标 (${legacy ? '旧工艺提前贴死国别 · 被迫退回成品备库' : '通用无标 · 合格'})</span>`;
 
       document.getElementById('t3_cards').innerHTML = `
         <div class="kpi-box bad">
-          <h3>方案 A：CODP 下沉至 ${K} 国成品层（MTS）</h3>
-          <div class="metric"><span>单国净暴露期 τ_FG</span><strong>${tauA} 天</strong></div>
+          <h3>方案 A：备库压在 ${K} 国贴标成品层</h3>
+          <div class="metric"><span>单国净备库天数</span><strong>${tauA} 天</strong></div>
           <div class="metric"><span>${K} 国成品合计安全库存</span><strong>${unitsA.toFixed(1)} 台</strong></div>
-          <div class="metric"><span>常态安全库存资金占用</span><strong>${fmtMoney(capA)}</strong></div>
-          <div class="metric"><span>跨国贴标 E&amp;O 专属呆滞</span><strong>高风险（不可跨国互济）</strong></div>
+          <div class="metric"><span>常态安全库存压占资金</span><strong>${fmtMoney(capA)}</strong></div>
+          <div class="metric"><span>贴错标签导致的跨国呆滞</span><strong>高风险（不能互相调剂）</strong></div>
         </div>
         <div class="kpi-box good">
-          <h3>方案 B：CODP 锚定沙漏腰部通用裸机（${bareG2 ? '当前选中' : '二阶修宪 Φ 目标态'}）</h3>
-          <div class="metric"><span>腰部汇聚波动标准差 σ_pool</span><strong>${pooledSigma.toFixed(1)} 台/天 (相对 CV 降 ${(100*(1-1/Math.sqrt(K))).toFixed(1)}%)</strong></div>
+          <h3>方案 B：备库收口在沙漏腰部通用裸机共池（${bareG2 ? '当前选中' : '改工艺后目标方案'}）</h3>
+          <div class="metric"><span>合并后总销量波动 σ_pool</span><strong>${pooledSigma.toFixed(1)} 台/天 (相对波动直降 ${(100*(1-1/Math.sqrt(K))).toFixed(1)}%)</strong></div>
           <div class="metric"><span>共享裸机池安全库存</span><strong>${unitsB.toFixed(1)} 台 (直降 ${unitRed.toFixed(1)}%)</strong></div>
-          <div class="metric"><span>常态安全库存资金占用</span><strong>${fmtMoney(capB)} (直降 ${capRed.toFixed(1)}%)</strong></div>
-          <div class="metric"><span>跨国贴标 E&amp;O 专属呆滞</span><strong>归零（无标共池实时互济）</strong></div>
+          <div class="metric"><span>常态安全库存压占资金</span><strong>${fmtMoney(capB)} (直降 ${capRed.toFixed(1)}%)</strong></div>
+          <div class="metric"><span>贴错标签导致的跨国呆滞</span><strong>归零（实物不贴标、随时互济）</strong></div>
         </div>`;
 
       document.getElementById('t3_verdict').textContent = bareG2
-        ? `一阶裁决：选定沙漏腰部 SEMI_BARE 为推拉解耦点（codp_decoupling_flag = 1）。在完全等价的 ${sla} 天交付 SLA 下，安全库存台数直降 ${unitRed.toFixed(1)}%，资金占用直降 ${capRed.toFixed(1)}%（节省 ${fmtMoney(phiShadow)}），且跨国专属呆滞归零。`
-        : `触发二阶修宪 Φ：受制于${legacy ? '旧工艺过早植入国别镭雕' : '包装提前期突破 D_tol'}，解耦点被迫退化至 MTS 成品层。引擎自动输出 CODP 上移影子收益 = ${fmtMoney(phiShadow)}（不含跨国呆滞减损），精准量化驱动研发 DFSC 后移差异化工步！`;
+        ? `选址结论：把推拉解耦点定在沙漏腰部的通用裸机共池。同样保障 ${sla} 天对外交货，安全库存台数直降 ${unitRed.toFixed(1)}%，压占资金直降 ${capRed.toFixed(1)}%（立省 ${fmtMoney(phiShadow)}），且跨国呆滞归零。`
+        : `改工艺省钱提示：因为${legacy ? '旧工艺在前道就把国别标签/镭雕做死了' : '后道包装天数超过了客户最多肯等的天数'}，目前只能被迫退回按国别备成品。系统直接算出改工艺把差异化工步后移的收益 = ${fmtMoney(phiShadow)}（还不算省下的跨国呆滞报废），拿这笔账去推动研发与工艺改流程。`;
     }
 
     // ==================== TAB 4 ====================
@@ -708,35 +726,35 @@
       const weights = [140, 140, 140, 140, 140, 100];
       const wSum = 800;
       const ov = Math.max(0, ord - allocA);
-      let modeTitle = '桶内静默兑现（IN_BUCKET）', w2Ded = 0, mrpAdd = 0, desc = '实单未突破当周配额桶，推端零扰动。';
+      let modeTitle = '额度内静默兑现', w2Ded = 0, mrpAdd = 0, desc = '客户实单没超出本周保护额度，前端备料纹丝不动。';
       if (ov > 1e-6) {
         if (mcum <= mcap) {
-          modeTitle = 'Mode A · 节奏前移（零新增 MRP）';
+          modeTitle = 'Mode A · 提前提货（只扣下周额度，零新买料）';
           w2Ded = ov; mrpAdd = 0;
-          desc = '全月累计未超月包络，定性为提前拉货，直接扣减 W2 配额，彻底杜绝重复采购牛鞭效应。';
+          desc = '全月累计没超总预算上限，说明客户只是把下周的货提前到本周拿，直接扣下周额度，彻底杜绝重复买料变成呆滞。';
         } else if (dtd >= lt) {
-          modeTitle = 'Mode B · 真增量直采（保护 W2 配额）';
+          modeTitle = 'Mode B · 真增量交期够（保住下周额度，直接新补采）';
           w2Ded = 0; mrpAdd = ov;
-          desc = '突破月包络且交期充裕（≥ 采购 LT），100% 锁死 W2 配额不动，超额直发 MRP 净补货。';
+          desc = '全月真的多卖了且离交期还来得及买料，100% 保护下周额度不动，只把超出来的量直接下新采购单。';
         } else {
-          modeTitle = 'Mode C · 急单借调 + 同步回填';
+          modeTitle = 'Mode C · 真增量急单（先借下周现货 + 同步补采回填）';
           w2Ded = ov; mrpAdd = ov;
-          desc = '突破月包络且交期短于 LT，先从 W2 现货借调救急发货，同步向 MRP 注入等量回填净需求。';
+          desc = '全月真的多卖了但交期太紧来不及买料，先从下周现货里借出来救急发货，同时立刻下等量采购单把下周窟窿补平。';
         }
       }
 
       document.getElementById('t4_cards').innerHTML = `
         <div class="kpi-box good">
-          <h3>推式段（零预测冲减 · 周受限配额与顺延）</h3>
-          <div class="metric"><span>W1 有效配额分配 (A : B)</span><strong>${allocA.toFixed(1)}k : ${allocB.toFixed(1)}k</strong></div>
-          <div class="metric"><span>自动滚入 W2 首日顺延欠账</span><strong>A 欠 ${rollA.toFixed(1)}k / B 欠 ${rollB.toFixed(1)}k</strong></div>
-          <div class="metric"><span>传统孤立预测冲减账本</span><strong>已彻底废除（0 抖动）</strong></div>
+          <h3>前半环：按能供底盘切周保护额度与顺延</h3>
+          <div class="metric"><span>本周有效保护额度 (A : B)</span><strong>${allocA.toFixed(1)}k : ${allocB.toFixed(1)}k</strong></div>
+          <div class="metric"><span>本周不够的量自动顺延到下周首日</span><strong>A 欠 ${rollA.toFixed(1)}k / B 欠 ${rollB.toFixed(1)}k</strong></div>
+          <div class="metric"><span>传统孤立“预测冲减”账本</span><strong>彻底废除（前端备料 0 抖动）</strong></div>
         </div>
         <div class="kpi-box ${ov > 0 ? 'bad' : 'good'}">
-          <h3>拉式段（超配额三态动态路由裁决）</h3>
-          <div class="metric"><span>渠道 A 当周超配额 ΔO</span><strong>${ov.toFixed(1)}k</strong></div>
-          <div class="metric"><span>自动触发路由模式</span><strong>${modeTitle}</strong></div>
-          <div class="metric"><span>扣减/借调 W2 配额 | 触发增量 MRP</span><strong>${w2Ded.toFixed(1)}k | +${mrpAdd.toFixed(1)}k</strong></div>
+          <h3>后半环：实单吃额度，超了自动决定借下周还是补采</h3>
+          <div class="metric"><span>渠道 A 本周超出额度量</span><strong>${ov.toFixed(1)}k</strong></div>
+          <div class="metric"><span>系统自动判定的处理方式</span><strong>${modeTitle}</strong></div>
+          <div class="metric"><span>扣/借下周额度 | 触发新补采购</span><strong>${w2Ded.toFixed(1)}k | +${mrpAdd.toFixed(1)}k</strong></div>
         </div>`;
 
       let rows = '';
@@ -751,10 +769,10 @@
 
       document.getElementById('t4_table').innerHTML = `
         <table>
-          <thead><tr><th>工作日</th><th>当日有效供应</th><th>渠道 A 防独占日配额</th><th>渠道 B 防独占日配额</th><th>日合计守恒</th></tr></thead>
+          <thead><tr><th>工作日</th><th>当日能供产能</th><th>渠道 A 日平准额度</th><th>渠道 B 日平准额度</th><th>日合计守恒</th></tr></thead>
           <tbody>${rows}</tbody>
         </table>`;
-      document.getElementById('t4_verdict').textContent = `路由判词：${modeTitle} —— ${desc}`;
+      document.getElementById('t4_verdict').textContent = `实测结论：${modeTitle} —— ${desc}`;
     }
 
     // ==================== TAB 5 ====================
@@ -812,11 +830,11 @@
 
       document.getElementById('t5_table').innerHTML = `
         <table>
-          <thead><tr><th>轮次</th><th>本轮选中供方</th><th>当前归一化份额</th><th>期初剩余需求</th><th>理论应分额</th><th>MPQ 向上圆整</th><th>实际精准分配</th><th>期末剩余需求</th></tr></thead>
+          <thead><tr><th>轮次</th><th>本轮选中供方</th><th>当前重算份额</th><th>剩余待分总量</th><th>理论应分额</th><th>按最小包装凑整</th><th>实际精准分配</th><th>分后剩余</th></tr></thead>
           <tbody>${rows}</tbody>
         </table>`;
       document.getElementById('t5_verdict').textContent =
-        `守恒对账：传统各自独立按 MPQ=${mpq} 向上圆整会多买出 ${(naiveTotal - net).toFixed(0)} 颗虚胖呆滞（总采购 ${naiveTotal.toFixed(0)} 颗）；IPC 逐轮动态重归一化精准收敛至 ${totalAllocated.toFixed(0)} 颗（0 超买、0 漏单）。`;
+        `实测结论：传统各家各自按每盘 ${mpq} 颗向上凑整，会凭空多买出 ${(naiveTotal - net).toFixed(0)} 颗呆滞料（总买 ${naiveTotal.toFixed(0)} 颗）；IPC 逐家凑整后重算剩余份额，精准买满 ${totalAllocated.toFixed(0)} 颗（不多买、不漏单）。`;
     }
 
     // Initial render of all 5 sandboxes
