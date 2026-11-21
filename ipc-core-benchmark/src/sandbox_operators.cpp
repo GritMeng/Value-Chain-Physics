@@ -52,18 +52,19 @@ GroupSubResult evaluate_group_substitution_sunk_cost(const GroupSubInput &in) {
   r.trad_scrap_loss = in.g1_main_sunk_value;
   r.trad_total_economic_cost = r.trad_new_cash_out + r.trad_scrap_loss;
 
-  // IPC 增量新购现金流裁决（Incremental New Cost）：比较定向拉快短板成本 vs
-  // 重买新组成本
+  // IPC 增量新购现金流裁决（CFO 严格账面守恒口径）：
+  // 正常消耗在库长板进入 COGS（非报废，但需计入总账面成本以防重复扣除沉没存货）
   if (in.g1_minor_expedite_cost < in.g2_full_new_cost) {
     r.ipc_new_cash_out = in.g1_minor_expedite_cost;
     r.ipc_scrap_loss = 0.0;
+    r.ipc_total_economic_cost = in.g1_minor_expedite_cost + in.g1_main_sunk_value;
     r.decision_code = "ACTIVATE_SUNK_G1_BY_EXPEDITING_MINOR_PART";
   } else {
     r.ipc_new_cash_out = in.g2_full_new_cost;
     r.ipc_scrap_loss = in.g1_main_sunk_value;
+    r.ipc_total_economic_cost = r.ipc_new_cash_out + r.ipc_scrap_loss;
     r.decision_code = "SWITCH_TO_G2_NEW_SET";
   }
-  r.ipc_total_economic_cost = r.ipc_new_cash_out + r.ipc_scrap_loss;
   r.net_economic_savings =
       r.trad_total_economic_cost - r.ipc_total_economic_cost;
   return r;

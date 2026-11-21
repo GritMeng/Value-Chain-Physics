@@ -31,10 +31,10 @@ def run_cross_validation() -> None:
     assert sc["ipc_d1_finish"] == 4 and sc["ipc_d2_finish"] == 2 and sc["ipc_d2_delay"] == 0
     print("[PASS 1/7] 排序耦合定律 (2x3x4): 现有系统延期 1 天/锁库 3 天 vs IPC 双双准时 (0 延期)")
 
-    # 2. 成套组替代 (11,000 vs 1,000)
+    # 2. 成套组替代 (11,000 vs 1,000, CFO 严守不重复计沉没存货口径)
     gs = evaluate_group_sub_python(11000.0, 1000.0, 12000.0)
-    assert abs(gs["ipc_cash"] - 1000.0) < 1e-6 and abs(gs["net_savings"] - 22000.0) < 1e-6
-    print("[PASS 2/7] 成套组替代 (11,000 vs 1,000): 定向拉快净节省 ¥22,000 (0 长板报废)")
+    assert abs(gs["ipc_cash"] - 1000.0) < 1e-6 and abs(gs["ipc_total"] - 12000.0) < 1e-6 and abs(gs["net_savings"] - 11000.0) < 1e-6
+    print("[PASS 2/7] 成套组替代 (11,000 vs 1,000): 总成本 ¥23,000 vs ¥12,000，净省现金 ¥11,000/套 (0 长板报废)")
 
     # 3. Class 1 历史追平 + Class 3 包装圆整动态重归一化
     c1 = allocate_class1_python(

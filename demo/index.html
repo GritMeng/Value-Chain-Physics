@@ -610,45 +610,47 @@
 
       const activate = exp < newSet;
       const ipcCash = (activate ? exp : newSet) * qty;
+      const ipcSunkConsumed = (activate ? sunk : 0) * qty;
       const ipcScrap = (activate ? 0 : sunk) * qty;
-      const ipcTot = ipcCash + ipcScrap;
+      const ipcTot = ipcCash + ipcSunkConsumed + ipcScrap;
       const save = tradTot - ipcTot;
 
       document.getElementById('t2_cards').innerHTML = `
         <div class="kpi-box bad">
           <h3>现有 SCP / APS（跳过缺件组，直接重买整套 G2）</h3>
           <div class="metric"><span>新掏采购现金流出</span><strong>${fmtMoney(tradCash)}</strong></div>
-          <div class="metric"><span>G1 库里长板主芯片干放报废</span><strong>${fmtMoney(tradScrap)}</strong></div>
-          <div class="metric"><span>合计综合经济损失</span><strong>${fmtMoney(tradTot)}</strong></div>
+          <div class="metric"><span>G1 库里主芯片呆滞报废</span><strong>${fmtMoney(tradScrap)}</strong></div>
+          <div class="metric"><span>总账面经济成本</span><strong>${fmtMoney(tradTot)}</strong></div>
         </div>
         <div class="kpi-box good">
           <h3>IPC 按实际新增现金流裁决（${activate ? '拉快小料 B1 盘活 G1' : '切至 G2 更划算'}）</h3>
           <div class="metric"><span>新掏拉快/补买现金流出</span><strong>${fmtMoney(ipcCash)}</strong></div>
-          <div class="metric"><span>G1 长板呆滞报废损失</span><strong>${fmtMoney(ipcScrap)}</strong></div>
-          <div class="metric"><span>合计经济成本</span><strong>${fmtMoney(ipcTot)}</strong></div>
+          <div class="metric"><span>${activate ? '正常领用库里 G1 主芯片（呆滞报废 ¥0）' : 'G1 长板呆滞报废损失'}</span><strong>${fmtMoney(activate ? ipcSunkConsumed : ipcScrap)}</strong></div>
+          <div class="metric"><span>总账面经济成本</span><strong>${fmtMoney(ipcTot)}</strong></div>
         </div>`;
 
       const maxVal = Math.max(1, tradTot, ipcTot);
-      const wTradCash = (tradCash / maxVal) * 560;
-      const wTradScrap = (tradScrap / maxVal) * 560;
-      const wIpcCash = (ipcCash / maxVal) * 560;
-      const wIpcScrap = (ipcScrap / maxVal) * 560;
+      const wTradCash = (tradCash / maxVal) * 520;
+      const wTradScrap = (tradScrap / maxVal) * 520;
+      const wIpcCash = (ipcCash / maxVal) * 520;
+      const wIpcSunk = (ipcSunkConsumed / maxVal) * 520;
+      const wIpcScrap = (ipcScrap / maxVal) * 520;
 
       document.getElementById('t2_svg').innerHTML = `
-        <svg viewBox="0 0 840 120" width="100%" style="max-width:840px;display:block;margin:0 auto;">
-          <text x="10" y="38" font-size="13" font-weight="700" fill="#B03A2E">传统重买整套 G2</text>
+        <svg viewBox="0 0 860 124" width="100%" style="max-width:860px;display:block;margin:0 auto;">
+          <text x="10" y="38" font-size="13" font-weight="700" fill="#B03A2E">现有重买整套 G2</text>
           <rect x="148" y="20" width="${wTradCash}" height="28" rx="4" fill="#C0392B"/>
           <rect x="${148 + wTradCash}" y="20" width="${wTradScrap}" height="28" rx="4" fill="#E6B0AA"/>
-          <text x="${158 + wTradCash + wTradScrap}" y="39" font-size="12.5" font-weight="700" fill="#B03A2E">${fmtMoney(tradTot)}</text>
+          <text x="${158 + wTradCash + wTradScrap}" y="39" font-size="12.5" font-weight="700" fill="#B03A2E">${fmtMoney(tradTot)} (含呆滞报废)</text>
 
           <text x="10" y="88" font-size="13" font-weight="700" fill="#1E6B47">IPC 盘活长板 G1</text>
           <rect x="148" y="70" width="${Math.max(8, wIpcCash)}" height="28" rx="4" fill="#1E6B47"/>
-          <rect x="${148 + wIpcCash}" y="70" width="${wIpcScrap}" height="28" rx="4" fill="#E6B0AA"/>
-          <text x="${158 + Math.max(8, wIpcCash) + wIpcScrap}" y="89" font-size="12.5" font-weight="700" fill="#1E6B47">${fmtMoney(ipcTot)}</text>
+          <rect x="${148 + Math.max(8, wIpcCash)}" y="70" width="${activate ? wIpcSunk : wIpcScrap}" height="28" rx="4" fill="${activate ? '#B7D7C5' : '#E6B0AA'}"/>
+          <text x="${158 + Math.max(8, wIpcCash) + (activate ? wIpcSunk : wIpcScrap)}" y="89" font-size="12.5" font-weight="700" fill="#1E6B47">${fmtMoney(ipcTot)} (呆滞 ¥0 · 净省 ${fmtMoney(save)})</text>
         </svg>`;
 
       document.getElementById('t2_verdict').textContent = activate
-        ? `实测结论：花 ${fmtMoney(ipcCash)} 拉快短板小料 B1，就能把库里躺着的 ${fmtMoney(tradScrap)} 主芯片全部盘活且免买整套 G2，合计净省 ${fmtMoney(save)}（${qty} 套）。`
+        ? `实测结论：原本只需再掏 ${fmtMoney(ipcCash)} 拉快小料并正常领用库里 ${fmtMoney(ipcSunkConsumed)} 主芯片（总账面成本 ${fmtMoney(ipcTot)}，呆滞为 0）；现有 SCP / APS 却迫使新掏 ${fmtMoney(tradCash)} 重买整套且把库里主芯片憋成呆滞（总账面成本 ${fmtMoney(tradTot)}），IPC 实打实净省 ${fmtMoney(save)} 现金（${qty} 套）。`
         : `当前参数下拉快小料的费用不低于整套重买，IPC 自动切换为采购 G2。`;
     }
 

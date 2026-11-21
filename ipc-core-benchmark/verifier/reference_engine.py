@@ -43,9 +43,10 @@ def evaluate_group_sub_python(
     trad_total = g2_new + g1_sunk
     if g1_expedite < g2_new:
         ipc_cash, ipc_scrap = g1_expedite, 0.0
+        ipc_total = ipc_cash + g1_sunk  # CFO 严守口径：正常领用库内长板计入账面成本（呆滞报废为 0）
     else:
         ipc_cash, ipc_scrap = g2_new, g1_sunk
-    ipc_total = ipc_cash + ipc_scrap
+        ipc_total = ipc_cash + ipc_scrap
     return {
         "trad_total": trad_total,
         "ipc_cash": ipc_cash,

@@ -20,12 +20,13 @@ int main() {
               << " + 长板报废 " << gs_res.trad_scrap_loss
               << " = 总经济损失 " << gs_res.trad_total_economic_cost << "\n";
     std::cout << "  - IPC 增量新购定向拉快短板 B1: 新购现金 " << gs_res.ipc_new_cash_out
-              << " + 长板报废 " << gs_res.ipc_scrap_loss
-              << " = 总成本 " << gs_res.ipc_total_economic_cost
-              << " (净节省 " << gs_res.net_economic_savings << " | 决策: " << gs_res.decision_code << ")\n";
+              << " + 正常领用长板 " << gs_in.g1_main_sunk_value
+              << " (呆滞报废 " << gs_res.ipc_scrap_loss << ") = 总账面成本 " << gs_res.ipc_total_economic_cost
+              << " (净省现金 " << gs_res.net_economic_savings << " | 决策: " << gs_res.decision_code << ")\n";
     assert(std::abs(gs_res.ipc_new_cash_out - 1000.0) < 1e-6);
     assert(std::abs(gs_res.ipc_scrap_loss - 0.0) < 1e-6);
-    assert(std::abs(gs_res.net_economic_savings - 22000.0) < 1e-6);
+    assert(std::abs(gs_res.ipc_total_economic_cost - 12000.0) < 1e-6);
+    assert(std::abs(gs_res.net_economic_savings - 11000.0) < 1e-6);
 
     // Part B: 一/二/三类多源配额平衡、最小包装倍数圆整与安全库存保护
     std::vector<SkuNodeRecord> parts = {
