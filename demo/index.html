@@ -153,8 +153,8 @@
     .btn-sm:hover { border-color: var(--red); color: var(--red); }
     .controls {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
       margin-bottom: 18px;
       padding: 14px 16px;
       background: var(--tint);
@@ -287,7 +287,7 @@
       <div class="top-rule"></div>
       <div class="header-row">
         <div>
-          <h1>IPC 交互验证沙盘：动手试，一眼看出和传统 ERP/APS 的区别</h1>
+          <h1>IPC 交互验证沙盘：动手试，一眼看出和现有 SCP / APS 的区别</h1>
           <p class="subtitle">打开浏览器就能试 · 不装软件 · 背后与本仓开源 C++17 / Python 验算代码完全同一套算法</p>
         </div>
         <div>
@@ -315,7 +315,7 @@
     </details>
 
     <div class="notice">
-      <strong>怎么玩：</strong>在下面 5 个工厂常见场景里随便改数字（库存、交期、成本、份额、最小包装），页面会立刻对照算出<strong>传统 ERP/APS 做法</strong>和<strong>IPC 闭环算法</strong>的结果差别。全部算例均为公开无菌最小模型，不含任何商业级引擎源码或企业隐私数据。
+      <strong>怎么玩：</strong>在下面 5 个工厂常见场景里随便改数字（库存、交期、成本、份额、最小包装），页面会立刻对照算出<strong>现有 SCP / APS 系统</strong>和<strong>IPC 闭环算法</strong>的结果差别——一眼看清 KPI 同源耦合的根本问题。全部算例均为公开无菌最小模型，不含任何商业级引擎源码或企业隐私数据。
     </div>
 
     <div class="tabs" role="tablist">
@@ -333,7 +333,7 @@
           <h2>场景 1：两单抢一料为什么会卡死现货？（2 笔订单 × 3 颗物料 × 4 天）</h2>
           <button class="btn-sm" onclick="resetT1()">恢复标准算例 (SSRN 7640758)</button>
         </div>
-        <p class="subtitle" style="margin-bottom:14px;">哪怕预测 100% 准、库存数据 100% 干净：高优单 D1 需要专用件 M1 + 共用件 M2；普通单 D2 需要共用件 M2 + 专用件 M3。随便改下面到货天数，看看传统“按优先级顺手锁死现货”是怎么自己把自己卡死的。</p>
+        <p class="subtitle" style="margin-bottom:14px;">哪怕预测 100% 准、库存数据 100% 干净：高优单 D1 需要专用件 M1 + 共用件 M2；普通单 D2 需要共用件 M2 + 专用件 M3。随便改下面到货天数，看看现有 SCP / APS 系统因没看到 KPI 耦合，按优先级顺手锁死现货是怎么自己把自己卡死的。</p>
         <div class="controls">
           <div class="ctrl"><label>D1 (高优) 客户要求日</label><input id="t1_d1req" type="number" min="1" max="10" value="4" oninput="calcT1()" /></div>
           <div class="ctrl"><label>D2 (常规) 客户要求日</label><input id="t1_d2req" type="number" min="1" max="10" value="2" oninput="calcT1()" /></div>
@@ -355,7 +355,7 @@
           <h2>场景 2：长板缺一小件，拉快还是重买整套？（11,000 元长板 vs. 1,000 元小料）</h2>
           <button class="btn-sm" onclick="resetT2()">恢复标准算例</button>
         </div>
-        <p class="subtitle" style="margin-bottom:14px;">替代组 G1 库里已经躺着高价主芯片 A1，只差配套小料 B1（在途花钱可拉快）；新替代组 G2 没现货，要整套重买。对比传统 MRP 跳过缺件组重买整套，和 IPC 算清实际新增现金流的做法。</p>
+        <p class="subtitle" style="margin-bottom:14px;">替代组 G1 库里已经躺着高价主芯片 A1，只差配套小料 B1（在途花钱可拉快）；新替代组 G2 没现货，要整套重买。对比现有 SCP / APS 跳过缺件组重买整套，和 IPC 算清实际新增现金流的做法。</p>
         <div class="controls">
           <div class="ctrl"><label>G1 库里已有主件 A1 成本 (¥)</label><input id="t2_sunk" type="number" min="0" step="500" value="11000" oninput="calcT2()" /></div>
           <div class="ctrl"><label>G1 缺的那颗小料 B1 拉快/补买费 (¥)</label><input id="t2_exp" type="number" min="0" step="200" value="1000" oninput="calcT2()" /></div>
@@ -440,7 +440,7 @@
           <h2>场景 5：多家供应商按比例分单 + 最小包装（MPQ）向上凑整不超买</h2>
           <button class="btn-sm" onclick="resetT5()">恢复标准算例 (1,000 颗 · 每盘 300 颗)</button>
         </div>
-        <p class="subtitle" style="margin-bottom:14px;">传统 ERP 按比例乘完之后各自向上凑整，结果每家多凑半盘，最后买回一大堆呆滞料。IPC 逐家按最小包装凑整后，立刻把剩下的量按比例重新分给后面几家，总量不多不少刚好守恒。</p>
+        <p class="subtitle" style="margin-bottom:14px;">现有 SCP / APS 按比例乘完之后各自向上凑整，结果每家多凑半盘，最后买回一大堆呆滞料。IPC 逐家按最小包装凑整后，立刻把剩下的量按比例重新分给后面几家，总量不多不少刚好守恒。</p>
         <div class="controls">
           <div class="ctrl"><label>本次净采购总量 (颗)</label><input id="t5_net" type="number" min="100" step="100" value="1000" oninput="calcT5()" /></div>
           <div class="ctrl"><label>最小包装倍数 MPQ (颗/盘)</label><input id="t5_mpq" type="number" min="1" step="50" value="300" oninput="calcT5()" /></div>
@@ -507,13 +507,13 @@
 
       document.getElementById('t1_cards').innerHTML = `
         <div class="kpi-box bad">
-          <h3>传统按优先级顺手锁料（ERP/APS）</h3>
+          <h3>现有 SCP / APS（按优先级顺手锁料）</h3>
           <div class="metric"><span>高优单 D1 齐套完工日</span><strong>t = ${tradD1} (要求 t=${d1Req})</strong></div>
           <div class="metric"><span>普通单 D2 齐套完工日</span><strong>t = ${tradD2} (延期 ${tradD2Delay} 天)</strong></div>
           <div class="metric"><span>共用件 M2 现货闲置卡死天数</span><strong>${tradIdle} 天</strong></div>
         </div>
         <div class="kpi-box good">
-          <h3>IPC 先算齐套再错开锁料</h3>
+          <h3>IPC 先算齐套再错开锁料（解开 KPI 耦合）</h3>
           <div class="metric"><span>高优单 D1 齐套完工日</span><strong>t = ${ipcD1} (零损伤)</strong></div>
           <div class="metric"><span>普通单 D2 齐套完工日</span><strong>t = ${ipcD2} (延期 ${ipcD2Delay} 天)</strong></div>
           <div class="metric"><span>共用件 M2 现货闲置卡死天数</span><strong>${ipcIdle} 天</strong></div>
@@ -530,19 +530,19 @@
       document.getElementById('t1_svg').innerHTML = `
         <svg viewBox="0 0 940 190" width="100%" style="max-width:940px;display:block;margin:0 auto;">
           ${ticks}
-          <text x="14" y="64" font-size="13" font-weight="700" fill="#B03A2E">传统顺手锁料</text>
+          <text x="14" y="64" font-size="13" font-weight="700" fill="#B03A2E">现有 SCP/APS</text>
           <rect x="${sx(m2a)}" y="44" width="${Math.max(18, sx(tradD1)-sx(m2a))}" height="22" rx="4" fill="#F5D5D0" stroke="#B03A2E"/>
           <text x="${(sx(m2a)+sx(tradD1))/2}" y="59" text-anchor="middle" font-size="11.5" fill="#922B21" font-weight="700">D1 霸占 M2(t=${m2a}) 干等至 t=${tradD1}</text>
-          <rect x="${sx(m2b)}" y="72" width="${Math.max(54, sx(tradD2)-sx(m2b)+54)}" height="22" rx="4" fill="#B03A2E"/>
-          <text x="${sx(m2b)+27}" y="87" text-anchor="middle" font-size="11.5" fill="#FFFFFF" font-weight="700">D2 延至 t=${tradD2}</text>
+          <rect x="${sx(m2b)}" y="72" width="${Math.max(92, sx(tradD2)-sx(m2b)+92)}" height="22" rx="4" fill="#B03A2E"/>
+          <text x="${sx(m2b)+Math.max(46, (sx(tradD2)-sx(m2b)+92)/2)}" y="87" text-anchor="middle" font-size="11.5" fill="#FFFFFF" font-weight="700">D2 延至 t=${tradD2}</text>
 
           <line x1="14" y1="108" x2="920" y2="108" stroke="#D8D3C8" stroke-width="1.2"/>
 
           <text x="14" y="144" font-size="13" font-weight="700" fill="#1E6B47">IPC 错开锁料</text>
-          <rect x="${sx(m2a)}" y="122" width="${Math.max(66, sx(ipcD2)-sx(m2a))}" height="22" rx="4" fill="#1E6B47"/>
-          <text x="${sx(m2a)+Math.max(33, (sx(ipcD2)-sx(m2a))/2)}" y="137" text-anchor="middle" font-size="11.5" fill="#FFFFFF" font-weight="700">D2 准时 t=${ipcD2}</text>
-          <rect x="${sx(m2b)}" y="150" width="${Math.max(66, sx(ipcD1)-sx(m2b))}" height="22" rx="4" fill="#2C3E50"/>
-          <text x="${sx(m2b)+Math.max(33, (sx(ipcD1)-sx(m2b))/2)}" y="165" text-anchor="middle" font-size="11.5" fill="#FFFFFF" font-weight="700">D1 改配在途 t=${ipcD1}</text>
+          <rect x="${sx(m2a)}" y="122" width="${Math.max(92, sx(ipcD2)-sx(m2a))}" height="22" rx="4" fill="#1E6B47"/>
+          <text x="${sx(m2a)+Math.max(46, (sx(ipcD2)-sx(m2a))/2)}" y="137" text-anchor="middle" font-size="11.5" fill="#FFFFFF" font-weight="700">D2 准时 t=${ipcD2}</text>
+          <rect x="${sx(m2b)}" y="150" width="${Math.max(108, sx(ipcD1)-sx(m2b))}" height="22" rx="4" fill="#2C3E50"/>
+          <text x="${sx(m2b)+Math.max(54, (sx(ipcD1)-sx(m2b))/2)}" y="165" text-anchor="middle" font-size="11.5" fill="#FFFFFF" font-weight="700">D1 改配在途 t=${ipcD1}</text>
         </svg>`;
 
       document.getElementById('t1_verdict').textContent = swapped
@@ -576,7 +576,7 @@
 
       document.getElementById('t2_cards').innerHTML = `
         <div class="kpi-box bad">
-          <h3>传统 MRP（跳过缺件组，直接重买整套 G2）</h3>
+          <h3>现有 SCP / APS（跳过缺件组，直接重买整套 G2）</h3>
           <div class="metric"><span>新掏采购现金流出</span><strong>${fmtMoney(tradCash)}</strong></div>
           <div class="metric"><span>G1 库里长板主芯片干放报废</span><strong>${fmtMoney(tradScrap)}</strong></div>
           <div class="metric"><span>合计综合经济损失</span><strong>${fmtMoney(tradTot)}</strong></div>
@@ -834,7 +834,7 @@
           <tbody>${rows}</tbody>
         </table>`;
       document.getElementById('t5_verdict').textContent =
-        `实测结论：传统各家各自按每盘 ${mpq} 颗向上凑整，会凭空多买出 ${(naiveTotal - net).toFixed(0)} 颗呆滞料（总买 ${naiveTotal.toFixed(0)} 颗）；IPC 逐家凑整后重算剩余份额，精准买满 ${totalAllocated.toFixed(0)} 颗（不多买、不漏单）。`;
+        `实测结论：现有系统各家各自按每盘 ${mpq} 颗向上凑整，会凭空多买出 ${(naiveTotal - net).toFixed(0)} 颗呆滞料（总买 ${naiveTotal.toFixed(0)} 颗）；IPC 逐家凑整后重算剩余份额，精准买满 ${totalAllocated.toFixed(0)} 颗（不多买、不漏单）。`;
     }
 
     // Initial render of all 5 sandboxes
