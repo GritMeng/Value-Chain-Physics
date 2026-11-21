@@ -34,6 +34,23 @@ Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global
 
 ---
 
+## 8 集实机演示与可复现验证索引 (8-Episode Live Demos & Open Verification Map)
+
+面向制造业管理者、供应链架构师与运筹学同行，以下 8 个核心场景均已打通 **“80 秒实机演示视频 ➔ 浏览器免安装亲手改数 ➔ 本地 C++17 源码一键压测”** 三重验真路径（视频高清版统一归档于仓库 [GitHub Releases (`v1.0-video-demos`)](https://github.com/GritMeng/Value-Chain-Physics/releases)）：
+
+| 集数 | 核心工业场景与批判靶心 | 关键定量实证结论 | 免安装在线试算 (`demo/`) | 可下载复现 C++17 目标 |
+| :---: | :--- | :--- | :---: | :--- |
+| **EP01** | **两单抢一料（排序耦合死锁）**：为何预测 100% 准，现有 SCP / APS 仍会卡死现货？ | 2 需求 × 3 物料现场改数：现有系统现货白等 5 天且普通单延期，IPC 错开锁料双单零延期、白等降至 1 天 | [场景 1](https://gritmeng.github.io/Value-Chain-Physics/demo/) | [`test_delivery_precision`](ipc-core-benchmark/benchmarks/test_delivery_precision.cpp) |
+| **EP02** | **成套组替代（11,000 元长板 vs 1,000 元短板）**：为何系统自己算出一大半呆滞？ | 跳过缺件组重买整套 G2（100 套里外亏 230 万）vs IPC 定向拉快小料盘活长板，综合净省 220 万 | [场景 2](https://gritmeng.github.io/Value-Chain-Physics/demo/) | [`test_substitution_rules`](ipc-core-benchmark/benchmarks/test_substitution_rules.cpp) |
+| **EP03** | **推拉解耦点（CODP）选址与改工艺账**：设在哪一层最省钱？ | 两道非补偿硬门槛 + 沙漏裸机共池：安全库存直降 50.0%、资金省 62.5%，旧工艺早镭雕一键算出改工艺立省 32 万 | [场景 3](https://gritmeng.github.io/Value-Chain-Physics/demo/) | [`test_codp_positioning`](ipc-core-benchmark/benchmarks/test_codp_positioning.cpp) |
+| **EP04** | **彻底废除“预测冲减”**：日度平准切额度 + 超额三态自动分流 | 周保护额度按日平准切开防首日独占；超额按 `Mode A / B / C` 自动决定借下周额度或触发新补采，消除计划抖动 | [场景 4](https://gritmeng.github.io/Value-Chain-Physics/demo/) | [`test_push_pull_router`](ipc-core-benchmark/benchmarks/test_push_pull_router.cpp) |
+| **EP05** | **多供方按份额分单 + 最小包装（MPQ）凑整不超买** | 1,000 颗按 `50:30:20` 与每盘 300 颗凑整：现有系统各自凑整超买 200 颗呆滞，IPC 逐轮重算精准守恒 1,000 颗（改 1,400 照样零超买） | [场景 5](https://gritmeng.github.io/Value-Chain-Physics/demo/) | [`test_substitution_rules`](ipc-core-benchmark/benchmarks/test_substitution_rules.cpp) |
+| **EP06** | **One Plan 企业级全局闭环实跑**：月产销财、周主计划与日排程共用一张底账 | 普通笔记本实跑 300 万级需求控制塔、战略合同锁死、机台排程与急单隔离沙箱，核心计算 2.74 秒跑通闭环 | [架构对比图](images/ipc_vs_apics_blueprint.png) | [`test_itp_iop_alignment`](ipc-core-benchmark/benchmarks/test_itp_iop_alignment.cpp) |
+| **EP07** | **不完全替代与 30% 混用红线**：主料缺料陷阱与国别认证硬拦截 | 主料断料仅齐套 500 台时，现有系统硬派 300 颗副料致占比飙至 37.5% 违约；IPC 按主料锚定截断 214 颗（29.97%），认证不符直接归零 | [场景 6](https://gritmeng.github.io/Value-Chain-Physics/demo/) | [`test_substitution_rules`](ipc-core-benchmark/benchmarks/test_substitution_rules.cpp) |
+| **EP08** | **极限性能现场实测**：50 万笔需求 × 200 万物料 × 20 层价值链网络（DAG） | 真实构建 `L0..L19` 20 层 425 万条共享 BOM 边：拓扑 22.85 ms + 20 层级联消纳 35.48 ms + 50 万 ITP/IOP = **262.57 ms** · 峰值内存 **254 MB** · 守恒残差 **0.00** | [一键编译说明](ipc-core-benchmark/README.md) | [`stress_benchmark_2m`](ipc-core-benchmark/benchmarks/stress_benchmark_2m.cpp) |
+
+---
+
 ## 🏛️ 从第一性原理到超大规模工业闭环的四层研究架构 (Four-Layer Research & Engineering Architecture)
 
 本门户完整呈现开放复杂巨系统（Open Complex Giant Systems, OCGS）从**元科学公理形式化**、**微观死锁机理证明**、**千亿级跨国制造网络 18 年纵向实证**到 **C++17 裸金属开源算子基准**的端到端研究与工程闭环：
