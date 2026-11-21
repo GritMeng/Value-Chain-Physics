@@ -55,6 +55,49 @@ def evaluate_group_sub_python(
     }
 
 
+def evaluate_incomplete_sub_python(
+    gross_demand=1000.0,
+    main_kitted=500.0,
+    sub_avail=500.0,
+    max_sub_ratio=0.30,
+    dim_op="GE",
+    candidate_dim=5000.0,
+    required_dim=4500.0,
+) -> Dict:
+    dim_passed = (
+        (candidate_dim + 1e-9 >= required_dim)
+        if dim_op == "GE"
+        else (abs(candidate_dim - required_dim) <= 1e-9)
+    )
+    theta = max(0.0, min(1.0, max_sub_ratio))
+    gap = max(0.0, gross_demand - main_kitted)
+    cap_gross = math.floor(theta * gross_demand + 1e-9)
+    legacy_used = min(gap, sub_avail, cap_gross) if (dim_passed and theta > 0) else 0.0
+    legacy_out = main_kitted + legacy_used
+    legacy_ratio = (legacy_used / legacy_out) if legacy_out > 0 else 0.0
+
+    if not dim_passed or theta <= 0:
+        ipc_used = 0.0
+    else:
+        cap_anchor = (
+            math.floor((theta / (1.0 - theta)) * main_kitted + 1e-9)
+            if theta < 1.0 - 1e-9
+            else 1e18
+        )
+        ipc_used = min(gap, sub_avail, cap_gross, cap_anchor)
+    ipc_out = main_kitted + ipc_used
+    ipc_ratio = (ipc_used / ipc_out) if ipc_out > 0 else 0.0
+    return {
+        "dim_passed": dim_passed,
+        "legacy_sub_used": legacy_used,
+        "legacy_ratio": legacy_ratio,
+        "legacy_breached": legacy_ratio > theta + 1e-9,
+        "ipc_sub_used": ipc_used,
+        "ipc_ratio": ipc_ratio,
+        "ipc_within_cap": ipc_ratio <= theta + 1e-9,
+    }
+
+
 def allocate_class1_python(net_demand: float, group_items: List[Dict]) -> int:
     total_hist = sum(item["cum_dispatched_qty"] for item in group_items)
     current_total = total_hist + net_demand

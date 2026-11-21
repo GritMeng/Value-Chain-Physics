@@ -70,6 +70,64 @@ GroupSubResult evaluate_group_substitution_sunk_cost(const GroupSubInput &in) {
 }
 
 // =========================================================================
+// 2B. 不完全替代（单向属性门槛 + 主料锚定比例红线）
+// =========================================================================
+IncompleteSubResult
+evaluate_incomplete_substitution_rule(const IncompleteSubInput &in) {
+  IncompleteSubResult r;
+  if (in.dim_op == IncompleteSubOp::GE) {
+    r.dim_passed = (in.candidate_dim + 1e-9 >= in.required_dim);
+  } else {
+    r.dim_passed = (std::abs(in.candidate_dim - in.required_dim) <= 1e-9);
+  }
+
+  double theta = std::max(0.0, std::min(1.0, in.max_sub_ratio));
+  double gap = std::max(0.0, in.gross_demand - in.main_kitted_qty);
+
+  // 现有 SCP / APS：常见粗糙做法按总需求毛量乘比例上限，忽略主料实际缺料时的分母坍缩
+  if (!r.dim_passed || in.gross_demand <= 0.0 || in.sub_avail_qty <= 0.0 ||
+      theta <= 0.0) {
+    r.legacy_sub_used = 0.0;
+  } else {
+    double cap_gross = std::floor(theta * in.gross_demand + 1e-9);
+    r.legacy_sub_used = std::min({gap, in.sub_avail_qty, cap_gross});
+  }
+  r.legacy_total_output = in.main_kitted_qty + r.legacy_sub_used;
+  r.legacy_actual_ratio = r.legacy_total_output > 0.0
+                              ? (r.legacy_sub_used / r.legacy_total_output)
+                              : 0.0;
+  r.legacy_breached_cap = (r.legacy_actual_ratio > theta + 1e-9);
+
+  // IPC 确定性主料锚定截断：Q_sub / (Q_main + Q_sub) <= theta  <=>  Q_sub <= (theta/(1-theta)) * Q_main
+  if (!r.dim_passed) {
+    r.ipc_sub_used = 0.0;
+    r.decision_code = "HARD_BLOCKED_BY_DIMENSION_GATE";
+  } else if (in.gross_demand <= 0.0 || in.sub_avail_qty <= 0.0 ||
+             theta <= 0.0) {
+    r.ipc_sub_used = 0.0;
+    r.decision_code = "ZERO_ELIGIBLE_SUB";
+  } else {
+    double cap_gross = std::floor(theta * in.gross_demand + 1e-9);
+    double cap_main_anchor = 1e18;
+    if (theta < 1.0 - 1e-9) {
+      cap_main_anchor =
+          std::floor((theta / (1.0 - theta)) * in.main_kitted_qty + 1e-9);
+    }
+    r.ipc_sub_used =
+        std::min({gap, in.sub_avail_qty, cap_gross, cap_main_anchor});
+    r.decision_code = (r.legacy_breached_cap)
+                          ? "ANCHORED_BY_MAIN_KITTED_PREVENTED_BREACH"
+                          : "WITHIN_MIX_RATIO_BOUND";
+  }
+  r.ipc_total_output = in.main_kitted_qty + r.ipc_sub_used;
+  r.ipc_actual_ratio = r.ipc_total_output > 0.0
+                           ? (r.ipc_sub_used / r.ipc_total_output)
+                           : 0.0;
+  r.ipc_within_cap = (r.ipc_actual_ratio <= theta + 1e-9);
+  return r;
+}
+
+// =========================================================================
 // 3. 推拉解耦点 (CODP) 两层非补偿定位与二阶 Φ 影子收益模型
 // =========================================================================
 CodpPositioningResult

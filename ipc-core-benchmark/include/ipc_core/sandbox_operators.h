@@ -56,6 +56,42 @@ struct GroupSubResult {
 GroupSubResult evaluate_group_substitution_sunk_cost(const GroupSubInput& in);
 
 // =========================================================================
+// 2B. 不完全替代（局部替代：单向属性门槛 + 主料锚定混用比例上限）
+// =========================================================================
+enum class IncompleteSubOp {
+    GE = 0, // 高配向下兼容低配 (candidate >= required)
+    EQ = 1  // 认证/国别严格匹配 (candidate == required)
+};
+
+struct IncompleteSubInput {
+    double gross_demand = 1000.0;        // 父件总需求
+    double main_kitted_qty = 500.0;      // 主料实际齐套量
+    double sub_avail_qty = 500.0;        // 副料（替代料）可用量
+    double max_sub_ratio = 0.30;         // 副料在总产出中的法定/工艺比例红线 (如 30%)
+    IncompleteSubOp dim_op = IncompleteSubOp::GE;
+    double candidate_dim = 5000.0;       // 副料属性值（如 5000mAh / 认证码 101）
+    double required_dim = 4500.0;        // 目标需求属性值（如 4500mAh / 认证码 101）
+};
+
+struct IncompleteSubResult {
+    bool dim_passed = false;
+    // 现有 SCP / APS 机械按毛需求乘比例 (floor(theta * gross)) 的结果
+    double legacy_sub_used = 0.0;
+    double legacy_total_output = 0.0;
+    double legacy_actual_ratio = 0.0;
+    bool legacy_breached_cap = false;
+
+    // IPC 按主料实际齐套量锚定: Q_sub <= floor((theta / (1 - theta)) * Q_main)
+    double ipc_sub_used = 0.0;
+    double ipc_total_output = 0.0;
+    double ipc_actual_ratio = 0.0;
+    bool ipc_within_cap = true;
+    std::string decision_code;
+};
+
+IncompleteSubResult evaluate_incomplete_substitution_rule(const IncompleteSubInput& in);
+
+// =========================================================================
 // 3. 推拉解耦点 (CODP) 两层非补偿定位与二阶 Φ 影子收益模型 (3 层 6 节点)
 // =========================================================================
 struct CodpPositioningInput {

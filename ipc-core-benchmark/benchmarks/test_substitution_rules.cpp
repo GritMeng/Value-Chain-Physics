@@ -16,7 +16,7 @@ int main() {
     GroupSubInput gs_in{11000.0, 1000.0, 12000.0};
     GroupSubResult gs_res = evaluate_group_substitution_sunk_cost(gs_in);
 
-    std::cout << "  - 传统 MRP 跳过短板组重买 G2: 新购现金 " << gs_res.trad_new_cash_out
+    std::cout << "  - 现有 SCP/APS 跳过短板组重买 G2: 新购现金 " << gs_res.trad_new_cash_out
               << " + 长板报废 " << gs_res.trad_scrap_loss
               << " = 总经济损失 " << gs_res.trad_total_economic_cost << "\n";
     std::cout << "  - IPC 增量新购定向拉快短板 B1: 新购现金 " << gs_res.ipc_new_cash_out
@@ -73,6 +73,34 @@ int main() {
     assert(std::abs(recs[2].allocated_qty - 100.0) < 1e-6);
     assert(std::abs(total_alloc - 1000.0) < 1e-6);
 
-    std::cout << "\n>>> [PASSED] Test 2: 组替代长板盘活与三类配额动态重归一化 100% 校验通过！\n";
+    // Part C: 不完全替代（单向属性门槛 + 主料锚定 30% 混用红线）
+    std::cout << "\n[Part C] 不完全替代：单向属性门槛 + 主料实际齐套量锚定 30% 混用红线...\n";
+    // Case C-1: 主料齐套 700, 副料 500, 总需 1000, 红线 30%, 5000mAh >= 4500mAh -> 用 300 刚好 30.0% 满产
+    IncompleteSubResult ic1 = evaluate_incomplete_substitution_rule(
+        {1000.0, 700.0, 500.0, 0.30, IncompleteSubOp::GE, 5000.0, 4500.0});
+    assert(ic1.dim_passed && std::abs(ic1.ipc_sub_used - 300.0) < 1e-6 && ic1.ipc_within_cap);
+    std::cout << "  - Case C-1 (满产卡线 700+300): 副料用 " << ic1.ipc_sub_used
+              << " 颗 | 实际占比=" << (ic1.ipc_actual_ratio * 100.0) << "% (合标)\n";
+
+    // Case C-2: 主料断料仅齐套 500, 副料有 500, 红线 30%
+    // 现有系统按总需 1000*30%=300 派副料 -> 300/800=37.5% 越线违约！
+    // IPC 按主料锚定 floor((0.3/0.7)*500)=214 -> 214/714=29.97% <= 30% 零违约！
+    IncompleteSubResult ic2 = evaluate_incomplete_substitution_rule(
+        {1000.0, 500.0, 500.0, 0.30, IncompleteSubOp::GE, 5000.0, 4500.0});
+    assert(ic2.legacy_breached_cap && std::abs(ic2.legacy_sub_used - 300.0) < 1e-6);
+    assert(std::abs(ic2.ipc_sub_used - 214.0) < 1e-6 && ic2.ipc_within_cap);
+    std::cout << "  - Case C-2 (主料缺料陷阱 500): 现有 SCP/APS 派 " << ic2.legacy_sub_used
+              << " 颗 -> 占比飙至 " << (ic2.legacy_actual_ratio * 100.0) << "% (越线违约!) | "
+              << "IPC 主料锚定截断 " << ic2.ipc_sub_used << " 颗 -> 占比 "
+              << (ic2.ipc_actual_ratio * 100.0) << "% (零违约)\n";
+
+    // Case C-3: 国别认证不匹配 (EQ: 101 欧规 != 102 美规) -> 硬拦截 0 颗
+    IncompleteSubResult ic3 = evaluate_incomplete_substitution_rule(
+        {1000.0, 700.0, 500.0, 0.30, IncompleteSubOp::EQ, 101.0, 102.0});
+    assert(!ic3.dim_passed && std::abs(ic3.ipc_sub_used - 0.0) < 1e-6);
+    std::cout << "  - Case C-3 (国别认证不匹配 EQ 101!=102): 硬拦截返回 " << ic3.ipc_sub_used << " 颗 ("
+              << ic3.decision_code << ")\n";
+
+    std::cout << "\n>>> [PASSED] Test 2: 组替代长板盘活、不完全替代红线与三类配额重归一化 100% 校验通过！\n";
     return 0;
 }

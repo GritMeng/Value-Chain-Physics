@@ -7,6 +7,7 @@ import sys
 from reference_engine import (
     evaluate_sequencing_coupling_python,
     evaluate_group_sub_python,
+    evaluate_incomplete_sub_python,
     allocate_class1_python,
     allocate_class3_renorm_python,
     evaluate_codp_python,
@@ -28,12 +29,12 @@ def run_cross_validation() -> None:
     sc = evaluate_sequencing_coupling_python()
     assert sc["trad_d2_delay"] == 1 and sc["trad_idle_lock"] == 3
     assert sc["ipc_d1_finish"] == 4 and sc["ipc_d2_finish"] == 2 and sc["ipc_d2_delay"] == 0
-    print("[PASS 1/6] 排序耦合定律 (2x3x4): 传统延期 1 天/锁库 3 天 vs IPC 双双准时 (0 延期)")
+    print("[PASS 1/7] 排序耦合定律 (2x3x4): 现有系统延期 1 天/锁库 3 天 vs IPC 双双准时 (0 延期)")
 
     # 2. 成套组替代 (11,000 vs 1,000)
     gs = evaluate_group_sub_python(11000.0, 1000.0, 12000.0)
     assert abs(gs["ipc_cash"] - 1000.0) < 1e-6 and abs(gs["net_savings"] - 22000.0) < 1e-6
-    print("[PASS 2/6] 成套组替代 (11,000 vs 1,000): 定向拉快净节省 ¥22,000 (0 长板报废)")
+    print("[PASS 2/7] 成套组替代 (11,000 vs 1,000): 定向拉快净节省 ¥22,000 (0 长板报废)")
 
     # 3. Class 1 历史追平 + Class 3 包装圆整动态重归一化
     c1 = allocate_class1_python(
@@ -53,7 +54,7 @@ def run_cross_validation() -> None:
         ],
     )
     assert c3 == [(1, 600.0), (2, 300.0), (3, 100.0)]
-    print("[PASS 3/6] 多源配额 + MPQ=300 重归一化: 1,000 颗精准收敛为 600 + 300 + 100")
+    print("[PASS 3/7] 多源配额 + MPQ=300 重归一化: 1,000 颗精准收敛为 600 + 300 + 100")
 
     # 4. CODP 两层定位与二阶 Φ 影子收益
     codp_ok = evaluate_codp_python(legacy_early_engraving=False)
@@ -63,7 +64,7 @@ def run_cross_validation() -> None:
     assert abs(codp_ok["plan_a_cap"] - 512000.0) < 1e-6 and abs(codp_ok["plan_b_cap"] - 192000.0) < 1e-6
     assert abs(codp_ok["cap_red_pct"] - 62.5) < 1e-6
     assert not codp_phi["bare_gate2"] and abs(codp_phi["phi_shadow_cap"] - 320000.0) < 1e-6
-    print("[PASS 4/6] CODP 两层定位 (3层6节点): 台数 -50.0% / 资金 -62.5% / Φ 影子收益 ¥320,000")
+    print("[PASS 4/7] CODP 两层定位 (3层6节点): 台数 -50.0% / 资金 -62.5% / Φ 影子收益 ¥320,000")
 
     # 5. 零预测冲减：防独占日切割 + 拉式超额三态路由
     ps = evaluate_push_pull_python()
@@ -72,7 +73,7 @@ def run_cross_validation() -> None:
     assert route_pull_overflow_python(600, 480, 1420, 1500, 5, 10) == ("MODE_A_CONSUME_NEXT_BUCKET_ONLY", 120.0, 0.0)
     assert route_pull_overflow_python(680, 480, 1700, 1500, 12, 10) == ("MODE_B_TRIGGER_MRP_DIRECT", 0.0, 200.0)
     assert route_pull_overflow_python(680, 480, 1700, 1500, 3, 10) == ("MODE_C_BORROW_W2_AND_MRP_BACKFILL", 200.0, 200.0)
-    print("[PASS 5/6] 零预测冲减推拉路由: D1..D6 平准守恒 (480k+320k) & Mode A/B/C 100% 对齐")
+    print("[PASS 5/7] 零预测冲减推拉路由: D1..D6 平准守恒 (480k+320k) & Mode A/B/C 100% 对齐")
 
     # 6. ITP / IOP 配额防波堤阻断
     fw = itp_iop_alignment_python(
@@ -89,10 +90,19 @@ def run_cross_validation() -> None:
         1.10,
     )
     assert fw["scheduled_orders"] == 3 and fw["blocked_orders"] == 1
-    print("[PASS 6/6] ITP/IOP 刚性配额防波堤: 放行 3 单 / 越界拦截 1 单 100% 精确对齐")
+    print("[PASS 6/7] ITP/IOP 刚性配额防波堤: 放行 3 单 / 越界拦截 1 单 100% 精确对齐")
+
+    # 7. 不完全替代（单向属性门槛 + 主料锚定 30% 混用红线）
+    ic1 = evaluate_incomplete_sub_python(1000.0, 700.0, 500.0, 0.30, "GE", 5000.0, 4500.0)
+    ic2 = evaluate_incomplete_sub_python(1000.0, 500.0, 500.0, 0.30, "GE", 5000.0, 4500.0)
+    ic3 = evaluate_incomplete_sub_python(1000.0, 700.0, 500.0, 0.30, "EQ", 101.0, 102.0)
+    assert ic1["ipc_sub_used"] == 300.0 and ic1["ipc_within_cap"]
+    assert ic2["legacy_breached"] and ic2["ipc_sub_used"] == 214.0 and ic2["ipc_within_cap"]
+    assert (not ic3["dim_passed"]) and ic3["ipc_sub_used"] == 0.0
+    print("[PASS 7/7] 不完全替代红线: 主料缺料 500 时现有系统 37.5% 越线 vs IPC 锚定截断 214 颗 (29.97%) & EQ 硬拦截")
 
     print("================================================================")
-    print("  [ALL 6/6 PASSED] Python 独立审计参照引擎与 C++17 微内核完全一致!")
+    print("  [ALL 7/7 PASSED] Python 独立审计参照引擎与 C++17 微内核完全一致!")
     print("================================================================")
 
 

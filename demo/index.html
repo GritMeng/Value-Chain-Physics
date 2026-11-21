@@ -315,7 +315,7 @@
     </details>
 
     <div class="notice">
-      <strong>怎么玩：</strong>在下面 5 个工厂常见场景里随便改数字（库存、交期、成本、份额、最小包装），页面会立刻对照算出<strong>现有 SCP / APS 系统</strong>和<strong>IPC 闭环算法</strong>的结果差别——一眼看清 KPI 同源耦合的根本问题。全部算例均为公开无菌最小模型，不含任何商业级引擎源码或企业隐私数据。
+      <strong>怎么玩：</strong>在下面 6 个工厂常见场景里随便改数字（库存、交期、成本、份额、最小包装、混用红线），页面会立刻对照算出<strong>现有 SCP / APS 系统</strong>和<strong>IPC 闭环算法</strong>的结果差别——一眼看清 KPI 同源耦合的根本问题。全部算例均为公开无菌最小模型，不含任何商业级引擎源码或企业隐私数据。
     </div>
 
     <div class="tabs" role="tablist">
@@ -324,6 +324,7 @@
       <button class="tab-btn" onclick="switchTab(2)">3. 推拉解耦点设哪层 &amp; 库存省钱</button>
       <button class="tab-btn" onclick="switchTab(3)">4. 不做预测冲减：平准切额度与超额分流</button>
       <button class="tab-btn" onclick="switchTab(4)">5. 多供方按比例分单与包装凑整</button>
+      <button class="tab-btn" onclick="switchTab(5)">6. 不完全替代：高配代低配与 30% 红线</button>
     </div>
 
     <!-- ================= TAB 1: SEQUENCING COUPLING ================= -->
@@ -453,6 +454,41 @@
       </div>
     </section>
 
+    <!-- ================= TAB 6: INCOMPLETE SUBSTITUTION ================= -->
+    <section id="tab-5" class="panel">
+      <div class="card">
+        <div class="panel-head">
+          <h2>场景 6：不完全替代 —— 高配代低配 / 认证硬门槛 + 主料锚定 30% 混用红线</h2>
+          <button class="btn-sm" onclick="resetT6()">恢复主料缺料陷阱算例</button>
+        </div>
+        <p class="subtitle" style="margin-bottom:14px;">工艺或客户合同经常规定：副料（如 5000mAh 电池）可单向代低配且在总产出中的占比绝不能超过 30%。当主料缺料只齐套 500 台时，现有 SCP / APS 机械按“总需求 1,000 × 30% = 300 颗”派副料，导致实际占比飙到 37.5% 直接违约；IPC 严格按主料实际齐套量锚定截断在 214 颗（29.97%），并且对认证不匹配直接硬拦截归零。</p>
+        <div class="preset-row">
+          <button class="btn-sm" onclick="presetT6('full')">一键试 1：主料齐套 700（刚好 30.0% 满产 1,000 台）</button>
+          <button class="btn-sm" onclick="presetT6('trap')">一键试 2：主料缺料陷阱 500（现有 37.5% 违约 vs IPC 精准卡死 214 颗）</button>
+          <button class="btn-sm" onclick="presetT6('cert')">一键试 3：国别认证不匹配（EQ 欧规 ≠ 美规 → 一键硬拦截 0 颗）</button>
+        </div>
+        <div class="controls">
+          <div class="ctrl"><label>机型总需求 (台)</label><input id="t6_gross" type="number" min="100" step="100" value="1000" oninput="calcT6()" /></div>
+          <div class="ctrl"><label>主料实际齐套量 (台)</label><input id="t6_main" type="number" min="0" step="50" value="500" oninput="calcT6()" /></div>
+          <div class="ctrl"><label>副料（替代料）可用库存 (颗)</label><input id="t6_sub" type="number" min="0" step="50" value="500" oninput="calcT6()" /></div>
+          <div class="ctrl"><label>副料最高混用红线 (%)</label><input id="t6_ratio" type="number" min="5" max="90" step="5" value="30" oninput="calcT6()" /></div>
+          <div class="ctrl">
+            <label>属性门槛规则</label>
+            <select id="t6_op" onchange="calcT6()">
+              <option value="GE" selected>高配代低配 (GE: 副料 ≥ 要求)</option>
+              <option value="EQ">国别认证严格一致 (EQ: 副料 == 要求)</option>
+            </select>
+          </div>
+          <div class="ctrl"><label>副料属性值 (容量/认证码)</label><input id="t6_cdim" type="number" step="100" value="5000" oninput="calcT6()" /></div>
+          <div class="ctrl"><label>需求目标属性值</label><input id="t6_rdim" type="number" step="100" value="4500" oninput="calcT6()" /></div>
+        </div>
+        <div id="t6_gates" style="margin-bottom:14px;"></div>
+        <div class="grid-2" id="t6_cards"></div>
+        <div class="svg-box" id="t6_svg"></div>
+        <div class="verdict-bar" id="t6_verdict"></div>
+      </div>
+    </section>
+
     <footer>
       <div><strong>作者 / Author：</strong>孟凡淳 (Grit Meng) ｜ 价值链物理学、系统与复杂性科学独立学者 ｜ IPC 智能计划与控制引擎缔造者 ｜ 前联想全球供应链集成计划方案（IPS）系统负责人兼总设计师</div>
       <div><strong>许可与专利声明：</strong>本公开交互沙盘适用本仓 <a href="../LICENSE">LICENSE</a>（文档 CC BY 4.0 + 非商业学术复现与内部评估许可 + <strong>NO PATENT LICENSE</strong>）。作者名下 20 项已授权及在审发明专利 100% 保留，商业实施及企业生产部署须另行签署书面授权（联系：<code>gritmeng@outlook.com</code>）。 ｜ <a href="../">返回学术门户主页</a></div>
@@ -505,16 +541,20 @@
       }
       const ipcD2Delay = Math.max(0, ipcD2 - d2Req);
 
+      const tradD1Delay = Math.max(0, tradD1 - d1Req);
+      const ipcD1Delay = Math.max(0, ipcD1 - d1Req);
+      const d1Note = ipcD1Delay > 0 ? `延期 ${ipcD1Delay} 天 · 对 D1 零额外损伤` : '零延期 · 准时交付';
+
       document.getElementById('t1_cards').innerHTML = `
         <div class="kpi-box bad">
           <h3>现有 SCP / APS（按优先级顺手锁料）</h3>
-          <div class="metric"><span>高优单 D1 齐套完工日</span><strong>t = ${tradD1} (要求 t=${d1Req})</strong></div>
+          <div class="metric"><span>高优单 D1 齐套完工日</span><strong>t = ${tradD1} (要求 t=${d1Req}${tradD1Delay > 0 ? `，延期 ${tradD1Delay} 天` : '，准时'})</strong></div>
           <div class="metric"><span>普通单 D2 齐套完工日</span><strong>t = ${tradD2} (延期 ${tradD2Delay} 天)</strong></div>
           <div class="metric"><span>共用件 M2 现货闲置卡死天数</span><strong>${tradIdle} 天</strong></div>
         </div>
         <div class="kpi-box good">
           <h3>IPC 先算齐套再错开锁料（解开 KPI 耦合）</h3>
-          <div class="metric"><span>高优单 D1 齐套完工日</span><strong>t = ${ipcD1} (零损伤)</strong></div>
+          <div class="metric"><span>高优单 D1 齐套完工日</span><strong>t = ${ipcD1} (${d1Note})</strong></div>
           <div class="metric"><span>普通单 D2 齐套完工日</span><strong>t = ${ipcD2} (延期 ${ipcD2Delay} 天)</strong></div>
           <div class="metric"><span>共用件 M2 现货闲置卡死天数</span><strong>${ipcIdle} 天</strong></div>
         </div>`;
@@ -837,8 +877,103 @@
         `实测结论：现有系统各家各自按每盘 ${mpq} 颗向上凑整，会凭空多买出 ${(naiveTotal - net).toFixed(0)} 颗呆滞料（总买 ${naiveTotal.toFixed(0)} 颗）；IPC 逐家凑整后重算剩余份额，精准买满 ${totalAllocated.toFixed(0)} 颗（不多买、不漏单）。`;
     }
 
-    // Initial render of all 5 sandboxes
-    calcT1(); calcT2(); calcT3(); calcT4(); calcT5();
+    // ==================== TAB 6: INCOMPLETE SUBSTITUTION ====================
+    function resetT6() { presetT6('trap'); }
+    function presetT6(mode) {
+      document.getElementById('t6_gross').value = 1000;
+      document.getElementById('t6_sub').value = 500;
+      document.getElementById('t6_ratio').value = 30;
+      if (mode === 'full') {
+        document.getElementById('t6_main').value = 700;
+        document.getElementById('t6_op').value = 'GE';
+        document.getElementById('t6_cdim').value = 5000;
+        document.getElementById('t6_rdim').value = 4500;
+      } else if (mode === 'trap') {
+        document.getElementById('t6_main').value = 500;
+        document.getElementById('t6_op').value = 'GE';
+        document.getElementById('t6_cdim').value = 5000;
+        document.getElementById('t6_rdim').value = 4500;
+      } else {
+        document.getElementById('t6_main').value = 700;
+        document.getElementById('t6_op').value = 'EQ';
+        document.getElementById('t6_cdim').value = 101;
+        document.getElementById('t6_rdim').value = 102;
+      }
+      calcT6();
+    }
+    function calcT6() {
+      const gross = Math.max(1, +document.getElementById('t6_gross').value || 1000);
+      const mainQ = Math.max(0, +document.getElementById('t6_main').value || 0);
+      const subAv = Math.max(0, +document.getElementById('t6_sub').value || 0);
+      const ratioPct = Math.max(1, Math.min(99, +document.getElementById('t6_ratio').value || 30));
+      const theta = ratioPct / 100.0;
+      const op = document.getElementById('t6_op').value;
+      const cdim = +document.getElementById('t6_cdim').value || 0;
+      const rdim = +document.getElementById('t6_rdim').value || 0;
+
+      const dimOk = (op === 'GE') ? (cdim + 1e-9 >= rdim) : (Math.abs(cdim - rdim) <= 1e-9);
+      const gap = Math.max(0, gross - mainQ);
+      const capGross = Math.floor(theta * gross + 1e-9);
+      const capAnchor = Math.floor((theta / (1.0 - theta)) * mainQ + 1e-9);
+
+      const legSub = dimOk ? Math.min(gap, subAv, capGross) : 0;
+      const legOut = mainQ + legSub;
+      const legRatio = legOut > 0 ? (legSub / legOut * 100.0) : 0;
+      const legBreach = legRatio > ratioPct + 1e-6;
+
+      const ipcSub = dimOk ? Math.min(gap, subAv, capGross, capAnchor) : 0;
+      const ipcOut = mainQ + ipcSub;
+      const ipcRatio = ipcOut > 0 ? (ipcSub / ipcOut * 100.0) : 0;
+
+      document.getElementById('t6_gates').innerHTML = `
+        <span class="pill ${dimOk ? 'pill-pass' : 'pill-fail'}">属性硬门槛（${op === 'GE' ? `高配代低配 ${cdim} ≥ ${rdim}` : `认证一致 ${cdim} == ${rdim}`}）：${dimOk ? '放行' : '硬拦截归零'}</span>
+        <span class="pill pill-info">主料锚定封顶公式：⌊${ratioPct}% / ${100 - ratioPct}% × ${mainQ}⌋ = 最多 ${capAnchor} 颗副料</span>`;
+
+      document.getElementById('t6_cards').innerHTML = `
+        <div class="kpi-box ${legBreach || !dimOk ? 'bad' : 'good'}">
+          <h3>现有 SCP / APS（按总需求毛量 × ${ratioPct}% 硬算）</h3>
+          <div class="metric"><span>派发副料数量</span><strong>${legSub} 颗（按总需上限 ${capGross}）</strong></div>
+          <div class="metric"><span>最终产出（主料 + 副料）</span><strong>${legOut} 台（${mainQ} + ${legSub}）</strong></div>
+          <div class="metric"><span>实际副料占比 vs 红线 ${ratioPct}%</span><strong>${legRatio.toFixed(2)}% ${legBreach ? '（越线违约！）' : '（合标）'}</strong></div>
+        </div>
+        <div class="kpi-box good">
+          <h3>IPC 主料锚定不完全替代（零违约硬红线）</h3>
+          <div class="metric"><span>派发副料数量</span><strong>${ipcSub} 颗（受主料锚定上限 ${capAnchor}）</strong></div>
+          <div class="metric"><span>最终产出（主料 + 副料）</span><strong>${ipcOut} 台（${mainQ} + ${ipcSub}）</strong></div>
+          <div class="metric"><span>实际副料占比 vs 红线 ${ratioPct}%</span><strong>${ipcRatio.toFixed(2)}%（严格 ≤ ${ratioPct}% · 零违约）</strong></div>
+        </div>`;
+
+      const barW = 620;
+      const x0 = 185;
+      const redLineX = x0 + (theta) * barW;
+      const legSubW = legOut > 0 ? (legSub / legOut) * barW : 0;
+      const ipcSubW = ipcOut > 0 ? (ipcSub / ipcOut) * barW : 0;
+
+      document.getElementById('t6_svg').innerHTML = `
+        <svg viewBox="0 0 940 132" width="100%" style="max-width:940px;display:block;margin:0 auto;">
+          <text x="16" y="44" font-size="13" font-weight="700" fill="${legBreach ? '#B03A2E' : '#2C3E50'}">现有 SCP/APS 占比</text>
+          <rect x="${x0}" y="26" width="${barW}" height="24" rx="4" fill="#E8E4DB"/>
+          <rect x="${x0}" y="26" width="${Math.max(0, legSubW)}" height="24" rx="4" fill="${legBreach ? '#B03A2E' : '#64748B'}"/>
+          <text x="${x0 + barW + 12}" y="43" font-size="13" font-weight="700" fill="${legBreach ? '#B03A2E' : '#2C3E50'}">${legRatio.toFixed(2)}% ${legBreach ? '越线！' : ''}</text>
+
+          <text x="16" y="96" font-size="13" font-weight="700" fill="#1E6B47">IPC 主料锚定占比</text>
+          <rect x="${x0}" y="78" width="${barW}" height="24" rx="4" fill="#E8E4DB"/>
+          <rect x="${x0}" y="78" width="${Math.max(0, ipcSubW)}" height="24" rx="4" fill="#1E6B47"/>
+          <text x="${x0 + barW + 12}" y="95" font-size="13" font-weight="700" fill="#1E6B47">${ipcRatio.toFixed(2)}% 合标</text>
+
+          <line x1="${redLineX}" y1="14" x2="${redLineX}" y2="114" stroke="#B03A2E" stroke-width="2.5" stroke-dasharray="5,4"/>
+          <text x="${redLineX}" y="126" text-anchor="middle" font-size="11.5" font-weight="700" fill="#B03A2E">混用红线 ${ratioPct}%</text>
+        </svg>`;
+
+      document.getElementById('t6_verdict').textContent = !dimOk
+        ? `实测结论：属性硬门槛未通过（${op === 'GE' ? `${cdim} < ${rdim}` : `认证码 ${cdim} ≠ ${rdim}`}），IPC 直接硬拦截返回 0 颗副料，杜绝跨国认证/性能不达标事故。`
+        : legBreach
+          ? `实测结论：主料缺料仅齐套 ${mainQ} 台时，现有 SCP / APS 机械按总需 × ${ratioPct}% 派了 ${legSub} 颗副料，把实际混用占比顶到 ${legRatio.toFixed(2)}% 直接违约；IPC 按主料锚定精准截断在 ${ipcSub} 颗（${ipcRatio.toFixed(2)}% ≤ ${ratioPct}%），零违约零返工。`
+          : `实测结论：属性合格且主料齐套充足，IPC 精准启用 ${ipcSub} 颗副料，总产出 ${ipcOut} 台，副料占比 ${ipcRatio.toFixed(2)}% 严格守住 ${ratioPct}% 红线。`;
+    }
+
+    // Initial render of all 6 sandboxes
+    calcT1(); calcT2(); calcT3(); calcT4(); calcT5(); calcT6();
   </script>
 </body>
 </html>
