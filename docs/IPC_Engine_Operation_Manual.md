@@ -42,7 +42,7 @@ graph TD
 ```
 
 ### 三阶段关键操作流：
-1. **DB 萃取 (Sync From DB)**：`ipc::DbAdapter`（基于 [src/database.cpp](file:///h:/IPC/src/database.cpp)）通过 SQL 将 `ipc_material_node`（物料）、`ipc_onhand`（库存）、`ipc_scheduled_receipt`（在途/在制）、`ipc_bom_item`（BOM 结构与替代优先级）、`ipc_independent_demand`（独立需求）、`ipc_allotment_constraint`（战术配额）等加载入 C++ 内存结构。
+1. **DB 萃取 (Sync From DB)**：`ipc::DbAdapter`（基于 `src/database.cpp`）通过 SQL 将 `ipc_material_node`（物料）、`ipc_onhand`（库存）、`ipc_scheduled_receipt`（在途/在制）、`ipc_bom_item`（BOM 结构与替代优先级）、`ipc_independent_demand`（独立需求）、`ipc_allotment_constraint`（战术配额）等加载入 C++ 内存结构。
 2. **内存求解 (C++ Compute Engine)**：
    - 依赖项与低层码 (LLC) 拓扑排序；
    - IBP 需求比例拆解与 Holt-Winters 统计预测；
@@ -153,10 +153,10 @@ h:/IPC/
 ```
 
 ### 调试与修改关注点：
-1. **修改/新增 SQL 数据字段**：在 [src/database.cpp](file:///h:/IPC/src/database.cpp) 中调整 `DbAdapter` 加载逻辑，并在 [include/ipc_types.h](file:///h:/IPC/include/ipc_types.h) 中增加对应 C++ 结构体字段。
-2. **调整 MRP 替代料逻辑**：定位至 [src/mrp_engine.cpp](file:///h:/IPC/src/mrp_engine.cpp) 及 [src/substitution.cpp](file:///h:/IPC/src/substitution.cpp)。
-3. **调整产能派程算法**：定位至 [src/dbd_engine.cpp](file:///h:/IPC/src/dbd_engine.cpp)。
-4. **数据库回写与表结构升级**：定位至 [src/engine_main.cpp](file:///h:/IPC/src/engine_main.cpp) 的 Phase H（同步对账数据灌入部分）。
+1. **修改/新增 SQL 数据字段**：在 `src/database.cpp` 中调整 `DbAdapter` 加载逻辑，并在 `include/ipc_types.h` 中增加对应 C++ 结构体字段。
+2. **调整 MRP 替代料逻辑**：定位至 `src/mrp_engine.cpp` 及 `src/substitution.cpp`。
+3. **调整产能派程算法**：定位至 `src/dbd_engine.cpp`。
+4. **数据库回写与表结构升级**：定位至 `src/engine_main.cpp` 的 Phase H（同步对账数据灌入部分）。
 
 ---
 
@@ -195,7 +195,7 @@ LIMIT 20;
 
 ## 🌐 六、 与 Python 控制塔集成调用 (Integration with Cockpit/Server)
 
-当在前端可视化控制塔（http://127.0.0.1:8501）中点击 **“执行自上而下分解与排产拉动”** 时，Python FastAPI 服务（[server.py](file:///h:/IPC/server.py)）会在后台自动拉起 `test_runner_validation.exe`（或 `main_mem3.exe`）：
+当在前端可视化控制塔（http://127.0.0.1:8501）中点击 **“执行自上而下分解与排产拉动”** 时，Python FastAPI 服务（`server.py`）会在后台自动拉起 `test_runner_validation.exe`（或 `main_mem3.exe`）：
 
 ```python
 # Python server.py 中的后台调用示意
@@ -220,7 +220,7 @@ run_all.bat
 
 ## 💡 总结 (Quick Recap)
 
-1. **想改代码** -> 查看 [src/engine_main.cpp](file:///h:/IPC/src/engine_main.cpp) 与 `include/ipc/` 下对应的头文件。
+1. **想改代码** -> 查看 `src/engine_main.cpp` 与 `include/ipc/` 下对应的头文件。
 2. **想重新编译** -> 在命令行执行 `compile_main.bat`。
 3. **想手动跑引擎** -> 执行 `main_mem3.exe --db ipc.db --mode iop --repl`。
 4. **想看算出的结果** -> 在 DBeaver 中打开 `ipc.db` 或在 `--repl` 交互终端中查询 SQL！

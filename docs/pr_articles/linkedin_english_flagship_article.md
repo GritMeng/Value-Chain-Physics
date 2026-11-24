@@ -15,7 +15,7 @@ Yet, if we ask one fundamental question: **"Which global enterprise has truly ac
 
 The answer is: **Virtually none.**
 
-Lenovo’s Intelligent Planning System (IPS) was initiated in 2007. Over the past 18 years, outside of Lenovo’s owned mega-factories and its ODM manufacturing ecosystem, no second equivalent success case has emerged globally. 
+Lenovo’s Integrated Planning Solution (IPS) was initiated in 2007. Over the past 18 years, outside of Lenovo’s owned mega-factories and its ODM manufacturing ecosystem, no second equivalent success case has emerged globally. 
 
 It is not due to a lack of capital, nor a lack of talent. **The entire global industry has been trapped in the wrong underlying paradigm.**
 

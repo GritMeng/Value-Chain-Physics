@@ -5,7 +5,7 @@ setlocal
 cd /d "%~dp0"
 
 echo ================================================================
-echo   IPC Core Open Benchmarks v2.0 - Build and Verify Suite
+echo   IPC Core Open Benchmarks v2.1 - Build and Verify Suite (7 Suites)
 echo ================================================================
 
 where cl >nul 2>&1
@@ -40,9 +40,9 @@ if %errorlevel% neq 0 (
 
 set OBJS=build\substitution_engine.obj build\atp_ctp_engine.obj build\itp_iop_alignment.obj build\sandbox_operators.obj
 
-echo [2/4] Linking 6 benchmark executables...
-for %%T in (test_delivery_precision test_substitution_rules test_codp_positioning test_push_pull_router test_itp_iop_alignment stress_benchmark_2m) do (
-    cl /std:c++17 /EHsc /O2 /I include benchmarks\%%T.cpp %OBJS% /Fe:bin\%%T.exe /utf-8 >>build\compile.log 2>&1
+echo [2/4] Linking 7 benchmark executables...
+for %%T in (test_delivery_precision test_substitution_rules test_codp_positioning test_push_pull_router test_itp_iop_alignment test_two_stage_iop_network stress_benchmark_2m) do (
+    cl /std:c++17 /EHsc /O2 /I include benchmarks\%%T.cpp %OBJS% /Fe:bin\%%T.exe /utf-8 /Fo:build\ >>build\compile.log 2>&1
     if errorlevel 1 (
         echo [ERROR] Linking %%T failed!
         type build\compile.log
@@ -50,8 +50,8 @@ for %%T in (test_delivery_precision test_substitution_rules test_codp_positionin
     )
 )
 
-echo [3/4] Running all 6 C++17 benchmarks...
-for %%T in (test_delivery_precision test_substitution_rules test_codp_positioning test_push_pull_router test_itp_iop_alignment stress_benchmark_2m) do (
+echo [3/4] Running all 7 C++17 benchmarks...
+for %%T in (test_delivery_precision test_substitution_rules test_codp_positioning test_push_pull_router test_itp_iop_alignment test_two_stage_iop_network stress_benchmark_2m) do (
     echo.
     bin\%%T.exe
     if errorlevel 1 (
@@ -69,5 +69,5 @@ if errorlevel 1 (
 )
 
 echo ================================================================
-echo   [ALL PASSED] 6 C++17 Suites + Python Cross-Validator Verified!
+echo   [ALL PASSED] 7 C++17 Suites + Python Cross-Validator Verified!
 echo ================================================================

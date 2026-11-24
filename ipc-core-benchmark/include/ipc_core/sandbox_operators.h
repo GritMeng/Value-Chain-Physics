@@ -170,5 +170,114 @@ PullRouterResult evaluate_pull_overflow_router(
     int procure_lt_days
 );
 
+// =========================================================================
+// 5. 跨解耦点两阶段推拉排产 (Two-Stage Constrained Push-IOP + Pull-IOP)
+// =========================================================================
+struct PullOrderSlice {
+    std::string order_id;
+    int req_due_day = 4;
+    double req_qty = 0.0;
+    double allotment_cap = 0.0;
+    int priority = 1;
+};
+
+struct PullOrderPromise {
+    std::string order_id;
+    double req_qty = 0.0;
+    double admitted_qty = 0.0;
+    double quota_blocked_qty = 0.0;
+    int legacy_promised_day = 0;   // 传统仅按后道静态 LT 虚报交期
+    int ipc_bare_ready_day = 0;    // 绑定前道真实通用半成品齐套日
+    int ipc_promised_day = 0;      // 诚实可兑现交期 = max(req_due_day, bare_ready + post_lt)
+    double legacy_shortfall_on_due = 0.0;
+};
+
+struct TwoStageIopInput {
+    double forecast_bare_qty = 1000.0;
+    double daily_wc_cap = 300.0;       // 前道组装线日有限产能
+    double chip_oh_day1 = 600.0;       // 关键主芯片 D1 在手现货
+    int chip_po_day = 4;               // 关键主芯片在途到货日
+    double chip_po_qty = 400.0;        // 关键主芯片在途到货量
+    int post_pack_lt_days = 1;         // 后道国别贴标包装周期 L_post
+    int horizon_days = 8;
+    std::vector<PullOrderSlice> pull_orders;
+};
+
+struct TwoStageIopResult {
+    std::vector<double> daily_bare_built; // D1..DH 真实受限产出的通用裸机量
+    double total_bare_built = 0.0;
+    int idle_wait_chip_days = 0;          // 因等在途芯片导致的产线空转天数
+    double legacy_promised_on_d4 = 0.0;   // 传统静态后道 LT 在 D4 盲目承诺总量
+    double legacy_broken_promise_qty = 0.0; // 传统做法在 D4 必然爽约断料缺口
+    double ipc_broken_promise_qty = 0.0;    // IPC 诚实承诺爽约量 (严格为 0)
+    double total_quota_blocked_qty = 0.0;
+    std::vector<PullOrderPromise> order_promises;
+};
+
+TwoStageIopResult evaluate_two_stage_push_pull_iop(const TwoStageIopInput& in);
+
+// =========================================================================
+// 6. 价值链网络先序区间代数 + 维度规划与国别认证掩码 + 菱形 DAG 正逆向展开
+// =========================================================================
+enum class NetworkDimOp {
+    PASS = 0, // 无规格过滤（直通）
+    EQ = 1,   // 精确同规匹配 (cand == req)
+    GE = 2,   // 高规向下兼容代低规 (cand >= req, 如 512MB >= 256MB)
+    LE = 3    // 上限约束 (cand <= req)
+};
+
+struct NetworkNodeDef {
+    int node_id = 0;
+    std::string code;
+    double spec_val = 0.0;       // 规格档位（如 512 / 256 / 128）
+    unsigned int cert_mask = 0xFFFFFFFFu; // 国别/安规认证位掩码
+};
+
+struct NetworkEdgeDef {
+    int parent_id = 0;
+    int child_id = 0;
+    double usage_qty = 1.0;
+    NetworkDimOp dim_op = NetworkDimOp::PASS;
+};
+
+struct PreorderNodeSpan {
+    int node_id = 0;
+    int rank = 0;       // 先序进入序号 [1..N]
+    int tree_size = 1;  // 子树覆盖节点数
+    int level = 0;
+    bool contains_rank(int target_rank) const {
+        return target_rank >= rank && target_rank < (rank + tree_size);
+    }
+};
+
+struct ExplodedRow {
+    int node_id = 0;
+    std::string code;
+    int level = 0;
+    double cum_qty = 0.0;
+};
+
+struct NetworkExplosionResult {
+    std::vector<PreorderNodeSpan> spans;        // O(1) 先序区间索引表
+    std::vector<ExplodedRow> path_instances;    // 全路径实例展开 (PATH_INSTANCE)
+    std::vector<ExplodedRow> distinct_nodes;    // 菱形共用件去重守恒汇总 (DISTINCT_NODE)
+    int pruned_by_dim_or_cert = 0;              // 被维度规格或国别认证剪枝拦截的边数
+};
+
+NetworkExplosionResult explode_value_chain_network(
+    const std::vector<NetworkNodeDef>& nodes,
+    const std::vector<NetworkEdgeDef>& edges,
+    int root_node_id,
+    double root_demand_qty,
+    double required_spec,
+    unsigned int required_cert_mask,
+    NetworkDimOp override_leaf_op = NetworkDimOp::PASS
+);
+
+std::vector<int> trace_network_where_used(
+    const std::vector<NetworkEdgeDef>& edges,
+    int target_child_id
+);
+
 } // namespace ipc_core
 

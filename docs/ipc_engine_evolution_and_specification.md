@@ -51,7 +51,7 @@ h:/IPC/
 ### 核心接口 API 规范
 
 #### 1. 数据库适配器 `ipc::DbAdapter`
-定义于 [database.h](file:///h:/IPC/include/ipc/database.h)，负责执行 DuckDB 表的事务读写，并负责内存 SoA 结构的初始化加载：
+定义于 `database.h`，负责执行 DuckDB 表的事务读写，并负责内存 SoA 结构的初始化加载：
 ```cpp
 namespace ipc {
     class DbAdapter {
@@ -74,7 +74,7 @@ namespace ipc {
 ```
 
 #### 2. 无级延时时序有限产能调度 API
-定义于 [dbd_engine.h](file:///h:/IPC/include/ipc/dbd_engine.h)，通过递归回溯探针决策最优交付时间（CTP）：
+定义于 `dbd_engine.h`，通过递归回溯探针决策最优交付时间（CTP）：
 ```cpp
 namespace ipc {
     bool reserve_atp_and_capacity_recursive(
@@ -209,7 +209,7 @@ Evolution 重构后，IPC 引擎的运行和编译管理逻辑已实现了脚本
   ```cmd
   cl.exe /EHsc /O2 /openmp /std:c++20 /utf-8 src/*.cpp tests/test_stress.cpp /I include /I IPC\include /Fobuild\ /Fe:main_mem3.exe /link /LIBPATH:IPC\lib duckdb.lib
   ```
-  编译生成的 `.obj` 文件会被全部集中输出至 [build/](file:///h:/IPC/build) 文件夹，避免了根目录的混乱。
+  编译生成的 `.obj` 文件会被全部集中输出至 build/ 文件夹，避免了根目录的混乱。
   
 * **独立验证测试器编译 (`test_runner_validation.exe`)**：
   在终端中运行：

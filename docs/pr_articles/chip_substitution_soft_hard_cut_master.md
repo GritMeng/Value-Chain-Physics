@@ -518,4 +518,4 @@ ORDER BY alt_grp;
 IPC 统御引擎通过将这四大硅基治理法则硬编码进 C++ 裸金属内存内核，让复杂多级芯片替代与工程变更的齐套性成为**可微、可回溯、可秒级求解的精确物理计算**，在离散制造的泥沼中砸下了最坚实的物理确定性。
 
 ---
-*本文归档于 GritMeng《价值链物理学》专栏。更多算法内核与 Demo 场景参见 [IPC 场景全息索引](IPC_Architecture_Scenarios_Master.md)。*
+*本文归档于 GritMeng《价值链物理学》专栏。更多算法内核与 Demo 场景参见 [IPC 场景全息索引](../IPC_Architecture_Scenarios_Master.md)。*

@@ -20,7 +20,7 @@
 
 ## 1. IPS 18年实证“计划-执行-闭环”实践
 
-本文的理论并非源于纯粹的数学推演或抽象假设，而是萃取自联想集团 18 年全球工业物理实证 [11,13]。在 IPS（Intelligent Planning System）体系的真实战场中，系统成功实现了“计划-执行-反馈”高频闭环，18 年来持续保持 95% 以上的“人在环外”自主决策率。
+本文的理论并非源于纯粹的数学推演或抽象假设，而是萃取自联想集团 18 年全球工业物理实证 [11,13]。在 IPS（Integrated Planning Solution）体系的真实战场中，系统成功实现了“计划-执行-反馈”高频闭环，18 年来持续保持 95% 以上的“人在环外”自主决策率。
 
 ### 1.1 实证场域与刚性闭环
 
@@ -311,7 +311,7 @@ $$\|S_k - S^*\|_{\mathcal{B}} \le \frac{\gamma^k}{1-\gamma} \|S_1 - S_0\|_{\math
 1. 钱学森, 于景元, 戴汝为. 一个科学新领域——开放复杂巨系统及其方法论[J]. 自然杂志, 1990, 13(1): 3-10.
 2. 钱学森. 创建系统学[M]. 太原: 山西科学技术出版社, 2001: 42-68.
 3. Cao L (操龙兵), Dai R (戴汝为), Zhou M. Metasynthesis: M-space, M-interaction, and M-computing for open complex giant systems[J]. IEEE Transactions on Systems, Man, and Cybernetics, Part A: Systems and Humans, 2009, 39(5): 1011-1021.
-4. Cao L (操龙兵). Non-IID Learning: Cases, Taxonomy and Trends[J]. IEEE Transactions on Knowledge and Data Engineering, 2014, 26(11): 2783-2801.
+4. Cao L (操龙兵). Non-IIDness learning in behavioral and social data[J]. The Computer Journal, 2014, 57(9): 1358-1370.
 5. Ashby, W. R. An Introduction to Cybernetics[M]. London: Chapman & Hall, 1956: 202-219.
 6. Wiener, N. Cybernetics: Or Control and Communication in the Animal and the Machine[M]. Cambridge, MA: MIT Press, 1948: 95-112.
 7. Banach, S. Sur les opérations dans les ensembles abstract et leur application aux équations intégrales[J]. Fundamenta Mathematicae, 1922, 3(1): 133-181.

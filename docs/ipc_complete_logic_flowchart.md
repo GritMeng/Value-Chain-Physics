@@ -152,7 +152,7 @@ flowchart TD
 ```
 
 **💡 阶段二深度逻辑与代码映射讲解**：
-1. **配额日期匹配 Monday-Aligned Fallback 规则**（[ipc_types.h:L178-L194](file:///h:/IPC/include/ipc_types.h#L178-L194)）：订单扣减 allotment 配额时，引擎优先进行**精确日级匹配**。若由于供应波动导致某天配额记录缺失，引擎自动触发**周一级柔性回退匹配 (Monday Fallback)**。系统将订单 `due_day` 回退至对应的周一（周一默认对齐至 Day 3, 10, 17... 计算公式为 `wk_start = (day < 3) ? 0 : 3 + ((day - 3) / 7) * 7`），实现跨日波动下的周度配额柔性统筹。
+1. **配额日期匹配 Monday-Aligned Fallback 规则**（`ipc_types.h:L178-L194`）：订单扣减 allotment 配额时，引擎优先进行**精确日级匹配**。若由于供应波动导致某天配额记录缺失，引擎自动触发**周一级柔性回退匹配 (Monday Fallback)**。系统将订单 `due_day` 回退至对应的周一（周一默认对齐至 Day 3, 10, 17... 计算公式为 `wk_start = (day < 3) ? 0 : 3 + ((day - 3) / 7) * 7`），实现跨日波动下的周度配额柔性统筹。
 
 ---
 
@@ -224,15 +224,15 @@ flowchart TD
 ```
 
 **💡 阶段四深度逻辑与代码映射讲解**：
-1. **64-bit 复合优先级位域封装**（[ipc_types.h:L220-L231](file:///h:/IPC/include/ipc_types.h#L220-L231)）：订单升序排序底层依赖 64 位无符号位字段组合：
+1. **64-bit 复合优先级位域封装**（`ipc_types.h:L220-L231`）：订单升序排序底层依赖 64 位无符号位字段组合：
    * **Bit 62 (1 bit)**: Committed 状态（0 = 已承诺单，1 = 预测单，承诺优先）；
    * **Bits 60-61 (2 bits)**: Customer Tier 客户分级（0 = Tier 1, 1 = Tier 2, 2 = Tier 3, 3 = 默认）；
    * **Bits 44-59 (16 bits)**: Due Day 交期天数（天数小优先）；
    * **Bits 28-43 (16 bits)**: Original Priority 原始优先级（原序号小优先）；
    * **Bits 0-27 (28 bits)**: Inverse Revenue 收入逆序值（计算为 `268435455 - revenue`，高金额小值优先）。
    这种设计确保单条 CPU 比较指令对百亿级订单进行全网拉通排序。
-2. **ECN 软硬切替与预消耗**（[lsc_tree.cpp:L170-L220](file:///h:/IPC/src/lsc_tree.cpp#L170-L220)）：若 BOM 子件已过失效期，若变更类型为 `hard` (硬切替) 直接剔除；若为 `soft` (软切替) 且在库充裕，优先扣减现有在手库存（分配类型为 `-2`）但不下发新的采购/生产需求，实现老料平滑消化。
-3. **替代决策平局配额优先决断 (Quota Tie-Breaker)**（[substitution.cpp:L27-L31, L50-L54](file:///h:/IPC/src/substitution.cpp#L27-L31)）：在一类和二类替代件分配中，如果计算出来的 `gap`（一类差值）或 `rating`（二类供应商评分比）产生精确的数学平局，引擎执行**配额比例大者优先平局决断规则 (Higher Quota Ratio Tie-Breaker)**，即优先选择 `target_ratio` 较大者，最大化高供货渠道份额。
+2. **ECN 软硬切替与预消耗**（`lsc_tree.cpp:L170-L220`）：若 BOM 子件已过失效期，若变更类型为 `hard` (硬切替) 直接剔除；若为 `soft` (软切替) 且在库充裕，优先扣减现有在手库存（分配类型为 `-2`）但不下发新的采购/生产需求，实现老料平滑消化。
+3. **替代决策平局配额优先决断 (Quota Tie-Breaker)**（`substitution.cpp:L27-L31, L50-L54`）：在一类和二类替代件分配中，如果计算出来的 `gap`（一类差值）或 `rating`（二类供应商评分比）产生精确的数学平局，引擎执行**配额比例大者优先平局决断规则 (Higher Quota Ratio Tie-Breaker)**，即优先选择 `target_ratio` 较大者，最大化高供货渠道份额。
 
 ---
 
@@ -316,7 +316,7 @@ flowchart TD
 ```
 
 **💡 阶段六深度逻辑与代码映射讲解**：
-1. **晶圆分级优先级排序策略**（[coproduct.cpp:L196-L208](file:///h:/IPC/src/coproduct.cpp#L196-L208)）：在 acceptable_dims 过滤出后，系统提供两种排序策略：
+1. **晶圆分级优先级排序策略**（`coproduct.cpp:L196-L208`）：在 acceptable_dims 过滤出后，系统提供两种排序策略：
    * `EXACT_FIRST` (默认)：精确规格排序最前优先消纳。剩余降级件按从小到大升序排序（128MB -> 256MB），保证高规格在手库存被极度保留给高规格订单。
    * `HIGHER_FIRST`：直接大到小降序排序（512MB -> 256MB），高规格优先消纳，防止高端晶圆库存积压 stagnation。
 

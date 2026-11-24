@@ -18,8 +18,8 @@ Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global
 [![Empirical Baseline](https://img.shields.io/badge/Longitudinal_Baseline-Lenovo_IPS_(2008--2026)-d29922?style=flat-square)](docs/Value%20Chain%20Physics%20——%20Formal%20Proof%20of%20Open%20Complex%20Giant%20Systems%20and%20Full-Domain%20Computability%20Based%20on%20Non-IID%20Dynamics.pdf)
 [![Industrial Scale](https://img.shields.io/badge/Industrial_Scale-500K_Orders_%C2%B7_20--Level_BOM_%C2%B7_2M_Nodes_%C2%B7_%3E95%25_Closed--Loop-8957e5?style=flat-square)](https://github.com/GritMeng/Value-Chain-Physics/tree/main/ipc-core-benchmark)
 [![Invention Patents](https://img.shields.io/badge/Invention_Patents-20_Coupled_Patents_(5_Granted_%C2%B7_15_in_Exam%2FPub)-0969da?style=flat-square)](https://github.com/GritMeng/Value-Chain-Physics/tree/main/ipc-core-benchmark)
-[![Open Benchmark](https://img.shields.io/badge/Code_Verification-C%2B%2B17_6--Suite_Benchmark-f78166?style=flat-square)](https://github.com/GritMeng/Value-Chain-Physics/tree/main/ipc-core-benchmark)
-[![Interactive Sandbox](https://img.shields.io/badge/Try_Live-Zero--Install_Web_Sandbox-b03a2e?style=flat-square)](https://gritmeng.github.io/Value-Chain-Physics/demo/)
+[![Open Benchmark](https://img.shields.io/badge/Code_Verification-C%2B%2B17_7--Suite_Benchmark-f78166?style=flat-square)](https://github.com/GritMeng/Value-Chain-Physics/tree/main/ipc-core-benchmark)
+[![Interactive Sandbox](https://img.shields.io/badge/Try_Live-8--Scenario_Web_Sandbox-b03a2e?style=flat-square)](https://gritmeng.github.io/Value-Chain-Physics/demo/)
 
 **官方门户 / Official Portal：** [https://gritmeng.github.io/Value-Chain-Physics/](https://gritmeng.github.io/Value-Chain-Physics/)  
 **联系邮箱 / Email：** gritmeng@outlook.com  
@@ -45,9 +45,9 @@ Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global
 | **EP03** | **推拉解耦点（CODP）选址与改工艺账**：设在哪一层最省钱？ | 两道非补偿硬门槛 + 沙漏裸机共池：安全库存直降 50.0%、资金省 62.5%，旧工艺早镭雕一键算出改工艺立省 32 万 | [场景 3](https://gritmeng.github.io/Value-Chain-Physics/demo/) | [`test_codp_positioning`](ipc-core-benchmark/benchmarks/test_codp_positioning.cpp) |
 | **EP04** | **彻底废除“预测冲减”**：日度平准切额度 + 超额三态自动分流 | 周保护额度按日平准切开防首日独占；超额按 `Mode A / B / C` 自动决定借下周额度或触发新补采，消除计划抖动 | [场景 4](https://gritmeng.github.io/Value-Chain-Physics/demo/) | [`test_push_pull_router`](ipc-core-benchmark/benchmarks/test_push_pull_router.cpp) |
 | **EP05** | **多供方按份额分单 + 最小包装（MPQ）凑整不超买** | 1,000 颗按 `50:30:20` 与每盘 300 颗凑整：现有系统各自凑整超买 200 颗呆滞，IPC 逐轮重算精准守恒 1,000 颗（改 1,400 照样零超买） | [场景 5](https://gritmeng.github.io/Value-Chain-Physics/demo/) | [`test_substitution_rules`](ipc-core-benchmark/benchmarks/test_substitution_rules.cpp) |
-| **EP06** | **One Plan 企业级全局闭环实跑**：月产销财、周主计划与日排程共用一张底账 | 普通笔记本实跑 300 万级需求控制塔、战略合同锁死、机台排程与急单隔离沙箱，核心计算 2.74 秒跑通闭环 | [架构对比图](images/ipc_vs_apics_blueprint.png) | [`test_itp_iop_alignment`](ipc-core-benchmark/benchmarks/test_itp_iop_alignment.cpp) |
+| **EP06** | **One Plan 企业级全局闭环与两阶段推拉排产**：预测备通用半成品过产能齐套 + 实单守配额承诺不爽约 | 普通笔记本实跑 300 万级需求控制塔（核心计算 2.74 秒）；跨解耦点两阶段推拉排产消除传统静态后道提前期 550 台爽约违约 | [场景 7](https://gritmeng.github.io/Value-Chain-Physics/demo/) | [`test_two_stage_iop_network`](ipc-core-benchmark/benchmarks/test_two_stage_iop_network.cpp) |
 | **EP07** | **不完全替代与 30% 混用红线**：主料缺料陷阱与国别认证硬拦截 | 主料断料仅齐套 500 台时，现有系统硬派 300 颗副料致占比飙至 37.5% 违约；IPC 按主料锚定截断 214 颗（29.97%），认证不符直接归零 | [场景 6](https://gritmeng.github.io/Value-Chain-Physics/demo/) | [`test_substitution_rules`](ipc-core-benchmark/benchmarks/test_substitution_rules.cpp) |
-| **EP08** | **极限性能现场实测**：50 万笔需求 × 200 万物料 × 20 层价值链网络（DAG） | 真实构建 `L0..L19` 20 层 425 万条共享 BOM 边：拓扑 22.85 ms + 20 层级联消纳 35.48 ms + 50 万 ITP/IOP = **262.57 ms** · 峰值内存 **254 MB** · 守恒残差 **0.00** | [一键编译说明](ipc-core-benchmark/README.md) | [`stress_benchmark_2m`](ipc-core-benchmark/benchmarks/stress_benchmark_2m.cpp) |
+| **EP08** | **极限性能与全网先序区间秒级展开**：50 万笔需求 × 200 万物料 × 20 层价值链网络（DAG） | 真实构建 `L0..L19` 20 层 425 万条共享 BOM 边 + 200 万节点先序区间 `[rank..end]` $O(1)$ 子树查询：核心算子约 **262 ms** · 峰值内存 **254 MB** · 守恒残差 **0.00** | [场景 8](https://gritmeng.github.io/Value-Chain-Physics/demo/) | [`stress_benchmark_2m`](ipc-core-benchmark/benchmarks/stress_benchmark_2m.cpp) |
 
 > **性能三档口径透明说明**：`262.57 ms`（EP08）为本仓开源纯内存 C++17 核心算子耗时（拓扑排序 + 20 层级联消纳 + 50 万需求防波堤，不含磁盘 I/O 与复杂排程约束）；控制塔 `2.74 秒`（EP06）为 300 万级真实数据库内存引擎 5 阶段耗时（含 326 万行磁盘读写全落盘为 `9.62 秒`）；作者在公众号与《管理视野》等文章中提及的 `296 秒` 为含完整企业数据加载、15 万项不等式约束求解与全链路落盘的工业级端到端实测。
 
@@ -93,7 +93,7 @@ Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global
 
 | 视图名称 | 展示内容与工程对应关系 | 在线访问入口 |
 | :--- | :--- | :--- |
-| **0. IPC 交互验证沙盘（免安装实测）** | 6 大可调参数无菌沙盘（两单抢一料死锁 2×3、缺一小件拉快盘活整套 1.1 万 vs 1 千、推拉解耦点选址与库存省钱、不做预测冲减按额度平准与超额分流、多供方按比例分单与包装凑整、不完全替代高配代低配与 30% 红线），实时对比现有 SCP / APS vs IPC | [**打开免安装交互验证沙盘 (`demo/index.html`)**](https://gritmeng.github.io/Value-Chain-Physics/demo/) |
+| **0. IPC 八大交互验证沙盘（免安装实测）** | 8 大可调参数无菌沙盘（两单抢一料死锁 2×3、缺一小件拉快盘活整套 1.1 万 vs 1 千、推拉解耦点选址与库存省钱、不做预测冲减按额度平准与超额分流、多供方按比例分单与包装凑整、不完全替代高配代低配与 30% 红线、两阶段推拉排产不爽约、全网先序区间展开与反查），实时对比现有 SCP / APS vs IPC | [**打开免安装交互验证沙盘 (`demo/index.html`)**](https://gritmeng.github.io/Value-Chain-Physics/demo/) |
 | **1. 3D 全息拓扑交互演示** | 五维双螺旋流形（$S = \mathcal{M}_{\text{model}} \otimes \mathcal{A}$）与百万节点抗熵动力学三维交互视图 | [打开 3D 拓扑视图 (`IPC_Governance_Showcase.html`)](https://gritmeng.github.io/Value-Chain-Physics/docs/IPC_Governance_Showcase.html) |
 | **2. IPC 架构技术审计视图** | ODM-CDM-DDM 三层数据本体、IBP-ITP-IOP-Scheduling 全链路闭环架构交互式拆解 | [打开架构审计视图 (`ipc_scheme_audit_agent.html`)](https://gritmeng.github.io/Value-Chain-Physics/docs/ipc_scheme_audit_agent.html) |
 | **3. 价值链物理审计视图** | 基于价值链物理学控制方程的企业产销死锁、时移阻尼与矢量对消废热诊断沙盘 | [打开物理审计视图 (`value_chain_audit_agent.html`)](https://gritmeng.github.io/Value-Chain-Physics/docs/value_chain_audit_agent.html) |
@@ -192,7 +192,8 @@ Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global
 | **1. 实时 ATP/CTP 交期承诺** | 递归多阶 BOM 展开与 **零堆内存回滚 (Zero-Heap Rollback)**（[`atp_ctp_engine.cpp`](https://github.com/GritMeng/Value-Chain-Physics/blob/main/ipc-core-benchmark/src/atp_ctp_engine.cpp)） | 20-level BOM 微秒级穿透，零过扣回滚 | `bin/test_delivery_precision.exe` |
 | **2. ITP/IOP 主计划与执行协同** | ITP 战术防波堤（约 18 ms）+ IOP 车间刚性配额阻断（约 24 ms）（[`itp_iop_alignment.cpp`](https://github.com/GritMeng/Value-Chain-Physics/blob/main/ipc-core-benchmark/src/itp_iop_alignment.cpp)） | **500,000 并发需求**协同耗时 **< 45 ms** | `bin/test_itp_iop_alignment.exe` |
 | **3. 三级动态替代料分配** | 一类平摊平衡、二类组内选优、三类跨组归一化与安全库存保护（[`substitution_engine.cpp`](https://github.com/GritMeng/Value-Chain-Physics/blob/main/ipc-core-benchmark/src/substitution_engine.cpp)） | 消除组合爆炸，100% 物料守恒 | `bin/test_substitution_rules.exe` |
-| **4. 50万需求 / 200万物料压测** | CPU 裸金属 SoA 连续内存调度，双阶段 $O(N) + O(N \log N)$ 正交剪枝（[`stress_benchmark_2m.cpp`](https://github.com/GritMeng/Value-Chain-Physics/blob/main/ipc-core-benchmark/benchmarks/stress_benchmark_2m.cpp)） | 单机无 GPU 消纳 **500,000 需求 / 2,000,000 物料** | `bin/stress_benchmark_2m.exe` |
+| **4. 两阶段推拉排产与网络代数** | 跨 CODP 受限 `Push-IOP + Pull-IOP` + 先序区间 `[rank..end]` $O(1)$ 子树、维度规格 `GE/EQ` 与认证位掩码剪枝、菱形守恒及 `Where-Used`（[`sandbox_operators.cpp`](https://github.com/GritMeng/Value-Chain-Physics/blob/main/ipc-core-benchmark/src/sandbox_operators.cpp)） | 消除静态提前期爽约，$O(1)$ 无连接子树查询 | `bin/test_two_stage_iop_network.exe` |
+| **5. 50万需求 / 200万物料压测** | CPU 裸金属 SoA 连续内存调度，双阶段 $O(N) + O(N \log N)$ 正交剪枝 + 200 万节点先序区间索引（[`stress_benchmark_2m.cpp`](https://github.com/GritMeng/Value-Chain-Physics/blob/main/ipc-core-benchmark/benchmarks/stress_benchmark_2m.cpp)） | 单机无 GPU 消纳 **500,000 需求 / 2,000,000 物料 / 100 万次子树查询** | `bin/stress_benchmark_2m.exe` |
 
 > [!NOTE]
 > **🛠️ 本地一键验证与知识产权说明（20 项强耦合发明专利矩阵）**：  

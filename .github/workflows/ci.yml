@@ -31,7 +31,7 @@ jobs:
         run: |
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
           cmake --build build --parallel
-      - name: Run all 6 C++17 Verification Suites
+      - name: Run all 7 C++17 Verification Suites
         working-directory: ipc-core-benchmark
         run: |
           ./build/test_delivery_precision
@@ -39,6 +39,7 @@ jobs:
           ./build/test_codp_positioning
           ./build/test_push_pull_router
           ./build/test_itp_iop_alignment
+          ./build/test_two_stage_iop_network
           ./build/stress_benchmark_2m
       - name: Run Python Independent Mathematical Cross-Validator
         working-directory: ipc-core-benchmark

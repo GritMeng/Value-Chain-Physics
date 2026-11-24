@@ -1,6 +1,6 @@
-# IPC Core Open Benchmarks v2.0 数学规范 (Mathematical Specification)
+# IPC Core Open Benchmarks v2.1 数学规范 (Mathematical Specification)
 
-本规范给出公开无菌验证套件（`ipc-core-benchmark` v2.0）所覆盖的六大供应链决策机理的形式化定义与对账方程。所有算子均采用洁净室原生三态命名（`SkuNodeRecord` / `BomEdgeRecord` / `DemandOrderRecord` / `QuotaFirewallKey`），不含任何商业引擎底层内存实现细节。
+本规范给出公开无菌验证套件（`ipc-core-benchmark` v2.1）所覆盖的八大供应链决策与网络代数机理的形式化定义与对账方程。所有算子均采用洁净室原生三态命名（`SkuNodeRecord` / `BomEdgeRecord` / `DemandOrderRecord` / `QuotaFirewallKey`），不含任何商业引擎底层内存实现细节。
 
 ---
 
@@ -54,3 +54,26 @@ $$\theta_j^{\text{next}} = \frac{Q_j^{\text{due}}}{\sum_{k \in \text{Active}} Q_
 ## 6. ITP / IOP 刚性配额防波堤协同
 
 ITP 主计划按四维键 $K = \langle t, \text{Family}, \text{CustGroup}, \text{Region} \rangle$ 生成防波堤上限 $\mathcal{A}(K) = \gamma \sum Q^{\text{ITP}}$；IOP 执行层按优先级逐单核验并刚性拦截越界抢料订单，彻底防止车间执行漂移。
+
+---
+
+## 7. 不完全替代：单向属性门槛与主料齐套锚定混用红线
+
+当工艺或法规要求替代料在总产出中的占比不得超过 $\theta \in (0, 1)$（如 `30%`）时：
+- **单向/精确属性门控**：先检验 `GE`（高规代低规 $d_{\text{cand}} \ge d_{\text{req}}$）或 `EQ`（认证一致 $d_{\text{cand}} = d_{\text{req}}$），未通过者直接截断为 `0`；
+- **主料锚定封顶不等式**：当主料缺料仅齐套 $Q_{\text{main}}$ 时，现有系统机械按总需求毛量 $D_{\text{gross}}$ 计算 $\lfloor \theta D_{\text{gross}} \rfloor$ 会导致分母坍缩越线；IPC 严格求解 $\frac{Q_{\text{sub}}}{Q_{\text{main}} + Q_{\text{sub}}} \le \theta$，给出主料锚定上界：
+
+$$Q_{\text{sub}} \le \min\left(D_{\text{gross}} - Q_{\text{main}},\; S_{\text{sub}},\; \lfloor \theta D_{\text{gross}} \rfloor,\; \left\lfloor \frac{\theta}{1 - \theta} Q_{\text{main}} \right\rfloor\right)$$
+
+在 $D_{\text{gross}}=1{,}000, Q_{\text{main}}=500, \theta=0.30$ 下精准截断为 `214` 颗（`29.97% <= 30%`）。
+
+---
+
+## 8. 跨解耦点两阶段受限推拉排产与价值链网络先序区间代数
+
+1. **两阶段推拉排产（`Push-IOP + Pull-IOP`）**：
+   - **第一阶段（`Push-IOP` 预测受限预投）**：在推拉解耦点（CODP）上游按日有限产能 $C_t$ 与关键长周期物料在手/在途供给 $S_t^{\text{chip}}$ 双重硬约束，预投不带客户/国别死签的通用半成品时间桶池 $P_t^{\text{bare}}$；
+   - **第二阶段（`Pull-IOP` 实单配额门控与动态齐套承诺）**：下游客户实单先经配额防波堤拦截超额抢料，再按 $\text{PromisedDate} = \max\left(\text{DueDate},\; \text{AvailDate}^*(P^{\text{bare}}) + L_{\text{post}}\right)$ 给出零爽约诚实交期，彻底消除传统仅按后道静态提前期 $L_{\text{post}}$ 盲目承诺造成的断料违约。
+2. **价值链网络先序区间与维度规划代数**：
+   - **无递归 SQL 连接的 $O(1)$ 子树判定**：在生成森林上一次构建先序进入序号 $\text{rank}(u)$ 与子树跨度 $\text{size}(u)$，任意节点 $v$ 属于 $u$ 子树当且仅当 $\text{rank}(u) \le \text{rank}(v) < \text{rank}(u) + \text{size}(u)$；
+   - **展开期剪枝与菱形守恒**：在多阶网络正向展开时同步执行规格偏序算子（`PASS / EQ / GE / LE`）与国别安规位掩码（$(\text{mask}_{\text{cand}} \mathbin{\&} \text{mask}_{\text{req}}) = \text{mask}_{\text{req}}$）剪枝；同时支持全路径实例树（`PATH_INSTANCE`）与菱形共用件流量守恒合并（`DISTINCT_NODE`）双视图及逆向 `Where-Used` 顶层受影响成品反查。

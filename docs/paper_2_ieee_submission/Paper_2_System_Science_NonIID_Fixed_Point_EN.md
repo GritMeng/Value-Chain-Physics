@@ -20,7 +20,7 @@ The long-term survival and evolution of Open Complex Giant Systems (OCGS) remain
 
 ## 1. IPS 18-Year Empirical "Plan-Execute-Closed-Loop" Practice
 
-The theory in this paper does not stem from pure mathematical deduction or abstract assumptions, but is extracted from 18 years of global industrial physical validation at Lenovo Group [11,13]. In the real battlefield of the IPS (Intelligent Planning System) architecture, the system successfully achieved a high-frequency "plan-execute-feedback" closed loop, maintaining an autonomous decision rate of over 95% "human-out-of-the-loop" for 18 consecutive years.
+The theory in this paper does not stem from pure mathematical deduction or abstract assumptions, but is extracted from 18 years of global industrial physical validation at Lenovo Group [11,13]. In the real battlefield of the IPS (Integrated Planning Solution) architecture, the system successfully achieved a high-frequency "plan-execute-feedback" closed loop, maintaining an autonomous decision rate of over 95% "human-out-of-the-loop" for 18 consecutive years.
 
 ### 1.1 Empirical Field and Rigid Closed Loop
 
@@ -311,7 +311,7 @@ Without Monobrain Singularity, there is no global governance of Non-IID systems;
 1. Qian X, Yu J, Dai R. A new discipline of science — Open Complex Giant Systems and its methodology[J]. *Nature Magazine*, 1990, 13(1): 3-10. (in Chinese)
 2. Qian X. Creating Systemology[M]. Taiyuan: Shanxi Science and Technology Press, 2001: 42-68. (in Chinese)
 3. Cao L (操龙兵), Dai R (戴汝为), Zhou M. Metasynthesis: M-space, M-interaction, and M-computing for open complex giant systems[J]. *IEEE Transactions on Systems, Man, and Cybernetics, Part A: Systems and Humans*, 2009, 39(5): 1011-1021.
-4. Cao L (操龙兵). Non-IID Learning: Cases, Taxonomy and Trends[J]. *IEEE Transactions on Knowledge and Data Engineering*, 2014, 26(11): 2783-2801.
+4. Cao L (操龙兵). Non-IIDness learning in behavioral and social data[J]. *The Computer Journal*, 2014, 57(9): 1358-1370.
 5. Ashby W R. An Introduction to Cybernetics[M]. London: Chapman & Hall, 1956: 202-219.
 6. Wiener N. Cybernetics: Or Control and Communication in the Animal and the Machine[M]. Cambridge, MA: MIT Press, 1948: 95-112.
 7. Banach S. Sur les opérations dans les ensembles abstract et leur application aux équations intégrales[J]. *Fundamenta Mathematicae*, 1922, 3(1): 133-181.

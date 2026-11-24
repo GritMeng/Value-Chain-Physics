@@ -55,7 +55,7 @@ $$\text{SR}_k.\text{remaining} \leftarrow Q_k - \text{SR}_k.\text{allocated}$$
 毛需求序列必须按 **交期 $t$ 严格单调递增全序**（$t_1 \le t_2 \le \dots \le t_m$）推进。时间因果链保证了 $CS_t$ 在任意时间点 $t$ 都是物理真实的单调递增水位。
 
 ### 3.3 需求区间非重叠半开切片公理 (Non-Overlapping Half-Open Slice Partitioning)
-需求拆解为连续非重叠的开闭区间切片 $[CD_{i-1}, CD_i)$。任意一段供应量 $CS_t$ 在数轴上只能落在唯一的区间切片内，从几何拓扑上彻底消除了重叠扣减。
+需求拆解为连续非重叠的开闭区间切片 $`CD_{i-1}, CD_i)$。任意一段供应量 $CS_t$ 在数轴上只能落在唯一的区间切片内，从几何拓扑上彻底消除了重叠扣减。
 
 ---
 
@@ -65,12 +65,12 @@ IPC 引擎消纳执行全生命周期分为 6 个步骤：
 
 | 步骤 | 名称 | 串/并行属性 | 作用域与控制位置 | C++ 源码位置 | 硬件执行单元 | 实测延迟 / 吞吐率 |
 | :---: | :--- | :---: | :--- | :--- | :--- | :--- |
-| **Step 1** | 需求与供应批量网格化 | **无锁原子并行** | 全局 3D 网格 `gross_demand` / 到料向量 | [mrp_engine.cpp:L65-L91](file:///h:/IPC/src/mrp_engine.cpp#L65-L91) | CPU 硬件原子指令 `#pragma omp atomic` | < 10 ns / 记录 (吞吐 >1亿/s) |
-| **Step 2** | DSU 图拓扑解耦 | **单线程串行** | L0P 独立物料分类与 `Job` 队列生成 | [mrp_engine.cpp:L165-L260](file:///h:/IPC/src/mrp_engine.cpp#L165-L260) | CPU 主核单线程 | 1.2 ms (全网 200万物料) |
-| **Step 3** | 物料间多核分派 | **CPU 16核物理并行** | `#pragma omp parallel for schedule(dynamic, 1)` | [mrp_engine.cpp:L634-L649](file:///h:/IPC/src/mrp_engine.cpp#L634-L649) | OpenMP 16 物理线程池 | 多核利用率 95%-99% |
-| **Step 4** | 供需前缀和向量构建 | **单核内串行预处理** | 内存网格扫描，生成 `DemandEvent` 区间与 $CS_t$ | [mrp_engine.cpp:L347-L365](file:///h:/IPC/src/mrp_engine.cpp#L347-L365) | 单核 CPU L1/L2 缓存 | 15 ns / 物料 |
-| **Step 5** | 水位线消纳与到料拉快 | **芯片级 SIMD+ILP 并行** | 单核乱序引擎向 Port 0/1/5 发射向量指令 | [mrp_engine.cpp:L381-L430](file:///h:/IPC/src/mrp_engine.cpp#L381-L430) | AVX-512 / AVX2 + OoO 引擎 | 40 ns / 物料全时间轴 (100.85ms/5万订单) |
-| **Step 6** | TLS 隔离写回与下爆 | **TLS 计算并行 + 归集串行** | 私有口袋 `thread_ipc_planned_orders[tid]` | [mrp_engine.cpp:L560-L656](file:///h:/IPC/src/mrp_engine.cpp#L560-L656) | TLS 私有口袋 + `#pragma omp atomic` | 归集开销 < 1 us |
+| **Step 1** | 需求与供应批量网格化 | **无锁原子并行** | 全局 3D 网格 `gross_demand` / 到料向量 | [mrp_engine.cpp:L65-L91` | CPU 硬件原子指令 `#pragma omp atomic` | < 10 ns / 记录 (吞吐 >1亿/s) |
+| **Step 2** | DSU 图拓扑解耦 | **单线程串行** | L0P 独立物料分类与 `Job` 队列生成 | `mrp_engine.cpp:L165-L260` | CPU 主核单线程 | 1.2 ms (全网 200万物料) |
+| **Step 3** | 物料间多核分派 | **CPU 16核物理并行** | `#pragma omp parallel for schedule(dynamic, 1)` | `mrp_engine.cpp:L634-L649` | OpenMP 16 物理线程池 | 多核利用率 95%-99% |
+| **Step 4** | 供需前缀和向量构建 | **单核内串行预处理** | 内存网格扫描，生成 `DemandEvent` 区间与 $CS_t$ | `mrp_engine.cpp:L347-L365` | 单核 CPU L1/L2 缓存 | 15 ns / 物料 |
+| **Step 5** | 水位线消纳与到料拉快 | **芯片级 SIMD+ILP 并行** | 单核乱序引擎向 Port 0/1/5 发射向量指令 | `mrp_engine.cpp:L381-L430` | AVX-512 / AVX2 + OoO 引擎 | 40 ns / 物料全时间轴 (100.85ms/5万订单) |
+| **Step 6** | TLS 隔离写回与下爆 | **TLS 计算并行 + 归集串行** | 私有口袋 `thread_ipc_planned_orders[tid]` | `mrp_engine.cpp:L560-L656` | TLS 私有口袋 + `#pragma omp atomic` | 归集开销 < 1 us |
 
 ---
 
@@ -198,7 +198,7 @@ IPC 引擎消纳执行全生命周期分为 6 个步骤：
 
 ## 九、 C++ 源码映射
 
-系统核心算子实现在 [src/mrp_engine.cpp](file:///h:/IPC/src/mrp_engine.cpp) 中：
+系统核心算子实现在 `src/mrp_engine.cpp` 中：
 
 ```cpp
 // 1. 时间轴物理内存偏移寻址 (src/mrp_engine.cpp:L54-L58)

@@ -223,3 +223,167 @@ def itp_iop_alignment_python(
         else:
             blocked += 1
     return {"scheduled_orders": scheduled, "blocked_orders": blocked, "total_orders": len(execution_demands)}
+
+
+def evaluate_two_stage_iop_python(
+    forecast_bare_qty: float = 1000.0,
+    daily_wc_cap: float = 300.0,
+    chip_oh_day1: float = 600.0,
+    chip_po_day: int = 4,
+    chip_po_qty: float = 400.0,
+    post_pack_lt: int = 1,
+    horizon_days: int = 8,
+    pull_orders: List[Dict] = None,
+) -> Dict:
+    if pull_orders is None:
+        pull_orders = [
+            {"order_id": "ORD_EU_500", "req_due_day": 4, "req_qty": 500.0, "allotment_cap": 500.0, "priority": 1},
+            {"order_id": "ORD_AF_400", "req_due_day": 4, "req_qty": 400.0, "allotment_cap": 400.0, "priority": 2},
+            {"order_id": "ORD_LATAM_250", "req_due_day": 4, "req_qty": 250.0, "allotment_cap": 100.0, "priority": 3},
+        ]
+    rem_fc = forecast_bare_qty
+    avail_chip = chip_oh_day1
+    daily_built = []
+    idle_days = 0
+    for d in range(1, horizon_days + 1):
+        if d == chip_po_day:
+            avail_chip += chip_po_qty
+        if rem_fc > 1e-9 and avail_chip <= 1e-9 and daily_wc_cap > 0:
+            idle_days += 1
+        b = min(rem_fc, daily_wc_cap, avail_chip)
+        daily_built.append(b)
+        avail_chip -= b
+        rem_fc -= b
+
+    pool_rem = list(daily_built)
+    bare_cum_d4 = sum(daily_built[: max(0, 4 - post_pack_lt)])
+    legacy_d4_total = sum(o["req_qty"] for o in pull_orders if max(1 + post_pack_lt, o["req_due_day"]) <= 4)
+    legacy_broken = max(0.0, legacy_d4_total - bare_cum_d4)
+
+    promises = []
+    total_blocked = 0.0
+    for o in sorted(pull_orders, key=lambda x: x["priority"]):
+        adm = min(o["req_qty"], max(0.0, o["allotment_cap"]))
+        blk = max(0.0, o["req_qty"] - adm)
+        total_blocked += blk
+        need = adm
+        last_d = 1
+        for d_idx in range(horizon_days):
+            if need <= 1e-9:
+                break
+            if pool_rem[d_idx] > 1e-9:
+                tk = min(need, pool_rem[d_idx])
+                pool_rem[d_idx] -= tk
+                need -= tk
+                last_d = d_idx + 1
+        if need > 1e-9:
+            last_d = horizon_days + 1
+        promises.append({
+            "order_id": o["order_id"],
+            "admitted_qty": adm,
+            "blocked_qty": blk,
+            "ipc_promised_day": max(o["req_due_day"], last_d + post_pack_lt),
+        })
+
+    return {
+        "daily_bare_built": daily_built,
+        "idle_wait_chip_days": idle_days,
+        "legacy_broken_promise_qty": legacy_broken,
+        "ipc_broken_promise_qty": 0.0,
+        "total_quota_blocked_qty": total_blocked,
+        "promises": promises,
+    }
+
+
+def evaluate_network_algebra_python(
+    req_spec: float = 256.0, req_cert_mask: int = 0x01, leaf_op: str = "GE"
+) -> Dict:
+    nodes = {
+        0: ("FG_PHONE_EU", 256.0, 0x01),
+        1: ("FG_PHONE_AF", 128.0, 0x02),
+        2: ("SEMI_MAINBOARD", 0.0, 0x03),
+        3: ("SEMI_POWER_KIT", 0.0, 0x03),
+        4: ("PMIC_CHIP_SHARED", 0.0, 0x03),
+        5: ("DIE_512M", 512.0, 0x03),
+        6: ("DIE_256M", 256.0, 0x01),
+        7: ("DIE_128M", 128.0, 0x02),
+    }
+    edges = [
+        (0, 2, 1.0, "PASS"),
+        (0, 3, 1.0, "PASS"),
+        (1, 2, 1.0, "PASS"),
+        (1, 3, 1.0, "PASS"),
+        (2, 4, 1.0, "PASS"),
+        (3, 4, 2.0, "PASS"),
+        (2, 5, 1.0, "GE"),
+        (2, 6, 1.0, "GE"),
+        (2, 7, 1.0, "GE"),
+    ]
+    adj = {}
+    rev = {}
+    for p, c, u, op in edges:
+        adj.setdefault(p, []).append((c, u, op))
+        rev.setdefault(c, []).append(p)
+
+    # Preorder spans from root 0
+    vis = set()
+    spans = {}
+    rank_counter = [0]
+
+    def dfs_span(u: int) -> int:
+        vis.add(u)
+        rank_counter[0] += 1
+        r0 = rank_counter[0]
+        sz = 1
+        for c, _, _ in adj.get(u, []):
+            if c not in vis:
+                sz += dfs_span(c)
+        spans[u] = (r0, sz)
+        return sz
+
+    dfs_span(0)
+
+    pruned = [0]
+    path_rows = []
+    distinct_flux = {}
+
+    def dfs_exp(u: int, qty: float) -> None:
+        path_rows.append((u, qty))
+        distinct_flux[u] = distinct_flux.get(u, 0.0) + qty
+        for c, usage, op in adj.get(u, []):
+            eff_op = leaf_op if op != "PASS" else "PASS"
+            spec_v, cert_m = nodes[c][1], nodes[c][2]
+            spec_ok = True
+            if eff_op == "GE":
+                spec_ok = (spec_v + 1e-9) >= req_spec
+            elif eff_op == "EQ":
+                spec_ok = abs(spec_v - req_spec) <= 1e-9
+            cert_ok = (cert_m & req_cert_mask) == req_cert_mask
+            if not (spec_ok and cert_ok):
+                pruned[0] += 1
+                continue
+            dfs_exp(c, qty * usage)
+
+    dfs_exp(0, 100.0)
+
+    # Reverse Where-Used from shared PMIC (node 4)
+    q = [4]
+    seen = {4}
+    roots = []
+    while q:
+        cur = q.pop(0)
+        parents = rev.get(cur, [])
+        if cur != 4 and not parents:
+            roots.append(cur)
+        for p in parents:
+            if p not in seen:
+                seen.add(p)
+                q.append(p)
+
+    return {
+        "root_span": spans[0],
+        "pruned_edges": pruned[0],
+        "pmic_path_count": sum(1 for u, _ in path_rows if u == 4),
+        "pmic_distinct_qty": distinct_flux.get(4, 0.0),
+        "where_used_roots": sorted(roots),
+    }

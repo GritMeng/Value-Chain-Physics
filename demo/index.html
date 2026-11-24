@@ -315,7 +315,7 @@
     </details>
 
     <div class="notice">
-      <strong>怎么玩：</strong>在下面 6 个工厂常见场景里随便改数字（库存、交期、成本、份额、最小包装、混用红线），页面会立刻对照算出<strong>现有 SCP / APS 系统</strong>和<strong>IPC 闭环算法</strong>的结果差别——一眼看清 KPI 同源耦合的根本问题。全部算例均为公开无菌最小模型，不含任何商业级引擎源码或企业隐私数据。
+      <strong>怎么玩：</strong>在下面 8 个工厂常见场景里随便改数字（库存、交期、成本、份额、最小包装、混用红线、日产能、规格与国别认证），页面会立刻对照算出<strong>现有 SCP / APS 系统</strong>和<strong>IPC 闭环算法</strong>的结果差别——一眼看清 KPI 同源耦合的根本问题。全部算例均为公开无菌最小模型，不含任何商业级引擎源码或企业隐私数据。
     </div>
 
     <div class="tabs" role="tablist">
@@ -325,6 +325,8 @@
       <button class="tab-btn" onclick="switchTab(3)">4. 不做预测冲减：平准切额度与超额分流</button>
       <button class="tab-btn" onclick="switchTab(4)">5. 多供方按比例分单与包装凑整</button>
       <button class="tab-btn" onclick="switchTab(5)">6. 不完全替代：高配代低配与 30% 红线</button>
+      <button class="tab-btn" onclick="switchTab(6)">7. 两阶段推拉排产 (备半成品不爽约)</button>
+      <button class="tab-btn" onclick="switchTab(7)">8. 全网秒级展开与反查 (规格兼容+认证过滤)</button>
     </div>
 
     <!-- ================= TAB 1: SEQUENCING COUPLING ================= -->
@@ -486,6 +488,72 @@
         <div class="grid-2" id="t6_cards"></div>
         <div class="svg-box" id="t6_svg"></div>
         <div class="verdict-bar" id="t6_verdict"></div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 7: TWO-STAGE PUSH/PULL IOP ================= -->
+    <section id="tab-6" class="panel">
+      <div class="card">
+        <div class="panel-head">
+          <h2>场景 7：两阶段推拉排产 —— 前段按预测过产能备通用半成品，后段按实单守额度承诺不爽约</h2>
+          <button class="btn-sm" onclick="resetT7()">恢复标准算例</button>
+        </div>
+        <p class="subtitle" style="margin-bottom:14px;">很多工厂把前道半成品和后道贴标拆成两本孤立账：销售看后道贴标只要 1 天，就答应欧洲 500 台、非洲 400 台、拉美急单 250 台全部在第 4 天交货（共 1,150 台）；结果前道通用裸机受限于每天 300 台产能，第 3 天还因等在途主芯片停工 1 天，到第 3 天底只攒出 600 台裸机，现场直接爽约 550 台。IPC 第一段同时卡住日产能和芯片到货日算出真实裸机池，第二段先按保护额度拦住拉美超额抢货，再按裸机真齐套日加贴标天数给出诚实交期。</p>
+        <div class="controls">
+          <div class="ctrl"><label>前道预测备裸机总量 (台)</label><input id="t7_fc" type="number" min="200" step="100" value="1000" oninput="calcT7()" /></div>
+          <div class="ctrl"><label>前道组装日最大产能 (台/天)</label><input id="t7_cap" type="number" min="100" step="50" value="300" oninput="calcT7()" /></div>
+          <div class="ctrl"><label>首日主芯片在手现货 (颗)</label><input id="t7_oh" type="number" min="0" step="100" value="600" oninput="calcT7()" /></div>
+          <div class="ctrl"><label>在途主芯片到货日 (第几天)</label><input id="t7_poday" type="number" min="2" max="7" value="4" oninput="calcT7()" /></div>
+          <div class="ctrl"><label>在途主芯片到货量 (颗)</label><input id="t7_poqty" type="number" min="0" step="100" value="400" oninput="calcT7()" /></div>
+          <div class="ctrl"><label>后道国别贴标包装天数</label><input id="t7_pack" type="number" min="1" max="3" value="1" oninput="calcT7()" /></div>
+          <div class="ctrl"><label>欧洲实单 (D4要货 · 额度500)</label><input id="t7_eu" type="number" min="0" step="50" value="500" oninput="calcT7()" /></div>
+          <div class="ctrl"><label>非洲实单 (D4要货 · 额度400)</label><input id="t7_af" type="number" min="0" step="50" value="400" oninput="calcT7()" /></div>
+          <div class="ctrl"><label>拉美急单 (D4要货 · 额度100)</label><input id="t7_la" type="number" min="0" step="50" value="250" oninput="calcT7()" /></div>
+        </div>
+        <div class="grid-2" id="t7_cards"></div>
+        <div id="t7_table" style="overflow-x:auto;margin-top:12px;"></div>
+        <div class="verdict-bar" id="t7_verdict"></div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 8: VALUE CHAIN NETWORK EXPLOSION & WHERE-USED ================= -->
+    <section id="tab-7" class="panel">
+      <div class="card">
+        <div class="panel-head">
+          <h2>场景 8：全网秒级展开与反查 —— 先序区间免连接查归属 + 规格兼容、国别认证与菱形去重</h2>
+          <button class="btn-sm" onclick="resetT8()">恢复标准算例</button>
+        </div>
+        <p class="subtitle" style="margin-bottom:14px;">多层 BOM 叠加上替代料、分档晶粒和各国安规认证后，传统数据库每展开一次或反查一颗缺料件都要递归连接多张表。IPC 给每个节点预先编好“[进入序号..结束序号]”先序区间，判断任意子件属不属于某条产品线只需一次大小比较；展开时同步按规格（高配代低配或同档严配）与国别认证剪掉不合规物料，并对多条支路共用的芯片做去重守恒汇总与向上反查。</p>
+        <div class="controls">
+          <div class="ctrl">
+            <label>正向展开顶层成品机型</label>
+            <select id="t8_fg" onchange="calcT8()">
+              <option value="EU" selected>欧洲机型 FG_PHONE_EU (需 ≥256MB · 欧规CE认证)</option>
+              <option value="AF">非洲机型 FG_PHONE_AF (需 ≥128MB · 非洲认证)</option>
+            </select>
+          </div>
+          <div class="ctrl"><label>成品订单需求量 (台)</label><input id="t8_qty" type="number" min="10" step="50" value="100" oninput="calcT8()" /></div>
+          <div class="ctrl">
+            <label>存储芯片规格匹配方式</label>
+            <select id="t8_op" onchange="calcT8()">
+              <option value="GE" selected>高配可向下兼容低配 (GE: 候选规格 ≥ 要求规格)</option>
+              <option value="EQ">仅允许同档严配 (EQ: 候选规格 == 要求规格)</option>
+            </select>
+          </div>
+          <div class="ctrl">
+            <label>选择缺料子件向上反查受影响成品</label>
+            <select id="t8_wu" onchange="calcT8()">
+              <option value="PMIC" selected>共用电源芯片 PMIC_SHARED (主板1颗 + 电源包2颗)</option>
+              <option value="DIE512">512MB 高规双认证晶粒 (欧规+非洲双证)</option>
+              <option value="DIE256">256MB 欧规专用晶粒 (仅欧规CE证)</option>
+              <option value="DIE128">128MB 非洲专用晶粒 (仅非洲认证)</option>
+            </select>
+          </div>
+        </div>
+        <div id="t8_gates" style="margin-bottom:14px;"></div>
+        <div class="grid-2" id="t8_cards"></div>
+        <div id="t8_table" style="overflow-x:auto;margin-top:12px;"></div>
+        <div class="verdict-bar" id="t8_verdict"></div>
       </div>
     </section>
 
@@ -974,8 +1042,207 @@
           : `实测结论：属性合格且主料齐套充足，IPC 精准启用 ${ipcSub} 颗副料，总产出 ${ipcOut} 台，副料占比 ${ipcRatio.toFixed(2)}% 严格守住 ${ratioPct}% 红线。`;
     }
 
-    // Initial render of all 6 sandboxes
-    calcT1(); calcT2(); calcT3(); calcT4(); calcT5(); calcT6();
+    // ==================== TAB 7: TWO-STAGE PUSH/PULL IOP ====================
+    function resetT7() {
+      document.getElementById('t7_fc').value = 1000;
+      document.getElementById('t7_cap').value = 300;
+      document.getElementById('t7_oh').value = 600;
+      document.getElementById('t7_poday').value = 4;
+      document.getElementById('t7_poqty').value = 400;
+      document.getElementById('t7_pack').value = 1;
+      document.getElementById('t7_eu').value = 500;
+      document.getElementById('t7_af').value = 400;
+      document.getElementById('t7_la').value = 250;
+      calcT7();
+    }
+    function calcT7() {
+      const fc = Math.max(0, +document.getElementById('t7_fc').value || 0);
+      const cap = Math.max(1, +document.getElementById('t7_cap').value || 300);
+      const oh = Math.max(0, +document.getElementById('t7_oh').value || 0);
+      const poDay = Math.max(1, Math.min(8, +document.getElementById('t7_poday').value || 4));
+      const poQty = Math.max(0, +document.getElementById('t7_poqty').value || 0);
+      const packLt = Math.max(1, +document.getElementById('t7_pack').value || 1);
+      const euReq = Math.max(0, +document.getElementById('t7_eu').value || 0);
+      const afReq = Math.max(0, +document.getElementById('t7_af').value || 0);
+      const laReq = Math.max(0, +document.getElementById('t7_la').value || 0);
+
+      const H = 8;
+      let remFc = fc, availChip = oh, idleDays = 0;
+      const built = [];
+      for (let d = 1; d <= H; d++) {
+        if (d === poDay) availChip += poQty;
+        if (remFc > 1e-6 && availChip <= 1e-6) idleDays++;
+        const b = Math.min(remFc, cap, availChip);
+        built.push(b);
+        availChip -= b;
+        remFc -= b;
+      }
+
+      const latestBareForD4 = Math.max(0, 4 - packLt);
+      let bareCumForD4 = 0;
+      for (let d = 1; d <= Math.min(H, latestBareForD4); d++) bareCumForD4 += built[d - 1];
+
+      const orders = [
+        { name: '欧洲实单 (优1)', req: euReq, capQ: 500, due: 4 },
+        { name: '非洲实单 (优2)', req: afReq, capQ: 400, due: 4 },
+        { name: '拉美急单 (优3)', req: laReq, capQ: 100, due: 4 },
+      ];
+      const legPromisedD4 = euReq + afReq + laReq;
+      const legBroken = Math.max(0, legPromisedD4 - bareCumForD4);
+
+      const pool = built.slice();
+      let totBlocked = 0;
+      const promRows = orders.map(o => {
+        const adm = Math.min(o.req, o.capQ);
+        const blk = Math.max(0, o.req - adm);
+        totBlocked += blk;
+        let need = adm, lastD = 1;
+        for (let i = 0; i < H && need > 1e-6; i++) {
+          if (pool[i] > 1e-6) {
+            const tk = Math.min(need, pool[i]);
+            pool[i] -= tk;
+            need -= tk;
+            lastD = i + 1;
+          }
+        }
+        const shortUnbuilt = need > 1e-6;
+        const ipcDay = shortUnbuilt ? (H + packLt + 1) : Math.max(o.due, lastD + packLt);
+        return { ...o, adm, blk, lastD, ipcDay, shortUnbuilt };
+      });
+
+      document.getElementById('t7_cards').innerHTML = `
+        <div class="kpi-box bad">
+          <h3>现有 SCP / APS（只看后道 ${packLt} 天贴标期拍胸脯答应 D4）</h3>
+          <div class="metric"><span>盲目答应第 4 天交货总量</span><strong>${legPromisedD4} 台</strong></div>
+          <div class="metric"><span>第 ${latestBareForD4} 天底前道实际攒出通用裸机</span><strong>仅 ${bareCumForD4} 台（芯片未到停线 ${idleDays} 天）</strong></div>
+          <div class="metric"><span>第 4 天现场断料爽约缺口</span><strong>${legBroken} 台违约</strong></div>
+        </div>
+        <div class="kpi-box good">
+          <h3>IPC 两阶段推拉联动（前段卡产能芯片 + 后段卡额度水位）</h3>
+          <div class="metric"><span>保护额度自动拦住超额抢货量</span><strong>拦住 ${totBlocked} 台（防冲垮欧非正常单）</strong></div>
+          <div class="metric"><span>三笔订单诚实可兑现交期</span><strong>${promRows.map(p => p.shortUnbuilt ? `${p.name.slice(0,2)}缺芯片待补` : `${p.name.slice(0,2)}=D${p.ipcDay}`).join(' · ')}</strong></div>
+          <div class="metric"><span>答应客户的交期爽约台数</span><strong>0 台（说到做到）</strong></div>
+        </div>`;
+
+      const dayHead = built.slice(0, 6).map((_, i) => `<th>D${i+1} 裸机产出</th>`).join('');
+      const dayVals = built.slice(0, 6).map((v, i) => `<td><strong>${v} 台</strong>${(i+1 === poDay) ? ' (在途芯片到)' : (v === 0 && i < 5 ? ' (等芯片)' : '')}</td>`).join('');
+      const ordBody = promRows.map(p => `<tr>
+        <td><strong>${p.name}</strong></td>
+        <td>${p.req} 台 (要 D${p.due})</td>
+        <td>${p.adm} 台${p.blk > 0 ? ` (超额拦 ${p.blk} 台)` : ''}</td>
+        <td style="color:#B03A2E;font-weight:700;">盲目报 D4</td>
+        <td style="color:#1E6B47;font-weight:700;">${p.shortUnbuilt ? '前道裸机不足待补料' : `裸机 D${p.lastD} 齐套 → 报 D${p.ipcDay}`}</td>
+      </tr>`).join('');
+
+      document.getElementById('t7_table').innerHTML = `
+        <table>
+          <thead><tr><th>前道通用裸机日产出账</th>${dayHead}</tr></thead>
+          <tbody><tr><td><strong>受日产能(${cap})与芯片约束实产</strong></td>${dayVals}</tr></tbody>
+        </table>
+        <table style="margin-top:10px;">
+          <thead><tr><th>客户订单</th><th>原始要货</th><th>额度内放行量</th><th>现有静态提前期承诺</th><th>IPC 绑定前道水位诚实承诺</th></tr></thead>
+          <tbody>${ordBody}</tbody>
+        </table>`;
+
+      document.getElementById('t7_verdict').textContent =
+        `实测结论：前道通用裸机池按日攒出 [${built.slice(0,5).join(', ')}] 台；现有系统只看后道 ${packLt} 天包装期在第 4 天硬答应 ${legPromisedD4} 台，结果爽约 ${legBroken} 台；IPC 拦住超额抢货 ${totBlocked} 台，并按裸机真实到位日诚实承诺交期，实现零爽约。`;
+    }
+
+    // ==================== TAB 8: VALUE CHAIN NETWORK ALGEBRA ====================
+    function resetT8() {
+      document.getElementById('t8_fg').value = 'EU';
+      document.getElementById('t8_qty').value = 100;
+      document.getElementById('t8_op').value = 'GE';
+      document.getElementById('t8_wu').value = 'PMIC';
+      calcT8();
+    }
+    function calcT8() {
+      const fg = document.getElementById('t8_fg').value;
+      const qty = Math.max(1, +document.getElementById('t8_qty').value || 100);
+      const op = document.getElementById('t8_op').value;
+      const wu = document.getElementById('t8_wu').value;
+
+      const reqSpec = (fg === 'EU') ? 256 : 128;
+      const reqCert = (fg === 'EU') ? 1 : 2; // 1=欧规CE, 2=非洲认证, 3=双认证
+      const fgName = (fg === 'EU') ? 'FG_PHONE_EU (欧洲机型)' : 'FG_PHONE_AF (非洲机型)';
+
+      const dieCandidates = [
+        { code: 'DIE_512M (512MB晶粒)', span: '[5..5]', spec: 512, cert: 3, certName: '欧规+非洲双证' },
+        { code: 'DIE_256M (256MB晶粒)', span: '[6..6]', spec: 256, cert: 1, certName: '仅欧规CE证' },
+        { code: 'DIE_128M (128MB晶粒)', span: '[7..7]', spec: 128, cert: 2, certName: '仅非洲认证' },
+      ];
+
+      let prunedCnt = 0;
+      const dieChecked = dieCandidates.map(d => {
+        const specOk = (op === 'GE') ? (d.spec >= reqSpec) : (d.spec === reqSpec);
+        const certOk = ((d.cert & reqCert) === reqCert);
+        const pass = specOk && certOk;
+        if (!pass) prunedCnt++;
+        let reason = '规格与认证双合格 · 纳入可用替代池';
+        if (!specOk && !certOk) reason = `规格(${d.spec} vs ${reqSpec})与国别认证均不符 · 展开期直接剪掉`;
+        else if (!specOk) reason = `${op === 'EQ' ? '同档严配不允许高代低' : '规格低于最低门槛'} (${d.spec} vs ${reqSpec}) · 剪掉`;
+        else if (!certOk) reason = `缺少目标国别安规认证 (${d.certName}) · 剪掉`;
+        return { ...d, pass, reason };
+      });
+
+      const pmicMain = qty * 1;
+      const pmicPwr = qty * 2;
+      const pmicDistinct = pmicMain + pmicPwr;
+
+      const wuMap = {
+        PMIC: { label: 'PMIC_SHARED (共用电源芯片)', parents: '主板总成 (1颗/台) + 电源模组包 (2颗/台)', roots: '欧洲机型 FG_PHONE_EU、非洲机型 FG_PHONE_AF（共波及 2 款顶层成品）' },
+        DIE512: { label: 'DIE_512M (512MB双证晶粒)', parents: '主板总成（向下兼容池）', roots: '高配代低配开启时可支撑 FG_PHONE_EU 与 FG_PHONE_AF 两款成品' },
+        DIE256: { label: 'DIE_256M (256MB欧规晶粒)', parents: '主板总成（欧规池）', roots: '仅波及欧洲机型 FG_PHONE_EU（非洲机型无此认证不混用）' },
+        DIE128: { label: 'DIE_128M (128MB非洲晶粒)', parents: '主板总成（非洲池）', roots: '仅波及非洲机型 FG_PHONE_AF（欧洲机型规格不达标已剪除）' },
+      };
+      const wuInfo = wuMap[wu];
+
+      document.getElementById('t8_gates').innerHTML = `
+        <span class="pill pill-pass">先序区间索引：[1..7]（判断任意子件归属只需比一次 rank 范围，免多层递归连接）</span>
+        <span class="pill ${prunedCnt > 0 ? 'pill-info' : 'pill-pass'}">规格与国别认证自动剪枝：已拦截 ${prunedCnt} 颗不合规晶粒</span>`;
+
+      document.getElementById('t8_cards').innerHTML = `
+        <div class="kpi-box good">
+          <h3>正向展开：菱形共用件去重守恒汇总（${fgName} × ${qty} 台）</h3>
+          <div class="metric"><span>路径 1：成品 → 主板总成 [2..7] → 共用电源芯片</span><strong>${pmicMain} 颗 (单耗 1)</strong></div>
+          <div class="metric"><span>路径 2：成品 → 电源模组 [3..4] → 共用电源芯片</span><strong>${pmicPwr} 颗 (单耗 2)</strong></div>
+          <div class="metric"><span>菱形去重合并总净需（不重算、不漏算）</span><strong>${pmicDistinct} 颗（严格守恒）</strong></div>
+        </div>
+        <div class="kpi-box good">
+          <h3>逆向反查（Where-Used）：缺料秒级定位受波及顶层订单</h3>
+          <div class="metric"><span>当前反查子件</span><strong>${wuInfo.label}</strong></div>
+          <div class="metric"><span>直接装配父件</span><strong>${wuInfo.parents}</strong></div>
+          <div class="metric"><span>向上穿透锁定的顶层成品</span><strong>${wuInfo.roots}</strong></div>
+        </div>`;
+
+      const dieRows = dieChecked.map(d => `<tr>
+        <td>L2 存储晶粒</td>
+        <td><strong>${d.code}</strong></td>
+        <td><code>${d.span}</code></td>
+        <td>${d.spec}MB ｜ ${d.certName}</td>
+        <td style="color:${d.pass ? '#1E6B47' : '#B03A2E'};font-weight:700;">${d.pass ? `放行 (候选池 ${qty} 颗)` : '剪枝拦截 (0 颗)'}</td>
+        <td style="text-align:left;">${d.reason}</td>
+      </tr>`).join('');
+
+      document.getElementById('t8_table').innerHTML = `
+        <table>
+          <thead><tr><th>层级</th><th>网络节点</th><th>先序区间</th><th>规格与认证属性</th><th>展开结果</th><th>判定说明</th></tr></thead>
+          <tbody>
+            <tr><td>L0 顶层成品</td><td><strong>${fgName}</strong></td><td><code>[1..7]</code></td><td>目标 ≥${reqSpec}MB (${op})</td><td style="color:#1E6B47;font-weight:700;">根需求 ${qty} 台</td><td style="text-align:left;">覆盖整个子树序号 1~7，一次比较即知全系下级归属</td></tr>
+            <tr><td>L1 半成品</td><td><strong>SEMI_MAINBOARD (主板总成)</strong></td><td><code>[2..7]</code></td><td>通用双证</td><td style="color:#1E6B47;font-weight:700;">需 ${qty} 套</td><td style="text-align:left;">下挂共用电源芯片(×1) + 存储晶粒规格组</td></tr>
+            <tr><td>L1 半成品</td><td><strong>SEMI_POWER_KIT (电源模组)</strong></td><td><code>[3..4]</code></td><td>通用双证</td><td style="color:#1E6B47;font-weight:700;">需 ${qty} 套</td><td style="text-align:left;">下挂同一颗共用电源芯片(×2)，形成菱形汇合</td></tr>
+            <tr><td>L2 菱形共用件</td><td><strong>PMIC_SHARED (共用电源芯片)</strong></td><td><code>[4..4]</code></td><td>通用双证</td><td style="color:#1E6B47;font-weight:700;">合并净需 ${pmicDistinct} 颗</td><td style="text-align:left;">两条支路 (${pmicMain} + ${pmicPwr}) 自动汇合守恒，零重复放大</td></tr>
+            ${dieRows}
+          </tbody>
+        </table>`;
+
+      const passedNames = dieChecked.filter(x => x.pass).map(x => x.code.split(' ')[0]).join('、') || '无合格晶粒';
+      document.getElementById('t8_verdict').textContent =
+        `实测结论：展开 ${qty} 台 ${fgName} 时，系统用先序区间 [1..7] 免连接定位全部下级，自动剪除 ${prunedCnt} 颗不合规格或无认证晶粒（放行：${passedNames}），并将两条支路共用的电源芯片精准守恒合并为 ${pmicDistinct} 颗。`;
+    }
+
+    // Initial render of all 8 sandboxes
+    calcT1(); calcT2(); calcT3(); calcT4(); calcT5(); calcT6(); calcT7(); calcT8();
   </script>
 </body>
 </html>

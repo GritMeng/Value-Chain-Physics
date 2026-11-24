@@ -249,6 +249,70 @@ int main() {
               << ", 拦截=" << iop_res.blocked_orders << ")\n";
 
     // -------------------------------------------------------------------------
+    // Phase 5: 2,000,000 节点生成森林先序区间索引构建 + 1,000,000 次 O(1) 子树归属秒级查询
+    // -------------------------------------------------------------------------
+    std::cout << "\n[Phase 5] 2,000,000 节点先序区间 [rank..rank+size-1] 构建 + 1,000,000 次 O(1) 子树判定...\n";
+    auto t0_pre = std::chrono::high_resolution_clock::now();
+    std::vector<uint32_t> pre_rank(NUM_NODES, 0);
+    std::vector<uint32_t> sub_size(NUM_NODES, 0);
+    std::vector<uint32_t> dfs_node;
+    std::vector<uint32_t> dfs_edge_it;
+    dfs_node.reserve(NUM_LEVELS + 4);
+    dfs_edge_it.reserve(NUM_LEVELS + 4);
+
+    uint32_t next_rank = 1;
+    // 以 L0 顶层成品节点为森林根执行非递归先序遍历构建无连接区间索引
+    for (uint32_t root = 0; root < NODES_PER_LEVEL; ++root) {
+        if (pre_rank[root] != 0) continue;
+        pre_rank[root] = next_rank++;
+        sub_size[root] = 1;
+        dfs_node.push_back(root);
+        dfs_edge_it.push_back(row_ptr[root]);
+
+        while (!dfs_node.empty()) {
+            uint32_t u = dfs_node.back();
+            uint32_t &ei = dfs_edge_it.back();
+            if (ei < row_ptr[u + 1]) {
+                uint32_t v = col_child[ei++];
+                if (pre_rank[v] == 0) {
+                    pre_rank[v] = next_rank++;
+                    sub_size[v] = 1;
+                    dfs_node.push_back(v);
+                    dfs_edge_it.push_back(row_ptr[v]);
+                }
+            } else {
+                dfs_node.pop_back();
+                dfs_edge_it.pop_back();
+                if (!dfs_node.empty()) {
+                    sub_size[dfs_node.back()] += sub_size[u];
+                }
+            }
+        }
+    }
+    auto t1_pre = std::chrono::high_resolution_clock::now();
+    double pre_build_ms = std::chrono::duration<double, std::milli>(t1_pre - t0_pre).count();
+
+    constexpr uint32_t NUM_SUBTREE_QUERIES = 1'000'000;
+    uint64_t hit_cnt = 0;
+    auto t0_q = std::chrono::high_resolution_clock::now();
+    for (uint32_t q = 0; q < NUM_SUBTREE_QUERIES; ++q) {
+        uint32_t anc = q % NODES_PER_LEVEL;
+        uint32_t desc = (q * 1315423911u) % NUM_NODES;
+        uint32_t r_anc = pre_rank[anc];
+        uint32_t r_desc = pre_rank[desc];
+        if (r_anc > 0 && r_desc >= r_anc && r_desc < r_anc + sub_size[anc]) {
+            hit_cnt += 1;
+        }
+    }
+    auto t1_q = std::chrono::high_resolution_clock::now();
+    double pre_query_ms = std::chrono::duration<double, std::milli>(t1_q - t0_q).count();
+    assert(next_rank > NODES_PER_LEVEL);
+
+    std::cout << "  - 先序覆盖节点: " << (next_rank - 1) << " | 索引构建耗时: "
+              << std::setprecision(2) << pre_build_ms << " ms | 100 万次 O(1) 子树查询耗时: "
+              << pre_query_ms << " ms (命中=" << hit_cnt << ")\n";
+
+    // -------------------------------------------------------------------------
     // Summary Telemetry
     // -------------------------------------------------------------------------
     double core_total_ms = topo_ms + net_ms + itp_ms + iop_ms;

@@ -3,7 +3,7 @@
 您好！根据您收到的 ORCID 官方提醒邮件（ORCID iD: **0009-0003-8603-119X**），建议您将学术研究成果、书籍和专利添加到您的 ORCID 记录中，以确立学术合法性与定义权。
 
 为了方便您一键导入所有成果，我已为您生成了标准的 BibTeX 格式学术文献引用库文件：
-* 文件路径：[GritMeng_Research_Outputs.bib](file:///h:/%E7%B3%BB%E7%BB%9F%E7%A7%91%E5%AD%A6/GritMeng_Research_Outputs.bib) 或 [战略和公关/GritMeng_Research_Outputs.bib](file:///h:/%E6%88%98%E7%95%A5%E5%92%8C%E5%85%AC%E5%85%B3/GritMeng_Research_Outputs.bib)
+* 文件路径：[GritMeng_Research_Outputs.bib](GritMeng_Research_Outputs.bib) 或 [战略和公关/GritMeng_Research_Outputs.bib](GritMeng_Research_Outputs.bib)
 
 ---
 

@@ -1,6 +1,6 @@
 # 🧬 价值链物理学：5D 空间与 8 大定律的 VCM 映射指南
 
-本指南专门针对**价值链管理 (Value Chain Management, VCM)** 场景，将《全息抗熵：开放复杂巨系统的物理学宪法》中的 5D 容器维度与 8 大控制定律，映射至 3D 交互式价值链管理仿真舱 ([value_chain_engine_3d.html](file:///C:/Users/gritm/.gemini/antigravity-ide/brain/5dd7612f-140d-4d8e-a750-16a907376803/value_chain_engine_3d.html))。
+本指南专门针对**价值链管理 (Value Chain Management, VCM)** 场景，将《全息抗熵：开放复杂巨系统的物理学宪法》中的 5D 容器维度与 8 大控制定律，映射至 3D 交互式价值链管理仿真舱 ([value_chain_engine_3d.html](IPC_Governance_Showcase.html))。
 
 ---
 

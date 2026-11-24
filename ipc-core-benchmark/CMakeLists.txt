@@ -28,5 +28,8 @@ target_link_libraries(test_push_pull_router PRIVATE ipc_core_static)
 add_executable(test_itp_iop_alignment benchmarks/test_itp_iop_alignment.cpp)
 target_link_libraries(test_itp_iop_alignment PRIVATE ipc_core_static)
 
+add_executable(test_two_stage_iop_network benchmarks/test_two_stage_iop_network.cpp)
+target_link_libraries(test_two_stage_iop_network PRIVATE ipc_core_static)
+
 add_executable(stress_benchmark_2m benchmarks/stress_benchmark_2m.cpp)
 target_link_libraries(stress_benchmark_2m PRIVATE ipc_core_static)

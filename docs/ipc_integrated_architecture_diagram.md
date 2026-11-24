@@ -11,9 +11,9 @@
 为了满足开发人员的逻辑追溯以及面向客户/高管的商业演示（商业变现与复杂度展示）双重需求，以下为您提供两套架构可视化图纸：
 
 ````carousel
-![1. 运营算法消纳流向图 (Engineering Logical Netting Flow)](file:///h:/IPC/docs/images/ipc_integrated_diagram.png)
+!1. 运营算法消纳流向图 (Engineering Logical Netting Flow)
 <!-- slide -->
-![2. 全量 190+ 表物理拓扑与求解器编排企业级蓝图 (Enterprise Database Schema & Solver Blueprint)](file:///h:/IPC/docs/images/ipc_enterprise_blueprint.png)
+!2. 全量 190+ 表物理拓扑与求解器编排企业级蓝图 (Enterprise Database Schema & Solver Blueprint)
 ````
 
 ---
@@ -24,12 +24,12 @@
 
 ### 1. 本地 Draw.io 原生编辑文件 (强烈推荐 🌟 - 双击直开)
 * **方法**：我们已为您在工作区中直接生成了原生支持 Draw.io 打开的 XML 绘图源文件。该文件已为您排版好三列结构，所有表及字段属性、外键连线和算法节点已全部生成，并可自由拖拽修改。
-  * **可编辑的本地图纸源文件**：[ipc_enterprise_blueprint.drawio](file:///h:/IPC/docs/ipc_enterprise_blueprint.drawio)
+  * **可编辑的本地图纸源文件**：`ipc_enterprise_blueprint.drawio`
   * **使用方式**：直接双击此 `.drawio` 文件，或者打开本地 Draw.io 客户端，点击 **`Open Existing Diagram (打开现有图纸)`** 载入此文件，即可完美开始可视化编辑。
 
 ### 2. PlantUML (可编辑代码图纸 - 文本控制备份)
 * **方法**：如果您习惯使用代码版本化控制图纸，我们同样生成了全量 PlantUML 可编辑文件：
-  * **可编辑源码文件**：[ipc_enterprise_blueprint.puml](file:///h:/IPC/docs/ipc_enterprise_blueprint.puml)
+  * **可编辑源码文件**：`ipc_enterprise_blueprint.puml`
 
 ### 3. Draw.io / diagrams.net 手动二次设计
 * **方法**：
@@ -185,19 +185,19 @@ flowchart TB
 
 ### 1. 战术约束向运营约束的刚性传递 (ITP -> IOP)
 * **输入表**：`ipc_independent_demand` 粗颗粒度需求。
-* **ITP 算法**：通过价值链汇聚并求解 [ITP_LP](file:///h:/IPC/docs/ipc_integrated_architecture_diagram.md#L97)（最大化利润 Allocation 模型）。
-* **下传传递**：Allocation 结果写入 [ipc_allotment_constraint](file:///h:/IPC/docs/ipc_integrated_architecture_diagram.md#L104) 约束表中。在微观 IOP 消纳时，该配额作为刚性配额阻断上限拦截普通订单，防止低优订单踩踏高优大客户资源。
+* **ITP 算法**：通过价值链汇聚并求解 ITP_LP（最大化利润 Allocation 模型）。
+* **下传传递**：Allocation 结果写入 ipc_allotment_constraint 约束表中。在微观 IOP 消纳时，该配额作为刚性配额阻断上限拦截普通订单，防止低优订单踩踏高优大客户资源。
 
 ### 2. 运营层 LBL 净算消纳链 (LBL Netting & Net-Net Calculation)
-* **拓扑排序 (LLC)**：[IOP_LLC](file:///h:/IPC/docs/ipc_integrated_architecture_diagram.md#L108) 算法松弛得到最低层码，确保物料按工艺层级顺序消纳，预防循环 BOM。
-* **双端前缀和 Netting**：[IOP_Netting](file:///h:/IPC/docs/ipc_integrated_architecture_diagram.md#L109) 批量无锁几何消纳 [ipc_onhand](file:///h:/IPC/docs/ipc_integrated_architecture_diagram.md#L61) 现有量与 [ipc_scheduled_receipt](file:///h:/IPC/docs/ipc_integrated_architecture_diagram.md#L63) 在途到货。
-* **替代料一二三类匹配**：当 netting 产生净需求缺口时，触发 [IOP_Subst](file:///h:/IPC/docs/ipc_integrated_architecture_diagram.md#L110) 决策算法。如果发生替代，将记录写入 [ipc_swap_result](file:///h:/IPC/docs/ipc_integrated_architecture_diagram.md#L126)。
-* **确权优先级计算**：[IOP_Pri](file:///h:/IPC/docs/ipc_integrated_architecture_diagram.md#L111) 根据合同/客户分级/营收权重，组合生成 64 位二进制复合优先级，并沿最低层码自顶向下级联传递给 BOM 子件。
+* **拓扑排序 (LLC)**：IOP_LLC 算法松弛得到最低层码，确保物料按工艺层级顺序消纳，预防循环 BOM。
+* **双端前缀和 Netting**：IOP_Netting 批量无锁几何消纳 ipc_onhand 现有量与 ipc_scheduled_receipt 在途到货。
+* **替代料一二三类匹配**：当 netting 产生净需求缺口时，触发 IOP_Subst 决策算法。如果发生替代，将记录写入 ipc_swap_result。
+* **确权优先级计算**：IOP_Pri 根据合同/客户分级/营收权重，组合生成 64 位二进制复合优先级，并沿最低层码自顶向下级联传递给 BOM 子件。
 
 ### 3. 微观 DBD 排产确权与 Pegging 结界 (DBD & Pegging Assignment)
-* **有限能力排程 (DBD)**：[IOP_DBD](file:///h:/IPC/docs/ipc_integrated_architecture_diagram.md#L112) 根据优先级从高到低依次精排 [ipc_planned_order](file:///h:/IPC/docs/ipc_integrated_architecture_diagram.md#L128) 计划订单，加工提前期依批量大小动态拉伸，并读取 [ipc_work_center_capacity](file:///h:/IPC/docs/ipc_integrated_architecture_diagram.md#L73) 扣减产能。
-* **零堆事务回滚**：扣减时采用 CAS 无锁乐观扣减。如果出现产能不足引发 CTP 齐套失败，[IOP_Rollback](file:///h:/IPC/docs/ipc_integrated_architecture_diagram.md#L114) 逆向原位恢复库存与工时，免去 GC 开销。
-* **Pegging 绑扎**：排产成功后，生成最终的精排计划单 [ipc_planned_order_ledger](file:///h:/IPC/docs/ipc_integrated_architecture_diagram.md#L129)，并将物理分配明细绑扎进 [ipc_supply_assignment](file:///h:/IPC/docs/ipc_integrated_architecture_diagram.md#L131) 供需绑扎表中。
+* **有限能力排程 (DBD)**：IOP_DBD 根据优先级从高到低依次精排 ipc_planned_order 计划订单，加工提前期依批量大小动态拉伸，并读取 ipc_work_center_capacity 扣减产能。
+* **零堆事务回滚**：扣减时采用 CAS 无锁乐观扣减。如果出现产能不足引发 CTP 齐套失败，IOP_Rollback 逆向原位恢复库存与工时，免去 GC 开销。
+* **Pegging 绑扎**：排产成功后，生成最终的精排计划单 ipc_planned_order_ledger，并将物理分配明细绑扎进 ipc_supply_assignment 供需绑扎表中。
 
 ---
 

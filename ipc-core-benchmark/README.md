@@ -1,22 +1,22 @@
-# IPC Core Open Benchmarks v2.0 — 无菌决策质量与极速算力开源验证套件
+# IPC Core Open Benchmarks v2.1 — 无菌决策质量与极速算力开源验证套件
 
-> **零依赖、可审计、洁净室原生的 C++17 核心算法微内核与六大无菌验证沙盘（附 Python 独立交叉对账与免安装网页体验）**
+> **零依赖、可审计、洁净室原生的 C++17 核心算法微内核与七大可复现验证套件（附 Python 独立交叉对账与八大免安装网页交互沙盘）**
 
 [![License](https://img.shields.io/badge/License-Non--Commercial_Reproducibility_%7C_No_Patent_Grant-b03a2e.svg)](../LICENSE)
 [![C++ Standard](https://img.shields.io/badge/C%2B%2B-17-2ea043.svg)](https://en.cppreference.com/w/cpp/17)
-[![Interactive Demo](https://img.shields.io/badge/Online_Sandbox-Try_in_Browser-0969da.svg)](https://gritmeng.github.io/Value-Chain-Physics/demo/)
+[![Interactive Demo](https://img.shields.io/badge/Online_Sandbox-8_Live_Scenarios-0969da.svg)](https://gritmeng.github.io/Value-Chain-Physics/demo/)
 
 ---
 
 > [!IMPORTANT]
 > **关于开源边界、知识产权保护与验证目的的正式声明**
-> 1. **无需安装也可在线测**：不熟悉 C++ 编译的管理者、学者与同行，可直接打开 [**免安装浏览器交互沙盘 (`demo/index.html`)**](https://gritmeng.github.io/Value-Chain-Physics/demo/)，自由拖动库存、交期、配额与成本参数，实时对比现有 SCP / APS 死锁与 IPC 正交求解结果。
+> 1. **无需安装也可在线测**：不熟悉 C++ 编译的管理者、学者与同行，可直接打开 [**免安装浏览器八大交互沙盘 (`demo/index.html`)**](https://gritmeng.github.io/Value-Chain-Physics/demo/)，自由修改库存、交期、配额、产能、规格档位与国别认证参数，实时对比现有 SCP / APS 死锁与 IPC 正交求解结果。
 > 2. **严格的商业机密与专利隔离边界**：本目录仅公开脱敏后的最小完备数学模型与 C++17 可审计微内核，**不包含**生产级 IPC 商业引擎底层内存数据结构、完整企业数据本体、并发沙箱源码或企业部署平台。作者名下 **20 项发明专利（5 项已获授权，15 项在审/公开）100% 保留**（详见仓库根目录 [`LICENSE`](../LICENSE)）。
-> 3. **开源验证目的**：向全球学者、审稿人、架构师与制造业同行证明——IPC 的核心决策质量（排序耦合解耦、组替代盘活、CODP 两层定位、零预测冲减三态路由、配额防波堤）与大规模线性/准线性算力响应在数学与工程上 100% 可复现、可审计。
+> 3. **开源验证目的**：向全球学者、审稿人、架构师与制造业同行证明——IPC 的核心决策质量（排序耦合解耦、组替代盘活、CODP 两层定位、零预测冲减三态路由、配额防波堤、跨 CODP 两阶段推拉排产、价值链网络先序区间与维度规划）与大规模线性/准线性算力响应在数学与工程上 100% 可复现、可审计。
 
 ---
 
-## 六大可复现验证套件总览 (6 Auditable C++17 & Python Verification Suites)
+## 七大可复现验证套件总览 (7 Auditable C++17 & Python Verification Suites)
 
 | 序号 | 可执行测试目标 | 验证的核心原创机理 | 关键确定性断言结果 |
 | :---: | :--- | :--- | :--- |
@@ -25,7 +25,8 @@
 | **3** | `test_codp_positioning` | **推拉解耦点（CODP）两层非补偿定位 + 二阶修宪 $\Phi$ 移点影子收益（3 层 6 节点）** | Gate 1 一票淘汰 42d 芯片；沙漏腰部裸机池使安全库存台数直降 `50.0%`（`640 → 320`）、资金直降 `62.5%`（`¥51.2万 → ¥19.2万`）；旧工艺早镭雕自动弹出 `¥32.0万` 影子收益 |
 | **4** | `test_push_pull_router` | **彻底废除孤立预测冲减：推式防首日独占日切割 + 拉式超额 `Mode A / B / C` 三态路由** | `W1 800k` 精确平准切割至 `D1..D6`（`480k + 320k` 守恒）；节奏前移 `Mode A` 零虚买、真增量 `Mode B/C` 精准分流 |
 | **5** | `test_itp_iop_alignment` | **ITP 宏观配额防波堤（`QuotaFirewallKey`）与 IOP 执行层刚性越界阻断** | 4 笔并发执行单在刚性防波堤内精准放行 3 单、阻断 1 笔越权抢料单 |
-| **6** | `stress_benchmark_2m` | **500,000 并发需求 × 2,000,000 物料节点 × 20 层价值链 DAG 网络极限压测** | 真实构建 `L0..L19` 20 层 `425 万` 跨层共享 BOM 边：Kahn 拓扑排序 + 20 层级联净需求消纳 + 零残留守恒对账 + 50 万需求 ITP/IOP 防波堤，实时输出毫秒耗时与峰值内存 |
+| **6** | `test_two_stage_iop_network` | **跨 CODP 两阶段受限推拉排产（`Push-IOP + Pull-IOP`）+ 价值链网络先序区间 `[rank..end]` $O(1)$ 子树代数、维度规划（`GE/EQ`）与国别认证位掩码剪枝、菱形 DAG 去重守恒及逆向 `Where-Used` 反查** | 传统按后道 1 天静态提前期盲目承诺致 `550` 台爽约违约，IPC 两阶段联动诚实承诺 `EU=D4, AF=D5, LATAM=D6`（`0` 爽约、拦截越界急单 `150` 台）；先序区间 `[1..7]` $O(1)$ 包含判定 + 菱形共用件流量 `100+200=300` 精确守恒 + 逆向精准反查双顶层成品 |
+| **7** | `stress_benchmark_2m` | **500,000 并发需求 × 2,000,000 物料节点 × 20 层价值链 DAG 网络极限压测 + 1,000,000 次 $O(1)$ 先序区间子树查询** | 真实构建 `L0..L19` 20 层 `425 万` 跨层共享 BOM 边：Kahn 拓扑排序 + 20 层级联净需求消纳 + 零残留守恒对账 + 50 万需求 ITP/IOP 防波堤 + 200 万节点先序区间构建与 100 万次毫秒级子树归属判定 |
 
 ---
 
@@ -33,7 +34,7 @@
 
 只需标准 C++17 编译器（MSVC / GCC / Clang）与 Python 3，**无需安装任何数据库或第三方库**。
 
-### Windows 一键编译并运行全部 6 组套件 + Python 交叉对账
+### Windows 一键编译并运行全部 7 组套件 + Python 9 项交叉对账
 
 ```cmd
 .\compile_and_run.bat
@@ -50,6 +51,7 @@ cmake --build build --config Release
 ./build/test_codp_positioning
 ./build/test_push_pull_router
 ./build/test_itp_iop_alignment
+./build/test_two_stage_iop_network
 ./build/stress_benchmark_2m
 
 python3 verifier/cross_validator.py
@@ -57,7 +59,7 @@ python3 verifier/cross_validator.py
 
 详细数学方程与算例推导见 [`docs/MATHEMATICAL_SPEC.md`](docs/MATHEMATICAL_SPEC.md)。
 
-> **性能测算口径透明说明**：`stress_benchmark_2m` 实测 `~262 ms` 为本仓洁净室纯内存 C++17 核心算子耗时（20 层拓扑排序 + 20 层级联净需求消纳 + 50 万需求防波堤，不含磁盘 I/O 与复杂排程约束）；作者在工业实证论文与公众号/期刊文章中提及的 `296 秒` 为含完整企业数据加载、15 万项不等式约束求解与全链路落盘的工业级端到端实测。
+> **性能测算口径透明说明**：`stress_benchmark_2m` 实测纯算法核心 `~260 ms`（另含 200 万节点先序区间构建与 100 万次 $O(1)$ 子树查询毫秒级耗时）为本仓洁净室纯内存 C++17 核心算子耗时（不含磁盘 I/O 与复杂排程约束）；作者在工业实证论文与公众号/期刊文章中提及的 `296 秒` 为含完整企业数据加载、15 万项不等式约束求解与全链路落盘的工业级端到端实测。
 
 ---
 

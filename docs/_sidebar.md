@@ -19,19 +19,21 @@
   * <a href="良知驱动的五维心智模型：重新定义问题与认知外推%20——%20兼论复杂巨系统总设计师的心智画像与破局机制.pdf" target="_blank" rel="noopener">7. 良知驱动的五维心智模型 (中文 PDF)</a>
   * <a href="Conscience-Driven%20Five-Dimensional%20Mind%20Model%20——%20Problem%20Redefinition%20and%20Cognitive%20Extrapolation%20in%20Open%20Complex%20Giant%20Systems.pdf" target="_blank" rel="noopener">7. 5D Mind Model (EN PDF · SSRN 7451920)</a>
 
-* **💻 三、IPC 普适引擎与交互审计 (Interactive Demos)**
+* **💻 三、IPC 普适引擎与交互审计 (Interactive Demos & Benchmarks)**
+  * <a href="../demo/index.html" target="_blank" rel="noopener">⭐ IPC 八大无菌交互验证沙盘（免安装实测）</a>
+  * <a href="https://github.com/GritMeng/Value-Chain-Physics/tree/main/ipc-core-benchmark" target="_blank" rel="noopener">C++17 开源压测与双发验证套件 (`ipc-core-benchmark`)</a>
   * <a href="IPC_Governance_Showcase.html" target="_blank" rel="noopener">3D 全息拓扑交互演示</a>
   * <a href="ipc_scheme_audit_agent.html" target="_blank" rel="noopener">IPC 架构技术审计</a>
   * <a href="value_chain_audit_agent.html" target="_blank" rel="noopener">价值链智能体物理审计</a>
   * <a href="IPC_Video_Lectures.html" target="_blank" rel="noopener">IPC 视频讲堂</a>
 
 * **📜 四、专著纲领与公开专题文献 (Monograph Outlines & Technical Notes)**
-  * [四大专著统一视界纲领（目录与摘要）](/五维引擎全息架构纲领_四大专著统一视界.md)
-  * [形式化数学证明附录](/Formal_Mathematical_Proofs_Appendix.md)
-  * [价值链管理科学化宣言](/One_Plan_Manifesto.md)
-  * [企业治理的物理宪法](/The_Physics_Constitution_of_Enterprise_Governance.md)
-  * [400 年还原论惯性突破](/Article_1_400Year_Reductionism_Breakthrough.md)
-  * [离散制造转型的迷途与破局](/Article_3_Discrete_Manufacturing_Breakthrough.md)
+  * [四大专著统一视界纲领（目录与摘要）](/docs/五维引擎全息架构纲领_四大专著统一视界.md)
+  * [形式化数学证明附录](/docs/Formal_Mathematical_Proofs_Appendix.md)
+  * [价值链管理科学化宣言](/docs/One_Plan_Manifesto.md)
+  * [企业治理的物理宪法](/docs/The_Physics_Constitution_of_Enterprise_Governance.md)
+  * [400 年还原论惯性突破](/docs/Article_1_400Year_Reductionism_Breakthrough.md)
+  * [离散制造转型的迷途与破局](/docs/Article_3_Discrete_Manufacturing_Breakthrough.md)
 
 * **📂 五、学科大纲与精选章节**
   * **01. 系统科学与时空定律**

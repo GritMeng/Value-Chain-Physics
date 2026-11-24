@@ -1,26 +1,41 @@
 cff-version: 1.2.0
-message: "If you use this work, please cite it using the metadata below."
-title: "System and Complexity Science: Generation, Persistence, and Evolution of Order — The Physical Constitution for Open Complex Giant Systems"
-title-zh: "系统与复杂性科学：秩序的生成、存续和进化——开放复杂巨系统的物理学宪法"
+message: "If you use these papers, theoretical frameworks, or open benchmark suites, please cite them using the metadata below."
+title: "Value Chain Physics & Systems and Complexity Science: Generation, Persistence, and Evolution of Order in Open Complex Giant Systems"
+title-zh: "价值链物理学与系统科学：开放复杂巨系统秩序的生成、存续和进化"
 authors:
   - family-names: "Meng"
-    given-names: "Fanchun (Grit)"
+    given-names: "Grit (Fanchun)"
     email: "gritmeng@outlook.com"
     orcid: "https://orcid.org/0009-0003-8603-119X"
     affiliation: "Independent Scholar in Value Chain Physics and Systems & Complexity Science | Creator of the Intelligent Planning & Control (IPC) Engine | Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global Supply Chain"
 year: 2026
-date-released: 2026-11-19
+date-released: 2026-11-25
 license-url: "https://github.com/GritMeng/Value-Chain-Physics/blob/main/LICENSE"
 identifiers:
   - type: url
+    value: "https://ssrn.com/abstract=7640758"
+    description: "SSRN Preprint: The Law of Sequencing Coupling (Zenodo DOI: 10.5281/zenodo.24044353)"
+  - type: url
+    value: "https://ssrn.com/abstract=7442100"
+    description: "SSRN Preprint: Value Chain Physics (Zenodo DOI: 10.5281/zenodo.23543257)"
+  - type: url
     value: "https://ssrn.com/abstract=7251098"
-    description: "SSRN Live Preprint: System and Complexity Science"
+    description: "SSRN Preprint: Systems and Complexity Science — Generation, Persistence, and Evolution of Order (Zenodo DOI: 10.5281/zenodo.22033928)"
+  - type: url
+    value: "https://ssrn.com/abstract=7557878"
+    description: "SSRN Preprint: Living Expression and Self-Consistent Computability in OCGS"
+  - type: url
+    value: "https://ssrn.com/abstract=7496118"
+    description: "SSRN Preprint: Non-IID First Principle and OCGS Isomorphism"
+  - type: url
+    value: "https://ssrn.com/abstract=7451920"
+    description: "SSRN Preprint: Conscience-Driven Five-Dimensional Mind Model"
 repository-code: "https://github.com/GritMeng/Value-Chain-Physics"
 keywords:
-  - "System and Complexity Science"
+  - "Value Chain Physics"
+  - "Law of Sequencing Coupling"
+  - "Systems and Complexity Science"
   - "Open Complex Giant Systems"
-  - "Holographic Anti-Entropy"
-  - "Order Generation Persistence Evolution"
-  - "Non-IID Complexity"
-  - "Banach Contraction Mapping"
-  - "Carbon-Silicon Symbiosis"
+  - "Non-IID Dynamics"
+  - "Intelligent Planning and Control (IPC)"
+  - "One Plan Supply Chain"

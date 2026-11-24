@@ -253,4 +253,227 @@ PullRouterResult evaluate_pull_overflow_router(
   return r;
 }
 
+// =========================================================================
+// 5. 跨解耦点两阶段推拉排产 (Two-Stage Constrained Push-IOP + Pull-IOP)
+// =========================================================================
+TwoStageIopResult evaluate_two_stage_push_pull_iop(const TwoStageIopInput &in) {
+  TwoStageIopResult r;
+  int H = std::max(1, in.horizon_days);
+  r.daily_bare_built.assign(H, 0.0);
+
+  // Pass 1 (Push-IOP): 预测驱动在 CODP 前受日有限产能 + 上游关键芯片齐套双重约束预投通用裸机
+  double rem_forecast = std::max(0.0, in.forecast_bare_qty);
+  double avail_chip = std::max(0.0, in.chip_oh_day1);
+  for (int d = 1; d <= H; ++d) {
+    if (d == in.chip_po_day) {
+      avail_chip += std::max(0.0, in.chip_po_qty);
+    }
+    if (rem_forecast > 1e-9 && avail_chip <= 1e-9 && in.daily_wc_cap > 0.0) {
+      r.idle_wait_chip_days += 1;
+    }
+    double build = std::min({rem_forecast, std::max(0.0, in.daily_wc_cap), avail_chip});
+    r.daily_bare_built[d - 1] = build;
+    avail_chip -= build;
+    rem_forecast -= build;
+    r.total_bare_built += build;
+  }
+
+  // 构建通用裸机池按日可用桶副本供 Pass 2 扣减
+  std::vector<double> pool_rem = r.daily_bare_built;
+  double bare_cum_for_d4 = 0.0;
+  int latest_bare_day_for_d4 = 4 - in.post_pack_lt_days;
+  for (int d = 1; d <= std::min(H, latest_bare_day_for_d4); ++d) {
+    bare_cum_for_d4 += r.daily_bare_built[d - 1];
+  }
+
+  // Pass 2 (Pull-IOP): 按优先级排序，先过配额防波堤，再按真实前道裸机池水位承诺交期
+  std::vector<PullOrderSlice> sorted_orders = in.pull_orders;
+  std::stable_sort(sorted_orders.begin(), sorted_orders.end(),
+                   [](const PullOrderSlice &a, const PullOrderSlice &b) {
+                     return a.priority < b.priority;
+                   });
+
+  double legacy_cum_d4 = 0.0;
+  for (const auto &ord : sorted_orders) {
+    PullOrderPromise p;
+    p.order_id = ord.order_id;
+    p.req_qty = ord.req_qty;
+    p.admitted_qty = std::min(ord.req_qty, std::max(0.0, ord.allotment_cap));
+    p.quota_blocked_qty = std::max(0.0, ord.req_qty - p.admitted_qty);
+    r.total_quota_blocked_qty += p.quota_blocked_qty;
+
+    // 传统 MRP/APS 仅看后道包装 1 天静态提前期：盲目承诺在 req_due_day 交货
+    p.legacy_promised_day = std::max(1 + in.post_pack_lt_days, ord.req_due_day);
+    if (p.legacy_promised_day <= 4) {
+      double prev_cum = legacy_cum_d4;
+      legacy_cum_d4 += ord.req_qty;
+      double avail_before = std::max(0.0, bare_cum_for_d4 - prev_cum);
+      p.legacy_shortfall_on_due = std::max(0.0, ord.req_qty - avail_before);
+    }
+
+    // IPC 动态齐套相位门控：从真实通用裸机池按时间桶扣减，取最后一颗齐套日 + L_post
+    double need = p.admitted_qty;
+    int last_bare_day = 1;
+    for (int d = 1; d <= H && need > 1e-9; ++d) {
+      if (pool_rem[d - 1] > 1e-9) {
+        double take = std::min(need, pool_rem[d - 1]);
+        pool_rem[d - 1] -= take;
+        need -= take;
+        last_bare_day = d;
+      }
+    }
+    if (need > 1e-9) {
+      last_bare_day = H + 1;
+    }
+    p.ipc_bare_ready_day = last_bare_day;
+    p.ipc_promised_day = std::max(ord.req_due_day, last_bare_day + in.post_pack_lt_days);
+    r.order_promises.push_back(p);
+  }
+
+  r.legacy_promised_on_d4 = legacy_cum_d4;
+  r.legacy_broken_promise_qty = std::max(0.0, legacy_cum_d4 - bare_cum_for_d4);
+  r.ipc_broken_promise_qty = 0.0;
+  return r;
+}
+
+// =========================================================================
+// 6. 价值链网络先序区间代数 + 维度规划与国别认证掩码 + 菱形 DAG 正逆向展开
+// =========================================================================
+namespace {
+bool check_dim_op(NetworkDimOp op, double cand, double req) {
+  switch (op) {
+  case NetworkDimOp::PASS:
+    return true;
+  case NetworkDimOp::EQ:
+    return std::abs(cand - req) <= 1e-9;
+  case NetworkDimOp::GE:
+    return (cand + 1e-9) >= req;
+  case NetworkDimOp::LE:
+    return (cand - 1e-9) <= req;
+  }
+  return true;
+}
+} // namespace
+
+NetworkExplosionResult explode_value_chain_network(
+    const std::vector<NetworkNodeDef> &nodes,
+    const std::vector<NetworkEdgeDef> &edges, int root_node_id,
+    double root_demand_qty, double required_spec,
+    unsigned int required_cert_mask, NetworkDimOp override_leaf_op) {
+  NetworkExplosionResult res;
+  int max_id = root_node_id;
+  for (const auto &n : nodes)
+    max_id = std::max(max_id, n.node_id);
+  for (const auto &e : edges)
+    max_id = std::max({max_id, e.parent_id, e.child_id});
+
+  std::vector<NetworkNodeDef> node_lut(max_id + 1);
+  for (const auto &n : nodes) {
+    if (n.node_id >= 0 && n.node_id <= max_id)
+      node_lut[n.node_id] = n;
+  }
+
+  std::vector<std::vector<NetworkEdgeDef>> adj(max_id + 1);
+  for (const auto &e : edges) {
+    if (e.parent_id >= 0 && e.parent_id <= max_id)
+      adj[e.parent_id].push_back(e);
+  }
+
+  // 1) 构建生成树先序区间索引 [rank .. rank + tree_size - 1]
+  std::vector<bool> tree_vis(max_id + 1, false);
+  int cur_rank = 0;
+  auto dfs_span = [&](auto &self, int u, int lvl) -> int {
+    tree_vis[u] = true;
+    int my_idx = static_cast<int>(res.spans.size());
+    int my_rank = ++cur_rank;
+    res.spans.push_back({u, my_rank, 1, lvl});
+    int sz = 1;
+    for (const auto &ed : adj[u]) {
+      if (!tree_vis[ed.child_id]) {
+        sz += self(self, ed.child_id, lvl + 1);
+      }
+    }
+    res.spans[my_idx].tree_size = sz;
+    return sz;
+  };
+  if (root_node_id >= 0 && root_node_id <= max_id) {
+    dfs_span(dfs_span, root_node_id, 0);
+  }
+
+  // 2) 带维度规划 (EQ/GE/LE) 与 64/32-bit 国别认证位掩码的正向展开
+  std::vector<double> distinct_flux(max_id + 1, 0.0);
+  std::vector<int> distinct_min_lvl(max_id + 1, 999999);
+  std::vector<int> distinct_order;
+
+  auto dfs_explode = [&](auto &self, int u, int lvl, double qty) -> void {
+    res.path_instances.push_back({u, node_lut[u].code, lvl, qty});
+    if (distinct_flux[u] <= 0.0 && distinct_min_lvl[u] == 999999) {
+      distinct_order.push_back(u);
+    }
+    distinct_flux[u] += qty;
+    distinct_min_lvl[u] = std::min(distinct_min_lvl[u], lvl);
+
+    for (const auto &ed : adj[u]) {
+      const auto &child = node_lut[ed.child_id];
+      NetworkDimOp eff_op = ed.dim_op;
+      if (eff_op != NetworkDimOp::PASS && override_leaf_op != NetworkDimOp::PASS) {
+        eff_op = override_leaf_op;
+      }
+      bool spec_ok = (eff_op == NetworkDimOp::PASS) ||
+                     check_dim_op(eff_op, child.spec_val, required_spec);
+      bool cert_ok = ((child.cert_mask & required_cert_mask) == required_cert_mask);
+      if (!spec_ok || !cert_ok) {
+        res.pruned_by_dim_or_cert += 1;
+        continue;
+      }
+      self(self, ed.child_id, lvl + 1, qty * ed.usage_qty);
+    }
+  };
+
+  if (root_node_id >= 0 && root_node_id <= max_id) {
+    dfs_explode(dfs_explode, root_node_id, 0, root_demand_qty);
+  }
+
+  for (int u : distinct_order) {
+    res.distinct_nodes.push_back(
+        {u, node_lut[u].code, distinct_min_lvl[u], distinct_flux[u]});
+  }
+  return res;
+}
+
+std::vector<int> trace_network_where_used(
+    const std::vector<NetworkEdgeDef> &edges, int target_child_id) {
+  int max_id = target_child_id;
+  for (const auto &e : edges)
+    max_id = std::max({max_id, e.parent_id, e.child_id});
+  if (max_id < 0)
+    return {};
+
+  std::vector<std::vector<int>> rev_adj(max_id + 1);
+  std::vector<bool> has_out_parent(max_id + 1, false);
+  for (const auto &e : edges) {
+    rev_adj[e.child_id].push_back(e.parent_id);
+    has_out_parent[e.child_id] = true;
+  }
+
+  std::vector<bool> vis(max_id + 1, false);
+  std::vector<int> q = {target_child_id};
+  vis[target_child_id] = true;
+  std::vector<int> roots;
+  for (size_t head = 0; head < q.size(); ++head) {
+    int cur = q[head];
+    if (cur != target_child_id && rev_adj[cur].empty()) {
+      roots.push_back(cur);
+    }
+    for (int p : rev_adj[cur]) {
+      if (!vis[p]) {
+        vis[p] = true;
+        q.push_back(p);
+      }
+    }
+  }
+  std::sort(roots.begin(), roots.end());
+  return roots;
+}
+
 } // namespace ipc_core
