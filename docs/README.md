@@ -87,17 +87,15 @@ Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global
 
 ---
 
-## 🖥️ 在线交互式系统与数字专著视图 (Interactive Views & Digital Monograph)
+## 🖥️ 免安装在线交互验证与开源复现入口 (Interactive Sandbox & Reproducible Benchmarks)
 
-除静态学术文献与 C++17 源码外，本门户提供以下在线交互式拓扑视图与审计沙盘（点击直接打开）：
+除 12 部中英双语形式化论著 PDF 外，本门户提供以下零依赖在线交互验证沙盘与本地开源复现入口（点击直接打开）：
 
-| 视图名称 | 展示内容与工程对应关系 | 在线访问入口 |
+| 验证入口 | 核心能力与复现边界 | 访问路径 |
 | :--- | :--- | :--- |
-| **0. IPC 八大交互验证沙盘（免安装实测）** | 8 大可调参数无菌沙盘（两单抢一料死锁 2×3、缺一小件拉快盘活整套 1.1 万 vs 1 千、推拉解耦点选址与库存省钱、不做预测冲减按额度平准与超额分流、多供方按比例分单与包装凑整、不完全替代高配代低配与 30% 红线、两阶段推拉排产不爽约、全网先序区间展开与反查），实时对比现有 SCP / APS vs IPC | [**打开免安装交互验证沙盘 (`demo/index.html`)**](https://gritmeng.github.io/Value-Chain-Physics/demo/) |
-| **1. 3D 全息拓扑交互演示** | 五维双螺旋流形（$S = \mathcal{M}_{\text{model}} \otimes \mathcal{A}$）与百万节点抗熵动力学三维交互视图 | [打开 3D 拓扑视图 (`IPC_Governance_Showcase.html`)](https://gritmeng.github.io/Value-Chain-Physics/docs/IPC_Governance_Showcase.html) |
-| **2. IPC 架构技术审计视图** | ODM-CDM-DDM 三层数据本体、IBP-ITP-IOP-Scheduling 全链路闭环架构交互式拆解 | [打开架构审计视图 (`ipc_scheme_audit_agent.html`)](https://gritmeng.github.io/Value-Chain-Physics/docs/ipc_scheme_audit_agent.html) |
-| **3. 价值链物理审计视图** | 基于价值链物理学控制方程的企业产销死锁、时移阻尼与矢量对消废热诊断沙盘 | [打开物理审计视图 (`value_chain_audit_agent.html`)](https://gritmeng.github.io/Value-Chain-Physics/docs/value_chain_audit_agent.html) |
-| **4. 全息视频讲堂与 36 神经元脑图** | 核心公理与专利算法专题讲堂 + 36 原子神经元交互式知识图谱（点击节点直接调阅数学推导） | [打开视频讲堂与脑图 (`IPC_Video_Lectures.html`)](https://gritmeng.github.io/Value-Chain-Physics/docs/IPC_Video_Lectures.html) |
+| **1. IPC 八大无菌交互验证沙盘（免安装实测）** | 8 大可调参数无菌沙盘（两单抢一料死锁 2×3、缺一小件拉快盘活整套 1.1 万 vs 1 千、推拉解耦点选址与库存省钱、不做预测冲减按额度平准与超额分流、多供方按比例分单与包装凑整、不完全替代高配代低配与 30% 红线、两阶段推拉排产不爽约、全网先序区间展开与反查），实时对比现有 SCP / APS 与 IPC | [**打开免安装交互验证沙盘 (`demo/index.html`)**](https://gritmeng.github.io/Value-Chain-Physics/demo/) |
+| **2. C++17 七套件开源压测与 Python 双发对账** | 单机无 GPU 跑穿 500,000 需求 × 20 层 BOM × 2,000,000 节点先序区间索引（核心算子 262.57 ms），支持本地直接编译运行与交叉校验 | [查看源码与编译指南 (`ipc-core-benchmark/`)](https://github.com/GritMeng/Value-Chain-Physics/tree/main/ipc-core-benchmark) |
+| **3. 五维心智与良知制动蒙特卡洛复现脚本** | 隐蔽规则相变下五棒串联非补偿木桶极小值与碳硅正交耦合仿真（`N=1,000, T=80, BASE_SEED=42`，零第三方依赖） | [查看复现脚本 (`scripts/reproduce_5d_mind_mc.py`)](../scripts/reproduce_5d_mind_mc.py) |
 
 ---
 
