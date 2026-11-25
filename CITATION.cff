@@ -22,18 +22,38 @@ identifiers:
     value: "https://ssrn.com/abstract=7251098"
     description: "SSRN Preprint: Systems and Complexity Science — Generation, Persistence, and Evolution of Order (Zenodo DOI: 10.5281/zenodo.22033928)"
   - type: url
+    value: "https://ssrn.com/abstract=7557899"
+    description: "SSRN Preprint: The Second Renaissance — Why Systems and Complexity Science Is the 'Science of Sciences'"
+  - type: url
     value: "https://ssrn.com/abstract=7557878"
-    description: "SSRN Preprint: Living Expression and Self-Consistent Computability in OCGS"
+    description: "SSRN Preprint: Formal Proof of 'Living Expression' and 'Self-Consistent Computability' in OCGS"
   - type: url
     value: "https://ssrn.com/abstract=7496118"
-    description: "SSRN Preprint: Non-IID First Principle and OCGS Isomorphism"
+    description: "SSRN Preprint: Generation, Survival, and Evolution of OCGS — Non-IID First Principle and OCGS Isomorphism"
   - type: url
     value: "https://ssrn.com/abstract=7451920"
     description: "SSRN Preprint: Conscience-Driven Five-Dimensional Mind Model"
+  - type: url
+    value: "https://ssrn.com/abstract=7688779"
+    description: "SSRN Preprint: The Law of Cognitive Cancellation"
+  - type: url
+    value: "https://ssrn.com/abstract=7704718"
+    description: "SSRN Preprint: The Law of Orthogonal Pruning"
+  - type: url
+    value: "https://ssrn.com/abstract=7751519"
+    description: "SSRN Preprint: The Law of 5D Completeness"
+  - type: url
+    value: "https://ssrn.com/abstract=7751598"
+    description: "SSRN Preprint: The Law of Causal Residual"
 repository-code: "https://github.com/GritMeng/Value-Chain-Physics"
 keywords:
   - "Value Chain Physics"
   - "Law of Sequencing Coupling"
+  - "Law of 5D Completeness"
+  - "Law of Cognitive Cancellation"
+  - "Law of Orthogonal Pruning"
+  - "Law of Causal Residual"
+  - "Law of Conscience Braking"
   - "Systems and Complexity Science"
   - "Open Complex Giant Systems"
   - "Non-IID Dynamics"
