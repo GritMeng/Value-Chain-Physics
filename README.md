@@ -30,7 +30,7 @@ Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global
 
 ![为什么传统计划框图“施不了工”，而 IPC 能闭环？](images/ipc_vs_apics_blueprint.png)
 
-> **多终端高清直取**：[横屏完整施工对比版（16:9 高清 PNG）](images/ipc_vs_apics_blueprint.png) · [横屏矢量源图（SVG）](images/ipc_vs_apics_blueprint.svg) · [手机竖屏大字适配版（免放大直读 PNG）](images/ipc_vs_apics_mobile.png) ｜ [**打开免安装在线交互沙盘亲手试算 (`demo/`)**](https://gritmeng.github.io/Value-Chain-Physics/demo/)
+> **核心白皮书、免安装沙盘与一键实测包直取**：[**《One Plan（IPC）企业级白皮书（公开版 PDF）》**](docs/One_Plan_IPC_企业级白皮书_公开版.pdf) · [**打开免安装九大交互沙盘 (`demo/`)**](https://gritmeng.github.io/Value-Chain-Physics/demo/) · [**下载免编译 Windows 一键压测包与 8 集高清实机视频 (`Releases`)**](https://github.com/GritMeng/Value-Chain-Physics/releases) · [横屏 4K 施工对比图（PNG）](images/ipc_vs_apics_blueprint.png) · [手机竖屏大字版（PNG）](images/ipc_vs_apics_mobile.png)
 
 ---
 
@@ -47,9 +47,9 @@ Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global
 | **EP05** | **多供方按份额分单 + 最小包装（MPQ）凑整不超买** | 1,000 颗按 `50:30:20` 与每盘 300 颗凑整：现有系统各自凑整超买 200 颗呆滞，IPC 逐轮重算精准守恒 1,000 颗（改 1,400 照样零超买） | [场景 5](https://gritmeng.github.io/Value-Chain-Physics/demo/) | [`test_substitution_rules`](ipc-core-benchmark/benchmarks/test_substitution_rules.cpp) |
 | **EP06** | **One Plan 企业级全局闭环与两阶段推拉排产**：预测备通用半成品过产能齐套 + 实单守配额承诺不爽约 | 普通笔记本实跑 300 万级需求控制塔（核心计算 2.74 秒）；跨解耦点两阶段推拉排产消除传统静态后道提前期 550 台爽约违约 | [场景 7](https://gritmeng.github.io/Value-Chain-Physics/demo/) | [`test_two_stage_iop_network`](ipc-core-benchmark/benchmarks/test_two_stage_iop_network.cpp) |
 | **EP07** | **不完全替代与 30% 混用红线**：主料缺料陷阱与国别认证硬拦截 | 主料断料仅齐套 500 台时，现有系统硬派 300 颗副料致占比飙至 37.5% 违约；IPC 按主料锚定截断 214 颗（29.97%），认证不符直接归零 | [场景 6](https://gritmeng.github.io/Value-Chain-Physics/demo/) | [`test_substitution_rules`](ipc-core-benchmark/benchmarks/test_substitution_rules.cpp) |
-| **EP08** | **极限性能与全网先序区间秒级展开**：50 万笔需求 × 200 万物料 × 20 层价值链网络（DAG） | 真实构建 `L0..L19` 20 层 425 万条共享 BOM 边 + 200 万节点先序区间 `[rank..end]` $O(1)$ 子树查询：核心算子约 **262 ms** · 峰值内存 **254 MB** · 守恒残差 **0.00** | [场景 8](https://gritmeng.github.io/Value-Chain-Physics/demo/) | [`stress_benchmark_2m`](ipc-core-benchmark/benchmarks/stress_benchmark_2m.cpp) |
+| **EP08** | **极限性能与全网先序区间秒级展开**：50 万笔需求 × 200 万物料 × 20 层价值链网络（DAG） | 真实构建 `L0..L19` 20 层 425 万条共享 BOM 边 + 200 万节点先序区间 `[rank..end]` $O(1)$ 子树查询：v2.2 核心算子约 **106 ms**（峰值内存 **218 MB** · 守恒残差 **0.00**） | [场景 8](https://gritmeng.github.io/Value-Chain-Physics/demo/) | [`stress_benchmark_2m`](ipc-core-benchmark/benchmarks/stress_benchmark_2m.cpp) |
 
-> **性能三档口径透明说明**：`262.57 ms`（EP08）为本仓开源纯内存 C++17 核心算子耗时（拓扑排序 + 20 层级联消纳 + 50 万需求防波堤，不含磁盘 I/O 与复杂排程约束）；控制塔 `2.74 秒`（EP06）为 300 万级真实数据库内存引擎 5 阶段耗时（含 326 万行磁盘读写全落盘为 `9.62 秒`）；作者在公众号与《管理视野》等文章中提及的 `296 秒` 为含完整企业数据加载、15 万项不等式约束消纳与全链路落盘的工业级端到端实测。
+> **性能三档口径透明说明**：`~106 ms`（v2.2 连续平坦防波堤版；早期 EP08 录屏采用标准哈希表为 `262.57 ms`）为本仓开源纯内存 C++17 核心算子耗时（拓扑排序 + 20 层级联消纳 + 50 万需求防波堤，不含磁盘 I/O 与复杂排程约束）；控制塔 `2.74 秒`（EP06）为 300 万级真实数据库内存引擎 5 阶段耗时（含 326 万行磁盘读写全落盘为 `9.62 秒`）；作者在公众号与《管理视野》等文章中提及的 `296 秒` 为含完整企业数据加载、15 万项不等式约束消纳与全链路落盘的工业级端到端实测。
 
 ---
 
@@ -89,13 +89,15 @@ Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global
 
 ## 免安装在线交互验证与开源复现入口 (Interactive Sandbox & Reproducible Benchmarks)
 
-除 12 部中英双语形式化论著 PDF 外，本门户提供以下零依赖在线交互验证沙盘与本地开源复现入口（点击直接打开）：
+除 12 部中英双语形式化论著 PDF 外，本门户提供以下企业级白皮书、零依赖在线交互沙盘与免编译一键压测包（点击直接打开或下载）：
 
-| 验证入口 | 核心能力与复现边界 | 访问路径 |
+| 验证与下载入口 | 核心能力与复现边界 | 访问路径 |
 | :--- | :--- | :--- |
-| **1. IPC 九大无菌交互验证沙盘（免安装实测）** | 9 大可调参数无菌沙盘（两需求抢一料死锁 2×3、缺一小件拉快盘活整套 1.1 万 vs 1 千、推拉解耦点选址与库存省钱、不做预测冲减按额度平准与超额分流、多供方按比例分单与包装凑整、不完全替代高配代低配与 30% 红线、两阶段推拉排产不爽约、全网先序区间展开与反查、先齐套再切瓶颈额度与逆向重展防超买），实时对比现有 SCP / APS 与 IPC | [**打开免安装交互验证沙盘 (`demo/index.html`)**](https://gritmeng.github.io/Value-Chain-Physics/demo/) |
-| **2. C++17 七套件开源压测与 Python 双发对账** | 单机无 GPU 跑穿 500,000 需求 × 20 层 BOM × 2,000,000 节点先序区间索引（核心算子 262.57 ms），支持本地直接编译运行与 10 项交叉校验 | [查看源码与编译指南 (`ipc-core-benchmark/`)](https://github.com/GritMeng/Value-Chain-Physics/tree/main/ipc-core-benchmark) |
-| **3. 五维心智与良知制动蒙特卡洛复现脚本** | 隐蔽规则相变下五棒串联非补偿木桶极小值与碳硅正交耦合仿真（`N=1,000, T=80, BASE_SEED=42`，零第三方依赖） | [查看复现脚本 (`scripts/reproduce_5d_mind_mc.py`)](scripts/reproduce_5d_mind_mc.py) |
+| **1. 《One Plan（IPC）企业级白皮书》（公开传播版 PDF）** | 面向制造业一号位、CFO、CIO 与供应链负责人：完整呈现六十年行业演进史、五大工业形态统一网络、四道无菌微算例、微创落地排雷及立项十行数据试金题 | [**直接下载白皮书 PDF (`docs/One_Plan_IPC_企业级白皮书_公开版.pdf`)**](docs/One_Plan_IPC_企业级白皮书_公开版.pdf) |
+| **2. IPC 九大无菌交互验证沙盘（浏览器免安装实测）** | 9 大可调参数无菌沙盘（两需求抢一料死锁 2×3、缺一小件拉快盘活整套 1.1 万 vs 1 千、推拉解耦点选址与库存省钱、不做预测冲减按额度平准与超额分流、多供方按比例分单与包装凑整、不完全替代高配代低配与 30% 红线、两阶段推拉排产不爽约、全网先序区间展开与反查、先齐套再切瓶颈额度与逆向重展防超买），实时对比现有 SCP / APS 与 IPC | [**打开免安装交互验证沙盘 (`demo/index.html`)**](https://gritmeng.github.io/Value-Chain-Physics/demo/) |
+| **3. Windows x64 免装编译器一键实测包 + 8 集 1080p 实机演示视频** | 内含预编译 7 套 `.exe` 压测程序、离线单文件网页沙盘、C++17 源码与双击即跑的 `RUN_BENCHMARK.bat`，无需安装编译器即可在本机实测 50 万需求 × 200 万物料 × 20 层网络毫秒级贯通；同页提供 `EP01–EP08` 全高清实机视频直下 | [**前往 GitHub Releases 下载实测包与高清视频**](https://github.com/GritMeng/Value-Chain-Physics/releases) |
+| **4. C++17 七套件开源压测源码与 Python 11 项双发对账** | CSR 邻接索引 + 预分配游标真零堆内存回滚、连续平坦防波堤（50 万需求协同 `~45 ms`）、多区域触顶循环注水公平切分与 200 万节点先序区间索引，支持 `MSVC / g++ / clang++` 一键编译 | [查看源码与编译指南 (`ipc-core-benchmark/`)](https://github.com/GritMeng/Value-Chain-Physics/tree/main/ipc-core-benchmark) |
+| **5. 五维心智与良知制动蒙特卡洛复现脚本** | 隐蔽规则相变下五棒串联非补偿木桶极小值与碳硅正交耦合仿真（`N=1,000, T=80, BASE_SEED=42`，零第三方依赖） | [查看复现脚本 (`scripts/reproduce_5d_mind_mc.py`)](scripts/reproduce_5d_mind_mc.py) |
 
 ---
 
@@ -226,16 +228,16 @@ Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global
 
 | 核心算子模块 | 算法机制与代码映射 | 实测规模与性能指标 | 本地审计执行程序 |
 | :--- | :--- | :--- | :--- |
-| **1. 实时 ATP/CTP 交期承诺** | 递归多阶 BOM 展开与 **零堆内存回滚 (Zero-Heap Rollback)**（[`atp_ctp_engine.cpp`](https://github.com/GritMeng/Value-Chain-Physics/blob/main/ipc-core-benchmark/src/atp_ctp_engine.cpp)） | 20-level BOM 微秒级穿透，零过扣回滚 | `bin/test_delivery_precision.exe` |
-| **2. ITP/IOP 主执配额闭环协同** | 齐套先行识别瓶颈 + 战略保底与公平切分 + 逆向重展防超买 + 独立配额桶阻断（[`itp_iop_alignment.cpp`](https://github.com/GritMeng/Value-Chain-Physics/blob/main/ipc-core-benchmark/src/itp_iop_alignment.cpp)） | **500,000 并发需求**协同耗时 **< 45 ms** | `bin/test_itp_iop_alignment.exe` |
+| **1. 实时 ATP/CTP 交期承诺** | CSR 邻接表索引 + **预分配游标零堆内存回滚 (`WatermarkRollbackArena`)** + 通用多需求两阶段正交解耦（[`atp_ctp_engine.cpp`](https://github.com/GritMeng/Value-Chain-Physics/blob/main/ipc-core-benchmark/src/atp_ctp_engine.cpp)） | 20-level BOM 微秒级穿透，搜索热路径 0 次堆分配 | `bin/test_delivery_precision.exe` |
+| **2. ITP/IOP 主执配额闭环协同** | 多区域专用件齐套先行 + 最紧瓶颈循环注水公平切分 + 逆向重展防超买 + 连续平坦防波堤阻断（[`itp_iop_alignment.cpp`](https://github.com/GritMeng/Value-Chain-Physics/blob/main/ipc-core-benchmark/src/itp_iop_alignment.cpp)） | **500,000 并发需求**连续平坦桶协同 **~45 ms** | `bin/test_itp_iop_alignment.exe` |
 | **3. 三级动态替代料分配** | 一类平摊平衡、二类组内选优、三类跨组归一化与安全库存保护（[`substitution_engine.cpp`](https://github.com/GritMeng/Value-Chain-Physics/blob/main/ipc-core-benchmark/src/substitution_engine.cpp)） | 消除组合爆炸，100% 物料守恒 | `bin/test_substitution_rules.exe` |
 | **4. 两阶段推拉排产与网络代数** | 跨 CODP 受限 `Push-IOP + Pull-IOP` + 先序区间 `[rank..end]` $O(1)$ 子树、维度规格 `GE/EQ` 与认证位掩码剪枝、菱形守恒及 `Where-Used`（[`sandbox_operators.cpp`](https://github.com/GritMeng/Value-Chain-Physics/blob/main/ipc-core-benchmark/src/sandbox_operators.cpp)） | 消除静态提前期爽约，$O(1)$ 无连接子树查询 | `bin/test_two_stage_iop_network.exe` |
-| **5. 50万需求 / 200万物料压测** | CPU 连续内存 SoA 调度，双阶段 $O(N) + O(N \log N)$ 正交剪枝 + 200 万节点先序区间索引（[`stress_benchmark_2m.cpp`](https://github.com/GritMeng/Value-Chain-Physics/blob/main/ipc-core-benchmark/benchmarks/stress_benchmark_2m.cpp)） | 单机无 GPU 消纳 **500,000 需求 / 2,000,000 物料 / 100 万次子树查询** | `bin/stress_benchmark_2m.exe` |
+| **5. 50万需求 / 200万物料压测** | CPU 连续内存 SoA 调度，20 层 DAG 拓扑消纳 + 50 万需求平坦防波堤 + 200 万节点先序区间索引（[`stress_benchmark_2m.cpp`](https://github.com/GritMeng/Value-Chain-Physics/blob/main/ipc-core-benchmark/benchmarks/stress_benchmark_2m.cpp)） | 单机无 GPU 消纳 **500,000 需求 / 2,000,000 物料 / 100 万次子树查询** | `bin/stress_benchmark_2m.exe` |
 | **6. 五维心智蒙特卡洛复现** | 隐蔽规则相变下五棒串联非补偿木桶极小值与碳硅正交耦合仿真（[`reproduce_5d_mind_mc.py`](scripts/reproduce_5d_mind_mc.py)） | `N=1,000, T=80, BASE_SEED=42` 零依赖确定性复现（单脑方差 `1.21` / 碳硅方差 `0.51`） | `python scripts/reproduce_5d_mind_mc.py` |
 
 > [!NOTE]
 > **本地一键验证与知识产权说明（20 项强耦合发明专利矩阵）**：  
-> 克隆仓库后执行 `cd ipc-core-benchmark && .\compile_and_run.bat`（或运行 `python ipc-core-benchmark/verifier/cross_validator.py`）即可完成 10 项双发交叉对账；运行 `python scripts/reproduce_5d_mind_mc.py` 即可零依赖复现五维心智与良知制动数值基准。IPC 系统完整覆盖 IBP $\to$ ITP $\to$ IOP $\to$ 车间级排程端到端闭环；围绕该引擎的 ODM-CDM-DDM 双螺旋数据本体与五维正交消纳算子，已提交 **20 项强耦合国家发明专利（其中 5 项已获发明专利授权，15 项处于公开及实质审查阶段）**，生产环境全量商业代码库暂不公开。
+> 克隆仓库后执行 `cd ipc-core-benchmark && .\compile_and_run.bat`（Linux/macOS 执行 `./compile_and_run.sh`，或运行 `python ipc-core-benchmark/verifier/cross_validator.py`）即可完成 11 项双发交叉对账；未安装 C++ 编译器的用户可直接前往 [GitHub Releases](https://github.com/GritMeng/Value-Chain-Physics/releases) 下载免安装 Windows x64 一键实测包双击运行。IPC 系统完整覆盖 IBP $\to$ ITP $\to$ IOP $\to$ 车间级排程端到端闭环；围绕该引擎的 ODM-CDM-DDM 双螺旋数据本体与五维正交消纳算子，已提交 **20 项强耦合国家发明专利（其中 5 项已获发明专利授权，15 项处于公开及实质审查阶段）**，生产环境全量商业代码库暂不公开。
 
 ---
 

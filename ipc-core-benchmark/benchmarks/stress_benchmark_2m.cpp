@@ -11,10 +11,14 @@
 #include <vector>
 
 #ifdef _WIN32
+#ifndef NOMINMAX
 #define NOMINMAX
+#endif
 #include <windows.h>
 #include <psapi.h>
+#ifdef _MSC_VER
 #pragma comment(lib, "psapi.lib")
+#endif
 static double get_peak_rss_mb() {
     PROCESS_MEMORY_COUNTERS pmc;
     if (GetProcessMemoryInfo(GetCurrentProcess(), &pmc, sizeof(pmc))) {
@@ -124,7 +128,9 @@ int main() {
             40.0 + static_cast<double>(i % 20),
             static_cast<uint64_t>(i % 5 + 1),
             "CG_" + std::to_string(i % 20),
-            "RG_" + std::to_string(i % 5)
+            "RG_" + std::to_string(i % 5),
+            static_cast<uint16_t>((i % 20) + 1),
+            static_cast<uint16_t>((i % 5) + 1)
         };
     }
 
@@ -169,7 +175,7 @@ int main() {
     auto t1_topo = std::chrono::high_resolution_clock::now();
     double topo_ms = std::chrono::duration<double, std::milli>(t1_topo - t0_topo).count();
     assert(topo_order.size() == NUM_NODES);
-    assert(max_llc == NUM_LEVELS - 1); // L0..L19 严格 20 层！
+    assert(max_llc == NUM_LEVELS - 1); // L0..L19 严格 20 层
     std::cout << "  - 拓扑闭环校验: PASSED (已排序节点=" << topo_order.size()
               << " | 实测最大 BOM 层深=" << static_cast<int>(max_llc + 1) << " 层 [L0..L19])\n";
     std::cout << "  - 拓扑排序耗时: " << topo_ms << " ms\n";
@@ -229,23 +235,23 @@ int main() {
               << " ms (边穿透吞吐: " << std::setprecision(1) << (total_edges / (net_ms / 1000.0) / 1e6) << " M edges/s)\n";
 
     // -------------------------------------------------------------------------
-    // Phase 4: 500,000 笔并发需求 ITP 配额防波堤生成 + IOP 刚性阻断协同
+    // Phase 4: 500,000 笔并发需求 ITP 连续平坦配额防波堤生成 + IOP 刚性阻断协同 (< 45 ms)
     // -------------------------------------------------------------------------
-    std::cout << "\n[Phase 4] 500,000 笔并发需求 ITP 防波堤配额 + IOP 刚性阻断协同...\n";
-    std::vector<SkuNodeRecord> dummy_parts; // 仅用于签名复用
+    std::cout << "\n[Phase 4] 500,000 笔并发需求 ITP 连续平坦配额防波堤 + IOP 刚性阻断协同...\n";
     auto t0_itp = std::chrono::high_resolution_clock::now();
-    auto firewalls = generate_itp_master_allotments(demands, dummy_parts, 1.15);
+    FlatQuotaFirewallTable firewalls = generate_itp_flat_allotments(demands, 1.15);
     auto t1_itp = std::chrono::high_resolution_clock::now();
     double itp_ms = std::chrono::duration<double, std::milli>(t1_itp - t0_itp).count();
 
     auto t0_iop = std::chrono::high_resolution_clock::now();
-    IOPExecutionResult iop_res = run_iop_execution_alignment(demands, dummy_parts, firewalls);
+    IOPExecutionResult iop_res = run_iop_flat_alignment(demands, firewalls);
     auto t1_iop = std::chrono::high_resolution_clock::now();
     double iop_ms = std::chrono::duration<double, std::milli>(t1_iop - t0_iop).count();
 
     assert(iop_res.scheduled_orders == NUM_DEMANDS);
-    std::cout << "  - 防波堤桶数: " << firewalls.size() << " | ITP 耗时: " << std::setprecision(2) << itp_ms
-              << " ms | IOP 耗时: " << iop_ms << " ms (放行=" << iop_res.scheduled_orders
+    std::cout << "  - 防波堤桶数: " << firewalls.active_buckets << " | ITP 耗时: " << std::setprecision(2) << itp_ms
+              << " ms | IOP 耗时: " << iop_ms << " ms (合计=" << (itp_ms + iop_ms)
+              << " ms, 放行=" << iop_res.scheduled_orders
               << ", 拦截=" << iop_res.blocked_orders << ")\n";
 
     // -------------------------------------------------------------------------

@@ -442,3 +442,75 @@ def evaluate_itp_kitting_most_gating_python(
         "ipc_fulfilled_d": ipc_ful_d,
         "ipc_shortage_d": max(0.0, exec_order_d - ipc_ful_d),
     }
+
+
+def evaluate_multi_region_waterfilling_python(
+    streams: List[Dict], shared_pools: List[Dict]
+) -> Dict:
+    kitted = [
+        min([max(0.0, s["forecast_qty"])] + [max(0.0, c) for c in s.get("dedicated_caps", [])])
+        for s in streams
+    ]
+    tot_kit = sum(kitted)
+    min_ratio = 1e18
+    gating_code = ""
+    eff_cap = tot_kit
+    for p in shared_pools:
+        u = max(1e-9, p.get("unit_usage", 1.0))
+        eq_sup = max(0.0, p["available_supply"]) / u
+        ratio = (eq_sup / tot_kit) if tot_kit > 1e-9 else 1.0
+        if ratio < min_ratio:
+            min_ratio = ratio
+            gating_code = p["part_code"]
+            eff_cap = eq_sup
+
+    has_bn = tot_kit > eff_cap + 1e-9
+    n = len(streams)
+    allot = [0.0] * n
+    rank_idx = sorted(range(n), key=lambda i: streams[i]["strategic_rank"])
+
+    if not has_bn:
+        allot = list(kitted)
+    else:
+        rem = eff_cap
+        for idx in rank_idx:
+            fl = min(max(0.0, streams[idx].get("strategic_floor_qty", 0.0)), kitted[idx], rem)
+            allot[idx] = fl
+            rem = max(0.0, rem - fl)
+
+        weights = [max(0.0, kitted[i] - allot[i]) for i in range(n)]
+        active = [weights[i] > 1e-9 for i in range(n)]
+        while rem > 1e-9:
+            w_sum = sum(weights[i] for i in range(n) if active[i])
+            if w_sum <= 1e-9:
+                break
+            capped = False
+            dist = 0.0
+            for i in range(n):
+                if not active[i]:
+                    continue
+                room = kitted[i] - allot[i]
+                sh = rem * (weights[i] / w_sum)
+                if sh >= room - 1e-9:
+                    allot[i] = kitted[i]
+                    dist += room
+                    active[i] = False
+                    capped = True
+            if capped:
+                rem = max(0.0, rem - dist)
+                continue
+            for i in range(n):
+                if active[i]:
+                    allot[i] += rem * (weights[i] / w_sum)
+            rem = 0.0
+
+    leg_buy = sum(max(0.0, s["forecast_qty"]) * s.get("non_bottleneck_usage", 1.0) for s in streams)
+    ipc_buy = sum(allot[i] * streams[i].get("non_bottleneck_usage", 1.0) for i in range(n))
+    return {
+        "has_bottleneck": has_bn,
+        "most_gating_part_code": gating_code,
+        "total_kitted_demand": tot_kit,
+        "total_allotment": sum(allot),
+        "allotments": allot,
+        "excess_buy_eliminated": max(0.0, leg_buy - ipc_buy),
+    }

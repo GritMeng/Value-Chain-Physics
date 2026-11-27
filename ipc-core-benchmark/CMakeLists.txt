@@ -33,3 +33,6 @@ target_link_libraries(test_two_stage_iop_network PRIVATE ipc_core_static)
 
 add_executable(stress_benchmark_2m benchmarks/stress_benchmark_2m.cpp)
 target_link_libraries(stress_benchmark_2m PRIVATE ipc_core_static)
+if(WIN32)
+    target_link_libraries(stress_benchmark_2m PRIVATE psapi)
+endif()

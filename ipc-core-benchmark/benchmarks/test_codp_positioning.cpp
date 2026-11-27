@@ -49,7 +49,7 @@ int main() {
     assert(!r2.bare_passes_gate2);
     assert(std::abs(r2.phi_shadow_value_capital - 320000.0) < 1e-6);
 
-    std::cout << "\n>>> [PASSED] Test 3: CODP 两层定位与二阶修宪影子收益 100% 校验通过！\n";
+    std::cout << "\n>>> [PASSED] Test 3: CODP 两层定位与二阶修宪影子收益 100% 校验通过.\n";
     return 0;
 }
 

@@ -41,6 +41,8 @@ struct DemandOrderRecord {
     uint64_t priority = 1;          // 数值越小优先级越高
     std::string customer_group;
     std::string region;
+    uint16_t cust_group_code = 0;   // 可选离散客户组编码（非 0 时走纯整数快速打包）
+    uint16_t region_code = 0;       // 可选离散区域编码（非 0 时走纯整数快速打包）
 };
 
 // 工作中心日产能记录 (ODM: odm_workcenter_capacity)

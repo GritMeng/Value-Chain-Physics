@@ -91,7 +91,7 @@ int main() {
     assert(ic2.legacy_breached_cap && std::abs(ic2.legacy_sub_used - 300.0) < 1e-6);
     assert(std::abs(ic2.ipc_sub_used - 214.0) < 1e-6 && ic2.ipc_within_cap);
     std::cout << "  - Case C-2 (主料缺料陷阱 500): 现有 SCP/APS 派 " << ic2.legacy_sub_used
-              << " 颗 -> 占比飙至 " << (ic2.legacy_actual_ratio * 100.0) << "% (越线违约!) | "
+              << " 颗 -> 占比飙至 " << (ic2.legacy_actual_ratio * 100.0) << "% (越线违约) | "
               << "IPC 主料锚定截断 " << ic2.ipc_sub_used << " 颗 -> 占比 "
               << (ic2.ipc_actual_ratio * 100.0) << "% (零违约)\n";
 
@@ -102,6 +102,6 @@ int main() {
     std::cout << "  - Case C-3 (国别认证不匹配 EQ 101!=102): 硬拦截返回 " << ic3.ipc_sub_used << " 颗 ("
               << ic3.decision_code << ")\n";
 
-    std::cout << "\n>>> [PASSED] Test 2: 组替代长板盘活、不完全替代红线与三类配额重归一化 100% 校验通过！\n";
+    std::cout << "\n>>> [PASSED] Test 2: 组替代长板盘活、不完全替代红线与三类配额重归一化 100% 校验通过.\n";
     return 0;
 }

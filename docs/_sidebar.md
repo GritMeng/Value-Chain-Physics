@@ -1,4 +1,5 @@
 * [首页与双通道导读](/README.md)
+* <a href="One_Plan_IPC_企业级白皮书_公开版.pdf" target="_blank" rel="noopener">One Plan（IPC）企业级白皮书 (PDF)</a>
 * [许可协议与专利权保留声明 (LICENSE)](../LICENSE)
 
 * **一、六大原创定律（24 字总纲 · 中英双语 PDF）**
@@ -32,7 +33,9 @@
   * <a href="Conscience-Driven%20Five-Dimensional%20Mind%20Model%20——%20Problem%20Redefinition%20and%20Cognitive%20Extrapolation%20in%20Open%20Complex%20Giant%20Systems.pdf" target="_blank" rel="noopener">12. 5D Mind Model (EN PDF · SSRN 7451920)</a>
 
 * **三、IPC 开源压测与可复现验证 (Interactive Sandbox & Benchmarks)**
+  * <a href="One_Plan_IPC_企业级白皮书_公开版.pdf" target="_blank" rel="noopener">One Plan（IPC）企业级白皮书（公开版 PDF）</a>
   * <a href="../demo/index.html" target="_blank" rel="noopener">IPC 九大无菌交互验证沙盘（免安装实测）</a>
+  * <a href="https://github.com/GritMeng/Value-Chain-Physics/releases" target="_blank" rel="noopener">免编译一键压测包与 8 集高清实机视频 (Releases)</a>
   * <a href="https://github.com/GritMeng/Value-Chain-Physics/tree/main/ipc-core-benchmark" target="_blank" rel="noopener">C++17 开源压测与双发验证套件 (`ipc-core-benchmark`)</a>
   * <a href="https://github.com/GritMeng/Value-Chain-Physics/blob/main/scripts/reproduce_5d_mind_mc.py" target="_blank" rel="noopener">五维心智蒙特卡洛复现脚本 (`reproduce_5d_mind_mc.py`)</a>
   * <a href="https://github.com/GritMeng/Value-Chain-Physics/blob/main/GritMeng_Research_Outputs.bib" target="_blank" rel="noopener">12 篇论著完整 BibTeX (`GritMeng_Research_Outputs.bib`)</a>

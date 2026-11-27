@@ -48,7 +48,7 @@ int main() {
     assert(m_b.mode == PullOverflowMode::MODE_B_TRUE_INCREMENT_DIRECT_MRP && std::abs(m_b.w2_quota_deducted) < 1e-6 && std::abs(m_b.incremental_mrp_qty - 200.0) < 1e-6);
     assert(m_c.mode == PullOverflowMode::MODE_C_URGENT_BORROW_AND_BACKFILL && std::abs(m_c.w2_quota_deducted - 200.0) < 1e-6 && std::abs(m_c.incremental_mrp_qty - 200.0) < 1e-6);
 
-    std::cout << "\n>>> [PASSED] Test 4: 零预测冲减日切割与三态路由 100% 校验通过！\n";
+    std::cout << "\n>>> [PASSED] Test 4: 零预测冲减日切割与三态路由 100% 校验通过.\n";
     return 0;
 }
 

@@ -61,6 +61,32 @@ int main() {
     assert(std::abs(cl.ipc_fulfilled_a - 4000.0) < 1e-6 && std::abs(cl.ipc_blocked_a - 500.0) < 1e-6);
     assert(std::abs(cl.ipc_fulfilled_d - 2000.0) < 1e-6 && std::abs(cl.ipc_shortage_d - 0.0) < 1e-6);
 
-    std::cout << "\n>>> [PASSED] Test 5: ITP/IOP 齐套瓶颈配额、逆向重展与执行防波堤校验通过.\n";
+    std::cout << "\n[Part C] 通用 4 区域 x 3 共用芯片池: 自动识别最紧瓶颈 + 触顶循环注水公平切分...\n";
+    // 4 区域: EU(预测4000, 专用件3200, 保底1000), NA(预测3000, 专用件3000, 保底1000),
+    //         APAC(预测2500, 专用件1300 -> 触顶重分测试), LATAM(预测2000, 专用件2000)
+    // 共用池: PMIC(12000颗, 单耗1), RF_PA(15000颗, 单耗2 -> 折合7500台, 最紧瓶颈!), PCB_SUB(9500颗, 单耗1)
+    std::vector<RegionalDemandStream> multi_streams = {
+        {"EU",    1, 4000.0, 1000.0, {3200.0, 3500.0}, 2.0, 3100.0},
+        {"NA",    2, 3000.0, 1000.0, {3000.0},         2.0, 2600.0},
+        {"APAC",  3, 2500.0, 0.0,    {1300.0},         2.0, 1300.0},
+        {"LATAM", 4, 2000.0, 0.0,    {2000.0},         2.0, 1500.0},
+    };
+    std::vector<SharedComponentPool> shared_pools = {
+        {"PMIC_MAIN", 12000.0, 1.0},
+        {"RF_PA_2X",  15000.0, 2.0}, // 等效上限 7,500 < 总齐套 9,500 -> Most-Gating!
+        {"WIFI_CHIP", 10000.0, 1.0},
+    };
+    MultiRegionAllotmentResult mr = evaluate_multi_region_most_gating_allotment(multi_streams, shared_pools);
+    std::cout << "  - 自动识别最紧瓶颈件: " << mr.most_gating_part_code
+              << " | 总齐套需求=" << mr.total_kitted_demand
+              << " | 总获批配额=" << mr.total_allotment
+              << " | 消除非瓶颈超买=" << mr.total_excess_buy_eliminated << "\n";
+    assert(mr.has_bottleneck && mr.most_gating_part_code == "RF_PA_2X");
+    assert(std::abs(mr.total_kitted_demand - 9500.0) < 1e-6);
+    assert(std::abs(mr.total_allotment - 7500.0) < 1e-6);
+    // 非瓶颈件单耗 2.0: 原始预测买 11500*2=23000, 逆向重展买 7500*2=15000 -> 消除 8000 超买
+    assert(std::abs(mr.total_excess_buy_eliminated - 8000.0) < 1e-6);
+
+    std::cout << "\n>>> [PASSED] Test 5: ITP/IOP 通用多区域瓶颈注水切分、逆向重展与执行防波堤校验通过.\n";
     return 0;
 }

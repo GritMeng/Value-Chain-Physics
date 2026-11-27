@@ -18,9 +18,9 @@ jobs:
       - name: Install linters
         run: npm install -g markdownlint-cli htmlhint
       - name: Run markdown lint
-        run: markdownlint "README.md" "Overview.md" --ignore node_modules || true
+        run: markdownlint "README.md" "ipc-core-benchmark/README.md" "ipc-core-benchmark/docs/MATHEMATICAL_SPEC.md" --ignore node_modules || true
       - name: Run HTML lint
-        run: htmlhint "index.html" "demo/index.html" --config '{"tag-pair":true,"id-unique":true,"attr-lowercase":true}' || true
+        run: htmlhint "index.html" "404.html" "demo/index.html" --config '{"tag-pair":true,"id-unique":true,"attr-lowercase":true}' || true
 
   cpp-benchmark-verify:
     runs-on: ubuntu-latest
