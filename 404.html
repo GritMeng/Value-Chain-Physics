@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="notranslate" translate="no">
+<head>
+  <meta name="description" content="价值链物理学与开放复杂巨系统科学官方网站。系统性阐述强耦合非独立同分布（Non-IID）系统如何通过先验划界、排序耦合正交解耦、两阶段推拉排产与二阶元认知修宪实现 >95% 人在环外自主决策闭环。" />
+  <meta name="keywords" content="价值链物理学, 排序耦合定律, 开放复杂巨系统, 系统与复杂性科学, 非独立同分布, Non-IID, 智能计划与控制, IPC引擎, One Plan, 孟凡淳, Grit Meng" />
+  <meta charset="UTF-8">
+  <link rel="canonical" href="https://gritmeng.github.io/Value-Chain-Physics/" />
+  <title>系统与复杂性科学 · 价值链物理学 | Grit Meng</title>
+  
+  <!-- Open Graph / FaceBook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="系统与复杂性科学 · 价值链物理学 - 官方网站" />
+  <meta property="og:description" content="开放复杂巨系统公理证明、《排序耦合定律》、18 年千亿级制造实证与 C++17 开源验证套件。" />
+  <meta property="og:url" content="https://gritmeng.github.io/Value-Chain-Physics/" />
+  <meta property="og:image" content="https://gritmeng.github.io/Value-Chain-Physics/images/ipc_vs_apics_blueprint.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="系统与复杂性科学 · 价值链物理学 - 官方网站" />
+  <meta property="twitter:description" content="开放复杂巨系统公理证明、《排序耦合定律》、18 年千亿级制造实证与 C++17 开源验证套件。" />
+  <meta property="twitter:image" content="https://gritmeng.github.io/Value-Chain-Physics/images/ipc_vs_apics_blueprint.png" />
+
+  <!-- JSON-LD Structured Data for Search Engine Optimization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "系统与复杂性科学 · 价值链物理学",
+    "alternateName": "System and Complexity Science: Value Chain Physics",
+    "url": "https://gritmeng.github.io/Value-Chain-Physics/",
+    "description": "系统与复杂性科学与价值链物理学官方研究站点。专注于开放复杂巨系统治理、形式化证明与千亿级工业自主决策实证。",
+    "author": {
+      "@type": "Person",
+      "name": "孟凡淳",
+      "alternateName": "GritMeng"
+    }
+  }
+  </script>
+
+  <meta name="google" content="notranslate">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/dark.css">
+  
+  <!-- KaTeX CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  
+  <style>
+    :root {
+      --theme-color: #d29922;
+      --background: #06090e;
+      --sidebar-background: #0d1117;
+      --sidebar-border-color: rgba(48, 54, 61, 0.7);
+      --text-color: #c9d1d9;
+      --heading-color: #ffffff;
+      --link-color: #58a6ff;
+    }
+    
+    /* Force dark theme on all core wrappers to prevent white leaks */
+    body, main, .content, .markdown-section, .sidebar {
+      background-color: var(--background) !important;
+      color: var(--text-color) !important;
+      font-family: 'Outfit', 'Inter', -apple-system, sans-serif;
+    }
+    
+    body {
+      background-color: var(--background) !important;
+    }
+    
+    .content {
+      background-color: var(--background) !important;
+    }
+
+    .sidebar {
+      background-color: var(--sidebar-background) !important;
+      border-right: 1px solid var(--sidebar-border-color) !important;
+    }
+    
+    .sidebar-nav li a {
+      color: #8b949e !important;
+      font-size: 14px;
+    }
+    
+    .sidebar-nav li.active > a {
+      color: var(--theme-color) !important;
+      font-weight: 600;
+      border-right: 2px solid var(--theme-color) !important;
+    }
+    
+    .markdown-section {
+      background-color: var(--background) !important;
+      max-width: 900px !important;
+      padding: 30px 45px 40px 45px !important;
+    }
+    
+    .markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4 {
+      color: var(--heading-color) !important;
+      font-weight: 700;
+    }
+    
+    .markdown-section h1 {
+      border-bottom: 1px solid var(--sidebar-border-color);
+      padding-bottom: 10px;
+    }
+    
+    .markdown-section a {
+      color: var(--link-color) !important;
+      text-decoration: none;
+    }
+    
+    .markdown-section a:hover {
+      text-decoration: underline;
+    }
+    
+    .markdown-section code {
+      background-color: rgba(110, 118, 129, 0.2) !important;
+      color: #ff7b72 !important;
+      font-family: monospace;
+      padding: 3px 6px !important;
+      border-radius: 6px;
+    }
+    
+    .markdown-section pre {
+      background-color: rgba(22, 27, 34, 0.8) !important;
+      border: 1px solid var(--sidebar-border-color) !important;
+      border-radius: 8px;
+    }
+    
+    .markdown-section pre code {
+      color: #c9d1d9 !important;
+      background: none !important;
+      padding: 0 !important;
+    }
+    
+    .markdown-section blockquote {
+      border-left: 4px solid var(--theme-color) !important;
+      background-color: rgba(210, 153, 34, 0.05) !important;
+      color: #8b949e !important;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    /* Tables styling */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      margin: 20px 0;
+      border: 1px solid var(--sidebar-border-color);
+      border-radius: 8px;
+      background-color: rgba(22, 27, 34, 0.2);
+    }
+    
+    .markdown-section table {
+      border-collapse: collapse;
+      width: 100% !important;
+      margin: 0 !important;
+      display: table !important;
+      table-layout: auto;
+    }
+    
+    .markdown-section th, .markdown-section td {
+      border: 1px solid var(--sidebar-border-color) !important;
+      padding: 12px;
+      text-align: left;
+      color: var(--text-color) !important;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      min-width: 120px;
+    }
+    
+    .markdown-section th {
+      background-color: rgba(22, 27, 34, 0.8) !important;
+      color: white !important;
+    }
+    
+    .markdown-section tr:nth-child(even) {
+      background-color: rgba(22, 27, 34, 0.3) !important;
+    }
+
+    .markdown-section td:first-child, .markdown-section th:first-child {
+      min-width: 50px !important;
+      text-align: center;
+    }
+
+    
+    /* Search Box Widget Styling */
+    .search input {
+      background-color: #0d1117 !important;
+      border: 1px solid var(--sidebar-border-color) !important;
+      color: var(--text-color) !important;
+    }
+    
+    .search input:focus {
+      border-color: var(--theme-color) !important;
+      box-shadow: 0 0 10px rgba(210, 153, 34, 0.2) !important;
+    }
+    
+    .search-results-panel {
+      background-color: var(--background) !important;
+    }
+    
+    .search em {
+      background-color: rgba(210, 153, 34, 0.3) !important;
+      color: #ffffff !important;
+    }
+  </style>
+</head>
+<body class="notranslate" translate="no">
+  <div id="app" class="notranslate" translate="no">
+    <div style="padding: 20px; font-family: sans-serif;">
+      <h1>系统与复杂性科学 · 价值链物理学 - GritMeng 官方网站</h1>
+      <p>欢迎访问系统与复杂性科学（System & Complexity Science）与价值链物理学（Value Chain Physics）官方研究站点。本站致力于探索开放复杂巨系统的物理学宪法，推动千亿级工业生态与复杂系统从经验走向物理科学。</p>
+      
+      <h2>核心论著与开源验证入口</h2>
+      <ul>
+        <li><a href="docs/One_Plan_IPC_企业级白皮书_公开版.pdf">00. One Plan（IPC）企业级白皮书（公开传播版 PDF）</a></li>
+        <li><a href="docs/六大原创定律总纲_6字4词标准冠名与全息导读.pdf">01. 六大原创定律总纲（五维完备 · 排序耦合 · 认知对消 · 正交剪枝 · 因果残差 · 良知制动）</a></li>
+        <li><a href="docs/元科学体系三部曲全息架构纲领_公理_活体_投影.pdf">02. 元科学体系三部曲拓扑架构纲领（公理 · 活体 · 投影）</a></li>
+        <li><a href="docs/价值链物理学：基于非独立同分布（Non-IID）的开放复杂巨系统形式化证明与全域可计算性研究.pdf">03. 价值链物理学（中英双语 PDF）</a></li>
+        <li><a href="demo/index.html">04. IPC 九大无菌交互验证沙盘（免安装实测）</a></li>
+        <li><a href="https://github.com/GritMeng/Value-Chain-Physics/tree/main/ipc-core-benchmark">05. C++17 开源压测与双发验证套件</a></li>
+      </ul>
+      
+      <h2>关于作者（孟凡淳 / Grit Meng）</h2>
+      <p>孟凡淳（Grit Meng），价值链物理学、系统与复杂性科学独立学者 | IPC 智能计划与控制引擎缔造者 | 前联想全球供应链集成计划方案（IPS）系统负责人兼总设计师。</p>
+      
+      <p>正在努力加载数据页面，请稍候...</p>
+    </div>
+  </div>
+  <script>
+    window.$docsify = {
+      name: '系统与复杂性科学 · 价值链物理学',
+      repo: 'GritMeng/Value-Chain-Physics',
+      routerMode: 'hash',    // 修复 404：启用 GitHub Pages 标准 Hash 路由模式
+      loadSidebar: true,     // 强行开启侧边栏
+      auto2top: true,        // 路由切换时自动回到顶部
+      maxLevel: 4,
+      subMaxLevel: 3,
+      requestHeaders: {      // 刚性破除浏览器一切历史死缓存
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      },
+      latex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$']]
+      },
+      plugins: [
+        function(hook, vm) {
+          hook.beforeEach(function(content) {
+            // Transform [[path/to/file|display text]]
+            content = content.replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, function(match, path, text) {
+              var cleanPath = '/' + path.trim().replace(/^\//, '').replace(/\.md$/i, '') + '.md';
+              return '[' + text.trim() + '](' + cleanPath + ')';
+            });
+            
+            // Transform [[path/to/file]]
+            content = content.replace(/\[\[([^\]]+)\]\]/g, function(match, path) {
+              if (path.startsWith('#')) {
+                return '[' + path + '](' + path + ')';
+              }
+              var parts = path.split('/');
+              var filename = parts[parts.length - 1].replace(/\.md$/i, '');
+              var cleanText = filename.replace(/^\d+[a-z]?_/, '');
+              var cleanPath = '/' + path.trim().replace(/^\//, '').replace(/\.md$/i, '') + '.md';
+              return '[' + cleanText.trim() + '](' + cleanPath + ')';
+            });
+            
+            return content;
+          });
+
+          hook.afterEach(function(html) {
+            // Bypass Docsify .md router for static PDF/HTML/DOCX files and C++ benchmark sources
+            html = html.replace(/href="#\/?([^"]*ipc-core-benchmark\/[^"]+)"/gi, 'href="https://github.com/GritMeng/Value-Chain-Physics/blob/main/$1" target="_blank" rel="noopener"');
+            html = html.replace(/href="#\/?([^"]+\.(?:pdf|docx|html|mp4|mp3))"/gi, 'href="$1" target="_blank" rel="noopener"');
+            // Wrap all <table> elements in a responsive container and force notranslate
+            return html.replace(/<table>/g, '<div class="table-container notranslate" translate="no"><table>')
+                       .replace(/<\/table>/g, '</table></div>');
+          });
+
+          hook.doneEach(function() {
+            // Force notranslate on all elements that might contain math or code
+            document.querySelectorAll('.katex, .katex-display, .katex-html, code, pre, .markdown-section pre, tex, script[type="math/tex"]').forEach(function(el) {
+              el.classList.add('notranslate');
+              el.setAttribute('translate', 'no');
+            });
+          });
+        }
+      ]
+    }
+  </script>
+  
+  <!-- Docsify v4 -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
+  
+  <!-- KaTeX (LaTeX engine) -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  
+  <!-- docsify-latex 核心集成插件 -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-latex@0"></script>
+  
+  <!-- Docsify 搜索插件 -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+
+</body>
+</html>

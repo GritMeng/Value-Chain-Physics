@@ -1,0 +1,64 @@
+cff-version: 1.2.0
+message: "If you use these papers, theoretical frameworks, or open benchmark suites, please cite them using the metadata below."
+title: "Value Chain Physics & Systems and Complexity Science: Generation, Persistence, and Evolution of Order in Open Complex Giant Systems"
+title-zh: "价值链物理学与系统科学：开放复杂巨系统秩序的生成、存续和进化"
+authors:
+  - family-names: "Meng"
+    given-names: "Grit (Fanchun)"
+    email: "gritmeng@outlook.com"
+    orcid: "https://orcid.org/0009-0003-8603-119X"
+    affiliation: "Independent Scholar in Value Chain Physics and Systems & Complexity Science | Creator of the Intelligent Planning & Control (IPC) Engine | Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global Supply Chain"
+year: 2026
+date-released: 2026-11-27
+license-url: "https://github.com/GritMeng/Value-Chain-Physics/blob/main/LICENSE"
+identifiers:
+  - type: url
+    value: "https://ssrn.com/abstract=7640758"
+    description: "SSRN Preprint: The Law of Sequencing Coupling (Zenodo DOI: 10.5281/zenodo.24044353)"
+  - type: url
+    value: "https://ssrn.com/abstract=7442100"
+    description: "SSRN Preprint: Value Chain Physics (Zenodo DOI: 10.5281/zenodo.23543257)"
+  - type: url
+    value: "https://ssrn.com/abstract=7251098"
+    description: "SSRN Preprint: Systems and Complexity Science — Generation, Persistence, and Evolution of Order (Zenodo DOI: 10.5281/zenodo.22033928)"
+  - type: url
+    value: "https://ssrn.com/abstract=7557899"
+    description: "SSRN Preprint: The Second Renaissance — Why Systems and Complexity Science Is the 'Science of Sciences'"
+  - type: url
+    value: "https://ssrn.com/abstract=7557878"
+    description: "SSRN Preprint: Formal Proof of 'Living Expression' and 'Self-Consistent Computability' in OCGS"
+  - type: url
+    value: "https://ssrn.com/abstract=7496118"
+    description: "SSRN Preprint: Generation, Survival, and Evolution of OCGS — Non-IID First Principle and OCGS Isomorphism"
+  - type: url
+    value: "https://ssrn.com/abstract=7451920"
+    description: "SSRN Preprint: Conscience-Driven Five-Dimensional Mind Model"
+  - type: url
+    value: "https://ssrn.com/abstract=7688779"
+    description: "SSRN Preprint: The Law of Cognitive Cancellation"
+  - type: url
+    value: "https://ssrn.com/abstract=7704718"
+    description: "SSRN Preprint: The Law of Orthogonal Pruning"
+  - type: url
+    value: "https://ssrn.com/abstract=7751519"
+    description: "SSRN Preprint: The Law of 5D Completeness"
+  - type: url
+    value: "https://ssrn.com/abstract=7751598"
+    description: "SSRN Preprint: The Law of Causal Residual"
+  - type: url
+    value: "https://ssrn.com/abstract=7754781"
+    description: "SSRN Preprint: The Law of Conscience Braking"
+repository-code: "https://github.com/GritMeng/Value-Chain-Physics"
+keywords:
+  - "Value Chain Physics"
+  - "Law of Sequencing Coupling"
+  - "Law of 5D Completeness"
+  - "Law of Cognitive Cancellation"
+  - "Law of Orthogonal Pruning"
+  - "Law of Causal Residual"
+  - "Law of Conscience Braking"
+  - "Systems and Complexity Science"
+  - "Open Complex Giant Systems"
+  - "Non-IID Dynamics"
+  - "Intelligent Planning and Control (IPC)"
+  - "One Plan Supply Chain"
