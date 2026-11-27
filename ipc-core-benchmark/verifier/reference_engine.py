@@ -387,3 +387,58 @@ def evaluate_network_algebra_python(
         "pmic_distinct_qty": distinct_flux.get(4, 0.0),
         "where_used_roots": sorted(roots),
     }
+
+
+def evaluate_itp_kitting_most_gating_python(
+    forecast_a: float = 6000.0,
+    dedicated_supply_a: float = 5000.0,
+    strategic_floor_a: float = 2000.0,
+    exec_order_a: float = 4500.0,
+    forecast_d: float = 3000.0,
+    dedicated_supply_d: float = 3000.0,
+    strategic_floor_d: float = 0.0,
+    exec_order_d: float = 2000.0,
+    shared_chip_supply: float = 6000.0,
+) -> Dict[str, float]:
+    kitted_a = min(max(0.0, forecast_a), max(0.0, dedicated_supply_a))
+    kitted_d = min(max(0.0, forecast_d), max(0.0, dedicated_supply_d))
+    sh = max(0.0, shared_chip_supply)
+    is_gating = (kitted_a + kitted_d) > sh + 1e-9
+
+    if not is_gating:
+        allot_a, allot_d = kitted_a, kitted_d
+    else:
+        lock_a = min(max(0.0, strategic_floor_a), kitted_a, sh)
+        lock_d = min(max(0.0, strategic_floor_d), kitted_d, max(0.0, sh - lock_a))
+        rem_sup = max(0.0, sh - lock_a - lock_d)
+        flex_a = max(0.0, kitted_a - lock_a)
+        flex_d = max(0.0, kitted_d - lock_d)
+        flex_tot = flex_a + flex_d
+        fair_a = rem_sup * (flex_a / flex_tot) if (flex_tot > 1e-9 and rem_sup > 0.0) else 0.0
+        fair_d = (rem_sup - fair_a) if (flex_tot > 1e-9 and rem_sup > 0.0) else 0.0
+        allot_a = lock_a + fair_a
+        allot_d = lock_d + fair_d
+
+    legacy_buy = max(0.0, forecast_a) + max(0.0, forecast_d)
+    ipc_buy = allot_a + allot_d
+    leg_take_a = min(max(0.0, exec_order_a), max(0.0, dedicated_supply_a), sh)
+    leg_rem_sh = max(0.0, sh - leg_take_a)
+    leg_ful_d = min(max(0.0, exec_order_d), max(0.0, dedicated_supply_d), leg_rem_sh)
+
+    ipc_ful_a = min(max(0.0, exec_order_a), allot_a)
+    ipc_ful_d = min(max(0.0, exec_order_d), allot_d)
+    return {
+        "kitted_a": kitted_a,
+        "kitted_d": kitted_d,
+        "is_most_gating": is_gating,
+        "allotment_a": allot_a,
+        "allotment_d": allot_d,
+        "legacy_non_bottleneck_buy": legacy_buy,
+        "ipc_renetted_buy": ipc_buy,
+        "excess_buy_eliminated": max(0.0, legacy_buy - ipc_buy),
+        "legacy_shortage_d": max(0.0, exec_order_d - leg_ful_d),
+        "ipc_fulfilled_a": ipc_ful_a,
+        "ipc_blocked_a": max(0.0, exec_order_a - ipc_ful_a),
+        "ipc_fulfilled_d": ipc_ful_d,
+        "ipc_shortage_d": max(0.0, exec_order_d - ipc_ful_d),
+    }

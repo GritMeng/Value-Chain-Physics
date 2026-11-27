@@ -291,7 +291,7 @@
           <p class="subtitle">打开浏览器就能试 · 不装软件 · 背后与本仓开源 C++17 / Python 验算代码完全同一套算法</p>
         </div>
         <div>
-          <a class="badge-link" href="../ipc-core-benchmark/">下载 C++17 开源压测源码 ➔</a>
+          <a class="badge-link" href="../ipc-core-benchmark/">下载 C++17 开源压测源码 -&gt;</a>
         </div>
       </div>
     </header>
@@ -315,11 +315,11 @@
     </details>
 
     <div class="notice">
-      <strong>怎么玩：</strong>在下面 8 个工厂常见场景里随便改数字（库存、交期、成本、份额、最小包装、混用红线、日产能、规格与国别认证），页面会立刻对照算出<strong>现有 SCP / APS 系统</strong>和<strong>IPC 闭环算法</strong>的结果差别——一眼看清 KPI 同源耦合的根本问题。全部算例均为公开无菌最小模型，不含任何商业级引擎源码或企业隐私数据。
+      <strong>怎么玩：</strong>在下面 9 个工厂常见场景里随便改数字（库存、交期、成本、份额、最小包装、混用红线、日产能、规格与共用瓶颈件），页面会立刻对照算出<strong>现有 SCP / APS 系统</strong>和<strong>IPC 闭环算法</strong>的结果差别，直接看清 KPI 同源耦合的根本问题。全部算例均为公开无菌最小模型，不含任何商业级引擎源码或企业隐私数据。
     </div>
 
     <div class="tabs" role="tablist">
-      <button class="tab-btn active" onclick="switchTab(0)">1. 两单抢一料死锁 (2单×3料)</button>
+      <button class="tab-btn active" onclick="switchTab(0)">1. 两需求抢一料死锁 (2×3)</button>
       <button class="tab-btn" onclick="switchTab(1)">2. 缺一小件拉快盘活整套 (1.1万 vs 1千)</button>
       <button class="tab-btn" onclick="switchTab(2)">3. 推拉解耦点设哪层 &amp; 库存省钱</button>
       <button class="tab-btn" onclick="switchTab(3)">4. 不做预测冲减：平准切额度与超额分流</button>
@@ -327,19 +327,20 @@
       <button class="tab-btn" onclick="switchTab(5)">6. 不完全替代：高配代低配与 30% 红线</button>
       <button class="tab-btn" onclick="switchTab(6)">7. 两阶段推拉排产 (备半成品不爽约)</button>
       <button class="tab-btn" onclick="switchTab(7)">8. 全网秒级展开与反查 (规格兼容+认证过滤)</button>
+      <button class="tab-btn" onclick="switchTab(8)">9. 先齐套再切瓶颈额度与防超买 (6千共用件)</button>
     </div>
 
     <!-- ================= TAB 1: SEQUENCING COUPLING ================= -->
     <section id="tab-0" class="panel active">
       <div class="card">
         <div class="panel-head">
-          <h2>场景 1：两单抢一料为什么会卡死现货？（2 笔订单 × 3 颗物料 × 4 天）</h2>
+          <h2>场景 1：两笔需求抢一料为什么会卡死现货？（2 笔需求 × 3 颗物料 × 4 天）</h2>
           <button class="btn-sm" onclick="resetT1()">恢复标准算例 (SSRN 7640758)</button>
         </div>
-        <p class="subtitle" style="margin-bottom:14px;">哪怕预测 100% 准、库存数据 100% 干净：高优单 D1 需要专用件 M1 + 共用件 M2；普通单 D2 需要共用件 M2 + 专用件 M3。随便改下面到货天数，看看现有 SCP / APS 系统因没看到 KPI 耦合，按优先级顺手锁死现货是怎么自己把自己卡死的。</p>
+        <p class="subtitle" style="margin-bottom:14px;">哪怕预测 100% 准、库存数据 100% 干净：高优先级需求 D1 需要专用件 M1 + 共用件 M2；普通优先级需求 D2 需要共用件 M2 + 专用件 M3。随便改下面到货天数，看看现有 SCP / APS 系统因没看到 KPI 耦合，按优先级顺手锁死现货是怎么自己把自己卡死的。</p>
         <div class="controls">
-          <div class="ctrl"><label>D1 (高优) 客户要求日</label><input id="t1_d1req" type="number" min="1" max="10" value="4" oninput="calcT1()" /></div>
-          <div class="ctrl"><label>D2 (常规) 客户要求日</label><input id="t1_d2req" type="number" min="1" max="10" value="2" oninput="calcT1()" /></div>
+          <div class="ctrl"><label>D1 (高优先级需求) 要求日</label><input id="t1_d1req" type="number" min="1" max="10" value="4" oninput="calcT1()" /></div>
+          <div class="ctrl"><label>D2 (普通优先级需求) 要求日</label><input id="t1_d2req" type="number" min="1" max="10" value="2" oninput="calcT1()" /></div>
           <div class="ctrl"><label>M1 (D1 专用件) 到货日</label><input id="t1_m1" type="number" min="1" max="10" value="4" oninput="calcT1()" /></div>
           <div class="ctrl"><label>M3 (D2 专用件) 到货日</label><input id="t1_m3" type="number" min="1" max="10" value="2" oninput="calcT1()" /></div>
           <div class="ctrl"><label>M2 (共用件) 现货可用日</label><input id="t1_m2oh" type="number" min="1" max="10" value="1" oninput="calcT1()" /></div>
@@ -411,7 +412,7 @@
     <section id="tab-3" class="panel">
       <div class="card">
         <div class="panel-head">
-          <h2>场景 4：不做预测冲减 —— 按日平准切额度 + 超额自动决定借下周还是新补采</h2>
+          <h2>场景 4：不做预测冲减：按日平准切额度 + 超额自动决定借下周还是新补采</h2>
           <button class="btn-sm" onclick="resetT4()">恢复标准算例</button>
         </div>
         <p class="subtitle" style="margin-bottom:14px;">前半环按每周真实能供底盘切保护额度，再按每天产线能力平准切到每一天（防大渠道第一天把产线吃光）；后半环客户实单直接吃自己的额度，只有超了额度才结合全月总上限和采购提前期，自动决定借下周额度还是新下采购单。</p>
@@ -460,7 +461,7 @@
     <section id="tab-5" class="panel">
       <div class="card">
         <div class="panel-head">
-          <h2>场景 6：不完全替代 —— 高配代低配 / 认证硬门槛 + 主料锚定 30% 混用红线</h2>
+          <h2>场景 6：不完全替代：高配代低配 / 认证硬门槛 + 主料锚定 30% 混用红线</h2>
           <button class="btn-sm" onclick="resetT6()">恢复主料缺料陷阱算例</button>
         </div>
         <p class="subtitle" style="margin-bottom:14px;">工艺或客户合同经常规定：副料（如 5000mAh 电池）可单向代低配且在总产出中的占比绝不能超过 30%。当主料缺料只齐套 500 台时，现有 SCP / APS 机械按“总需求 1,000 × 30% = 300 颗”派副料，导致实际占比飙到 37.5% 直接违约；IPC 严格按主料实际齐套量锚定截断在 214 颗（29.97%），并且对认证不匹配直接硬拦截归零。</p>
@@ -495,7 +496,7 @@
     <section id="tab-6" class="panel">
       <div class="card">
         <div class="panel-head">
-          <h2>场景 7：两阶段推拉排产 —— 前段按预测过产能备通用半成品，后段按实单守额度承诺不爽约</h2>
+          <h2>场景 7：两阶段推拉排产：前段按预测过产能备通用半成品，后段按实单守额度承诺不爽约</h2>
           <button class="btn-sm" onclick="resetT7()">恢复标准算例</button>
         </div>
         <p class="subtitle" style="margin-bottom:14px;">很多工厂把前道半成品和后道贴标拆成两本孤立账：销售看后道贴标只要 1 天，就答应欧洲 500 台、非洲 400 台、拉美急单 250 台全部在第 4 天交货（共 1,150 台）；结果前道通用裸机受限于每天 300 台产能，第 3 天还因等在途主芯片停工 1 天，到第 3 天底只攒出 600 台裸机，现场直接爽约 550 台。IPC 第一段同时卡住日产能和芯片到货日算出真实裸机池，第二段先按保护额度拦住拉美超额抢货，再按裸机真齐套日加贴标天数给出诚实交期。</p>
@@ -520,7 +521,7 @@
     <section id="tab-7" class="panel">
       <div class="card">
         <div class="panel-head">
-          <h2>场景 8：全网秒级展开与反查 —— 先序区间免连接查归属 + 规格兼容、国别认证与菱形去重</h2>
+          <h2>场景 8：全网秒级展开与反查：先序区间免连接查归属 + 规格兼容、国别认证与菱形去重</h2>
           <button class="btn-sm" onclick="resetT8()">恢复标准算例</button>
         </div>
         <p class="subtitle" style="margin-bottom:14px;">多层 BOM 叠加上替代料、分档晶粒和各国安规认证后，传统数据库每展开一次或反查一颗缺料件都要递归连接多张表。IPC 给每个节点预先编好“[进入序号..结束序号]”先序区间，判断任意子件属不属于某条产品线只需一次大小比较；展开时同步按规格（高配代低配或同档严配）与国别认证剪掉不合规物料，并对多条支路共用的芯片做去重守恒汇总与向上反查。</p>
@@ -554,6 +555,32 @@
         <div class="grid-2" id="t8_cards"></div>
         <div id="t8_table" style="overflow-x:auto;margin-top:12px;"></div>
         <div class="verdict-bar" id="t8_verdict"></div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 9: KITTING -> MOST-GATING ALLOTMENT -> REVERSE RE-NETTING -> IOP ================= -->
+    <section id="tab-8" class="panel">
+      <div class="card">
+        <div class="panel-head">
+          <h2>场景 9：先算齐套再切最紧瓶颈额度，逆向压回采购并守住各区独立桶</h2>
+          <button class="btn-sm" onclick="resetT9()">恢复标准算例 (6,000 共用核心件)</button>
+        </div>
+        <p class="subtitle" style="margin-bottom:14px;">区域 A（含战略保底需求）与区域 D（常规区域需求）共用同一颗稀缺核心芯片。现有 SCP / APS 直接按原始预测毛量下达非瓶颈外购件采购单，造成成千上万颗配套料买回来却缺芯装不出来；到了执行阶段又无独立额度桶保护，高优区一旦多下单就把常规区芯片抢空。IPC 严格走完四步闭环：先按各区专用件算出真实齐套上限，再在最紧瓶颈件上按“战略保底 + 剩余公平比例”切出保护额度，接着按额度上限逆向重算非瓶颈外购件（杜绝多买呆滞），最后在执行期各自吃各自的额度桶。</p>
+        <div class="controls">
+          <div class="ctrl"><label>区域 A 预测需求 (台)</label><input id="t9_fca" type="number" min="0" step="500" value="6000" oninput="calcT9()" /></div>
+          <div class="ctrl"><label>区域 A 专用壳体可用量 (套)</label><input id="t9_deda" type="number" min="0" step="500" value="5000" oninput="calcT9()" /></div>
+          <div class="ctrl"><label>区域 A 战略保底额度 (台)</label><input id="t9_locka" type="number" min="0" step="500" value="2000" oninput="calcT9()" /></div>
+          <div class="ctrl"><label>区域 A 执行期到达需求 (台)</label><input id="t9_orda" type="number" min="0" step="500" value="4500" oninput="calcT9()" /></div>
+          <div class="ctrl"><label>区域 D 预测需求 (台)</label><input id="t9_fcd" type="number" min="0" step="500" value="3000" oninput="calcT9()" /></div>
+          <div class="ctrl"><label>区域 D 专用壳体可用量 (套)</label><input id="t9_dedd" type="number" min="0" step="500" value="3000" oninput="calcT9()" /></div>
+          <div class="ctrl"><label>区域 D 战略保底额度 (台)</label><input id="t9_lockd" type="number" min="0" step="500" value="0" oninput="calcT9()" /></div>
+          <div class="ctrl"><label>区域 D 执行期到达需求 (台)</label><input id="t9_ordd" type="number" min="0" step="500" value="2000" oninput="calcT9()" /></div>
+          <div class="ctrl"><label>跨区共用核心件总供给 (颗)</label><input id="t9_sh" type="number" min="0" step="500" value="6000" oninput="calcT9()" /></div>
+        </div>
+        <div id="t9_gates" style="margin-bottom:14px;"></div>
+        <div class="grid-2" id="t9_cards"></div>
+        <div id="t9_table" style="overflow-x:auto;margin-top:12px;"></div>
+        <div class="verdict-bar" id="t9_verdict"></div>
       </div>
     </section>
 
@@ -882,7 +909,7 @@
           <thead><tr><th>工作日</th><th>当日能供产能</th><th>渠道 A 日平准额度</th><th>渠道 B 日平准额度</th><th>日合计守恒</th></tr></thead>
           <tbody>${rows}</tbody>
         </table>`;
-      document.getElementById('t4_verdict').textContent = `实测结论：${modeTitle} —— ${desc}`;
+      document.getElementById('t4_verdict').textContent = `实测结论：${modeTitle}，${desc}`;
     }
 
     // ==================== TAB 5 ====================
@@ -1004,7 +1031,7 @@
           <h3>现有 SCP / APS（按总需求毛量 × ${ratioPct}% 硬算）</h3>
           <div class="metric"><span>派发副料数量</span><strong>${legSub} 颗（按总需上限 ${capGross}）</strong></div>
           <div class="metric"><span>最终产出（主料 + 副料）</span><strong>${legOut} 台（${mainQ} + ${legSub}）</strong></div>
-          <div class="metric"><span>实际副料占比 vs 红线 ${ratioPct}%</span><strong>${legRatio.toFixed(2)}% ${legBreach ? '（越线违约！）' : '（合标）'}</strong></div>
+          <div class="metric"><span>实际副料占比 vs 红线 ${ratioPct}%</span><strong>${legRatio.toFixed(2)}% ${legBreach ? '（越线违约）' : '（合标）'}</strong></div>
         </div>
         <div class="kpi-box good">
           <h3>IPC 主料锚定不完全替代（零违约硬红线）</h3>
@@ -1024,7 +1051,7 @@
           <text x="16" y="44" font-size="13" font-weight="700" fill="${legBreach ? '#B03A2E' : '#2C3E50'}">现有 SCP/APS 占比</text>
           <rect x="${x0}" y="26" width="${barW}" height="24" rx="4" fill="#E8E4DB"/>
           <rect x="${x0}" y="26" width="${Math.max(0, legSubW)}" height="24" rx="4" fill="${legBreach ? '#B03A2E' : '#64748B'}"/>
-          <text x="${x0 + barW + 12}" y="43" font-size="13" font-weight="700" fill="${legBreach ? '#B03A2E' : '#2C3E50'}">${legRatio.toFixed(2)}% ${legBreach ? '越线！' : ''}</text>
+          <text x="${x0 + barW + 12}" y="43" font-size="13" font-weight="700" fill="${legBreach ? '#B03A2E' : '#2C3E50'}">${legRatio.toFixed(2)}% ${legBreach ? '越线' : ''}</text>
 
           <text x="16" y="96" font-size="13" font-weight="700" fill="#1E6B47">IPC 主料锚定占比</text>
           <rect x="${x0}" y="78" width="${barW}" height="24" rx="4" fill="#E8E4DB"/>
@@ -1241,8 +1268,99 @@
         `实测结论：展开 ${qty} 台 ${fgName} 时，系统用先序区间 [1..7] 免连接定位全部下级，自动剪除 ${prunedCnt} 颗不合规格或无认证晶粒（放行：${passedNames}），并将两条支路共用的电源芯片精准守恒合并为 ${pmicDistinct} 颗。`;
     }
 
-    // Initial render of all 8 sandboxes
-    calcT1(); calcT2(); calcT3(); calcT4(); calcT5(); calcT6(); calcT7(); calcT8();
+    // ==================== TAB 9: KITTING -> MOST-GATING ALLOTMENT -> RE-NETTING -> IOP ====================
+    function resetT9() {
+      document.getElementById('t9_fca').value = 6000;
+      document.getElementById('t9_deda').value = 5000;
+      document.getElementById('t9_locka').value = 2000;
+      document.getElementById('t9_orda').value = 4500;
+      document.getElementById('t9_fcd').value = 3000;
+      document.getElementById('t9_dedd').value = 3000;
+      document.getElementById('t9_lockd').value = 0;
+      document.getElementById('t9_ordd').value = 2000;
+      document.getElementById('t9_sh').value = 6000;
+      calcT9();
+    }
+    function calcT9() {
+      const fca = Math.max(0, +document.getElementById('t9_fca').value || 0);
+      const deda = Math.max(0, +document.getElementById('t9_deda').value || 0);
+      const locka = Math.max(0, +document.getElementById('t9_locka').value || 0);
+      const orda = Math.max(0, +document.getElementById('t9_orda').value || 0);
+      const fcd = Math.max(0, +document.getElementById('t9_fcd').value || 0);
+      const dedd = Math.max(0, +document.getElementById('t9_dedd').value || 0);
+      const lockd = Math.max(0, +document.getElementById('t9_lockd').value || 0);
+      const ordd = Math.max(0, +document.getElementById('t9_ordd').value || 0);
+      const sh = Math.max(0, +document.getElementById('t9_sh').value || 0);
+
+      const kitA = Math.min(fca, deda);
+      const kitD = Math.min(fcd, dedd);
+      const totKit = kitA + kitD;
+      const isGating = totKit > sh + 1e-6;
+
+      let allotA = kitA, allotD = kitD, grantLockA = 0, grantLockD = 0, fairA = 0, fairD = 0;
+      if (isGating) {
+        grantLockA = Math.min(locka, kitA, sh);
+        grantLockD = Math.min(lockd, kitD, Math.max(0, sh - grantLockA));
+        const remSup = Math.max(0, sh - grantLockA - grantLockD);
+        const flexA = Math.max(0, kitA - grantLockA);
+        const flexD = Math.max(0, kitD - grantLockD);
+        const flexTot = flexA + flexD;
+        if (flexTot > 1e-6 && remSup > 0) {
+          fairA = remSup * (flexA / flexTot);
+          fairD = remSup - fairA;
+        }
+        allotA = grantLockA + fairA;
+        allotD = grantLockD + fairD;
+      }
+
+      const legBuy = fca + fcd;
+      const ipcBuy = allotA + allotD;
+      const savedBuy = Math.max(0, legBuy - ipcBuy);
+
+      const legTakeA = Math.min(orda, deda, sh);
+      const legRemSh = Math.max(0, sh - legTakeA);
+      const legFulD = Math.min(ordd, dedd, legRemSh);
+      const legShortD = Math.max(0, ordd - legFulD);
+
+      const ipcFulA = Math.min(orda, allotA);
+      const ipcBlkA = Math.max(0, orda - ipcFulA);
+      const ipcFulD = Math.min(ordd, allotD);
+      const ipcShortD = Math.max(0, ordd - ipcFulD);
+
+      document.getElementById('t9_gates').innerHTML = `
+        <span class="pill pill-pass">第 1 步 · 齐套先行：区域 A 有效齐套 ${Math.round(kitA)} 台（剥离未齐套虚量 ${Math.round(fca - kitA)} 台），区域 D 有效齐套 ${Math.round(kitD)} 台</span>
+        <span class="pill ${isGating ? 'pill-info' : 'pill-pass'}">第 2 步 · 最紧瓶颈判定：总齐套需求 ${Math.round(totKit)} ${isGating ? '>' : '≤'} 共用芯片 ${Math.round(sh)}（${isGating ? '触发战略保底 + 公平按比例切额度' : '供给充足按齐套放行'}）</span>`;
+
+      document.getElementById('t9_cards').innerHTML = `
+        <div class="kpi-box bad">
+          <h3>现有 SCP / APS（按预测直买非瓶颈料 + 执行期共池乱抢）</h3>
+          <div class="metric"><span>非瓶颈外购主板下达采购总量</span><strong>${Math.round(legBuy)} 套（多买 ${Math.round(savedBuy)} 套变呆滞）</strong></div>
+          <div class="metric"><span>区域 A 高优实单共池抢走芯片</span><strong>${Math.round(legTakeA)} 颗</strong></div>
+          <div class="metric"><span>区域 D 常规需求实际兑现 / 被抢缺口</span><strong>兑现 ${Math.round(legFulD)} 台 / 缺口 ${Math.round(legShortD)} 台</strong></div>
+        </div>
+        <div class="kpi-box good">
+          <h3>IPC 四步闭环（齐套 -> 切瓶颈额度 -> 逆向重算采购 -> 独立桶）</h3>
+          <div class="metric"><span>获批保护额度 (区域 A : 区域 D)</span><strong>${Math.round(allotA)} 台 : ${Math.round(allotD)} 台</strong></div>
+          <div class="metric"><span>非瓶颈外购主板逆向重算实买量</span><strong>${Math.round(ipcBuy)} 套（少买呆滞 ${Math.round(savedBuy)} 套）</strong></div>
+          <div class="metric"><span>区域 D 独立桶兑现 / 区域 A 超额拦截</span><strong>D 兑现 ${Math.round(ipcFulD)} 台 (缺 ${Math.round(ipcShortD)}) · A 拦截 ${Math.round(ipcBlkA)} 台</strong></div>
+        </div>`;
+
+      document.getElementById('t9_table').innerHTML = `
+        <table>
+          <thead><tr><th>区域需求流</th><th>原始预测</th><th>第1步: 专用件齐套上限</th><th>第2步: 获批瓶颈保护额度</th><th>第3步: 非瓶颈外购实买</th><th>第4步: 执行期到达与放行</th></tr></thead>
+          <tbody>
+            <tr><td><strong>区域 A（含战略保底）</strong></td><td>${Math.round(fca)}</td><td>${Math.round(kitA)}</td><td><strong>${Math.round(allotA)}</strong>${isGating ? ` (保底 ${Math.round(grantLockA)} + 公平 ${Math.round(fairA)})` : ''}</td><td>${Math.round(allotA)} (少买 ${Math.round(Math.max(0, fca - allotA))})</td><td>到达 ${Math.round(orda)} -> <strong>放行 ${Math.round(ipcFulA)}</strong>${ipcBlkA > 0 ? ` (拦超额 ${Math.round(ipcBlkA)})` : ''}</td></tr>
+            <tr><td><strong>区域 D（常规区域）</strong></td><td>${Math.round(fcd)}</td><td>${Math.round(kitD)}</td><td><strong>${Math.round(allotD)}</strong>${isGating ? ` (保底 ${Math.round(grantLockD)} + 公平 ${Math.round(fairD)})` : ''}</td><td>${Math.round(allotD)} (少买 ${Math.round(Math.max(0, fcd - allotD))})</td><td>到达 ${Math.round(ordd)} -> <strong>放行 ${Math.round(ipcFulD)}</strong> (缺口 ${Math.round(ipcShortD)})</td></tr>
+            <tr><td><strong>全网合计守恒</strong></td><td><strong>${Math.round(legBuy)}</strong></td><td><strong>${Math.round(totKit)}</strong></td><td><strong>${Math.round(ipcBuy)}</strong></td><td><strong>${Math.round(ipcBuy)} (净减超买 ${Math.round(savedBuy)})</strong></td><td><strong>合计放行 ${Math.round(ipcFulA + ipcFulD)}</strong></td></tr>
+          </tbody>
+        </table>`;
+
+      document.getElementById('t9_verdict').textContent =
+        `实测结论：先做专用件齐套剥离 ${Math.round((fca - kitA) + (fcd - kitD))} 台虚高需求，再将 ${Math.round(sh)} 颗共用瓶颈芯片切分为 ${Math.round(allotA)} : ${Math.round(allotD)}，逆向重算直接砍掉 ${Math.round(savedBuy)} 套装不出来的非瓶颈外购件呆滞，并在执行期拦住区域 A 超额 ${Math.round(ipcBlkA)} 台，保住区域 D 兑现 ${Math.round(ipcFulD)} 台（现有系统无桶隔离下区域 D 被抢缺口 ${Math.round(legShortD)} 台）。`;
+    }
+
+    // Initial render of all 9 sandboxes
+    calcT1(); calcT2(); calcT3(); calcT4(); calcT5(); calcT6(); calcT7(); calcT8(); calcT9();
   </script>
 </body>
 </html>

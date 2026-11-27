@@ -1,6 +1,6 @@
-# IPC Core Open Benchmarks v2.1 数学规范 (Mathematical Specification)
+# IPC Core Open Benchmarks v2.2 数学规范 (Mathematical Specification)
 
-本规范给出公开无菌验证套件（`ipc-core-benchmark` v2.1）所覆盖的八大供应链决策与网络代数机理的形式化定义与对账方程。所有算子均采用洁净室原生三态命名（`SkuNodeRecord` / `BomEdgeRecord` / `DemandOrderRecord` / `QuotaFirewallKey`），不含任何商业引擎底层内存实现细节。
+本规范给出公开无菌验证套件（`ipc-core-benchmark` v2.2）所覆盖的九大供应链决策与网络代数机理的形式化定义与对账方程。所有算子均采用洁净室原生三态命名（`SkuNodeRecord` / `BomEdgeRecord` / `DemandOrderRecord` / `QuotaFirewallKey`），不含任何商业引擎底层内存实现细节。
 
 ---
 
@@ -51,9 +51,13 @@ $$\theta_j^{\text{next}} = \frac{Q_j^{\text{due}}}{\sum_{k \in \text{Active}} Q_
 
 ---
 
-## 6. ITP / IOP 刚性配额防波堤协同
+## 6. ITP 齐套门控瓶颈配额切分、逆向重展净算与 IOP 独立桶防波堤闭环
 
-ITP 主计划按四维键 $K = \langle t, \text{Family}, \text{CustGroup}, \text{Region} \rangle$ 生成防波堤上限 $\mathcal{A}(K) = \gamma \sum Q^{\text{ITP}}$；IOP 执行层按优先级逐单核验并刚性拦截越界抢料订单，彻底防止车间执行漂移。
+设多区域需求流 $i \in \{A, D\}$ 原始预测为 $F_i$、专用受限子件可用供给为 $S_{U_i}$、战略保底锁定量为 $L_i$，且共同依赖跨区共用核心件 $M_{\text{shared}}$（总供给 $S_{\text{shared}}$）：
+1. **专用件齐套包络先行**：先计算各需求流独立齐套上限 $K_i = \min(F_i, S_{U_i})$，剥离缺专用件的虚高需求，禁止未齐套虚量抢占共用瓶颈件；
+2. **最紧瓶颈（`Most-Gating`）战略保底 + 公平按比例切分**：当 $\sum_i K_i > S_{\text{shared}}$ 时，先兑现有效战略保底 $L_i^{\text{grant}} \le \min(L_i, K_i)$，再将剩余共用供给 $R_{\text{sup}} = S_{\text{shared}} - \sum_i L_i^{\text{grant}}$ 按剩余齐套弹性需求 $\Delta K_i = K_i - L_i^{\text{grant}}$ 比例切分，生成各区保护配额 $\mathcal{A}_i$（标准算例：$F_A=6{,}000, S_{U_A}=5{,}000, L_A=2{,}000$；$F_D=3{,}000, S_{U_D}=3{,}000, L_D=0$；$S_{\text{shared}}=6{,}000$，精确收敛为 $\mathcal{A}_A = 4{,}000, \mathcal{A}_D = 2{,}000$）；
+3. **逆向重展净算（消除超买呆滞）**：以获批配额 $\mathcal{A}_i$ 封顶逆向重展非瓶颈外购件净需求，使采购总量由原始直展 $\sum F_i = 9{,}000$ 收敛至 $\sum \mathcal{A}_i = 6{,}000$，消除 `3,000` 颗无法成套的超买呆滞；
+4. **独立配额桶执行隔离**：IOP 执行层按四维键 $K = \langle t, \text{Family}, \text{CustGroup}, \text{Region} \rangle$ 严格在各区自有桶 $\mathcal{A}_i$ 内核验放行，区域 A 超额实单（`4,500 > 4,000`）仅拦截超出的 `500` 台而绝不挤占区域 D 的 `2,000` 台配额。
 
 ---
 

@@ -9,7 +9,7 @@ authors:
     orcid: "https://orcid.org/0009-0003-8603-119X"
     affiliation: "Independent Scholar in Value Chain Physics and Systems & Complexity Science | Creator of the Intelligent Planning & Control (IPC) Engine | Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global Supply Chain"
 year: 2026
-date-released: 2026-11-25
+date-released: 2026-11-27
 license-url: "https://github.com/GritMeng/Value-Chain-Physics/blob/main/LICENSE"
 identifiers:
   - type: url
@@ -45,6 +45,9 @@ identifiers:
   - type: url
     value: "https://ssrn.com/abstract=7751598"
     description: "SSRN Preprint: The Law of Causal Residual"
+  - type: url
+    value: "https://ssrn.com/abstract=7754781"
+    description: "SSRN Preprint: The Law of Conscience Braking"
 repository-code: "https://github.com/GritMeng/Value-Chain-Physics"
 keywords:
   - "Value Chain Physics"

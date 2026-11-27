@@ -5,7 +5,7 @@ setlocal
 cd /d "%~dp0"
 
 echo ================================================================
-echo   IPC Core Open Benchmarks v2.1 - Build and Verify Suite (7 Suites)
+echo   IPC Core Open Benchmarks v2.2 - Build and Verify Suite (7 Suites)
 echo ================================================================
 
 where cl >nul 2>&1
