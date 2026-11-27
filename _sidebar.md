@@ -1,8 +1,8 @@
 * [首页与双通道导读](/README.md)
 * [许可协议与专利权保留声明 (LICENSE)](/LICENSE)
 
-* **一、孟氏六大原创定律（24 字总纲 · 中英双语 PDF）**
-  * <a href="docs/孟氏六大原创定律总纲_6字4词标准冠名与全息导读.pdf" target="_blank" rel="noopener">六大原创定律总纲导读 (PDF)</a>
+* **一、六大原创定律（24 字总纲 · 中英双语 PDF）**
+  * <a href="docs/六大原创定律总纲_6字4词标准冠名与全息导读.pdf" target="_blank" rel="noopener">六大原创定律总纲导读 (PDF)</a>
   * <a href="docs/五维完备定律：开放复杂巨系统的最小完备基底与涌现单向不可逆原理.pdf" target="_blank" rel="noopener">1. 五维完备定律 (中文 PDF)</a>
   * <a href="docs/The_Law_of_5D_Completeness.pdf" target="_blank" rel="noopener">1. The Law of 5D Completeness (EN PDF · SSRN 7751519)</a>
   * <a href="docs/排序耦合定律：产销协同中KPI冲突的生成机制与正交治理.pdf" target="_blank" rel="noopener">2. 排序耦合定律 (中文 PDF · 3分钟破局入口)</a>

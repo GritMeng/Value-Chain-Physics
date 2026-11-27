@@ -60,7 +60,7 @@ Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global
 | 研究与工程层级 | 核心科学问题与系统边界 | 形式化原理与数学结论 | 实证基准与可复现验证入口 |
 | :--- | :--- | :--- | :--- |
 | **I. 元科学公理层**<br>*(Axiomatic Foundations)* | 强耦合非独立同分布（Non-IID）开放复杂巨系统为何不可还原、如何生成并存续秩序？ | 确立五阶认知主干（定性八论 $\to$ 闭环可计算 $\to$ 界内最优 $\to$ 秩序 $\to$ 五维心智）与五维双螺旋流形（$S = \mathcal{M}_{\text{model}} \otimes \mathcal{A}$），证明五维最小完备性、因果深度有限性（$K < +\infty$）与时空残差三阶统一定理 | SSRN [`7251098`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7251098) · [`7557878`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7557878) · [`7496118`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7496118) · [`7557899`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7557899) · [`7451920`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7451920) · [三部曲纲领 PDF](docs/元科学体系三部曲全息架构纲领_公理_活体_投影.pdf) |
-| **II. 六大原创定律层**<br>*(Six Foundational Laws)* | 复杂巨系统的实体流形、排序锁死、认知内耗、组合爆炸、残差归因与治理心智如何构成闭环？ | 二十四字总纲：**五维完备、排序耦合、认知对消、正交剪枝、因果残差、良知制动**；6 部独立中英双语形式化证明单行本，全部补齐显式定理（`Q.E.D.`）与波普尔可证伪判据 | SSRN [`7751519`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7751519) · [`7640758`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7640758) · [`7688779`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7688779) · [`7704718`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7704718) · [`7751598`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7751598) · [`7754781`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7754781) · [六大定律总纲 PDF](docs/孟氏六大原创定律总纲_6字4词标准冠名与全息导读.pdf) |
+| **II. 六大原创定律层**<br>*(Six Foundational Laws)* | 复杂巨系统的实体流形、排序锁死、认知内耗、组合爆炸、残差归因与治理心智如何构成闭环？ | 二十四字总纲：**五维完备、排序耦合、认知对消、正交剪枝、因果残差、良知制动**；6 部独立中英双语形式化证明单行本，全部补齐显式定理（`Q.E.D.`）与波普尔可证伪判据 | SSRN [`7751519`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7751519) · [`7640758`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7640758) · [`7688779`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7688779) · [`7704718`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7704718) · [`7751598`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7751598) · [`7754781`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7754781) · [六大定律总纲 PDF](docs/六大原创定律总纲_6字4词标准冠名与全息导读.pdf) |
 | **III. 工业实证层**<br>*(Longitudinal Validation)* | 多项式闭环可计算定理（$T(N) = O(K \cdot N \log N) \in \mathbf{P}$）能否在超大规模真实离散制造网络中长期自治运行？ | **联想集团全球供应链（2008–2026）18 年底层执行闭环实证**与独立通用 **IPC 引擎**：覆盖 **500,000 需求订单、20 层 BOM、2,000,000 物料节点、150,000 不等式约束**，实现 **>95% 人在环外（HOOTL）闭环运行** | SSRN [`7442100`](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7442100) · [中文 PDF](docs/价值链物理学：基于非独立同分布（Non-IID）的开放复杂巨系统形式化证明与全域可计算性研究.pdf) · [EN PDF](docs/Value%20Chain%20Physics%20——%20Formal%20Proof%20of%20Open%20Complex%20Giant%20Systems%20and%20Full-Domain%20Computability%20Based%20on%20Non-IID%20Dynamics.pdf) |
 | **IV. 算子与复现代码层**<br>*(Reproducible Benchmarks)* | 如何在单台普通电脑上消除多阶 BOM 与替代料组合爆炸，并零随机性复现五维心智制动仿真？ | CPU 连续内存 SoA 调度与零堆内存回滚（50 万需求协同耗时 **< 45 ms**）+ 五维心智隐蔽相变蒙特卡洛零依赖复现脚本（`N=1,000, T=80, BASE_SEED=42`） | [`ipc-core-benchmark/`](https://github.com/GritMeng/Value-Chain-Physics/tree/main/ipc-core-benchmark)（C++17 源码 + 双发验证器）· [`scripts/reproduce_5d_mind_mc.py`](scripts/reproduce_5d_mind_mc.py) · **20 项强耦合发明专利矩阵** |
 
@@ -105,7 +105,7 @@ Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global
 
 > [!TIP]
 > * **通道 A（面向制造企业决策者、供应链架构师、工业工程与运筹学学者，从“六大定律与工业实证”切入）**：  
->   请先阅读上方 **最小完备反例推演** 与下方 **第一部分：孟氏六大原创定律**（推荐从 **第 2 篇《排序耦合定律》** 与 **六大原创定律总纲导读** 切入），看清传统 S&OP 与 MRP/APS 死锁的生成机制，以及为什么企业各项运营 KPI 同属单一物理耦合态的不同切面（非独立零和权衡）。随后阅读 **第 7 篇《价值链物理学》** 及文末 **C++17 百万级节点计算基准**。
+>   请先阅读上方 **最小完备反例推演** 与下方 **第一部分：六大原创定律**（推荐从 **第 2 篇《排序耦合定律》** 与 **六大原创定律总纲导读** 切入），看清传统 S&OP 与 MRP/APS 死锁的生成机制，以及为什么企业各项运营 KPI 同属单一物理耦合态的不同切面（非独立零和权衡）。随后阅读 **第 7 篇《价值链物理学》** 及文末 **C++17 百万级节点计算基准**。
 > * **通道 B（面向系统科学、复杂性科学、AI 与认知科学学者，从“元科学公理与可计算性”切入）**：  
 >   请按 **五阶认知主干** 与下方 **第二部分（第 8 篇 $\to$ 第 12 篇）** 顺序阅读：**范式导论**（《第二次文艺复兴》）$\longrightarrow$ **公理母算法**（《秩序的生成、存续与进化》）$\longrightarrow$ **动力学可计算证明**（《活体表达与闭环可计算性》）$\longrightarrow$ **Non-IID 与钱学森 OCGS 同构证明**（《开放复杂巨系统的生成、存续与进化》）$\longrightarrow$ **主体认知底座**（《良知驱动的五维心智模型》及 [`scripts/reproduce_5d_mind_mc.py`](scripts/reproduce_5d_mind_mc.py) 复现实验）。
 
@@ -115,9 +115,9 @@ Former Head & Chief Architect, Integrated Planning Solution (IPS), Lenovo Global
 
 本门户收录的 **12 部核心中英双语形式化证明论著**（6 部原创定律单行本 + 6 部元科学总论篇）及 **2 份体系导读总纲** 均采用专著形式化证明体例与全集统一数学符号，提供离线 Pandoc AST 编译的 **中文版 PDF** 与 **英文版 PDF**（全部 **12 部英文论著**均已完成 Elsevier SSRN 预印本登记与最新版同步）：
 
-### 第一部分：孟氏六大原创定律（24 字总纲：五维完备 · 排序耦合 · 认知对消 · 正交剪枝 · 因果残差 · 良知制动）
+### 第一部分：六大原创定律（24 字总纲：五维完备 · 排序耦合 · 认知对消 · 正交剪枝 · 因果残差 · 良知制动）
 
-* **总纲导读 PDF**：[孟氏六大原创定律总纲_6字4词标准冠名与全息导读.pdf](docs/孟氏六大原创定律总纲_6字4词标准冠名与全息导读.pdf)
+* **总纲导读 PDF**：[六大原创定律总纲_6字4词标准冠名与全息导读.pdf](docs/六大原创定律总纲_6字4词标准冠名与全息导读.pdf)
 
 #### 1. [本体与流形基底] 《五维完备定律：开放复杂巨系统的最小完备基底与涌现单向不可逆原理》 (SSRN 7751519)
 * **核心内容**：严格证明任何闭环可计算应然系统须具备 $\mathcal{M}_{\text{model}}=\langle \mathcal{N},\mathcal{T},\mathcal{C},X,\Delta X\rangle$ 五维最小完备正交基底（定理 1），并证明由高维业务本体向表层流程与控制塔大屏的映射为非单射有损投影（$\nexists \Pi_{\text{proj}}^{-1}$，定理 2），故抄流程、抄大屏与“业务提需求+IT写代码”在数学上不可逆。
